@@ -248,8 +248,8 @@ def validate(r):
         if b is not None and (not isinstance(b, list) or len(b) != 4 or not (b[0] < b[1] and b[2] < b[3])):
             raise BuildError(f"recipe: terrain.{key} must be [x0, x1, z0, z1] in metres")
     sigma = r.terrain.get("smooth_sigma_m", 0.0)
-    if isinstance(sigma, bool) or not isinstance(sigma, (int, float)) or sigma < 0:
-        raise BuildError("recipe: terrain.smooth_sigma_m must be a number of metres, 0 or more")
+    if isinstance(sigma, bool) or not isinstance(sigma, (int, float)) or not 0 <= sigma < 10000:
+        raise BuildError("recipe: terrain.smooth_sigma_m must be a number of metres, from 0 to 10000")
 
 
 def load(track_id, path=None, overrides=None, calendar_path=CALENDAR):
