@@ -43,6 +43,8 @@ var _values: Dictionary = {}
 
 func _ready() -> void:
 	_values = DEFAULTS.duplicate(true)
+	if Bootstrap.dev_run:
+		persist = false   # automated run: neither read nor write the player's settings
 	load_from_disk()
 
 func has_key(section: String, key: String) -> bool:
