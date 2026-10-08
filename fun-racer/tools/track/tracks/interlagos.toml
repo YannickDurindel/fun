@@ -1,0 +1,111 @@
+# Autódromo José Carlos Pace (Interlagos), São Paulo: Grand Prix circuit, anticlockwise.
+#
+#   .venv/bin/python tools/track/build_track.py interlagos --offline
+
+id = "interlagos"
+
+[osm]
+# type=circuit relation of the Grand Prix layout. It leaves out the pit lane, the kart track,
+# the drag strip and the motorcycle chicane on the Subida dos Boxes (way 189535481), which a
+# bounding-box build would pick up (4335 m with the chicane, 4313 m without). The relation
+# also carries the finish line and the start line as members: the grid is 60 m after the
+# timing line, as the published race distance (71 laps = 305.879 km = 71 x 4.309 - 0.060) says.
+relation = 6781071
+
+[elevation]
+# Outside EU-DEM coverage; Terrain Tiles are SRTM-based here.
+dataset = "terrarium"
+
+# The official turn table, pinned. Numbers follow the `raceway:corner_number` tags of the OSM
+# ways. Automatic detection also finds 15 turns, but counts the long Ferradura right-hander as
+# one (it has two apexes, T6 and T7) and numbers the 30 degree right kink on the way into
+# Bico de Pato (s = 2691) instead.
+[[turn]]
+id = "T1"
+name = "S do Senna"
+direction = "left"
+s = 387.9
+
+[[turn]]
+id = "T2"
+name = "S do Senna"
+direction = "right"
+s = 481.9
+
+[[turn]]
+id = "T3"
+name = "Curva do Sol"
+direction = "left"
+s = 575.9
+
+[[turn]]
+id = "T4"
+name = "Descida do Lago"
+direction = "left"
+s = 1453.7
+
+[[turn]]
+id = "T5"
+name = "Descida do Lago"
+direction = "left"
+s = 1609.6
+
+[[turn]]
+id = "T6"
+name = "Ferradura"
+direction = "right"
+s = 2061.5
+
+[[turn]]
+id = "T7"
+name = "Laranjinha"
+direction = "right"
+s = 2197.5
+
+[[turn]]
+id = "T8"
+name = "Esse"
+direction = "right"
+s = 2365.5
+
+[[turn]]
+id = "T9"
+name = "Pinheirinho"
+direction = "left"
+s = 2551.4
+
+[[turn]]
+id = "T10"
+name = "Bico de Pato"
+direction = "right"
+s = 2809.3
+
+[[turn]]
+id = "T11"
+name = "Mergulho"
+direction = "left"
+s = 3025.3
+
+[[turn]]
+id = "T12"
+name = "Junção"
+direction = "left"
+s = 3295.2
+
+[[turn]]
+id = "T13"
+name = "Café"
+direction = "left"
+s = 3427.2
+
+[[turn]]
+id = "T14"
+name = "Subida dos Boxes"
+direction = "left"
+s = 3701.1
+
+[[turn]]
+id = "T15"
+name = "Arquibancadas"
+direction = "left"
+s = 4091.1
