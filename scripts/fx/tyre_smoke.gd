@@ -2,6 +2,8 @@ extends MultiMeshInstance3D
 ## Tyre smoke: a small CPU-simulated particle pool drawn as one billboarded MultiMesh
 ## (a single draw call, no GPU particle pipeline, works the same on every renderer).
 ## Puffs grow, fade, inherit part of the car velocity and drift upwards.
+## Each puff remembers the road plane it was born on (contact point + normal) and never
+## sinks below it, so smoke behaves the same on slopes, banking and the flat.
 
 const MAX_PER_SOURCE: int = 150
 const SOURCES: int = 2
@@ -14,7 +16,8 @@ const INHERIT_VELOCITY: float = 0.5
 const RISE_ACCEL: float = 0.5
 const DRAG: float = 1.6
 const MAX_ALPHA: float = 0.42
-const SPAWN_LIFT: float = 0.3
+const SPAWN_LIFT: float = 0.3         ## spawn height above the contact, along the road normal
+const FLOOR_CLEARANCE: float = 0.2    ## puff centres stay at least this far above their road plane
 const TINT: Color = Color(0.86, 0.86, 0.88)
 
 var pool_size: int = MAX_PER_SOURCE * SOURCES
@@ -27,6 +30,8 @@ var _strength := PackedFloat32Array()
 var _rot := PackedFloat32Array()
 var _rot_speed := PackedFloat32Array()
 var _seed := PackedFloat32Array()
+var _floor_p := PackedVector3Array()   ## road plane each puff was spawned on (point...
+var _floor_n := PackedVector3Array()   ## ...and unit normal)
 var _next: int = 0
 var _accum := PackedFloat32Array()
 var _prev_src := PackedVector3Array()
@@ -60,6 +65,8 @@ func _ready() -> void:
 	_rot.resize(pool_size)
 	_rot_speed.resize(pool_size)
 	_seed.resize(pool_size)
+	_floor_p.resize(pool_size)
+	_floor_n.resize(pool_size)
 	_life.fill(0.0)
 	_accum.resize(SOURCES)
 	_accum.fill(0.0)
@@ -83,12 +90,18 @@ func alive_count() -> int:
 
 ## Advances the simulation. `positions`/`intensities` are per source (rear wheels);
 ## intensity 0..1 drives the emission rate. `car_velocity` is inherited in part.
-func step(delta: float, positions: PackedVector3Array, intensities: PackedFloat32Array, car_velocity: Vector3) -> void:
+## `normals` (optional, per source) are the road normals at the contacts; world up if missing.
+func step(delta: float, positions: PackedVector3Array, intensities: PackedFloat32Array, car_velocity: Vector3,
+		normals: PackedVector3Array = PackedVector3Array()) -> void:
 	if multimesh == null or delta <= 0.0:
 		return
 	for s in mini(SOURCES, positions.size()):
 		var k := intensities[s]
-		var p := positions[s] + Vector3.UP * SPAWN_LIFT
+		var nrm := Vector3.UP
+		if s < normals.size() and normals[s].length_squared() > 0.01:
+			nrm = normals[s].normalized()
+		var contact := positions[s]
+		var p := contact + nrm * SPAWN_LIFT
 		if k <= 0.02:
 			_accum[s] = 0.0
 			_has_prev[s] = false
@@ -102,16 +115,19 @@ func step(delta: float, positions: PackedVector3Array, intensities: PackedFloat3
 		for j in n:
 			# Spread spawns along the wheel path travelled this frame.
 			var f := (j + _rng.randf()) / float(n)
-			_spawn(from.lerp(p, f), car_velocity, k)
+			_spawn(from.lerp(p, f), car_velocity, k, contact, nrm)
 		_prev_src[s] = p
 		_has_prev[s] = true
 	_simulate(delta)
 
-func _spawn(p: Vector3, car_velocity: Vector3, k: float) -> void:
+func _spawn(p: Vector3, car_velocity: Vector3, k: float, floor_p: Vector3, floor_n: Vector3) -> void:
 	var i := _next
 	_next = (_next + 1) % pool_size
 	var spread := Vector3(_rng.randf_range(-1, 1), _rng.randf_range(0.2, 1.0), _rng.randf_range(-1, 1)) * 1.4
-	_pos[i] = p + Vector3(_rng.randf_range(-0.15, 0.15), 0.0, _rng.randf_range(-0.15, 0.15))
+	var jitter := Vector3(_rng.randf_range(-0.15, 0.15), 0.0, _rng.randf_range(-0.15, 0.15))
+	_pos[i] = p + jitter - floor_n * jitter.dot(floor_n)   # jitter within the road plane
+	_floor_p[i] = floor_p
+	_floor_n[i] = floor_n
 	_vel[i] = car_velocity * INHERIT_VELOCITY + spread + Vector3.UP * 0.6
 	_age[i] = 0.0
 	_life[i] = _rng.randf_range(LIFE_MIN, LIFE_MAX)
@@ -134,8 +150,9 @@ func _simulate(delta: float) -> void:
 		var v := _vel[i] * drag + Vector3.UP * RISE_ACCEL * delta
 		_vel[i] = v
 		var p := _pos[i] + v * delta
-		if p.y < 0.2:
-			p.y = 0.2   # stay above the ground plane
+		var h := (p - _floor_p[i]).dot(_floor_n[i])
+		if h < FLOOR_CLEARANCE:
+			p += _floor_n[i] * (FLOOR_CLEARANCE - h)   # stay above the road it was born on
 		_pos[i] = p
 		_rot[i] += _rot_speed[i] * delta
 		var t := _age[i] / _life[i]

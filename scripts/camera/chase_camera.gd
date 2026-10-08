@@ -7,6 +7,15 @@ extends Camera3D
 ## spring, blending towards the velocity heading while the car slides, keep the
 ## horizon level, damp height changes and widen the FOV with speed.
 ##
+## Hills: the boom pitches with the road (`slope_follow` of the grade, taken from
+## the averaged wheel contact normals, not the bouncing body) so a climb or a
+## descent is framed like the flat; banking rolls the view only a little
+## (`bank_follow`). The height spring is fed the car's (smoothed) vertical speed
+## so it does not trail below the car on long grades, yet still soaks up bumps.
+## A ray from the car to the camera pulls the boom in when terrain, a crest or a
+## wall is in the way, and a ground probe keeps a minimum clearance; neither
+## assumes a flat world.
+##
 ## Jitter-free: physics runs at 240 Hz but rendering at 30..144+ Hz, so a frame
 ## sees 0, 1 or 2 physics steps. The camera updates in _process and follows the
 ## car's *render-time* transform, which must match what the car mesh is drawn
@@ -50,8 +59,17 @@ enum Mode { CHASE_LOW = 1, CHASE_HIGH = 2, COCKPIT = 3 }
 @export var height_lag: float = 0.22
 ## Time constant (s) of the slope pitch follow.
 @export var pitch_lag: float = 0.35
-## Fraction of the car's pitch (slopes) applied to the boom.
-@export_range(0.0, 1.0) var slope_follow: float = 0.45
+## Fraction of the road's pitch (slopes) applied to the boom.
+@export_range(0.0, 1.0) var slope_follow: float = 0.72
+## Fraction of the road's banking applied as camera roll (horizon otherwise level).
+@export_range(0.0, 1.0) var bank_follow: float = 0.2
+## Time constant (s) of the banking roll follow.
+@export var roll_lag: float = 0.4
+## Time constant (s) of the vertical-speed filter used to stop the height spring
+## from trailing below the car on long grades. 0 disables the compensation.
+@export var climb_lag: float = 0.2
+## Time constant (s) for the boom to extend again after an obstruction pulled it in.
+@export var boom_recover_lag: float = 0.35
 ## How far the heading blends towards the velocity direction when sliding (0..1).
 @export_range(0.0, 1.0) var drift_follow: float = 0.75
 ## Slip angle (deg) at which the velocity blend starts / is fully applied.
@@ -77,7 +95,9 @@ enum Mode { CHASE_LOW = 1, CHASE_HIGH = 2, COCKPIT = 3 }
 
 @export_group("Ground")
 ## Minimum clearance above the ground under the camera.
-@export var min_ground_clearance: float = 0.45
+@export var min_ground_clearance: float = 0.6
+## Gap (m) kept between the camera and anything blocking the car->camera line.
+@export var occlusion_margin: float = 0.35
 
 var _target: Node3D
 
@@ -88,16 +108,29 @@ var _pivot_y: float = 0.0
 var _pivot_y_vel: float = 0.0
 var _pitch: float = 0.0
 var _pitch_vel: float = 0.0
+var _roll: float = 0.0
+var _roll_vel: float = 0.0
+var _vy_filtered: float = 0.0
+# Road normal under the car (averaged wheel contact normals), held while airborne.
+var _road_normal: Vector3 = Vector3.UP
+var _has_road_normal: bool = false
 var _speed_kmh: float = 0.0
 var _initialized: bool = false
 # After a snap, the engine's interpolated transform can still be the pre-teleport
 # one until a full physics tick has passed, so follow the live transform until then.
 var _live_target_ticks: int = 2
 var _time: float = 0.0
+var _last_delta: float = 0.0
 
 # Ground height under the camera, sampled in _physics_process (safe for the space state).
 var _ground_y: float = -INF
 var _ground_dirty: bool = true
+# Boom obstruction: ray from the car to the desired camera position, cast in _physics_process.
+var _boom_from: Vector3
+var _boom_to: Vector3
+var _boom_valid: bool = false
+var _boom_limit: float = INF     ## max boom length allowed by the last obstruction probe
+var _boom_len: float = INF       ## smoothed boom length actually used
 
 func _init() -> void:
 	# Exported values are not applied yet in _init, so this reads the script default;
@@ -138,6 +171,10 @@ func snap() -> void:
 	_live_target_ticks = 2
 	_ground_y = -INF
 	_ground_dirty = true
+	_boom_valid = false
+	_boom_limit = INF
+	_boom_len = INF
+	_has_road_normal = false
 	if is_inside_tree() and _target and _target.is_inside_tree():
 		_update(0.0)
 
@@ -154,6 +191,7 @@ func _physics_process(_delta: float) -> void:
 	if _ground_dirty and mode != Mode.COCKPIT:
 		_ground_dirty = false
 		_sample_ground()
+		_sample_boom()
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("camera_1"):
@@ -182,6 +220,7 @@ func _target_velocity() -> Vector3:
 
 func _update(delta: float) -> void:
 	_time += delta
+	_last_delta = delta
 	var xf := _target_transform()
 	var vel := _target_velocity()
 	var speed_kmh_now: float = vel.length() * 3.6
@@ -192,7 +231,9 @@ func _update(delta: float) -> void:
 	# flipping round with the degenerate / reversed flattened forward vector.
 	var hold_yaw := flat_fwd.length_squared() < 0.04 or xf.basis.y.y < 0.0
 	var target_yaw := _yaw if hold_yaw else _heading_yaw(flat_fwd, vel)
-	var target_pitch := _slope_pitch(xf) * slope_follow
+	var road := _road_angles(xf)
+	var target_pitch := road.x * slope_follow
+	var target_roll := road.y * bank_follow
 
 	if not _initialized:
 		_yaw = target_yaw
@@ -201,6 +242,9 @@ func _update(delta: float) -> void:
 		_pivot_y_vel = 0.0
 		_pitch = target_pitch
 		_pitch_vel = 0.0
+		_roll = target_roll
+		_roll_vel = 0.0
+		_vy_filtered = (vel - _road_normal * vel.dot(_road_normal)).y
 		# Velocity, not speed_kmh: right after respawn speed_kmh is stale until the next tick.
 		_speed_kmh = vel.length() * 3.6
 		_initialized = true
@@ -210,12 +254,25 @@ func _update(delta: float) -> void:
 		var r := _spring(_yaw, _yaw_vel, yaw_goal, yaw_lag, delta)
 		_yaw = wrapf(r.x, -PI, PI)
 		_yaw_vel = r.y
-		r = _spring(_pivot_y, _pivot_y_vel, xf.origin.y, height_lag, delta)
+		# A critically damped spring chasing a target that moves at speed v trails it by
+		# 2 * lag * v; lead the goal by that much (smoothed vertical speed) so the camera
+		# stays level with the car on a 14 % climb instead of sinking towards the road.
+		# Only the road-implied vertical speed (velocity projected onto the road plane):
+		# landings, kerb strikes and suspension bounce are along the normal and are ignored.
+		var y_goal := xf.origin.y
+		if climb_lag > 0.0:
+			var vy_road := (vel - _road_normal * vel.dot(_road_normal)).y
+			_vy_filtered = lerpf(_vy_filtered, vy_road, 1.0 - exp(-delta / climb_lag))
+			y_goal += clampf(2.0 * height_lag * _vy_filtered, -4.0, 4.0)
+		r = _spring(_pivot_y, _pivot_y_vel, y_goal, height_lag, delta)
 		_pivot_y = r.x
 		_pivot_y_vel = r.y
 		r = _spring(_pitch, _pitch_vel, target_pitch, pitch_lag, delta)
 		_pitch = r.x
 		_pitch_vel = r.y
+		r = _spring(_roll, _roll_vel, target_roll, roll_lag, delta)
+		_roll = r.x
+		_roll_vel = r.y
 		_speed_kmh = lerpf(_speed_kmh, speed_kmh_now, 1.0 - exp(-delta / maxf(fov_lag, 1e-3)))
 
 	if mode == Mode.COCKPIT:
@@ -241,9 +298,32 @@ func _heading_yaw(flat_fwd: Vector3, vel: Vector3) -> float:
 		w = maxf(w, 0.5 * smoothstep(2.0, 10.0, spd))
 	return fwd_yaw + slip * w * drift_follow
 
-func _slope_pitch(xf: Transform3D) -> float:
+## Road pitch (x, + = uphill ahead) and bank (y, + = right edge higher) under the car, in
+## radians. Uses the averaged wheel contact normals (stable: no body pitch from braking,
+## squat or suspension bounce); falls back to the car's up axis for non-Car targets.
+func _road_angles(xf: Transform3D) -> Vector2:
+	var n := Vector3.ZERO
+	if "wheels" in _target:
+		for w: Variant in _target.get("wheels"):
+			if w != null and bool(w.get("contact")):
+				n += w.get("contact_normal") as Vector3
+		if n.length_squared() > 1e-4:
+			_road_normal = n.normalized()
+			_has_road_normal = true
+		elif not _has_road_normal:
+			_road_normal = xf.basis.y.normalized()
+	else:
+		_road_normal = xf.basis.y.normalized()
+	n = _road_normal
+	if n.y < 0.3:   # wall / loop / upside down: no sensible slope to follow
+		return Vector2.ZERO
 	var fwd := -xf.basis.z
-	return asin(clampf(fwd.y, -1.0, 1.0))
+	var road_fwd := fwd - n * fwd.dot(n)
+	if road_fwd.length_squared() < 1e-4:
+		return Vector2.ZERO
+	road_fwd = road_fwd.normalized()
+	var road_right := road_fwd.cross(n).normalized()
+	return Vector2(asin(clampf(road_fwd.y, -1.0, 1.0)), asin(clampf(road_right.y, -1.0, 1.0)))
 
 func _update_chase(xf: Transform3D) -> void:
 	var high := mode == Mode.CHASE_HIGH
@@ -263,6 +343,27 @@ func _update_chase(xf: Transform3D) -> void:
 	var cam_pos := pivot + back * dist + up * height
 	var look_at_pt := pivot - back * look_ahead + up * look_h
 
+	# Pull the boom in when something (a crest, terrain, a wall) blocks the line from
+	# the car to the camera. The probe runs in _physics_process on last frame's boom;
+	# shorten instantly, extend again smoothly.
+	# From the car's real (not spring-lagged) height, so the ray never starts under the road.
+	var boom_from := xf.origin + up * look_h
+	var boom := cam_pos - boom_from
+	var boom_full := boom.length()
+	# _boom_len is INF while unobstructed (the boom then tracks its full length freely).
+	if _boom_limit < minf(_boom_len, boom_full):
+		_boom_len = _boom_limit
+	elif _boom_len < INF:
+		var goal_len := minf(_boom_limit, boom_full + 0.5)
+		_boom_len = lerpf(_boom_len, goal_len, 1.0 - exp(-_last_delta / maxf(boom_recover_lag, 1e-3)))
+		if _boom_len >= boom_full and _boom_limit >= boom_full:
+			_boom_len = INF
+	if _boom_len < boom_full and boom_full > 1e-3:
+		cam_pos = boom_from + boom * (maxf(_boom_len, 0.2) / boom_full)
+	_boom_from = boom_from
+	_boom_to = boom_from + boom
+	_boom_valid = true
+
 	# Never dip under the ground (sampled under the camera in _physics_process).
 	var floor_y := (_ground_y if _ground_y > -INF else xf.origin.y - 2.0) + min_ground_clearance
 	cam_pos.y = maxf(cam_pos.y, floor_y)
@@ -276,7 +377,10 @@ func _update_chase(xf: Transform3D) -> void:
 				sin(t * 41.3 + 0.7) * 0.6 + sin(t * 67.9 + 2.1) * 0.4,
 				0.0) * s
 
-	global_transform = Transform3D(Basis.looking_at(look_at_pt - cam_pos, Vector3.UP), cam_pos)
+	var b := Basis.looking_at(look_at_pt - cam_pos, Vector3.UP)
+	if absf(_roll) > 1e-5:
+		b = b * Basis(Vector3.BACK, _roll)   # roll about the view axis: right edge up for + roll
+	global_transform = Transform3D(b, cam_pos)
 	fov = lerpf(fov_rest, fov_max, speed_t)
 	near = 0.1
 
@@ -295,15 +399,37 @@ func _sample_ground() -> void:
 	var space := get_world_3d().direct_space_state if get_world_3d() else null
 	if space == null:
 		return
-	# Start just above the camera / car (whichever is higher), not far above, so
-	# bridges and tunnel roofs overhead are not mistaken for the ground.
-	var top := maxf(global_position.y, _target.global_position.y) + 0.5
+	# Start a little above the camera / car (whichever is higher), not far above, so
+	# bridges and tunnel roofs overhead are not mistaken for the ground. Works on any
+	# terrain or trimesh road (one-sided faces are hit from above).
+	var top := maxf(global_position.y, _target.global_position.y) + 1.0
 	var from := Vector3(global_position.x, top, global_position.z)
 	var q := PhysicsRayQueryParameters3D.create(from, from + Vector3.DOWN * 60.0)
 	if _target is CollisionObject3D:
 		q.exclude = [(_target as CollisionObject3D).get_rid()]
 	var hit := space.intersect_ray(q)
 	_ground_y = (hit["position"] as Vector3).y if not hit.is_empty() else -INF
+
+## Casts the car->camera boom ray; a hit limits the boom length (see _update_chase).
+func _sample_boom() -> void:
+	if not _boom_valid:
+		_boom_limit = INF
+		return
+	var space := get_world_3d().direct_space_state if get_world_3d() else null
+	if space == null:
+		return
+	var seg := _boom_to - _boom_from
+	var seg_len := seg.length()
+	if seg_len < 1e-3:
+		_boom_limit = INF
+		return
+	var q := PhysicsRayQueryParameters3D.create(_boom_from, _boom_to + seg / seg_len * occlusion_margin)
+	q.collide_with_areas = false
+	if _target is CollisionObject3D:
+		q.exclude = [(_target as CollisionObject3D).get_rid()]
+	var hit := space.intersect_ray(q)
+	_boom_limit = INF if hit.is_empty() \
+		else maxf(_boom_from.distance_to(hit["position"] as Vector3) - occlusion_margin, 0.0)
 
 ## Closed-form critically damped spring step. Returns Vector2(position, velocity).
 ## `lag` is the time constant (1/omega); exact for any dt, so frame-rate independent.

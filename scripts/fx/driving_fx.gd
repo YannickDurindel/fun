@@ -107,13 +107,15 @@ func _process(delta: float) -> void:
 		speed_lines.update_speed(0.0, delta)
 		return
 	var positions := PackedVector3Array()
+	var normals := PackedVector3Array()
 	var intensities := PackedFloat32Array()
 	var speed := car.linear_velocity.length()
 	for i in [2, 3]:
 		if i >= car.wheels.size():
 			break
 		positions.append(car.wheels[i].contact_point)
+		normals.append(car.wheels[i].contact_normal)
 		var slip := wheel_effect_slip(i)
 		intensities.append(slip * clampf(speed / smoke_full_speed, 0.0, 1.0) if slip > skid_slip_threshold else 0.0)
-	tyre_smoke.step(delta, positions, intensities, car.linear_velocity)
+	tyre_smoke.step(delta, positions, intensities, car.linear_velocity, normals)
 	speed_lines.update_speed(car.speed_kmh if speed_lines_enabled else 0.0, delta)
