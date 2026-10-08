@@ -414,6 +414,14 @@ def round_corners(data, loop, rounds, log=print):
     corner that begins and ends where the old loop was, with a minimum radius of about
     reach_m * cos^2(a / 2) / sin(a / 2) for a turn of angle a. The new points are added to
     ``data.nodes`` under made-up ids.
+
+    With ``to_node`` the entry covers a dogleg of two vertices (a crossover from one
+    carriageway to the other, drawn as a short diagonal): the loop from ``reach_m`` before the
+    first of the two nodes to ``reach_m`` after the second becomes a cubic Bezier curve with
+    the two nodes as control points, an S-bend tangent to the old loop at both ends.
+
+    Either curve is tangent to the old loop only where the loop is straight from the node to
+    the end of the reach: keep ``reach_m`` short of the next vertex that really turns.
     """
     for k, spec in enumerate(rounds):
         node, reach = str(spec["node"]), float(spec["reach_m"])
@@ -422,8 +430,20 @@ def round_corners(data, loop, rounds, log=print):
         if node not in chain:
             raise BuildError(f"[[osm.round]] node {node} is not on the loop (or was removed by an "
                              "earlier [[osm.round]] entry)")
-        i = chain.index(node)
-        lat0, lon0 = data.nodes[node]
+        i = i2 = chain.index(node)
+        if spec.get("to_node") is not None:
+            other = str(spec["to_node"])
+            if other not in chain or other == node:
+                raise BuildError(f"[[osm.round]] node {node}: to_node {other} is not another node "
+                                 "of the loop (or was removed by an earlier [[osm.round]] entry)")
+            i2 = chain.index(other)
+            if (i2 - i) % n > (i - i2) % n:      # either order: i comes first along the loop
+                i, i2 = i2, i
+            if (i2 - i) % n != 1:
+                raise BuildError(f"[[osm.round]] node {node}: to_node {other} is not the next or "
+                                 "the previous node of the loop (a dogleg is two neighbouring "
+                                 "vertices)")
+        lat0, lon0 = data.nodes[chain[i]]
         kx, ky = EARTH_M_PER_DEG * math.cos(math.radians(lat0)), EARTH_M_PER_DEG
 
         def xy(m):
@@ -432,10 +452,10 @@ def round_corners(data, loop, rounds, log=print):
 
         def walk(step):
             """(index of the first node kept on this side, the point `reach` from the node)."""
-            done, j = 0.0, i
+            done, j = 0.0, i if step < 0 else i2
             while True:
                 nxt = (j + step) % n
-                if nxt == i:
+                if nxt == (i2 if step < 0 else i):
                     raise BuildError(f"[[osm.round]] node {node}: reach_m = {reach:g} is longer "
                                      "than the loop")
                 a, b = xy(chain[j]), xy(chain[nxt])
@@ -448,15 +468,21 @@ def round_corners(data, loop, rounds, log=print):
         ia, pa = walk(-1)
         ib, pb = walk(1)
         kept = (ia - ib) % n + 1          # nodes from ib on, round the loop, to ia
-        if kept < 2 or (i - ib) % n < kept:
+        if kept < 2 or (i - ib) % n < kept or (i2 - ib) % n < kept:
             raise BuildError(f"[[osm.round]] node {node}: reach_m = {reach:g} covers the whole loop")
-        steps = max(4, int(math.ceil(2.0 * reach / 4.0)))
+        c2 = xy(chain[i2])                # (0, 0) without to_node
+        steps = max(4, int(math.ceil((2.0 * reach + math.hypot(*c2)) / 4.0)))
         ends = (xy(chain[ia]), xy(chain[ib]))
         new_ids = []
         for q in range(steps + 1):
             u = q / steps
-            # Control point (0, 0): the node itself.
-            p = ((1 - u) ** 2 * pa[0] + u ** 2 * pb[0], (1 - u) ** 2 * pa[1] + u ** 2 * pb[1])
+            if i2 == i:
+                # Quadratic; control point (0, 0): the node itself.
+                p = ((1 - u) ** 2 * pa[0] + u ** 2 * pb[0], (1 - u) ** 2 * pa[1] + u ** 2 * pb[1])
+            else:
+                # Cubic; control points (0, 0) and c2: the two nodes.
+                wa, w2, wb = (1 - u) ** 3, 3 * (1 - u) * u ** 2, u ** 3
+                p = (wa * pa[0] + w2 * c2[0] + wb * pb[0], wa * pa[1] + w2 * c2[1] + wb * pb[1])
             if min(math.dist(p, e) for e in ends) < 0.5:
                 continue                  # (nearly) on a kept node: no double points
             nid = f"round{k}_{q}"
@@ -464,7 +490,8 @@ def round_corners(data, loop, rounds, log=print):
             new_ids.append(nid)
         loop.node_ids = new_ids + [chain[(ib + q) % n] for q in range(kept)]
         loop.names = [names[i]] * len(new_ids) + [names[(ib + q) % n] for q in range(kept)]
-        log(f"round: node {node} +/- {reach:g} m: {n - kept} loop nodes replaced by {len(new_ids)}")
+        what = f"node {node}" if i2 == i else f"nodes {chain[i]} to {chain[i2]}"
+        log(f"round: {what} +/- {reach:g} m: {n - kept} loop nodes replaced by {len(new_ids)}")
     return loop
 
 

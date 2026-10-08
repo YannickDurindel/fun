@@ -1,0 +1,483 @@
+{
+ "id": "las_vegas",
+ "recipe": "tools/track/tracks/las_vegas.toml",
+ "osm": {
+  "relation": 16696508,
+  "loop_ways": [
+   1456078472,
+   601644239,
+   1454797801,
+   601645722,
+   1238536330,
+   1364789152,
+   1456078473,
+   1456078474,
+   14323635,
+   600520431,
+   1030280930,
+   601666023,
+   847458817,
+   847458816,
+   1032789814,
+   1032613489,
+   601671136,
+   601671174,
+   1016805774,
+   999044779,
+   999044776,
+   1224841829,
+   1456078475,
+   1223479151,
+   1456078476,
+   1456078477,
+   1456078470,
+   1456078478,
+   601666019,
+   435490978,
+   1436762463,
+   435490976,
+   600519166,
+   1030290856,
+   281237566,
+   1030290855,
+   1030290854,
+   1456078471,
+   1030290852,
+   1381561592,
+   1030066599,
+   1030066598,
+   1436769040,
+   1033820973,
+   1036842429,
+   423686234,
+   1030067968,
+   1016480469,
+   1016480470,
+   1119837129,
+   742140361,
+   1043464439,
+   421265955,
+   1032776580,
+   1362569857,
+   423686460,
+   1486896083,
+   423689767,
+   674621867,
+   1059801988,
+   1043551491,
+   1071482663,
+   600023001,
+   1071482662,
+   1071482661,
+   1547082474,
+   1071482660,
+   1071482659,
+   1071482658,
+   1071482657,
+   601644233,
+   1009061533,
+   1417454723,
+   1009061534,
+   1101647967,
+   1101647966,
+   1101647962,
+   1101647965,
+   1101647964,
+   1101647963
+  ],
+  "raw_length_m": 6167.1,
+  "length_m": 6165.1,
+  "official_length_m": 6201.0,
+  "length_error": -0.00579,
+  "candidates": [
+   {
+    "length_m": 6217.0,
+    "ways": [
+     1456078472,
+     601644239,
+     1454797801,
+     601645722,
+     1238536330,
+     1364789152,
+     1456078473,
+     1456078474,
+     14323635,
+     600520431,
+     1030280930,
+     601666023,
+     847458817,
+     847458816,
+     1032789814,
+     1032613489,
+     601671136,
+     601671174,
+     1016805774,
+     999044779,
+     999044776,
+     1224841829,
+     1456078475,
+     1223479151,
+     1456078476,
+     1456078477,
+     1456078470,
+     1456078478,
+     601666019,
+     435490978,
+     1436762463,
+     435490976,
+     600519166,
+     1030290856,
+     281237566,
+     1030290855,
+     1030290854,
+     1456078471,
+     1030290852,
+     1381561592,
+     1030066599,
+     1030066598,
+     1436769040,
+     1033820973,
+     1036842429,
+     423686234,
+     1030067968,
+     1016480469,
+     1016480470,
+     1119837129,
+     742140361,
+     1043464439,
+     421265955,
+     1032776580,
+     1362569857,
+     423686460,
+     1486896083,
+     423689767,
+     674621867,
+     1059801988,
+     1043551491,
+     1071482663,
+     600023001,
+     1071482662,
+     1071482661,
+     1547082474,
+     1071482660,
+     1071482659,
+     1071482658,
+     1071482657,
+     601644233,
+     1009061533,
+     1417454723,
+     1009061534,
+     1101647967,
+     1101647966,
+     1101647962,
+     1101647965,
+     1101647964,
+     1101647963
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "finish: relation member role, start: relation member role",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 14.32,
+  "max_grade": 0.0133,
+  "min_grade": -0.0152,
+  "origin_m": 636.39
+ },
+ "turns": {
+  "official": 17,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Las Vegas Strip Circuit",
+    "direction": "left",
+    "s_apex": 321.8,
+    "min_radius": 30.2
+   },
+   {
+    "id": "T2",
+    "name": "Las Vegas Strip Circuit",
+    "direction": "right",
+    "s_apex": 545.1,
+    "min_radius": 56.3
+   },
+   {
+    "id": "T3",
+    "name": "Las Vegas Strip Circuit",
+    "direction": "right",
+    "s_apex": 687.9,
+    "min_radius": 81.5
+   },
+   {
+    "id": "T4",
+    "name": "Westchester Drive",
+    "direction": "right",
+    "s_apex": 1615.1,
+    "min_radius": 26.5
+   },
+   {
+    "id": "T5",
+    "name": "Turn 5",
+    "direction": "left",
+    "s_apex": 1888.7,
+    "min_radius": 80.3
+   },
+   {
+    "id": "T6",
+    "name": "Turn 6",
+    "direction": "left",
+    "s_apex": 2067.7,
+    "min_radius": 20.7
+   },
+   {
+    "id": "T7",
+    "name": "Turn 7",
+    "direction": "right",
+    "s_apex": 2124.0,
+    "min_radius": 36.2
+   },
+   {
+    "id": "T8",
+    "name": "Sands Avenue",
+    "direction": "left",
+    "s_apex": 2268.8,
+    "min_radius": 23.8
+   },
+   {
+    "id": "T9",
+    "name": "Sands Avenue",
+    "direction": "right",
+    "s_apex": 2566.5,
+    "min_radius": 139.3
+   },
+   {
+    "id": "T10",
+    "name": "Sands Avenue",
+    "direction": "right",
+    "s_apex": 2719.3,
+    "min_radius": 97.1
+   },
+   {
+    "id": "T11",
+    "name": "Sands Avenue",
+    "direction": "right",
+    "s_apex": 2797.8,
+    "min_radius": 100.5
+   },
+   {
+    "id": "T12",
+    "name": "Sands Avenue",
+    "direction": "left",
+    "s_apex": 2994.9,
+    "min_radius": 69.6
+   },
+   {
+    "id": "T13",
+    "name": "Sands Avenue",
+    "direction": "left",
+    "s_apex": 3079.4,
+    "min_radius": 78.7
+   },
+   {
+    "id": "T14",
+    "name": "South Las Vegas Boulevard",
+    "direction": "left",
+    "s_apex": 3242.3,
+    "min_radius": 30.6
+   },
+   {
+    "id": "T15",
+    "name": "West Harmon Avenue",
+    "direction": "left",
+    "s_apex": 5183.3,
+    "min_radius": 35.1
+   },
+   {
+    "id": "T16",
+    "name": "East Harmon Avenue",
+    "direction": "left",
+    "s_apex": 5312.0,
+    "min_radius": 49.3
+   },
+   {
+    "id": "T17",
+    "name": "East Harmon Avenue",
+    "direction": "left",
+    "s_apex": 6050.1,
+    "min_radius": 65.1
+   },
+   {
+    "id": "T18",
+    "name": "Las Vegas Strip Circuit",
+    "direction": "left",
+    "s_apex": 6144.7,
+    "min_radius": 100.4
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 321.8,
+    "direction": "left",
+    "angle_deg": 174.9,
+    "kind": "corner",
+    "min_radius": 30.2,
+    "used": true
+   },
+   {
+    "s_apex": 545.1,
+    "direction": "right",
+    "angle_deg": 64.7,
+    "kind": "corner",
+    "min_radius": 56.3,
+    "used": true
+   },
+   {
+    "s_apex": 687.9,
+    "direction": "right",
+    "angle_deg": 68.9,
+    "kind": "corner",
+    "min_radius": 81.5,
+    "used": true
+   },
+   {
+    "s_apex": 1615.1,
+    "direction": "right",
+    "angle_deg": 90.1,
+    "kind": "corner",
+    "min_radius": 26.5,
+    "used": true
+   },
+   {
+    "s_apex": 1888.7,
+    "direction": "left",
+    "angle_deg": 66.6,
+    "kind": "corner",
+    "min_radius": 80.3,
+    "used": true
+   },
+   {
+    "s_apex": 2067.7,
+    "direction": "left",
+    "angle_deg": 96.7,
+    "kind": "corner",
+    "min_radius": 20.7,
+    "used": true
+   },
+   {
+    "s_apex": 2124.0,
+    "direction": "right",
+    "angle_deg": 99.9,
+    "kind": "corner",
+    "min_radius": 36.2,
+    "used": true
+   },
+   {
+    "s_apex": 2268.8,
+    "direction": "left",
+    "angle_deg": 116.0,
+    "kind": "corner",
+    "min_radius": 23.8,
+    "used": true
+   },
+   {
+    "s_apex": 2566.5,
+    "direction": "right",
+    "angle_deg": 18.3,
+    "kind": "corner",
+    "min_radius": 139.3,
+    "used": true
+   },
+   {
+    "s_apex": 2632.9,
+    "direction": "left",
+    "angle_deg": 13.4,
+    "kind": "kink",
+    "min_radius": 157.3,
+    "used": false
+   },
+   {
+    "s_apex": 2719.3,
+    "direction": "right",
+    "angle_deg": 38.6,
+    "kind": "corner",
+    "min_radius": 97.1,
+    "used": true
+   },
+   {
+    "s_apex": 2797.8,
+    "direction": "right",
+    "angle_deg": 24.5,
+    "kind": "corner",
+    "min_radius": 100.5,
+    "used": true
+   },
+   {
+    "s_apex": 2994.9,
+    "direction": "left",
+    "angle_deg": 27.0,
+    "kind": "corner",
+    "min_radius": 69.6,
+    "used": true
+   },
+   {
+    "s_apex": 3079.4,
+    "direction": "left",
+    "angle_deg": 23.3,
+    "kind": "corner",
+    "min_radius": 78.7,
+    "used": true
+   },
+   {
+    "s_apex": 3119.6,
+    "direction": "left",
+    "angle_deg": 8.4,
+    "kind": "kink",
+    "min_radius": 200.1,
+    "used": false
+   },
+   {
+    "s_apex": 3242.3,
+    "direction": "left",
+    "angle_deg": 74.5,
+    "kind": "corner",
+    "min_radius": 30.6,
+    "used": true
+   },
+   {
+    "s_apex": 5183.3,
+    "direction": "left",
+    "angle_deg": 44.2,
+    "kind": "corner",
+    "min_radius": 35.1,
+    "used": true
+   },
+   {
+    "s_apex": 5312.0,
+    "direction": "left",
+    "angle_deg": 42.0,
+    "kind": "corner",
+    "min_radius": 49.3,
+    "used": true
+   },
+   {
+    "s_apex": 6050.1,
+    "direction": "left",
+    "angle_deg": 21.1,
+    "kind": "corner",
+    "min_radius": 65.1,
+    "used": true
+   },
+   {
+    "s_apex": 6144.7,
+    "direction": "left",
+    "angle_deg": 24.4,
+    "kind": "corner",
+    "min_radius": 100.4,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

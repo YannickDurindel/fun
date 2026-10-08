@@ -58,6 +58,11 @@ relation = 9291096
 # avoid_names = ["short"]    # penalise ways whose name contains one of these
 # ignore_oneway = true       # street circuits: oneway tags follow traffic, not the race
 # length_tolerance = 0.03    # how far the OSM loop may be from the official length
+# [[osm.round]]              # a lap on public roads turns at a junction on one sharp vertex:
+# node = 159355126           #   replace the loop +/- reach_m around it by a rounded corner
+# reach_m = 60.0             #   (minimum radius about reach_m * cos^2(a/2) / sin(a/2))
+# to_node = 159355127        #   optional: a two-vertex dogleg (a carriageway crossover)
+#                            #   from node to to_node becomes an S-bend
 
 [layout]
 # direction = "anticlockwise"   # only needed when OSM has no (or wrong) oneway tags

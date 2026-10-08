@@ -1,0 +1,14 @@
+{
+  "id": "las_vegas",
+  "name": "Las Vegas Strip Circuit",
+  "grand_prix": "Las Vegas Grand Prix",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Las Vegas",
+  "length_m": 6201,
+  "turns": 17,
+  "scene": "res://scenes/tracks/las_vegas.tscn",
+  "track_json": "res://assets/tracks/las_vegas/track.json",
+  "osm_relation": 16696508,
+  "available": true
+}

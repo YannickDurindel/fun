@@ -53,6 +53,7 @@ SECTION_KEYS = {
 TURN_KEYS = {"id", "name", "direction", "s"}
 OVERRIDE_KEYS = {"s", "width", "bank", "blend", "note"}
 ELEV_OVERRIDE_KEYS = {"s", "offset", "straighten", "blend", "note"}
+ROUND_KEYS = {"node", "to_node", "reach_m", "note"}
 DIRECTIONS = {"clockwise", "anticlockwise"}
 
 
@@ -75,7 +76,7 @@ class Recipe:
     avoid_names: list = field(default_factory=list)
     ignore_oneway: bool = False
     length_tolerance: float = 0.03
-    osm_round: list = field(default_factory=list)   # [[osm.round]]: {node, reach_m}
+    osm_round: list = field(default_factory=list)   # [[osm.round]]: {node, reach_m, to_node, note}
     # [layout]
     direction: str | None = None
     finish: list | None = None
@@ -202,6 +203,10 @@ def validate(r):
                 or not isinstance(reach, (int, float)) or not 1.0 <= reach <= 500.0):
             raise BuildError("recipe: [[osm.round]] needs node = <OSM node id> and reach_m = "
                              "<metres, 1 to 500>")
+        to_node = o.get("to_node")
+        if to_node is not None and (not isinstance(to_node, int) or isinstance(to_node, bool)
+                                    or to_node == node):
+            raise BuildError("recipe: [[osm.round]] to_node must be another OSM node id")
     if not 0.0 < r.length_tolerance < 0.5:
         raise BuildError("recipe: osm.length_tolerance is a fraction, e.g. 0.03")
     if r.sectors is not None:

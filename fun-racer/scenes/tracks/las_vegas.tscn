@@ -1,0 +1,29 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/track/track.gd" id="1_track"]
+[ext_resource type="Script" path="res://scripts/track/road.gd" id="2_road"]
+[ext_resource type="PackedScene" path="res://assets/tracks/las_vegas/road_mesh.glb" id="3_glb"]
+[ext_resource type="Script" path="res://scripts/track/trackside.gd" id="4_trackside"]
+[ext_resource type="Script" path="res://scripts/track/terrain.gd" id="5_terrain"]
+[ext_resource type="Script" path="res://scripts/race/race_manager.gd" id="6_race"]
+
+[node name="Track" type="Node3D"]
+script = ExtResource("1_track")
+track_id = "las_vegas"
+track_json = "res://assets/tracks/las_vegas/track.json"
+
+[node name="Road" type="Node3D" parent="."]
+script = ExtResource("2_road")
+profile_path = "res://assets/tracks/las_vegas/road_profile.json"
+
+[node name="RoadMesh" parent="Road" instance=ExtResource("3_glb")]
+
+[node name="Trackside" type="Node3D" parent="."]
+script = ExtResource("4_trackside")
+
+[node name="Terrain" type="Node3D" parent="."]
+script = ExtResource("5_terrain")
+terrain_json = "res://assets/tracks/las_vegas/terrain.json"
+
+[node name="Race" type="Node" parent="."]
+script = ExtResource("6_race")
