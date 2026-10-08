@@ -20,6 +20,7 @@ const REF_SIZE := Vector2(1920, 1080)
 var current_name: String = ""
 var current: UIScreen
 var _stack: Array[String] = []
+var _show_tween: Tween
 
 @onready var _holder: Control = $Screens
 
@@ -67,7 +68,12 @@ func back() -> void:
 func can_go_back() -> bool:
 	return not _stack.is_empty()
 
+## Swaps the screen at once (input is never blocked); the incoming screen fades and slides in
+## over 0.15 s, except when transitions are instant (headless, short screenshot runs).
 func _show(screen: String) -> void:
+	if _show_tween != null:
+		_show_tween.kill()
+		_show_tween = null
 	if current != null:
 		_holder.remove_child(current)
 		current.queue_free()
@@ -77,4 +83,11 @@ func _show(screen: String) -> void:
 	current = s
 	current_name = screen
 	_holder.add_child(s)
+	UISounds.screen_changed()   # the new screen's initial focus makes no tick
+	if not Transitions.is_instant():
+		s.modulate.a = 0.0
+		s.position.x = 36.0
+		_show_tween = create_tween().set_parallel().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+		_show_tween.tween_property(s, ^"modulate:a", 1.0, 0.15)
+		_show_tween.tween_property(s, ^"position:x", 0.0, 0.15)
 	screen_changed.emit(screen)
