@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/menu/menu_router.gd" id="1_router"]
 [ext_resource type="Theme" path="res://assets/ui/theme.tres" id="2_theme"]
+[ext_resource type="PackedScene" path="res://scenes/menu/backdrop.tscn" id="3_backdrop"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -11,12 +12,8 @@ anchor_bottom = 1.0
 theme = ExtResource("2_theme")
 script = ExtResource("1_router")
 
-[node name="Backdrop" type="ColorRect" parent="."]
+[node name="Backdrop" parent="." instance=ExtResource("3_backdrop")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color(0.05, 0.07, 0.12, 1)
 
 [node name="Screens" type="Control" parent="."]
 layout_mode = 0
