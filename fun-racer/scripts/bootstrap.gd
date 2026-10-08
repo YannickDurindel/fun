@@ -10,6 +10,9 @@ extends Node
 
 var autodrive: bool = false
 var screenshot_path: String = ""
+## True for automated runs (--screenshot, --autodrive, --no-save, or the test runner): nothing
+## is written to the player's save data (settings, last race, best laps, ghosts).
+var dev_run: bool = false
 var screenshot_frames: int = 120
 var _frame: int = 0
 var spawn_s: float = -1.0
@@ -29,10 +32,14 @@ func _ready() -> void:
 	else:
 		Settings.ready.connect(_on_settings_ready, CONNECT_ONE_SHOT)
 	for arg: String in OS.get_cmdline_user_args() + OS.get_cmdline_args():
+		if arg == "--no-save":
+			dev_run = true
 		if arg == "--autodrive":
 			autodrive = true
+			dev_run = true
 		elif arg.begins_with("--screenshot="):
 			screenshot_path = arg.get_slice("=", 1)
+			dev_run = true
 		elif arg.begins_with("--frames="):
 			screenshot_frames = int(arg.get_slice("=", 1))
 		elif arg.begins_with("--screen="):

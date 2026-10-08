@@ -118,6 +118,8 @@ static func _register_restart_action() -> void:
 
 ## Called by the race scene once the car sits on its grid slot.
 func begin(p_car: Car, grid: Transform3D) -> void:
+	if Bootstrap.dev_run:
+		persist_best = false   # automated run: never write the player's best laps
 	car = p_car
 	track = get_parent() as Track
 	if track == null:
