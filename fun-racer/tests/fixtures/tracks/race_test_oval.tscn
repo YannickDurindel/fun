@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/race.tscn" id="1_race"]
+[ext_resource type="Script" path="res://tests/fixtures/tracks/race_fixture_setup.gd" id="2_setup"]
+
+[node name="RaceTestOval" instance=ExtResource("1_race")]
+script = ExtResource("2_setup")
+track_id = "test_oval"

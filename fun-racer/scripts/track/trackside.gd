@@ -5,7 +5,8 @@ extends Node3D
 ## widths, banking and crossfall the Road slot builds.
 ##
 ##   * Cross-section profiles come from CAD (cad/track/trackside_profiles.py ->
-##     trackside_profiles.json); placement comes from TracksideLayout (turn-relative tables).
+##     trackside_profiles.json in the track folder, else the shared default); placement comes
+##     from TracksideLayout: the track's hand-made table, or the automatic layout.
 ##   * When `snap_to_road` is on, the build waits two physics frames so the Road's collision
 ##     is in the physics space, then ray-casts the actual surface under every kerb / line /
 ##     run-off vertex. Without a Road hit it falls back to the TrackData road plane.
@@ -18,18 +19,26 @@ extends Node3D
 
 signal built
 
-const PROFILES_PATH := "res://assets/tracks/red_bull_ring/trackside_profiles.json"
+const PROFILES_FILE := "trackside_profiles.json"
+## Default kerb / barrier cross-sections (they are track-independent) for track folders
+## without their own trackside_profiles.json.
+const SHARED_PROFILES_PATH := "res://assets/tracks/_shared/trackside_profiles.json"
 const KERB_SHADER := preload("res://shaders/kerb.gdshader")
 const LAYER_BARRIER: int = 1 << 4
 const KERB_PROFILE := {"flat": "kerb_flat", "saw": "kerb_sawtooth", "sausage": "kerb_sausage"}
 const SAUSAGE_GAP: float = 0.3      ## space between a kerb's outer edge and a sausage kerb
+const LIMIT_SLOPE: float = 0.3      ## automatic layout: max sideways run of the wall per metre
 
 @export var snap_to_road: bool = true
 @export var chunk_length: float = 200.0
 @export var kerb_row_step: float = 0.5
 @export var wall_row_stride: int = 2   ## centreline points per barrier segment (~4 m)
+## Ignore the track's hand-made layout table and use the automatic layout (also forced by
+## --auto-trackside / FUN_TRACKSIDE_AUTO=1, see TracksideLayout).
+@export var force_auto_layout: bool = false
 
 var is_built: bool = false
+var layout: TracksideLayout
 var kerbs: Array[Dictionary] = []
 var runoff: Array[Dictionary] = []
 var snap_hits: int = 0
@@ -54,9 +63,15 @@ func _ready() -> void:
 		return
 	_data = track.data
 	_road = track.get_node_or_null(^"Road")
-	_prof = JSON.parse_string(FileAccess.get_file_as_string(PROFILES_PATH))
-	kerbs = TracksideLayout.resolve_kerbs(_data)
-	runoff = TracksideLayout.resolve_runoff(_data)
+	_prof = _load_profiles(track)
+	if _prof.is_empty():
+		return
+	var forced := force_auto_layout or TracksideLayout.auto_forced()
+	layout = TracksideLayout.for_track(track.track_id, _data, forced)
+	if forced and TracksideLayout.has_table(track.track_id):
+		print("Trackside: automatic layout forced, ignoring the hand-made table of '%s'" % track.track_id)
+	kerbs = layout.kerbs
+	runoff = layout.runoff
 	_compute_barrier_offsets()
 	if snap_to_road:
 		await get_tree().physics_frame
@@ -75,6 +90,19 @@ func _ready() -> void:
 	_bodies.clear()
 	is_built = true
 	built.emit()
+
+## Profiles of the track folder, else the shared default. Empty (and an error) if neither
+## can be read.
+static func _load_profiles(track: Track) -> Dictionary:
+	for path: String in [track.file_path(PROFILES_FILE), SHARED_PROFILES_PATH]:
+		if not FileAccess.file_exists(path):
+			continue
+		var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+		if parsed is Dictionary and (parsed as Dictionary).has("kerb_flat"):
+			return parsed
+		push_error("Trackside: %s is not a valid profile file" % path)
+	push_error("Trackside: no trackside profiles for track '%s'" % track.track_id)
+	return {}
 
 # ------------------------------------------------------------------------- public queries
 ## Road half width at s: the Road slot's real per-section width when it provides one,
@@ -151,7 +179,6 @@ func _blend(s: float, s0: float, len: float, ramp: float) -> float:
 
 func _compute_barrier_offsets() -> void:
 	var n := _data.points.size()
-	var turns := TracksideLayout.turn_index(_data)
 	var edges := PackedFloat32Array()
 	edges.resize(n)
 	var des_l := PackedFloat32Array()   # desired distance from the road edge
@@ -161,89 +188,40 @@ func _compute_barrier_offsets() -> void:
 	for i in n:
 		var s := i * _data.step
 		edges[i] = edge_at(s)
-		var dl := TracksideLayout.BARRIER_STRAIGHT
-		var dr := TracksideLayout.BARRIER_STRAIGHT
-		for id: String in turns:
-			var t: Dictionary = turns[id]
-			var w := _blend(s, t["s_apex"] - 60.0, 140.0, 40.0)
-			var v := lerpf(TracksideLayout.BARRIER_STRAIGHT, TracksideLayout.BARRIER_CORNER_OUTSIDE, w)
-			if t["sign"] > 0.0:     # outside of a right-hander is the left
-				dl = maxf(dl, v)
-			else:
-				dr = maxf(dr, v)
-		for r in runoff:
-			var target: float = r["u1"] + 2.5 + TracksideLayout.BARRIER_BEHIND_RUNOFF
-			var v := lerpf(TracksideLayout.BARRIER_STRAIGHT, target, _blend(s, r["s0"], r["len"], 30.0))
-			if r["side"] > 0.0:
+		var dl := layout.barrier_straight
+		var dr := layout.barrier_straight
+		for z in layout.barrier_zones:
+			var v := lerpf(layout.barrier_straight, float(z["dist"]),
+					_blend(s, float(z["s0"]), float(z["len"]), float(z["ramp"])))
+			if z["side"] > 0.0:
 				dr = maxf(dr, v)
 			else:
 				dl = maxf(dl, v)
 		des_l[i] = dl
 		des_r[i] = dr
 	# Geometric limits (centre offsets): inside of tight corners and nearby legs of the lap.
-	var lim_l := PackedFloat32Array()
-	var lim_r := PackedFloat32Array()
-	lim_l.resize(n)
-	lim_r.resize(n)
-	lim_l.fill(1e6)
-	lim_r.fill(1e6)
-	var kappa := PackedFloat32Array()
-	kappa.resize(n)
-	for i in n:
-		var s := i * _data.step
-		kappa[i] = _data.tangent_at(s - 6.0).cross(_data.tangent_at(s + 6.0)).y / 12.0  # + = left turn
-	for i in n:
-		var worst := 0.0
-		for k in range(-8, 9):
-			var kk: float = kappa[(i + k + n) % n]
-			if absf(kk) > absf(worst):
-				worst = kk
-		if worst > 1e-4:
-			lim_l[i] = minf(lim_l[i], 0.8 / worst)
-		elif worst < -1e-4:
-			lim_r[i] = minf(lim_r[i], 0.8 / -worst)
-	_proximity_limits(lim_l, lim_r)
+	var lims := TrackGeometry.no_limits(n)
+	var lim_l := lims[0]
+	var lim_r := lims[1]
+	TrackGeometry.inside_limits(_data, lim_l, lim_r)
+	TrackGeometry.proximity_limits(_data, lim_l, lim_r)
+	if layout.is_auto:
+		# Hand-made layouts keep the raw limits, so their walls stay exactly where they were.
+		_limit_slope(lim_l)
+		_limit_slope(lim_r)
 	_off_l = _finish_offsets(des_l, lim_l, edges)
 	_off_r = _finish_offsets(des_r, lim_r, edges)
 
-## Caps the barrier offset at half the lateral distance to any other leg of the lap.
-func _proximity_limits(lim_l: PackedFloat32Array, lim_r: PackedFloat32Array) -> void:
-	var n := _data.points.size()
-	var cell := 25.0
-	var grid := {}
-	for i in n:
-		var p := _data.points[i]
-		var key := Vector2i(floori(p.x / cell), floori(p.z / cell))
-		var bucket: PackedInt32Array = grid.get(key, PackedInt32Array())
-		bucket.append(i)
-		grid[key] = bucket
-	var skip := int(150.0 / _data.step)
-	for i in n:
-		var p := _data.points[i]
-		var t := _data.tangent_at(i * _data.step)
-		var th := Vector3(t.x, 0.0, t.z).normalized()
-		var rh := th.cross(Vector3.UP)
-		var c := Vector2i(floori(p.x / cell), floori(p.z / cell))
-		for gx in range(c.x - 4, c.x + 5):
-			for gz in range(c.y - 4, c.y + 5):
-				var key := Vector2i(gx, gz)
-				if not grid.has(key):
-					continue
-				var bucket: PackedInt32Array = grid[key]
-				for j in bucket:
-					var di := absi(j - i)
-					if mini(di, n - di) < skip:
-						continue
-					var dv := _data.points[j] - p
-					dv.y = 0.0
-					var lat := dv.dot(rh)
-					if absf(dv.dot(th)) > absf(lat):
-						continue
-					var cap := absf(lat) * 0.5 - 0.5
-					if lat > 0.0:
-						lim_r[i] = minf(lim_r[i], cap)
-					else:
-						lim_l[i] = minf(lim_l[i], cap)
+## Turns the geometric limits into a continuous line: where a limit starts (the inside of a
+## tight corner, another leg of the lap coming close) the wall closes in at LIMIT_SLOPE
+## instead of stepping sideways.
+func _limit_slope(lim: PackedFloat32Array) -> void:
+	var n := lim.size()
+	var rise := LIMIT_SLOPE * _data.step
+	for i in 2 * n:       # twice round, so the ramp also runs through the finish line
+		lim[(i + 1) % n] = minf(lim[(i + 1) % n], lim[i % n] + rise)
+	for i in range(2 * n, 0, -1):
+		lim[(i - 1) % n] = minf(lim[(i - 1) % n], lim[i % n] + rise)
 
 func _finish_offsets(des: PackedFloat32Array, lim: PackedFloat32Array,
 		edges: PackedFloat32Array) -> PackedFloat32Array:
@@ -591,7 +569,7 @@ func _build_barriers() -> void:
 			var b := pts[j]
 			var oa := outs[i]
 			var ob := outs[j]
-			var concrete := TracksideLayout.is_concrete(_data, s)
+			var concrete := layout.is_concrete(s)
 			var colp: Dictionary = conc["collision"] if concrete else armco["collision"]
 			if concrete:
 				var st := _st(ch, Mat.CONCRETE)

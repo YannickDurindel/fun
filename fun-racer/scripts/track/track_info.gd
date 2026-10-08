@@ -14,8 +14,11 @@ var scene: String = ""          ## track scene (root: Track) when available
 var track_json: String = ""     ## centreline data when available
 var available: bool = false
 var order: int = 999            ## calendar order, for sorting
+var folder: String = ""         ## asset folder when it is not assets/tracks/<id>
 
 func dir() -> String:
+	if not folder.is_empty():
+		return folder
 	return "%s/%s" % [TrackCatalog.TRACKS_DIR, id]
 
 func best_path() -> String:

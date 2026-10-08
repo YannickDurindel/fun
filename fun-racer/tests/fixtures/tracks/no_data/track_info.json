@@ -1,0 +1,6 @@
+{
+  "id": "no_data",
+  "name": "No Data (fixture: a folder without track.json is not playable)",
+  "length_m": 1000,
+  "turns": 4
+}

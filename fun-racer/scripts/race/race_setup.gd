@@ -29,6 +29,11 @@ func _enter_tree() -> void:
 	else:
 		Game.config.track_id = id   # scene opened directly for one track (alias scenes, tests)
 	track = (load(info.scene) as PackedScene).instantiate() as Track
+	if track.track_id.is_empty():
+		# The generic track scene: tell it which folder to build, before it enters the tree.
+		track.track_id = info.id
+		track.track_dir = info.dir()
+		track.track_json = info.track_json
 	track.name = "Track"
 	add_child(track)
 	move_child(track, 1)
