@@ -1,12 +1,10 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://scripts/menu/stub_screen.gd" id="1_stub"]
+[ext_resource type="Script" path="res://scripts/menu/records.gd" id="1_records"]
 
-[node name="Screen" type="Control"]
+[node name="Records" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource("1_stub")
-title = "RECORDS"
-kind = "records"
+script = ExtResource("1_records")
