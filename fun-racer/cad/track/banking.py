@@ -1,10 +1,18 @@
-"""Red Bull Ring road cross-section: per-s width and bank (crossfall / corner camber).
+"""Road cross-section along the lap: per-s width and bank (crossfall / corner camber).
 
-This table is the ``bank`` (and ``width``) override for the road mesh. track.json keeps
-``bank = 0`` and ``width = 13`` (another unit owns it); the CAD road reads THESE values,
-and ``cad/track/road.py`` writes the expanded per-point result to
-``assets/tracks/red_bull_ring/road_profile.json`` so Godot code (``scripts/track/road.gd``)
-can query the exact surface.
+``profile()`` gives the ``bank`` and ``width`` the road mesh is built with. track.json keeps
+``bank = 0`` and a nominal ``width``; the CAD road reads THESE values, and
+``cad/track/road.py`` writes the expanded per-point result to
+``assets/tracks/<id>/road_profile.json`` so Godot code (``scripts/track/road.gd``) can query
+the exact surface.
+
+Where the numbers come from, in this order:
+  1. Key tables in the track's recipe (``[road] bank_keys`` / ``width_keys``): a surveyed or
+     hand-estimated table replaces the automatic values completely. The Red Bull Ring uses
+     this (tools/track/tracks/red_bull_ring.toml, which also carries the notes on its sources).
+  2. Otherwise automatic defaults from the centreline curvature (below).
+  3. ``[[road.override]]`` entries of the recipe then replace width and/or bank on single
+     s ranges, blended in over ``blend`` metres.
 
 Sign convention (same as the doc comment in scripts/track/track_data.gd):
     bank > 0  ->  the road rolls so its LEFT edge is higher (in race direction).
@@ -15,104 +23,43 @@ Units: radians. For these small angles, radians == slope fraction (0.02 rad ~ 2 
 The roll pivots about the centreline, so the centreline keeps the track.json height and
 the edges move by +/- (width/2) * sin(bank).
 
-Values and sources
-------------------
-* Crossfall on straights, 1.5-2 %: FIA International Sporting Code, Appendix O
-  ("Circuit Regulations", Grade 1) requires a crossfall for drainage, typically
-  1.5 %-3 % on straights; modern Tilke-rebuilt circuits (the A1-Ring was rebuilt into the
-  Red Bull Ring in 2010/11 and resurfaced in 2016) use about 1.5-2 % single-slope crossfall.
-  Single slope (not a crown) is used so that the racing surface has no ridge.
-* Start/finish straight drains LEFT (bank < 0): the pole slot is on the left (lateral
-  -2.5 m) and Track.spawn_transform() uses the unbanked track.json frame, so a left side
-  that is lower than the centreline lets the car drop a few cm onto the grid instead of
-  starting with its left wheels inside the tarmac.
-* Corner camber: the Red Bull Ring corners are essentially flat; there is no true banking
-  anywhere on the lap (public descriptions only mention the elevation: about 63-65 m total,
-  max +12 % up the hill to Remus and -9.3 % down; de.wikipedia.org/wiki/Red_Bull_Ring,
-  motogp.com circuit guide, global.honda/en/F1/circuit/red-bull-ring/). We therefore model
-  only a small positive camber of 2-3 % in T1, T4, Rindt (T8) and T9, keep the hairpin on the
-  Remus crest nearly flat (2 %), and give the left-handers (T5/T6 Rauch, T7 Wuerth) the same with
-  opposite sign. No public source gives exact per-corner camber, so these are realistic
-  estimates within the Appendix O range, NOT surveyed values.
-* Hard limit |bank| <= 0.03 rad: the terrain unit places terrain at road-centre height
+Automatic defaults (estimates, NOT surveyed values)
+---------------------------------------------------
+* Crossfall on straights, 1.5 %: FIA International Sporting Code, Appendix O ("Circuit
+  Regulations", Grade 1) requires a crossfall for drainage, typically 1.5 %-3 % on
+  straights. A single slope (not a crown) is used so the racing surface has no ridge; it
+  leans the way of the nearest corner, so it never has to flip in a braking zone.
+* Corner camber: proportional to the curvature (CAMBER_GAIN: 2.5 % at a 100 m radius),
+  capped at MAX_BANK. Real banked corners (Zandvoort's 18 degrees, ovals) are far steeper
+  and cannot be represented yet, see "Hard limit".
+* The grid drains LEFT (bank < 0): the pole slot is on the left (lateral -2.5 m) and
+  Track.spawn_transform() uses the unbanked track.json frame, so a left side that is lower
+  than the centreline lets the car drop a few cm onto the grid instead of starting with its
+  left wheels inside the tarmac.
+* Hard limit |bank| <= 0.03 rad: the terrain step places terrain at road-centre height
   - 0.3 m, so the low road edge (half width <= 8 m) must stay above -0.24 m.
 * Widths: FIA Appendix O minimum is 12 m, and >= 15 m on the start straight for the grid.
-  OSM carries no width tags for the circuit and no public source lists per-section widths,
-  so these are estimates within the FIA rules and the commonly quoted 12-15 m range:
-  15 m on the start/finish straight, opening to 16 m through T1 and 15 m at Remus (T3)
-  (the overtaking corners), 13-14.5 m on the climb and the T3-T4 straight, and 12.5-13 m
-  through the twisty back section (T5-T7, described in previews as "flat but narrow").
-
-Turn s-positions (apex, from track.json): T1 454, T2 749, T3 Remus 1395, T4 2202,
-T5 2674, T6 Rauch 2814, T7 Wuerth 3100, T8 Rindt 3762, T9 3999, T10 4077. Lap 4318 m.
+  OSM rarely carries width tags for circuits, so the default is 13 m, widening to 15 m
+  around the grid. Use ``[road] base_width`` / ``grid_width`` or overrides to change it.
 """
 
 from __future__ import annotations
 
 import numpy as np
 
-MAX_BANK = 0.03
-
-# (s [m], bank [rad], note). Smoothstep-interpolated between consecutive keys, cyclic.
-BANK_KEYS: list[tuple[float, float, str]] = [
-    (0.0, -0.015, "start/finish straight + grid: 1.5 % crossfall draining left (see note)"),
-    (340.0, -0.015, "braking for T1"),
-    (430.0, 0.025, "T1 Niki Lauda: slight positive camber, uphill right"),
-    (500.0, 0.025, "T1 exit"),
-    (570.0, 0.018, "climb to Remus (T2 kink is flat out on crossfall)"),
-    (1330.0, 0.018, "braking for Remus"),
-    (1375.0, 0.020, "T3 Remus: hairpin on the crest, nearly flat"),
-    (1420.0, 0.020, "Remus exit"),
-    (1480.0, 0.018, "downhill straight to Schlossgold"),
-    (2140.0, 0.018, "braking for T4"),
-    (2185.0, 0.025, "T4 Schlossgold: positive camber, downhill right"),
-    (2240.0, 0.025, "T4 exit"),
-    (2300.0, 0.015, "gentle right towards T5"),
-    (2500.0, 0.015, ""),
-    (2610.0, -0.018, "crossfall flips to drain left for the left-hand section"),
-    (2650.0, -0.025, "T5 kink / T6 Rauch: left-handers, positive camber"),
-    (2830.0, -0.025, "Rauch exit"),
-    (2900.0, -0.018, "short straight"),
-    (2960.0, -0.025, "T7 Wuerth Kurve: long left"),
-    (3110.0, -0.025, "Wuerth exit"),
-    (3170.0, 0.015, "crossfall flips back: gentle right"),
-    (3300.0, 0.018, "downhill run to Rindt"),
-    (3700.0, 0.018, "approach to Rindt"),
-    (3745.0, 0.030, "T8 Rindt: fast right, the most cambered corner"),
-    (3830.0, 0.030, "Rindt exit"),
-    (3890.0, 0.018, "short straight"),
-    (3960.0, 0.025, "T9 Red Bull Mobile: positive camber"),
-    (4020.0, 0.025, "T9 exit"),
-    (4130.0, -0.015, "T10 onto the start/finish straight"),
-]
-
-# (s [m], full road width [m], note). Same interpolation.
-WIDTH_KEYS: list[tuple[float, float, str]] = [
-    (0.0, 15.0, "start/finish straight and grid"),
-    (330.0, 15.0, "braking zone T1"),
-    (420.0, 16.0, "T1 Niki Lauda opens up"),
-    (500.0, 16.0, ""),
-    (620.0, 13.5, "climb to Remus"),
-    (1280.0, 13.5, ""),
-    (1360.0, 15.0, "T3 Remus hairpin"),
-    (1440.0, 15.0, ""),
-    (1540.0, 13.5, "straight to Schlossgold"),
-    (2120.0, 13.5, ""),
-    (2180.0, 14.5, "T4 Schlossgold"),
-    (2260.0, 14.5, ""),
-    (2350.0, 13.0, "back section"),
-    (2620.0, 12.5, "T5-T7: fast but narrow"),
-    (3150.0, 12.5, ""),
-    (3300.0, 13.0, "run to Rindt"),
-    (3930.0, 13.0, ""),
-    (3990.0, 14.0, "T9 Red Bull Mobile"),
-    (4060.0, 14.0, ""),
-    (4160.0, 15.0, "start/finish straight"),
-]
+MAX_BANK = 0.03          # rad, hard limit (see above)
+BASE_WIDTH = 13.0        # m
+GRID_WIDTH = 15.0        # m, start / finish straight
+CROSSFALL = 0.015        # rad on straights
+CAMBER_GAIN = 2.5        # rad of bank per 1/m of curvature (0.025 at R = 100 m)
+CORNER_CURVATURE = 1.0 / 400.0   # above this the bank leans into the corner
+GRID_BEHIND = 230.0      # m before the start line that is "the grid" (20 slots = 168 m)
+GRID_AHEAD = 150.0       # m after it
+GRID_BLEND = 80.0        # m
 
 
-def _interp(keys: list[tuple[float, float, str]], s: np.ndarray, length: float) -> np.ndarray:
-    """Cyclic smoothstep interpolation of (s, value) keys at positions ``s``."""
+def interp_keys(keys: list, s: np.ndarray, length: float) -> np.ndarray:
+    """Cyclic smoothstep interpolation of (s, value[, note]) keys at positions ``s``."""
     ks = np.array([k[0] for k in keys], dtype=float)
     kv = np.array([k[1] for k in keys], dtype=float)
     assert np.all(np.diff(ks) > 0.0) and ks[0] >= 0.0 and ks[-1] < length
@@ -126,13 +73,84 @@ def _interp(keys: list[tuple[float, float, str]], s: np.ndarray, length: float) 
     return kv[j] + (kv[j + 1] - kv[j]) * t
 
 
-def bank_at(s: np.ndarray, length: float) -> np.ndarray:
-    """Bank in radians (+ = left edge higher) at distances ``s``."""
-    b = _interp(BANK_KEYS, s, length)
-    assert np.all(np.abs(b) <= MAX_BANK + 1e-9)
-    return b
+def cyclic_smooth(a: np.ndarray, sigma_pts: float) -> np.ndarray:
+    """Gaussian smoothing of a periodic array (sigma in samples); also used by road.py."""
+    n = len(a)
+    r = min(int(4 * sigma_pts), (n - 1) // 2)
+    k = np.exp(-0.5 * (np.arange(-r, r + 1) / sigma_pts) ** 2)
+    k /= k.sum()
+    kk = np.zeros(n)
+    kk[: r + 1] = k[r:]
+    kk[-r:] = k[:r]
+    return np.real(np.fft.ifft(np.fft.fft(a) * np.fft.fft(kk)))
 
 
-def width_at(s: np.ndarray, length: float) -> np.ndarray:
-    """Full road width in metres at distances ``s``."""
-    return _interp(WIDTH_KEYS, s, length)
+def window(s: np.ndarray, a: float, b: float, blend: float, length: float) -> np.ndarray:
+    """1 inside the cyclic range [a, b], falling smoothly to 0 ``blend`` metres outside it."""
+    span = (b - a) % length if (b - a) % length > 0.0 else length
+    mid = a + 0.5 * span
+    d = np.abs(np.mod(np.asarray(s, dtype=float) - mid + 0.5 * length, length) - 0.5 * length) - 0.5 * span
+    t = np.clip(1.0 - d / max(blend, 1e-6), 0.0, 1.0)
+    return t * t * (3.0 - 2.0 * t)
+
+
+def default_width(s: np.ndarray, length: float, start_s: float, cfg: dict) -> np.ndarray:
+    base = float(cfg.get("base_width", BASE_WIDTH))
+    grid = float(cfg.get("grid_width", max(GRID_WIDTH, base)))
+    return base + (grid - base) * window(s, start_s - GRID_BEHIND, start_s + GRID_AHEAD, GRID_BLEND, length)
+
+
+def default_bank(s: np.ndarray, length: float, curvature: np.ndarray, start_s: float,
+                 cfg: dict) -> np.ndarray:
+    """Crossfall on straights, camber into corners (``curvature`` is + = left, per point)."""
+    n = len(s)
+    step = length / n
+    crossfall = min(float(cfg.get("crossfall", CROSSFALL)), MAX_BANK)
+    gain = float(cfg.get("camber_gain", CAMBER_GAIN))
+    ks = cyclic_smooth(np.asarray(curvature, dtype=float), 15.0 / step)
+    corner = np.abs(ks) >= CORNER_CURVATURE
+    sign = np.where(ks < 0.0, 1.0, -1.0)          # right-hander: left edge higher
+    if corner.any():
+        # Straights lean the way of the nearest corner (cyclic nearest-neighbour fill).
+        idx = np.flatnonzero(corner)
+        pos = np.arange(n)
+        j = np.searchsorted(idx, pos)
+        before = idx[(j - 1) % len(idx)]
+        after = idx[j % len(idx)]
+        d_before = (pos - before) % n
+        d_after = (after - pos) % n
+        sign = np.where(corner, sign, np.where(d_before <= d_after, sign[before], sign[after]))
+    else:
+        sign = np.ones(n)
+    bank = sign * np.clip(np.abs(ks) * gain, crossfall, MAX_BANK)
+    # The grid drains left (see the module docstring).
+    g = window(s, start_s - GRID_BEHIND, start_s + 40.0, 1.0, length) > 0.5
+    bank = np.where(g, -crossfall, bank)
+    return np.clip(cyclic_smooth(bank, 12.0 / step), -MAX_BANK, MAX_BANK)
+
+
+def profile(s: np.ndarray, length: float, curvature: np.ndarray, start_s: float,
+            cfg: dict | None = None) -> tuple[np.ndarray, np.ndarray]:
+    """(bank [rad, + = left edge higher], full width [m]) at the distances ``s``."""
+    cfg = cfg or {}
+    s = np.asarray(s, dtype=float)
+    if cfg.get("bank_keys"):
+        bank = interp_keys(cfg["bank_keys"], s, length)
+    else:
+        bank = default_bank(s, length, curvature, start_s, cfg)
+    if cfg.get("width_keys"):
+        width = interp_keys(cfg["width_keys"], s, length)
+    else:
+        width = default_width(s, length, start_s, cfg)
+    for o in cfg.get("override", []):
+        w = window(s, float(o["s"][0]), float(o["s"][1]), float(o.get("blend", 40.0)), length)
+        if "width" in o:
+            width = width + (float(o["width"]) - width) * w
+        if "bank" in o:
+            bank = bank + (float(o["bank"]) - bank) * w
+    if np.any(np.abs(bank) > MAX_BANK + 1e-9):
+        raise ValueError(f"bank exceeds the hard limit of {MAX_BANK} rad (see cad/track/banking.py); "
+                         "the terrain under the road is only 0.3 m below the centreline")
+    if np.any(width < 6.0) or np.any(width > 30.0):
+        raise ValueError("road width must stay within 6-30 m")
+    return bank, width

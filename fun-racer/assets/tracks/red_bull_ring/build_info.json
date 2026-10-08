@@ -1,0 +1,352 @@
+{
+ "id": "red_bull_ring",
+ "recipe": "tools/track/tracks/red_bull_ring.toml",
+ "osm": {
+  "relation": 5309181,
+  "loop_ways": [
+   822592404,
+   347958266,
+   822592398,
+   822592399,
+   822592400,
+   822592401,
+   822592402,
+   822592405,
+   822592406,
+   822592407,
+   822592408,
+   822592409,
+   822592410,
+   822592403
+  ],
+  "raw_length_m": 4305.1,
+  "length_m": 4302.1,
+  "official_length_m": 4318.0,
+  "length_error": -0.00368,
+  "candidates": [
+   {
+    "length_m": 4305.0,
+    "ways": [
+     822592404,
+     347958266,
+     822592398,
+     822592399,
+     822592400,
+     822592401,
+     822592402,
+     822592405,
+     822592406,
+     822592407,
+     822592408,
+     822592409,
+     822592410,
+     822592403
+    ]
+   },
+   {
+    "length_m": 4316.8,
+    "ways": [
+     822592404,
+     1077423714,
+     822592404,
+     347958266,
+     822592398,
+     822592399,
+     822592400,
+     822592401,
+     822592402,
+     822592405,
+     822592406,
+     822592407,
+     822592408,
+     822592409,
+     822592410,
+     822592403
+    ]
+   },
+   {
+    "length_m": 4322.1,
+    "ways": [
+     822592404,
+     1077423714,
+     822592404,
+     347958266,
+     822592398,
+     822592399,
+     822592400,
+     822592401,
+     822592402,
+     822592405,
+     822592406,
+     822592407,
+     822592408,
+     822592409,
+     822592410,
+     822592403
+    ]
+   },
+   {
+    "length_m": 4333.9,
+    "ways": [
+     822592404,
+     1077423714,
+     822592404,
+     347958266,
+     822592398,
+     822592399,
+     822592400,
+     822592401,
+     822592402,
+     822592405,
+     822592406,
+     822592407,
+     822592408,
+     822592409,
+     822592410,
+     822592403
+    ]
+   },
+   {
+    "length_m": 4340.3,
+    "ways": [
+     822592402,
+     822592405,
+     822592406,
+     822592407,
+     822592408,
+     822592409,
+     822592410,
+     822592403,
+     823820476,
+     822592404,
+     347958266,
+     822592398,
+     822592399,
+     822592400,
+     822592401
+    ]
+   },
+   {
+    "length_m": 4352.1,
+    "ways": [
+     822592402,
+     822592405,
+     822592406,
+     822592407,
+     822592408,
+     822592409,
+     822592410,
+     822592403,
+     823820476,
+     822592404,
+     1077423714,
+     822592404,
+     347958266,
+     822592398,
+     822592399,
+     822592400,
+     822592401
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "finish: relation member role, start: relation member role",
+ "dem_dataset": "eudem25m",
+ "elevation": {
+  "range_m": 68.28,
+  "max_grade": 0.1422,
+  "min_grade": -0.1167,
+  "origin_m": 681.33
+ },
+ "turns": {
+  "official": 10,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Niki Lauda Kurve",
+    "direction": "right",
+    "s_apex": 453.7,
+    "min_radius": 18.3
+   },
+   {
+    "id": "T2",
+    "name": "Turn 2",
+    "direction": "left",
+    "s_apex": 1110.1,
+    "min_radius": 168.1
+   },
+   {
+    "id": "T3",
+    "name": "Remus",
+    "direction": "right",
+    "s_apex": 1395.2,
+    "min_radius": 12.8
+   },
+   {
+    "id": "T4",
+    "name": "Schlossgold",
+    "direction": "right",
+    "s_apex": 2202.2,
+    "min_radius": 23.9
+   },
+   {
+    "id": "T5",
+    "name": "Turn 5",
+    "direction": "right",
+    "s_apex": 2465.1,
+    "min_radius": 123.7
+   },
+   {
+    "id": "T6",
+    "name": "Rauch",
+    "direction": "left",
+    "s_apex": 2814.4,
+    "min_radius": 65.9
+   },
+   {
+    "id": "T7",
+    "name": "Würth Kurve",
+    "direction": "left",
+    "s_apex": 3099.5,
+    "min_radius": 64.4
+   },
+   {
+    "id": "T8",
+    "name": "Turn 8",
+    "direction": "right",
+    "s_apex": 3177.8,
+    "min_radius": 100.1
+   },
+   {
+    "id": "T9",
+    "name": "Rindt",
+    "direction": "right",
+    "s_apex": 3761.9,
+    "min_radius": 59.2
+   },
+   {
+    "id": "T10",
+    "name": "Red Bull Mobile",
+    "direction": "right",
+    "s_apex": 3998.8,
+    "min_radius": 21.9
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 453.7,
+    "direction": "right",
+    "angle_deg": 76.1,
+    "kind": "corner",
+    "min_radius": 18.3,
+    "used": true
+   },
+   {
+    "s_apex": 505.9,
+    "direction": "left",
+    "angle_deg": 7.1,
+    "kind": "kink",
+    "min_radius": 250.2,
+    "used": false
+   },
+   {
+    "s_apex": 748.8,
+    "direction": "right",
+    "angle_deg": 5.5,
+    "kind": "kink",
+    "min_radius": 242.6,
+    "used": false
+   },
+   {
+    "s_apex": 1110.1,
+    "direction": "left",
+    "angle_deg": 17.8,
+    "kind": "corner",
+    "min_radius": 168.1,
+    "used": true
+   },
+   {
+    "s_apex": 1395.2,
+    "direction": "right",
+    "angle_deg": 125.7,
+    "kind": "corner",
+    "min_radius": 12.8,
+    "used": true
+   },
+   {
+    "s_apex": 1561.8,
+    "direction": "right",
+    "angle_deg": 13.7,
+    "kind": "kink",
+    "min_radius": 312.3,
+    "used": false
+   },
+   {
+    "s_apex": 1955.2,
+    "direction": "left",
+    "angle_deg": 4.9,
+    "kind": "kink",
+    "min_radius": 221.7,
+    "used": false
+   },
+   {
+    "s_apex": 2202.2,
+    "direction": "right",
+    "angle_deg": 123.6,
+    "kind": "corner",
+    "min_radius": 23.9,
+    "used": true
+   },
+   {
+    "s_apex": 2465.1,
+    "direction": "right",
+    "angle_deg": 62.3,
+    "kind": "corner",
+    "min_radius": 123.7,
+    "used": true
+   },
+   {
+    "s_apex": 2814.4,
+    "direction": "left",
+    "angle_deg": 126.3,
+    "kind": "corner",
+    "min_radius": 65.9,
+    "used": true
+   },
+   {
+    "s_apex": 3099.5,
+    "direction": "left",
+    "angle_deg": 112.5,
+    "kind": "corner",
+    "min_radius": 64.4,
+    "used": true
+   },
+   {
+    "s_apex": 3177.8,
+    "direction": "right",
+    "angle_deg": 52.3,
+    "kind": "corner",
+    "min_radius": 100.1,
+    "used": true
+   },
+   {
+    "s_apex": 3761.9,
+    "direction": "right",
+    "angle_deg": 74.9,
+    "kind": "corner",
+    "min_radius": 59.2,
+    "used": true
+   },
+   {
+    "s_apex": 3998.8,
+    "direction": "right",
+    "angle_deg": 82.8,
+    "kind": "corner",
+    "min_radius": 21.9,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}
