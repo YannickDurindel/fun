@@ -14,6 +14,10 @@ extends Node3D
 ##     surface per material), posts are MultiMeshes, collisions are one body per kerb /
 ##     run-off patch / barrier chunk.
 ##
+##   * Crossovers (RoadSurface.bridges, a figure-of-eight lap): the two roads do not limit
+##     each other's barrier lines; the upper road gets a concrete parapet on the bridge deck
+##     and the lower road's barriers stay inside the underpass (see _crossover_limits).
+##
 ## Collision bodies carry meta "surface" ("kerb", "asphalt", "gravel"); barriers also carry
 ## meta "barrier" = true, the group "trackside_barrier" and physics layer 5 (LAYER_BARRIER).
 
@@ -204,13 +208,50 @@ func _compute_barrier_offsets() -> void:
 	var lim_l := lims[0]
 	var lim_r := lims[1]
 	TrackGeometry.inside_limits(_data, lim_l, lim_r)
-	TrackGeometry.proximity_limits(_data, lim_l, lim_r)
+	TrackGeometry.proximity_limits(_data, lim_l, lim_r, _crossover_pairs())
+	_crossover_limits(lim_l, lim_r, edges)
 	if layout.is_auto:
 		# Hand-made layouts keep the raw limits, so their walls stay exactly where they were.
 		_limit_slope(lim_l)
 		_limit_slope(lim_r)
 	_off_l = _finish_offsets(des_l, lim_l, edges)
 	_off_r = _finish_offsets(des_r, lim_r, edges)
+
+## Crossovers of the lap as the Road slot reports them ([] without a Road or on a normal lap).
+func _bridges() -> Array[Dictionary]:
+	var none: Array[Dictionary] = []
+	var road := _road as RoadSurface
+	return road.bridges if road != null else none
+
+## Centreline point range [first, last] of an s range [s0, s1] (may wrap).
+func _point_range(r: Array) -> Array[int]:
+	var n := _data.points.size()
+	return [roundi(float(r[0]) / _data.step) % n, roundi(float(r[1]) / _data.step) % n]
+
+## The stretch pairs of TrackGeometry.proximity_limits(): upper and lower road of each bridge.
+func _crossover_pairs() -> Array:
+	var out := []
+	for b in _bridges():
+		out.append(_point_range(b["upper_window"]) + _point_range(b["lower_window"]))
+	return out
+
+## Barrier limits around a crossover, where the other road is no longer a neighbour. Both
+## roads end their verges where the other one's ground begins (cad/track/bridge.py), so the
+## verge width gives the limit: the upper road's wall stands on the edge of its ground, and
+## on the deck it is the parapet; the lower road's wall stands just behind its verge, and
+## inside the underpass just beside the road.
+func _crossover_limits(lim_l: PackedFloat32Array, lim_r: PackedFloat32Array, edges: PackedFloat32Array) -> void:
+	var road := _road as RoadSurface
+	var n := _data.points.size()
+	for b in _bridges():
+		var rooms := [float(b.get("parapet_offset", 2.0)), float(b.get("barrier_room", 1.0))]
+		var windows := [_point_range(b["upper_window"]), _point_range(b["lower_window"])]
+		for w in 2:
+			var first: int = windows[w][0]
+			for k in posmod(int(windows[w][1]) - first, n) + 1:
+				var i := (first + k) % n
+				lim_l[i] = minf(lim_l[i], edges[i] + road.verge_left[i] + float(rooms[w]))
+				lim_r[i] = minf(lim_r[i], edges[i] + road.verge_right[i] + float(rooms[w]))
 
 ## Turns the geometric limits into a continuous line: where a limit starts (the inside of a
 ## tight corner, another leg of the lap coming close) the wall closes in at LIMIT_SLOPE
@@ -569,7 +610,8 @@ func _build_barriers() -> void:
 			var b := pts[j]
 			var oa := outs[i]
 			var ob := outs[j]
-			var concrete := layout.is_concrete(s)
+			# A bridge deck has a concrete parapet with a fence, whatever the layout says.
+			var concrete := layout.is_concrete(s) or (_road is RoadSurface and (_road as RoadSurface).on_bridge(s))
 			var colp: Dictionary = conc["collision"] if concrete else armco["collision"]
 			if concrete:
 				var st := _st(ch, Mat.CONCRETE)

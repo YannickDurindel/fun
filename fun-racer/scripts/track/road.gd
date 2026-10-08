@@ -13,6 +13,9 @@ extends Node3D
 ##     cross-section is used (flat, no racing line).
 ##   * road_tarmac.tres / road_grass.tres: materials of the runtime ribbon (the GLB brings its
 ##     own); shared defaults live in assets/tracks/_shared.
+##   * A lap that crosses itself (a figure of eight) has "bridges" in road_profile.json and a
+##     node "bridge_NN" in the GLB (cad/track/bridge.py): the deck that carries the upper
+##     road, its side walls and the underpass. `bridges` hands the stretches to the trackside.
 ## Lateral offsets: + = right of the centreline in race direction. Bank: + = left edge higher.
 
 ## Default road materials for tracks whose folder has none (runtime ribbon only).
@@ -33,6 +36,10 @@ var verge_left: PackedFloat32Array = []
 var verge_right: PackedFloat32Array = []
 var racing_line: PackedFloat32Array = []
 var chunk_ranges: Array = []          ## [[first_point, last_point], ...] per mesh chunk
+## Crossovers of the lap, from road_profile.json (empty for a lap that does not cross itself):
+## [{deck: [s0, s1], upper_window: [s0, s1], lower_window: [s0, s1], parapet_offset,
+##   barrier_room, ...}] - see cad/track/bridge.py.
+var bridges: Array[Dictionary] = []
 var verge_width: float = 30.0
 var verge_drop: float = 0.25
 var data: TrackData
@@ -85,6 +92,10 @@ func _load_profile() -> void:
 	verge_right = _profile_array(d, "verge_right", n, verge_width)
 	racing_line = _profile_array(d, "racing_line", n, 0.0)
 	chunk_ranges = d.get("chunks", [])
+	bridges = []
+	for b: Variant in d.get("bridges", []):
+		if b is Dictionary and (b as Dictionary).has_all(["deck", "upper_window", "lower_window"]):
+			bridges.append(b)
 
 ## Profile array `key`, or `n` times `fallback` when it is missing or has the wrong size.
 static func _profile_array(d: Dictionary, key: String, n: int, fallback: float) -> PackedFloat32Array:
@@ -108,6 +119,7 @@ func _fallback_profile() -> void:
 	banks.fill(0.0)
 	racing_line = banks.duplicate()
 	chunk_ranges = []
+	bridges = []
 	verge_width = RIBBON_VERGE_WIDTH
 	verge_drop = 0.25
 	var lims := TrackGeometry.no_limits(n)
@@ -227,7 +239,10 @@ func _build_collision() -> void:
 		var mi := node as MeshInstance3D
 		if mi.mesh == null:
 			continue
-		mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF  # flat ground: no shadow pass
+		# Flat ground: no shadow pass. A bridge shades the road under it (its faces are
+		# one-sided, so both sides cast).
+		mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_DOUBLE_SIDED if _is_bridge(mi) \
+				else GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 		for surf in mi.mesh.get_surface_count():
 			var kind := "grass" if _surface_is_grass(mi.mesh, surf) else "asphalt"
 			# Single-surface copy (positions + indices only) so the native trimesh builder
@@ -247,6 +262,22 @@ func _build_collision() -> void:
 			cs.shape = shape
 			body.add_child(cs)
 			mi.add_child(body)
+
+## True for the "bridge_NN" nodes of the GLB (the import may append a suffix to the name).
+static func _is_bridge(mi: MeshInstance3D) -> bool:
+	return String(mi.name).begins_with("bridge_")
+
+## True when s is on the deck of a bridge (the upper road of a crossover).
+func on_bridge(s: float) -> bool:
+	for b in bridges:
+		if s_in_range(s, b["deck"]):
+			return true
+	return false
+
+## True when s lies in [range[0], range[1]] along the lap (the range may wrap the finish line).
+func s_in_range(s: float, r: Array) -> bool:
+	var a := float(r[0])
+	return fposmod(s - a, data.length) <= fposmod(float(r[1]) - a, data.length)
 
 func _surface_is_grass(mesh: Mesh, surf: int) -> bool:
 	var mat := mesh.surface_get_material(surf)

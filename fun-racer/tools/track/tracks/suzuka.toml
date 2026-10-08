@@ -1,0 +1,150 @@
+id = "suzuka"
+
+[osm]
+# type=circuit relation "Suzuka International Racing Course": the Grand Prix loop plus the pit
+# lane (role pit_lane, dropped automatically). Suzuka is a figure of eight: the bridge way
+# (175231434, bridge=yes, layer=1) shares no node with the road under it, so the loop search
+# finds one simple loop of 5811 m.
+relation = 284570
+
+[layout]
+# OSM has no start / finish nodes. The timing line is at the beginning of the pit building,
+# about 205 m along the main straight way (183391665); the grid's start line is 300 m after it,
+# at the first-corner end of the pit building (the Grand Prix distance is 53 laps minus
+# 0.300 km). Both are placed from the pit building's outline in OSM, not from a tagged line.
+finish = [34.844698, 136.538928]
+start_offset_m = 300.0
+
+[elevation]
+dataset = "terrarium"
+
+# The crossover. The DEM gives both roads nearly the same height there (10.5 m and 12.1 m
+# above the finish line): the back straight shows the cutting under its bridge as a 5 m dip,
+# and the road under the bridge shows the embankment as a 2 m hump.
+# Lower road, Degner 2 to the climb towards the hairpin: a steady 0.6 % climb, no hump.
+[[elevation.override]]
+s = [2430.0, 2630.0]
+straighten = true
+
+# Back straight from 200 m before the bridge to the exit of 130R: a steady gentle descent,
+# no dip, ...
+[[elevation.override]]
+s = [4690.0, 4990.0]
+straighten = true
+
+# ... lifted a little at the bridge: 6.8 m between the two road surfaces.
+[[elevation.override]]
+s = [4850.0, 4930.0]
+offset = 0.8
+blend = 120.0
+
+# The 18 official turns. Automatic detection finds 22 corners: it splits the long Dunlop
+# left-hander in three and the 200R right-hander after the hairpin in three, so the table is
+# pinned (s = apex found by the detection, metres from the finish line).
+[[turn]]
+id = "T1"
+name = "First Curve"
+direction = "right"
+s = 673.7
+
+[[turn]]
+id = "T2"
+name = "Second Curve"
+direction = "right"
+s = 775.6
+
+[[turn]]
+id = "T3"
+name = "S Curves"
+direction = "left"
+s = 1075.4
+
+[[turn]]
+id = "T4"
+name = "S Curves"
+direction = "right"
+s = 1203.4
+
+[[turn]]
+id = "T5"
+name = "S Curves"
+direction = "left"
+s = 1377.3
+
+[[turn]]
+id = "T6"
+name = "Gyaku Bank"
+direction = "right"
+s = 1457.2
+
+[[turn]]
+id = "T7"
+name = "Dunlop"
+direction = "left"
+s = 1761.1
+
+[[turn]]
+id = "T8"
+name = "Degner 1"
+direction = "right"
+s = 2260.8
+
+[[turn]]
+id = "T9"
+name = "Degner 2"
+direction = "right"
+s = 2414.8
+
+[[turn]]
+id = "T10"
+name = "110R"
+direction = "right"
+s = 2736.6
+
+[[turn]]
+id = "T11"
+name = "Hairpin"
+direction = "left"
+s = 2882.5
+
+[[turn]]
+id = "T12"
+name = "200R"
+direction = "right"
+s = 3156.4
+
+[[turn]]
+id = "T13"
+name = "Spoon Curve"
+direction = "left"
+s = 3780.0
+
+[[turn]]
+id = "T14"
+name = "Spoon Curve"
+direction = "left"
+s = 3916.0
+
+[[turn]]
+id = "T15"
+name = "130R"
+direction = "left"
+s = 4937.4
+
+[[turn]]
+id = "T16"
+name = "Casio Triangle"
+direction = "right"
+s = 5359.2
+
+[[turn]]
+id = "T17"
+name = "Casio Triangle"
+direction = "left"
+s = 5411.2
+
+[[turn]]
+id = "T18"
+name = "Last Curve"
+direction = "right"
+s = 5501.2
