@@ -5,3 +5,4 @@ tools/bin/
 *.tmp
 __pycache__/
 .venv/
+.claude/

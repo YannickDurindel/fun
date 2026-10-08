@@ -209,7 +209,13 @@ func set_input_override(p_throttle: float, p_brake: float, p_steer: float) -> vo
 func clear_input_override() -> void:
 	_override = false
 
+## When false, the car stops updating its contract fields (and stops driving),
+## so tests can set speed_kmh / rpm / is_drifting / wheels by hand.
+var simulate: bool = true
+
 func _physics_process(_delta: float) -> void:
+	if not simulate:
+		return
 	if _override:
 		throttle = _ov_throttle
 		brake_input = _ov_brake
@@ -225,6 +231,7 @@ func respawn() -> void:
 	linear_velocity = Vector3.ZERO
 	angular_velocity = Vector3.ZERO
 	global_transform = spawn_transform   # immediate, for readers this frame
+	reset_physics_interpolation()        # no interpolated swoop from the old position
 	_respawn_pending = true              # authoritative reset inside the integrator
 	_reset_drivetrain()
 	respawned.emit()
@@ -253,6 +260,8 @@ func _reset_drivetrain() -> void:
 
 # ================================================================ simulation
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	if not simulate:
+		return
 	var dt := state.step
 	if _respawn_pending:
 		_respawn_pending = false

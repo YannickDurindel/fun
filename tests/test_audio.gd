@@ -24,7 +24,7 @@ func test_freq_follows_rpm() -> void:
 	var main := spawn("res://scenes/main.tscn")
 	var car := main.get_node("Car") as Car
 	var audio := _audio(main)
-	car.set_physics_process(false)
+	car.simulate = false
 	car.rpm = 5000.0
 	car.throttle = 1.0
 	await _seconds(0.4)
@@ -66,7 +66,7 @@ func test_screech_gain() -> void:
 	var main := spawn("res://scenes/main.tscn")
 	var car := main.get_node("Car") as Car
 	var audio := _audio(main)
-	car.set_physics_process(false)
+	car.simulate = false
 	car.speed_kmh = 120.0
 	car.is_drifting = false
 	for w: WheelState in car.wheels:

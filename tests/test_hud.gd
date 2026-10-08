@@ -75,7 +75,7 @@ func test_speed_label_tracks_car() -> void:
 	var hud := main.get_node("UI/HUD")
 	var car := main.get_node("Car") as Car
 	# Freeze the car's own update so speed_kmh is a fixed value we control.
-	car.set_physics_process(false)
+	car.simulate = false
 	car.speed_kmh = 187.6
 	car.rpm = Car.MAX_RPM * 0.97
 	car.gear = 5
@@ -91,7 +91,7 @@ func test_speed_label_tracks_car() -> void:
 	assert_true(hud.get_speed_text() == "0", "speed label settles to 0, got " + hud.get_speed_text())
 
 	# Live: drive, coast, and compare against the car within rounding.
-	car.set_physics_process(true)
+	car.simulate = true
 	Input.action_press(&"accelerate")
 	await physics_frames(480)
 	Input.action_release(&"accelerate")
