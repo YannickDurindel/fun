@@ -73,7 +73,7 @@ func sample(s: float) -> Transform3D:
 	var right := fwd.cross(Vector3.UP).normalized()
 	var up := right.cross(fwd).normalized()
 	var b := Basis(right, up, -fwd)
-	b = b.rotated(fwd, -bank_at(s)) if absf(bank_at(s)) > 1e-5 else b
+	b = b.rotated(fwd, bank_at(s)) if absf(bank_at(s)) > 1e-5 else b
 	return Transform3D(b.orthonormalized(), position_at(s))
 
 ## Closest centreline distance to a world position. Pass `hint_s` (last known s) for an O(1)

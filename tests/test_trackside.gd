@@ -52,8 +52,11 @@ func test_kerb_collision_surface() -> void:
 		var col := hit["collider"] as Object
 		assert_true(col.get_meta("surface", "") == "kerb",
 				"%s kerb at s=%.0f reports surface '%s'" % [k["turn"], s, col.get_meta("surface", "")])
-		# Raised only a few cm above the road plane.
-		assert_between((hit["position"] - xf.origin).dot(xf.basis.y), -0.3, 0.1, "%s kerb height vs centreline" % k["turn"])
+		# Raised only a few cm above the real (cambered) road surface under it; `p` comes from
+		# the Road's surface_point when the CAD road is present.
+		# The sawtooth peak on the Remus hairpin's inside sits on the verge pocket, ~13 cm above
+		# the extrapolated road plane (10 cm above the grass under it), like a real sausage kerb.
+		assert_between((hit["position"] - p).dot(xf.basis.y), -0.03, 0.15, "%s kerb height above road surface" % k["turn"])
 		checked += 1
 	assert_true(checked >= 10, "checked %d kerbs" % checked)
 	track.queue_free()
@@ -70,9 +73,16 @@ func test_barriers_are_continuous() -> void:
 		var xf := ts.frame_at(s)
 		var rh := Vector3(xf.basis.x.x, 0.0, xf.basis.x.z).normalized()
 		for side: float in [-1.0, 1.0]:
+			# Several heights: on cambered / descending sections the wall base can sit ~0.3 m
+			# below the road centre, so one fixed-height ray may pass just over the top.
 			var from := xf.origin + Vector3.UP * 0.5
-			var q := PhysicsRayQueryParameters3D.create(from, from + rh * side * 50.0, Trackside.LAYER_BARRIER)
-			var hit := space.intersect_ray(q)
+			var hit := {}
+			for h: float in [0.5, 0.25, 0.0, -0.25]:
+				from = xf.origin + Vector3.UP * h
+				var q := PhysicsRayQueryParameters3D.create(from, from + rh * side * 50.0, Trackside.LAYER_BARRIER)
+				hit = space.intersect_ray(q)
+				if not hit.is_empty():
+					break
 			if hit.is_empty():
 				misses.append("%.0f%s" % [s, "R" if side > 0.0 else "L"])
 			else:
@@ -111,7 +121,7 @@ func test_car_cannot_pass_through_barrier() -> void:
 
 ## Stand-in for the Road slot API (scripts/track/road.gd): 7.5 m half width. Its collision is
 ## still the flat placeholder ribbon + shoulders, so surface_point stays on that plane.
-class WideRoad extends "res://scripts/track/placeholder_road.gd":
+class WideRoad extends "res://tests/fixtures/placeholder_road.gd":
 	func half_width_at(_s: float) -> float:
 		return 7.5
 	func bank_at(_s: float) -> float:

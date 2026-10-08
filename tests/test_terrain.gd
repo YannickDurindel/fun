@@ -1,9 +1,11 @@
 extends TestCase
-## Valley terrain (scenes/tracks/rbr_terrain.tscn): coverage, corridor conformity, surface
-## tags and agreement with the EU-DEM.
+## Valley terrain (scenes/tracks/rbr_terrain.tscn): coverage, corridor conformity against the
+## CAD road (RoadSurface + road_profile.json), surface tags and agreement with the EU-DEM.
 
 const TRACK := "res://assets/tracks/red_bull_ring/track.json"
 const TERRAIN := "res://scenes/tracks/rbr_terrain.tscn"
+const TRACK_SCENE := "res://scenes/tracks/red_bull_ring.tscn"
+const COVER_SLACK := 2.0   ## same as tools/track/fetch_terrain.py
 
 func _ray_y(x: float, z: float, top: float = 400.0) -> Variant:
 	var space := get_viewport().world_3d.direct_space_state
@@ -11,87 +13,135 @@ func _ray_y(x: float, z: float, top: float = 400.0) -> Variant:
 	var hit := space.intersect_ray(q)
 	return null if hit.is_empty() else hit
 
+## Downward ray that only reports bodies for which `keep` returns true.
+func _ray_filtered(x: float, z: float, top: float, keep: Callable) -> Variant:
+	var space := get_viewport().world_3d.direct_space_state
+	var q := PhysicsRayQueryParameters3D.create(Vector3(x, top, z), Vector3(x, -150.0, z))
+	var exclude: Array[RID] = []
+	for i in 12:
+		q.exclude = exclude
+		var hit := space.intersect_ray(q)
+		if hit.is_empty():
+			return null
+		if keep.call(hit["collider"]):
+			return hit
+		exclude.append(hit["rid"])
+	return null
+
 var _tangents: PackedVector2Array = []
 
-## Road cross-sections (road + 36 m shoulder strip perpendicular to the centreline, extended
-## along its grade and rolled by its bank) passing within `reach` m of p -> [lowest, highest]
-## surface height there. On the inside of hairpins several overlap and the terrain must sit
-## under all of them.
-func _cover_range(d: TrackData, p: Vector3, y0: float, reach: float) -> Vector2:
+## [lowest, highest] CAD road / verge surface over p among the cross-sections that genuinely cover it
+## (within COVER_SLACK + `slack` m along, inside road + that side's verge + a cell diagonal
+## + `slack`, as baked by tools/track/fetch_terrain.py), each continued
+## along its grade and rolled by its bank, including `y0`.
+func _cover_range(road: Node, d: TrackData, p: Vector3, y0: float, slack: float) -> Vector2:
 	if _tangents.size() != d.points.size():
 		_tangents.resize(d.points.size())
 		for i in d.points.size():
 			var t := d.tangent_at(i * d.step)
 			_tangents[i] = Vector2(t.x, t.z).normalized()
+	var widths: PackedFloat32Array = road.widths
+	var banks: PackedFloat32Array = road.banks
+	var vl: PackedFloat32Array = road.verge_left
+	var vr: PackedFloat32Array = road.verge_right
+	var vdrop: float = road.verge_drop / road.verge_width
 	var r := Vector2(y0, y0)
-	var lim := 65.0 + reach
 	for i in d.points.size():
 		var c := d.points[i]
 		var off := Vector2(p.x - c.x, p.z - c.z)
-		if absf(off.x) > lim or absf(off.y) > lim:
+		if absf(off.x) > 60.0 or absf(off.y) > 60.0:
 			continue
 		var t2 := _tangents[i]
 		var along := off.dot(t2)
 		var lat_r := off.y * t2.x - off.x * t2.y   # + = right of the race direction
-		if absf(along) <= reach and absf(lat_r) <= d.widths[i] * 0.5 + 36.0 + reach:
-			var y := c.y + d.grades[i] * along - lat_r * sin(d.banks[i])
-			r = Vector2(minf(r.x, y), maxf(r.y, y))
+		var hw := widths[i] * 0.5
+		var verge := vr[i] if lat_r > 0.0 else vl[i]
+		if absf(along) > COVER_SLACK + slack or absf(lat_r) > hw + verge + 14.2 + slack:
+			continue
+		var y := c.y + d.grades[i] * along
+		var out := absf(lat_r) - hw
+		if out <= 0.0:
+			y -= lat_r * sin(banks[i])
+		else:
+			y -= signf(lat_r) * hw * sin(banks[i]) + vdrop * out
+		r = Vector2(minf(r.x, y), maxf(r.y, y))
 	return r
 
-## Probes just outside the road, every 20 m: callable(p, xf, extra) -> error string or "".
-func _probe_corridor(d: TrackData, check: Callable) -> Array:
+## Probes beside the CAD road every 20 m, at `extras` m past the road edge on both sides:
+## check(s, lat, expect, covered) -> error string or "". `expect` = RoadSurface.surface_point
+## (verge plane, extrapolated past the verge); `covered` = inside that side's real verge.
+func _probe_road(road: Node, d: TrackData, extras: Array, check: Callable) -> Array:
 	var bad := []
 	var s := 0.0
 	while s < d.length:
-		var xf := d.sample(s)
-		var hw := d.width_at(s) * 0.5
+		var hw: float = road.half_width_at(s)
 		for side: float in [-1.0, 1.0]:
-			for extra: float in [0.5, 10.0, 20.0, 30.0]:
-				var p := xf.origin + xf.basis.x * side * (hw + extra)
-				var err: String = check.call(p, xf, extra)
+			for extra: float in extras:
+				var lat := side * (hw + extra)
+				var expect: Vector3 = road.surface_point(s, lat)
+				var covered: bool = extra <= road.verge_at(s, side)
+				if not covered:
+					# Past a clamped verge (inside of corners) the point can be nearer another
+					# part of the lap: the terrain follows the nearest cross-section there.
+					var s2 := d.closest_s(expect, s)
+					expect = road.surface_point(s2, d.lateral_offset(expect, s2))
+				var err: String = check.call(s, lat, expect, covered)
 				if not err.is_empty():
-					bad.append("s=%.0f lat=%.1f: %s" % [s, side * (hw + extra), err])
+					bad.append("s=%.0f lat=%.1f: %s" % [s, lat, err])
 		s += 20.0
 	return bad
 
 func test_terrain_conforms_to_track_corridor() -> void:
-	var d := TrackData.load_track(TRACK)
-	spawn(TERRAIN)
-	await physics_frames(2)
-	var bad := _probe_corridor(d, func(p: Vector3, xf: Transform3D, extra: float) -> String:
-		var hit: Variant = _ray_y(p.x, p.z)
+	# Terrain only (road and trackside bodies skipped): out to the end of the flat zone
+	# (edge + 51 m) the ground follows the CAD verge plane ~0.3 m below it, never above
+	# the real verge, and only dips further where another cross-section genuinely overlaps.
+	var track := spawn(TRACK_SCENE) as Track
+	await physics_frames(3)
+	var d := track.data
+	var road := track.get_node("Road")
+	var terrain := track.get_node("Terrain")
+	var is_terrain := func(c: Object) -> bool: return c is Node and (c as Node).get_parent() == terrain
+	# Out to the flat-zone end (edge + 51 m) minus a cell diagonal: beyond, triangles start to
+	# reach into the 40 m blend back to the DEM.
+	var bad := _probe_road(road, d, [0.5, 10.0, 20.0, 29.0, 37.0],
+			func(_s: float, _lat: float, expect: Vector3, covered: bool) -> String:
+		var hit: Variant = _ray_filtered(expect.x, expect.z, expect.y + 30.0, is_terrain)
 		if hit == null:
 			return "no terrain"
 		var y: float = (hit as Dictionary)["position"].y
-		# Never above this cross-section's shoulder (the placeholder's drops 0.25 m over 35 m;
-		# the CAD verge is at least as high) ...
-		if y > xf.origin.y - 0.25 * extra / 35.0 - 0.02:
-			return "terrain %.2f above shoulder of road %.2f" % [y, xf.origin.y]
-		# ... and conforming to the road (within 1 m) or to a lower overlapping cross-section.
-		# The bake keeps each mesh vertex under every strip within 14.2 m (a cell diagonal) of
-		# it, so a point is bounded by strips within 14.2 m + 14.2 m.
-		var lo := _cover_range(d, p, xf.origin.y, 28.4).x
-		if y < lo - 1.0:
-			return "terrain %.2f more than 1 m below road %.2f (lowest cover %.2f)" % [y, xf.origin.y, lo]
+		if covered and y > expect.y - 0.1:
+			return "terrain %.2f pokes through verge %.2f" % [y, expect.y]
+		# 0.3 m clearance + up to 0.4 m triangle interpolation / grade curvature.
+		var lo := _cover_range(road, d, expect, expect.y, 14.2).x - 0.7
+		if y < lo:
+			return "terrain %.2f too far below verge plane %.2f (bound %.2f)" % [y, expect.y, lo]
 		return "")
-	assert_true(bad.is_empty(), "%d corridor probes off, e.g. %s" % [bad.size(), bad.slice(0, 3)])
+	assert_true(bad.is_empty(), "%d corridor probes off, e.g. %s" % [bad.size(), bad.slice(0, 4)])
 
 func test_race_scene_ground_beside_road() -> void:
-	# Full race scene (road + terrain): just outside the road there is always a surface at the
-	# road edge height, within 1 m (or within the range of overlapping cross-sections).
+	# Full race scene (CAD road + verges + trackside + terrain): beside the real road edge there
+	# is always ground at the road/verge height (RoadSurface.surface_point), allowing for
+	# overlapping cross-sections on the inside of hairpins. Barriers are skipped.
 	var scene := spawn("res://scenes/race_red_bull_ring.tscn")
-	await physics_frames(2)
-	var d: TrackData = (scene.get_node("Track") as Track).data
-	var bad := _probe_corridor(d, func(p: Vector3, xf: Transform3D, _extra: float) -> String:
-		var hit: Variant = _ray_y(p.x, p.z, xf.origin.y + 20.0)
+	await physics_frames(3)
+	var track := scene.get_node("Track") as Track
+	var d: TrackData = track.data
+	var road := track.get_node("Road")
+	var not_barrier := func(c: Object) -> bool:
+		return c != null and not (c.get_meta("barrier", false) or (c is Node and (c as Node).is_in_group(&"trackside_barrier")))
+	var bad := _probe_road(road, d, [3.0, 10.0, 20.0, 28.0],
+			func(_s: float, _lat: float, expect: Vector3, _covered: bool) -> String:
+		var hit: Variant = _ray_filtered(expect.x, expect.z, expect.y + 20.0, not_barrier)
 		if hit == null:
 			return "nothing below"
 		var y: float = (hit as Dictionary)["position"].y
-		var r := _cover_range(d, p, xf.origin.y, 28.4)
-		if y > r.y + 0.05 or y < r.x - 1.0:
-			return "surface %.2f outside [%.2f, %.2f]" % [y, r.x - 1.0, r.y + 0.05]
+		var r := _cover_range(road, d, expect, expect.y, 14.2)
+		var lo := r.x - 1.0
+		var hi := r.y + 0.2   # the CAD verge mesh sits up to ~0.15 m off surface_point in corners
+		if y < lo or y > hi:
+			return "surface %.2f outside [%.2f, %.2f] (%s)" % [y, lo, hi, ((hit as Dictionary)["collider"] as Node).get_path()]
 		return "")
-	assert_true(bad.is_empty(), "%d probes off, e.g. %s" % [bad.size(), bad.slice(0, 3)])
+	assert_true(bad.is_empty(), "%d probes off, e.g. %s" % [bad.size(), bad.slice(0, 4)])
 
 func test_terrain_covers_lap_without_holes() -> void:
 	var d := TrackData.load_track(TRACK)

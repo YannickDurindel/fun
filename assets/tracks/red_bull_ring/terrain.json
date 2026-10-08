@@ -25,10 +25,11 @@
  },
  "corridor": {
   "clearance": 0.3,
-  "verge_slope": 0.01,
+  "verge_slope": 0.0,
   "verge": 30.0,
   "flat_margin": 21.0,
-  "blend": 40.0
+  "blend": 40.0,
+  "road_profile": "road_profile.json"
  },
  "attribution": "Elevation: EU-DEM v1.1 25 m (Copernicus, (c) European Union) via OpenTopoData."
 }

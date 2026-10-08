@@ -167,7 +167,7 @@ func restart() -> void:
 	countdown_left = COUNTDOWN_STEP * 3.0
 	countdown_step = 3
 	race_restarted.emit()
-	if countdown_enabled:
+	if countdown_enabled and not Bootstrap.skip_countdown:
 		countdown_changed.emit(3)
 	else:
 		start_now()

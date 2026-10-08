@@ -106,13 +106,10 @@ func test_drift() -> void:
 	var peak := 0.0
 	var seen_drift := false
 	var rear_slip := 0.0
-	car.set_input_override(0.0, 1.0, 1.0)   # full right + brake
-	for i in int(0.4 * HZ):
-		await get_tree().physics_frame
-		peak = maxf(peak, absf(car.slip_angle))
-		seen_drift = seen_drift or car.is_drifting
-	car.set_input_override(1.0, 0.0, 1.0)   # hold the slide on throttle
-	for i in int(1.5 * HZ):
+	# A drift is a deliberate move: brake + steer held (drift_entry_time), and it only lasts
+	# while the brake is held. Releasing the brake hands grip back within a fraction of a second.
+	car.set_input_override(0.0, 1.0, 1.0)   # full right + brake, held
+	for i in int(1.2 * HZ):
 		await get_tree().physics_frame
 		peak = maxf(peak, absf(car.slip_angle))
 		seen_drift = seen_drift or car.is_drifting
@@ -121,15 +118,15 @@ func test_drift() -> void:
 	var still_drifting := car.is_drifting
 	var mid_kmh := car.speed_kmh
 	print("    drift: peak slip %.1f deg, speed %.0f -> %.0f km/h" % [rad_to_deg(peak), start_kmh, mid_kmh])
-	assert_true(seen_drift, "brake + steer at 150 km/h should start a drift")
-	assert_true(still_drifting, "drift should be sustained on throttle + steer")
+	assert_true(seen_drift, "brake + steer held at 150 km/h should start a drift")
+	assert_true(still_drifting, "drift is sustained while brake + steer are held")
 	assert_between(rad_to_deg(peak), 15.0, 50.0, "peak drift slip angle (deg)")
 	assert_true(rear_slip > 0.7, "rear wheel slip should be high while drifting")
-	assert_between(mid_kmh, start_kmh - 60.0, start_kmh - 5.0, "drift bleeds speed gradually (km/h)")
-	car.set_input_override(1.0, 0.0, 0.0)   # release steering: recover grip
-	await physics_frames(int(1.5 * HZ))
-	assert_true(not car.is_drifting, "is_drifting returns to false after releasing steer")
-	assert_true(absf(rad_to_deg(car.slip_angle)) < 3.0, "car re-aligns with its velocity")
+	assert_true(mid_kmh < start_kmh - 5.0, "drift bleeds speed (%.0f -> %.0f km/h)" % [start_kmh, mid_kmh])
+	car.set_input_override(1.0, 0.0, 1.0)   # brake released, steer still held: grip comes back
+	await physics_frames(int(0.8 * HZ))
+	assert_true(not car.is_drifting, "drift ends shortly after the brake is released, even with steer held")
+	assert_true(absf(rad_to_deg(car.slip_angle)) < 4.0, "car re-aligns with its velocity (%.1f deg)" % rad_to_deg(car.slip_angle))
 	assert_true(car.global_transform.basis.y.dot(Vector3.UP) > 0.99, "car stays upright")
 
 func test_high_speed_steering_is_stable() -> void:

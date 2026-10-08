@@ -10,6 +10,7 @@ var data: TrackData
 
 func _setup(skip_countdown: bool = true) -> void:
 	Bootstrap.autodrive = false
+	Bootstrap.skip_countdown = false
 	_scene = spawn(SCENE)
 	race = _scene.get_node("Track/Race") as RaceManager
 	car = _scene.get_node("Car") as Car

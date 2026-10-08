@@ -101,6 +101,11 @@ const KMH: float = 3.6
 @export_group("Steering")
 @export var steer_in_time: float = 0.065       ## s from centre to full lock
 @export var steer_out_time: float = 0.035      ## s from full lock back to centre
+## Keyboard (digital) steering is progressive: holding the key ramps toward full lock over
+## key_steer_in_time, releasing it recentres over key_steer_out_time. Analog input
+## (gamepad stick, autopilot, input override) keeps the fast steer_in/out times above.
+@export var key_steer_in_time: float = 0.40
+@export var key_steer_out_time: float = 0.12
 @export var max_steer_angle: float = 0.5       ## rad, at low speed
 ## Fraction of the lateral grip budget that full lock demands (keeps the car on its line).
 @export var steer_grip_usage: float = 0.92
@@ -110,8 +115,8 @@ const KMH: float = 3.6
 @export var yaw_accel_max: float = 25.0        ## rad/s^2
 
 @export_group("Grip")
-@export var lateral_grip_g: float = 2.2        ## lateral grip budget at zero speed, in g
-@export var aero_grip_g: float = 1.5e-4       ## extra grip in g per (m/s)^2
+@export var lateral_grip_g: float = 3.3        ## lateral grip budget at zero speed, in g
+@export var aero_grip_g: float = 2.6e-4       ## extra grip in g per (m/s)^2
 @export var lateral_response_time: float = 0.02  ## s
 ## Slip angle beyond the kinematic one that breaks traction into a drift without braking (deg).
 ## Large on purpose: landings, kerbs and long fast corners never start a slide (Trackmania: you
@@ -121,16 +126,19 @@ const KMH: float = 3.6
 @export var realign_time: float = 0.2
 
 @export_group("Drift")
-@export var drift_min_speed_kmh: float = 80.0
+@export var drift_min_speed_kmh: float = 110.0
 ## A drift needs a clear request: brake AND strong steer held together for drift_entry_time.
 ## (Raised from 0.5 / 0.1 / instant so trail braking into a corner stays glued.)
 @export var drift_steer_threshold: float = 0.6
 @export var drift_brake_threshold: float = 0.3
-@export var drift_entry_time: float = 0.15     ## s of brake + steer before the rear lets go
-@export var drift_lateral_grip_g: float = 1.6  ## sliding friction budget, in g
+## A drift only lasts while the brake is held: it ends this long after the brake is released
+## (0 = keep sliding for as long as steer is held, the old behaviour).
+@export var drift_brake_release_time: float = 0.25
+@export var drift_entry_time: float = 0.3     ## s of brake + steer before the rear lets go
+@export var drift_lateral_grip_g: float = 2.2  ## sliding friction budget, in g
 ## Extra sliding friction in g per (m/s)^2 (aero load), so a high-speed drift still carves the
 ## corner instead of washing wide.
-@export var drift_aero_grip_g: float = 1.5e-4
+@export var drift_aero_grip_g: float = 2.6e-4
 @export var drift_drive_factor: float = 0.6    ## fraction of drive that reaches the road
 ## Fraction of the speed scrubbed by sliding friction that is kept (turns the slide, not stops it).
 @export var drift_speed_retention: float = 0.3
@@ -143,8 +151,8 @@ const KMH: float = 3.6
 @export var drift_yaw_accel_max: float = 20.0  ## rad/s^2
 @export var drift_exit_angle_deg: float = 5.0
 @export var drift_min_time: float = 0.3        ## s before a drift may end by re-alignment
-@export var drift_recover_time: float = 0.3    ## s to ramp grip back to full after a drift
-@export var drift_recover_grip: float = 0.5    ## grip fraction right after a drift ends
+@export var drift_recover_time: float = 0.2    ## s to ramp grip back to full after a drift
+@export var drift_recover_grip: float = 0.7    ## grip fraction right after a drift ends
 
 @export_group("Surfaces")
 ## Grip multipliers (lateral, drive and brake) per surface, from the collider's `surface` meta.
@@ -186,6 +194,8 @@ var drift_time: float = 0.0
 
 # ---------------------------------------------------------------- internals
 var _raw_steer: float = 0.0
+var _steer_digital: bool = false
+var _drift_no_brake_time: float = 0.0
 var _override: bool = false
 var _ov_throttle: float = 0.0
 var _ov_brake: float = 0.0
@@ -255,10 +265,12 @@ func _physics_process(_delta: float) -> void:
 		throttle = _ov_throttle
 		brake_input = _ov_brake
 		_raw_steer = _ov_steer
+		_steer_digital = false
 	else:
 		throttle = clampf(Bootstrap.get_throttle(), 0.0, 1.0)
 		brake_input = clampf(Bootstrap.get_brake(), 0.0, 1.0)
 		_raw_steer = clampf(Bootstrap.get_steer(), -1.0, 1.0)
+		_steer_digital = Bootstrap.is_steer_digital()
 		if Input.is_action_just_pressed("respawn"):
 			respawn()
 
@@ -562,12 +574,14 @@ func _set_surface(i: int, collider: Object, shape_idx: int) -> void:
 
 func _update_steer_smoothing(dt: float) -> void:
 	var target := _raw_steer
+	var t_in := key_steer_in_time if _steer_digital else steer_in_time
+	var t_out := key_steer_out_time if _steer_digital else steer_out_time
 	if steer != 0.0 and signf(target) != signf(steer):
-		steer = move_toward(steer, 0.0, dt / maxf(steer_out_time, 0.001))
+		steer = move_toward(steer, 0.0, dt / maxf(t_out, 0.001))
 	elif absf(target) < absf(steer):
-		steer = move_toward(steer, target, dt / maxf(steer_out_time, 0.001))
+		steer = move_toward(steer, target, dt / maxf(t_out, 0.001))
 	else:
-		steer = move_toward(steer, target, dt / maxf(steer_in_time, 0.001))
+		steer = move_toward(steer, target, dt / maxf(t_in, 0.001))
 
 func _update_drift_state(dt: float, planar_kmh: float, kin_slip: float) -> void:
 	if not is_drifting:
@@ -587,6 +601,12 @@ func _update_drift_state(dt: float, planar_kmh: float, kin_slip: float) -> void:
 		return
 	drift_time += dt
 	var steering := absf(steer) > 0.15 or brake_input > drift_brake_threshold
+	if brake_input > drift_brake_threshold:
+		_drift_no_brake_time = 0.0
+	else:
+		_drift_no_brake_time += dt
+		if drift_brake_release_time > 0.0 and _drift_no_brake_time > drift_brake_release_time:
+			steering = false
 	var aligned := absf(slip_angle) < deg_to_rad(drift_exit_angle_deg) and drift_time > drift_min_time
 	var reversed := signf(slip_angle) == -_drift_dir and absf(slip_angle) > deg_to_rad(drift_exit_angle_deg)
 	if not steering or aligned or reversed or planar_kmh < drift_min_speed_kmh * 0.5:
@@ -602,6 +622,7 @@ func _enter_drift(dir: float) -> void:
 	_drift_dir = dir
 	drift_time = 0.0
 	_drift_request_time = 0.0
+	_drift_no_brake_time = 0.0
 
 ## Returns the longitudinal acceleration request and updates gear / rpm.
 func _drivetrain(dt: float, v_long: float, contacts: int) -> float:

@@ -78,17 +78,17 @@ func test_high_speed_drift_holds_line() -> void:
 	car.set_input_override(1.0, 0.0, 1.0)
 	await physics_frames(HZ / 2)
 	var r_grip := _radius(car)
+	# Brake + steer held: the drift starts after drift_entry_time and lasts while braking.
 	car.set_input_override(1.0, 1.0, 1.0)
-	await physics_frames(HZ / 4)
-	car.set_input_override(1.0, 0.0, 1.0)
 	var r_max := 0.0
-	var drifted := car.is_drifting
+	var drifted := false
 	for i in HZ:
 		await get_tree().physics_frame
-		if i > HZ / 4:
+		drifted = drifted or car.is_drifting
+		if car.is_drifting and i > HZ / 2:
 			r_max = maxf(r_max, _radius(car))
 	print("    deliberate drift at 300 km/h: grip radius %.0f m, drift radius max %.0f m" % [r_grip, r_max])
-	assert_true(drifted, "brake + steer held 0.25 s drifts")
+	assert_true(drifted, "brake + steer held drifts")
 	assert_true(r_max < r_grip * 1.1, "high-speed drift holds the line (%.0f vs %.0f m)" % [r_max, r_grip])
 
 # ---------------------------------------------------------------- Red Bull Ring

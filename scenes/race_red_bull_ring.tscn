@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="6_hud"]
 [ext_resource type="PackedScene" path="res://scenes/audio/engine_audio.tscn" id="7_audio"]
 [ext_resource type="PackedScene" path="res://scenes/fx/driving_fx.tscn" id="8_fx"]
-[ext_resource type="Script" path="res://scripts/track/placeholder_follower.gd" id="9_follow"]
 [ext_resource type="PackedScene" path="res://scenes/ui/race_panel.tscn" id="r4_panel"]
 [ext_resource type="Script" path="res://scripts/race/autopilot.gd" id="9_autopilot"]
 

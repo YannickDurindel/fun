@@ -40,14 +40,16 @@ FAR_X0, FAR_X1 = -6400.0, 5600.0
 FAR_Z0, FAR_Z1 = -6200.0, 5800.0
 FAR_STEP = 200.0
 
-CLEARANCE = 0.3     # m below the road surface inside the corridor
-VERGE_SLOPE = 0.01  # extra drop per metre beyond the road edge (verges slope slightly down)
-VERGE = 30.0        # grass verge beyond the road edge
-COVER = 36.0        # widest surface beyond the road edge that must stay above the terrain
-                    # (30 m verge; the placeholder road has 35 m shoulders)
-CELL_REACH = 14.2   # >= a mesh cell diagonal: every vertex of a triangle containing a covered
-                    # point is within this distance of it
-FLAT_MARGIN = 21.0  # flat zone = road edge + VERGE + FLAT_MARGIN (>= COVER + CELL_REACH)
+CLEARANCE = 0.3     # m below the road / verge surface inside the corridor
+VERGE_SLOPE = 0.0   # extra drop per metre beyond the road edge, up to VERGE m. 0: the CAD
+                    # verge plane (road_profile.json) is modelled exactly, CLEARANCE suffices
+VERGE = 30.0        # nominal grass verge beyond the road edge (CAD road_profile.json)
+FLAT_MARGIN = 21.0  # flat zone = road edge + VERGE + FLAT_MARGIN, following the nearest
+                    # cross-section's (extrapolated) verge plane
+COVER_SLACK = 2.0   # m: along-track tolerance for "this cross-section covers the vertex"
+CELL_REACH = 14.2   # m: a mesh cell diagonal. Vertices up to this far beyond a strip's real
+                    # verge stay under it too, so no triangle straddling the verge edge rises
+                    # through it (e.g. towards a higher leg of a hairpin).
 BLEND = 40.0        # corridor -> raw DEM blend distance
 BORDER = 160.0      # near-grid border band blended to the far grid
 
@@ -140,12 +142,37 @@ def smoothstep(a, b, x):
     return t * t * (3 - 2 * t)
 
 
-def make_corridor(track):
-    """Returns corridor(x, z) -> (distance to centreline, (target height, blend weight) or None)."""
+def load_profile(track):
+    """CAD road cross-section profile (widths, bank, per-side verge widths), falling back to
+    track.json's widths / banks with full verges if road_profile.json is missing."""
+    n = len(track["points"])
+    path = os.path.join(OUT_DIR, "road_profile.json")
+    if os.path.exists(path):
+        pr = json.load(open(path))
+        assert len(pr["width"]) == n, "road_profile.json does not match track.json"
+        return {"width": pr["width"], "bank": pr["bank"], "verge_l": pr["verge_left"],
+                "verge_r": pr["verge_right"], "verge_width": pr.get("verge_width", VERGE),
+                "verge_drop": pr.get("verge_drop", 0.25)}
+    pts = track["points"]
+    return {"width": [p.get("width", 13.0) for p in pts], "bank": [p.get("bank", 0.0) for p in pts],
+            "verge_l": [VERGE] * n, "verge_r": [VERGE] * n, "verge_width": VERGE, "verge_drop": 0.25}
+
+
+def make_corridor(track, profile):
+    """Returns corridor(x, z) -> (distance to centreline, (target height, blend weight) or None).
+
+    The target follows the nearest cross-section of the CAD road: banked road plane, then the
+    verge dropping verge_drop over verge_width (extrapolated beyond it), each continued along
+    the track by its grade, minus CLEARANCE and VERGE_SLOPE per metre past the edge. Only
+    where several cross-sections genuinely cover the same spot (the inside of corners, other
+    legs of a hairpin) the lowest of them wins, so the terrain stays under all of them.
+    """
     pts = [p["p"] for p in track["points"]]
-    widths = [p.get("width", 13.0) for p in track["points"]]
     grades = [p.get("grade", 0.0) for p in track["points"]]
-    sin_banks = [math.sin(p.get("bank", 0.0)) for p in track["points"]]
+    widths = profile["width"]
+    sin_banks = [math.sin(b) for b in profile["bank"]]
+    verge_l, verge_r = profile["verge_l"], profile["verge_r"]
+    vdrop = profile["verge_drop"] / profile["verge_width"]
     n = len(pts)
     tangents = []
     for i in range(n):
@@ -159,10 +186,21 @@ def make_corridor(track):
         buckets.setdefault((int(math.floor(p[0] / CELL)), int(math.floor(p[2] / CELL))), []).append(i)
     reach = max(widths) * 0.5 + VERGE + FLAT_MARGIN + BLEND
     rc = int(math.ceil(reach / CELL))
+
+    def target(i, along, lat_r):
+        hw = widths[i] * 0.5
+        y = pts[i][1] + grades[i] * along
+        out = abs(lat_r) - hw
+        if out <= 0.0:
+            y -= lat_r * sin_banks[i]
+        else:
+            side = 1.0 if lat_r > 0.0 else -1.0
+            y -= side * hw * sin_banks[i] + vdrop * out
+        return y - CLEARANCE - VERGE_SLOPE * min(max(0.0, out), VERGE)
+
     def corridor(x, z):
-        """-> (distance to centreline, target height or None if outside every corridor)."""
         cx, cz = int(math.floor(x / CELL)), int(math.floor(z / CELL))
-        best_d, best_i = 1e9, -1
+        best_d, best = 1e9, None
         cand = []
         for bx in range(cx - rc, cx + rc + 1):
             for bz in range(cz - rc, cz + rc + 1):
@@ -170,28 +208,27 @@ def make_corridor(track):
                     p = pts[i]
                     dx, dz = x - p[0], z - p[2]
                     d = math.hypot(dx, dz)
+                    if d >= reach:
+                        continue
+                    tx, tz = tangents[i]
+                    along = dx * tx + dz * tz
+                    lat_r = dz * tx - dx * tz          # signed, + = right of the race direction
+                    cand.append((i, along, lat_r))
                     if d < best_d:
-                        best_d, best_i = d, i
-                    if d < reach:
-                        cand.append((i, dx, dz))
-        if best_i < 0 or best_d >= reach:
+                        best_d, best = d, (i, along, lat_r)
+        if best is None:
             return best_d, None
-        hw = widths[best_i] * 0.5
-        y = pts[best_i][1]
-        # Every road cross-section (road + verge / shoulder strip perpendicular to the
-        # centreline) passing within CELL_REACH of this vertex, extended as a plane along its
-        # grade and rolled by its bank (+ = left edge higher), must stay above it. Taking the minimum handles the fans and overlaps on the
-        # inside of hairpins, and because the plane is linear, every triangle interpolated
-        # between such vertices also stays below each strip that crosses it.
-        for i, dx, dz in cand:
-            tx, tz = tangents[i]
-            along = dx * tx + dz * tz
-            lat_r = dz * tx - dx * tz          # signed, + = right of the race direction
-            if abs(along) <= CELL_REACH and abs(lat_r) <= widths[i] * 0.5 + COVER + CELL_REACH:
-                y = min(y, pts[i][1] + grades[i] * along - lat_r * sin_banks[i])
-        target = y - CLEARANCE - VERGE_SLOPE * max(0.0, best_d - hw)
+        i0 = best[0]
+        y = target(*best)
+        for i, along, lat_r in cand:
+            if abs(along) > COVER_SLACK:
+                continue
+            verge = verge_r[i] if lat_r > 0.0 else verge_l[i]
+            if abs(lat_r) <= widths[i] * 0.5 + verge + CELL_REACH:
+                y = min(y, target(i, along, lat_r))
+        hw = widths[i0] * 0.5
         w = smoothstep(hw + VERGE + FLAT_MARGIN, hw + VERGE + FLAT_MARGIN + BLEND, best_d)
-        return best_d, (target, w)
+        return best_d, (y, w)
 
     return corridor
 
@@ -215,7 +252,7 @@ def main():
     print(f"far grid {len(gx)}x{len(gz)} = {len(gx) * len(gz)} points")
     far = fetch_grid(gx, gz, to_latlon, base)
 
-    corridor = make_corridor(track)
+    corridor = make_corridor(track, load_profile(track))
 
     # ---- near mesh grid ----------------------------------------------------------------
     mx, mz = grid_axis(NEAR_X0, NEAR_X1, MESH_STEP), grid_axis(NEAR_Z0, NEAR_Z1, MESH_STEP)
@@ -261,7 +298,7 @@ def main():
         "far": {"file": "terrain_far.bin", "x0": FAR_X0, "z0": FAR_Z0, "step": FAR_STEP,
                 "nx": len(gx), "nz": len(gz)},
         "corridor": {"clearance": CLEARANCE, "verge_slope": VERGE_SLOPE, "verge": VERGE,
-                     "flat_margin": FLAT_MARGIN, "blend": BLEND},
+                     "flat_margin": FLAT_MARGIN, "blend": BLEND, "road_profile": "road_profile.json"},
         "attribution": "Elevation: EU-DEM v1.1 25 m (Copernicus, (c) European Union) via OpenTopoData.",
     }
     with open(os.path.join(OUT_DIR, "terrain.json"), "w") as f:

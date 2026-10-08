@@ -25,6 +25,8 @@ func _run() -> void:
 			if mname.begins_with("test_") and not mname in methods:
 				methods.append(mname)
 		for mname in methods:
+			# Race-scene tests drive immediately; test_race.gd re-enables the countdown itself.
+			root.get_node("/root/Bootstrap").set(&"skip_countdown", true)
 			var t: TestCase = script.new()
 			root.add_child(t)
 			await process_frame
