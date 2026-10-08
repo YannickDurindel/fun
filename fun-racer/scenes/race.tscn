@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" path="res://scenes/fx/driving_fx.tscn" id="8_fx"]
 [ext_resource type="PackedScene" path="res://scenes/ui/race_panel.tscn" id="r4_panel"]
 [ext_resource type="Script" path="res://scripts/race/autopilot.gd" id="9_autopilot"]
+[ext_resource type="PackedScene" path="res://scenes/race/bots.tscn" id="m7_bots"]
+[ext_resource type="PackedScene" path="res://scenes/ui/standings.tscn" id="m7_standings"]
 
 [sub_resource type="WorldBoundaryShape3D" id="catch_shape"]
 
@@ -38,6 +40,8 @@ car_path = NodePath("../../Car")
 
 [node name="RacePanel" parent="UI" instance=ExtResource("r4_panel")]
 
+[node name="Standings" parent="UI" instance=ExtResource("m7_standings")]
+
 [node name="FX" type="Node3D" parent="."]
 
 [node name="DrivingFX" parent="FX" instance=ExtResource("8_fx")]
@@ -46,3 +50,5 @@ car_path = NodePath("../../Car")
 [node name="Autodrive" type="Node" parent="."]
 script = ExtResource("9_autopilot")
 car_path = NodePath("../Car")
+
+[node name="Bots" parent="." instance=ExtResource("m7_bots")]

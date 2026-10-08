@@ -1,0 +1,20 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/car/car.tscn" id="1_car"]
+[ext_resource type="FontFile" path="res://assets/ui/fonts/BarlowCondensed-BoldItalic.ttf" id="2_font"]
+
+[node name="BotCar" instance=ExtResource("1_car")]
+collision_layer = 0
+
+[node name="NameTag" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0.3)
+cast_shadow = 0
+visibility_range_end = 80.0
+pixel_size = 0.007
+billboard = 1
+shaded = false
+double_sided = false
+text = "BOT"
+font = ExtResource("2_font")
+font_size = 64
+outline_size = 14
