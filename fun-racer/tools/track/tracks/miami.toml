@@ -1,0 +1,163 @@
+# Miami International Autodrome, Miami Gardens: the Grand Prix circuit around the Hard Rock
+# Stadium (5412 m, 19 turns, anticlockwise).
+#
+#   .venv/bin/python tools/track/build_track.py miami --offline
+
+id = "miami"
+
+[osm]
+# The lap is mapped as highway=raceway, oneway, in seven ways. The type=circuit relation
+# (20204222) is no help: its only member is another relation of four non-raceway ways. Three
+# more raceway ways are short cuts between the same nodes (1485454063: 72 m instead of the
+# 1711 m stadium loop; 1233165737: 671 m instead of 1511 m; 1485453201: 31 m instead of
+# 693 m) and "Pit Lane" (1017340352) is the pit lane, so the loop is listed by hand, in
+# driving order from the pit straight. It is 5410 m in OSM against the official 5412 m.
+ways = [
+    1485453197,   # turn 19, pit straight, turns 1-3
+    1017340351,   # turns 4-8 around the stadium and the tennis centre, to the south straight
+    1485453204,
+    1472684485,   # turns 9-16: south straight, the Turnpike ramps, the chicane
+    1485453202,   # back straight
+    1485453200,
+    1472686141,   # turn 17 hairpin, turn 18
+]
+
+[layout]
+direction = "anticlockwise"
+# OSM has no start / finish data. The pit building ("Paddock/Garage", way 1017340353) stands
+# along the first 275 m of the 450 m straight between turns 19 and 1; the finish line is put
+# opposite its middle. The Grand Prix runs 57 laps over 308.326 km, 158 m less than
+# 57 x 5.412 km, so the grid's start line is 158 m after the timing line.
+finish = [25.959426, -80.238003]
+start_offset_m = 158.0
+
+[elevation]
+dataset = "terrarium"
+# Bare-earth data here: the Hard Rock Stadium and the Turnpike ramps do not show, and the lap
+# comes out flat within 1.1 m at the default smoothing, as the site is. What the data cannot
+# show is the one built feature of the lap: the turn 14-15 chicane climbs a ramp, crests in
+# the middle and drops to turn 16. Its height is not published; 2 m is an estimate.
+[[elevation.override]]
+s = [3385.0, 3435.0]
+offset = 2.0
+blend = 70.0
+
+# The 19 official turns, pinned at the apexes the automatic detection finds: it sees exactly
+# 19 corners of 15 degrees or more, and leaves out three gentler left kinks on the curved
+# run from turn 8 to turn 11 (s = 1829, 2325, 2875). The directions and the count match the
+# circuit; which of the bends of that run carry the numbers 9 and 10 on the official map
+# could not be checked. The circuit has no official corner names; the names in brackets are
+# descriptions.
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "right"
+s = 320.1
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 424.2
+
+[[turn]]
+id = "T3"
+name = "Turn 3 (stadium sweep)"
+direction = "right"
+s = 480.2
+
+[[turn]]
+id = "T4"
+name = "Turn 4 (esses)"
+direction = "left"
+s = 1054.4
+
+[[turn]]
+id = "T5"
+name = "Turn 5 (esses)"
+direction = "right"
+s = 1264.5
+
+[[turn]]
+id = "T6"
+name = "Turn 6 (esses)"
+direction = "left"
+s = 1334.5
+
+[[turn]]
+id = "T7"
+name = "Turn 7 (marina)"
+direction = "left"
+s = 1608.6
+
+[[turn]]
+id = "T8"
+name = "Turn 8"
+direction = "right"
+s = 1678.6
+
+[[turn]]
+id = "T9"
+name = "Turn 9"
+direction = "right"
+s = 2112.8
+
+[[turn]]
+id = "T10"
+name = "Turn 10"
+direction = "left"
+s = 2520.9
+
+[[turn]]
+id = "T11"
+name = "Turn 11"
+direction = "left"
+s = 3075.1
+
+[[turn]]
+id = "T12"
+name = "Turn 12"
+direction = "right"
+s = 3221.2
+
+[[turn]]
+id = "T13"
+name = "Turn 13"
+direction = "left"
+s = 3309.2
+
+[[turn]]
+id = "T14"
+name = "Turn 14 (Turnpike chicane)"
+direction = "left"
+s = 3397.3
+
+[[turn]]
+id = "T15"
+name = "Turn 15 (Turnpike chicane)"
+direction = "right"
+s = 3423.3
+
+[[turn]]
+id = "T16"
+name = "Turn 16"
+direction = "left"
+s = 3515.3
+
+[[turn]]
+id = "T17"
+name = "Turn 17 (hairpin)"
+direction = "left"
+s = 4835.8
+
+[[turn]]
+id = "T18"
+name = "Turn 18"
+direction = "left"
+s = 4965.8
+
+[[turn]]
+id = "T19"
+name = "Turn 19"
+direction = "right"
+s = 5263.9

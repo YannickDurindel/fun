@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1314 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="9383628154" visible="true" version="3" changeset="145422262" timestamp="2023-12-22T22:37:09Z" user="MooPoo7" uid="7596709" lat="25.9604424" lon="-80.2391817"/>
+ <node id="11770044819" visible="true" version="3" changeset="183254781" timestamp="2026-05-27T12:49:38Z" user="Yuliya_Petrash" uid="22194816" lat="25.9602849" lon="-80.2355103"/>
+ <node id="14255303741" visible="true" version="1" changeset="190090295" timestamp="2026-10-06T13:06:57Z" user="Sora 27" uid="22444120" lat="25.9603612" lon="-80.2372898"/>
+ <way id="1485453202" visible="true" version="2" changeset="190090295" timestamp="2026-10-06T13:06:57Z" user="Sora 27" uid="22444120">
+  <nd ref="11770044819"/>
+  <nd ref="14255303741"/>
+  <nd ref="9383628154"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="no"/>
+  <tag k="name" v="Miami International Autodrome"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

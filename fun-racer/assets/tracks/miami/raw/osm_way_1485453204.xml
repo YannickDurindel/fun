@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1291 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="9383606112" visible="true" version="4" changeset="145388506" timestamp="2023-12-21T23:33:34Z" user="MooPoo7" uid="7596709" lat="25.9552505" lon="-80.2368356"/>
+ <node id="9383606113" visible="true" version="4" changeset="145388506" timestamp="2023-12-21T23:33:34Z" user="MooPoo7" uid="7596709" lat="25.9552324" lon="-80.2362599"/>
+ <node id="9383606114" visible="true" version="4" changeset="145388506" timestamp="2023-12-21T23:33:34Z" user="MooPoo7" uid="7596709" lat="25.9553028" lon="-80.2355503"/>
+ <node id="9383606115" visible="true" version="4" changeset="145388506" timestamp="2023-12-21T23:33:34Z" user="MooPoo7" uid="7596709" lat="25.9553987" lon="-80.2351687"/>
+ <node id="11441670877" visible="true" version="1" changeset="145388506" timestamp="2023-12-21T23:33:34Z" user="MooPoo7" uid="7596709" lat="25.9553485" lon="-80.2353588"/>
+ <node id="11441670878" visible="true" version="1" changeset="145388506" timestamp="2023-12-21T23:33:34Z" user="MooPoo7" uid="7596709" lat="25.9554472" lon="-80.2350011"/>
+ <node id="11441670879" visible="true" version="1" changeset="145388506" timestamp="2023-12-21T23:33:34Z" user="MooPoo7" uid="7596709" lat="25.9552579" lon="-80.2358743"/>
+ <node id="11441670880" visible="true" version="1" changeset="145388506" timestamp="2023-12-21T23:33:34Z" user="MooPoo7" uid="7596709" lat="25.9552304" lon="-80.2365586"/>
+ <node id="11441670881" visible="true" version="1" changeset="145388506" timestamp="2023-12-21T23:33:34Z" user="MooPoo7" uid="7596709" lat="25.9552733" lon="-80.2370563"/>
+ <way id="1485453204" visible="true" version="2" changeset="179363288" timestamp="2026-03-04T18:43:28Z" user="cosentini" uid="23900056">
+  <nd ref="11441670881"/>
+  <nd ref="9383606112"/>
+  <nd ref="11441670880"/>
+  <nd ref="9383606113"/>
+  <nd ref="11441670879"/>
+  <nd ref="9383606114"/>
+  <nd ref="11441670877"/>
+  <nd ref="9383606115"/>
+  <nd ref="11441670878"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="no"/>
+  <tag k="name" v="Miami International Autodrome"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

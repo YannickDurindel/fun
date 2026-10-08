@@ -1,0 +1,347 @@
+{
+ "id": "miami",
+ "recipe": "tools/track/tracks/miami.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   1485453197,
+   1017340351,
+   1485453204,
+   1472684485,
+   1485453202,
+   1485453200,
+   1472686141
+  ],
+  "raw_length_m": 5415.8,
+  "length_m": 5410.0,
+  "official_length_m": 5412.0,
+  "length_error": -0.00037,
+  "candidates": []
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 2.39,
+  "max_grade": 0.0442,
+  "min_grade": -0.0355,
+  "origin_m": 1.75
+ },
+ "turns": {
+  "official": 19,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Miami International Autodrome",
+    "direction": "right",
+    "s_apex": 320.1,
+    "min_radius": 21.4
+   },
+   {
+    "id": "T2",
+    "name": "Miami International Autodrome",
+    "direction": "left",
+    "s_apex": 424.2,
+    "min_radius": 40.4
+   },
+   {
+    "id": "T3",
+    "name": "Miami International Autodrome",
+    "direction": "right",
+    "s_apex": 480.2,
+    "min_radius": 61.4
+   },
+   {
+    "id": "T4",
+    "name": "Turn 4",
+    "direction": "left",
+    "s_apex": 1054.4,
+    "min_radius": 62.6
+   },
+   {
+    "id": "T5",
+    "name": "Turn 5",
+    "direction": "right",
+    "s_apex": 1264.5,
+    "min_radius": 66.0
+   },
+   {
+    "id": "T6",
+    "name": "Turn 6",
+    "direction": "left",
+    "s_apex": 1334.5,
+    "min_radius": 62.5
+   },
+   {
+    "id": "T7",
+    "name": "Turn 7",
+    "direction": "left",
+    "s_apex": 1608.6,
+    "min_radius": 34.2
+   },
+   {
+    "id": "T8",
+    "name": "Turn 8",
+    "direction": "right",
+    "s_apex": 1678.6,
+    "min_radius": 156.2
+   },
+   {
+    "id": "T9",
+    "name": "Turn 9",
+    "direction": "right",
+    "s_apex": 2112.8,
+    "min_radius": 101.4
+   },
+   {
+    "id": "T10",
+    "name": "Miami International Autodrome",
+    "direction": "left",
+    "s_apex": 2520.9,
+    "min_radius": 208.1
+   },
+   {
+    "id": "T11",
+    "name": "Turn 11",
+    "direction": "left",
+    "s_apex": 3075.1,
+    "min_radius": 17.5
+   },
+   {
+    "id": "T12",
+    "name": "Turn 12",
+    "direction": "right",
+    "s_apex": 3221.2,
+    "min_radius": 34.2
+   },
+   {
+    "id": "T13",
+    "name": "Turn 13",
+    "direction": "left",
+    "s_apex": 3309.2,
+    "min_radius": 40.8
+   },
+   {
+    "id": "T14",
+    "name": "Turn 14",
+    "direction": "left",
+    "s_apex": 3397.3,
+    "min_radius": 12.4
+   },
+   {
+    "id": "T15",
+    "name": "Turn 15",
+    "direction": "right",
+    "s_apex": 3423.3,
+    "min_radius": 13.8
+   },
+   {
+    "id": "T16",
+    "name": "Turn 16",
+    "direction": "left",
+    "s_apex": 3515.3,
+    "min_radius": 15.4
+   },
+   {
+    "id": "T17",
+    "name": "Turn 17",
+    "direction": "left",
+    "s_apex": 4835.8,
+    "min_radius": 15.6
+   },
+   {
+    "id": "T18",
+    "name": "Turn 18",
+    "direction": "left",
+    "s_apex": 4965.8,
+    "min_radius": 66.7
+   },
+   {
+    "id": "T19",
+    "name": "Miami International Autodrome",
+    "direction": "right",
+    "s_apex": 5263.9,
+    "min_radius": 92.4
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 320.1,
+    "direction": "right",
+    "angle_deg": 110.8,
+    "kind": "corner",
+    "min_radius": 21.4,
+    "used": true
+   },
+   {
+    "s_apex": 424.2,
+    "direction": "left",
+    "angle_deg": 62.4,
+    "kind": "corner",
+    "min_radius": 40.4,
+    "used": true
+   },
+   {
+    "s_apex": 480.2,
+    "direction": "right",
+    "angle_deg": 130.7,
+    "kind": "corner",
+    "min_radius": 61.4,
+    "used": true
+   },
+   {
+    "s_apex": 1054.4,
+    "direction": "left",
+    "angle_deg": 67.6,
+    "kind": "corner",
+    "min_radius": 62.6,
+    "used": true
+   },
+   {
+    "s_apex": 1264.5,
+    "direction": "right",
+    "angle_deg": 80.2,
+    "kind": "corner",
+    "min_radius": 66.0,
+    "used": true
+   },
+   {
+    "s_apex": 1334.5,
+    "direction": "left",
+    "angle_deg": 59.7,
+    "kind": "corner",
+    "min_radius": 62.5,
+    "used": true
+   },
+   {
+    "s_apex": 1608.6,
+    "direction": "left",
+    "angle_deg": 172.2,
+    "kind": "corner",
+    "min_radius": 34.2,
+    "used": true
+   },
+   {
+    "s_apex": 1678.6,
+    "direction": "right",
+    "angle_deg": 20.1,
+    "kind": "corner",
+    "min_radius": 156.2,
+    "used": true
+   },
+   {
+    "s_apex": 1828.7,
+    "direction": "left",
+    "angle_deg": 12.7,
+    "kind": "kink",
+    "min_radius": 190.1,
+    "used": false
+   },
+   {
+    "s_apex": 2112.8,
+    "direction": "right",
+    "angle_deg": 20.3,
+    "kind": "corner",
+    "min_radius": 101.4,
+    "used": true
+   },
+   {
+    "s_apex": 2326.9,
+    "direction": "left",
+    "angle_deg": 13.1,
+    "kind": "kink",
+    "min_radius": 254.6,
+    "used": false
+   },
+   {
+    "s_apex": 2520.9,
+    "direction": "left",
+    "angle_deg": 20.9,
+    "kind": "corner",
+    "min_radius": 208.1,
+    "used": true
+   },
+   {
+    "s_apex": 2877.1,
+    "direction": "left",
+    "angle_deg": 4.8,
+    "kind": "kink",
+    "min_radius": 416.4,
+    "used": false
+   },
+   {
+    "s_apex": 3075.1,
+    "direction": "left",
+    "angle_deg": 117.1,
+    "kind": "corner",
+    "min_radius": 17.5,
+    "used": true
+   },
+   {
+    "s_apex": 3221.2,
+    "direction": "right",
+    "angle_deg": 149.4,
+    "kind": "corner",
+    "min_radius": 34.2,
+    "used": true
+   },
+   {
+    "s_apex": 3309.2,
+    "direction": "left",
+    "angle_deg": 60.9,
+    "kind": "corner",
+    "min_radius": 40.8,
+    "used": true
+   },
+   {
+    "s_apex": 3397.3,
+    "direction": "left",
+    "angle_deg": 90.4,
+    "kind": "corner",
+    "min_radius": 12.4,
+    "used": true
+   },
+   {
+    "s_apex": 3423.3,
+    "direction": "right",
+    "angle_deg": 75.6,
+    "kind": "corner",
+    "min_radius": 13.8,
+    "used": true
+   },
+   {
+    "s_apex": 3515.3,
+    "direction": "left",
+    "angle_deg": 101.2,
+    "kind": "corner",
+    "min_radius": 15.4,
+    "used": true
+   },
+   {
+    "s_apex": 4835.8,
+    "direction": "left",
+    "angle_deg": 146.1,
+    "kind": "corner",
+    "min_radius": 15.6,
+    "used": true
+   },
+   {
+    "s_apex": 4965.8,
+    "direction": "left",
+    "angle_deg": 61.2,
+    "kind": "corner",
+    "min_radius": 66.7,
+    "used": true
+   },
+   {
+    "s_apex": 5263.9,
+    "direction": "right",
+    "angle_deg": 56.1,
+    "kind": "corner",
+    "min_radius": 92.4,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

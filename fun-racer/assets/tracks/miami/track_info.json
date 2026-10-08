@@ -1,0 +1,14 @@
+{
+  "id": "miami",
+  "name": "Miami International Autodrome",
+  "grand_prix": "Miami Grand Prix",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Miami Gardens",
+  "length_m": 5412,
+  "turns": 19,
+  "scene": "res://scenes/tracks/miami.tscn",
+  "track_json": "res://assets/tracks/miami/track.json",
+  "osm_relation": null,
+  "available": true
+}
