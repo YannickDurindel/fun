@@ -76,7 +76,8 @@ class RecipeTest(unittest.TestCase):
                 ({"road": {"bank_keys": [[100.0, 0.01], [50.0, 0.02]]}}, "bank_keys"),
                 ({"road": {"override": [{"s": [0, 100]}]}}, "width and/or bank"),
                 ({"road": {"crossfall": 1.5}}, "road.crossfall"),
-                ({"terrain": {"near": [0, -100, 0, 100]}}, "terrain.near")):
+                ({"terrain": {"near": [0, -100, 0, 100]}}, "terrain.near"),
+                ({"terrain": {"smooth_sigma_m": -1.0}}, "terrain.smooth_sigma_m")):
             with self.subTest(extra=extra), self.assertRaisesRegex(BuildError, pattern):
                 recipe.from_dict("imola", {**base, **extra})
 
