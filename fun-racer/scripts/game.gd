@@ -23,6 +23,14 @@ var menu_start_screen: String = ""
 ## Replaceable for tests: called with the scene path instead of changing scene.
 var scene_changer: Callable = Callable()
 
+func _enter_tree() -> void:
+	# A scene opened from the command line (godot res://scenes/race.tscn -- --track=ID, as
+	# tools/screenshot.sh does) enters the tree before _ready() runs here, and the race scene
+	# picks its track in _enter_tree: the id has to be known by then.
+	for arg: String in OS.get_cmdline_user_args():
+		if arg.begins_with("--track=") and not arg.get_slice("=", 1).is_empty():
+			config.track_id = arg.get_slice("=", 1)
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	pending.apply_dict(Settings.get_value("gameplay", "last_race"))
