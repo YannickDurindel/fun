@@ -1,12 +1,15 @@
-[gd_scene format=3]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="Script" path="res://scripts/menu/stub_screen.gd" id="1_stub"]
+[ext_resource type="Script" path="res://scripts/menu/settings_screen.gd" id="1_screen"]
+[ext_resource type="Theme" path="res://assets/ui/theme.tres" id="2_theme"]
 
-[node name="Screen" type="Control"]
+[node name="Settings" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource("1_stub")
-title = "OPTIONS"
-kind = "settings"
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_screen")
