@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" path="res://scenes/fx/driving_fx.tscn" id="8_fx"]
 [ext_resource type="PackedScene" path="res://scenes/ui/race_panel.tscn" id="r4_panel"]
 [ext_resource type="Script" path="res://scripts/race/autopilot.gd" id="9_autopilot"]
+[ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="m5_pause"]
+[ext_resource type="PackedScene" path="res://scenes/ui/results.tscn" id="m5_results"]
 
 [sub_resource type="WorldBoundaryShape3D" id="catch_shape"]
 
@@ -37,6 +39,10 @@ car_path = NodePath("../Car")
 car_path = NodePath("../../Car")
 
 [node name="RacePanel" parent="UI" instance=ExtResource("r4_panel")]
+
+[node name="Results" parent="UI" instance=ExtResource("m5_results")]
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("m5_pause")]
 
 [node name="FX" type="Node3D" parent="."]
 

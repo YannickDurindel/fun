@@ -21,11 +21,11 @@ signal sector_completed(sector: int, time: float, state: int)
 signal lap_completed(lap: int, time: float, delta: float, has_delta: bool, is_best: bool)
 signal lap_invalidated
 signal wrong_way_changed(active: bool)
-## MODE_RACE only: emitted once when `target_laps` laps are done. results: {laps: Array of lap
-## times, best: float, total: float, track_id: String}.
+## Emitted once when the run ends: `target_laps` laps done (MODE_RACE) or end_session() called.
+## See results() for the keys; more may be added (e.g. `standings` once there are opponents).
 signal race_finished(results: Dictionary)
 
-enum State { IDLE, COUNTDOWN, RACING }
+enum State { IDLE, COUNTDOWN, RACING, FINISHED }
 
 const COUNTDOWN_STEP: float = 0.8
 const MAX_TICK_JUMP: float = 50.0          ## s jumps above this (m/tick) never cross lines
@@ -38,11 +38,22 @@ const WRONG_WAY_TIME: float = 2.0
 const WRONG_WAY_SPEED: float = 20.0 / 3.6
 const GRID_ZONE: float = 30.0
 const RESCAN_INTERVAL: int = 30            ## ticks between full-lap rescans when far off the road
+const COAST_BRAKE: float = 0.3             ## gentle braking once the run is over
+const COAST_STOP_SPEED: float = 1.5        ## m/s: below this the finished car is parked
+const COAST_MAX_TIME: float = 25.0         ## s: parked wherever it is after this long
 
 ## Laps to complete before race_finished (0 = endless / time attack). Set from Game.config.
 var target_laps: int = 0
 ## Lap times of this run, in order.
 var lap_times: PackedFloat32Array = []
+## Sector times of each completed lap of this run (one Array of floats per lap).
+var lap_sectors: Array[Array] = []
+## Best time per sector within this run (-1 = not set).
+var run_sectors: PackedFloat32Array = []
+## Best lap on record when this run started (-1 = none): what a new record has to beat.
+var previous_best: float = -1.0
+## Sum of the lap times once FINISHED (the clock shown when the run is over).
+var finish_time: float = 0.0
 
 @export var persist_best: bool = true
 @export var countdown_enabled: bool = true
@@ -84,6 +95,8 @@ var _wrong_way_timer: float = 0.0
 var _upside_timer: float = 0.0
 var _respawn_gen: int = 0
 var _rescan_cooldown: int = 0
+var _coasting: bool = false      ## this manager holds the car's input override (run over)
+var _coast_time: float = 0.0
 
 func _enter_tree() -> void:
 	# Joined before any _ready so UI can find the manager whatever the sibling order.
@@ -157,11 +170,16 @@ func restart() -> void:
 	if car == null or data == null:
 		return
 	_respawn_gen += 1
+	_release_car()
 	state = State.COUNTDOWN
 	race_time = 0.0
 	lap_start_time = 0.0
 	laps_completed = 0
 	lap_times = PackedFloat32Array()
+	lap_sectors = []
+	run_sectors = PackedFloat32Array()
+	previous_best = best_lap
+	finish_time = 0.0
 	last_lap = -1.0
 	_has_cp = false
 	_cp_velocity = Vector3.ZERO
@@ -204,7 +222,89 @@ func _reset_lap_progress() -> void:
 			next_checkpoint += 1
 
 func lap_time() -> float:
+	if state == State.FINISHED:
+		return finish_time
 	return race_time - lap_start_time if state == State.RACING else 0.0
+
+func is_finished() -> bool:
+	return state == State.FINISHED
+
+## Ends the run now with the laps done so far (time attack's "END SESSION").
+func end_session() -> void:
+	if state == State.RACING or state == State.COUNTDOWN:
+		_finish()
+
+## The run as a Dictionary (what race_finished carries):
+##   track_id, track_name, mode, target_laps,
+##   laps: Array[float], lap_sectors: Array of Array[float] (per lap), total: float,
+##   best: float (-1 without a lap), best_lap_index: int (-1 without a lap),
+##   sectors_best: Array[float] (best per sector in this run, -1 = none),
+##   sectors_record: Array[float] (all-time best per sector),
+##   previous_best: float (record before this run, -1 = none), is_record: bool.
+func results() -> Dictionary:
+	var laps: Array[float] = []
+	var total := 0.0
+	var best := -1.0
+	var best_index := -1
+	for i in lap_times.size():
+		var lt := lap_times[i]
+		laps.append(lt)
+		total += lt
+		if best < 0.0 or lt < best:
+			best = lt
+			best_index = i
+	var sectors: Array[float] = []
+	var record: Array[float] = []
+	for i in sector_count:
+		sectors.append(run_sectors[i] if i < run_sectors.size() else -1.0)
+		record.append(best_sectors[i] if i < best_sectors.size() else -1.0)
+	return {
+		"track_id": track.track_id if track != null else "",
+		"track_name": data.name if data != null else "",
+		"mode": RaceConfig.MODE_RACE if target_laps > 0 else RaceConfig.MODE_TIME_ATTACK,
+		"target_laps": target_laps,
+		"laps": laps,
+		"lap_sectors": lap_sectors.duplicate(true),
+		"total": total,
+		"best": best,
+		"best_lap_index": best_index,
+		"sectors_best": sectors,
+		"sectors_record": record,
+		"previous_best": previous_best,
+		"is_record": best > 0.0 and (previous_best <= 0.0 or best < previous_best),
+	}
+
+func _finish() -> void:
+	var was_frozen := state == State.COUNTDOWN
+	state = State.FINISHED
+	_respawn_gen += 1          # a pending checkpoint-speed restore must not fire now
+	_set_wrong_way(false)
+	var res := results()
+	finish_time = float(res["total"])
+	if car != null and car.simulate and not was_frozen:
+		_coasting = true
+		_coast_time = 0.0
+		_upside_timer = 0.0
+		car.set_input_override(0.0, COAST_BRAKE, 0.0)
+	race_finished.emit(res)
+
+## Freezes the finished car and leaves its published state at rest (audio, FX and HUD read it).
+func _park() -> void:
+	car.linear_velocity = Vector3.ZERO
+	car.angular_velocity = Vector3.ZERO
+	car.simulate = false
+	car.speed_kmh = 0.0
+	car.throttle = 0.0
+	car.brake_input = 0.0
+	car.rpm = car.idle_rpm
+	car.is_drifting = false
+	for w in car.wheels:
+		w.slip = 0.0
+
+func _release_car() -> void:
+	if _coasting and car != null:
+		car.clear_input_override()
+	_coasting = false
 
 func _physics_process(delta: float) -> void:
 	if car == null or data == null:
@@ -217,6 +317,33 @@ func _physics_process(delta: float) -> void:
 			_tick_countdown(delta)
 		State.RACING:
 			_tick_race(delta)
+		State.FINISHED:
+			_tick_finished(delta)
+
+## Run over: no lap counting. The car slows down along the road, then parks.
+func _tick_finished(delta: float) -> void:
+	if not _coasting or not car.simulate:
+		return
+	var pos := car.global_position
+	s = data.closest_s(pos, s)
+	_coast_time += delta
+	if car.global_transform.basis.y.dot(Vector3.UP) < 0.0:
+		_upside_timer += delta
+	else:
+		_upside_timer = 0.0
+	if pos.y < data.position_at(s).y - FALL_DEPTH or _upside_timer > UPSIDE_DOWN_TIME:
+		car.respawn()   # fell off / rolled over after the flag: back to the last checkpoint
+		_park()
+		return
+	var speed := car.linear_velocity.length()
+	if speed < COAST_STOP_SPEED or _coast_time > COAST_MAX_TIME:
+		# Holding the brake at a standstill would engage reverse: park the car instead.
+		_park()
+		return
+	var ahead := data.position_at(data.wrap_s(s + 12.0 + speed * 0.6))
+	var local := car.global_transform.affine_inverse() * ahead
+	var steer := clampf(atan2(local.x, -local.z) * 2.0, -1.0, 1.0)
+	car.set_input_override(0.0, COAST_BRAKE, steer)
 
 func _tick_countdown(delta: float) -> void:
 	countdown_left -= delta
@@ -304,6 +431,10 @@ func _close_sector(sec: int, lap_t: float, upto: int) -> void:
 		grade = 1
 	if session_sectors[sec] < 0.0 or st < session_sectors[sec]:
 		session_sectors[sec] = st
+	while run_sectors.size() < sector_count:
+		run_sectors.append(-1.0)
+	if run_sectors[sec] < 0.0 or st < run_sectors[sec]:
+		run_sectors[sec] = st
 	sector_completed.emit(sec, st, grade)
 
 func _finish_crossed(t: float) -> void:
@@ -315,6 +446,7 @@ func _finish_crossed(t: float) -> void:
 		laps_completed += 1
 		last_lap = lt
 		lap_times.append(lt)
+		lap_sectors.append(Array(current_sectors))
 		var has_delta := best_lap > 0.0
 		var dlt := lt - best_lap if has_delta else 0.0
 		var is_best := not has_delta or lt < best_lap
@@ -324,6 +456,9 @@ func _finish_crossed(t: float) -> void:
 			if persist_best:
 				_save_best()
 		lap_completed.emit(laps_completed, lt, dlt, has_delta, is_best)
+		if target_laps > 0 and laps_completed >= target_laps:
+			_finish()
+			return
 	elif not out_lap and next_checkpoint > 0:
 		lap_invalidated.emit()   # crossed the line with checkpoints missing
 	out_lap = false
