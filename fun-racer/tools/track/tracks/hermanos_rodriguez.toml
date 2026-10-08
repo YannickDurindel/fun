@@ -1,0 +1,133 @@
+# Autódromo Hermanos Rodríguez, Mexico City: the Grand Prix circuit with the Foro Sol stadium
+# section (4304 m, 17 turns, clockwise).
+#
+#   .venv/bin/python tools/track/build_track.py hermanos_rodriguez --offline
+
+id = "hermanos_rodriguez"
+
+[osm]
+# type=circuit "Mexican Grand Prix": exactly the Grand Prix loop (4317 m in OSM), without the
+# full Peraltada, the oval or the Formula E pieces that a bounding box would also bring in.
+relation = 16251935
+
+[layout]
+# The relation gives the finish line, 45 m after the Peraltada exit, and a start line 134 m
+# after it. The official race distance (305.354 km for 71 laps of 4.304 km) puts the start
+# line 230 m after the finish line, so the grid goes there.
+start_offset_m = 230.0
+
+[elevation]
+dataset = "terrarium"
+# The site is flat (a few metres over the lap) and in a city: grandstands, the stadium and
+# trees leak into the surface model. Smooth heavily so the lap stays flat.
+smooth_sigma_m = 300.0
+
+[terrain]
+# Same reason: unsmoothed, the Palacio de los Deportes is a 27 m grass hill beside the
+# Peraltada and every block of houses a bump.
+smooth_sigma_m = 200.0
+
+# Official numbering. The automatic detection finds these 17 plus two flat-out bends
+# (R 256 m after turn 3, R 199 m on the run to the stadium) that have no number.
+
+[[turn]]
+id = "T1"
+name = "Ese Moisés Solana 1"
+direction = "right"
+s = 1216.3
+
+[[turn]]
+id = "T2"
+name = "Ese Moisés Solana 2"
+direction = "left"
+s = 1302.2
+
+[[turn]]
+id = "T3"
+name = "Ese Moisés Solana 3"
+direction = "right"
+s = 1356.1
+
+[[turn]]
+id = "T4"
+name = "Ese del Lago 1"
+direction = "left"
+s = 2059.1
+
+[[turn]]
+id = "T5"
+name = "Ese del Lago 2"
+direction = "right"
+s = 2133.0
+
+[[turn]]
+id = "T6"
+name = "Horquilla"
+direction = "right"
+s = 2292.8
+
+[[turn]]
+id = "T7"
+name = "Las Eses 1"
+direction = "left"
+s = 2616.4
+
+[[turn]]
+id = "T8"
+name = "Las Eses 2"
+direction = "right"
+s = 2710.2
+
+[[turn]]
+id = "T9"
+name = "Las Eses 3"
+direction = "left"
+s = 2820.1
+
+[[turn]]
+id = "T10"
+name = "Las Eses 4"
+direction = "right"
+s = 2997.8
+
+[[turn]]
+id = "T11"
+name = "Las Eses 5"
+direction = "left"
+s = 3087.7
+
+[[turn]]
+id = "T12"
+name = "Foro Sol (entry)"
+direction = "right"
+s = 3658.9
+
+[[turn]]
+id = "T13"
+name = "Foro Sol hairpin"
+direction = "left"
+s = 3840.6
+
+[[turn]]
+id = "T14"
+name = "Foro Sol 14"
+direction = "right"
+s = 3900.6
+
+[[turn]]
+id = "T15"
+name = "Foro Sol 15"
+direction = "left"
+s = 3942.5
+
+[[turn]]
+id = "T16"
+name = "Foro Sol (exit)"
+direction = "right"
+s = 4026.4
+
+[[turn]]
+id = "T17"
+name = "Nigel Mansell (Peraltada)"
+direction = "right"
+s = 4188.2

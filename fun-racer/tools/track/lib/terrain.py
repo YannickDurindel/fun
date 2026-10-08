@@ -12,7 +12,8 @@ answers cached in raw/terrain_*.json):
 
 Bounds come from the centreline: its bounding box plus NEAR_MARGIN, snapped outward to the far
 grid's 200 m lattice; the far grid is a square of at least 12 km around it. A recipe can pin
-them with [terrain] near / far = [x0, x1, z0, z1].
+them with [terrain] near / far = [x0, x1, z0, z1]. [terrain] smooth_sigma_m smooths both grids
+(flat city circuits, where buildings in the surface model would become hills).
 
 Frame: x = east, z = -north, y = elevation - origin_elevation_m. The plan view (x, z) uses
 the same uniform scale k = official length / OSM length as the centreline, so terrain lines up.
@@ -103,6 +104,22 @@ def fetch_grid(fetcher, dataset, xs, zs, to_latlon, base):
                 row[i] = next((row[k] for d in range(1, len(row)) for k in (i - d, i + d)
                                if 0 <= k < len(row) and row[k] is not None), 0.0)
     return h, voids
+
+
+def smooth_grid(h, sigma):
+    """Gaussian smoothing of grid h (rows of heights); sigma in cells, edges clamped."""
+    r = int(3 * sigma) + 1
+    w = [math.exp(-0.5 * (i / sigma) ** 2) for i in range(-r, r + 1)]
+    sw = sum(w)
+    w = [v / sw for v in w]
+
+    def line(v):
+        n = len(v)
+        return [sum(w[i + r] * v[min(max(k + i, 0), n - 1)] for i in range(-r, r + 1)) for k in range(n)]
+
+    rows = [line(row) for row in h]
+    cols = [line([row[i] for row in rows]) for i in range(len(rows[0]))]
+    return [[cols[i][j] for i in range(len(cols))] for j in range(len(rows))]
 
 
 def cubic(p0, p1, p2, p3, t):
@@ -272,6 +289,13 @@ def build(recipe, out_dir, fetcher, log=print):
     far, v2 = fetch_grid(fetcher, dataset, gx, gz, to_latlon, base)
     if v1 + v2:
         log(f"  {v1 + v2} DEM voids (sea / dataset edge) filled from the nearest valid point in their row")
+
+    sigma = float(recipe.terrain.get("smooth_sigma_m", 0.0))
+    if sigma > 0.0:
+        # City circuits: buildings in the surface model show up as hills. Smooth both grids.
+        near_raw = smooth_grid(near_raw, sigma / FETCH_STEP)
+        far = smooth_grid(far, sigma / FAR_STEP)
+        log(f"  smoothed with a {sigma:.0f} m Gaussian (recipe terrain.smooth_sigma_m)")
 
     profile, has_profile = load_profile(track, out_dir)
     if not has_profile:

@@ -91,6 +91,8 @@ blend = 40.0
 [terrain]
 # near = [x0, x1, z0, z1]     # game metres, multiples of 200; default: track box + 450 m
 # far = [x0, x1, z0, z1]      # default: a 12 km square around it
+# smooth_sigma_m = 200.0      # Gaussian over both grids: flat city sites, where buildings in
+#                             # the surface model would otherwise become hills
 ```
 
 Unknown keys are an error, so typos do not go unnoticed. The Red Bull Ring recipe
