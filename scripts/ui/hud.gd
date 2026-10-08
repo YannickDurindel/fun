@@ -131,6 +131,11 @@ func _refresh_timer_label() -> void:
 		_time_label.add_theme_color_override(&"font_color", COL_TIME_RUNNING if running else COL_TIME_WAITING)
 	_time_label.text = RaceTimer.format_time(timer.elapsed)
 
+## Race mode: a race panel owns timing, so the free-run clock and its hint are hidden.
+func set_free_timer_visible(v: bool) -> void:
+	_timer_group.visible = v
+	_hint.visible = v
+
 func get_time_text() -> String:
 	return _time_label.text
 

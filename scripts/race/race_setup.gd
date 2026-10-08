@@ -1,5 +1,6 @@
 extends Node3D
-## Race scene root: places the car on the grid (or at --spawn_s) of the Track.
+## Race scene root: places the car on the grid (or at --spawn_s) of the Track, then hands
+## the car to the Track's RaceManager (`Race` slot) to run the countdown and lap timing.
 
 @export var car_path: NodePath = ^"Car"
 @export var track_path: NodePath = ^"Track"
@@ -15,3 +16,6 @@ func _ready() -> void:
 	car.global_transform = xf
 	car.spawn_transform = xf
 	car.reset_physics_interpolation()
+	var race := track.get_node_or_null(^"Race")
+	if race != null and race.has_method(&"begin"):
+		race.call(&"begin", car, xf)
