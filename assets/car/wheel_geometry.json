@@ -1,0 +1,18 @@
+{
+  "front": {
+    "tyre_radius": 0.33,
+    "tyre_width": 0.3,
+    "rim_radius": 0.2286,
+    "rim_face_x": 0.134,
+    "joint_x": -0.127,
+    "chassis_x": -0.4
+  },
+  "rear": {
+    "tyre_radius": 0.36,
+    "tyre_width": 0.38,
+    "rim_radius": 0.2286,
+    "rim_face_x": 0.174,
+    "joint_x": -0.167,
+    "chassis_x": -0.38
+  }
+}

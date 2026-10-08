@@ -1,23 +1,59 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/car/wheel_visual.gd" id="1"]
 
-[sub_resource type="CylinderMesh" id="mesh"]
-top_radius = 0.35
-bottom_radius = 0.35
-height = 0.35
+[sub_resource type="Shader" id="blur_shader"]
+code = "shader_type spatial;
+// Speed-blurred rim: spokes smear into a translucent disc with radial machining rings.
+render_mode blend_mix, depth_draw_never, cull_back, specular_schlick_ggx;
 
-[sub_resource type="StandardMaterial3D" id="mat"]
-albedo_color = Color(0.08, 0.08, 0.08, 1)
+uniform float blur : hint_range(0.0, 1.0) = 0.0;
+uniform vec3 tint : source_color = vec3(0.30, 0.30, 0.33);
+
+void fragment() {
+	vec2 p = UV * 2.0 - 1.0;
+	float r = length(p);
+	if (r > 1.0) {
+		discard;
+	}
+	float rings = 0.5 + 0.5 * sin(r * 45.0);
+	ALBEDO = tint * (0.9 + 0.2 * rings);
+	METALLIC = 0.45;
+	ROUGHNESS = 0.4 + 0.2 * rings;
+	// Opaque-ish band over the spokes, clear over the hub/nut, soft outer edge at the lip.
+	float a = smoothstep(0.24, 0.31, r) * (1.0 - smoothstep(0.95, 1.0, r));
+	ALPHA = blur * a;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="blur_mat"]
+render_priority = 1
+shader = SubResource("blur_shader")
+shader_parameter/blur = 0.0
+shader_parameter/tint = Color(0.3, 0.3, 0.33, 1)
+
+[sub_resource type="QuadMesh" id="blur_quad"]
+size = Vector2(0.45, 0.45)
 
 [node name="WheelVisual" type="Node3D"]
 script = ExtResource("1")
 
+[node name="Suspension" type="Node3D" parent="."]
+
+[node name="Pivot" type="Node3D" parent="Suspension"]
+
+[node name="Arms" type="Node3D" parent="Suspension/Pivot"]
+
 [node name="Steer" type="Node3D" parent="."]
+
+[node name="Upright" type="Node3D" parent="Steer"]
+
+[node name="BlurDisc" type="MeshInstance3D" parent="Steer"]
+visible = false
+cast_shadow = 0
+mesh = SubResource("blur_quad")
+material_override = SubResource("blur_mat")
 
 [node name="Spin" type="Node3D" parent="Steer"]
 
-[node name="Placeholder" type="MeshInstance3D" parent="Steer/Spin"]
-transform = Transform3D(0, -1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("mesh")
-surface_material_override/0 = SubResource("mat")
+[node name="Wheel" type="Node3D" parent="Steer/Spin"]
