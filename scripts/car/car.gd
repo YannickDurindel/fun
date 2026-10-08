@@ -122,8 +122,11 @@ const KMH: float = 3.6
 
 @export_group("Drift")
 @export var drift_min_speed_kmh: float = 80.0
-@export var drift_steer_threshold: float = 0.5
-@export var drift_brake_threshold: float = 0.1
+## A drift needs a clear request: brake AND strong steer held together for drift_entry_time.
+## (Raised from 0.5 / 0.1 / instant so trail braking into a corner stays glued.)
+@export var drift_steer_threshold: float = 0.6
+@export var drift_brake_threshold: float = 0.3
+@export var drift_entry_time: float = 0.15     ## s of brake + steer before the rear lets go
 @export var drift_lateral_grip_g: float = 1.6  ## sliding friction budget, in g
 ## Extra sliding friction in g per (m/s)^2 (aero load), so a high-speed drift still carves the
 ## corner instead of washing wide.
@@ -189,6 +192,7 @@ var _ov_brake: float = 0.0
 var _ov_steer: float = 0.0
 var _respawn_pending: bool = false
 var _drift_dir: float = 0.0
+var _drift_request_time: float = 0.0
 var _grip_blend: float = 1.0
 var _shift_timer: float = 0.0
 var _wheel_omega: PackedFloat32Array = PackedFloat32Array([0, 0, 0, 0])
@@ -278,6 +282,7 @@ func _reset_drivetrain() -> void:
 	is_drifting = false
 	drift_time = 0.0
 	_drift_dir = 0.0
+	_drift_request_time = 0.0
 	_grip_blend = 1.0
 	_shift_timer = 0.0
 	for i in 4:
@@ -568,9 +573,14 @@ func _update_drift_state(dt: float, planar_kmh: float, kin_slip: float) -> void:
 	if not is_drifting:
 		_grip_blend = minf(1.0, _grip_blend + dt * (1.0 - drift_recover_grip) / maxf(drift_recover_time, 0.001))
 		if planar_kmh < drift_min_speed_kmh or forward_speed < 0.0:
+			_drift_request_time = 0.0
 			return
 		var excess := slip_angle - kin_slip
 		if brake_input > drift_brake_threshold and absf(steer) > drift_steer_threshold:
+			_drift_request_time += dt
+		else:
+			_drift_request_time = 0.0
+		if _drift_request_time >= drift_entry_time:
 			_enter_drift(-signf(steer))
 		elif _grip_blend >= 1.0 and absf(excess) > deg_to_rad(grip_break_angle_deg):
 			_enter_drift(signf(excess))
@@ -591,6 +601,7 @@ func _enter_drift(dir: float) -> void:
 	is_drifting = true
 	_drift_dir = dir
 	drift_time = 0.0
+	_drift_request_time = 0.0
 
 ## Returns the longitudinal acceleration request and updates gear / rpm.
 func _drivetrain(dt: float, v_long: float, contacts: int) -> float:
@@ -693,7 +704,7 @@ func _update_wheels(dt: float, xf: Transform3D, v: Vector3, w: Vector3, com: Vec
 			if not is_front and road_speed < launch_spin_fade and throttle > 0.5:
 				s = maxf(s, throttle * (1.0 - road_speed / launch_spin_fade))
 			if road_speed > 8.0 and brake_input > 0.5 and not is_drifting and gear != -1:
-				s = maxf(s, 0.35 * brake_input)
+				s = maxf(s, 0.25 * brake_input)   # tyre load hint, below the skid-mark threshold
 			if is_drifting and not is_front:
 				s = maxf(s, 0.85)
 			ws.slip = clampf(s, 0.0, 1.0)

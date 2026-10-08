@@ -51,23 +51,44 @@ func test_sustained_turn_half_lock() -> void:
 func test_sustained_turn_full_lock() -> void:
 	await _sustained_turn(1.0)
 
-## A brake tap mid-corner starts a drift (by design) but the slide must carve the corner,
-## not wash wide (it used to: drift friction had no aero term, radius 274 -> 429 m).
-func test_brake_tap_drift_does_not_wash_wide() -> void:
+## Trail braking (a short brake tap, or light brake) while steering hard stays glued: a drift
+## needs brake + strong steer held for drift_entry_time. Before, a 0.1 s tap at 200 km/h locked
+## the car into a 40 deg slide for the rest of the corner.
+func test_trail_braking_stays_glued() -> void:
+	var car := await _flat_car()
+	await _launch(car, 200.0)
+	var drifted := false
+	var max_slip := 0.0
+	for i in int(1.2 * HZ):
+		var t := i / float(HZ)
+		var brake := 1.0 if t < 0.1 else (0.25 if t > 0.5 else 0.0)   # tap, then light brake
+		car.set_input_override(0.0 if brake > 0.0 else 1.0, brake, 1.0)
+		await get_tree().physics_frame
+		drifted = drifted or car.is_drifting
+		max_slip = maxf(max_slip, absf(car.slip_angle))
+	print("    trail braking at 200 km/h, full lock: slip %.2f deg, drift %s" % [rad_to_deg(max_slip), drifted])
+	assert_true(not drifted, "brake tap / light brake while steering must not drift")
+	assert_true(rad_to_deg(max_slip) < 3.0, "slip stays small (%.2f deg)" % rad_to_deg(max_slip))
+
+## A deliberate drift at high speed carves the corner instead of washing wide (drift friction
+## used to have no aero term: radius 274 -> 429 m at 300 km/h).
+func test_high_speed_drift_holds_line() -> void:
 	var car := await _flat_car()
 	await _launch(car, 300.0)
 	car.set_input_override(1.0, 0.0, 1.0)
 	await physics_frames(HZ / 2)
 	var r_grip := _radius(car)
 	car.set_input_override(1.0, 1.0, 1.0)
-	await physics_frames(HZ / 10)
+	await physics_frames(HZ / 4)
 	car.set_input_override(1.0, 0.0, 1.0)
 	var r_max := 0.0
-	for i in int(1.2 * HZ):
+	var drifted := car.is_drifting
+	for i in HZ:
 		await get_tree().physics_frame
 		if i > HZ / 4:
 			r_max = maxf(r_max, _radius(car))
-	print("    brake tap at 300 km/h: grip radius %.0f m, drift radius max %.0f m" % [r_grip, r_max])
+	print("    deliberate drift at 300 km/h: grip radius %.0f m, drift radius max %.0f m" % [r_grip, r_max])
+	assert_true(drifted, "brake + steer held 0.25 s drifts")
 	assert_true(r_max < r_grip * 1.1, "high-speed drift holds the line (%.0f vs %.0f m)" % [r_max, r_grip])
 
 # ---------------------------------------------------------------- Red Bull Ring
