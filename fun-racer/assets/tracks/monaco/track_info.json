@@ -1,0 +1,14 @@
+{
+  "id": "monaco",
+  "name": "Circuit de Monaco",
+  "grand_prix": "Monaco Grand Prix",
+  "country": "Monaco",
+  "country_code": "MC",
+  "city": "Monte Carlo",
+  "length_m": 3337,
+  "turns": 19,
+  "scene": "res://scenes/tracks/monaco.tscn",
+  "track_json": "res://assets/tracks/monaco/track.json",
+  "osm_relation": 148194,
+  "available": true
+}

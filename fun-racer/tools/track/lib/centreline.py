@@ -26,7 +26,8 @@ STEP = 2.0            # resample spacing, m
 DEM_STEP = 10.0       # DEM sampling spacing, m
 PLAN_SIGMA = 4.0      # m, plan-view smoothing
 CURV_SIGMA = 6.0      # m, curvature smoothing
-DEFAULT_WIDTH = 13.0  # nominal width stored per point; road_profile.json has the real one
+DEFAULT_WIDTH = 13.0  # nominal width stored per point (less with a narrower [road] base_width);
+                      # road_profile.json has the real one
 OVERRIDE_BLEND = 60.0  # m, default blend of an [[elevation.override]] offset
 OVERRIDE_SIGMA = 10.0  # m, smoothing of the profile after overrides (rounds their corners)
 CROSSING_MIN_GAP = 150.0  # m along the lap: closer self-intersections are folds, not crossovers
@@ -283,13 +284,19 @@ def build(recipe, fetcher, log=print):
         warnings += auto["warnings"]
     sectors = turns_mod.sectors(curv_s, step, recipe.sectors)
 
+    # The nominal width must not promise more road than there is: the autopilot and the bots
+    # plan their line inside it. A recipe with a narrower road (a street circuit) lowers it.
+    # Only base_width is known here (the real per-point widths are made by the road step), so
+    # a stretch narrowed further with width_keys / [[road.override]] is not covered, and a
+    # widened one (the grid, a hairpin) is planned as if it had the base width.
+    nominal_width = min(DEFAULT_WIDTH, float(recipe.road.get("base_width", DEFAULT_WIDTH)))
     pts_out = []
     for k in range(n):
         g = (y[(k + 1) % n] - y[k - 1]) / (2 * step)
         pts_out.append({
             "s": round(k * step, 3),
             "p": [round(samples[k][0], 3), round(y[k], 3), round(samples[k][1], 3)],
-            "width": DEFAULT_WIDTH,
+            "width": nominal_width,
             "bank": 0.0,
             "grade": round(g, 4),
             "curvature": round(curv_s[k], 5),

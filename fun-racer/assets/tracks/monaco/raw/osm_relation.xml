@@ -1,0 +1,1611 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1297 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="21911883" visible="true" version="6" changeset="11470653" timestamp="2012-05-01T15:06:19Z" user="Scrup" uid="378737" lat="43.7371175" lon="7.4229093"/>
+ <node id="21911886" visible="true" version="11" changeset="173595512" timestamp="2025-10-21T18:07:07Z" user="Snusmumriken" uid="76269" lat="43.7372395" lon="7.4234970">
+  <tag k="crossing" v="zebra"/>
+  <tag k="crossing:island" v="no"/>
+  <tag k="crossing_ref" v="zebra"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="21911894" visible="true" version="7" changeset="113586775" timestamp="2021-11-09T23:13:47Z" user="Lyon-St-Clair" uid="9060372" lat="43.7377731" lon="7.4259193"/>
+ <node id="21912962" visible="true" version="8" changeset="166523179" timestamp="2025-05-20T12:46:08Z" user="Flynn_" uid="21081459" lat="43.7379155" lon="7.4269003">
+  <tag k="crossing" v="marked"/>
+  <tag k="crossing:markings" v="zebra"/>
+  <tag k="crossing_ref" v="zebra"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="21912976" visible="true" version="4" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7381061" lon="7.4275235"/>
+ <node id="21912993" visible="true" version="1" changeset="195071" timestamp="2007-01-14T22:48:46Z" user="marcusb" uid="4987" lat="43.7383750" lon="7.4278361"/>
+ <node id="21913012" visible="true" version="2" changeset="6816428" timestamp="2010-12-31T04:46:51Z" user="Vlad" uid="24247" lat="43.7387334" lon="7.4278429"/>
+ <node id="21913117" visible="true" version="7" changeset="57524947" timestamp="2018-03-26T07:24:25Z" user="rusefkuma" uid="7637564" lat="43.7394883" lon="7.4271748"/>
+ <node id="21913159" visible="true" version="5" changeset="91069462" timestamp="2020-09-17T20:21:02Z" user="rene78" uid="257555" lat="43.7392609" lon="7.4273089"/>
+ <node id="21914343" visible="true" version="9" changeset="144970671" timestamp="2023-12-10T16:39:09Z" user="ika-chan!" uid="4763179" lat="43.7377783" lon="7.4279727"/>
+ <node id="21914359" visible="true" version="7" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7385256" lon="7.4293318"/>
+ <node id="21914381" visible="true" version="5" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7395172" lon="7.4301143"/>
+ <node id="21914573" visible="true" version="3" changeset="11333829" timestamp="2012-04-17T15:06:09Z" user="Scrup" uid="378737" lat="43.7408308" lon="7.4293045"/>
+ <node id="21914666" visible="true" version="5" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7403489" lon="7.4297349"/>
+ <node id="21914722" visible="true" version="9" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7402092" lon="7.4296386"/>
+ <node id="21914761" visible="true" version="4" changeset="11466498" timestamp="2012-05-01T06:16:45Z" user="Scrup" uid="378737" lat="43.7407055" lon="7.4291401"/>
+ <node id="21914797" visible="true" version="4" changeset="179768983" timestamp="2026-03-12T17:32:41Z" user="FUZZY_42" uid="5460758" lat="43.7409906" lon="7.4290766"/>
+ <node id="21914841" visible="true" version="5" changeset="11468304" timestamp="2012-05-01T10:43:56Z" user="Scrup" uid="378737" lat="43.7401666" lon="7.4277541"/>
+ <node id="25191609" visible="true" version="12" changeset="138753177" timestamp="2023-07-20T09:08:04Z" user="7samurai" uid="16545644" lat="43.7323963" lon="7.4230516">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="crossing:island" v="no"/>
+  <tag k="crossing_ref" v="zebra"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="25191627" visible="true" version="8" changeset="145038155" timestamp="2023-12-12T13:33:35Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7324594" lon="7.4233599"/>
+ <node id="25191634" visible="true" version="7" changeset="145038155" timestamp="2023-12-12T13:33:35Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7326800" lon="7.4234484"/>
+ <node id="25191725" visible="true" version="7" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692" lat="43.7346973" lon="7.4223122"/>
+ <node id="25191729" visible="true" version="11" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692" lat="43.7350130" lon="7.4222309"/>
+ <node id="25192130" visible="true" version="4" changeset="11470967" timestamp="2012-05-01T15:39:37Z" user="Scrup" uid="378737" lat="43.7328624" lon="7.4221705"/>
+ <node id="25192215" visible="true" version="14" changeset="176442521" timestamp="2025-12-26T14:31:54Z" user="Sébastien Massiani" uid="1183015" lat="43.7325554" lon="7.4224071">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Princesse Stéphanie"/>
+  <tag k="network" v="COMPAGNIE AUTOBUS MONACO"/>
+  <tag k="operator" v="COMPAGNIE AUTOBUS MONACO"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="source" v="BDOrtho IGN (2025-11-19)"/>
+ </node>
+ <node id="25193217" visible="true" version="7" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7368624" lon="7.4230269"/>
+ <node id="25193317" visible="true" version="7" changeset="132600110" timestamp="2023-02-15T20:27:50Z" user="berco85" uid="2957494" lat="43.7334401" lon="7.4217530"/>
+ <node id="25193330" visible="true" version="5" changeset="17386591" timestamp="2013-08-17T17:31:06Z" user="JaviLuki" uid="1643723" lat="43.7339309" lon="7.4215567"/>
+ <node id="25193333" visible="true" version="4" changeset="17386591" timestamp="2013-08-17T17:31:06Z" user="JaviLuki" uid="1643723" lat="43.7344802" lon="7.4213722"/>
+ <node id="25193346" visible="true" version="4" changeset="17386591" timestamp="2013-08-17T17:31:06Z" user="JaviLuki" uid="1643723" lat="43.7352207" lon="7.4212450"/>
+ <node id="25193350" visible="true" version="5" changeset="17386591" timestamp="2013-08-17T17:31:06Z" user="JaviLuki" uid="1643723" lat="43.7354374" lon="7.4212204"/>
+ <node id="25193355" visible="true" version="5" changeset="17386591" timestamp="2013-08-17T17:31:06Z" user="JaviLuki" uid="1643723" lat="43.7357741" lon="7.4212113"/>
+ <node id="25193359" visible="true" version="4" changeset="17386591" timestamp="2013-08-17T17:31:06Z" user="JaviLuki" uid="1643723" lat="43.7361473" lon="7.4212611"/>
+ <node id="25239162" visible="true" version="3" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7388710" lon="7.4296871"/>
+ <node id="25239170" visible="true" version="8" changeset="179768983" timestamp="2026-03-12T17:32:41Z" user="FUZZY_42" uid="5460758" lat="43.7402689" lon="7.4297361"/>
+ <node id="25239171" visible="true" version="4" changeset="11466498" timestamp="2012-05-01T06:16:46Z" user="Scrup" uid="378737" lat="43.7403300" lon="7.4294582"/>
+ <node id="25239175" visible="true" version="4" changeset="149739292" timestamp="2024-04-08T14:53:50Z" user="ika-chan!" uid="4763179" lat="43.7406819" lon="7.4293552"/>
+ <node id="25239176" visible="true" version="3" changeset="11466498" timestamp="2012-05-01T06:16:46Z" user="Scrup" uid="378737" lat="43.7404592" lon="7.4293493"/>
+ <node id="25239177" visible="true" version="9" changeset="149739292" timestamp="2024-04-08T14:53:50Z" user="ika-chan!" uid="4763179" lat="43.7407531" lon="7.4291256">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="crossing:island" v="no"/>
+  <tag k="crossing:markings" v="zebra"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="kerb" v="lowered"/>
+  <tag k="supervised" v="no"/>
+  <tag k="tactile_paving" v="no"/>
+ </node>
+ <node id="25239178" visible="true" version="5" changeset="11466498" timestamp="2012-05-01T06:16:46Z" user="Scrup" uid="378737" lat="43.7410815" lon="7.4289560"/>
+ <node id="25239179" visible="true" version="11" changeset="145491912" timestamp="2023-12-25T10:27:47Z" user="chamdam" uid="10397245" lat="43.7410189" lon="7.4286333">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Citronniers"/>
+  <tag k="public_transport" v="stop_position"/>
+ </node>
+ <node id="25239180" visible="true" version="4" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7380025" lon="7.4273118"/>
+ <node id="25239181" visible="true" version="3" changeset="11470342" timestamp="2012-05-01T14:36:26Z" user="Scrup" uid="378737" lat="43.7382041" lon="7.4276709"/>
+ <node id="25239182" visible="true" version="5" changeset="11470342" timestamp="2012-05-01T14:36:26Z" user="Scrup" uid="378737" lat="43.7384786" lon="7.4278737"/>
+ <node id="25240073" visible="true" version="6" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7393795" lon="7.4272017"/>
+ <node id="25240075" visible="true" version="5" changeset="124093286" timestamp="2022-07-26T11:58:25Z" user="rene78" uid="257555" lat="43.7391880" lon="7.4274184"/>
+ <node id="25240091" visible="true" version="3" changeset="149739292" timestamp="2024-04-08T14:53:50Z" user="ika-chan!" uid="4763179" lat="43.7407462" lon="7.4293060"/>
+ <node id="25240093" visible="true" version="3" changeset="57525086" timestamp="2018-03-26T07:31:09Z" user="rusefkuma" uid="7637564" lat="43.7408998" lon="7.4293699"/>
+ <node id="25240094" visible="true" version="4" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7402260" lon="7.4296895"/>
+ <node id="25240095" visible="true" version="5" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7402054" lon="7.4295996"/>
+ <node id="252377857" visible="true" version="9" changeset="189248189" timestamp="2026-09-19T11:20:27Z" user="PillowyAnt" uid="23107593" lat="43.7336006" lon="7.4216930">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="crossing_ref" v="zebra"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="tactile_paving" v="no"/>
+ </node>
+ <node id="252387589" visible="true" version="7" changeset="49873301" timestamp="2017-06-27T20:49:32Z" user="ika-chan!" uid="4763179" lat="43.7373476" lon="7.4240136"/>
+ <node id="272637895" visible="true" version="10" changeset="166519342" timestamp="2025-05-20T11:18:55Z" user="Flynn_" uid="21081459" lat="43.7400580" lon="7.4276466">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="crossing:island" v="no"/>
+  <tag k="crossing:markings" v="zebra"/>
+  <tag k="crossing_ref" v="zebra"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="272637923" visible="true" version="10" changeset="174798229" timestamp="2025-11-18T01:32:51Z" user="ika-chan!" uid="4763179" lat="43.7399287" lon="7.4275148">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Place du Casino"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:STTM" v="5"/>
+  <tag k="source" v="BDOrtho IGN (2025-11-17)"/>
+  <tag k="tourist_bus" v="yes"/>
+ </node>
+ <node id="272958770" visible="true" version="5" changeset="166541334" timestamp="2025-05-20T20:18:09Z" user="Lyon-St-Clair" uid="9060372" lat="43.7368491" lon="7.4214840"/>
+ <node id="273246211" visible="true" version="12" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7410018" lon="7.4297697"/>
+ <node id="279442967" visible="true" version="5" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7379094" lon="7.4283118"/>
+ <node id="477617968" visible="true" version="6" changeset="174852187" timestamp="2025-11-19T10:26:41Z" user="ika-chan!" uid="4763179" lat="43.7327621" lon="7.4222840"/>
+ <node id="519323656" visible="true" version="8" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7403619" lon="7.4303262"/>
+ <node id="519324200" visible="true" version="4" changeset="49850017" timestamp="2017-06-27T00:54:30Z" user="ika-chan!" uid="4763179" lat="43.7347806" lon="7.4213059"/>
+ <node id="519324207" visible="true" version="6" changeset="150238102" timestamp="2024-04-19T19:16:37Z" user="Lyon-St-Clair" uid="9060372" lat="43.7330447" lon="7.4224645"/>
+ <node id="519324209" visible="true" version="5" changeset="117171627" timestamp="2022-02-08T17:56:42Z" user="Lyon-St-Clair" uid="9060372" lat="43.7329468" lon="7.4225672"/>
+ <node id="917957146" visible="true" version="8" changeset="183892083" timestamp="2026-06-09T19:48:11Z" user="WWMapper101" uid="20795476" lat="43.7367400" lon="7.4221688">
+  <tag k="crossing" v="zebra"/>
+  <tag k="crossing:island" v="no"/>
+  <tag k="crossing:markings" v="zebra"/>
+  <tag k="crossing_ref" v="zebra"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="917978752" visible="true" version="8" changeset="150238102" timestamp="2024-04-19T19:16:37Z" user="Lyon-St-Clair" uid="9060372" lat="43.7336848" lon="7.4220328"/>
+ <node id="918118157" visible="true" version="10" changeset="187780077" timestamp="2026-08-21T07:53:53Z" user="Dominik Dachs" uid="1436733" lat="43.7378776" lon="7.4264265">
+  <tag k="crossing" v="marked"/>
+  <tag k="crossing:markings" v="zebra"/>
+  <tag k="crossing_ref" v="zebra"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="1074584822" visible="true" version="3" changeset="11466498" timestamp="2012-05-01T06:16:20Z" user="Scrup" uid="378737" lat="43.7409413" lon="7.4291054"/>
+ <node id="1074584901" visible="true" version="5" changeset="145038155" timestamp="2023-12-12T13:33:35Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7325469" lon="7.4234946"/>
+ <node id="1074584965" visible="true" version="3" changeset="145038155" timestamp="2023-12-12T13:33:35Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7325058" lon="7.4234678"/>
+ <node id="1074585009" visible="true" version="7" changeset="170205597" timestamp="2025-08-09T14:31:22Z" user="USER gr 50" uid="23162084" lat="43.7332095" lon="7.4218736"/>
+ <node id="1079045413" visible="true" version="4" changeset="145038155" timestamp="2023-12-12T13:33:35Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7326198" lon="7.4234851"/>
+ <node id="1079751503" visible="true" version="1" changeset="6844581" timestamp="2011-01-02T22:28:10Z" user="Vlad" uid="24247" lat="43.7369648" lon="7.4239700"/>
+ <node id="1204288311" visible="true" version="6" changeset="186222982" timestamp="2026-07-23T10:16:56Z" user="Solvay27" uid="12415916" lat="43.7354020" lon="7.4212229">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="crossing_ref" v="zebra"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="tactile_paving" v="yes"/>
+ </node>
+ <node id="1204288371" visible="true" version="5" changeset="189248189" timestamp="2026-09-19T11:20:27Z" user="PillowyAnt" uid="23107593" lat="43.7343821" lon="7.4213956">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="crossing_ref" v="zebra"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="tactile_paving" v="yes"/>
+ </node>
+ <node id="1204288376" visible="true" version="5" changeset="140460998" timestamp="2023-08-27T17:05:06Z" user="rene78" uid="257555" lat="43.7389813" lon="7.4277072">
+  <tag k="crossing" v="zebra"/>
+  <tag k="crossing_ref" v="zebra"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="1204288436" visible="true" version="9" changeset="166519342" timestamp="2025-05-20T11:18:55Z" user="Flynn_" uid="21081459" lat="43.7394313" lon="7.4271787">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="crossing:markings" v="zebra"/>
+  <tag k="crossing_ref" v="zebra"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="1280338640" visible="true" version="3" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7396543" lon="7.4301731"/>
+ <node id="1685061923" visible="true" version="7" changeset="132602067" timestamp="2023-02-15T21:27:29Z" user="berco85" uid="2957494" lat="43.7408882" lon="7.4303598"/>
+ <node id="1685108323" visible="true" version="8" changeset="149739292" timestamp="2024-04-08T14:53:50Z" user="ika-chan!" uid="4763179" lat="43.7406434" lon="7.4293951">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Spélugues"/>
+  <tag k="public_transport" v="stop_position"/>
+ </node>
+ <node id="1690130866" visible="true" version="3" changeset="68195496" timestamp="2019-03-16T04:41:16Z" user="patodiez" uid="1856060" lat="43.7370216" lon="7.4221175"/>
+ <node id="1699777574" visible="true" version="4" changeset="140423322" timestamp="2023-08-26T17:59:25Z" user="rene78" uid="257555" lat="43.7397122" lon="7.4272971"/>
+ <node id="1720683712" visible="true" version="6" changeset="68195496" timestamp="2019-03-16T04:41:16Z" user="patodiez" uid="1856060" lat="43.7341258" lon="7.4214815"/>
+ <node id="1720683731" visible="true" version="3" changeset="117172017" timestamp="2022-02-08T18:08:26Z" user="Lyon-St-Clair" uid="9060372" lat="43.7374191" lon="7.4268435"/>
+ <node id="1720684274" visible="true" version="3" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7392499" lon="7.4299695"/>
+ <node id="1720684293" visible="true" version="2" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7400758" lon="7.4302935"/>
+ <node id="1720684297" visible="true" version="2" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7403628" lon="7.4297226"/>
+ <node id="1720684299" visible="true" version="2" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7403844" lon="7.4296960"/>
+ <node id="1720684301" visible="true" version="5" changeset="149739292" timestamp="2024-04-08T14:53:50Z" user="ika-chan!" uid="4763179" lat="43.7404191" lon="7.4296518">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Spélugues"/>
+  <tag k="public_transport" v="stop_position"/>
+ </node>
+ <node id="1720684303" visible="true" version="3" changeset="149739292" timestamp="2024-04-08T14:53:50Z" user="ika-chan!" uid="4763179" lat="43.7404844" lon="7.4295599"/>
+ <node id="1720684307" visible="true" version="7" changeset="149739292" timestamp="2024-04-08T14:53:50Z" user="ika-chan!" uid="4763179" lat="43.7405242" lon="7.4295170">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="crossing:island" v="no"/>
+  <tag k="crossing:markings" v="zebra"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="kerb" v="lowered"/>
+  <tag k="supervised" v="no"/>
+  <tag k="tactile_paving" v="no"/>
+ </node>
+ <node id="1720684310" visible="true" version="2" changeset="149739292" timestamp="2024-04-08T14:53:50Z" user="ika-chan!" uid="4763179" lat="43.7407043" lon="7.4293330"/>
+ <node id="1720684314" visible="true" version="2" changeset="149739292" timestamp="2024-04-08T14:53:50Z" user="ika-chan!" uid="4763179" lat="43.7407264" lon="7.4293168"/>
+ <node id="1720684318" visible="true" version="2" changeset="149739292" timestamp="2024-04-08T14:53:50Z" user="ika-chan!" uid="4763179" lat="43.7407667" lon="7.4292976"/>
+ <node id="1720684322" visible="true" version="2" changeset="149739292" timestamp="2024-04-08T14:53:50Z" user="ika-chan!" uid="4763179" lat="43.7407862" lon="7.4292952"/>
+ <node id="1720684346" visible="true" version="1" changeset="11333829" timestamp="2012-04-17T15:05:53Z" user="Scrup" uid="378737" lat="43.7408062" lon="7.4292963"/>
+ <node id="1720684395" visible="true" version="4" changeset="49859901" timestamp="2017-06-27T11:52:30Z" user="ika-chan!" uid="4763179" lat="43.7408554" lon="7.4293172"/>
+ <node id="1720684398" visible="true" version="1" changeset="11333829" timestamp="2012-04-17T15:05:54Z" user="Scrup" uid="378737" lat="43.7408747" lon="7.4293349"/>
+ <node id="1720684401" visible="true" version="2" changeset="57525086" timestamp="2018-03-26T07:31:09Z" user="rusefkuma" uid="7637564" lat="43.7408882" lon="7.4293503"/>
+ <node id="1720684404" visible="true" version="1" changeset="11333829" timestamp="2012-04-17T15:05:54Z" user="Scrup" uid="378737" lat="43.7409117" lon="7.4293988"/>
+ <node id="1720684415" visible="true" version="5" changeset="171085960" timestamp="2025-08-27T15:00:24Z" user="rene78" uid="257555" lat="43.7410891" lon="7.4302209"/>
+ <node id="1726583789" visible="true" version="4" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7402391" lon="7.4295131"/>
+ <node id="1726583792" visible="true" version="1" changeset="11384848" timestamp="2012-04-22T14:22:10Z" user="Beelsebob" uid="279576" lat="43.7382975" lon="7.4277728"/>
+ <node id="1726583800" visible="true" version="2" changeset="11470653" timestamp="2012-05-01T15:06:19Z" user="Scrup" uid="378737" lat="43.7370662" lon="7.4225510"/>
+ <node id="1726583803" visible="true" version="3" changeset="174852187" timestamp="2025-11-19T10:26:41Z" user="ika-chan!" uid="4763179" lat="43.7326287" lon="7.4223814"/>
+ <node id="1726583810" visible="true" version="3" changeset="17386591" timestamp="2013-08-17T17:31:06Z" user="JaviLuki" uid="1643723" lat="43.7359964" lon="7.4212324"/>
+ <node id="1726583811" visible="true" version="2" changeset="11466498" timestamp="2012-05-01T06:16:26Z" user="Scrup" uid="378737" lat="43.7411027" lon="7.4288861"/>
+ <node id="1726583816" visible="true" version="1" changeset="11384848" timestamp="2012-04-22T14:22:10Z" user="Beelsebob" uid="279576" lat="43.7404100" lon="7.4293974"/>
+ <node id="1726583818" visible="true" version="3" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7403141" lon="7.4297463"/>
+ <node id="1726583826" visible="true" version="1" changeset="11384848" timestamp="2012-04-22T14:22:11Z" user="Beelsebob" uid="279576" lat="43.7410395" lon="7.4290259"/>
+ <node id="1726583844" visible="true" version="2" changeset="57524947" timestamp="2018-03-26T07:24:25Z" user="rusefkuma" uid="7637564" lat="43.7386026" lon="7.4278707"/>
+ <node id="1726583846" visible="true" version="3" changeset="174852187" timestamp="2025-11-19T10:26:41Z" user="ika-chan!" uid="4763179" lat="43.7326641" lon="7.4223626"/>
+ <node id="1726583850" visible="true" version="1" changeset="11384848" timestamp="2012-04-22T14:22:12Z" user="Beelsebob" uid="279576" lat="43.7379396" lon="7.4270836"/>
+ <node id="1726583852" visible="true" version="7" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692" lat="43.7363543" lon="7.4213277">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="crossing:markings" v="zebra"/>
+  <tag k="crossing_ref" v="tiger"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="1726583856" visible="true" version="2" changeset="11466498" timestamp="2012-05-01T06:16:44Z" user="Scrup" uid="378737" lat="43.7408605" lon="7.4291189"/>
+ <node id="1726583858" visible="true" version="2" changeset="11466498" timestamp="2012-05-01T06:16:44Z" user="Scrup" uid="378737" lat="43.7406539" lon="7.4291697"/>
+ <node id="1726583859" visible="true" version="3" changeset="57520238" timestamp="2018-03-26T00:39:33Z" user="rusefkuma" uid="7637564" lat="43.7410843" lon="7.4287037"/>
+ <node id="1726583915" visible="true" version="3" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7402108" lon="7.4295617"/>
+ <node id="1736929660" visible="true" version="6" changeset="174798229" timestamp="2025-11-18T01:32:51Z" user="ika-chan!" uid="4763179" lat="43.7373162" lon="7.4261726"/>
+ <node id="1736929676" visible="true" version="3" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7383175" lon="7.4290580"/>
+ <node id="1736929703" visible="true" version="4" changeset="174798229" timestamp="2025-11-18T01:32:51Z" user="ika-chan!" uid="4763179" lat="43.7399103" lon="7.4274959"/>
+ <node id="1736929736" visible="true" version="2" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7402057" lon="7.4295853"/>
+ <node id="1736929737" visible="true" version="2" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7402159" lon="7.4296636"/>
+ <node id="1736929745" visible="true" version="2" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7402213" lon="7.4295380"/>
+ <node id="1736929754" visible="true" version="2" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7402396" lon="7.4297097"/>
+ <node id="1736929769" visible="true" version="2" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7402856" lon="7.4297439"/>
+ <node id="1736929799" visible="true" version="2" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7403300" lon="7.4297431"/>
+ <node id="1736929805" visible="true" version="1" changeset="11466498" timestamp="2012-05-01T06:15:51Z" user="Scrup" uid="378737" lat="43.7403706" lon="7.4294295"/>
+ <node id="1736929829" visible="true" version="1" changeset="11466498" timestamp="2012-05-01T06:15:52Z" user="Scrup" uid="378737" lat="43.7404343" lon="7.4293751"/>
+ <node id="1736929901" visible="true" version="1" changeset="11466498" timestamp="2012-05-01T06:15:53Z" user="Scrup" uid="378737" lat="43.7405914" lon="7.4292216"/>
+ <node id="1736929909" visible="true" version="1" changeset="11466498" timestamp="2012-05-01T06:15:54Z" user="Scrup" uid="378737" lat="43.7406247" lon="7.4291921"/>
+ <node id="1736929930" visible="true" version="1" changeset="11466498" timestamp="2012-05-01T06:15:54Z" user="Scrup" uid="378737" lat="43.7406785" lon="7.4291530"/>
+ <node id="1736929937" visible="true" version="1" changeset="11466498" timestamp="2012-05-01T06:15:54Z" user="Scrup" uid="378737" lat="43.7407260" lon="7.4291322"/>
+ <node id="1736930312" visible="true" version="2" changeset="57520238" timestamp="2018-03-26T00:39:33Z" user="rusefkuma" uid="7637564" lat="43.7404648" lon="7.4280619"/>
+ <node id="1736930314" visible="true" version="1" changeset="11466498" timestamp="2012-05-01T06:16:08Z" user="Scrup" uid="378737" lat="43.7408062" lon="7.4291201"/>
+ <node id="1736930331" visible="true" version="1" changeset="11466498" timestamp="2012-05-01T06:16:09Z" user="Scrup" uid="378737" lat="43.7409035" lon="7.4291154"/>
+ <node id="1736930362" visible="true" version="1" changeset="11466498" timestamp="2012-05-01T06:16:11Z" user="Scrup" uid="378737" lat="43.7410131" lon="7.4290554"/>
+ <node id="1736930367" visible="true" version="1" changeset="11466498" timestamp="2012-05-01T06:16:11Z" user="Scrup" uid="378737" lat="43.7410615" lon="7.4289931"/>
+ <node id="1736930368" visible="true" version="1" changeset="11466498" timestamp="2012-05-01T06:16:11Z" user="Scrup" uid="378737" lat="43.7410938" lon="7.4289249"/>
+ <node id="1736930369" visible="true" version="2" changeset="179768983" timestamp="2026-03-12T17:32:41Z" user="FUZZY_42" uid="5460758" lat="43.7411034" lon="7.4287442"/>
+ <node id="1736930371" visible="true" version="1" changeset="11466498" timestamp="2012-05-01T06:16:11Z" user="Scrup" uid="378737" lat="43.7411083" lon="7.4288526"/>
+ <node id="1737114644" visible="true" version="2" changeset="179768983" timestamp="2026-03-12T17:32:41Z" user="FUZZY_42" uid="5460758" lat="43.7411105" lon="7.4287798"/>
+ <node id="1737114648" visible="true" version="1" changeset="11468029" timestamp="2012-05-01T10:04:01Z" user="Scrup" uid="378737" lat="43.7411123" lon="7.4288124"/>
+ <node id="1737146935" visible="true" version="3" changeset="91069462" timestamp="2020-09-17T20:21:02Z" user="rene78" uid="257555" lat="43.7390682" lon="7.4276022"/>
+ <node id="1737146995" visible="true" version="3" changeset="91069462" timestamp="2020-09-17T20:21:02Z" user="rene78" uid="257555" lat="43.7393211" lon="7.4272412"/>
+ <node id="1737147129" visible="true" version="3" changeset="57520238" timestamp="2018-03-26T00:39:33Z" user="rusefkuma" uid="7637564" lat="43.7403036" lon="7.4278912"/>
+ <node id="1737147155" visible="true" version="8" changeset="166519342" timestamp="2025-05-20T11:18:55Z" user="Flynn_" uid="21081459" lat="43.7403359" lon="7.4279255">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="crossing:island" v="no"/>
+  <tag k="crossing:markings" v="zebra"/>
+  <tag k="crossing_ref" v="zebra"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="1737272404" visible="true" version="2" changeset="11470342" timestamp="2012-05-01T14:36:25Z" user="Scrup" uid="378737" lat="43.7389006" lon="7.4277613"/>
+ <node id="1737326354" visible="true" version="2" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7380454" lon="7.4274131"/>
+ <node id="1737326397" visible="true" version="2" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7381552" lon="7.4276028"/>
+ <node id="1737326417" visible="true" version="1" changeset="11470342" timestamp="2012-05-01T14:36:12Z" user="Scrup" uid="378737" lat="43.7382491" lon="7.4277234"/>
+ <node id="1737326441" visible="true" version="1" changeset="11470342" timestamp="2012-05-01T14:36:13Z" user="Scrup" uid="378737" lat="43.7383314" lon="7.4278039"/>
+ <node id="1737326465" visible="true" version="1" changeset="11470342" timestamp="2012-05-01T14:36:14Z" user="Scrup" uid="378737" lat="43.7384212" lon="7.4278578"/>
+ <node id="1737326506" visible="true" version="1" changeset="11470342" timestamp="2012-05-01T14:36:15Z" user="Scrup" uid="378737" lat="43.7385395" lon="7.4278761"/>
+ <node id="1737326533" visible="true" version="1" changeset="11470342" timestamp="2012-05-01T14:36:15Z" user="Scrup" uid="378737" lat="43.7386674" lon="7.4278577"/>
+ <node id="1737326598" visible="true" version="1" changeset="11470342" timestamp="2012-05-01T14:36:16Z" user="Scrup" uid="378737" lat="43.7388132" lon="7.4278089"/>
+ <node id="1737326604" visible="true" version="1" changeset="11470342" timestamp="2012-05-01T14:36:16Z" user="Scrup" uid="378737" lat="43.7388340" lon="7.4277976"/>
+ <node id="1737366158" visible="true" version="1" changeset="11470653" timestamp="2012-05-01T15:06:08Z" user="Scrup" uid="378737" lat="43.7370944" lon="7.4227661"/>
+ <node id="1737366161" visible="true" version="1" changeset="11470653" timestamp="2012-05-01T15:06:09Z" user="Scrup" uid="378737" lat="43.7371615" lon="7.4231363"/>
+ <node id="1737366164" visible="true" version="2" changeset="49873301" timestamp="2017-06-27T20:49:33Z" user="ika-chan!" uid="4763179" lat="43.7373825" lon="7.4241961"/>
+ <node id="1737366166" visible="true" version="1" changeset="11470653" timestamp="2012-05-01T15:06:09Z" user="Scrup" uid="378737" lat="43.7374405" lon="7.4248685"/>
+ <node id="1737366167" visible="true" version="1" changeset="11470653" timestamp="2012-05-01T15:06:09Z" user="Scrup" uid="378737" lat="43.7374518" lon="7.4249411"/>
+ <node id="1737366170" visible="true" version="1" changeset="11470653" timestamp="2012-05-01T15:06:09Z" user="Scrup" uid="378737" lat="43.7374699" lon="7.4250128"/>
+ <node id="1737366176" visible="true" version="5" changeset="183932358" timestamp="2026-06-10T16:21:49Z" user="WWMapper101" uid="20795476" lat="43.7375256" lon="7.4251862">
+  <tag k="crossing" v="zebra"/>
+  <tag k="crossing:island" v="no"/>
+  <tag k="crossing:markings" v="zebra"/>
+  <tag k="crossing_ref" v="zebra"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="1737366187" visible="true" version="1" changeset="11470653" timestamp="2012-05-01T15:06:10Z" user="Scrup" uid="378737" lat="43.7376877" lon="7.4256495"/>
+ <node id="1737366188" visible="true" version="1" changeset="11470653" timestamp="2012-05-01T15:06:10Z" user="Scrup" uid="378737" lat="43.7377195" lon="7.4257385"/>
+ <node id="1737366192" visible="true" version="3" changeset="124335229" timestamp="2022-08-01T09:33:47Z" user="rene78" uid="257555" lat="43.7377526" lon="7.4258405">
+  <tag k="crossing" v="zebra"/>
+  <tag k="disused:highway" v="crossing"/>
+ </node>
+ <node id="1737366203" visible="true" version="3" changeset="113586775" timestamp="2021-11-09T23:13:47Z" user="Lyon-St-Clair" uid="9060372" lat="43.7378333" lon="7.4262217"/>
+ <node id="1737389117" visible="true" version="5" changeset="114560535" timestamp="2021-12-04T16:51:48Z" user="palimpadum" uid="155936" lat="43.7323832" lon="7.4229757"/>
+ <node id="1737389119" visible="true" version="3" changeset="145038155" timestamp="2023-12-12T13:33:35Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7325241" lon="7.4234821"/>
+ <node id="1737389122" visible="true" version="3" changeset="174852187" timestamp="2025-11-19T10:26:41Z" user="ika-chan!" uid="4763179" lat="43.7326982" lon="7.4223400"/>
+ <node id="1737389127" visible="true" version="2" changeset="132600110" timestamp="2023-02-15T20:27:50Z" user="berco85" uid="2957494" lat="43.7329405" lon="7.4220977"/>
+ <node id="1737389192" visible="true" version="2" changeset="58752645" timestamp="2018-05-07T09:44:16Z" user="rene78" uid="257555" lat="43.7370352" lon="7.4246856"/>
+ <node id="1738369856" visible="true" version="1" changeset="11480375" timestamp="2012-05-02T15:06:38Z" user="Scrup" uid="378737" lat="43.7369010" lon="7.4233282"/>
+ <node id="1738369858" visible="true" version="1" changeset="11480375" timestamp="2012-05-02T15:06:38Z" user="Scrup" uid="378737" lat="43.7369523" lon="7.4238442"/>
+ <node id="1770577831" visible="true" version="7" changeset="144970671" timestamp="2023-12-10T16:39:09Z" user="ika-chan!" uid="4763179" lat="43.7338388" lon="7.4215941">
+  <tag k="bus" v="yes"/>
+  <tag k="check_date" v="2023-12-10"/>
+  <tag k="name" v="Stade Nautique"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="source" v="Bing Aerial Imagery (2023-12-10)"/>
+ </node>
+ <node id="1770577832" visible="true" version="9" changeset="144970671" timestamp="2023-12-10T16:39:09Z" user="ika-chan!" uid="4763179" lat="43.7356156" lon="7.4212077">
+  <tag k="bus" v="yes"/>
+  <tag k="check_date" v="2023-12-10"/>
+  <tag k="name" v="Princesse Antoinette"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="source" v="Bing Aerial Imagery (2023-12-10)"/>
+ </node>
+ <node id="1799099566" visible="true" version="3" changeset="174852187" timestamp="2025-11-19T10:26:41Z" user="ika-chan!" uid="4763179" lat="43.7324782" lon="7.4224166"/>
+ <node id="1868404468" visible="true" version="2" changeset="17386591" timestamp="2013-08-17T17:31:07Z" user="JaviLuki" uid="1643723" lat="43.7344280" lon="7.4213847"/>
+ <node id="1872567066" visible="true" version="3" changeset="68195496" timestamp="2019-03-16T04:41:16Z" user="patodiez" uid="1856060" lat="43.7335584" lon="7.4217098"/>
+ <node id="2189614155" visible="true" version="7" changeset="137332080" timestamp="2023-06-14T14:35:24Z" user="Snusmumriken" uid="76269" lat="43.7374193" lon="7.4245725">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Ostende"/>
+  <tag k="public_transport" v="stop_position"/>
+ </node>
+ <node id="2241375220" visible="true" version="4" changeset="180737223" timestamp="2026-04-01T19:12:29Z" user="FUZZY_42" uid="5460758" lat="43.7345465" lon="7.4223501"/>
+ <node id="2241375226" visible="true" version="4" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692" lat="43.7343117" lon="7.4224101">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="crossing:markings" v="zebra"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="2241375227" visible="true" version="3" changeset="125300028" timestamp="2022-08-24T06:49:42Z" user="ika-chan!" uid="4763179" lat="43.7339783" lon="7.4223250"/>
+ <node id="2264703507" visible="true" version="3" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7387517" lon="7.4295765"/>
+ <node id="2422123083" visible="true" version="4" changeset="126198020" timestamp="2022-09-14T20:58:47Z" user="rene78" uid="257555" lat="43.7371178" lon="7.4254466"/>
+ <node id="3584491431" visible="true" version="3" changeset="117171627" timestamp="2022-02-08T17:56:42Z" user="Lyon-St-Clair" uid="9060372" lat="43.7345098" lon="7.4217193"/>
+ <node id="4317155594" visible="true" version="6" changeset="144970671" timestamp="2023-12-10T16:39:09Z" user="ika-chan!" uid="4763179" lat="43.7376874" lon="7.4277242"/>
+ <node id="4937755860" visible="true" version="10" changeset="180733856" timestamp="2026-04-01T17:40:32Z" user="FUZZY_42" uid="5460758" lat="43.7350269" lon="7.4212652">
+  <tag k="addr:country" v="MC"/>
+  <tag k="name" v="Depart Grand Prix de Monaco"/>
+  <tag k="name:de" v="Monaco Grand Prix Start- und Ziellinie"/>
+  <tag k="name:en" v="Monaco Grand Prix Start/Finish Line"/>
+  <tag k="name:fr" v="Depart Grand Prix de Monaco"/>
+  <tag k="name:pt" v="Linha de Largada e de Chegada do Grande Prémio do Mónaco"/>
+  <tag k="name:ru" v="Старт/финиш Гран-при Монако"/>
+  <tag k="raceway" v="start-finish"/>
+  <tag k="tourism" v="attraction"/>
+  <tag k="wheelchair" v="yes"/>
+ </node>
+ <node id="4938436896" visible="true" version="2" changeset="174852187" timestamp="2025-11-19T10:26:41Z" user="ika-chan!" uid="4763179" lat="43.7325169" lon="7.4224140"/>
+ <node id="4939122080" visible="true" version="1" changeset="49873301" timestamp="2017-06-27T20:49:31Z" user="ika-chan!" uid="4763179" lat="43.7374014" lon="7.4243568"/>
+ <node id="5466881416" visible="true" version="5" changeset="132902242" timestamp="2023-02-22T22:36:49Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7409778" lon="7.4296871">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="crossing_ref" v="zebra"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="5504673399" visible="true" version="1" changeset="57524947" timestamp="2018-03-26T07:24:25Z" user="rusefkuma" uid="7637564" lat="43.7395909" lon="7.4272109"/>
+ <node id="5504680055" visible="true" version="2" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7402573" lon="7.4294967"/>
+ <node id="5504680056" visible="true" version="2" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7403011" lon="7.4294729"/>
+ <node id="5601806432" visible="true" version="1" changeset="58752645" timestamp="2018-05-07T09:44:14Z" user="rene78" uid="257555" lat="43.7372681" lon="7.4236281"/>
+ <node id="6340961554" visible="true" version="2" changeset="170205597" timestamp="2025-08-09T14:31:22Z" user="USER gr 50" uid="23162084" lat="43.7331331" lon="7.4219303"/>
+ <node id="6340961555" visible="true" version="1" changeset="68195496" timestamp="2019-03-16T04:41:16Z" user="patodiez" uid="1856060" lat="43.7342658" lon="7.4214304"/>
+ <node id="6340961556" visible="true" version="2" changeset="132600110" timestamp="2023-02-15T20:27:50Z" user="berco85" uid="2957494" lat="43.7362286" lon="7.4212846"/>
+ <node id="6340961572" visible="true" version="1" changeset="68195496" timestamp="2019-03-16T04:41:16Z" user="patodiez" uid="1856060" lat="43.7395367" lon="7.4271868"/>
+ <node id="6340961574" visible="true" version="4" changeset="170205597" timestamp="2025-08-09T14:31:22Z" user="USER gr 50" uid="23162084" lat="43.7372038" lon="7.4254563"/>
+ <node id="6340961575" visible="true" version="3" changeset="170205597" timestamp="2025-08-09T14:31:22Z" user="USER gr 50" uid="23162084" lat="43.7371657" lon="7.4254431"/>
+ <node id="6444966424" visible="true" version="1" changeset="69835563" timestamp="2019-05-03T10:02:07Z" user="EricRz" uid="9094440" lat="43.7370205" lon="7.4245365"/>
+ <node id="6444966425" visible="true" version="1" changeset="69835563" timestamp="2019-05-03T10:02:07Z" user="EricRz" uid="9094440" lat="43.7369986" lon="7.4243136"/>
+ <node id="6444966426" visible="true" version="1" changeset="69835563" timestamp="2019-05-03T10:02:07Z" user="EricRz" uid="9094440" lat="43.7369718" lon="7.4240415"/>
+ <node id="6444966427" visible="true" version="1" changeset="69835563" timestamp="2019-05-03T10:02:07Z" user="EricRz" uid="9094440" lat="43.7369294" lon="7.4236136"/>
+ <node id="6444966428" visible="true" version="1" changeset="69835563" timestamp="2019-05-03T10:02:07Z" user="EricRz" uid="9094440" lat="43.7368920" lon="7.4232502"/>
+ <node id="6444966471" visible="true" version="3" changeset="145038155" timestamp="2023-12-12T13:33:35Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7326613" lon="7.4234622"/>
+ <node id="6444966472" visible="true" version="3" changeset="145038155" timestamp="2023-12-12T13:33:35Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7325923" lon="7.4234954"/>
+ <node id="6444966477" visible="true" version="2" changeset="174852187" timestamp="2025-11-19T10:26:41Z" user="ika-chan!" uid="4763179" lat="43.7325924" lon="7.4223963"/>
+ <node id="6444966480" visible="true" version="2" changeset="174852187" timestamp="2025-11-19T10:26:41Z" user="ika-chan!" uid="4763179" lat="43.7327310" lon="7.4223137"/>
+ <node id="6444966483" visible="true" version="1" changeset="69835563" timestamp="2019-05-03T10:02:08Z" user="EricRz" uid="9094440" lat="43.7328884" lon="7.4221442"/>
+ <node id="6444966484" visible="true" version="2" changeset="132600110" timestamp="2023-02-15T20:27:50Z" user="berco85" uid="2957494" lat="43.7329826" lon="7.4220619"/>
+ <node id="6444966485" visible="true" version="1" changeset="69835563" timestamp="2019-05-03T10:02:08Z" user="EricRz" uid="9094440" lat="43.7330228" lon="7.4220273"/>
+ <node id="6444966490" visible="true" version="2" changeset="132600110" timestamp="2023-02-15T20:27:50Z" user="berco85" uid="2957494" lat="43.7333746" lon="7.4217800"/>
+ <node id="6444966491" visible="true" version="1" changeset="69835563" timestamp="2019-05-03T10:02:08Z" user="EricRz" uid="9094440" lat="43.7335705" lon="7.4217050"/>
+ <node id="6444966493" visible="true" version="1" changeset="69835563" timestamp="2019-05-03T10:02:08Z" user="EricRz" uid="9094440" lat="43.7337308" lon="7.4216373"/>
+ <node id="6444966494" visible="true" version="1" changeset="69835563" timestamp="2019-05-03T10:02:08Z" user="EricRz" uid="9094440" lat="43.7339007" lon="7.4215690"/>
+ <node id="6444966495" visible="true" version="1" changeset="69835563" timestamp="2019-05-03T10:02:08Z" user="EricRz" uid="9094440" lat="43.7340015" lon="7.4215295"/>
+ <node id="6444966498" visible="true" version="1" changeset="69835563" timestamp="2019-05-03T10:02:08Z" user="EricRz" uid="9094440" lat="43.7343601" lon="7.4214022"/>
+ <node id="6444966499" visible="true" version="1" changeset="69835563" timestamp="2019-05-03T10:02:08Z" user="EricRz" uid="9094440" lat="43.7344691" lon="7.4213748"/>
+ <node id="6444966500" visible="true" version="1" changeset="69835563" timestamp="2019-05-03T10:02:08Z" user="EricRz" uid="9094440" lat="43.7345446" lon="7.4213580"/>
+ <node id="6444966501" visible="true" version="1" changeset="69835563" timestamp="2019-05-03T10:02:08Z" user="EricRz" uid="9094440" lat="43.7346566" lon="7.4213333"/>
+ <node id="6444966502" visible="true" version="3" changeset="166541334" timestamp="2025-05-20T20:18:09Z" user="Lyon-St-Clair" uid="9060372" lat="43.7347276" lon="7.4213176"/>
+ <node id="6444966503" visible="true" version="1" changeset="69835563" timestamp="2019-05-03T10:02:08Z" user="EricRz" uid="9094440" lat="43.7348380" lon="7.4212964"/>
+ <node id="6444966504" visible="true" version="1" changeset="69835563" timestamp="2019-05-03T10:02:08Z" user="EricRz" uid="9094440" lat="43.7349832" lon="7.4212724"/>
+ <node id="6444966511" visible="true" version="3" changeset="132600110" timestamp="2023-02-15T20:27:50Z" user="berco85" uid="2957494" lat="43.7365583" lon="7.4214168"/>
+ <node id="6485591420" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:45Z" user="EricRz" uid="9094440" lat="43.7353490" lon="7.4212306"/>
+ <node id="6485591421" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:45Z" user="EricRz" uid="9094440" lat="43.7355796" lon="7.4212103"/>
+ <node id="6485591422" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:45Z" user="EricRz" uid="9094440" lat="43.7356754" lon="7.4212091"/>
+ <node id="6485591423" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:45Z" user="EricRz" uid="9094440" lat="43.7358229" lon="7.4212159"/>
+ <node id="6485591424" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:45Z" user="EricRz" uid="9094440" lat="43.7359846" lon="7.4212313"/>
+ <node id="6485591425" visible="true" version="2" changeset="132600110" timestamp="2023-02-15T20:27:50Z" user="berco85" uid="2957494" lat="43.7360672" lon="7.4212466"/>
+ <node id="6485591426" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:45Z" user="EricRz" uid="9094440" lat="43.7362920" lon="7.4213049"/>
+ <node id="6485591442" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:45Z" user="EricRz" uid="9094440" lat="43.7370980" lon="7.4227884"/>
+ <node id="6485591445" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:45Z" user="EricRz" uid="9094440" lat="43.7372923" lon="7.4237413"/>
+ <node id="6485591448" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:45Z" user="EricRz" uid="9094440" lat="43.7374283" lon="7.4246881"/>
+ <node id="6485591450" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:45Z" user="EricRz" uid="9094440" lat="43.7374832" lon="7.4250650"/>
+ <node id="6485591452" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:45Z" user="EricRz" uid="9094440" lat="43.7376564" lon="7.4255617"/>
+ <node id="6485591454" visible="true" version="2" changeset="113586775" timestamp="2021-11-09T23:13:47Z" user="Lyon-St-Clair" uid="9060372" lat="43.7377956" lon="7.4260179"/>
+ <node id="6485591457" visible="true" version="2" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7379272" lon="7.4269861"/>
+ <node id="6485591458" visible="true" version="2" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7379795" lon="7.4272394"/>
+ <node id="6485591459" visible="true" version="2" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7380219" lon="7.4273589"/>
+ <node id="6485591460" visible="true" version="2" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7380705" lon="7.4274609"/>
+ <node id="6485591461" visible="true" version="2" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7381270" lon="7.4275613"/>
+ <node id="6485591463" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:45Z" user="EricRz" uid="9094440" lat="43.7383942" lon="7.4278451"/>
+ <node id="6485591466" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:45Z" user="EricRz" uid="9094440" lat="43.7386516" lon="7.4278609"/>
+ <node id="6485591467" visible="true" version="5" changeset="124268347" timestamp="2022-07-30T13:28:11Z" user="rene78" uid="257555" lat="43.7390050" lon="7.4276884"/>
+ <node id="6485591468" visible="true" version="3" changeset="91069462" timestamp="2020-09-17T20:21:02Z" user="rene78" uid="257555" lat="43.7390917" lon="7.4275679"/>
+ <node id="6485591470" visible="true" version="4" changeset="124093286" timestamp="2022-07-26T11:58:25Z" user="rene78" uid="257555" lat="43.7392366" lon="7.4273444"/>
+ <node id="6485591471" visible="true" version="4" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7393520" lon="7.4272177"/>
+ <node id="6485591473" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:46Z" user="EricRz" uid="9094440" lat="43.7396561" lon="7.4272530"/>
+ <node id="6485591477" visible="true" version="4" changeset="145491912" timestamp="2023-12-25T10:27:47Z" user="chamdam" uid="10397245" lat="43.7402522" lon="7.4278392">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Place du Casino"/>
+  <tag k="public_transport" v="stop_position"/>
+ </node>
+ <node id="6485591483" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:46Z" user="EricRz" uid="9094440" lat="43.7410596" lon="7.4286771"/>
+ <node id="6485591484" visible="true" version="2" changeset="179768983" timestamp="2026-03-12T17:32:41Z" user="FUZZY_42" uid="5460758" lat="43.7409680" lon="7.4290907"/>
+ <node id="6485591885" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:46Z" user="EricRz" uid="9094440" lat="43.7405536" lon="7.4292581"/>
+ <node id="6485591886" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:46Z" user="EricRz" uid="9094440" lat="43.7404953" lon="7.4293144"/>
+ <node id="6485591888" visible="true" version="2" changeset="132902242" timestamp="2023-02-22T22:36:49Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7409524" lon="7.4295273"/>
+ <node id="6485591900" visible="true" version="2" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7399340" lon="7.4302628"/>
+ <node id="6485591901" visible="true" version="2" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7397934" lon="7.4302226"/>
+ <node id="6485591903" visible="true" version="3" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7393823" lon="7.4300464"/>
+ <node id="6485591905" visible="true" version="3" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7389939" lon="7.4297897"/>
+ <node id="6485591906" visible="true" version="3" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7386365" lon="7.4294579"/>
+ <node id="6485591907" visible="true" version="3" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7384192" lon="7.4291984"/>
+ <node id="6485591919" visible="true" version="3" changeset="117172017" timestamp="2022-02-08T18:08:26Z" user="Lyon-St-Clair" uid="9060372" lat="43.7375321" lon="7.4273074"/>
+ <node id="6485591925" visible="true" version="6" changeset="174798229" timestamp="2025-11-18T01:32:51Z" user="ika-chan!" uid="4763179" lat="43.7372286" lon="7.4254806"/>
+ <node id="6485591933" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:46Z" user="EricRz" uid="9094440" lat="43.7370146" lon="7.4244761"/>
+ <node id="6485591934" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:46Z" user="EricRz" uid="9094440" lat="43.7368973" lon="7.4232964"/>
+ <node id="6485591936" visible="true" version="3" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692" lat="43.7367945" lon="7.4222919"/>
+ <node id="6485591957" visible="true" version="3" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692" lat="43.7355741" lon="7.4217790"/>
+ <node id="6485591968" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:47Z" user="EricRz" uid="9094440" lat="43.7351872" lon="7.4221942"/>
+ <node id="6485592098" visible="true" version="3" changeset="145038155" timestamp="2023-12-12T13:33:35Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7324935" lon="7.4234511"/>
+ <node id="6485592099" visible="true" version="3" changeset="145038155" timestamp="2023-12-12T13:33:35Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7324824" lon="7.4234297"/>
+ <node id="6485592102" visible="true" version="3" changeset="104554323" timestamp="2021-05-12T07:39:47Z" user="Lyon-St-Clair" uid="9060372" lat="43.7323873" lon="7.4230087"/>
+ <node id="6485592115" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:47Z" user="EricRz" uid="9094440" lat="43.7335478" lon="7.4217145"/>
+ <node id="6485592117" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:47Z" user="EricRz" uid="9094440" lat="43.7339825" lon="7.4215368"/>
+ <node id="6485592118" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:47Z" user="EricRz" uid="9094440" lat="43.7343333" lon="7.4214102"/>
+ <node id="6485592119" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:47Z" user="EricRz" uid="9094440" lat="43.7346786" lon="7.4213284"/>
+ <node id="6485592120" visible="true" version="1" changeset="70437323" timestamp="2019-05-20T11:40:47Z" user="EricRz" uid="9094440" lat="43.7349149" lon="7.4212837"/>
+ <node id="6566017213" visible="true" version="2" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7402186" lon="7.4303146"/>
+ <node id="6566017214" visible="true" version="1" changeset="71532538" timestamp="2019-06-23T13:51:42Z" user="Badojo" uid="8189075" lat="43.7407960" lon="7.4284035"/>
+ <node id="6696346981" visible="true" version="2" changeset="170205597" timestamp="2025-08-09T14:31:22Z" user="USER gr 50" uid="23162084" lat="43.7371826" lon="7.4254477"/>
+ <node id="7568749016" visible="true" version="4" changeset="124268347" timestamp="2022-07-30T13:28:11Z" user="rene78" uid="257555" lat="43.7390344" lon="7.4276779"/>
+ <node id="8408631423" visible="true" version="4" changeset="139137500" timestamp="2023-07-28T14:04:22Z" user="ika-chan!" uid="4763179" lat="43.7323650" lon="7.4226010"/>
+ <node id="8721018376" visible="true" version="2" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7370089" lon="7.4253433"/>
+ <node id="8721086460" visible="true" version="2" changeset="132600110" timestamp="2023-02-15T20:27:50Z" user="berco85" uid="2957494" lat="43.7355084" lon="7.4212154"/>
+ <node id="8721086482" visible="true" version="5" changeset="117172017" timestamp="2022-02-08T18:08:26Z" user="Lyon-St-Clair" uid="9060372" lat="43.7325078" lon="7.4228190"/>
+ <node id="8721137221" visible="true" version="3" changeset="150238102" timestamp="2024-04-19T19:16:37Z" user="Lyon-St-Clair" uid="9060372" lat="43.7340702" lon="7.4218713"/>
+ <node id="8740874095" visible="true" version="2" changeset="139073014" timestamp="2023-07-27T08:09:03Z" user="ika-chan!" uid="4763179" lat="43.7323875" lon="7.4225096"/>
+ <node id="8740874113" visible="true" version="2" changeset="125300028" timestamp="2022-08-24T06:49:42Z" user="ika-chan!" uid="4763179" lat="43.7341741" lon="7.4224557"/>
+ <node id="9416148858" visible="true" version="2" changeset="117172017" timestamp="2022-02-08T18:08:26Z" user="Lyon-St-Clair" uid="9060372" lat="43.7373587" lon="7.4265153"/>
+ <node id="9416148864" visible="true" version="2" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692" lat="43.7367756" lon="7.4222249"/>
+ <node id="9416148865" visible="true" version="2" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692" lat="43.7367843" lon="7.4222483"/>
+ <node id="9416148866" visible="true" version="2" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692" lat="43.7367596" lon="7.4221967"/>
+ <node id="9416148869" visible="true" version="2" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692" lat="43.7361390" lon="7.4218232"/>
+ <node id="9416148870" visible="true" version="2" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692" lat="43.7364607" lon="7.4219660"/>
+ <node id="9416148871" visible="true" version="2" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692" lat="43.7363643" lon="7.4219124"/>
+ <node id="9416148872" visible="true" version="2" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692" lat="43.7358822" lon="7.4217696"/>
+ <node id="9416148873" visible="true" version="2" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692" lat="43.7359990" lon="7.4217877"/>
+ <node id="9416148874" visible="true" version="2" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692" lat="43.7357262" lon="7.4217689"/>
+ <node id="9416148875" visible="true" version="2" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692" lat="43.7366060" lon="7.4220626"/>
+ <node id="9416148876" visible="true" version="2" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692" lat="43.7366647" lon="7.4221062"/>
+ <node id="9416148882" visible="true" version="2" changeset="150238102" timestamp="2024-04-19T19:16:37Z" user="Lyon-St-Clair" uid="9060372" lat="43.7370767" lon="7.4254487"/>
+ <node id="9416148883" visible="true" version="2" changeset="150238102" timestamp="2024-04-19T19:16:37Z" user="Lyon-St-Clair" uid="9060372" lat="43.7370388" lon="7.4254385"/>
+ <node id="9416148884" visible="true" version="2" changeset="150238102" timestamp="2024-04-19T19:16:37Z" user="Lyon-St-Clair" uid="9060372" lat="43.7370141" lon="7.4253898"/>
+ <node id="9416148885" visible="true" version="2" changeset="150238102" timestamp="2024-04-19T19:16:37Z" user="Lyon-St-Clair" uid="9060372" lat="43.7369944" lon="7.4252042"/>
+ <node id="9416148886" visible="true" version="2" changeset="150238102" timestamp="2024-04-19T19:16:37Z" user="Lyon-St-Clair" uid="9060372" lat="43.7370048" lon="7.4251449"/>
+ <node id="9416148888" visible="true" version="2" changeset="150238102" timestamp="2024-04-19T19:16:37Z" user="Lyon-St-Clair" uid="9060372" lat="43.7370222" lon="7.4251069"/>
+ <node id="9416148889" visible="true" version="2" changeset="150238102" timestamp="2024-04-19T19:16:37Z" user="Lyon-St-Clair" uid="9060372" lat="43.7370510" lon="7.4250331"/>
+ <node id="9416148890" visible="true" version="2" changeset="150238102" timestamp="2024-04-19T19:16:37Z" user="Lyon-St-Clair" uid="9060372" lat="43.7370655" lon="7.4249622"/>
+ <node id="9416148906" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7352623" lon="7.4221029"/>
+ <node id="9416148908" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7341270" lon="7.4224713"/>
+ <node id="9416148909" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7340798" lon="7.4224721"/>
+ <node id="9416148910" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7340438" lon="7.4224431"/>
+ <node id="9416148911" visible="true" version="2" changeset="125300028" timestamp="2022-08-24T06:49:42Z" user="ika-chan!" uid="4763179" lat="43.7340125" lon="7.4224029"/>
+ <node id="9416148912" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7339571" lon="7.4222676"/>
+ <node id="9416148913" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7339355" lon="7.4222282"/>
+ <node id="9416148914" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7338809" lon="7.4222024"/>
+ <node id="9416148915" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7338035" lon="7.4222185"/>
+ <node id="9416148916" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7334889" lon="7.4223646"/>
+ <node id="9416148917" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7333427" lon="7.4224580"/>
+ <node id="9416148918" visible="true" version="2" changeset="125300028" timestamp="2022-08-24T06:49:42Z" user="ika-chan!" uid="4763179" lat="43.7332317" lon="7.4225366"/>
+ <node id="9416148919" visible="true" version="2" changeset="125300028" timestamp="2022-08-24T06:49:42Z" user="ika-chan!" uid="4763179" lat="43.7330823" lon="7.4226735"/>
+ <node id="9416148920" visible="true" version="2" changeset="125300028" timestamp="2022-08-24T06:49:42Z" user="ika-chan!" uid="4763179" lat="43.7329387" lon="7.4228538"/>
+ <node id="9416148921" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7328843" lon="7.4229423"/>
+ <node id="9416148922" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7328518" lon="7.4230048"/>
+ <node id="9416148923" visible="true" version="2" changeset="125300028" timestamp="2022-08-24T06:49:42Z" user="ika-chan!" uid="4763179" lat="43.7328225" lon="7.4230740"/>
+ <node id="9416148924" visible="true" version="2" changeset="125300028" timestamp="2022-08-24T06:49:42Z" user="ika-chan!" uid="4763179" lat="43.7327933" lon="7.4231568"/>
+ <node id="9416148925" visible="true" version="3" changeset="125300028" timestamp="2022-08-24T06:49:42Z" user="ika-chan!" uid="4763179" lat="43.7327089" lon="7.4233892"/>
+ <node id="9416148937" visible="true" version="2" changeset="139137500" timestamp="2023-07-28T14:04:22Z" user="ika-chan!" uid="4763179" lat="43.7323713" lon="7.4228796"/>
+ <node id="9416148938" visible="true" version="2" changeset="139137500" timestamp="2023-07-28T14:04:22Z" user="ika-chan!" uid="4763179" lat="43.7323660" lon="7.4228226"/>
+ <node id="9416148939" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7323624" lon="7.4227671"/>
+ <node id="9416148940" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7323636" lon="7.4226391"/>
+ <node id="9416148941" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7323713" lon="7.4225613"/>
+ <node id="9416148943" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7324078" lon="7.4224736"/>
+ <node id="9416148944" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7324268" lon="7.4224491"/>
+ <node id="9416148945" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7324468" lon="7.4224303"/>
+ <node id="9416148950" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7366488" lon="7.4214431"/>
+ <node id="9416148951" visible="true" version="2" changeset="166541334" timestamp="2025-05-20T20:18:09Z" user="Lyon-St-Clair" uid="9060372" lat="43.7367209" lon="7.4214561"/>
+ <node id="9416148963" visible="true" version="2" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7380316" lon="7.4285746"/>
+ <node id="9416148971" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7402517" lon="7.4297231"/>
+ <node id="9416148972" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7402055" lon="7.4296178"/>
+ <node id="9416148973" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7402770" lon="7.4294825"/>
+ <node id="9416148980" visible="true" version="2" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7381679" lon="7.4288239"/>
+ <node id="9416148986" visible="true" version="2" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7391203" lon="7.4298839"/>
+ <node id="9416148989" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7323615" lon="7.4227029"/>
+ <node id="9416149004" visible="true" version="2" changeset="124093286" timestamp="2022-07-26T11:58:25Z" user="rene78" uid="257555" lat="43.7354893" lon="7.4218167"/>
+ <node id="9416149005" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7354474" lon="7.4218290"/>
+ <node id="9416149006" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7353648" lon="7.4219117"/>
+ <node id="9416149007" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7353992" lon="7.4218668"/>
+ <node id="9416149008" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7352391" lon="7.4221371"/>
+ <node id="9416149009" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7352153" lon="7.4221653"/>
+ <node id="9416149010" visible="true" version="2" changeset="124095368" timestamp="2022-07-26T12:43:58Z" user="rene78" uid="257555" lat="43.7352024" lon="7.4221795"/>
+ <node id="9416149012" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7392900" lon="7.4272737"/>
+ <node id="9416149014" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7393020" lon="7.4272599"/>
+ <node id="9416149017" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7393985" lon="7.4271921"/>
+ <node id="9416149019" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7394592" lon="7.4271756"/>
+ <node id="9416149021" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7394456" lon="7.4271769"/>
+ <node id="9416149023" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7394146" lon="7.4271850"/>
+ <node id="9416149025" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7395126" lon="7.4271798"/>
+ <node id="9416149027" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7395643" lon="7.4271984"/>
+ <node id="9416149039" visible="true" version="2" changeset="150238102" timestamp="2024-04-19T19:16:37Z" user="Lyon-St-Clair" uid="9060372" lat="43.7370230" lon="7.4254122"/>
+ <node id="9416149040" visible="true" version="2" changeset="150238102" timestamp="2024-04-19T19:16:37Z" user="Lyon-St-Clair" uid="9060372" lat="43.7370555" lon="7.4254472"/>
+ <node id="9416149041" visible="true" version="2" changeset="150238102" timestamp="2024-04-19T19:16:37Z" user="Lyon-St-Clair" uid="9060372" lat="43.7369963" lon="7.4251763"/>
+ <node id="9416149042" visible="true" version="2" changeset="150238102" timestamp="2024-04-19T19:16:37Z" user="Lyon-St-Clair" uid="9060372" lat="43.7370633" lon="7.4249926"/>
+ <node id="9416149052" visible="true" version="2" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692" lat="43.7364055" lon="7.4219352"/>
+ <node id="9416149055" visible="true" version="2" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692" lat="43.7360731" lon="7.4218038"/>
+ <node id="9416149056" visible="true" version="2" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692" lat="43.7362233" lon="7.4218527"/>
+ <node id="9416149059" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7339140" lon="7.4222091"/>
+ <node id="9416149060" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7339472" lon="7.4222460"/>
+ <node id="9416149061" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7323790" lon="7.4225331"/>
+ <node id="9416149067" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7344485" lon="7.4213798"/>
+ <node id="9421966825" visible="true" version="3" changeset="150238102" timestamp="2024-04-19T19:16:37Z" user="Lyon-St-Clair" uid="9060372" lat="43.7333383" lon="7.4222334"/>
+ <node id="9421966826" visible="true" version="2" changeset="117171627" timestamp="2022-02-08T17:56:42Z" user="Lyon-St-Clair" uid="9060372" lat="43.7331674" lon="7.4223618"/>
+ <node id="9421966834" visible="true" version="3" changeset="117172017" timestamp="2022-02-08T18:08:26Z" user="Lyon-St-Clair" uid="9060372" lat="43.7325574" lon="7.4228117"/>
+ <node id="9421966837" visible="true" version="4" changeset="174798229" timestamp="2025-11-18T01:32:51Z" user="ika-chan!" uid="4763179" lat="43.7324635" lon="7.4228335"/>
+ <node id="9490432443" visible="true" version="1" changeset="117171627" timestamp="2022-02-08T17:56:42Z" user="Lyon-St-Clair" uid="9060372" lat="43.7348949" lon="7.4214770"/>
+ <node id="9490432444" visible="true" version="1" changeset="117171627" timestamp="2022-02-08T17:56:42Z" user="Lyon-St-Clair" uid="9060372" lat="43.7327778" lon="7.4227750"/>
+ <node id="9490432445" visible="true" version="1" changeset="117171627" timestamp="2022-02-08T17:56:42Z" user="Lyon-St-Clair" uid="9060372" lat="43.7327227" lon="7.4228067"/>
+ <node id="9490432446" visible="true" version="1" changeset="117171627" timestamp="2022-02-08T17:56:42Z" user="Lyon-St-Clair" uid="9060372" lat="43.7345847" lon="7.4216764"/>
+ <node id="9490432447" visible="true" version="2" changeset="174798229" timestamp="2025-11-18T01:32:51Z" user="ika-chan!" uid="4763179" lat="43.7350632" lon="7.4213909"/>
+ <node id="9490432448" visible="true" version="2" changeset="174798229" timestamp="2025-11-18T01:32:51Z" user="ika-chan!" uid="4763179" lat="43.7351155" lon="7.4213630"/>
+ <node id="9490432449" visible="true" version="1" changeset="117171627" timestamp="2022-02-08T17:56:42Z" user="Lyon-St-Clair" uid="9060372" lat="43.7351990" lon="7.4212978"/>
+ <node id="9490458150" visible="true" version="2" changeset="174798229" timestamp="2025-11-18T01:32:51Z" user="ika-chan!" uid="4763179" lat="43.7324412" lon="7.4228470"/>
+ <node id="9490458151" visible="true" version="2" changeset="145038155" timestamp="2023-12-12T13:33:35Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7323956" lon="7.4229025"/>
+ <node id="9490458152" visible="true" version="3" changeset="145038155" timestamp="2023-12-12T13:33:35Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7323875" lon="7.4229275"/>
+ <node id="9911623941" visible="true" version="1" changeset="124093286" timestamp="2022-07-26T11:58:25Z" user="rene78" uid="257555" lat="43.7352623" lon="7.4212403"/>
+ <node id="9974218888" visible="true" version="1" changeset="125300028" timestamp="2022-08-24T06:49:42Z" user="ika-chan!" uid="4763179" lat="43.7329897" lon="7.4227812"/>
+ <node id="9974218889" visible="true" version="1" changeset="125300028" timestamp="2022-08-24T06:49:42Z" user="ika-chan!" uid="4763179" lat="43.7336912" lon="7.4222632"/>
+ <node id="9974218891" visible="true" version="1" changeset="125300028" timestamp="2022-08-24T06:49:42Z" user="ika-chan!" uid="4763179" lat="43.7327339" lon="7.4233333"/>
+ <node id="9974218892" visible="true" version="1" changeset="125300028" timestamp="2022-08-24T06:49:42Z" user="ika-chan!" uid="4763179" lat="43.7339906" lon="7.4223580"/>
+ <node id="9974218893" visible="true" version="1" changeset="125300028" timestamp="2022-08-24T06:49:42Z" user="ika-chan!" uid="4763179" lat="43.7331499" lon="7.4226056"/>
+ <node id="9983257602" visible="true" version="1" changeset="125474093" timestamp="2022-08-28T11:46:15Z" user="Bilykralik16" uid="12087838" lat="43.7326378" lon="7.4228092"/>
+ <node id="10284729036" visible="true" version="1" changeset="130459242" timestamp="2022-12-24T15:02:49Z" user="Lyon-St-Clair" uid="9060372" lat="43.7351530" lon="7.4222106"/>
+ <node id="10665602341" visible="true" version="1" changeset="132600110" timestamp="2023-02-15T20:27:50Z" user="berco85" uid="2957494" lat="43.7364622" lon="7.4213749"/>
+ <node id="10665602345" visible="true" version="1" changeset="132600110" timestamp="2023-02-15T20:27:50Z" user="berco85" uid="2957494" lat="43.7333004" lon="7.4218120"/>
+ <node id="10683095895" visible="true" version="2" changeset="132902242" timestamp="2023-02-22T22:36:49Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7410879" lon="7.4301307"/>
+ <node id="10683095896" visible="true" version="2" changeset="132902242" timestamp="2023-02-22T22:36:49Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7410691" lon="7.4303121"/>
+ <node id="10683095897" visible="true" version="2" changeset="132902242" timestamp="2023-02-22T22:36:49Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7410500" lon="7.4303397"/>
+ <node id="10683095898" visible="true" version="2" changeset="132902242" timestamp="2023-02-22T22:36:49Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7410265" lon="7.4303555"/>
+ <node id="10687075418" visible="true" version="1" changeset="132902242" timestamp="2023-02-22T22:36:49Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7410664" lon="7.4300008"/>
+ <node id="10687075419" visible="true" version="1" changeset="132902242" timestamp="2023-02-22T22:36:49Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7410436" lon="7.4299069"/>
+ <node id="10687075420" visible="true" version="2" changeset="177694442" timestamp="2026-01-25T18:59:41Z" user="mikhail22" uid="6750151" lat="43.7410846" lon="7.4300892"/>
+ <node id="10687075421" visible="true" version="1" changeset="132902242" timestamp="2023-02-22T22:36:49Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7410904" lon="7.4301723"/>
+ <node id="10687075422" visible="true" version="1" changeset="132902242" timestamp="2023-02-22T22:36:49Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7409707" lon="7.4303639"/>
+ <node id="10687075423" visible="true" version="1" changeset="132902242" timestamp="2023-02-22T22:36:49Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7410810" lon="7.4302842"/>
+ <node id="10687075424" visible="true" version="1" changeset="132902242" timestamp="2023-02-22T22:36:49Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7409984" lon="7.4303633"/>
+ <node id="10687075425" visible="true" version="2" changeset="177694442" timestamp="2026-01-25T18:59:41Z" user="mikhail22" uid="6750151" lat="43.7410875" lon="7.4302528"/>
+ <node id="10687075426" visible="true" version="1" changeset="132902242" timestamp="2023-02-22T22:36:49Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7409697" lon="7.4296425"/>
+ <node id="11146700934" visible="true" version="1" changeset="140423322" timestamp="2023-08-26T17:59:25Z" user="rene78" uid="257555" lat="43.7398154" lon="7.4274015"/>
+ <node id="11407697331" visible="true" version="2" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7378020" lon="7.4280368">
+  <tag k="bus" v="yes"/>
+  <tag k="check_date" v="2023-12-10"/>
+  <tag k="name" v="Auditorium Rainier III"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="source" v="Bing Aerial Imagery (2023-12-10)"/>
+ </node>
+ <node id="11409061518" visible="true" version="1" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7378538" lon="7.4281757"/>
+ <node id="11409061519" visible="true" version="1" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7379687" lon="7.4284448"/>
+ <node id="11409061520" visible="true" version="1" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7380981" lon="7.4287010"/>
+ <node id="11409061521" visible="true" version="1" changeset="144984884" timestamp="2023-12-11T04:55:18Z" user="ika-chan!" uid="4763179" lat="43.7382411" lon="7.4289429"/>
+ <node id="11412508749" visible="true" version="1" changeset="145038155" timestamp="2023-12-12T13:33:35Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7366029" lon="7.4214329"/>
+ <node id="11412508750" visible="true" version="1" changeset="145038155" timestamp="2023-12-12T13:33:35Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7325683" lon="7.4234985"/>
+ <node id="11412508751" visible="true" version="1" changeset="145038155" timestamp="2023-12-12T13:33:35Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7324688" lon="7.4233969"/>
+ <node id="11412508752" visible="true" version="1" changeset="145038155" timestamp="2023-12-12T13:33:35Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7326411" lon="7.4234744"/>
+ <node id="11412508753" visible="true" version="1" changeset="145038155" timestamp="2023-12-12T13:33:35Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7324203" lon="7.4228660"/>
+ <node id="11412508754" visible="true" version="1" changeset="145038155" timestamp="2023-12-12T13:33:35Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7324067" lon="7.4228834"/>
+ <node id="11412508755" visible="true" version="1" changeset="145038155" timestamp="2023-12-12T13:33:35Z" user="ika-chan! UK-USA" uid="1016290" lat="43.7323843" lon="7.4229514"/>
+ <node id="11449741814" visible="true" version="1" changeset="145476120" timestamp="2023-12-24T17:40:12Z" user="chamdam" uid="10397245" lat="43.7372639" lon="7.4236087">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Ostende"/>
+  <tag k="public_transport" v="stop_position"/>
+ </node>
+ <node id="11802279991" visible="true" version="1" changeset="149739292" timestamp="2024-04-08T14:53:50Z" user="ika-chan!" uid="4763179" lat="43.7404501" lon="7.4296048"/>
+ <node id="11831601282" visible="true" version="1" changeset="150238102" timestamp="2024-04-19T19:16:37Z" user="Lyon-St-Clair" uid="9060372" lat="43.7342932" lon="7.4217862"/>
+ <node id="11831601283" visible="true" version="1" changeset="150238102" timestamp="2024-04-19T19:16:37Z" user="Lyon-St-Clair" uid="9060372" lat="43.7339063" lon="7.4219326"/>
+ <node id="11831601284" visible="true" version="1" changeset="150238102" timestamp="2024-04-19T19:16:37Z" user="Lyon-St-Clair" uid="9060372" lat="43.7335354" lon="7.4221137"/>
+ <node id="11941906303" visible="true" version="1" changeset="151982719" timestamp="2024-05-29T10:58:32Z" user="NoahJ38" uid="21602862" lat="43.7346006" lon="7.4213456"/>
+ <node id="12136114443" visible="true" version="1" changeset="155747938" timestamp="2024-08-25T17:14:34Z" user="rene78" uid="257555" lat="43.7402961" lon="7.4303209">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="crossing:markings" v="yes"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="12571844664" visible="true" version="2" changeset="187780077" timestamp="2026-08-21T07:53:53Z" user="Dominik Dachs" uid="1436733" lat="43.7379299" lon="7.4266414"/>
+ <node id="12571844665" visible="true" version="1" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7379628" lon="7.4271837"/>
+ <node id="12851688397" visible="true" version="2" changeset="174546797" timestamp="2025-11-12T08:40:27Z" user="ika-chan!" uid="4763179" lat="43.7369019" lon="7.4215052"/>
+ <node id="12851688398" visible="true" version="1" changeset="166541334" timestamp="2025-05-20T20:18:09Z" user="Lyon-St-Clair" uid="9060372" lat="43.7369335" lon="7.4215295"/>
+ <node id="12851688399" visible="true" version="2" changeset="174546797" timestamp="2025-11-12T08:40:27Z" user="ika-chan!" uid="4763179" lat="43.7369566" lon="7.4215636"/>
+ <node id="12851688400" visible="true" version="2" changeset="174546797" timestamp="2025-11-12T08:40:27Z" user="ika-chan!" uid="4763179" lat="43.7369691" lon="7.4215997"/>
+ <node id="12851743501" visible="true" version="1" changeset="166541334" timestamp="2025-05-20T20:18:09Z" user="Lyon-St-Clair" uid="9060372" lat="43.7367728" lon="7.4215948"/>
+ <node id="12851743502" visible="true" version="2" changeset="174546797" timestamp="2025-11-12T08:40:27Z" user="ika-chan!" uid="4763179" lat="43.7368434" lon="7.4216622"/>
+ <node id="12851743503" visible="true" version="1" changeset="166541334" timestamp="2025-05-20T20:18:09Z" user="Lyon-St-Clair" uid="9060372" lat="43.7368842" lon="7.4217057"/>
+ <node id="12851743504" visible="true" version="2" changeset="174546797" timestamp="2025-11-12T08:40:27Z" user="ika-chan!" uid="4763179" lat="43.7369391" lon="7.4217787"/>
+ <node id="12851743505" visible="true" version="2" changeset="174546797" timestamp="2025-11-12T08:40:27Z" user="ika-chan!" uid="4763179" lat="43.7369589" lon="7.4218183"/>
+ <node id="12851743506" visible="true" version="1" changeset="166541334" timestamp="2025-05-20T20:18:09Z" user="Lyon-St-Clair" uid="9060372" lat="43.7369728" lon="7.4218587"/>
+ <node id="13299075851" visible="true" version="1" changeset="174546797" timestamp="2025-11-12T08:40:27Z" user="ika-chan!" uid="4763179" lat="43.7368079" lon="7.4216263"/>
+ <node id="13299075852" visible="true" version="1" changeset="174546797" timestamp="2025-11-12T08:40:27Z" user="ika-chan!" uid="4763179" lat="43.7369175" lon="7.4217464"/>
+ <node id="13299075853" visible="true" version="1" changeset="174546797" timestamp="2025-11-12T08:40:27Z" user="ika-chan!" uid="4763179" lat="43.7369048" lon="7.4217295"/>
+ <node id="13299075854" visible="true" version="1" changeset="174546797" timestamp="2025-11-12T08:40:27Z" user="ika-chan!" uid="4763179" lat="43.7369767" lon="7.4216425"/>
+ <node id="13299075855" visible="true" version="1" changeset="174546797" timestamp="2025-11-12T08:40:27Z" user="ika-chan!" uid="4763179" lat="43.7368785" lon="7.4214935"/>
+ <node id="13312455858" visible="true" version="1" changeset="174798229" timestamp="2025-11-18T01:32:51Z" user="ika-chan!" uid="4763179" lat="43.7351591" lon="7.4213334"/>
+ <node id="13312455860" visible="true" version="1" changeset="174798229" timestamp="2025-11-18T01:32:51Z" user="ika-chan!" uid="4763179" lat="43.7324863" lon="7.4228247"/>
+ <node id="13312466205" visible="true" version="1" changeset="174798229" timestamp="2025-11-18T01:32:51Z" user="ika-chan!" uid="4763179" lat="43.7372699" lon="7.4258188">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Bateau Bus"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:STTM" v="1"/>
+  <tag k="source" v="Bing Aerial Imagery (2025-11-17)"/>
+  <tag k="tourist_bus" v="yes"/>
+ </node>
+ <node id="13484626647" visible="true" version="1" changeset="177694442" timestamp="2026-01-25T18:59:41Z" user="mikhail22" uid="6750151" lat="43.7410731" lon="7.4300319"/>
+ <node id="13641698007" visible="true" version="1" changeset="179768983" timestamp="2026-03-12T17:32:41Z" user="FUZZY_42" uid="5460758" lat="43.7402997" lon="7.4297468"/>
+ <node id="13641698008" visible="true" version="1" changeset="179768983" timestamp="2026-03-12T17:32:41Z" user="FUZZY_42" uid="5460758" lat="43.7410952" lon="7.4287225"/>
+ <node id="14109303022" visible="true" version="1" changeset="187780077" timestamp="2026-08-21T07:53:53Z" user="Dominik Dachs" uid="1436733" lat="43.7379518" lon="7.4267039"/>
+ <node id="14109303023" visible="true" version="1" changeset="187780077" timestamp="2026-08-21T07:53:53Z" user="Dominik Dachs" uid="1436733" lat="43.7379046" lon="7.4267196"/>
+ <way id="4226740" visible="true" version="27" changeset="187953348" timestamp="2026-08-24T18:21:02Z" user="Lisapple" uid="16291142">
+  <nd ref="25192130"/>
+  <nd ref="6444966483"/>
+  <nd ref="1737389127"/>
+  <nd ref="6444966484"/>
+  <nd ref="6444966485"/>
+  <nd ref="6340961554"/>
+  <nd ref="1074585009"/>
+  <tag k="cycleway:left" v="no"/>
+  <tag k="cycleway:right" v="share_busway"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Boulevard Albert 1er"/>
+  <tag k="name:etymology:wikidata" v="Q55008046"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="4229536" visible="true" version="19" changeset="183892083" timestamp="2026-06-09T19:48:11Z" user="WWMapper101" uid="20795476">
+  <nd ref="13312466205"/>
+  <nd ref="1736929660"/>
+  <nd ref="9416148858"/>
+  <nd ref="1720683731"/>
+  <nd ref="6485591919"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Boulevard Louis II"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q96215281"/>
+ </way>
+ <way id="4229658" visible="true" version="19" changeset="124268347" timestamp="2022-07-30T13:28:11Z" user="rene78" uid="257555">
+  <nd ref="21913117"/>
+  <nd ref="9416149019"/>
+  <nd ref="9416149021"/>
+  <nd ref="1204288436"/>
+  <nd ref="9416149023"/>
+  <nd ref="9416149017"/>
+  <nd ref="25240073"/>
+  <nd ref="6485591471"/>
+  <nd ref="1737146995"/>
+  <nd ref="9416149014"/>
+  <nd ref="9416149012"/>
+  <nd ref="21913159"/>
+  <nd ref="6485591470"/>
+  <nd ref="25240075"/>
+  <tag k="highway" v="service"/>
+  <tag k="lit" v="yes"/>
+  <tag k="motor_vehicle" v="destination"/>
+  <tag k="name" v="Place du Casino"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="right"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="4230006" visible="true" version="34" changeset="187739124" timestamp="2026-08-20T11:50:38Z" user="Dominik Dachs" uid="1436733">
+  <nd ref="1699777574"/>
+  <nd ref="11146700934"/>
+  <nd ref="1736929703"/>
+  <nd ref="272637923"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Avenue des Spélugues"/>
+  <tag k="oneway" v="no"/>
+  <tag k="sidewalk" v="right"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="tourist_bus" v="no"/>
+  <tag k="wikidata" v="Q96214495"/>
+ </way>
+ <way id="4230007" visible="true" version="29" changeset="187744526" timestamp="2026-08-20T13:35:35Z" user="Dominik Dachs" uid="1436733">
+  <nd ref="6485591888"/>
+  <nd ref="1720684404"/>
+  <nd ref="25240093"/>
+  <nd ref="1720684401"/>
+  <nd ref="1720684398"/>
+  <nd ref="1720684395"/>
+  <nd ref="21914573"/>
+  <nd ref="1720684346"/>
+  <nd ref="1720684322"/>
+  <nd ref="1720684318"/>
+  <nd ref="25240091"/>
+  <nd ref="1720684314"/>
+  <nd ref="1720684310"/>
+  <nd ref="25239175"/>
+  <nd ref="1685108323"/>
+  <nd ref="1720684307"/>
+  <nd ref="1720684303"/>
+  <nd ref="11802279991"/>
+  <nd ref="1720684301"/>
+  <nd ref="1720684299"/>
+  <nd ref="1720684297"/>
+  <nd ref="21914666"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="maxweight" v="7.5"/>
+  <tag k="maxweight:psv" v="none"/>
+  <tag k="name" v="Avenue Princesse Grace"/>
+  <tag k="sidewalk" v="both"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="tourist_bus" v="no"/>
+ </way>
+ <way id="4230009" visible="true" version="21" changeset="183915449" timestamp="2026-06-10T10:11:41Z" user="WWMapper101" uid="20795476">
+  <nd ref="21913117"/>
+  <nd ref="9416149025"/>
+  <nd ref="6340961572"/>
+  <nd ref="9416149027"/>
+  <nd ref="5504673399"/>
+  <nd ref="6485591473"/>
+  <nd ref="1699777574"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Avenue de Monte-Carlo"/>
+  <tag k="sidewalk" v="right"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q96216519"/>
+ </way>
+ <way id="4230891" visible="true" version="32" changeset="183892083" timestamp="2026-06-09T19:48:11Z" user="WWMapper101" uid="20795476">
+  <nd ref="11407697331"/>
+  <nd ref="11409061518"/>
+  <nd ref="279442967"/>
+  <nd ref="11409061519"/>
+  <nd ref="9416148963"/>
+  <nd ref="11409061520"/>
+  <nd ref="9416148980"/>
+  <nd ref="11409061521"/>
+  <nd ref="1736929676"/>
+  <nd ref="6485591907"/>
+  <nd ref="21914359"/>
+  <nd ref="6485591906"/>
+  <nd ref="2264703507"/>
+  <nd ref="25239162"/>
+  <nd ref="6485591905"/>
+  <nd ref="9416148986"/>
+  <nd ref="1720684274"/>
+  <nd ref="6485591903"/>
+  <nd ref="21914381"/>
+  <nd ref="1280338640"/>
+  <nd ref="6485591901"/>
+  <nd ref="6485591900"/>
+  <nd ref="1720684293"/>
+  <nd ref="6566017213"/>
+  <nd ref="12136114443"/>
+  <nd ref="519323656"/>
+  <tag k="check_date" v="2026-03-13"/>
+  <tag k="cycleway:left" v="lane"/>
+  <tag k="cycleway:right" v="no"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="layer" v="-1"/>
+  <tag k="lit" v="24/7"/>
+  <tag k="maxheight" v="default"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Boulevard Louis II"/>
+  <tag k="sidewalk" v="left"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="tunnel" v="yes"/>
+  <tag k="wikidata" v="Q96215281"/>
+ </way>
+ <way id="39839529" visible="true" version="19" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692">
+  <nd ref="1737389117"/>
+  <nd ref="6485592102"/>
+  <nd ref="25191609"/>
+  <nd ref="25191627"/>
+  <nd ref="11412508751"/>
+  <nd ref="6485592099"/>
+  <nd ref="6485592098"/>
+  <nd ref="1074584965"/>
+  <nd ref="1737389119"/>
+  <nd ref="1074584901"/>
+  <nd ref="11412508750"/>
+  <nd ref="6444966472"/>
+  <nd ref="1079045413"/>
+  <nd ref="11412508752"/>
+  <nd ref="6444966471"/>
+  <nd ref="25191634"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="foot" v="no"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Quai Antoine 1er"/>
+  <tag k="sidewalk" v="both"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="41929969" visible="true" version="18" changeset="183892083" timestamp="2026-06-09T19:48:11Z" user="WWMapper101" uid="20795476">
+  <nd ref="519323656"/>
+  <nd ref="1685061923"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Boulevard Louis II"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q96215281"/>
+ </way>
+ <way id="60767229" visible="true" version="13" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692">
+  <nd ref="477617968"/>
+  <nd ref="25192130"/>
+  <tag k="cycleway:left" v="no"/>
+  <tag k="cycleway:right" v="share_busway"/>
+  <tag k="foot" v="no"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Avenue du Port"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="157719644" visible="true" version="25" changeset="183932358" timestamp="2026-06-10T16:21:49Z" user="WWMapper101" uid="20795476">
+  <nd ref="1690130866"/>
+  <nd ref="1726583800"/>
+  <nd ref="1737366158"/>
+  <nd ref="6485591442"/>
+  <nd ref="21911883"/>
+  <nd ref="1737366161"/>
+  <nd ref="21911886"/>
+  <nd ref="11449741814"/>
+  <nd ref="5601806432"/>
+  <nd ref="6485591445"/>
+  <nd ref="252387589"/>
+  <tag k="cycleway:left" v="share_busway"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Avenue d'Ostende"/>
+  <tag k="name:etymology" v="Ostende"/>
+  <tag k="name:etymology:wikidata" v="Q12996"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q96208546"/>
+ </way>
+ <way id="160004393" visible="true" version="18" changeset="189251419" timestamp="2026-09-19T12:39:32Z" user="PillowyAnt" uid="23107593">
+  <nd ref="6485591919"/>
+  <nd ref="4317155594"/>
+  <nd ref="21914343"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Boulevard Louis II"/>
+  <tag k="sidewalk:both" v="yes"/>
+  <tag k="sidewalk:both:surface" v="asphalt"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q96215281"/>
+ </way>
+ <way id="161752645" visible="true" version="16" changeset="135613787" timestamp="2023-05-02T12:09:43Z" user="YieldMapper" uid="3847112">
+  <nd ref="25240075"/>
+  <nd ref="6485591468"/>
+  <nd ref="1737146935"/>
+  <nd ref="7568749016"/>
+  <tag k="bicycle" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="lit" v="yes"/>
+  <tag k="motor_vehicle" v="destination"/>
+  <tag k="name" v="Avenue de Monte-Carlo"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="161775592" visible="true" version="14" changeset="183932358" timestamp="2026-06-10T16:21:49Z" user="WWMapper101" uid="20795476">
+  <nd ref="21912962"/>
+  <nd ref="6485591457"/>
+  <nd ref="1726583850"/>
+  <nd ref="12571844665"/>
+  <nd ref="6485591458"/>
+  <nd ref="25239180"/>
+  <nd ref="6485591459"/>
+  <nd ref="1737326354"/>
+  <nd ref="6485591460"/>
+  <nd ref="21912976"/>
+  <nd ref="6485591461"/>
+  <nd ref="1737326397"/>
+  <nd ref="25239181"/>
+  <nd ref="1737326417"/>
+  <nd ref="1726583792"/>
+  <nd ref="1737326441"/>
+  <nd ref="21912993"/>
+  <nd ref="6485591463"/>
+  <nd ref="1737326465"/>
+  <nd ref="25239182"/>
+  <nd ref="1737326506"/>
+  <nd ref="1726583844"/>
+  <nd ref="6485591466"/>
+  <nd ref="1737326533"/>
+  <nd ref="21913012"/>
+  <nd ref="1737326598"/>
+  <nd ref="1737326604"/>
+  <nd ref="1737272404"/>
+  <nd ref="1204288376"/>
+  <tag k="bicycle" v="no"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="motor_vehicle" v="designated"/>
+  <tag k="name" v="Avenue de Monte-Carlo"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:both" v="separate"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q96216519"/>
+ </way>
+ <way id="166399479" visible="true" version="27" changeset="187953348" timestamp="2026-08-24T18:21:23Z" user="Lisapple" uid="16291142">
+  <nd ref="1868404468"/>
+  <nd ref="9416149067"/>
+  <nd ref="6444966499"/>
+  <nd ref="25193333"/>
+  <nd ref="6444966500"/>
+  <nd ref="11941906303"/>
+  <nd ref="6444966501"/>
+  <nd ref="6485592119"/>
+  <nd ref="6444966502"/>
+  <nd ref="519324200"/>
+  <nd ref="6444966503"/>
+  <nd ref="6485592120"/>
+  <nd ref="6444966504"/>
+  <nd ref="4937755860"/>
+  <nd ref="25193346"/>
+  <nd ref="9911623941"/>
+  <nd ref="6485591420"/>
+  <nd ref="1204288311"/>
+  <nd ref="25193350"/>
+  <nd ref="8721086460"/>
+  <nd ref="6485591421"/>
+  <nd ref="1770577832"/>
+  <nd ref="6485591422"/>
+  <nd ref="25193355"/>
+  <nd ref="6485591423"/>
+  <nd ref="6485591424"/>
+  <nd ref="1726583810"/>
+  <nd ref="6485591425"/>
+  <nd ref="25193359"/>
+  <nd ref="6340961556"/>
+  <nd ref="6485591426"/>
+  <nd ref="1726583852"/>
+  <tag k="cycleway:left" v="no"/>
+  <tag k="cycleway:right" v="share_busway"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lane_markings" v="yes"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Boulevard Albert 1er"/>
+  <tag k="name:etymology:wikidata" v="Q55008046"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="166399501" visible="true" version="16" changeset="183932358" timestamp="2026-06-10T16:21:49Z" user="WWMapper101" uid="20795476">
+  <nd ref="21914841"/>
+  <nd ref="6485591477"/>
+  <nd ref="1737147129"/>
+  <nd ref="1737147155"/>
+  <nd ref="1736930312"/>
+  <nd ref="6566017214"/>
+  <nd ref="25239179"/>
+  <nd ref="6485591483"/>
+  <nd ref="1726583859"/>
+  <nd ref="13641698008"/>
+  <nd ref="1736930369"/>
+  <nd ref="1737114644"/>
+  <nd ref="1737114648"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Avenue des Spélugues"/>
+  <tag k="oneway" v="no"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q96214495"/>
+ </way>
+ <way id="168681959" visible="true" version="15" changeset="175150415" timestamp="2025-11-26T11:36:42Z" user="enzo_immergis" uid="22273692">
+  <nd ref="1799099566"/>
+  <nd ref="4938436896"/>
+  <nd ref="25192215"/>
+  <nd ref="6444966477"/>
+  <nd ref="1726583803"/>
+  <nd ref="1726583846"/>
+  <nd ref="1737389122"/>
+  <nd ref="6444966480"/>
+  <nd ref="477617968"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="foot" v="no"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Avenue du Port"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="214636589" visible="true" version="25" changeset="185180549" timestamp="2026-07-06T07:45:30Z" user="SIG Monaco Gouv" uid="21952121">
+  <nd ref="25191729"/>
+  <nd ref="25191725"/>
+  <nd ref="2241375220"/>
+  <nd ref="2241375226"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Route de la Piscine"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="254596486" visible="true" version="18" changeset="183932358" timestamp="2026-06-10T16:21:49Z" user="WWMapper101" uid="20795476">
+  <nd ref="252387589"/>
+  <nd ref="1737366164"/>
+  <nd ref="4939122080"/>
+  <nd ref="2189614155"/>
+  <nd ref="6485591448"/>
+  <nd ref="1737366166"/>
+  <nd ref="1737366167"/>
+  <nd ref="1737366170"/>
+  <nd ref="6485591450"/>
+  <nd ref="1737366176"/>
+  <nd ref="6485591452"/>
+  <nd ref="1737366187"/>
+  <nd ref="1737366188"/>
+  <nd ref="1737366192"/>
+  <nd ref="21911894"/>
+  <nd ref="6485591454"/>
+  <nd ref="1737366203"/>
+  <nd ref="918118157"/>
+  <tag k="cycleway:left" v="share_busway"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Avenue d'Ostende"/>
+  <tag k="name:etymology" v="Ostende"/>
+  <tag k="name:etymology:wikidata" v="Q12996"/>
+  <tag k="sidewalk:both" v="separate"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q96208546"/>
+ </way>
+ <way id="348019480" visible="true" version="11" changeset="152838101" timestamp="2024-06-18T09:09:15Z" user="CleverCamel" uid="11504390">
+  <nd ref="2422123083"/>
+  <nd ref="6340961575"/>
+  <nd ref="6696346981"/>
+  <nd ref="6340961574"/>
+  <nd ref="6485591925"/>
+  <tag k="highway" v="service"/>
+  <tag k="lit" v="yes"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="434567309" visible="true" version="11" changeset="187739124" timestamp="2026-08-20T11:50:38Z" user="Dominik Dachs" uid="1436733">
+  <nd ref="272637923"/>
+  <nd ref="272637895"/>
+  <nd ref="21914841"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Avenue des Spélugues"/>
+  <tag k="oneway" v="no"/>
+  <tag k="psv" v="yes"/>
+  <tag k="sidewalk" v="right"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="tourist_bus" v="no"/>
+  <tag k="wikidata" v="Q96214495"/>
+ </way>
+ <way id="485746484" visible="true" version="10" changeset="185779722" timestamp="2026-07-15T12:07:20Z" user="wilder_luchs" uid="16271195">
+  <nd ref="25193217"/>
+  <nd ref="6444966428"/>
+  <nd ref="6485591934"/>
+  <nd ref="1738369856"/>
+  <nd ref="6444966427"/>
+  <nd ref="1738369858"/>
+  <nd ref="1079751503"/>
+  <nd ref="6444966426"/>
+  <nd ref="6444966425"/>
+  <nd ref="6485591933"/>
+  <nd ref="6444966424"/>
+  <nd ref="1737389192"/>
+  <tag k="highway" v="service"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Quai des États-Unis"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q98924941"/>
+ </way>
+ <way id="503475642" visible="true" version="18" changeset="185180549" timestamp="2026-07-06T07:45:30Z" user="SIG Monaco Gouv" uid="21952121">
+  <nd ref="25193217"/>
+  <nd ref="6485591936"/>
+  <nd ref="9416148865"/>
+  <nd ref="9416148864"/>
+  <nd ref="9416148866"/>
+  <nd ref="917957146"/>
+  <nd ref="9416148876"/>
+  <nd ref="9416148875"/>
+  <nd ref="9416148870"/>
+  <nd ref="9416149052"/>
+  <nd ref="9416148871"/>
+  <nd ref="9416149056"/>
+  <nd ref="9416148869"/>
+  <nd ref="9416149055"/>
+  <nd ref="9416148873"/>
+  <nd ref="9416148872"/>
+  <nd ref="9416148874"/>
+  <nd ref="6485591957"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Route de la Piscine"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q99160033"/>
+ </way>
+ <way id="568187257" visible="true" version="15" changeset="187744526" timestamp="2026-08-20T13:35:35Z" user="Dominik Dachs" uid="1436733">
+  <nd ref="21914666"/>
+  <nd ref="1736929799"/>
+  <nd ref="1726583818"/>
+  <nd ref="13641698007"/>
+  <nd ref="1736929769"/>
+  <nd ref="25239170"/>
+  <nd ref="9416148971"/>
+  <nd ref="1736929754"/>
+  <nd ref="25240094"/>
+  <nd ref="1736929737"/>
+  <nd ref="21914722"/>
+  <nd ref="9416148972"/>
+  <nd ref="25240095"/>
+  <nd ref="1736929736"/>
+  <nd ref="1726583915"/>
+  <nd ref="1736929745"/>
+  <nd ref="1726583789"/>
+  <nd ref="5504680055"/>
+  <nd ref="9416148973"/>
+  <nd ref="5504680056"/>
+  <nd ref="25239171"/>
+  <nd ref="1736929805"/>
+  <nd ref="1726583816"/>
+  <nd ref="1736929829"/>
+  <nd ref="25239176"/>
+  <nd ref="6485591886"/>
+  <nd ref="6485591885"/>
+  <nd ref="1736929901"/>
+  <nd ref="1736929909"/>
+  <nd ref="1726583858"/>
+  <nd ref="1736929930"/>
+  <nd ref="21914761"/>
+  <nd ref="1736929937"/>
+  <nd ref="25239177"/>
+  <nd ref="1736930314"/>
+  <nd ref="1726583856"/>
+  <nd ref="1736930331"/>
+  <nd ref="1074584822"/>
+  <nd ref="6485591484"/>
+  <nd ref="21914797"/>
+  <nd ref="1736930362"/>
+  <nd ref="1726583826"/>
+  <nd ref="1736930367"/>
+  <nd ref="25239178"/>
+  <nd ref="1736930368"/>
+  <nd ref="1726583811"/>
+  <nd ref="1736930371"/>
+  <nd ref="1737114648"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="maxweight" v="7.5"/>
+  <tag k="maxweight:psv" v="none"/>
+  <tag k="name" v="Avenue des Spélugues"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="tourist_bus" v="no"/>
+  <tag k="wikidata" v="Q96214495"/>
+ </way>
+ <way id="850261588" visible="true" version="16" changeset="174798229" timestamp="2025-11-18T01:32:51Z" user="ika-chan!" uid="4763179">
+  <nd ref="1737389117"/>
+  <nd ref="11412508755"/>
+  <nd ref="9490458152"/>
+  <nd ref="9490458151"/>
+  <nd ref="11412508754"/>
+  <nd ref="11412508753"/>
+  <nd ref="9490458150"/>
+  <nd ref="9421966837"/>
+  <nd ref="13312455860"/>
+  <nd ref="8721086482"/>
+  <nd ref="9421966834"/>
+  <nd ref="9983257602"/>
+  <nd ref="9490432445"/>
+  <nd ref="9490432444"/>
+  <nd ref="519324209"/>
+  <nd ref="519324207"/>
+  <nd ref="9421966826"/>
+  <nd ref="9421966825"/>
+  <nd ref="11831601284"/>
+  <nd ref="917978752"/>
+  <nd ref="11831601283"/>
+  <nd ref="8721137221"/>
+  <nd ref="11831601282"/>
+  <nd ref="3584491431"/>
+  <nd ref="9490432446"/>
+  <nd ref="9490432443"/>
+  <nd ref="9490432447"/>
+  <nd ref="9490432448"/>
+  <nd ref="13312455858"/>
+  <nd ref="9490432449"/>
+  <nd ref="9911623941"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Voie des stands"/>
+  <tag k="name:en" v="Pit Lane"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1019174508" visible="true" version="8" changeset="187953348" timestamp="2026-08-24T18:21:04Z" user="Lisapple" uid="16291142">
+  <nd ref="1074585009"/>
+  <nd ref="10665602345"/>
+  <nd ref="6444966490"/>
+  <nd ref="25193317"/>
+  <nd ref="6485592115"/>
+  <nd ref="1872567066"/>
+  <nd ref="6444966491"/>
+  <nd ref="252377857"/>
+  <nd ref="6444966493"/>
+  <nd ref="1770577831"/>
+  <nd ref="6444966494"/>
+  <nd ref="25193330"/>
+  <nd ref="6485592117"/>
+  <nd ref="6444966495"/>
+  <nd ref="1720683712"/>
+  <nd ref="6340961555"/>
+  <nd ref="6485592118"/>
+  <nd ref="6444966498"/>
+  <nd ref="1204288371"/>
+  <nd ref="1868404468"/>
+  <tag k="cycleway:left" v="no"/>
+  <tag k="cycleway:right" v="share_busway"/>
+  <tag k="foot" v="no"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Boulevard Albert 1er"/>
+  <tag k="name:etymology:wikidata" v="Q55008046"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1081401613" visible="true" version="2" changeset="150238102" timestamp="2024-04-19T19:16:37Z" user="Lyon-St-Clair" uid="9060372">
+  <nd ref="2422123083"/>
+  <nd ref="9416148882"/>
+  <nd ref="9416149040"/>
+  <nd ref="9416148883"/>
+  <nd ref="9416149039"/>
+  <nd ref="9416148884"/>
+  <nd ref="8721018376"/>
+  <nd ref="9416148885"/>
+  <nd ref="9416149041"/>
+  <nd ref="9416148886"/>
+  <nd ref="9416148888"/>
+  <nd ref="9416148889"/>
+  <nd ref="9416149042"/>
+  <nd ref="9416148890"/>
+  <nd ref="1737389192"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Circuit de Monaco"/>
+  <tag k="name:ru" v="Городская трасса Монте-Карло"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+ </way>
+ <way id="1081401614" visible="true" version="5" changeset="160473261" timestamp="2024-12-21T15:14:42Z" user="rene78" uid="257555">
+  <nd ref="6485591957"/>
+  <nd ref="9416149004"/>
+  <nd ref="9416149005"/>
+  <nd ref="9416149007"/>
+  <nd ref="9416149006"/>
+  <nd ref="9416148906"/>
+  <nd ref="9416149008"/>
+  <nd ref="9416149009"/>
+  <nd ref="9416149010"/>
+  <nd ref="6485591968"/>
+  <nd ref="10284729036"/>
+  <nd ref="25191729"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Circuit de Monaco"/>
+  <tag k="name:ru" v="Городская трасса Монте-Карло"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+ </way>
+ <way id="1081401615" visible="true" version="6" changeset="160473261" timestamp="2024-12-21T15:14:42Z" user="rene78" uid="257555">
+  <nd ref="2241375226"/>
+  <nd ref="8740874113"/>
+  <nd ref="9416148908"/>
+  <nd ref="9416148909"/>
+  <nd ref="9416148910"/>
+  <nd ref="9416148911"/>
+  <nd ref="9974218892"/>
+  <nd ref="2241375227"/>
+  <nd ref="9416148912"/>
+  <nd ref="9416149060"/>
+  <nd ref="9416148913"/>
+  <nd ref="9416149059"/>
+  <nd ref="9416148914"/>
+  <nd ref="9416148915"/>
+  <nd ref="9974218889"/>
+  <nd ref="9416148916"/>
+  <nd ref="9416148917"/>
+  <nd ref="9416148918"/>
+  <nd ref="9974218893"/>
+  <nd ref="9416148919"/>
+  <nd ref="9974218888"/>
+  <nd ref="9416148920"/>
+  <nd ref="9416148921"/>
+  <nd ref="9416148922"/>
+  <nd ref="9416148923"/>
+  <nd ref="9416148924"/>
+  <nd ref="9974218891"/>
+  <nd ref="9416148925"/>
+  <nd ref="25191634"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Circuit de Monaco"/>
+  <tag k="name:ru" v="Городская трасса Монте-Карло"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+ </way>
+ <way id="1081401616" visible="true" version="5" changeset="174546797" timestamp="2025-11-12T08:40:27Z" user="ika-chan!" uid="4763179">
+  <nd ref="6444966511"/>
+  <nd ref="11412508749"/>
+  <nd ref="9416148950"/>
+  <nd ref="9416148951"/>
+  <nd ref="272958770"/>
+  <nd ref="13299075855"/>
+  <nd ref="12851688397"/>
+  <nd ref="12851688398"/>
+  <nd ref="12851688399"/>
+  <nd ref="12851688400"/>
+  <nd ref="13299075854"/>
+  <nd ref="1690130866"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Circuit de Monaco"/>
+  <tag k="name:ru" v="Городская трасса Монте-Карло"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1081401617" visible="true" version="3" changeset="139137500" timestamp="2023-07-28T14:04:22Z" user="ika-chan!" uid="4763179">
+  <nd ref="1737389117"/>
+  <nd ref="9416148937"/>
+  <nd ref="9416148938"/>
+  <nd ref="9416148939"/>
+  <nd ref="9416148989"/>
+  <nd ref="9416148940"/>
+  <nd ref="8408631423"/>
+  <nd ref="9416148941"/>
+  <nd ref="9416149061"/>
+  <nd ref="8740874095"/>
+  <nd ref="9416148943"/>
+  <nd ref="9416148944"/>
+  <nd ref="9416148945"/>
+  <nd ref="1799099566"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Circuit de Monaco"/>
+  <tag k="name:ru" v="Городская трасса Монте-Карло"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+ </way>
+ <way id="1082515450" visible="true" version="1" changeset="124268347" timestamp="2022-07-30T13:28:11Z" user="rene78" uid="257555">
+  <nd ref="7568749016"/>
+  <nd ref="6485591467"/>
+  <nd ref="1204288376"/>
+  <tag k="bicycle" v="yes"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Avenue de Monte-Carlo"/>
+ </way>
+ <way id="1148199871" visible="true" version="3" changeset="177694442" timestamp="2026-01-25T18:59:41Z" user="mikhail22" uid="6750151">
+  <nd ref="10687075425"/>
+  <nd ref="10687075423"/>
+  <nd ref="10683095896"/>
+  <nd ref="10683095897"/>
+  <nd ref="10683095898"/>
+  <nd ref="10687075424"/>
+  <nd ref="10687075422"/>
+  <nd ref="1685061923"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Circuit de Monaco"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1148675745" visible="true" version="1" changeset="132902242" timestamp="2023-02-22T22:36:49Z" user="ika-chan! UK-USA" uid="1016290">
+  <nd ref="6485591888"/>
+  <nd ref="10687075426"/>
+  <nd ref="5466881416"/>
+  <nd ref="273246211"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="1"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Avenue Princesse Grace"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1230247123" visible="true" version="2" changeset="183932358" timestamp="2026-06-10T16:21:49Z" user="WWMapper101" uid="20795476">
+  <nd ref="21914343"/>
+  <nd ref="11407697331"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="layer" v="-1"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxheight" v="default"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Boulevard Louis II"/>
+  <tag k="source" v="Bing Aerial Imagery (2023-12-11)"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="tunnel" v="yes"/>
+  <tag k="wikidata" v="Q96215281"/>
+ </way>
+ <way id="1388331347" visible="true" version="2" changeset="174546797" timestamp="2025-11-12T08:40:27Z" user="ika-chan!" uid="4763179">
+  <nd ref="6444966511"/>
+  <nd ref="12851743501"/>
+  <nd ref="13299075851"/>
+  <nd ref="12851743502"/>
+  <nd ref="12851743503"/>
+  <nd ref="13299075853"/>
+  <nd ref="13299075852"/>
+  <nd ref="12851743504"/>
+  <nd ref="12851743505"/>
+  <nd ref="12851743506"/>
+  <nd ref="1690130866"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Sortie des stands"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+ </way>
+ <way id="1451501763" visible="true" version="2" changeset="183892083" timestamp="2026-06-09T19:48:11Z" user="WWMapper101" uid="20795476">
+  <nd ref="6485591925"/>
+  <nd ref="13312466205"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Boulevard Louis II"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q96215281"/>
+ </way>
+ <way id="1453878835" visible="true" version="3" changeset="187953348" timestamp="2026-08-24T18:21:27Z" user="Lisapple" uid="16291142">
+  <nd ref="1726583852"/>
+  <nd ref="10665602341"/>
+  <nd ref="6444966511"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lane_markings" v="yes"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Boulevard Albert 1er"/>
+  <tag k="name:etymology:wikidata" v="Q55008046"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1470365906" visible="true" version="1" changeset="177694442" timestamp="2026-01-25T18:59:41Z" user="mikhail22" uid="6750151">
+  <nd ref="273246211"/>
+  <nd ref="10687075419"/>
+  <nd ref="10687075418"/>
+  <nd ref="13484626647"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Circuit de Monaco"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1470365907" visible="true" version="1" changeset="177694442" timestamp="2026-01-25T18:59:41Z" user="mikhail22" uid="6750151">
+  <nd ref="13484626647"/>
+  <nd ref="10687075420"/>
+  <nd ref="10683095895"/>
+  <nd ref="10687075421"/>
+  <nd ref="1720684415"/>
+  <nd ref="10687075425"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="layer" v="-1"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Circuit de Monaco"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="tunnel" v="yes"/>
+ </way>
+ <way id="1551240829" visible="true" version="1" changeset="187780077" timestamp="2026-08-21T07:53:53Z" user="Dominik Dachs" uid="1436733">
+  <nd ref="14109303022"/>
+  <nd ref="14109303023"/>
+  <nd ref="21912962"/>
+  <tag k="bicycle" v="no"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="motor_vehicle" v="designated"/>
+  <tag k="name" v="Avenue de Monte-Carlo"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q96216519"/>
+ </way>
+ <way id="1551240830" visible="true" version="1" changeset="187780077" timestamp="2026-08-21T07:53:53Z" user="Dominik Dachs" uid="1436733">
+  <nd ref="12571844664"/>
+  <nd ref="14109303023"/>
+  <tag k="bicycle" v="no"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="motor_vehicle" v="designated"/>
+  <tag k="name" v="Avenue de Monte-Carlo"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q96216519"/>
+ </way>
+ <relation id="148194" visible="true" version="61" changeset="187780077" timestamp="2026-08-21T07:53:53Z" user="Dominik Dachs" uid="1436733">
+  <member type="node" ref="4937755860" role="start-finish"/>
+  <member type="way" ref="850261588" role="pit_lane"/>
+  <member type="way" ref="39839529" role=""/>
+  <member type="way" ref="1081401615" role=""/>
+  <member type="way" ref="214636589" role=""/>
+  <member type="way" ref="1081401614" role=""/>
+  <member type="way" ref="503475642" role=""/>
+  <member type="way" ref="485746484" role=""/>
+  <member type="way" ref="1081401613" role=""/>
+  <member type="way" ref="348019480" role=""/>
+  <member type="way" ref="1451501763" role=""/>
+  <member type="way" ref="4229536" role=""/>
+  <member type="way" ref="161775592" role=""/>
+  <member type="way" ref="1082515450" role=""/>
+  <member type="way" ref="161752645" role=""/>
+  <member type="way" ref="4229658" role=""/>
+  <member type="way" ref="4230009" role=""/>
+  <member type="way" ref="4230006" role=""/>
+  <member type="way" ref="434567309" role=""/>
+  <member type="way" ref="166399501" role=""/>
+  <member type="way" ref="568187257" role=""/>
+  <member type="way" ref="4230007" role=""/>
+  <member type="way" ref="1148675745" role=""/>
+  <member type="way" ref="1470365906" role=""/>
+  <member type="way" ref="1470365907" role=""/>
+  <member type="way" ref="1148199871" role=""/>
+  <member type="way" ref="41929969" role=""/>
+  <member type="way" ref="4230891" role=""/>
+  <member type="way" ref="1230247123" role=""/>
+  <member type="way" ref="160004393" role=""/>
+  <member type="way" ref="1081401617" role=""/>
+  <member type="way" ref="168681959" role=""/>
+  <member type="way" ref="60767229" role=""/>
+  <member type="way" ref="4226740" role=""/>
+  <member type="way" ref="1019174508" role=""/>
+  <member type="way" ref="166399479" role=""/>
+  <member type="way" ref="1453878835" role=""/>
+  <member type="way" ref="1081401616" role=""/>
+  <member type="way" ref="157719644" role=""/>
+  <member type="way" ref="254596486" role=""/>
+  <member type="way" ref="1551240830" role=""/>
+  <member type="way" ref="1551240829" role=""/>
+  <member type="way" ref="1388331347" role=""/>
+  <tag k="length" v="3337"/>
+  <tag k="name" v="Circuit de Monaco"/>
+  <tag k="sport" v="motor"/>
+  <tag k="start_date" v="1929"/>
+  <tag k="type" v="circuit"/>
+  <tag k="wikidata" v="Q171400"/>
+  <tag k="wikipedia" v="en:Circuit de Monaco"/>
+ </relation>
+</osm>

@@ -50,6 +50,17 @@ verges where the other one is in the way, and the upper road gets a concrete dec
 walls and an underpass for the lower road (extra node "bridge_NN", material "concrete").
 The stretches are written to road_profile.json ("bridges") for the trackside, which puts
 the parapets on the deck. A lap that does not cross itself builds exactly as before.
+
+Retaining walls
+---------------
+On a hillside circuit two stretches of the lap run side by side at different heights (the
+terraces of Monaco: Beau Rivage 30 m above the harbour front, the legs of the hairpin). The
+verges of both end half way between them, and the terrain there is kept under the lower one
+(tools/track/lib/terrain.py: the lowest road wins, up to a mesh cell beyond its verge), so
+the outer edge of the upper verge hangs in the air. With ``[road] retaining_walls = true`` in
+the recipe a concrete wall goes down from the outer edge of every verge that has a lower
+stretch of the lap within WALL_REACH, to WALL_FOOT below that stretch (extra nodes
+"wall_NN", material "concrete"). Off by default: every other track builds as before.
 """
 
 from __future__ import annotations
@@ -76,6 +87,13 @@ VERGE_WIDTH = 30.0       # m, nominal grass strip each side
 VERGE_DROP = 0.25        # m, total drop over VERGE_WIDTH (coordinated with the terrain unit)
 VERGE_ROWS = (0.0, 0.08, 0.3, 1.0)   # fractions of the verge extent
 CHUNK_POINTS = 90        # centreline points per chunk (~180 m)
+WALL_REACH = 52.0        # m in plan view: a lower road this near takes the ground under a
+                         # verge edge (half road + verge + a terrain mesh cell, see terrain.py)
+WALL_FOOT = 2.0          # m: the wall ends this far below the lowest road within reach
+WALL_MIN = 0.5           # m: no wall where the other road is less than this far below
+WALL_ABEAM = 16.0        # m along the other road: it only takes the ground beside itself (a
+                         # terrain mesh cell + terrain.py's COVER_SLACK), not ahead or behind
+WALL_OWN = 10            # centreline points either way that are the verge's own road
 UP = np.array([0.0, 1.0, 0.0])
 
 
@@ -228,6 +246,60 @@ def corner_infills(P: np.ndarray, s: np.ndarray, outer: np.ndarray, ext: np.ndar
     return fills
 
 
+def wall_feet(P: np.ndarray, outer: np.ndarray) -> np.ndarray:
+    """Height of the lowest other stretch of the lap that takes the ground under each point of
+    the verge's outer edge ``outer`` (one per centreline point): a centreline point within
+    WALL_REACH in plan view that has the edge point beside it (within WALL_ABEAM along its
+    own direction) and is not the verge's own road just ahead or behind, which a gradient
+    alone would make "lower". The edge's own height where there is none."""
+    n = len(P)
+    cxz, cy = P[:, [0, 2]], P[:, 1]
+    t = np.roll(cxz, -1, 0) - np.roll(cxz, 1, 0)
+    t = t / np.linalg.norm(t, axis=1, keepdims=True)
+    idx = np.arange(n)
+    low = np.empty(len(outer))
+    for i0 in range(0, len(outer), 256):
+        q = outer[i0:i0 + 256][:, [0, 2]]
+        d = q[:, None, :] - cxz[None, :, :]
+        gap = np.abs(idx[None, :] - np.arange(i0, i0 + len(q))[:, None])
+        other = np.minimum(gap, n - gap) > WALL_OWN
+        takes = ((d ** 2).sum(-1) <= WALL_REACH ** 2) & (np.abs((d * t[None, :, :]).sum(-1)) <= WALL_ABEAM) & other
+        low[i0:i0 + 256] = np.where(takes, cy[None, :], np.inf).min(1)
+    return np.minimum(low, outer[:, 1])
+
+
+def wall_primitive(outer: np.ndarray, low: np.ndarray, out_dir: np.ndarray, s: np.ndarray,
+                   a: int, b: int) -> Primitive | None:
+    """Retaining wall under the verge edge ``outer`` for cross-sections a..b (b may equal n),
+    flat-shaded quads facing ``out_dir``; None when no part of it needs one."""
+    n = len(outer)
+    pos, nrm, uv0, uv1, tris = [], [], [], [], []
+    for k in range(a, b):
+        i, j = k % n, (k + 1) % n
+        if max(outer[i, 1] - low[i], outer[j, 1] - low[j]) < WALL_MIN:
+            continue
+        ta, tb = outer[i], outer[j]
+        fa = np.array([ta[0], min(low[i], ta[1]) - WALL_FOOT, ta[2]])
+        fb = np.array([tb[0], min(low[j], tb[1]) - WALL_FOOT, tb[2]])
+        quad = [ta, tb, fb, fa]
+        nv = np.cross(tb - ta, fb - ta)
+        if np.linalg.norm(nv) < 1e-9:
+            continue                      # zero-length segment (a verge clipped to a point)
+        if np.dot(nv, out_dir[i]) < 0.0:
+            quad, nv = quad[::-1], -nv
+        base = len(pos)
+        for q in quad:
+            pos.append(q)
+            nrm.append(nv / np.linalg.norm(nv))
+            uv0.append((s[i] if q is ta or q is fa else s[i] + (s[1] - s[0]), q[1]))
+            uv1.append((0.0, 6.5))
+        tris.extend([(base, base + 1, base + 2), (base, base + 2, base + 3)])
+    if not tris:
+        return None
+    return Primitive("concrete", np.array(pos), np.array(nrm), np.array(uv0), np.array(uv1),
+                     np.array(tris, dtype=np.uint32))
+
+
 def racing_line(P: np.ndarray, step: float, hw: np.ndarray) -> np.ndarray:
     """Cheap racing-line estimate (lateral offset, + right): inside at apexes, outside on
     entry/exit, from band-passed signed curvature. Only used for the rubbered-in look."""
@@ -366,8 +438,20 @@ def build(track_path: Path = TRACK_DIR / "track.json", out_dir: Path = TRACK_DIR
 
     mats = [Material("tarmac", (0.20, 0.20, 0.21, 1.0), 0.85),
             Material("grass", (0.22, 0.38, 0.14, 1.0), 0.95)]
-    if bridges:
+    walls = (road_cfg or {}).get("retaining_walls", False) is True
+    if bridges or walls:
         mats.append(Material("concrete", (0.62, 0.61, 0.58, 1.0), 0.9))
+    wall_len = 0.0
+    if walls:
+        sides = [(vl[:, 0], -Rh), (vr[:, -1], Rh)]
+        feet = [wall_feet(P, outer) for outer, _ in sides]
+        for c in range(nchunks):
+            parts = [w for (outer, out), low in zip(sides, feet)
+                     if (w := wall_primitive(outer, low, out, s, bounds[c], bounds[c + 1])) is not None]
+            if parts:
+                tri_total += sum(len(w.indices) for w in parts)
+                wall_len += sum(len(w.indices) for w in parts) / 2 * step
+                chunks.append((f"wall_{c:02d}", parts))
     for k, bridge in enumerate(bridges):
         deck = bridge_mod.deck_primitive(bridge, P, T, R, Rh, hw, step)
         tri_total += len(deck.indices)
@@ -396,6 +480,7 @@ def build(track_path: Path = TRACK_DIR / "track.json", out_dir: Path = TRACK_DIR
     (out_dir / "road_profile.json").write_text(json.dumps(profile, separators=(",", ":")))
     road_textures.write_all(out_dir)
     return {"chunks": nchunks, "triangles": tri_total, "bridges": bridges,
+            "wall_length": wall_len,
             "verge_min": float(min(ext_l.min(), ext_r.min())),
             "width": (float(width.min()), float(width.max())),
             "bank": (float(bank.min()), float(bank.max()))}

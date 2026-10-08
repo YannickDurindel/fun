@@ -42,17 +42,18 @@ RECIPE_DIR = os.path.join(ROOT, "tools", "track", "tracks")
 TOP_KEYS = {"id", "name", "full_name", "grand_prix", "country", "country_code", "city", "length_m",
             "turns", "osm", "layout", "elevation", "turn", "road", "terrain"}
 SECTION_KEYS = {
-    "osm": {"relation", "ways", "bbox", "exclude_ways", "avoid_names", "ignore_oneway",
-            "length_tolerance", "round"},
+    "osm": {"relation", "ways", "bbox", "exclude_ways", "extra_ways", "avoid_nodes", "avoid_names",
+            "ignore_oneway", "length_tolerance", "round"},
     "layout": {"direction", "finish", "start", "start_offset_m", "sectors", "spline"},
     "elevation": {"dataset", "smooth_sigma_m", "override"},
     "road": {"base_width", "grid_width", "crossfall", "camber_gain", "bank_keys", "width_keys",
-             "override"},
+             "override", "retaining_walls"},
     "terrain": {"near", "far", "smooth_sigma_m"},
 }
 TURN_KEYS = {"id", "name", "direction", "s"}
 OVERRIDE_KEYS = {"s", "width", "bank", "blend", "note"}
 ELEV_OVERRIDE_KEYS = {"s", "offset", "straighten", "blend", "note"}
+ROUND_KEYS = {"node", "reach_m", "note"}
 DIRECTIONS = {"clockwise", "anticlockwise"}
 
 
@@ -72,6 +73,8 @@ class Recipe:
     osm_ways: list = field(default_factory=list)
     osm_bbox: list | None = None
     exclude_ways: list = field(default_factory=list)
+    extra_ways: list = field(default_factory=list)   # ways the relation / box lacks
+    avoid_nodes: list = field(default_factory=list)  # nodes the lap must not pass through
     avoid_names: list = field(default_factory=list)
     ignore_oneway: bool = False
     length_tolerance: float = 0.03
@@ -150,6 +153,8 @@ def from_dict(track_id, data, overrides=None, calendar_path=CALENDAR, source="")
         length_m=float(meta("length_m", 0.0)), turns=meta("turns", None),
         osm_relation=osm.get("relation"), osm_ways=list(osm.get("ways", [])),
         osm_bbox=osm.get("bbox"), exclude_ways=list(osm.get("exclude_ways", [])),
+        extra_ways=list(osm.get("extra_ways", [])),
+        avoid_nodes=list(osm.get("avoid_nodes", [])),
         avoid_names=list(osm.get("avoid_names", [])),
         ignore_oneway=bool(osm.get("ignore_oneway", False)),
         length_tolerance=float(osm.get("length_tolerance", 0.03)),
@@ -186,9 +191,15 @@ def validate(r):
         if (not isinstance(b, list) or len(b) != 4 or not all(isinstance(x, (int, float)) for x in b)
                 or not (b[0] < b[2] and b[1] < b[3])):
             raise BuildError("recipe: osm.bbox must be [west, south, east, north] in degrees")
-    for name in ("osm_ways", "exclude_ways"):
-        if not all(isinstance(w, int) for w in getattr(r, name)):
-            raise BuildError(f"recipe: osm {name.replace('osm_', '')} must be a list of way ids")
+    for name in ("osm_ways", "exclude_ways", "extra_ways", "avoid_nodes"):
+        if not all(isinstance(w, int) and not isinstance(w, bool) for w in getattr(r, name)):
+            raise BuildError(f"recipe: osm {name.replace('osm_', '')} must be a list of "
+                             f"{'node' if name == 'avoid_nodes' else 'way'} ids")
+    if r.osm_ways and (r.extra_ways or r.avoid_nodes):
+        raise BuildError("recipe: osm.extra_ways / avoid_nodes steer the loop search and have no "
+                         "effect on an explicit osm.ways list; remove one or the other")
+    if not isinstance(r.road.get("retaining_walls", False), bool):
+        raise BuildError("recipe: road.retaining_walls must be true or false")
     if r.direction is not None and r.direction not in DIRECTIONS:
         raise BuildError("recipe: layout.direction must be 'clockwise' or 'anticlockwise'")
     if r.spline not in ("centripetal", "uniform"):

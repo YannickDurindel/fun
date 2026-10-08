@@ -207,6 +207,8 @@ def build_road(recipe, out_dir, log=print):
         log(f"  bridge: deck s = {b['deck'][0]:.0f} to {b['deck'][1]:.0f} m ({b['span'][0]:.0f} to "
             f"{b['span'][1]:.0f} m above open ground), {b['clearance']:.1f} m over the road at "
             f"s = {b['s_lower']:.0f} m")
+    if res.get("wall_length"):
+        log(f"  retaining walls: {res['wall_length']:.0f} m ([road] retaining_walls)")
     _write_materials(recipe, track, out_dir, log)
     _write_trackside_profiles(out_dir, log)
     return res

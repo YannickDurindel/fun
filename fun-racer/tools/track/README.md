@@ -55,6 +55,10 @@ relation = 9291096
 # ways = [1, 2, 3]           # manual fallback: the loop's way ids in driving order
 # bbox = [w, s, e, n]        # or: all raceway ways in a box
 # exclude_ways = [123]       # ways of other layouts the search must not use
+# extra_ways = [456]         # ways the relation / box lacks (a gap in the data); only the
+                             # piece between the nodes shared with the other ways is used
+# avoid_nodes = [789]        # nodes the lap must not pass: picks one of two loops that
+                             # differ only by the way they take through a junction
 # avoid_names = ["short"]    # penalise ways whose name contains one of these
 # ignore_oneway = true       # street circuits: oneway tags follow traffic, not the race
 # length_tolerance = 0.03    # how far the OSM loop may be from the official length
@@ -86,6 +90,8 @@ name = "Tosa"
 [road]
 # base_width = 13.0   grid_width = 15.0   crossfall = 0.015   camber_gain = 2.5
 # bank_keys = [[0.0, -0.015, "grid"], ...]     # full tables replace the defaults
+# retaining_walls = true      # hillside circuits: a wall under each verge edge that has a
+                              # lower stretch of the lap beside it (see Known limits)
 # width_keys = [[0.0, 15.0, "grid"], ...]
 [[road.override]]             # or change single stretches
 s = [2700.0, 2950.0]          # from, to (may wrap around the finish line)
@@ -280,6 +286,15 @@ sector tables. The same check from the command line:
 | Elevation, elsewhere | ASTER GDEM v3, 30 m (`aster30m`) | NASA / METI, free use; credit "ASTER GDEM is a product of METI and NASA". |
 | DEM access | [OpenTopoData](https://www.opentopodata.org) public API | Free service: at most 100 locations per request, 1 request per second, 1000 requests per day. |
 
+`ign` is for circuits in France and Monaco: IGN's RGE ALTI terrain model (ground level, 1 to
+5 m), read from the Geoplateforme altimetry service, 2000 points per request and no quota
+(Monaco: 9 requests). In a city it is the difference between a street profile and a rooftop
+profile: Monaco comes out with a 41.8 m elevation range (42 m published) and a start line
+3.7 m above the sea, where Terrain Tiles give 50.8 m and put Sainte Devote 20 m above the
+start line. The open sea has no data and is taken as sea level. Tunnels are not in a terrain
+model either: straighten them with `[[elevation.override]]`. Credit: IGN, RGE ALTI, Licence
+Ouverte 2.0.
+
 `terrarium` is a fourth choice that does not go through OpenTopoData: Terrain Tiles on AWS
 Open Data (Mapzen's global mosaic of SRTM, EU-DEM, 3DEP and others, as PNG tiles at zoom 13).
 It has no daily quota and a circuit needs only a handful of tiles, so use it when building
@@ -323,6 +338,11 @@ of `track.json` and `terrain.json`. The terrain uses the same dataset as the cen
 - **Crossovers** are built (see How it works), with a deck much longer than the real bridge
   and plain walls instead of the real abutments. Two crossings closer than 140 m along
   either road, or roads that stay on top of each other for longer than that, stop the build.
+- **Terraces.** Where two stretches of the lap run side by side at different heights, the
+  terrain between them follows the lower one and the upper verge would hang in the air.
+  `[road] retaining_walls = true` closes that with plain concrete walls (Monaco: up to 33 m
+  high under Beau Rivage, where the real slope is covered in buildings). Without it such a
+  circuit shows the underside of its verges.
 - **Sea and lakes** have no data in some datasets; voids are filled from the nearest valid
   point in the same grid row, which is fine for a horizon but not for a harbour chicane.
 - **Sparse OSM geometry.** A corner drawn with four nodes becomes a slightly polygonal

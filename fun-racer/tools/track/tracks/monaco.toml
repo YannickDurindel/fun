@@ -1,0 +1,194 @@
+# Circuit de Monaco: the Grand Prix lap on the streets of Monte Carlo and La Condamine
+# (3337 m, 19 turns, clockwise).
+#
+#   .venv/bin/python tools/track/build_track.py monaco --offline
+
+id = "monaco"
+
+[osm]
+# type=circuit relation "Circuit de Monaco" (tagged length=3337). The lap runs on public
+# streets (highway=secondary / residential / service) joined by short highway=raceway links
+# at Sainte Devote, Portier, the Nouvelle Chicane, the Swimming Pool and La Rascasse.
+relation = 148194
+# The streets' oneway tags follow traffic (Boulevard Albert 1er is driven against it).
+ignore_oneway = true
+# The relation has a gap at the top of the Beau Rivage climb: the last 18 m of Avenue
+# Princesse Alice, between the end of Avenue d'Ostende and the slip road into Avenue de
+# Monte-Carlo, is not a member (the way was split off in an edit of August 2026).
+extra_ways = [35092475]
+# "Sortie des stands", the pit exit lane beside Sainte Devote, is a member without a role.
+exclude_ways = [1388331347]
+# The slip road is drawn twice (ways 1551240829 and 1551240830, both members): the lap takes
+# the direct one, not the 5 m detour over the junction node on Avenue Princesse Alice.
+avoid_nodes = [14109303022]
+
+# The slip road leaves Avenue Princesse Alice with a 3 m sideways jog (a 29 and a 42 degree
+# vertex 7 m apart). Massenet is one long left-hander.
+[[osm.round]]
+node = 12571844664
+reach_m = 16.0
+note = "entry of Massenet"
+
+[layout]
+direction = "clockwise"
+# The relation's "start-finish" node (raceway=start-finish, "Depart Grand Prix de Monaco") on
+# Boulevard Albert 1er. The race distance is 78 full laps (260.286 km), so the grid starts on
+# the finish line.
+finish = [43.7350269, 7.4212652]
+
+[elevation]
+# A terrain model (ground level). The surface models are useless here: with Terrain Tiles the
+# hotel and apartment blocks give a 50.8 m range, Sainte Devote 20 m above the start line and
+# the harbour front 15 m above the sea.
+dataset = "ign"
+# The data is clean, so the profile only needs its 1 m steps taken out, not a 45 m blur that
+# would flatten the crest in Casino Square and the drop from Mirabeau to Portier.
+smooth_sigma_m = 12.0
+
+# The tunnel under the Fairmont hotel and its terraces: the terrain model has the platform
+# above (up to 24 m), the road stays at quay level from Portier to the tunnel exit.
+[[elevation.override]]
+s = [1505.0, 1910.0]
+straighten = true
+note = "tunnel"
+
+# The 19 official turns. Automatic detection finds 26: it also numbers the slight right where
+# the lap leaves Avenue d'Ostende (s = 647), both curvature peaks of Massenet (770, 843), the
+# left kink between Mirabeau Haute and the hairpin (1198), the two ends of the tunnel's long
+# right-hander (1545, 1946), the left out of the chicane (2162) and two kinks of Boulevard
+# Albert 1er before the line (3055, 3137). s = the apex found by the detection; the tunnel
+# has no single apex and is pinned in its middle.
+[[turn]]
+id = "T1"
+name = "Sainte Dévote"
+direction = "right"
+s = 219.8
+
+[[turn]]
+id = "T2"
+name = "Beau Rivage"
+direction = "left"
+s = 500.0
+
+[[turn]]
+id = "T3"
+name = "Massenet"
+direction = "left"
+s = 842.8
+
+[[turn]]
+id = "T4"
+name = "Casino"
+direction = "right"
+s = 905.3
+
+[[turn]]
+id = "T5"
+name = "Mirabeau Haute"
+direction = "right"
+s = 1135.2
+
+[[turn]]
+id = "T6"
+name = "Grand Hotel Hairpin"
+direction = "left"
+s = 1268.3
+
+[[turn]]
+id = "T7"
+name = "Mirabeau Bas"
+direction = "right"
+s = 1352.9
+
+[[turn]]
+id = "T8"
+name = "Portier"
+direction = "right"
+s = 1443.7
+
+[[turn]]
+id = "T9"
+name = "Tunnel"
+direction = "right"
+s = 1700.0
+
+[[turn]]
+id = "T10"
+name = "Nouvelle Chicane"
+direction = "left"
+s = 2101.0
+
+[[turn]]
+id = "T11"
+name = "Nouvelle Chicane"
+direction = "right"
+s = 2123.2
+
+[[turn]]
+id = "T12"
+name = "Tabac"
+direction = "left"
+s = 2385.3
+
+[[turn]]
+id = "T13"
+name = "Louis Chiron"
+direction = "left"
+s = 2548.6
+
+[[turn]]
+id = "T14"
+name = "Louis Chiron"
+direction = "right"
+s = 2584.9
+
+[[turn]]
+id = "T15"
+name = "Piscine"
+direction = "right"
+s = 2711.9
+
+[[turn]]
+id = "T16"
+name = "Piscine"
+direction = "left"
+s = 2740.2
+
+[[turn]]
+id = "T17"
+name = "La Rascasse (entry)"
+direction = "left"
+s = 2877.3
+
+[[turn]]
+id = "T18"
+name = "La Rascasse"
+direction = "right"
+s = 2935.8
+
+[[turn]]
+id = "T19"
+name = "Anthony Noghès"
+direction = "right"
+s = 3024.5
+
+[road]
+# Public streets between walls: about 9 to 11 m, and the wider Boulevard Albert 1er with the
+# grid. Estimates; OSM has no widths here.
+base_width = 10.0
+grid_width = 12.0
+# The lap is cut into a hillside: Beau Rivage runs 30 m above the harbour front, and the legs
+# of Mirabeau, the hairpin and Portier are 5 to 8 m above each other, 25 m apart.
+retaining_walls = true
+
+# The Grand Hotel hairpin has a 10 m centreline radius. The real corner is taken on full lock
+# from kerb to kerb; the game's car needs more room than a 10 m road gives it.
+[[road.override]]
+s = [1252.0, 1284.0]
+width = 14.0
+blend = 25.0
+
+[terrain]
+# Ground model too. A light blur takes out the steps of retaining walls and quays, which a
+# 10 m mesh cannot show anyway.
+smooth_sigma_m = 20.0
