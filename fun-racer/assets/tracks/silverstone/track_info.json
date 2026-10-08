@@ -1,0 +1,14 @@
+{
+  "id": "silverstone",
+  "name": "Silverstone Circuit",
+  "grand_prix": "British Grand Prix",
+  "country": "United Kingdom",
+  "country_code": "GB",
+  "city": "Silverstone",
+  "length_m": 5891,
+  "turns": 18,
+  "scene": "res://scenes/tracks/silverstone.tscn",
+  "track_json": "res://assets/tracks/silverstone/track.json",
+  "osm_relation": null,
+  "available": true
+}

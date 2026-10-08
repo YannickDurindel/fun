@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1310 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="17665503" visible="true" version="6" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0732314" lon="-1.0117476"/>
+ <node id="17666132" visible="true" version="5" changeset="16741997" timestamp="2013-06-28T16:38:05Z" user="Andrés31" uid="811230" lat="52.0758663" lon="-1.0164331"/>
+ <node id="1807849029" visible="true" version="2" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0769957" lon="-1.0184893"/>
+ <node id="1810070929" visible="true" version="3" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0755556" lon="-1.0158806"/>
+ <node id="3646753146" visible="true" version="1" changeset="32571696" timestamp="2015-07-11T22:21:36Z" user="narboy" uid="2032231" lat="52.0759323" lon="-1.0165518"/>
+ <node id="8361552392" visible="true" version="1" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0750079" lon="-1.0148965"/>
+ <node id="8361552393" visible="true" version="1" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0764747" lon="-1.0175337"/>
+ <node id="8361552394" visible="true" version="1" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0738799" lon="-1.0128874"/>
+ <node id="8361552395" visible="true" version="1" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0735575" lon="-1.0123136"/>
+ <node id="8361552396" visible="true" version="1" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0733689" lon="-1.0119989"/>
+ <node id="8361552397" visible="true" version="1" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0737199" lon="-1.0126005"/>
+ <way id="169618242" visible="true" version="12" changeset="173013503" timestamp="2025-10-08T16:23:18Z" user="Richiec120" uid="23163054">
+  <nd ref="17665503"/>
+  <nd ref="8361552396"/>
+  <nd ref="8361552395"/>
+  <nd ref="8361552397"/>
+  <nd ref="8361552394"/>
+  <nd ref="8361552392"/>
+  <nd ref="1810070929"/>
+  <nd ref="17666132"/>
+  <nd ref="3646753146"/>
+  <nd ref="8361552393"/>
+  <nd ref="1807849029"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Wellington Straight"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

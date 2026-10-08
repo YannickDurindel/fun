@@ -1,0 +1,14 @@
+{
+  "id": "bahrain",
+  "name": "Bahrain International Circuit",
+  "grand_prix": "Bahrain Grand Prix",
+  "country": "Bahrain",
+  "country_code": "BH",
+  "city": "Sakhir",
+  "length_m": 5412,
+  "turns": 15,
+  "scene": "res://scenes/tracks/bahrain.tscn",
+  "track_json": "res://assets/tracks/bahrain/track.json",
+  "osm_relation": 284538,
+  "available": true
+}

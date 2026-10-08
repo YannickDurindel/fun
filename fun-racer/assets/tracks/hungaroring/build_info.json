@@ -1,0 +1,297 @@
+{
+ "id": "hungaroring",
+ "recipe": "tools/track/tracks/hungaroring.toml",
+ "osm": {
+  "relation": 284557,
+  "loop_ways": [
+   1333262244,
+   231328650
+  ],
+  "raw_length_m": 4371.7,
+  "length_m": 4367.1,
+  "official_length_m": 4381.0,
+  "length_error": -0.00318,
+  "candidates": [
+   {
+    "length_m": 4371.5,
+    "ways": [
+     1333262244,
+     231328650
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 38.97,
+  "max_grade": 0.0687,
+  "min_grade": -0.0699,
+  "origin_m": 240.89
+ },
+ "turns": {
+  "official": 14,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Hungaroring",
+    "direction": "right",
+    "s_apex": 613.8,
+    "min_radius": 24.3
+   },
+   {
+    "id": "T2",
+    "name": "Hungaroring",
+    "direction": "right",
+    "s_apex": 804.4,
+    "min_radius": 153.4
+   },
+   {
+    "id": "T3",
+    "name": "Hungaroring",
+    "direction": "left",
+    "s_apex": 1077.2,
+    "min_radius": 40.4
+   },
+   {
+    "id": "T4",
+    "name": "Hungaroring",
+    "direction": "right",
+    "s_apex": 1305.9,
+    "min_radius": 48.8
+   },
+   {
+    "id": "T5",
+    "name": "Hungaroring",
+    "direction": "right",
+    "s_apex": 1705.1,
+    "min_radius": 170.4
+   },
+   {
+    "id": "T6",
+    "name": "Hungaroring",
+    "direction": "left",
+    "s_apex": 1779.3,
+    "min_radius": 35.6
+   },
+   {
+    "id": "T7",
+    "name": "Hungaroring",
+    "direction": "right",
+    "s_apex": 1983.9,
+    "min_radius": 53.0
+   },
+   {
+    "id": "T8",
+    "name": "Hungaroring",
+    "direction": "right",
+    "s_apex": 2355.0,
+    "min_radius": 22.9
+   },
+   {
+    "id": "T9",
+    "name": "Hungaroring",
+    "direction": "left",
+    "s_apex": 2393.1,
+    "min_radius": 26.3
+   },
+   {
+    "id": "T10",
+    "name": "Hungaroring",
+    "direction": "left",
+    "s_apex": 2577.6,
+    "min_radius": 36.7
+   },
+   {
+    "id": "T11",
+    "name": "Hungaroring",
+    "direction": "right",
+    "s_apex": 2710.0,
+    "min_radius": 41.1
+   },
+   {
+    "id": "T12",
+    "name": "Hungaroring",
+    "direction": "left",
+    "s_apex": 2906.6,
+    "min_radius": 97.2
+   },
+   {
+    "id": "T13",
+    "name": "Hungaroring",
+    "direction": "right",
+    "s_apex": 3065.1,
+    "min_radius": 62.1
+   },
+   {
+    "id": "T14",
+    "name": "Hungaroring",
+    "direction": "right",
+    "s_apex": 3504.4,
+    "min_radius": 23.7
+   },
+   {
+    "id": "T15",
+    "name": "Hungaroring",
+    "direction": "left",
+    "s_apex": 3771.2,
+    "min_radius": 35.5
+   },
+   {
+    "id": "T16",
+    "name": "Hungaroring",
+    "direction": "right",
+    "s_apex": 3981.8,
+    "min_radius": 49.7
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 613.8,
+    "direction": "right",
+    "angle_deg": 142.8,
+    "kind": "corner",
+    "min_radius": 24.3,
+    "used": true
+   },
+   {
+    "s_apex": 804.4,
+    "direction": "right",
+    "angle_deg": 34.6,
+    "kind": "corner",
+    "min_radius": 153.4,
+    "used": true
+   },
+   {
+    "s_apex": 1077.2,
+    "direction": "left",
+    "angle_deg": 157.2,
+    "kind": "corner",
+    "min_radius": 40.4,
+    "used": true
+   },
+   {
+    "s_apex": 1305.9,
+    "direction": "right",
+    "angle_deg": 55.0,
+    "kind": "corner",
+    "min_radius": 48.8,
+    "used": true
+   },
+   {
+    "s_apex": 1705.1,
+    "direction": "right",
+    "angle_deg": 15.1,
+    "kind": "corner",
+    "min_radius": 170.4,
+    "used": true
+   },
+   {
+    "s_apex": 1779.3,
+    "direction": "left",
+    "angle_deg": 58.9,
+    "kind": "corner",
+    "min_radius": 35.6,
+    "used": true
+   },
+   {
+    "s_apex": 1983.9,
+    "direction": "right",
+    "angle_deg": 135.5,
+    "kind": "corner",
+    "min_radius": 53.0,
+    "used": true
+   },
+   {
+    "s_apex": 2150.4,
+    "direction": "right",
+    "angle_deg": 14.6,
+    "kind": "kink",
+    "min_radius": 179.2,
+    "used": false
+   },
+   {
+    "s_apex": 2355.0,
+    "direction": "right",
+    "angle_deg": 80.3,
+    "kind": "corner",
+    "min_radius": 22.9,
+    "used": true
+   },
+   {
+    "s_apex": 2393.1,
+    "direction": "left",
+    "angle_deg": 52.5,
+    "kind": "corner",
+    "min_radius": 26.3,
+    "used": true
+   },
+   {
+    "s_apex": 2577.6,
+    "direction": "left",
+    "angle_deg": 67.7,
+    "kind": "corner",
+    "min_radius": 36.7,
+    "used": true
+   },
+   {
+    "s_apex": 2710.0,
+    "direction": "right",
+    "angle_deg": 90.6,
+    "kind": "corner",
+    "min_radius": 41.1,
+    "used": true
+   },
+   {
+    "s_apex": 2906.6,
+    "direction": "left",
+    "angle_deg": 40.5,
+    "kind": "corner",
+    "min_radius": 97.2,
+    "used": true
+   },
+   {
+    "s_apex": 3065.1,
+    "direction": "right",
+    "angle_deg": 73.9,
+    "kind": "corner",
+    "min_radius": 62.1,
+    "used": true
+   },
+   {
+    "s_apex": 3504.4,
+    "direction": "right",
+    "angle_deg": 95.5,
+    "kind": "corner",
+    "min_radius": 23.7,
+    "used": true
+   },
+   {
+    "s_apex": 3630.8,
+    "direction": "left",
+    "angle_deg": 8.3,
+    "kind": "kink",
+    "min_radius": 216.1,
+    "used": false
+   },
+   {
+    "s_apex": 3771.2,
+    "direction": "left",
+    "angle_deg": 180.2,
+    "kind": "corner",
+    "min_radius": 35.5,
+    "used": true
+   },
+   {
+    "s_apex": 3981.8,
+    "direction": "right",
+    "angle_deg": 178.9,
+    "kind": "corner",
+    "min_radius": 49.7,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

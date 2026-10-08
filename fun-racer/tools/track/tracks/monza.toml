@@ -1,10 +1,91 @@
+# Autodromo Nazionale Monza, Grand Prix circuit (5793 m, 11 turns, clockwise).
+#
+#   .venv/bin/python tools/track/build_track.py monza --offline
+
 id = "monza"
 
 [osm]
-bbox = [9.270, 45.608, 9.300, 45.636]
-# The box also holds the old banked oval, the Junior and Pirelli layouts and two alternative
-# pieces of the first chicane. These three make the Grand Prix loop ambiguous:
-#   38168747   pit lane
-#   38168756   alternative Variante del Rettifilo piece
-#   179968267  straight that bypasses the first chicane
-exclude_ways = [38168747, 38168756, 179968267]
+# type=circuit relation of the Grand Prix layout: the pit lane has the role "pit_lane", and
+# node 1828499259 (the start lights, 45.61896 N 9.28117 E) has the roles "start" and "finish".
+relation = 284565
+
+[layout]
+# Monza's timing line is not at the grid. The race distance is 53 laps x 5.793 km - 0.309 km
+# = 306.720 km, so the finish line lies 309 m before the start line. OSM only has the start
+# lights, which stay the start line (relation role); the finish line is the centreline point
+# 309 m before them. It falls level with the timing tower ("Torre Sud", 45.61620 N) and the
+# podium at the south end of the pit building, where the line is.
+finish = [45.616192, 9.280769]
+
+[elevation]
+dataset = "terrarium"
+
+# The official turn table, pinned. Automatic detection finds 12 corners: it also numbers the
+# 17 degree right-hand bend at s = 1149 where the Rettifilo exit swings into Curva Grande,
+# which the official map counts as part of Curva Grande. The Curva del Serraglio, a 10 degree
+# left kink at s = 3290 between Lesmo 2 and Ascari, has no official number either.
+[[turn]]
+id = "T1"
+name = "Variante del Rettifilo"
+direction = "right"
+s = 935.2
+
+[[turn]]
+id = "T2"
+name = "Variante del Rettifilo"
+direction = "left"
+s = 969.2
+
+[[turn]]
+id = "T3"
+name = "Curva Grande"
+direction = "right"
+s = 1332.8
+
+[[turn]]
+id = "T4"
+name = "Variante della Roggia"
+direction = "left"
+s = 2152.1
+
+[[turn]]
+id = "T5"
+name = "Variante della Roggia"
+direction = "right"
+s = 2194.1
+
+[[turn]]
+id = "T6"
+name = "Lesmo 1"
+direction = "right"
+s = 2519.8
+
+[[turn]]
+id = "T7"
+name = "Lesmo 2"
+direction = "right"
+s = 2887.5
+
+[[turn]]
+id = "T8"
+name = "Variante Ascari"
+direction = "left"
+s = 3956.6
+
+[[turn]]
+id = "T9"
+name = "Variante Ascari"
+direction = "right"
+s = 4082.5
+
+[[turn]]
+id = "T10"
+name = "Variante Ascari"
+direction = "left"
+s = 4146.4
+
+[[turn]]
+id = "T11"
+name = "Curva Alboreto (Parabolica)"
+direction = "right"
+s = 5137.6

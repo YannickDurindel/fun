@@ -1,0 +1,35 @@
+{
+ "frame": "Godot metres: x=east, y=up (relative to finish line), z=-north; origin at finish line",
+ "origin_latlon": [
+  52.0682609,
+  -1.0234867
+ ],
+ "origin_elevation_m": 145.89,
+ "plan_scale": 1.0012917700649284,
+ "near": {
+  "file": "terrain_height.bin",
+  "dist_file": "terrain_dist.bin",
+  "x0": -600.0,
+  "z0": -1800.0,
+  "step": 10.0,
+  "nx": 221,
+  "nz": 281
+ },
+ "far": {
+  "file": "terrain_far.bin",
+  "x0": -5400.0,
+  "z0": -6400.0,
+  "step": 200.0,
+  "nx": 61,
+  "nz": 61
+ },
+ "corridor": {
+  "clearance": 0.3,
+  "verge_slope": 0.0,
+  "verge": 30.0,
+  "flat_margin": 21.0,
+  "blend": 40.0,
+  "road_profile": "road_profile.json"
+ },
+ "attribution": "Elevation: Terrain Tiles (Mapzen / AWS Open Data; SRTM, EU-DEM, 3DEP and other sources)."
+}

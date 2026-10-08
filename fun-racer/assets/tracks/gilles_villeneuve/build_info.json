@@ -1,0 +1,311 @@
+{
+ "id": "gilles_villeneuve",
+ "recipe": "tools/track/tracks/gilles_villeneuve.toml",
+ "osm": {
+  "relation": 284595,
+  "loop_ways": [
+   136717490
+  ],
+  "raw_length_m": 4367.1,
+  "length_m": 4362.4,
+  "official_length_m": 4361.0,
+  "length_error": 0.00033,
+  "candidates": [
+   {
+    "length_m": 4367.1,
+    "ways": [
+     136717490
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "start: relation member role (finish line = start line)",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 4.39,
+  "max_grade": 0.0364,
+  "min_grade": -0.0324,
+  "origin_m": 9.88
+ },
+ "turns": {
+  "official": 14,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Circuit Gilles-Villeneuve",
+    "direction": "left",
+    "s_apex": 255.9,
+    "min_radius": 25.0
+   },
+   {
+    "id": "T2",
+    "name": "Circuit Gilles-Villeneuve",
+    "direction": "right",
+    "s_apex": 325.9,
+    "min_radius": 25.2
+   },
+   {
+    "id": "T3",
+    "name": "Circuit Gilles-Villeneuve",
+    "direction": "right",
+    "s_apex": 509.9,
+    "min_radius": 173.1
+   },
+   {
+    "id": "T4",
+    "name": "Circuit Gilles-Villeneuve",
+    "direction": "right",
+    "s_apex": 729.8,
+    "min_radius": 24.2
+   },
+   {
+    "id": "T5",
+    "name": "Circuit Gilles-Villeneuve",
+    "direction": "left",
+    "s_apex": 787.8,
+    "min_radius": 33.2
+   },
+   {
+    "id": "T6",
+    "name": "Circuit Gilles-Villeneuve",
+    "direction": "left",
+    "s_apex": 933.8,
+    "min_radius": 84.2
+   },
+   {
+    "id": "T7",
+    "name": "Circuit Gilles-Villeneuve",
+    "direction": "right",
+    "s_apex": 999.8,
+    "min_radius": 80.0
+   },
+   {
+    "id": "T8",
+    "name": "Circuit Gilles-Villeneuve",
+    "direction": "left",
+    "s_apex": 1259.7,
+    "min_radius": 26.4
+   },
+   {
+    "id": "T9",
+    "name": "Circuit Gilles-Villeneuve",
+    "direction": "right",
+    "s_apex": 1313.7,
+    "min_radius": 41.1
+   },
+   {
+    "id": "T10",
+    "name": "Circuit Gilles-Villeneuve",
+    "direction": "right",
+    "s_apex": 2017.5,
+    "min_radius": 17.3
+   },
+   {
+    "id": "T11",
+    "name": "Circuit Gilles-Villeneuve",
+    "direction": "left",
+    "s_apex": 2051.5,
+    "min_radius": 44.3
+   },
+   {
+    "id": "T12",
+    "name": "Circuit Gilles-Villeneuve",
+    "direction": "left",
+    "s_apex": 2457.4,
+    "min_radius": 210.2
+   },
+   {
+    "id": "T13",
+    "name": "Circuit Gilles-Villeneuve",
+    "direction": "right",
+    "s_apex": 2697.4,
+    "min_radius": 16.7
+   },
+   {
+    "id": "T14",
+    "name": "Circuit Gilles-Villeneuve",
+    "direction": "left",
+    "s_apex": 2819.4,
+    "min_radius": 103.6
+   },
+   {
+    "id": "T15",
+    "name": "Circuit Gilles-Villeneuve",
+    "direction": "right",
+    "s_apex": 3911.1,
+    "min_radius": 18.3
+   },
+   {
+    "id": "T16",
+    "name": "Circuit Gilles-Villeneuve",
+    "direction": "left",
+    "s_apex": 3941.1,
+    "min_radius": 20.6
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 36.0,
+    "direction": "right",
+    "angle_deg": 12.4,
+    "kind": "kink",
+    "min_radius": 296.6,
+    "used": false
+   },
+   {
+    "s_apex": 124.0,
+    "direction": "right",
+    "angle_deg": 5.4,
+    "kind": "kink",
+    "min_radius": 201.3,
+    "used": false
+   },
+   {
+    "s_apex": 255.9,
+    "direction": "left",
+    "angle_deg": 73.6,
+    "kind": "corner",
+    "min_radius": 25.0,
+    "used": true
+   },
+   {
+    "s_apex": 325.9,
+    "direction": "right",
+    "angle_deg": 173.1,
+    "kind": "corner",
+    "min_radius": 25.2,
+    "used": true
+   },
+   {
+    "s_apex": 509.9,
+    "direction": "right",
+    "angle_deg": 21.1,
+    "kind": "corner",
+    "min_radius": 173.1,
+    "used": true
+   },
+   {
+    "s_apex": 729.8,
+    "direction": "right",
+    "angle_deg": 64.8,
+    "kind": "corner",
+    "min_radius": 24.2,
+    "used": true
+   },
+   {
+    "s_apex": 787.8,
+    "direction": "left",
+    "angle_deg": 57.1,
+    "kind": "corner",
+    "min_radius": 33.2,
+    "used": true
+   },
+   {
+    "s_apex": 933.8,
+    "direction": "left",
+    "angle_deg": 20.1,
+    "kind": "corner",
+    "min_radius": 84.2,
+    "used": true
+   },
+   {
+    "s_apex": 999.8,
+    "direction": "right",
+    "angle_deg": 58.1,
+    "kind": "corner",
+    "min_radius": 80.0,
+    "used": true
+   },
+   {
+    "s_apex": 1259.7,
+    "direction": "left",
+    "angle_deg": 105.9,
+    "kind": "corner",
+    "min_radius": 26.4,
+    "used": true
+   },
+   {
+    "s_apex": 1313.7,
+    "direction": "right",
+    "angle_deg": 99.4,
+    "kind": "corner",
+    "min_radius": 41.1,
+    "used": true
+   },
+   {
+    "s_apex": 1745.6,
+    "direction": "right",
+    "angle_deg": 8.1,
+    "kind": "kink",
+    "min_radius": 453.1,
+    "used": false
+   },
+   {
+    "s_apex": 2017.5,
+    "direction": "right",
+    "angle_deg": 71.8,
+    "kind": "corner",
+    "min_radius": 17.3,
+    "used": true
+   },
+   {
+    "s_apex": 2051.5,
+    "direction": "left",
+    "angle_deg": 69.2,
+    "kind": "corner",
+    "min_radius": 44.3,
+    "used": true
+   },
+   {
+    "s_apex": 2457.4,
+    "direction": "left",
+    "angle_deg": 19.3,
+    "kind": "corner",
+    "min_radius": 210.2,
+    "used": true
+   },
+   {
+    "s_apex": 2697.4,
+    "direction": "right",
+    "angle_deg": 188.8,
+    "kind": "corner",
+    "min_radius": 16.7,
+    "used": true
+   },
+   {
+    "s_apex": 2819.4,
+    "direction": "left",
+    "angle_deg": 23.6,
+    "kind": "corner",
+    "min_radius": 103.6,
+    "used": true
+   },
+   {
+    "s_apex": 3207.3,
+    "direction": "right",
+    "angle_deg": 8.2,
+    "kind": "kink",
+    "min_radius": 159.9,
+    "used": false
+   },
+   {
+    "s_apex": 3911.1,
+    "direction": "right",
+    "angle_deg": 66.8,
+    "kind": "corner",
+    "min_radius": 18.3,
+    "used": true
+   },
+   {
+    "s_apex": 3941.1,
+    "direction": "left",
+    "angle_deg": 67.0,
+    "kind": "corner",
+    "min_radius": 20.6,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

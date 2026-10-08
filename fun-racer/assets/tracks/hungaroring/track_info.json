@@ -1,0 +1,14 @@
+{
+  "id": "hungaroring",
+  "name": "Hungaroring",
+  "grand_prix": "Hungarian Grand Prix",
+  "country": "Hungary",
+  "country_code": "HU",
+  "city": "Mogyoród",
+  "length_m": 4381,
+  "turns": 14,
+  "scene": "res://scenes/tracks/hungaroring.tscn",
+  "track_json": "res://assets/tracks/hungaroring/track.json",
+  "osm_relation": 284557,
+  "available": true
+}

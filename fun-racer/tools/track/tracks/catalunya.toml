@@ -1,0 +1,107 @@
+# Circuit de Barcelona-Catalunya, the Grand Prix layout used since 2023: the 2021 turn 10 and
+# the two fast right-handers at the end of the lap instead of the chicane (4657 m, 14 turns).
+#
+#   .venv/bin/python tools/track/build_track.py catalunya --offline
+
+id = "catalunya"
+
+[osm]
+# OSM has three type=circuit relations for the venue:
+#   284540    "Circuit de Catalunya GP": the lap without the chicane (4666 m in OSM)  <- this one
+#   2049529   "Circuit de Catalunya GP": the lap through the chicane (the 2021-22 layout, 4675 m)
+#   21420925  "Circuit de Catalunya MotoGP": the same ways as 284540 plus the long lap penalty
+# The finish and start lines are node members with the roles "finish" / "start"; the grid is
+# 128 m after the timing line (the published offset is 126 m).
+relation = 284540
+
+[elevation]
+dataset = "terrarium"
+
+# The turn table is pinned because of turn 11: the left kink after La Caixa is one continuous
+# left-hand bend with turn 10 in the centreline (the curvature never drops to straight between
+# them), so the automatic detection finds 13 turns and numbers the last three one too low.
+# All other apexes are the automatic ones; turn 12 is pinned to the middle of the long
+# right-hander instead of the curvature peak at its exit (s = 3864).
+[[turn]]
+id = "T1"
+name = "Elf"
+direction = "right"
+s = 840.7
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 958.6
+
+[[turn]]
+id = "T3"
+name = "Renault"
+direction = "right"
+s = 1068.4
+
+[[turn]]
+id = "T4"
+name = "Repsol"
+direction = "right"
+s = 1729.4
+
+[[turn]]
+id = "T5"
+name = "Seat"
+direction = "left"
+s = 2144.8
+
+[[turn]]
+id = "T6"
+name = "Turn 6 (kink)"
+direction = "left"
+s = 2400.4
+
+[[turn]]
+id = "T7"
+name = "Würth"
+direction = "left"
+s = 2546.2
+
+[[turn]]
+id = "T8"
+name = "Turn 8"
+direction = "right"
+s = 2656.0
+
+[[turn]]
+id = "T9"
+name = "Campsa"
+direction = "right"
+s = 2915.6
+
+[[turn]]
+id = "T10"
+name = "La Caixa"
+direction = "left"
+s = 3492.8
+
+[[turn]]
+id = "T11"
+name = "Turn 11 (kink)"
+direction = "left"
+s = 3631.0
+
+[[turn]]
+id = "T12"
+name = "Banc Sabadell"
+direction = "right"
+s = 3790.0
+
+[[turn]]
+id = "T13"
+name = "Europcar"
+direction = "right"
+s = 4057.9
+
+[[turn]]
+id = "T14"
+name = "New Holland"
+direction = "right"
+s = 4305.5

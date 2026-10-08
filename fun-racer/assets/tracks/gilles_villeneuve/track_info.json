@@ -1,0 +1,14 @@
+{
+  "id": "gilles_villeneuve",
+  "name": "Circuit Gilles Villeneuve",
+  "grand_prix": "Canadian Grand Prix",
+  "country": "Canada",
+  "country_code": "CA",
+  "city": "Montréal",
+  "length_m": 4361,
+  "turns": 14,
+  "scene": "res://scenes/tracks/gilles_villeneuve.tscn",
+  "track_json": "res://assets/tracks/gilles_villeneuve/track.json",
+  "osm_relation": 284595,
+  "available": true
+}

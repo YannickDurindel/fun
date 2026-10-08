@@ -1,0 +1,14 @@
+{
+  "id": "lusail",
+  "name": "Lusail International Circuit",
+  "grand_prix": "Qatar Grand Prix",
+  "country": "Qatar",
+  "country_code": "QA",
+  "city": "Lusail",
+  "length_m": 5419,
+  "turns": 16,
+  "scene": "res://scenes/tracks/lusail.tscn",
+  "track_json": "res://assets/tracks/lusail/track.json",
+  "osm_relation": null,
+  "available": true
+}

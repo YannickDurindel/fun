@@ -1,0 +1,273 @@
+{
+ "id": "monza",
+ "recipe": "tools/track/tracks/monza.toml",
+ "osm": {
+  "relation": 284565,
+  "loop_ways": [
+   179968254,
+   179968226,
+   179968249,
+   179968239,
+   179968257,
+   179968234,
+   19842206,
+   179968242,
+   179968264,
+   179968220,
+   179968262,
+   179968245,
+   179968263,
+   179968229,
+   179968251,
+   179968230,
+   179968252,
+   179968228,
+   1443867792,
+   1443867793
+  ],
+  "raw_length_m": 5801.0,
+  "length_m": 5797.0,
+  "official_length_m": 5793.0,
+  "length_error": 0.0007,
+  "candidates": [
+   {
+    "length_m": 5800.7,
+    "ways": [
+     179968254,
+     179968226,
+     179968249,
+     179968239,
+     179968257,
+     179968234,
+     19842206,
+     179968242,
+     179968264,
+     179968220,
+     179968262,
+     179968245,
+     179968263,
+     179968229,
+     179968251,
+     179968230,
+     179968252,
+     179968228,
+     1443867792,
+     1443867793
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 17.52,
+  "max_grade": 0.0486,
+  "min_grade": -0.0534,
+  "origin_m": 183.31
+ },
+ "turns": {
+  "official": 11,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Variante del Rettifilo",
+    "direction": "right",
+    "s_apex": 935.2,
+    "min_radius": 13.2
+   },
+   {
+    "id": "T2",
+    "name": "Variante del Rettifilo",
+    "direction": "left",
+    "s_apex": 969.2,
+    "min_radius": 14.3
+   },
+   {
+    "id": "T3",
+    "name": "Turn 3",
+    "direction": "right",
+    "s_apex": 1149.0,
+    "min_radius": 264.1
+   },
+   {
+    "id": "T4",
+    "name": "Curva Biassono",
+    "direction": "right",
+    "s_apex": 1332.8,
+    "min_radius": 221.8
+   },
+   {
+    "id": "T5",
+    "name": "Variante della Roggia",
+    "direction": "left",
+    "s_apex": 2152.1,
+    "min_radius": 19.2
+   },
+   {
+    "id": "T6",
+    "name": "Variante della Roggia",
+    "direction": "right",
+    "s_apex": 2194.1,
+    "min_radius": 20.4
+   },
+   {
+    "id": "T7",
+    "name": "Lesmo 1",
+    "direction": "right",
+    "s_apex": 2519.8,
+    "min_radius": 68.3
+   },
+   {
+    "id": "T8",
+    "name": "Lesmo 2",
+    "direction": "right",
+    "s_apex": 2887.5,
+    "min_radius": 31.8
+   },
+   {
+    "id": "T9",
+    "name": "Curva Vialone",
+    "direction": "left",
+    "s_apex": 3956.6,
+    "min_radius": 28.8
+   },
+   {
+    "id": "T10",
+    "name": "Variante Ascari",
+    "direction": "right",
+    "s_apex": 4082.5,
+    "min_radius": 90.9
+   },
+   {
+    "id": "T11",
+    "name": "Variante Ascari",
+    "direction": "left",
+    "s_apex": 4146.4,
+    "min_radius": 39.1
+   },
+   {
+    "id": "T12",
+    "name": "Curva Alboreto",
+    "direction": "right",
+    "s_apex": 5137.6,
+    "min_radius": 62.4
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 935.2,
+    "direction": "right",
+    "angle_deg": 95.6,
+    "kind": "corner",
+    "min_radius": 13.2,
+    "used": true
+   },
+   {
+    "s_apex": 969.2,
+    "direction": "left",
+    "angle_deg": 115.4,
+    "kind": "corner",
+    "min_radius": 14.3,
+    "used": true
+   },
+   {
+    "s_apex": 1149.0,
+    "direction": "right",
+    "angle_deg": 17.2,
+    "kind": "corner",
+    "min_radius": 264.1,
+    "used": true
+   },
+   {
+    "s_apex": 1332.8,
+    "direction": "right",
+    "angle_deg": 77.4,
+    "kind": "corner",
+    "min_radius": 221.8,
+    "used": true
+   },
+   {
+    "s_apex": 2152.1,
+    "direction": "left",
+    "angle_deg": 69.3,
+    "kind": "corner",
+    "min_radius": 19.2,
+    "used": true
+   },
+   {
+    "s_apex": 2194.1,
+    "direction": "right",
+    "angle_deg": 62.2,
+    "kind": "corner",
+    "min_radius": 20.4,
+    "used": true
+   },
+   {
+    "s_apex": 2268.0,
+    "direction": "left",
+    "angle_deg": 7.2,
+    "kind": "kink",
+    "min_radius": 253.3,
+    "used": false
+   },
+   {
+    "s_apex": 2519.8,
+    "direction": "right",
+    "angle_deg": 101.5,
+    "kind": "corner",
+    "min_radius": 68.3,
+    "used": true
+   },
+   {
+    "s_apex": 2887.5,
+    "direction": "right",
+    "angle_deg": 65.2,
+    "kind": "corner",
+    "min_radius": 31.8,
+    "used": true
+   },
+   {
+    "s_apex": 3291.2,
+    "direction": "left",
+    "angle_deg": 9.1,
+    "kind": "kink",
+    "min_radius": 438.9,
+    "used": false
+   },
+   {
+    "s_apex": 3956.6,
+    "direction": "left",
+    "angle_deg": 54.6,
+    "kind": "corner",
+    "min_radius": 28.8,
+    "used": true
+   },
+   {
+    "s_apex": 4082.5,
+    "direction": "right",
+    "angle_deg": 58.7,
+    "kind": "corner",
+    "min_radius": 90.9,
+    "used": true
+   },
+   {
+    "s_apex": 4146.4,
+    "direction": "left",
+    "angle_deg": 44.6,
+    "kind": "corner",
+    "min_radius": 39.1,
+    "used": true
+   },
+   {
+    "s_apex": 5137.6,
+    "direction": "right",
+    "angle_deg": 173.5,
+    "kind": "corner",
+    "min_radius": 62.4,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

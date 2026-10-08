@@ -1,0 +1,123 @@
+# Yas Marina Circuit, Abu Dhabi: the Grand Prix layout used since 2021 (5281 m, 16 turns,
+# anticlockwise).
+#
+#   .venv/bin/python tools/track/build_track.py yas_marina --offline
+
+id = "yas_marina"
+
+[osm]
+# type=circuit relation "Yas Marina Circuit": six ways of the current layout (5303 m in OSM)
+# and the pit entry lane (way 176695254, named "Pit Lane", which does not close a loop).
+relation = 11378665
+
+[layout]
+direction = "anticlockwise"
+# OSM has no start / finish nodes. The timing line is on the pit straight shortly after the
+# last corner, in front of the main grandstand; this position is an estimate (about 110 m
+# after the Turn 16 apex), not a surveyed point.
+finish = [24.46976, 54.60374]
+# The grid is ahead of the timing line: 58 laps x 5.281 km = 306.298 km against an official
+# race distance of 306.183 km, so the start line is 115 m after the finish line.
+start_offset_m = 115.0
+
+[elevation]
+dataset = "terrarium"
+
+# The official 16 turns, pinned. Automatic detection finds 17 because the long right-hander of
+# Turn 3 has two curvature peaks (s = 803 and s = 901); everything else matches. Few corners
+# of this circuit have names: the hairpin and the banked left-hander built in 2021 do.
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 426.6
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 677.8
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "right"
+s = 901.1
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 1070.6
+
+[[turn]]
+id = "T5"
+name = "North Hairpin"
+direction = "left"
+s = 1507.1
+
+[[turn]]
+id = "T6"
+name = "Turn 6 (chicane)"
+direction = "left"
+s = 2701.3
+
+[[turn]]
+id = "T7"
+name = "Turn 7 (chicane)"
+direction = "right"
+s = 2767.1
+
+[[turn]]
+id = "T8"
+name = "Turn 8 (kink)"
+direction = "left"
+s = 2916.6
+
+[[turn]]
+id = "T9"
+name = "Marsa Corner"
+direction = "left"
+s = 3728.0
+
+[[turn]]
+id = "T10"
+name = "Turn 10 (kink)"
+direction = "right"
+s = 4152.6
+
+[[turn]]
+id = "T11"
+name = "Turn 11 (kink)"
+direction = "right"
+s = 4276.2
+
+[[turn]]
+id = "T12"
+name = "Turn 12"
+direction = "right"
+s = 4417.8
+
+[[turn]]
+id = "T13"
+name = "Turn 13 (hotel)"
+direction = "left"
+s = 4525.4
+
+[[turn]]
+id = "T14"
+name = "Turn 14 (hotel)"
+direction = "left"
+s = 4651.0
+
+[[turn]]
+id = "T15"
+name = "Turn 15"
+direction = "right"
+s = 4954.1
+
+[[turn]]
+id = "T16"
+name = "Turn 16"
+direction = "right"
+s = 5169.4

@@ -1,0 +1,129 @@
+# Lusail International Circuit, Grand Prix layout (5419 m, 16 turns, clockwise).
+#
+#   .venv/bin/python tools/track/build_track.py lusail --offline
+
+id = "lusail"
+
+[osm]
+# Relation 21297662 (type=circuit) exists, but it lists the pit lane and the MotoGP long lap
+# loop without roles, so the box is as good. The box also holds the kart track.
+bbox = [51.440, 25.477, 51.466, 25.502]
+# Not part of the lap. The loop through the pit lane is 5408 m, as close to the official
+# length as the racing loop (5432 m), and only its name rules it out: exclude it for good.
+#   196193732   pit lane
+#   1037707300  F1 pit entry
+#   1004121314  MotoGP pit entry
+#   1004121313  MotoGP long lap penalty loop
+exclude_ways = [196193732, 1037707300, 1004121314, 1004121313]
+
+[layout]
+# OSM node 14134811030, tagged raceway=start-finish (a value the pipeline does not read).
+# No separate start line is mapped: the grid starts at the finish line.
+finish = [25.4890496, 51.4497373]
+
+[elevation]
+dataset = "terrarium"
+# The site is nearly flat desert, and the DEM noise (about +/- 2 m over 200 m) is as large as
+# the real relief. The default 45 m gives fake crests with 6 % ramps; a long window keeps
+# only the long-wave shape.
+smooth_sigma_m = 200.0
+
+# The official numbering, pinned. Automatic detection differs in two places: it numbers a
+# 7 degree kink on the main straight (s = 262, a 3 m sideways jog in the OSM way at the pit
+# exit, not a corner), and it merges the flat-out Turn 11 sweep (radius about 335 m) into
+# Turn 10. The corners of Lusail have no official names.
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "right"
+s = 548.9
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 862.2
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "right"
+s = 1065.8
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "right"
+s = 1481.0
+
+[[turn]]
+id = "T5"
+name = "Turn 5"
+direction = "right"
+s = 1634.7
+
+[[turn]]
+id = "T6"
+name = "Turn 6"
+direction = "left"
+s = 1928.1
+
+[[turn]]
+id = "T7"
+name = "Turn 7"
+direction = "right"
+s = 2401.1
+
+[[turn]]
+id = "T8"
+name = "Turn 8"
+direction = "left"
+s = 2477.0
+
+[[turn]]
+id = "T9"
+name = "Turn 9"
+direction = "right"
+s = 2702.5
+
+[[turn]]
+id = "T10"
+name = "Turn 10"
+direction = "left"
+s = 2914.1
+
+[[turn]]
+id = "T11"
+name = "Turn 11"
+direction = "left"
+s = 3130.0
+
+[[turn]]
+id = "T12"
+name = "Turn 12"
+direction = "right"
+s = 3538.8
+
+[[turn]]
+id = "T13"
+name = "Turn 13"
+direction = "right"
+s = 3736.4
+
+[[turn]]
+id = "T14"
+name = "Turn 14"
+direction = "right"
+s = 3948.0
+
+[[turn]]
+id = "T15"
+name = "Turn 15"
+direction = "left"
+s = 4259.4
+
+[[turn]]
+id = "T16"
+name = "Turn 16"
+direction = "right"
+s = 4692.5

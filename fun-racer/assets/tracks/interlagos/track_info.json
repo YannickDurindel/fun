@@ -1,0 +1,14 @@
+{
+  "id": "interlagos",
+  "name": "Autódromo José Carlos Pace",
+  "grand_prix": "São Paulo Grand Prix",
+  "country": "Brazil",
+  "country_code": "BR",
+  "city": "São Paulo",
+  "length_m": 4309,
+  "turns": 15,
+  "scene": "res://scenes/tracks/interlagos.tscn",
+  "track_json": "res://assets/tracks/interlagos/track.json",
+  "osm_relation": 6781071,
+  "available": true
+}

@@ -1,0 +1,143 @@
+# Circuit of the Americas (Austin, Texas): Grand Prix circuit, 5513 m, 20 turns, anticlockwise.
+#
+#   .venv/bin/python tools/track/build_track.py cota --offline
+
+id = "cota"
+
+[osm]
+# type=circuit, "Circuit of the Americas": the 29 ways of the Grand Prix loop (5508 m in OSM)
+# with the finish and start lines as node members. The pit lane, the two short-course links,
+# the "COTA Short Track" duplicate and the kart track are not members, so nothing has to be
+# excluded. (A bounding box does not work here: with the kart track and the short-course ways
+# the raceway graph is too tangled to search.)
+relation = 6537729
+
+[elevation]
+dataset = "terrarium"
+# The default 45 m flattens the crest at Turn 1 (the apex sits on top of the hill); 25 m keeps
+# the climb from the grid at its real gradient without letting DEM noise through.
+smooth_sigma_m = 25.0
+
+# The turn table is pinned. The automatic detection finds 23 lobes: it counts the two gentle
+# left bends on the way into the Turn 15 hairpin, and four apexes in the long right-hander
+# that is officially three turns (16, 17, 18). The unnumbered fourth apex of that
+# right-hander is at s = 4707.
+[[turn]]
+id = "T1"
+name = "Big Red"
+direction = "left"
+s = 659.3
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "right"
+s = 877.8
+
+[[turn]]
+id = "T3"
+name = "Esses (Turn 3)"
+direction = "left"
+s = 1164.3
+
+[[turn]]
+id = "T4"
+name = "Esses (Turn 4)"
+direction = "right"
+s = 1270.5
+
+[[turn]]
+id = "T5"
+name = "Esses (Turn 5)"
+direction = "left"
+s = 1364.7
+
+[[turn]]
+id = "T6"
+name = "Esses (Turn 6)"
+direction = "right"
+s = 1585.2
+
+[[turn]]
+id = "T7"
+name = "Turn 7"
+direction = "left"
+s = 1723.4
+
+[[turn]]
+id = "T8"
+name = "Turn 8"
+direction = "right"
+s = 1859.7
+
+[[turn]]
+id = "T9"
+name = "Turn 9"
+direction = "left"
+s = 1980.0
+
+[[turn]]
+id = "T10"
+name = "Turn 10"
+direction = "left"
+s = 2186.4
+
+[[turn]]
+id = "T11"
+name = "Turn 11 (hairpin)"
+direction = "left"
+s = 2591.2
+
+[[turn]]
+id = "T12"
+name = "Turn 12"
+direction = "left"
+s = 3785.6
+
+[[turn]]
+id = "T13"
+name = "Stadium (Turn 13)"
+direction = "right"
+s = 4020.0
+
+[[turn]]
+id = "T14"
+name = "Stadium (Turn 14)"
+direction = "right"
+s = 4112.2
+
+[[turn]]
+id = "T15"
+name = "Stadium (Turn 15)"
+direction = "left"
+s = 4298.6
+
+[[turn]]
+id = "T16"
+name = "Triple apex (Turn 16)"
+direction = "right"
+s = 4511.0
+
+[[turn]]
+id = "T17"
+name = "Triple apex (Turn 17)"
+direction = "right"
+s = 4617.2
+
+[[turn]]
+id = "T18"
+name = "Triple apex (Turn 18)"
+direction = "right"
+s = 4833.6
+
+[[turn]]
+id = "T19"
+name = "Turn 19"
+direction = "left"
+s = 5056.1
+
+[[turn]]
+id = "T20"
+name = "The Andretti"
+direction = "left"
+s = 5354.7

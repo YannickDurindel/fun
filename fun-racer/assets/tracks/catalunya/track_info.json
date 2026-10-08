@@ -1,0 +1,14 @@
+{
+  "id": "catalunya",
+  "name": "Circuit de Barcelona-Catalunya",
+  "grand_prix": "Spanish Grand Prix",
+  "country": "Spain",
+  "country_code": "ES",
+  "city": "Montmeló",
+  "length_m": 4657,
+  "turns": 14,
+  "scene": "res://scenes/tracks/catalunya.tscn",
+  "track_json": "res://assets/tracks/catalunya/track.json",
+  "osm_relation": 284540,
+  "available": true
+}

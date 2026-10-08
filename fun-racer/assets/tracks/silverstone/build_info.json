@@ -1,0 +1,359 @@
+{
+ "id": "silverstone",
+ "recipe": "tools/track/tracks/silverstone.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   55224167,
+   169854842,
+   169800226,
+   169800223,
+   169800225,
+   169848882,
+   169800224,
+   169800222,
+   169618242,
+   169618240,
+   169618241,
+   169618245,
+   169609611,
+   169730588,
+   3571477,
+   169730585,
+   169730587,
+   169733768,
+   169730586,
+   430075118,
+   169733766,
+   169733769,
+   169733770,
+   169848880,
+   169848884,
+   169848881,
+   55224168
+  ],
+  "raw_length_m": 5887.5,
+  "length_m": 5883.4,
+  "official_length_m": 5891.0,
+  "length_error": -0.00129,
+  "candidates": []
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 12.19,
+  "max_grade": 0.0208,
+  "min_grade": -0.0208,
+  "origin_m": 145.89
+ },
+ "turns": {
+  "official": 18,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Abbey",
+    "direction": "right",
+    "s_apex": 416.5,
+    "min_radius": 46.8
+   },
+   {
+    "id": "T2",
+    "name": "Farm Curve",
+    "direction": "left",
+    "s_apex": 684.8,
+    "min_radius": 113.3
+   },
+   {
+    "id": "T3",
+    "name": "Village",
+    "direction": "right",
+    "s_apex": 915.1,
+    "min_radius": 25.2
+   },
+   {
+    "id": "T4",
+    "name": "The Loop",
+    "direction": "left",
+    "s_apex": 1065.3,
+    "min_radius": 20.2
+   },
+   {
+    "id": "T5",
+    "name": "Aintree",
+    "direction": "left",
+    "s_apex": 1269.5,
+    "min_radius": 42.2
+   },
+   {
+    "id": "T6",
+    "name": "Brooklands",
+    "direction": "left",
+    "s_apex": 2036.4,
+    "min_radius": 40.2
+   },
+   {
+    "id": "T7",
+    "name": "Luffield",
+    "direction": "right",
+    "s_apex": 2198.6,
+    "min_radius": 47.4
+   },
+   {
+    "id": "T8",
+    "name": "Woodcote",
+    "direction": "right",
+    "s_apex": 2585.1,
+    "min_radius": 147.3
+   },
+   {
+    "id": "T9",
+    "name": "Copse",
+    "direction": "right",
+    "s_apex": 3067.6,
+    "min_radius": 66.4
+   },
+   {
+    "id": "T10",
+    "name": "Maggotts",
+    "direction": "left",
+    "s_apex": 3636.3,
+    "min_radius": 127.3
+   },
+   {
+    "id": "T11",
+    "name": "Maggotts",
+    "direction": "right",
+    "s_apex": 3726.4,
+    "min_radius": 61.3
+   },
+   {
+    "id": "T12",
+    "name": "Becketts",
+    "direction": "left",
+    "s_apex": 3928.7,
+    "min_radius": 72.8
+   },
+   {
+    "id": "T13",
+    "name": "Chapel Curve",
+    "direction": "right",
+    "s_apex": 3994.7,
+    "min_radius": 60.0
+   },
+   {
+    "id": "T14",
+    "name": "Chapel Curve",
+    "direction": "left",
+    "s_apex": 4207.0,
+    "min_radius": 95.7
+   },
+   {
+    "id": "T15",
+    "name": "Stowe",
+    "direction": "right",
+    "s_apex": 5026.0,
+    "min_radius": 70.5
+   },
+   {
+    "id": "T16",
+    "name": "Vale",
+    "direction": "left",
+    "s_apex": 5276.3,
+    "min_radius": 255.9
+   },
+   {
+    "id": "T17",
+    "name": "Vale",
+    "direction": "left",
+    "s_apex": 5538.6,
+    "min_radius": 19.7
+   },
+   {
+    "id": "T18",
+    "name": "Club",
+    "direction": "right",
+    "s_apex": 5600.7,
+    "min_radius": 30.4
+   },
+   {
+    "id": "T19",
+    "name": "Club",
+    "direction": "right",
+    "s_apex": 5796.9,
+    "min_radius": 37.8
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 416.5,
+    "direction": "right",
+    "angle_deg": 60.6,
+    "kind": "corner",
+    "min_radius": 46.8,
+    "used": true
+   },
+   {
+    "s_apex": 684.8,
+    "direction": "left",
+    "angle_deg": 46.9,
+    "kind": "corner",
+    "min_radius": 113.3,
+    "used": true
+   },
+   {
+    "s_apex": 915.1,
+    "direction": "right",
+    "angle_deg": 110.0,
+    "kind": "corner",
+    "min_radius": 25.2,
+    "used": true
+   },
+   {
+    "s_apex": 1065.3,
+    "direction": "left",
+    "angle_deg": 140.7,
+    "kind": "corner",
+    "min_radius": 20.2,
+    "used": true
+   },
+   {
+    "s_apex": 1269.5,
+    "direction": "left",
+    "angle_deg": 70.1,
+    "kind": "corner",
+    "min_radius": 42.2,
+    "used": true
+   },
+   {
+    "s_apex": 2036.4,
+    "direction": "left",
+    "angle_deg": 125.7,
+    "kind": "corner",
+    "min_radius": 40.2,
+    "used": true
+   },
+   {
+    "s_apex": 2198.6,
+    "direction": "right",
+    "angle_deg": 200.9,
+    "kind": "corner",
+    "min_radius": 47.4,
+    "used": true
+   },
+   {
+    "s_apex": 2456.9,
+    "direction": "right",
+    "angle_deg": 14.8,
+    "kind": "kink",
+    "min_radius": 138.5,
+    "used": false
+   },
+   {
+    "s_apex": 2585.1,
+    "direction": "right",
+    "angle_deg": 40.7,
+    "kind": "corner",
+    "min_radius": 147.3,
+    "used": true
+   },
+   {
+    "s_apex": 3067.6,
+    "direction": "right",
+    "angle_deg": 73.5,
+    "kind": "corner",
+    "min_radius": 66.4,
+    "used": true
+   },
+   {
+    "s_apex": 3334.0,
+    "direction": "right",
+    "angle_deg": 6.4,
+    "kind": "kink",
+    "min_radius": 419.2,
+    "used": false
+   },
+   {
+    "s_apex": 3636.3,
+    "direction": "left",
+    "angle_deg": 30.1,
+    "kind": "corner",
+    "min_radius": 127.3,
+    "used": true
+   },
+   {
+    "s_apex": 3726.4,
+    "direction": "right",
+    "angle_deg": 53.4,
+    "kind": "corner",
+    "min_radius": 61.3,
+    "used": true
+   },
+   {
+    "s_apex": 3928.7,
+    "direction": "left",
+    "angle_deg": 57.7,
+    "kind": "corner",
+    "min_radius": 72.8,
+    "used": true
+   },
+   {
+    "s_apex": 3994.7,
+    "direction": "right",
+    "angle_deg": 96.0,
+    "kind": "corner",
+    "min_radius": 60.0,
+    "used": true
+   },
+   {
+    "s_apex": 4207.0,
+    "direction": "left",
+    "angle_deg": 32.0,
+    "kind": "corner",
+    "min_radius": 95.7,
+    "used": true
+   },
+   {
+    "s_apex": 5026.0,
+    "direction": "right",
+    "angle_deg": 122.0,
+    "kind": "corner",
+    "min_radius": 70.5,
+    "used": true
+   },
+   {
+    "s_apex": 5276.3,
+    "direction": "left",
+    "angle_deg": 20.1,
+    "kind": "corner",
+    "min_radius": 255.9,
+    "used": true
+   },
+   {
+    "s_apex": 5538.6,
+    "direction": "left",
+    "angle_deg": 95.0,
+    "kind": "corner",
+    "min_radius": 19.7,
+    "used": true
+   },
+   {
+    "s_apex": 5600.7,
+    "direction": "right",
+    "angle_deg": 95.4,
+    "kind": "corner",
+    "min_radius": 30.4,
+    "used": true
+   },
+   {
+    "s_apex": 5796.9,
+    "direction": "right",
+    "angle_deg": 77.8,
+    "kind": "corner",
+    "min_radius": 37.8,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

@@ -1,0 +1,100 @@
+# Autodromo Enzo e Dino Ferrari, Imola: the Grand Prix layout used since 2008 (no Variante
+# Bassa; one run from Rivazza past the pits to Tamburello).
+#
+#   .venv/bin/python tools/track/build_track.py imola --offline
+#
+# Name, country, official length (4909 m) and turn count (19) come from calendar.json.
+
+id = "imola"
+
+[osm]
+# type=circuit relation of the Grand Prix layout. The loop is 4905.7 m in OSM (-0.07 %).
+# Direction (anticlockwise) comes from the oneway tags.
+relation = 9291096
+
+# The start / finish lines are taken from OSM and need nothing here: the finish (timing) line
+# is the node tagged raceway=finish, the start line (pole position) is the relation member
+# with the role "start", 216 m further on towards Tamburello. That is the real arrangement:
+# a 63-lap Grand Prix is 309.049 km, 218 m less than 63 x 4.909 km.
+
+[elevation]
+dataset = "terrarium"
+
+# Names for the automatically detected turns (19 found, in the official order). The detector
+# takes names from the OSM ways; these replace them with the usual short forms and label the
+# four flat-out kinks.
+[[turn]]
+id = "T1"
+name = "Turn 1 (kink)"
+
+[[turn]]
+id = "T2"
+name = "Tamburello"
+
+[[turn]]
+id = "T3"
+name = "Tamburello"
+
+[[turn]]
+id = "T4"
+name = "Tamburello"
+
+[[turn]]
+id = "T5"
+name = "Villeneuve"
+
+[[turn]]
+id = "T6"
+name = "Villeneuve"
+
+[[turn]]
+id = "T7"
+name = "Tosa"
+
+[[turn]]
+id = "T8"
+name = "Turn 8 (kink)"
+
+[[turn]]
+id = "T9"
+name = "Piratella"
+
+[[turn]]
+id = "T10"
+name = "Turn 10 (kink)"
+
+[[turn]]
+id = "T11"
+name = "Acque Minerali"
+
+[[turn]]
+id = "T12"
+name = "Acque Minerali"
+
+[[turn]]
+id = "T13"
+name = "Acque Minerali"
+
+[[turn]]
+id = "T14"
+name = "Variante Alta"
+
+[[turn]]
+id = "T15"
+name = "Variante Alta"
+
+[[turn]]
+id = "T16"
+name = "Turn 16 (kink)"
+
+[[turn]]
+id = "T17"
+name = "Rivazza"
+
+[[turn]]
+id = "T18"
+name = "Rivazza"
+
+[[turn]]
+id = "T19"
+name = "Turn 19 (kink)"

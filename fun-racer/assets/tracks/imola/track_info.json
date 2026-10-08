@@ -1,0 +1,14 @@
+{
+  "id": "imola",
+  "name": "Autodromo Enzo e Dino Ferrari",
+  "grand_prix": "Emilia Romagna Grand Prix",
+  "country": "Italy",
+  "country_code": "IT",
+  "city": "Imola",
+  "length_m": 4909,
+  "turns": 19,
+  "scene": "res://scenes/tracks/imola.tscn",
+  "track_json": "res://assets/tracks/imola/track.json",
+  "osm_relation": 9291096,
+  "available": true
+}

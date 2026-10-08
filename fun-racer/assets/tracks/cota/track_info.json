@@ -1,0 +1,14 @@
+{
+  "id": "cota",
+  "name": "Circuit of the Americas",
+  "grand_prix": "United States Grand Prix",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Austin",
+  "length_m": 5513,
+  "turns": 20,
+  "scene": "res://scenes/tracks/cota.tscn",
+  "track_json": "res://assets/tracks/cota/track.json",
+  "osm_relation": 6537729,
+  "available": true
+}

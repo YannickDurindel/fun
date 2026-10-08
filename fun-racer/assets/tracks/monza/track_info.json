@@ -1,0 +1,14 @@
+{
+  "id": "monza",
+  "name": "Autodromo Nazionale Monza",
+  "grand_prix": "Italian Grand Prix",
+  "country": "Italy",
+  "country_code": "IT",
+  "city": "Monza",
+  "length_m": 5793,
+  "turns": 11,
+  "scene": "res://scenes/tracks/monza.tscn",
+  "track_json": "res://assets/tracks/monza/track.json",
+  "osm_relation": 284565,
+  "available": true
+}

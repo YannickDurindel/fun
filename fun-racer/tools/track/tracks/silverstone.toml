@@ -1,0 +1,160 @@
+id = "silverstone"
+
+[osm]
+# The circuit relation "Silverstone Grand Prix" (51160) holds the ways of several layouts, and
+# the site also has the National and International circuits, two pit lanes, the Stowe circuit
+# and a kart track: the loop search gives up ("too tangled"). So the Grand Prix "Arena" lap is
+# listed by hand, in driving order from the Hamilton Straight.
+ways = [
+    55224167,   # Hamilton Straight
+    169854842,  # Abbey
+    169800226,
+    169800223,  # Farm Curve
+    169800225,
+    169848882,  # Village
+    169800224,  # The Loop
+    169800222,  # Aintree
+    169618242,  # Wellington Straight
+    169618240,  # Brooklands
+    169618241,  # Brooklands
+    169618245,  # Luffield
+    169609611,
+    169730588,  # Woodcote
+    3571477,    # National Pit Straight
+    169730585,  # Copse
+    169730587,
+    169733768,  # Maggotts
+    169730586,
+    430075118,  # Becketts
+    169733766,  # Chapel Curve
+    169733769,  # Chapel Curve
+    169733770,  # Hangar Straight
+    169848880,  # Stowe
+    169848884,  # Vale
+    169848881,  # Vale
+    55224168,   # Club
+]
+
+[layout]
+# OSM tags two lines on the Hamilton Straight: raceway=finish near Club and, about 150 m
+# further on, raceway=start/finish. Formula 1 times the lap at the first and forms the grid at
+# the second (its published offset between the two lines is 134 m). The automatic choice
+# would put both lines on the second node.
+finish = [52.0682609, -1.0234867]
+start = [52.0693366, -1.0221521]
+
+[elevation]
+dataset = "terrarium"
+
+# The official 18 turns. Automatic detection finds the same 18 plus a 19th: the gentle left
+# bend (radius about 250 m) halfway down the straight from Stowe to Vale, which the official
+# map does not number. The table is pinned to leave it out. Maggotts / Becketts / Chapel:
+# sources split the names over turns 10 to 14 differently; this is the common 10-11 / 12-13 / 14.
+
+[[turn]]
+id = "T1"
+name = "Abbey"
+direction = "right"
+s = 416.5
+
+[[turn]]
+id = "T2"
+name = "Farm Curve"
+direction = "left"
+s = 684.8
+
+[[turn]]
+id = "T3"
+name = "Village"
+direction = "right"
+s = 915.1
+
+[[turn]]
+id = "T4"
+name = "The Loop"
+direction = "left"
+s = 1065.3
+
+[[turn]]
+id = "T5"
+name = "Aintree"
+direction = "left"
+s = 1269.5
+
+[[turn]]
+id = "T6"
+name = "Brooklands"
+direction = "left"
+s = 2036.4
+
+[[turn]]
+id = "T7"
+name = "Luffield"
+direction = "right"
+s = 2198.6
+
+[[turn]]
+id = "T8"
+name = "Woodcote"
+direction = "right"
+s = 2585.1
+
+[[turn]]
+id = "T9"
+name = "Copse"
+direction = "right"
+s = 3067.6
+
+[[turn]]
+id = "T10"
+name = "Maggotts"
+direction = "left"
+s = 3636.3
+
+[[turn]]
+id = "T11"
+name = "Maggotts"
+direction = "right"
+s = 3726.4
+
+[[turn]]
+id = "T12"
+name = "Becketts"
+direction = "left"
+s = 3928.7
+
+[[turn]]
+id = "T13"
+name = "Becketts"
+direction = "right"
+s = 3994.7
+
+[[turn]]
+id = "T14"
+name = "Chapel"
+direction = "left"
+s = 4207.0
+
+[[turn]]
+id = "T15"
+name = "Stowe"
+direction = "right"
+s = 5026.0
+
+[[turn]]
+id = "T16"
+name = "Vale"
+direction = "left"
+s = 5538.6
+
+[[turn]]
+id = "T17"
+name = "Club"
+direction = "right"
+s = 5600.7
+
+[[turn]]
+id = "T18"
+name = "Club"
+direction = "right"
+s = 5796.9

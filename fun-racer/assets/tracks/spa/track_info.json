@@ -1,0 +1,14 @@
+{
+  "id": "spa",
+  "name": "Circuit de Spa-Francorchamps",
+  "grand_prix": "Belgian Grand Prix",
+  "country": "Belgium",
+  "country_code": "BE",
+  "city": "Stavelot",
+  "length_m": 7004,
+  "turns": 19,
+  "scene": "res://scenes/tracks/spa.tscn",
+  "track_json": "res://assets/tracks/spa/track.json",
+  "osm_relation": 284560,
+  "available": true
+}

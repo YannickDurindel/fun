@@ -1,0 +1,132 @@
+# Circuit de Spa-Francorchamps, Grand Prix layout (7004 m, clockwise, 19 turns).
+#
+#   .venv/bin/python tools/track/build_track.py spa --offline
+
+id = "spa"
+
+[osm]
+# type=circuit relation of the Grand Prix layout: 30 ways, one closed loop, 7002 m in OSM.
+# The pit lanes, the moto variant of Speaker's Corner and the kart track are not members.
+# Its "start" node is the timing line on the straight between the chicane and La Source.
+relation = 284560
+
+[elevation]
+dataset = "terrarium"
+smooth_sigma_m = 45.0
+
+# The official numbering. The detector finds these 19 plus three flat-out bends that carry no
+# number: the right kink on the descent to Eau Rouge (s = 540), the Kemmel kink (s = 1519)
+# and the second half of the Stavelot right-hander (s = 5252).
+[[turn]]
+id = "T1"
+name = "La Source"
+direction = "right"
+s = 276.2
+
+[[turn]]
+id = "T2"
+name = "Eau Rouge"
+direction = "left"
+s = 938.8
+
+[[turn]]
+id = "T3"
+name = "Raidillon"
+direction = "right"
+s = 1022.9
+
+[[turn]]
+id = "T4"
+name = "Raidillon (crest)"
+direction = "left"
+s = 1165.0
+
+[[turn]]
+id = "T5"
+name = "Les Combes"
+direction = "right"
+s = 2300.0
+
+[[turn]]
+id = "T6"
+name = "Les Combes"
+direction = "left"
+s = 2402.1
+
+[[turn]]
+id = "T7"
+name = "Malmedy"
+direction = "right"
+s = 2528.2
+
+[[turn]]
+id = "T8"
+name = "Bruxelles"
+direction = "right"
+s = 2936.5
+
+[[turn]]
+id = "T9"
+name = "Speaker's Corner"
+direction = "left"
+s = 3174.7
+
+[[turn]]
+id = "T10"
+name = "Pouhon"
+direction = "left"
+s = 3767.2
+
+[[turn]]
+id = "T11"
+name = "Pouhon (Double Gauche)"
+direction = "left"
+s = 3995.4
+
+[[turn]]
+id = "T12"
+name = "Fagnes"
+direction = "right"
+s = 4427.8
+
+[[turn]]
+id = "T13"
+name = "Fagnes"
+direction = "left"
+s = 4575.9
+
+[[turn]]
+id = "T14"
+name = "Campus"
+direction = "right"
+s = 4866.2
+
+[[turn]]
+id = "T15"
+name = "Stavelot (Courbe Paul Frère)"
+direction = "right"
+s = 5068.3
+
+[[turn]]
+id = "T16"
+name = "Blanchimont"
+direction = "left"
+s = 5742.9
+
+[[turn]]
+id = "T17"
+name = "Blanchimont"
+direction = "left"
+s = 6107.2
+
+[[turn]]
+id = "T18"
+name = "Bus Stop"
+direction = "right"
+s = 6633.7
+
+[[turn]]
+id = "T19"
+name = "Bus Stop"
+direction = "left"
+s = 6687.7

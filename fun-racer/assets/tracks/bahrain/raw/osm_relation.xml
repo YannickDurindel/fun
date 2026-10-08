@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1303 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="30957845" visible="true" version="6" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0367599" lon="50.5106843"/>
+ <node id="30957846" visible="true" version="9" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0274003" lon="50.5102752"/>
+ <node id="30957859" visible="true" version="9" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0295603" lon="50.5174496"/>
+ <node id="30957860" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0301345" lon="50.5171901"/>
+ <node id="30957861" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0306364" lon="50.5161479"/>
+ <node id="30957863" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0307772" lon="50.5155622"/>
+ <node id="30957864" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0307328" lon="50.5151845"/>
+ <node id="30957865" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0305933" lon="50.5148445"/>
+ <node id="30957866" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0305443" lon="50.5147679"/>
+ <node id="30957867" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0303621" lon="50.5145617"/>
+ <node id="30957870" visible="true" version="7" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0296470" lon="50.5142109"/>
+ <node id="30957871" visible="true" version="7" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0292995" lon="50.5140094"/>
+ <node id="30957872" visible="true" version="7" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0292260" lon="50.5139485"/>
+ <node id="30957873" visible="true" version="7" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0291472" lon="50.5138738"/>
+ <node id="30957874" visible="true" version="7" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0289428" lon="50.5136176"/>
+ <node id="30957875" visible="true" version="7" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0288415" lon="50.5134228"/>
+ <node id="30957876" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0287524" lon="50.5131212"/>
+ <node id="30957879" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0288694" lon="50.5123989"/>
+ <node id="30957882" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0340194" lon="50.5125352"/>
+ <node id="30957887" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0351502" lon="50.5130815"/>
+ <node id="30957889" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0345908" lon="50.5135124"/>
+ <node id="30957890" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0343848" lon="50.5135100"/>
+ <node id="30957896" visible="true" version="9" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0314981" lon="50.5133866"/>
+ <node id="30957898" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0329283" lon="50.5146508"/>
+ <node id="30957899" visible="true" version="9" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0328024" lon="50.5145234"/>
+ <node id="30957900" visible="true" version="9" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0331074" lon="50.5149906"/>
+ <node id="30957901" visible="true" version="10" changeset="179638143" timestamp="2026-03-10T12:55:28Z" user="Aya Samir" uid="15567285" lat="26.0331230" lon="50.5151924"/>
+ <node id="30957902" visible="true" version="9" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0331015" lon="50.5153540"/>
+ <node id="30957904" visible="true" version="9" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0330526" lon="50.5159384"/>
+ <node id="30957906" visible="true" version="9" changeset="179638143" timestamp="2026-03-10T12:55:28Z" user="Aya Samir" uid="15567285" lat="26.0333238" lon="50.5163258"/>
+ <node id="30957909" visible="true" version="9" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0340378" lon="50.5167796"/>
+ <node id="30957910" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0348982" lon="50.5178229"/>
+ <node id="30957913" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0352430" lon="50.5182826"/>
+ <node id="30957915" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0355310" lon="50.5183478"/>
+ <node id="30957917" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0359827" lon="50.5164979"/>
+ <node id="30957919" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0366086" lon="50.5127891"/>
+ <node id="30957921" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0363671" lon="50.5117156"/>
+ <node id="30957922" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0363440" lon="50.5116293"/>
+ <node id="30957923" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0363623" lon="50.5115105"/>
+ <node id="30957924" visible="true" version="8" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0364008" lon="50.5114473"/>
+ <node id="30957925" visible="true" version="7" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0368645" lon="50.5109077"/>
+ <node id="30957926" visible="true" version="7" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0368985" lon="50.5107877"/>
+ <node id="30957927" visible="true" version="6" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0368717" lon="50.5107284"/>
+ <node id="2764942862" visible="true" version="6" changeset="179633582" timestamp="2026-03-10T11:30:53Z" user="Aya Samir" uid="15567285" lat="26.0365852" lon="50.5129493"/>
+ <node id="4166639256" visible="true" version="4" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0291694" lon="50.5123110"/>
+ <node id="4166639267" visible="true" version="4" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0346246" lon="50.5174501"/>
+ <node id="4166639268" visible="true" version="5" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0315470" lon="50.5134514"/>
+ <node id="4166639271" visible="true" version="3" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0292643" lon="50.5171178"/>
+ <node id="5425857257" visible="true" version="3" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0260831" lon="50.5106695"/>
+ <node id="5425857259" visible="true" version="3" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0294807" lon="50.5173938"/>
+ <node id="5425857260" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0293068" lon="50.5171859"/>
+ <node id="5425857261" visible="true" version="3" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0300222" lon="50.5173053"/>
+ <node id="5425857262" visible="true" version="3" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0302884" lon="50.5145016"/>
+ <node id="5425857263" visible="true" version="3" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0301286" lon="50.5144031"/>
+ <node id="5425857264" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0294559" lon="50.5141155"/>
+ <node id="5425857265" visible="true" version="3" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0307362" lon="50.5158675"/>
+ <node id="5425857266" visible="true" version="3" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0291145" lon="50.5123102"/>
+ <node id="5425857267" visible="true" version="3" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0289092" lon="50.5123680"/>
+ <node id="5425857271" visible="true" version="3" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0287739" lon="50.5132211"/>
+ <node id="5425857272" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0288884" lon="50.5135226"/>
+ <node id="5425857273" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0290043" lon="50.5137071"/>
+ <node id="5425857274" visible="true" version="3" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0351958" lon="50.5130097"/>
+ <node id="5425857278" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0337111" lon="50.5165139"/>
+ <node id="5425857279" visible="true" version="3" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0368956" lon="50.5108526"/>
+ <node id="5425857280" visible="true" version="3" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0365959" lon="50.5125017"/>
+ <node id="5425857281" visible="true" version="3" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0365969" lon="50.5128922"/>
+ <node id="5425857282" visible="true" version="3" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0356454" lon="50.5182962"/>
+ <node id="5425857283" visible="true" version="3" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0353720" lon="50.5183308"/>
+ <node id="5425857284" visible="true" version="3" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0341974" lon="50.5169465"/>
+ <node id="7051739529" visible="true" version="3" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0268664" lon="50.5102595"/>
+ <node id="7051739530" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0267851" lon="50.5102721"/>
+ <node id="7051739531" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0266262" lon="50.5103177"/>
+ <node id="7051739532" visible="true" version="4" changeset="183460522" timestamp="2026-05-31T18:10:40Z" user="woodpeck_repair" uid="145231" lat="26.0271123" lon="50.5102632"/>
+ <node id="7051739535" visible="true" version="3" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0260753" lon="50.5107621"/>
+ <node id="12563985121" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0366117" lon="50.5126852"/>
+ <node id="12563985130" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0333943" lon="50.5163611"/>
+ <node id="12563985131" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0332265" lon="50.5162557"/>
+ <node id="12563985133" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0330727" lon="50.5160132"/>
+ <node id="12563985134" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0296514" lon="50.5174756"/>
+ <node id="12563985135" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0330400" lon="50.5157831"/>
+ <node id="12563985136" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0331144" lon="50.5152817"/>
+ <node id="12563985139" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0330890" lon="50.5149241"/>
+ <node id="12563985140" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0330644" lon="50.5148601"/>
+ <node id="12563985141" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0330338" lon="50.5147994"/>
+ <node id="12563985142" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0329838" lon="50.5147227"/>
+ <node id="12563985143" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0328677" lon="50.5145842"/>
+ <node id="12563985147" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0315195" lon="50.5134219"/>
+ <node id="12563985149" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0314776" lon="50.5133052"/>
+ <node id="12563985150" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0315061" lon="50.5131843"/>
+ <node id="12563985151" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0316911" lon="50.5130803"/>
+ <node id="12563985152" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0316287" lon="50.5130952"/>
+ <node id="12563985153" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0315589" lon="50.5131252"/>
+ <node id="12563985155" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0344533" lon="50.5135184"/>
+ <node id="12563985156" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0351011" lon="50.5131504"/>
+ <node id="12563985157" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0348789" lon="50.5133893"/>
+ <node id="12563985158" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0346584" lon="50.5134979"/>
+ <node id="12563985159" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0337462" lon="50.5125122"/>
+ <node id="12563985164" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0352616" lon="50.5127119"/>
+ <node id="12563985166" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0353198" lon="50.5128287"/>
+ <node id="12563985167" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0353091" lon="50.5128488"/>
+ <node id="12563985168" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0353048" lon="50.5127374"/>
+ <node id="12563985169" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0353248" lon="50.5127827"/>
+ <node id="12563985170" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0353252" lon="50.5128061"/>
+ <node id="12563985178" visible="true" version="4" changeset="183460522" timestamp="2026-05-31T18:10:40Z" user="woodpeck_repair" uid="145231" lat="26.0269484" lon="50.5102538"/>
+ <node id="12563985179" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0270305" lon="50.5102550"/>
+ <node id="12563985180" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0267049" lon="50.5102915"/>
+ <node id="12563985181" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0265496" lon="50.5103504"/>
+ <node id="12563985182" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0261189" lon="50.5105939"/>
+ <node id="12563985185" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0260842" lon="50.5108078"/>
+ <node id="12563985187" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0260750" lon="50.5107154"/>
+ <node id="12563985189" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0261771" lon="50.5105381"/>
+ <node id="12563985190" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0261457" lon="50.5105629"/>
+ <node id="12563985194" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0292261" lon="50.5170466"/>
+ <node id="12563985195" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0296991" lon="50.5174765"/>
+ <node id="12563985196" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0295186" lon="50.5174252"/>
+ <node id="12563985197" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0294405" lon="50.5173522"/>
+ <node id="12563985199" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0297463" lon="50.5174690"/>
+ <node id="12563985200" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0297918" lon="50.5174534"/>
+ <node id="12564001101" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0307756" lon="50.5154646"/>
+ <node id="12564001102" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0307720" lon="50.5156596"/>
+ <node id="12564001103" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0307601" lon="50.5157563"/>
+ <node id="12564001104" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0307046" lon="50.5159762"/>
+ <node id="12564001105" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0306730" lon="50.5160633"/>
+ <node id="12564001107" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0302712" lon="50.5169717"/>
+ <node id="12564001108" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0301858" lon="50.5171219"/>
+ <node id="12564001109" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0300780" lon="50.5172530"/>
+ <node id="12564001110" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0299628" lon="50.5173525"/>
+ <node id="12564001111" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0298346" lon="50.5174300"/>
+ <node id="12564001132" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0356868" lon="50.5182026"/>
+ <node id="12564001133" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0356649" lon="50.5182684"/>
+ <node id="12564001134" visible="true" version="3" changeset="179638143" timestamp="2026-03-10T12:55:28Z" user="Aya Samir" uid="15567285" lat="26.0362581" lon="50.5148537"/>
+ <node id="12564001135" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0365780" lon="50.5124116"/>
+ <node id="12564001136" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0366072" lon="50.5125931"/>
+ <node id="12564001137" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0363518" lon="50.5116737"/>
+ <node id="12564001139" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0367905" lon="50.5106853"/>
+ <node id="12564001140" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0368286" lon="50.5109538"/>
+ <node id="12564001141" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0368889" lon="50.5107567"/>
+ <node id="12564001154" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0293703" lon="50.5172724"/>
+ <node id="12564001176" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0339666" lon="50.5167066"/>
+ <node id="12564001177" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0344906" lon="50.5172823"/>
+ <node id="12564001188" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0353103" lon="50.5183125"/>
+ <node id="12564001189" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0354351" lon="50.5183415"/>
+ <node id="12564001191" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0355930" lon="50.5183355"/>
+ <node id="12564001448" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0338112" lon="50.5165784"/>
+ <node id="12564001449" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0336064" lon="50.5164590"/>
+ <node id="12564001450" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0332784" lon="50.5162984"/>
+ <node id="12564001451" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0331798" lon="50.5162061"/>
+ <node id="12564001452" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0331016" lon="50.5160844"/>
+ <node id="12564001454" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0330416" lon="50.5158612"/>
+ <node id="12564001779" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0307531" lon="50.5152753"/>
+ <node id="12564001780" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0307066" lon="50.5150957"/>
+ <node id="12564001781" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0304311" lon="50.5146284"/>
+ <node id="12564001782" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0302104" lon="50.5144486"/>
+ <node id="12564001783" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0297587" lon="50.5142529"/>
+ <node id="12564001784" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0295381" lon="50.5141604"/>
+ <node id="12564001785" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0293762" lon="50.5140651"/>
+ <node id="12564001786" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0290731" lon="50.5137932"/>
+ <node id="12564001787" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0288024" lon="50.5133189"/>
+ <node id="12564001788" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0287380" lon="50.5130198"/>
+ <node id="12564001790" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0287310" lon="50.5128607"/>
+ <node id="12564001791" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0287343" lon="50.5127811"/>
+ <node id="12564001792" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0287424" lon="50.5127002"/>
+ <node id="12564001793" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0287550" lon="50.5126201"/>
+ <node id="12564001794" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0287723" lon="50.5125410"/>
+ <node id="12564001795" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0288024" lon="50.5124771"/>
+ <node id="12564001796" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0288335" lon="50.5124355"/>
+ <node id="12564001797" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0289525" lon="50.5123432"/>
+ <node id="12564001798" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0290048" lon="50.5123231"/>
+ <node id="12564001799" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0290592" lon="50.5123120"/>
+ <node id="12564001800" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0342921" lon="50.5125658"/>
+ <node id="12564001802" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0352851" lon="50.5127207"/>
+ <node id="12564001806" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0350488" lon="50.5132163"/>
+ <node id="12564001807" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0349669" lon="50.5133065"/>
+ <node id="12564001809" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0348272" lon="50.5134244"/>
+ <node id="12564001810" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0347730" lon="50.5134544"/>
+ <node id="12564001811" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0347165" lon="50.5134790"/>
+ <node id="12564001813" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0345222" lon="50.5135192"/>
+ <node id="12564001814" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0318912" lon="50.5130703"/>
+ <node id="12564001815" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0318181" lon="50.5130674"/>
+ <node id="12564001816" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0317544" lon="50.5130710"/>
+ <node id="12564001817" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0319637" lon="50.5130806"/>
+ <node id="12564001819" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0315924" lon="50.5131061"/>
+ <node id="12564001820" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0315297" lon="50.5131517"/>
+ <node id="12564001823" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0314891" lon="50.5132216"/>
+ <node id="12564001825" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0314794" lon="50.5132627"/>
+ <node id="12564001827" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0314840" lon="50.5133471"/>
+ <node id="12564001980" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0368832" lon="50.5108824"/>
+ <node id="12564001981" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0368484" lon="50.5107061"/>
+ <node id="12564001982" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0260978" lon="50.5106298"/>
+ <node id="12564001984" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0261012" lon="50.5108505"/>
+ <node id="12564001995" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0299001" lon="50.5173941"/>
+ <node id="12564001996" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0302315" lon="50.5170489"/>
+ <node id="12564001997" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0303046" lon="50.5168909"/>
+ <node id="12564001998" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0307673" lon="50.5153674"/>
+ <node id="12564001999" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0306368" lon="50.5149252"/>
+ <node id="12564002000" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0304901" lon="50.5146957"/>
+ <node id="12564002007" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0343523" lon="50.5171189"/>
+ <node id="12564002011" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0351293" lon="50.5182001"/>
+ <node id="12564002012" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0356789" lon="50.5182368"/>
+ <node id="12564002015" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0355626" lon="50.5183453"/>
+ <node id="12564002016" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0356210" lon="50.5183189"/>
+ <node id="12564002017" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0363442" lon="50.5115841"/>
+ <node id="12564002018" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0363792" lon="50.5114771"/>
+ <node id="12564002019" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0369008" lon="50.5108204"/>
+ <node id="12564002021" visible="true" version="2" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0368207" lon="50.5106914"/>
+ <node id="13633418985" visible="true" version="1" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0284501" lon="50.5103162"/>
+ <node id="13633419008" visible="true" version="1" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0330473" lon="50.5157074"/>
+ <node id="13633419009" visible="true" version="1" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0360635" lon="50.5106520"/>
+ <node id="13633419012" visible="true" version="1" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0354215" lon="50.5106222"/>
+ <node id="13633419019" visible="true" version="1" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0284805" lon="50.5103183"/>
+ <node id="13633419044" visible="true" version="1" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0365269" lon="50.5132856"/>
+ <node id="13633419052" visible="true" version="1" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0296049" lon="50.5174666"/>
+ <node id="13633419053" visible="true" version="1" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0306745" lon="50.5150093"/>
+ <node id="13633419054" visible="true" version="1" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0353187" lon="50.5127603"/>
+ <node id="13633419055" visible="true" version="1" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0331388" lon="50.5161506"/>
+ <node id="13633419056" visible="true" version="1" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0338910" lon="50.5166394"/>
+ <node id="13633419057" visible="true" version="1" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0347164" lon="50.5175686"/>
+ <node id="13633419058" visible="true" version="1" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0348109" lon="50.5176926"/>
+ <node id="13633419061" visible="true" version="1" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0351795" lon="50.5182436"/>
+ <node id="13633419062" visible="true" version="1" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0350681" lon="50.5181274"/>
+ <node id="13633419063" visible="true" version="1" changeset="179626054" timestamp="2026-03-10T08:57:01Z" user="Aya Samir" uid="15567285" lat="26.0363505" lon="50.5115465"/>
+ <node id="13633704444" visible="true" version="1" changeset="179633582" timestamp="2026-03-10T11:30:53Z" user="Aya Samir" uid="15567285" lat="26.0349772" lon="50.5179552"/>
+ <node id="13633932990" visible="true" version="1" changeset="179638143" timestamp="2026-03-10T12:55:28Z" user="Aya Samir" uid="15567285" lat="26.0320851" lon="50.5124434"/>
+ <node id="13633932993" visible="true" version="1" changeset="179638143" timestamp="2026-03-10T12:55:28Z" user="Aya Samir" uid="15567285" lat="26.0307469" lon="50.5123814"/>
+ <node id="13633933000" visible="true" version="1" changeset="179638143" timestamp="2026-03-10T12:55:28Z" user="Aya Samir" uid="15567285" lat="26.0294075" lon="50.5123207"/>
+ <node id="13633957909" visible="true" version="1" changeset="179638143" timestamp="2026-03-10T12:55:28Z" user="Aya Samir" uid="15567285" lat="26.0287318" lon="50.5129152"/>
+ <node id="13633957919" visible="true" version="1" changeset="179638143" timestamp="2026-03-10T12:55:28Z" user="Aya Samir" uid="15567285" lat="26.0305668" lon="50.5162931"/>
+ <node id="13633957930" visible="true" version="1" changeset="179638143" timestamp="2026-03-10T12:55:28Z" user="Aya Samir" uid="15567285" lat="26.0291364" lon="50.5168689"/>
+ <node id="13633957933" visible="true" version="1" changeset="179638143" timestamp="2026-03-10T12:55:28Z" user="Aya Samir" uid="15567285" lat="26.0284434" lon="50.5154953"/>
+ <node id="13633957938" visible="true" version="1" changeset="179638143" timestamp="2026-03-10T12:55:28Z" user="Aya Samir" uid="15567285" lat="26.0283047" lon="50.5152204"/>
+ <node id="13633957952" visible="true" version="1" changeset="179638143" timestamp="2026-03-10T12:55:28Z" user="Aya Samir" uid="15567285" lat="26.0271404" lon="50.5129142"/>
+ <node id="13633957958" visible="true" version="1" changeset="179638143" timestamp="2026-03-10T12:55:28Z" user="Aya Samir" uid="15567285" lat="26.0278241" lon="50.5142677"/>
+ <node id="13633958085" visible="true" version="1" changeset="179638143" timestamp="2026-03-10T12:55:28Z" user="Aya Samir" uid="15567285" lat="26.0347381" lon="50.5126312"/>
+ <node id="13633958093" visible="true" version="1" changeset="179638143" timestamp="2026-03-10T12:55:28Z" user="Aya Samir" uid="15567285" lat="26.0334113" lon="50.5124950"/>
+ <node id="13633958096" visible="true" version="1" changeset="179638143" timestamp="2026-03-10T12:55:28Z" user="Aya Samir" uid="15567285" lat="26.0333136" lon="50.5133218"/>
+ <node id="13633958103" visible="true" version="1" changeset="179638143" timestamp="2026-03-10T12:55:28Z" user="Aya Samir" uid="15567285" lat="26.0358789" lon="50.5170990"/>
+ <node id="13633958113" visible="true" version="1" changeset="179638143" timestamp="2026-03-10T12:55:28Z" user="Aya Samir" uid="15567285" lat="26.0331217" lon="50.5150861"/>
+ <node id="13633958157" visible="true" version="1" changeset="179638143" timestamp="2026-03-10T12:55:28Z" user="Aya Samir" uid="15567285" lat="26.0262197" lon="50.5110854"/>
+ <way id="4818385" visible="true" version="21" changeset="183460522" timestamp="2026-05-31T18:10:41Z" user="woodpeck_repair" uid="145231">
+  <nd ref="30957859"/>
+  <nd ref="12563985196"/>
+  <nd ref="5425857259"/>
+  <nd ref="12563985197"/>
+  <nd ref="12564001154"/>
+  <nd ref="5425857260"/>
+  <nd ref="4166639271"/>
+  <nd ref="12563985194"/>
+  <nd ref="13633957930"/>
+  <nd ref="13633957933"/>
+  <nd ref="13633957938"/>
+  <nd ref="13633957958"/>
+  <nd ref="13633957952"/>
+  <nd ref="13633958157"/>
+  <nd ref="12564001984"/>
+  <nd ref="12563985185"/>
+  <nd ref="7051739535"/>
+  <nd ref="12563985187"/>
+  <nd ref="5425857257"/>
+  <nd ref="12564001982"/>
+  <nd ref="12563985182"/>
+  <nd ref="12563985190"/>
+  <nd ref="12563985189"/>
+  <nd ref="12563985181"/>
+  <nd ref="7051739531"/>
+  <nd ref="12563985180"/>
+  <nd ref="7051739530"/>
+  <nd ref="7051739529"/>
+  <nd ref="12563985178"/>
+  <nd ref="12563985179"/>
+  <nd ref="7051739532"/>
+  <nd ref="30957846"/>
+  <nd ref="13633418985"/>
+  <nd ref="13633419019"/>
+  <nd ref="13633419012"/>
+  <nd ref="13633419009"/>
+  <nd ref="30957845"/>
+  <nd ref="12564001139"/>
+  <nd ref="12564002021"/>
+  <nd ref="12564001981"/>
+  <nd ref="30957927"/>
+  <nd ref="12564001141"/>
+  <nd ref="30957926"/>
+  <nd ref="12564002019"/>
+  <nd ref="5425857279"/>
+  <nd ref="12564001980"/>
+  <nd ref="30957925"/>
+  <nd ref="12564001140"/>
+  <nd ref="30957924"/>
+  <nd ref="12564002018"/>
+  <nd ref="30957923"/>
+  <nd ref="13633419063"/>
+  <nd ref="12564002017"/>
+  <nd ref="30957922"/>
+  <nd ref="12564001137"/>
+  <nd ref="30957921"/>
+  <nd ref="12564001135"/>
+  <nd ref="5425857280"/>
+  <nd ref="12564001136"/>
+  <nd ref="12563985121"/>
+  <nd ref="30957919"/>
+  <nd ref="5425857281"/>
+  <nd ref="2764942862"/>
+  <nd ref="13633419044"/>
+  <nd ref="12564001134"/>
+  <nd ref="30957917"/>
+  <nd ref="13633958103"/>
+  <nd ref="12564001132"/>
+  <nd ref="12564002012"/>
+  <nd ref="12564001133"/>
+  <nd ref="5425857282"/>
+  <nd ref="12564002016"/>
+  <nd ref="12564001191"/>
+  <nd ref="12564002015"/>
+  <nd ref="30957915"/>
+  <nd ref="12564001189"/>
+  <nd ref="5425857283"/>
+  <nd ref="12564001188"/>
+  <nd ref="30957913"/>
+  <nd ref="13633419061"/>
+  <nd ref="12564002011"/>
+  <nd ref="13633419062"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Grand Prix Circuit"/>
+  <tag k="name:en" v="Grand Prix Circuit"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="881756728" visible="true" version="10" changeset="183460522" timestamp="2026-05-31T18:10:41Z" user="woodpeck_repair" uid="145231">
+  <nd ref="13633419056"/>
+  <nd ref="12564001448"/>
+  <nd ref="5425857278"/>
+  <nd ref="12564001449"/>
+  <nd ref="12563985130"/>
+  <nd ref="30957906"/>
+  <nd ref="12564001450"/>
+  <nd ref="12563985131"/>
+  <nd ref="12564001451"/>
+  <nd ref="13633419055"/>
+  <nd ref="12564001452"/>
+  <nd ref="12563985133"/>
+  <nd ref="30957904"/>
+  <nd ref="12564001454"/>
+  <nd ref="12563985135"/>
+  <nd ref="13633419008"/>
+  <nd ref="30957902"/>
+  <nd ref="12563985136"/>
+  <nd ref="30957901"/>
+  <nd ref="13633958113"/>
+  <nd ref="30957900"/>
+  <nd ref="12563985139"/>
+  <nd ref="12563985140"/>
+  <nd ref="12563985141"/>
+  <nd ref="12563985142"/>
+  <nd ref="30957898"/>
+  <nd ref="12563985143"/>
+  <nd ref="30957899"/>
+  <nd ref="4166639268"/>
+  <nd ref="12563985147"/>
+  <nd ref="30957896"/>
+  <nd ref="12564001827"/>
+  <nd ref="12563985149"/>
+  <nd ref="12564001825"/>
+  <nd ref="12564001823"/>
+  <nd ref="12563985150"/>
+  <nd ref="12564001820"/>
+  <nd ref="12563985153"/>
+  <nd ref="12564001819"/>
+  <nd ref="12563985152"/>
+  <nd ref="12563985151"/>
+  <nd ref="12564001816"/>
+  <nd ref="12564001815"/>
+  <nd ref="12564001814"/>
+  <nd ref="12564001817"/>
+  <nd ref="13633958096"/>
+  <nd ref="30957890"/>
+  <nd ref="12563985155"/>
+  <nd ref="12564001813"/>
+  <nd ref="30957889"/>
+  <nd ref="12563985158"/>
+  <nd ref="12564001811"/>
+  <nd ref="12564001810"/>
+  <nd ref="12564001809"/>
+  <nd ref="12563985157"/>
+  <nd ref="12564001807"/>
+  <nd ref="12564001806"/>
+  <nd ref="12563985156"/>
+  <nd ref="30957887"/>
+  <nd ref="5425857274"/>
+  <nd ref="12563985167"/>
+  <nd ref="12563985166"/>
+  <nd ref="12563985170"/>
+  <nd ref="12563985169"/>
+  <nd ref="13633419054"/>
+  <nd ref="12563985168"/>
+  <nd ref="12564001802"/>
+  <nd ref="12563985164"/>
+  <nd ref="13633958085"/>
+  <nd ref="12564001800"/>
+  <nd ref="30957882"/>
+  <nd ref="12563985159"/>
+  <nd ref="13633958093"/>
+  <nd ref="13633932990"/>
+  <nd ref="13633932993"/>
+  <nd ref="13633933000"/>
+  <nd ref="4166639256"/>
+  <nd ref="5425857266"/>
+  <nd ref="12564001799"/>
+  <nd ref="12564001798"/>
+  <nd ref="12564001797"/>
+  <nd ref="5425857267"/>
+  <nd ref="30957879"/>
+  <nd ref="12564001796"/>
+  <nd ref="12564001795"/>
+  <nd ref="12564001794"/>
+  <nd ref="12564001793"/>
+  <nd ref="12564001792"/>
+  <nd ref="12564001791"/>
+  <nd ref="12564001790"/>
+  <nd ref="13633957909"/>
+  <nd ref="12564001788"/>
+  <nd ref="30957876"/>
+  <nd ref="5425857271"/>
+  <nd ref="12564001787"/>
+  <nd ref="30957875"/>
+  <nd ref="5425857272"/>
+  <nd ref="30957874"/>
+  <nd ref="5425857273"/>
+  <nd ref="12564001786"/>
+  <nd ref="30957873"/>
+  <nd ref="30957872"/>
+  <nd ref="30957871"/>
+  <nd ref="12564001785"/>
+  <nd ref="5425857264"/>
+  <nd ref="12564001784"/>
+  <nd ref="30957870"/>
+  <nd ref="12564001783"/>
+  <nd ref="5425857263"/>
+  <nd ref="12564001782"/>
+  <nd ref="5425857262"/>
+  <nd ref="30957867"/>
+  <nd ref="12564001781"/>
+  <nd ref="12564002000"/>
+  <nd ref="30957866"/>
+  <nd ref="30957865"/>
+  <nd ref="12564001999"/>
+  <nd ref="13633419053"/>
+  <nd ref="12564001780"/>
+  <nd ref="30957864"/>
+  <nd ref="12564001779"/>
+  <nd ref="12564001998"/>
+  <nd ref="12564001101"/>
+  <nd ref="30957863"/>
+  <nd ref="12564001102"/>
+  <nd ref="12564001103"/>
+  <nd ref="5425857265"/>
+  <nd ref="12564001104"/>
+  <nd ref="12564001105"/>
+  <nd ref="30957861"/>
+  <nd ref="13633957919"/>
+  <nd ref="12564001997"/>
+  <nd ref="12564001107"/>
+  <nd ref="12564001996"/>
+  <nd ref="12564001108"/>
+  <nd ref="30957860"/>
+  <nd ref="12564001109"/>
+  <nd ref="5425857261"/>
+  <nd ref="12564001110"/>
+  <nd ref="12564001995"/>
+  <nd ref="12564001111"/>
+  <nd ref="12563985200"/>
+  <nd ref="12563985199"/>
+  <nd ref="12563985195"/>
+  <nd ref="12563985134"/>
+  <nd ref="13633419052"/>
+  <nd ref="30957859"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Grand Prix Circuit"/>
+  <tag k="name:en" v="Grand Prix Circuit"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="881756729" visible="true" version="4" changeset="179633582" timestamp="2026-03-10T11:30:53Z" user="Aya Samir" uid="15567285">
+  <nd ref="13633419062"/>
+  <nd ref="13633704444"/>
+  <nd ref="30957910"/>
+  <nd ref="13633419058"/>
+  <nd ref="13633419057"/>
+  <nd ref="4166639267"/>
+  <nd ref="12564001177"/>
+  <nd ref="12564002007"/>
+  <nd ref="5425857284"/>
+  <nd ref="30957909"/>
+  <nd ref="12564001176"/>
+  <nd ref="13633419056"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Grand Prix Circuit"/>
+  <tag k="name:en" v="Grand Prix Circuit"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <relation id="284538" visible="true" version="16" changeset="179633582" timestamp="2026-03-10T11:30:53Z" user="Aya Samir" uid="15567285">
+  <member type="way" ref="4818385" role=""/>
+  <member type="way" ref="881756729" role=""/>
+  <member type="way" ref="881756728" role=""/>
+  <tag k="int_name" v="Bahrain Grand Prix Circuit"/>
+  <tag k="name" v="حلبة البحرين الدولية"/>
+  <tag k="name:ar" v="حلبة البحرين الدولية"/>
+  <tag k="name:en" v="Bahrain Grand Prix Circuit"/>
+  <tag k="type" v="circuit"/>
+ </relation>
+</osm>

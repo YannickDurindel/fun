@@ -1,0 +1,328 @@
+{
+ "id": "yas_marina",
+ "recipe": "tools/track/tracks/yas_marina.toml",
+ "osm": {
+  "relation": 11378665,
+  "loop_ways": [
+   168477013,
+   1469184731,
+   1469184732,
+   188337196,
+   1255169703,
+   1255169704
+  ],
+  "raw_length_m": 5302.9,
+  "length_m": 5297.9,
+  "official_length_m": 5281.0,
+  "length_error": 0.00319,
+  "candidates": [
+   {
+    "length_m": 5302.9,
+    "ways": [
+     168477013,
+     1469184731,
+     1469184732,
+     188337196,
+     1255169703,
+     1255169704
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 7.64,
+  "max_grade": 0.0565,
+  "min_grade": -0.0704,
+  "origin_m": 2.69
+ },
+ "turns": {
+  "official": 16,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Yas Marina Circuit",
+    "direction": "left",
+    "s_apex": 426.6,
+    "min_radius": 33.2
+   },
+   {
+    "id": "T2",
+    "name": "Yas Marina Circuit",
+    "direction": "left",
+    "s_apex": 677.8,
+    "min_radius": 46.1
+   },
+   {
+    "id": "T3",
+    "name": "Yas Marina Circuit",
+    "direction": "right",
+    "s_apex": 803.4,
+    "min_radius": 123.5
+   },
+   {
+    "id": "T4",
+    "name": "Yas Marina Circuit",
+    "direction": "right",
+    "s_apex": 901.1,
+    "min_radius": 53.7
+   },
+   {
+    "id": "T5",
+    "name": "Yas Marina Circuit",
+    "direction": "left",
+    "s_apex": 1070.6,
+    "min_radius": 288.5
+   },
+   {
+    "id": "T6",
+    "name": "Yas Marina Circuit",
+    "direction": "left",
+    "s_apex": 1507.1,
+    "min_radius": 29.7
+   },
+   {
+    "id": "T7",
+    "name": "Yas Marina Circuit",
+    "direction": "left",
+    "s_apex": 2701.3,
+    "min_radius": 12.4
+   },
+   {
+    "id": "T8",
+    "name": "Yas Marina Circuit",
+    "direction": "right",
+    "s_apex": 2767.1,
+    "min_radius": 15.5
+   },
+   {
+    "id": "T9",
+    "name": "Yas Marina Circuit",
+    "direction": "left",
+    "s_apex": 2916.6,
+    "min_radius": 93.5
+   },
+   {
+    "id": "T10",
+    "name": "Yas Marina Circuit",
+    "direction": "left",
+    "s_apex": 3728.0,
+    "min_radius": 53.4
+   },
+   {
+    "id": "T11",
+    "name": "Yas Marina Circuit",
+    "direction": "right",
+    "s_apex": 4152.6,
+    "min_radius": 65.8
+   },
+   {
+    "id": "T12",
+    "name": "Yas Marina Circuit",
+    "direction": "right",
+    "s_apex": 4276.2,
+    "min_radius": 56.8
+   },
+   {
+    "id": "T13",
+    "name": "Yas Marina Circuit",
+    "direction": "right",
+    "s_apex": 4417.8,
+    "min_radius": 12.7
+   },
+   {
+    "id": "T14",
+    "name": "Yas Marina Circuit",
+    "direction": "left",
+    "s_apex": 4525.4,
+    "min_radius": 32.4
+   },
+   {
+    "id": "T15",
+    "name": "Yas Marina Circuit",
+    "direction": "left",
+    "s_apex": 4651.0,
+    "min_radius": 26.7
+   },
+   {
+    "id": "T16",
+    "name": "Yas Marina Circuit",
+    "direction": "right",
+    "s_apex": 4954.1,
+    "min_radius": 36.4
+   },
+   {
+    "id": "T17",
+    "name": "Yas Marina Circuit",
+    "direction": "right",
+    "s_apex": 5169.4,
+    "min_radius": 21.8
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 426.6,
+    "direction": "left",
+    "angle_deg": 94.1,
+    "kind": "corner",
+    "min_radius": 33.2,
+    "used": true
+   },
+   {
+    "s_apex": 677.8,
+    "direction": "left",
+    "angle_deg": 59.4,
+    "kind": "corner",
+    "min_radius": 46.1,
+    "used": true
+   },
+   {
+    "s_apex": 803.4,
+    "direction": "right",
+    "angle_deg": 35.1,
+    "kind": "corner",
+    "min_radius": 123.5,
+    "used": true
+   },
+   {
+    "s_apex": 901.1,
+    "direction": "right",
+    "angle_deg": 52.6,
+    "kind": "corner",
+    "min_radius": 53.7,
+    "used": true
+   },
+   {
+    "s_apex": 1070.6,
+    "direction": "left",
+    "angle_deg": 20.9,
+    "kind": "corner",
+    "min_radius": 288.5,
+    "used": true
+   },
+   {
+    "s_apex": 1507.1,
+    "direction": "left",
+    "angle_deg": 153.9,
+    "kind": "corner",
+    "min_radius": 29.7,
+    "used": true
+   },
+   {
+    "s_apex": 2701.3,
+    "direction": "left",
+    "angle_deg": 117.7,
+    "kind": "corner",
+    "min_radius": 12.4,
+    "used": true
+   },
+   {
+    "s_apex": 2767.1,
+    "direction": "right",
+    "angle_deg": 84.2,
+    "kind": "corner",
+    "min_radius": 15.5,
+    "used": true
+   },
+   {
+    "s_apex": 2916.6,
+    "direction": "left",
+    "angle_deg": 16.1,
+    "kind": "corner",
+    "min_radius": 93.5,
+    "used": true
+   },
+   {
+    "s_apex": 2992.4,
+    "direction": "left",
+    "angle_deg": 13.2,
+    "kind": "kink",
+    "min_radius": 217.7,
+    "used": false
+   },
+   {
+    "s_apex": 3042.2,
+    "direction": "left",
+    "angle_deg": 4.1,
+    "kind": "kink",
+    "min_radius": 444.5,
+    "used": false
+   },
+   {
+    "s_apex": 3427.0,
+    "direction": "left",
+    "angle_deg": 9.3,
+    "kind": "kink",
+    "min_radius": 388.7,
+    "used": false
+   },
+   {
+    "s_apex": 3728.0,
+    "direction": "left",
+    "angle_deg": 198.6,
+    "kind": "corner",
+    "min_radius": 53.4,
+    "used": true
+   },
+   {
+    "s_apex": 4152.6,
+    "direction": "right",
+    "angle_deg": 25.3,
+    "kind": "corner",
+    "min_radius": 65.8,
+    "used": true
+   },
+   {
+    "s_apex": 4276.2,
+    "direction": "right",
+    "angle_deg": 42.6,
+    "kind": "corner",
+    "min_radius": 56.8,
+    "used": true
+   },
+   {
+    "s_apex": 4417.8,
+    "direction": "right",
+    "angle_deg": 94.0,
+    "kind": "corner",
+    "min_radius": 12.7,
+    "used": true
+   },
+   {
+    "s_apex": 4525.4,
+    "direction": "left",
+    "angle_deg": 82.3,
+    "kind": "corner",
+    "min_radius": 32.4,
+    "used": true
+   },
+   {
+    "s_apex": 4651.0,
+    "direction": "left",
+    "angle_deg": 94.3,
+    "kind": "corner",
+    "min_radius": 26.7,
+    "used": true
+   },
+   {
+    "s_apex": 4954.1,
+    "direction": "right",
+    "angle_deg": 68.0,
+    "kind": "corner",
+    "min_radius": 36.4,
+    "used": true
+   },
+   {
+    "s_apex": 5169.4,
+    "direction": "right",
+    "angle_deg": 112.5,
+    "kind": "corner",
+    "min_radius": 21.8,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

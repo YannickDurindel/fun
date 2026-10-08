@@ -1,0 +1,318 @@
+{
+ "id": "lusail",
+ "recipe": "tools/track/tracks/lusail.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   152483595,
+   1553605580
+  ],
+  "raw_length_m": 5431.8,
+  "length_m": 5429.3,
+  "official_length_m": 5419.0,
+  "length_error": 0.0019,
+  "candidates": [
+   {
+    "length_m": 5431.7,
+    "ways": [
+     152483595,
+     1553605580
+    ]
+   },
+   {
+    "length_m": 3695.7,
+    "ways": [
+     152483595,
+     1553605580,
+     152483595,
+     1316236347
+    ]
+   },
+   {
+    "length_m": 2444.7,
+    "ways": [
+     152483595,
+     1316236348
+    ]
+   },
+   {
+    "length_m": 1037.8,
+    "ways": [
+     1436426769,
+     1316259420
+    ]
+   },
+   {
+    "length_m": 1021.9,
+    "ways": [
+     1316259420
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 4.77,
+  "max_grade": 0.008,
+  "min_grade": -0.0041,
+  "origin_m": 12.4
+ },
+ "turns": {
+  "official": 16,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Turn 1 (kink)",
+    "direction": "right",
+    "s_apex": 261.5,
+    "min_radius": 167.4
+   },
+   {
+    "id": "T2",
+    "name": "Turn 2",
+    "direction": "right",
+    "s_apex": 548.9,
+    "min_radius": 57.4
+   },
+   {
+    "id": "T3",
+    "name": "Turn 3",
+    "direction": "left",
+    "s_apex": 862.2,
+    "min_radius": 49.1
+   },
+   {
+    "id": "T4",
+    "name": "Turn 4",
+    "direction": "right",
+    "s_apex": 1065.8,
+    "min_radius": 99.8
+   },
+   {
+    "id": "T5",
+    "name": "Turn 5",
+    "direction": "right",
+    "s_apex": 1481.0,
+    "min_radius": 59.4
+   },
+   {
+    "id": "T6",
+    "name": "Turn 6",
+    "direction": "right",
+    "s_apex": 1634.7,
+    "min_radius": 61.3
+   },
+   {
+    "id": "T7",
+    "name": "Turn 7",
+    "direction": "left",
+    "s_apex": 1928.1,
+    "min_radius": 31.5
+   },
+   {
+    "id": "T8",
+    "name": "Turn 8",
+    "direction": "right",
+    "s_apex": 2401.1,
+    "min_radius": 58.9
+   },
+   {
+    "id": "T9",
+    "name": "Turn 9",
+    "direction": "left",
+    "s_apex": 2477.0,
+    "min_radius": 179.9
+   },
+   {
+    "id": "T10",
+    "name": "Turn 10",
+    "direction": "right",
+    "s_apex": 2702.5,
+    "min_radius": 64.8
+   },
+   {
+    "id": "T11",
+    "name": "Turn 11",
+    "direction": "left",
+    "s_apex": 2914.1,
+    "min_radius": 43.6
+   },
+   {
+    "id": "T12",
+    "name": "Turn 12",
+    "direction": "right",
+    "s_apex": 3538.8,
+    "min_radius": 91.9
+   },
+   {
+    "id": "T13",
+    "name": "Turn 13",
+    "direction": "right",
+    "s_apex": 3736.4,
+    "min_radius": 66.3
+   },
+   {
+    "id": "T14",
+    "name": "Turn 14",
+    "direction": "right",
+    "s_apex": 3948.0,
+    "min_radius": 61.1
+   },
+   {
+    "id": "T15",
+    "name": "Turn 15",
+    "direction": "left",
+    "s_apex": 4259.4,
+    "min_radius": 63.1
+   },
+   {
+    "id": "T16",
+    "name": "Turn 16",
+    "direction": "right",
+    "s_apex": 4692.5,
+    "min_radius": 60.9
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 217.6,
+    "direction": "left",
+    "angle_deg": 4.7,
+    "kind": "kink",
+    "min_radius": 323.1,
+    "used": false
+   },
+   {
+    "s_apex": 261.5,
+    "direction": "right",
+    "angle_deg": 6.7,
+    "kind": "kink",
+    "min_radius": 167.4,
+    "used": true
+   },
+   {
+    "s_apex": 548.9,
+    "direction": "right",
+    "angle_deg": 150.0,
+    "kind": "corner",
+    "min_radius": 57.4,
+    "used": true
+   },
+   {
+    "s_apex": 862.2,
+    "direction": "left",
+    "angle_deg": 122.1,
+    "kind": "corner",
+    "min_radius": 49.1,
+    "used": true
+   },
+   {
+    "s_apex": 1065.8,
+    "direction": "right",
+    "angle_deg": 43.3,
+    "kind": "corner",
+    "min_radius": 99.8,
+    "used": true
+   },
+   {
+    "s_apex": 1481.0,
+    "direction": "right",
+    "angle_deg": 89.8,
+    "kind": "corner",
+    "min_radius": 59.4,
+    "used": true
+   },
+   {
+    "s_apex": 1634.7,
+    "direction": "right",
+    "angle_deg": 89.2,
+    "kind": "corner",
+    "min_radius": 61.3,
+    "used": true
+   },
+   {
+    "s_apex": 1928.1,
+    "direction": "left",
+    "angle_deg": 153.8,
+    "kind": "corner",
+    "min_radius": 31.5,
+    "used": true
+   },
+   {
+    "s_apex": 2401.1,
+    "direction": "right",
+    "angle_deg": 160.3,
+    "kind": "corner",
+    "min_radius": 58.9,
+    "used": true
+   },
+   {
+    "s_apex": 2477.0,
+    "direction": "left",
+    "angle_deg": 38.6,
+    "kind": "corner",
+    "min_radius": 179.9,
+    "used": true
+   },
+   {
+    "s_apex": 2702.5,
+    "direction": "right",
+    "angle_deg": 66.0,
+    "kind": "corner",
+    "min_radius": 64.8,
+    "used": true
+   },
+   {
+    "s_apex": 2914.1,
+    "direction": "left",
+    "angle_deg": 172.6,
+    "kind": "corner",
+    "min_radius": 43.6,
+    "used": true
+   },
+   {
+    "s_apex": 3538.8,
+    "direction": "right",
+    "angle_deg": 66.7,
+    "kind": "corner",
+    "min_radius": 91.9,
+    "used": true
+   },
+   {
+    "s_apex": 3736.4,
+    "direction": "right",
+    "angle_deg": 60.2,
+    "kind": "corner",
+    "min_radius": 66.3,
+    "used": true
+   },
+   {
+    "s_apex": 3948.0,
+    "direction": "right",
+    "angle_deg": 68.3,
+    "kind": "corner",
+    "min_radius": 61.1,
+    "used": true
+   },
+   {
+    "s_apex": 4259.4,
+    "direction": "left",
+    "angle_deg": 73.3,
+    "kind": "corner",
+    "min_radius": 63.1,
+    "used": true
+   },
+   {
+    "s_apex": 4692.5,
+    "direction": "right",
+    "angle_deg": 123.7,
+    "kind": "corner",
+    "min_radius": 60.9,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

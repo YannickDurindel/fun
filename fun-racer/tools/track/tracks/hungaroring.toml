@@ -1,0 +1,111 @@
+# Hungaroring (Mogyoród, Hungary): the Grand Prix circuit, 4381 m, 14 turns, clockwise.
+#
+#   .venv/bin/python tools/track/build_track.py hungaroring --offline
+
+id = "hungaroring"
+
+[osm]
+relation = 284557       # type=circuit "Hungaroring": two raceway ways, one closed loop, no pit lane
+
+[layout]
+# OSM has no start / finish line. The line is placed from the surroundings mapped in OSM: it
+# lies next to the pit building, about 40 m after the building's last-corner end, with the
+# "Grid 1" to "Grid 3" grandstands along the 200 m behind it, which puts the T1 apex about
+# 610 m after the line. Estimated to about +/- 30 m; not surveyed. The grid starts at the line.
+finish = [47.57890, 19.24832]
+# Approximate sector lines: in the valley before the climb to T4, and on the straight
+# between T11 and T12. (The automatic thirds would put sector 3 between T10 and T11.)
+sectors = [1480.0, 3250.0]
+
+[elevation]
+dataset = "terrarium"
+
+# The official 14 turns, pinned. Automatic detection finds 16: it also numbers the gentle
+# right-hand curve between T1 and T2 (s = 804, radius 153 m) and the right kink at the bottom
+# of the valley before T4 (s = 1705, radius 170 m), which the official map does not count.
+# The names are those of the name nodes on the OSM centreline (Piquet, Hamilton, Forrás,
+# Mansell, Buda, Pest, Duna, Alesi, Schumacher, Senna, Szisz); T5 and the T6 / T7 chicane
+# have none there.
+[[turn]]
+id = "T1"
+name = "Piquet"
+direction = "right"
+s = 613.8
+
+[[turn]]
+id = "T2"
+name = "Hamilton"
+direction = "left"
+s = 1077.2
+
+[[turn]]
+id = "T3"
+name = "Forrás"
+direction = "right"
+s = 1305.9
+
+[[turn]]
+id = "T4"
+name = "Mansell"
+direction = "left"
+s = 1779.3
+
+[[turn]]
+id = "T5"
+name = "Turn 5"
+direction = "right"
+s = 1983.9
+
+[[turn]]
+id = "T6"
+name = "Chicane (entry)"
+direction = "right"
+s = 2355.0
+
+[[turn]]
+id = "T7"
+name = "Chicane (exit)"
+direction = "left"
+s = 2393.1
+
+[[turn]]
+id = "T8"
+name = "Buda"
+direction = "left"
+s = 2577.6
+
+[[turn]]
+id = "T9"
+name = "Pest"
+direction = "right"
+s = 2710.0
+
+[[turn]]
+id = "T10"
+name = "Duna"
+direction = "left"
+s = 2906.6
+
+[[turn]]
+id = "T11"
+name = "Alesi"
+direction = "right"
+s = 3065.1
+
+[[turn]]
+id = "T12"
+name = "Schumacher"
+direction = "right"
+s = 3504.4
+
+[[turn]]
+id = "T13"
+name = "Senna"
+direction = "left"
+s = 3771.2
+
+[[turn]]
+id = "T14"
+name = "Szisz"
+direction = "right"
+s = 3981.8

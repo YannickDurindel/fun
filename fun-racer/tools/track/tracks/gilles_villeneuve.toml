@@ -1,0 +1,100 @@
+# Circuit Gilles Villeneuve, Montréal (Île Notre-Dame): the Grand Prix layout, 4361 m, clockwise.
+#
+#   .venv/bin/python tools/track/build_track.py gilles_villeneuve --offline
+
+id = "gilles_villeneuve"
+
+[osm]
+# type=circuit relation. Its main_track member is one closed highway=raceway way (136717490,
+# oneway, 4367 m in OSM); the pit lane has the role pit_lane and is left out. The node with the
+# role "start" gives the start / finish line (no separate finish node, so grid = timing line).
+relation = 284595
+
+[elevation]
+# Terrain Tiles: no daily quota. The island is flat and so is the built lap, except for two
+# humps either side of the hairpin (3.6 m at s = 2450, 2 m at s = 2920). OSM has the Passerelle
+# du Cosmos crossing over the track there, so they are most likely the DEM seeing that bridge
+# and the buildings next to it, not the road (README, Known limits: bridges).
+dataset = "terrarium"
+
+# The official 14 turns, pinned. Automatic detection finds 16 corners: it also numbers the
+# 21 degree bend between the Senna curve and turn 3 (s = 510), the 20 degree left before turn 5
+# (s = 934) and the 19 degree bend on the run to the hairpin (s = 2457), and it leaves out the
+# 8 degree kink on the Casino straight that the official map counts as turn 12.
+[[turn]]
+id = "T1"
+name = "Virage Senna (entry)"
+direction = "left"
+s = 255.9
+
+[[turn]]
+id = "T2"
+name = "Virage Senna"
+direction = "right"
+s = 325.9
+
+[[turn]]
+id = "T3"
+direction = "right"
+s = 729.8
+
+[[turn]]
+id = "T4"
+direction = "left"
+s = 787.8
+
+[[turn]]
+id = "T5"
+direction = "right"
+s = 999.8
+
+[[turn]]
+id = "T6"
+direction = "left"
+s = 1259.7
+
+[[turn]]
+id = "T7"
+direction = "right"
+s = 1313.7
+
+[[turn]]
+id = "T8"
+name = "Pont de la Concorde"
+direction = "right"
+s = 2017.5
+
+[[turn]]
+id = "T9"
+name = "Pont de la Concorde (exit)"
+direction = "left"
+s = 2051.5
+
+[[turn]]
+id = "T10"
+name = "L'Épingle"
+direction = "right"
+s = 2697.4
+
+[[turn]]
+id = "T11"
+direction = "left"
+s = 2819.4
+
+[[turn]]
+id = "T12"
+name = "Droit du Casino (kink)"
+direction = "right"
+s = 3207.3
+
+[[turn]]
+id = "T13"
+name = "Final chicane"
+direction = "right"
+s = 3911.1
+
+[[turn]]
+id = "T14"
+name = "Mur des Champions"
+direction = "left"
+s = 3941.1

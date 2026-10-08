@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1296 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="17660162" visible="true" version="6" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0713853" lon="-1.0095038"/>
+ <node id="2365343527" visible="true" version="6" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0724624" lon="-1.0100133"/>
+ <node id="2365343543" visible="true" version="6" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0714395" lon="-1.0095785"/>
+ <node id="2365343544" visible="true" version="6" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0717116" lon="-1.0099175"/>
+ <node id="2365343547" visible="true" version="6" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0719580" lon="-1.0100732"/>
+ <node id="2365343549" visible="true" version="6" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0718081" lon="-1.0099995"/>
+ <node id="2365343551" visible="true" version="6" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0718488" lon="-1.0100225"/>
+ <node id="2365343556" visible="true" version="6" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0721707" lon="-1.0100934"/>
+ <node id="2365343574" visible="true" version="6" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0720645" lon="-1.0100948"/>
+ <node id="2365343576" visible="true" version="6" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0716371" lon="-1.0098299"/>
+ <node id="2365343587" visible="true" version="6" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0722849" lon="-1.0100732"/>
+ <node id="2365343588" visible="true" version="6" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0723941" lon="-1.0100402"/>
+ <node id="2365343591" visible="true" version="6" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0725467" lon="-1.0099653"/>
+ <node id="4291583941" visible="true" version="2" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0726765" lon="-1.0098867"/>
+ <node id="4293386521" visible="true" version="2" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0726018" lon="-1.0099313"/>
+ <node id="8361565933" visible="true" version="1" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0724348" lon="-1.0100249"/>
+ <node id="8361565934" visible="true" version="1" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0723376" lon="-1.0100598"/>
+ <node id="8361565935" visible="true" version="1" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0722248" lon="-1.0100858"/>
+ <node id="8361565936" visible="true" version="1" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0721130" lon="-1.0100972"/>
+ <node id="8361565937" visible="true" version="1" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0720036" lon="-1.0100852"/>
+ <node id="8361565938" visible="true" version="1" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0719000" lon="-1.0100497"/>
+ <node id="8361565939" visible="true" version="1" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0717594" lon="-1.0099635"/>
+ <node id="8361565940" visible="true" version="1" changeset="98136980" timestamp="2021-01-25T17:35:30Z" user="NammelMaps" uid="12532167" lat="52.0716805" lon="-1.0098832"/>
+ <way id="430075118" visible="true" version="7" changeset="173013503" timestamp="2025-10-08T16:23:18Z" user="Richiec120" uid="23163054">
+  <nd ref="4291583941"/>
+  <nd ref="4293386521"/>
+  <nd ref="2365343591"/>
+  <nd ref="2365343527"/>
+  <nd ref="8361565933"/>
+  <nd ref="2365343588"/>
+  <nd ref="8361565934"/>
+  <nd ref="2365343587"/>
+  <nd ref="8361565935"/>
+  <nd ref="2365343556"/>
+  <nd ref="8361565936"/>
+  <nd ref="2365343574"/>
+  <nd ref="8361565937"/>
+  <nd ref="2365343547"/>
+  <nd ref="8361565938"/>
+  <nd ref="2365343551"/>
+  <nd ref="2365343549"/>
+  <nd ref="8361565939"/>
+  <nd ref="2365343544"/>
+  <nd ref="8361565940"/>
+  <nd ref="2365343576"/>
+  <nd ref="2365343543"/>
+  <nd ref="17660162"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Becketts"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

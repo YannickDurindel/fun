@@ -1,0 +1,14 @@
+{
+  "id": "yas_marina",
+  "name": "Yas Marina Circuit",
+  "grand_prix": "Abu Dhabi Grand Prix",
+  "country": "United Arab Emirates",
+  "country_code": "AE",
+  "city": "Abu Dhabi",
+  "length_m": 5281,
+  "turns": 16,
+  "scene": "res://scenes/tracks/yas_marina.tscn",
+  "track_json": "res://assets/tracks/yas_marina/track.json",
+  "osm_relation": 11378665,
+  "available": true
+}

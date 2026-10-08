@@ -1,0 +1,86 @@
+# Bahrain International Circuit, Sakhir: the Grand Prix layout (5412 m, 15 turns, clockwise).
+#
+#   .venv/bin/python tools/track/build_track.py bahrain --offline
+
+id = "bahrain"
+
+[osm]
+# type=circuit "Bahrain Grand Prix Circuit": exactly the three ways of the Grand Prix lap
+# (4818385, 881756729, 881756728). The venue's other layouts (Outer, Endurance, Inner,
+# Paddock, Flat Oval, the drag strip and the kart track) and the pit lane are separate ways
+# that are not members, so nothing has to be excluded.
+relation = 284538
+
+[layout]
+# OSM has no start / finish nodes here. The lines are derived from two published figures,
+# not surveyed:
+#   - Formula 1 gives 353 m from pole position to the Turn 1 braking point; with about
+#     120 m from there to the apex, the start line is about 475 m before the T1 apex.
+#   - The race distance (57 laps, 308.238 km = 57 x 5.412 km - 0.246 km) puts the finish
+#     line 246 m after the start line, the largest offset on the calendar.
+finish = [26.034860, 50.510588]
+start = [26.032639, 50.510498]
+
+[elevation]
+dataset = "terrarium"
+
+# Only the first corner has an official name; the others are known by their numbers.
+[[turn]]
+id = "T1"
+name = "Michael Schumacher"
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+
+[[turn]]
+id = "T5"
+name = "Turn 5"
+
+[[turn]]
+id = "T6"
+name = "Turn 6"
+
+[[turn]]
+id = "T7"
+name = "Turn 7"
+
+[[turn]]
+id = "T8"
+name = "Turn 8"
+
+[[turn]]
+id = "T9"
+name = "Turn 9"
+
+[[turn]]
+id = "T10"
+name = "Turn 10"
+
+[[turn]]
+id = "T11"
+name = "Turn 11"
+
+[[turn]]
+id = "T12"
+name = "Turn 12"
+
+[[turn]]
+id = "T13"
+name = "Turn 13"
+
+[[turn]]
+id = "T14"
+name = "Turn 14"
+
+[[turn]]
+id = "T15"
+name = "Turn 15"

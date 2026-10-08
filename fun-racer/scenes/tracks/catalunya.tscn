@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/tracks/track.tscn" id="1_track"]
+
+[node name="Track" instance=ExtResource("1_track")]
+track_id = "catalunya"

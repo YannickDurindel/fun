@@ -1,0 +1,440 @@
+{
+ "id": "cota",
+ "recipe": "tools/track/tracks/cota.toml",
+ "osm": {
+  "relation": 6537729,
+  "loop_ways": [
+   118258947,
+   118258943,
+   118258961,
+   118258928,
+   514836010,
+   118258933,
+   118258937,
+   118258952,
+   514836011,
+   118256423,
+   118258957,
+   118258959,
+   118258939,
+   118258950,
+   118258954,
+   118258956,
+   514758200,
+   514820043,
+   514820041,
+   118258930,
+   118258958,
+   118258962,
+   118258931,
+   118258929,
+   118258946,
+   118258935,
+   118258951,
+   118258940,
+   118258942
+  ],
+  "raw_length_m": 5508.5,
+  "length_m": 5501.0,
+  "official_length_m": 5513.0,
+  "length_error": -0.00217,
+  "candidates": [
+   {
+    "length_m": 5508.4,
+    "ways": [
+     118258947,
+     118258943,
+     118258961,
+     118258928,
+     514836010,
+     118258933,
+     118258937,
+     118258952,
+     514836011,
+     118256423,
+     118258957,
+     118258959,
+     118258939,
+     118258950,
+     118258954,
+     118258956,
+     514758200,
+     514820043,
+     514820041,
+     118258930,
+     118258958,
+     118258962,
+     118258931,
+     118258929,
+     118258946,
+     118258935,
+     118258951,
+     118258940,
+     118258942
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "finish: relation member role, start: relation member role",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 34.69,
+  "max_grade": 0.1322,
+  "min_grade": -0.103,
+  "origin_m": 152.29
+ },
+ "turns": {
+  "official": 20,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Turn 1",
+    "direction": "left",
+    "s_apex": 659.3,
+    "min_radius": 14.3
+   },
+   {
+    "id": "T2",
+    "name": "Turn 2",
+    "direction": "right",
+    "s_apex": 877.8,
+    "min_radius": 94.5
+   },
+   {
+    "id": "T3",
+    "name": "Turn 3",
+    "direction": "left",
+    "s_apex": 1164.3,
+    "min_radius": 82.1
+   },
+   {
+    "id": "T4",
+    "name": "Turn 4",
+    "direction": "right",
+    "s_apex": 1270.5,
+    "min_radius": 54.7
+   },
+   {
+    "id": "T5",
+    "name": "Turn 5",
+    "direction": "left",
+    "s_apex": 1364.7,
+    "min_radius": 50.2
+   },
+   {
+    "id": "T6",
+    "name": "Turn 6",
+    "direction": "right",
+    "s_apex": 1585.2,
+    "min_radius": 70.2
+   },
+   {
+    "id": "T7",
+    "name": "Turn 7",
+    "direction": "left",
+    "s_apex": 1723.4,
+    "min_radius": 28.6
+   },
+   {
+    "id": "T8",
+    "name": "Turn 8",
+    "direction": "right",
+    "s_apex": 1859.7,
+    "min_radius": 47.8
+   },
+   {
+    "id": "T9",
+    "name": "Turn 9",
+    "direction": "left",
+    "s_apex": 1980.0,
+    "min_radius": 27.3
+   },
+   {
+    "id": "T10",
+    "name": "Turn 10",
+    "direction": "left",
+    "s_apex": 2186.4,
+    "min_radius": 39.2
+   },
+   {
+    "id": "T11",
+    "name": "Turn 11",
+    "direction": "left",
+    "s_apex": 2591.2,
+    "min_radius": 17.0
+   },
+   {
+    "id": "T12",
+    "name": "Turn 12",
+    "direction": "left",
+    "s_apex": 3785.6,
+    "min_radius": 13.5
+   },
+   {
+    "id": "T13",
+    "name": "Turn 13",
+    "direction": "right",
+    "s_apex": 4020.0,
+    "min_radius": 20.2
+   },
+   {
+    "id": "T14",
+    "name": "Turn 14",
+    "direction": "right",
+    "s_apex": 4112.2,
+    "min_radius": 31.9
+   },
+   {
+    "id": "T15",
+    "name": "Turn 15",
+    "direction": "left",
+    "s_apex": 4172.3,
+    "min_radius": 63.7
+   },
+   {
+    "id": "T16",
+    "name": "Turn 15",
+    "direction": "left",
+    "s_apex": 4238.5,
+    "min_radius": 46.4
+   },
+   {
+    "id": "T17",
+    "name": "Turn 16",
+    "direction": "left",
+    "s_apex": 4298.6,
+    "min_radius": 14.2
+   },
+   {
+    "id": "T18",
+    "name": "Turn 17",
+    "direction": "right",
+    "s_apex": 4511.0,
+    "min_radius": 67.6
+   },
+   {
+    "id": "T19",
+    "name": "Turn 17",
+    "direction": "right",
+    "s_apex": 4617.2,
+    "min_radius": 46.8
+   },
+   {
+    "id": "T20",
+    "name": "Turn 18",
+    "direction": "right",
+    "s_apex": 4707.4,
+    "min_radius": 58.2
+   },
+   {
+    "id": "T21",
+    "name": "Turn 18",
+    "direction": "right",
+    "s_apex": 4833.6,
+    "min_radius": 85.0
+   },
+   {
+    "id": "T22",
+    "name": "Turn 19",
+    "direction": "left",
+    "s_apex": 5056.1,
+    "min_radius": 33.4
+   },
+   {
+    "id": "T23",
+    "name": "Turn 20",
+    "direction": "left",
+    "s_apex": 5354.7,
+    "min_radius": 19.3
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 659.3,
+    "direction": "left",
+    "angle_deg": 146.3,
+    "kind": "corner",
+    "min_radius": 14.3,
+    "used": true
+   },
+   {
+    "s_apex": 877.8,
+    "direction": "right",
+    "angle_deg": 76.7,
+    "kind": "corner",
+    "min_radius": 94.5,
+    "used": true
+   },
+   {
+    "s_apex": 1164.3,
+    "direction": "left",
+    "angle_deg": 37.2,
+    "kind": "corner",
+    "min_radius": 82.1,
+    "used": true
+   },
+   {
+    "s_apex": 1270.5,
+    "direction": "right",
+    "angle_deg": 49.4,
+    "kind": "corner",
+    "min_radius": 54.7,
+    "used": true
+   },
+   {
+    "s_apex": 1364.7,
+    "direction": "left",
+    "angle_deg": 61.9,
+    "kind": "corner",
+    "min_radius": 50.2,
+    "used": true
+   },
+   {
+    "s_apex": 1585.2,
+    "direction": "right",
+    "angle_deg": 106.7,
+    "kind": "corner",
+    "min_radius": 70.2,
+    "used": true
+   },
+   {
+    "s_apex": 1723.4,
+    "direction": "left",
+    "angle_deg": 79.2,
+    "kind": "corner",
+    "min_radius": 28.6,
+    "used": true
+   },
+   {
+    "s_apex": 1859.7,
+    "direction": "right",
+    "angle_deg": 112.4,
+    "kind": "corner",
+    "min_radius": 47.8,
+    "used": true
+   },
+   {
+    "s_apex": 1980.0,
+    "direction": "left",
+    "angle_deg": 69.8,
+    "kind": "corner",
+    "min_radius": 27.3,
+    "used": true
+   },
+   {
+    "s_apex": 2186.4,
+    "direction": "left",
+    "angle_deg": 38.0,
+    "kind": "corner",
+    "min_radius": 39.2,
+    "used": true
+   },
+   {
+    "s_apex": 2591.2,
+    "direction": "left",
+    "angle_deg": 145.6,
+    "kind": "corner",
+    "min_radius": 17.0,
+    "used": true
+   },
+   {
+    "s_apex": 3785.6,
+    "direction": "left",
+    "angle_deg": 122.0,
+    "kind": "corner",
+    "min_radius": 13.5,
+    "used": true
+   },
+   {
+    "s_apex": 4020.0,
+    "direction": "right",
+    "angle_deg": 125.8,
+    "kind": "corner",
+    "min_radius": 20.2,
+    "used": true
+   },
+   {
+    "s_apex": 4112.2,
+    "direction": "right",
+    "angle_deg": 66.1,
+    "kind": "corner",
+    "min_radius": 31.9,
+    "used": true
+   },
+   {
+    "s_apex": 4172.3,
+    "direction": "left",
+    "angle_deg": 22.3,
+    "kind": "corner",
+    "min_radius": 63.7,
+    "used": true
+   },
+   {
+    "s_apex": 4238.5,
+    "direction": "left",
+    "angle_deg": 40.1,
+    "kind": "corner",
+    "min_radius": 46.4,
+    "used": true
+   },
+   {
+    "s_apex": 4298.6,
+    "direction": "left",
+    "angle_deg": 126.6,
+    "kind": "corner",
+    "min_radius": 14.2,
+    "used": true
+   },
+   {
+    "s_apex": 4511.0,
+    "direction": "right",
+    "angle_deg": 49.6,
+    "kind": "corner",
+    "min_radius": 67.6,
+    "used": true
+   },
+   {
+    "s_apex": 4617.2,
+    "direction": "right",
+    "angle_deg": 43.5,
+    "kind": "corner",
+    "min_radius": 46.8,
+    "used": true
+   },
+   {
+    "s_apex": 4707.4,
+    "direction": "right",
+    "angle_deg": 39.7,
+    "kind": "corner",
+    "min_radius": 58.2,
+    "used": true
+   },
+   {
+    "s_apex": 4833.6,
+    "direction": "right",
+    "angle_deg": 40.1,
+    "kind": "corner",
+    "min_radius": 85.0,
+    "used": true
+   },
+   {
+    "s_apex": 5056.1,
+    "direction": "left",
+    "angle_deg": 74.9,
+    "kind": "corner",
+    "min_radius": 33.4,
+    "used": true
+   },
+   {
+    "s_apex": 5354.7,
+    "direction": "left",
+    "angle_deg": 117.6,
+    "kind": "corner",
+    "min_radius": 19.3,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}
