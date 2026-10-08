@@ -373,6 +373,8 @@ func clear_best() -> void:
 	session_sectors.clear()
 
 func _save_best() -> void:
+	if Bootstrap.autodrive:
+		return   # the autopilot's laps are not the player's best
 	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if f == null:
 		return
