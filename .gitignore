@@ -1,7 +1,7 @@
 .remember/
 cleo/
 .godot/
-tools/bin/
+fun-racer/tools/bin/
 *.tmp
 __pycache__/
 .venv/
