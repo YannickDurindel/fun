@@ -45,13 +45,14 @@ SECTION_KEYS = {
     "osm": {"relation", "ways", "bbox", "exclude_ways", "avoid_names", "ignore_oneway",
             "length_tolerance"},
     "layout": {"direction", "finish", "start", "start_offset_m", "sectors", "spline"},
-    "elevation": {"dataset", "smooth_sigma_m"},
+    "elevation": {"dataset", "smooth_sigma_m", "override"},
     "road": {"base_width", "grid_width", "crossfall", "camber_gain", "bank_keys", "width_keys",
              "override"},
     "terrain": {"near", "far", "smooth_sigma_m"},
 }
 TURN_KEYS = {"id", "name", "direction", "s"}
 OVERRIDE_KEYS = {"s", "width", "bank", "blend", "note"}
+ELEV_OVERRIDE_KEYS = {"s", "offset", "straighten", "blend", "note"}
 DIRECTIONS = {"clockwise", "anticlockwise"}
 
 
@@ -84,6 +85,7 @@ class Recipe:
     # [elevation]
     dem_dataset: str | None = None
     elev_sigma_m: float = 45.0
+    elev_overrides: list = field(default_factory=list)   # [[elevation.override]], see centreline.py
     # [[turn]]
     turn_table: list = field(default_factory=list)
     # [road], [terrain]: plain dicts, read by cad/track/banking.py and lib/terrain.py
@@ -155,6 +157,7 @@ def from_dict(track_id, data, overrides=None, calendar_path=CALENDAR, source="")
         start_offset_m=lay.get("start_offset_m"), sectors=lay.get("sectors"),
         spline=lay.get("spline", "centripetal"),
         dem_dataset=elev.get("dataset"), elev_sigma_m=float(elev.get("smooth_sigma_m", 45.0)),
+        elev_overrides=[dict(o) for o in elev.get("override", [])],
         turn_table=[dict(t) for t in data.get("turn", [])],
         road=dict(data.get("road", {})), terrain=dict(data.get("terrain", {})), source=source)
     for k, v in (overrides or {}).items():
@@ -243,6 +246,18 @@ def validate(r):
         if (not isinstance(s, list) or len(s) != 2 or not all(isinstance(x, (int, float)) for x in s)
                 or "width" not in o and "bank" not in o):
             raise BuildError("recipe: [[road.override]] needs s = [from, to] and a width and/or bank")
+    for o in r.elev_overrides:
+        _check_keys("[[elevation.override]]", o, ELEV_OVERRIDE_KEYS)
+        s = o.get("s")
+        if (not isinstance(s, list) or len(s) != 2 or not all(isinstance(x, (int, float)) for x in s)
+                or not all(0.0 <= x < r.length_m for x in s) or s[0] == s[1]
+                or not (o.get("straighten") or o.get("offset"))):
+            raise BuildError("recipe: [[elevation.override]] needs s = [from, to] inside the lap and "
+                             "an offset (metres) and/or straighten = true")
+        if (not isinstance(o.get("offset", 0.0), (int, float)) or not isinstance(o.get("straighten", False), bool)
+                or not isinstance(o.get("blend", 0.0), (int, float)) or o.get("blend", 0.0) < 0.0):
+            raise BuildError("recipe: [[elevation.override]] offset and blend are metres (blend >= 0), "
+                             "straighten is true / false")
     for key in ("near", "far"):
         b = r.terrain.get(key)
         if b is not None and (not isinstance(b, list) or len(b) != 4 or not (b[0] < b[1] and b[2] < b[3])):

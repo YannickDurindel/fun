@@ -46,8 +46,23 @@ static func inside_limits(data: TrackData, lim_l: PackedFloat32Array, lim_r: Pac
 			lim_r[i] = minf(lim_r[i], INSIDE_FACTOR / -worst)
 
 ## Caps the limits at half the lateral distance to any other leg of the lap.
-static func proximity_limits(data: TrackData, lim_l: PackedFloat32Array, lim_r: PackedFloat32Array) -> void:
+## `crossovers` lists pairs of stretches that pass over each other at different heights, as
+## [[first point, last point, first point, last point], ...] (inclusive, each may wrap the end
+## of the lap): the two stretches of a pair do not limit each other.
+static func proximity_limits(data: TrackData, lim_l: PackedFloat32Array, lim_r: PackedFloat32Array,
+		crossovers: Array = []) -> void:
 	var n := data.points.size()
+	# pair_of[i] = 1 + 2 * pair for the first stretch of a pair, 2 + 2 * pair for the second.
+	var pair_of := PackedInt32Array()
+	if not crossovers.is_empty():
+		pair_of.resize(n)
+		for q in crossovers.size():
+			var c: Array = crossovers[q]
+			for half in 2:
+				var first := posmod(int(c[2 * half]), n)
+				var count := posmod(int(c[2 * half + 1]) - first, n) + 1
+				for k in count:
+					pair_of[(first + k) % n] = 2 * q + 1 + half
 	var cell := LEG_CELL
 	var grid := {}
 	for i in n:
@@ -73,6 +88,9 @@ static func proximity_limits(data: TrackData, lim_l: PackedFloat32Array, lim_r: 
 					var di := absi(j - i)
 					if mini(di, n - di) < skip:
 						continue
+					if not pair_of.is_empty() and pair_of[i] != 0 and pair_of[j] != 0 \
+							and pair_of[i] != pair_of[j] and (pair_of[i] - 1) >> 1 == (pair_of[j] - 1) >> 1:
+						continue   # the other road of a crossover: above or below, not beside
 					var dv := data.points[j] - p
 					dv.y = 0.0
 					var lat := dv.dot(rh)

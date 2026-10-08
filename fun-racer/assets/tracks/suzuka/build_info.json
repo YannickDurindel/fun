@@ -1,0 +1,463 @@
+{
+ "id": "suzuka",
+ "recipe": "tools/track/tracks/suzuka.toml",
+ "osm": {
+  "relation": 284570,
+  "loop_ways": [
+   175231434,
+   183391652,
+   183391660,
+   411289989,
+   183391637,
+   183391639,
+   183391638,
+   183391640,
+   183391661,
+   183391665,
+   183391643,
+   183391645,
+   183391644,
+   183391657,
+   183391636,
+   183391635,
+   183391628,
+   183391634,
+   183391629,
+   183391633,
+   183391631,
+   183391632,
+   183391630,
+   183391642,
+   411295349,
+   183391641,
+   183391656,
+   183391664,
+   183391655,
+   183391662,
+   183391658,
+   183391646,
+   183391659,
+   183391651,
+   411295347,
+   183391649,
+   183391647,
+   411295351,
+   183391648,
+   411295348
+  ],
+  "raw_length_m": 5813.0,
+  "length_m": 5810.6,
+  "official_length_m": 5807.0,
+  "length_error": 0.00061,
+  "candidates": [
+   {
+    "length_m": 5813.0,
+    "ways": [
+     175231434,
+     183391652,
+     183391660,
+     411289989,
+     183391637,
+     183391639,
+     183391638,
+     183391640,
+     183391661,
+     183391665,
+     183391643,
+     183391645,
+     183391644,
+     183391657,
+     183391636,
+     183391635,
+     183391628,
+     183391634,
+     183391629,
+     183391633,
+     183391631,
+     183391632,
+     183391630,
+     183391642,
+     411295349,
+     183391641,
+     183391656,
+     183391664,
+     183391655,
+     183391662,
+     183391658,
+     183391646,
+     183391659,
+     183391651,
+     411295347,
+     183391649,
+     183391647,
+     411295351,
+     183391648,
+     411295348
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 42.49,
+  "max_grade": 0.0962,
+  "min_grade": -0.1006,
+  "origin_m": 34.23
+ },
+ "turns": {
+  "official": 18,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "1コーナー",
+    "direction": "right",
+    "s_apex": 673.7,
+    "min_radius": 80.4
+   },
+   {
+    "id": "T2",
+    "name": "2コーナー",
+    "direction": "right",
+    "s_apex": 775.6,
+    "min_radius": 46.6
+   },
+   {
+    "id": "T3",
+    "name": "S字",
+    "direction": "left",
+    "s_apex": 1075.4,
+    "min_radius": 73.0
+   },
+   {
+    "id": "T4",
+    "name": "S字",
+    "direction": "right",
+    "s_apex": 1203.4,
+    "min_radius": 72.6
+   },
+   {
+    "id": "T5",
+    "name": "S字",
+    "direction": "left",
+    "s_apex": 1377.3,
+    "min_radius": 78.7
+   },
+   {
+    "id": "T6",
+    "name": "逆バンク",
+    "direction": "right",
+    "s_apex": 1457.2,
+    "min_radius": 70.4
+   },
+   {
+    "id": "T7",
+    "name": "NIPPO コーナー",
+    "direction": "left",
+    "s_apex": 1761.1,
+    "min_radius": 80.9
+   },
+   {
+    "id": "T8",
+    "name": "NIPPO コーナー",
+    "direction": "left",
+    "s_apex": 1851.0,
+    "min_radius": 135.5
+   },
+   {
+    "id": "T9",
+    "name": "NIPPO コーナー",
+    "direction": "left",
+    "s_apex": 1957.0,
+    "min_radius": 101.7
+   },
+   {
+    "id": "T10",
+    "name": "デグナー1",
+    "direction": "right",
+    "s_apex": 2260.8,
+    "min_radius": 29.1
+   },
+   {
+    "id": "T11",
+    "name": "デグナー2",
+    "direction": "right",
+    "s_apex": 2414.8,
+    "min_radius": 23.4
+   },
+   {
+    "id": "T12",
+    "name": "Turn 12",
+    "direction": "right",
+    "s_apex": 2736.6,
+    "min_radius": 88.2
+   },
+   {
+    "id": "T13",
+    "name": "NISSINブレーキヘアピン",
+    "direction": "left",
+    "s_apex": 2882.5,
+    "min_radius": 20.8
+   },
+   {
+    "id": "T14",
+    "name": "Turn 14",
+    "direction": "right",
+    "s_apex": 3156.4,
+    "min_radius": 96.2
+   },
+   {
+    "id": "T15",
+    "name": "Turn 15",
+    "direction": "right",
+    "s_apex": 3256.3,
+    "min_radius": 201.0
+   },
+   {
+    "id": "T16",
+    "name": "Turn 16",
+    "direction": "right",
+    "s_apex": 3500.2,
+    "min_radius": 179.5
+   },
+   {
+    "id": "T17",
+    "name": "スプーンカーブ",
+    "direction": "left",
+    "s_apex": 3780.0,
+    "min_radius": 60.3
+   },
+   {
+    "id": "T18",
+    "name": "スプーンカーブ",
+    "direction": "left",
+    "s_apex": 3916.0,
+    "min_radius": 44.6
+   },
+   {
+    "id": "T19",
+    "name": "130R",
+    "direction": "left",
+    "s_apex": 4937.4,
+    "min_radius": 78.1
+   },
+   {
+    "id": "T20",
+    "name": "日立オートモティブシステムズシケイン",
+    "direction": "right",
+    "s_apex": 5359.2,
+    "min_radius": 19.4
+   },
+   {
+    "id": "T21",
+    "name": "日立Astemoシケイン",
+    "direction": "left",
+    "s_apex": 5411.2,
+    "min_radius": 22.0
+   },
+   {
+    "id": "T22",
+    "name": "Turn 22",
+    "direction": "right",
+    "s_apex": 5501.2,
+    "min_radius": 77.6
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 673.7,
+    "direction": "right",
+    "angle_deg": 55.9,
+    "kind": "corner",
+    "min_radius": 80.4,
+    "used": true
+   },
+   {
+    "s_apex": 775.6,
+    "direction": "right",
+    "angle_deg": 131.4,
+    "kind": "corner",
+    "min_radius": 46.6,
+    "used": true
+   },
+   {
+    "s_apex": 1075.4,
+    "direction": "left",
+    "angle_deg": 54.7,
+    "kind": "corner",
+    "min_radius": 73.0,
+    "used": true
+   },
+   {
+    "s_apex": 1203.4,
+    "direction": "right",
+    "angle_deg": 73.6,
+    "kind": "corner",
+    "min_radius": 72.6,
+    "used": true
+   },
+   {
+    "s_apex": 1377.3,
+    "direction": "left",
+    "angle_deg": 73.0,
+    "kind": "corner",
+    "min_radius": 78.7,
+    "used": true
+   },
+   {
+    "s_apex": 1457.2,
+    "direction": "right",
+    "angle_deg": 109.1,
+    "kind": "corner",
+    "min_radius": 70.4,
+    "used": true
+   },
+   {
+    "s_apex": 1761.1,
+    "direction": "left",
+    "angle_deg": 84.3,
+    "kind": "corner",
+    "min_radius": 80.9,
+    "used": true
+   },
+   {
+    "s_apex": 1851.0,
+    "direction": "left",
+    "angle_deg": 28.9,
+    "kind": "corner",
+    "min_radius": 135.5,
+    "used": true
+   },
+   {
+    "s_apex": 1957.0,
+    "direction": "left",
+    "angle_deg": 46.2,
+    "kind": "corner",
+    "min_radius": 101.7,
+    "used": true
+   },
+   {
+    "s_apex": 2260.8,
+    "direction": "right",
+    "angle_deg": 44.4,
+    "kind": "corner",
+    "min_radius": 29.1,
+    "used": true
+   },
+   {
+    "s_apex": 2414.8,
+    "direction": "right",
+    "angle_deg": 81.9,
+    "kind": "corner",
+    "min_radius": 23.4,
+    "used": true
+   },
+   {
+    "s_apex": 2736.6,
+    "direction": "right",
+    "angle_deg": 36.3,
+    "kind": "corner",
+    "min_radius": 88.2,
+    "used": true
+   },
+   {
+    "s_apex": 2882.5,
+    "direction": "left",
+    "angle_deg": 172.7,
+    "kind": "corner",
+    "min_radius": 20.8,
+    "used": true
+   },
+   {
+    "s_apex": 3156.4,
+    "direction": "right",
+    "angle_deg": 52.6,
+    "kind": "corner",
+    "min_radius": 96.2,
+    "used": true
+   },
+   {
+    "s_apex": 3256.3,
+    "direction": "right",
+    "angle_deg": 24.0,
+    "kind": "corner",
+    "min_radius": 201.0,
+    "used": true
+   },
+   {
+    "s_apex": 3500.2,
+    "direction": "right",
+    "angle_deg": 46.0,
+    "kind": "corner",
+    "min_radius": 179.5,
+    "used": true
+   },
+   {
+    "s_apex": 3780.0,
+    "direction": "left",
+    "angle_deg": 70.0,
+    "kind": "corner",
+    "min_radius": 60.3,
+    "used": true
+   },
+   {
+    "s_apex": 3916.0,
+    "direction": "left",
+    "angle_deg": 135.3,
+    "kind": "corner",
+    "min_radius": 44.6,
+    "used": true
+   },
+   {
+    "s_apex": 4937.4,
+    "direction": "left",
+    "angle_deg": 36.9,
+    "kind": "corner",
+    "min_radius": 78.1,
+    "used": true
+   },
+   {
+    "s_apex": 5025.4,
+    "direction": "left",
+    "angle_deg": 14.4,
+    "kind": "kink",
+    "min_radius": 151.4,
+    "used": false
+   },
+   {
+    "s_apex": 5097.4,
+    "direction": "left",
+    "angle_deg": 9.3,
+    "kind": "kink",
+    "min_radius": 257.1,
+    "used": false
+   },
+   {
+    "s_apex": 5359.2,
+    "direction": "right",
+    "angle_deg": 83.6,
+    "kind": "corner",
+    "min_radius": 19.4,
+    "used": true
+   },
+   {
+    "s_apex": 5411.2,
+    "direction": "left",
+    "angle_deg": 83.0,
+    "kind": "corner",
+    "min_radius": 22.0,
+    "used": true
+   },
+   {
+    "s_apex": 5501.2,
+    "direction": "right",
+    "angle_deg": 90.3,
+    "kind": "corner",
+    "min_radius": 77.6,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

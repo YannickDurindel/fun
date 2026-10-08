@@ -1,0 +1,14 @@
+{
+  "id": "suzuka",
+  "name": "Suzuka Circuit",
+  "grand_prix": "Japanese Grand Prix",
+  "country": "Japan",
+  "country_code": "JP",
+  "city": "Suzuka",
+  "length_m": 5807,
+  "turns": 18,
+  "scene": "res://scenes/tracks/suzuka.tscn",
+  "track_json": "res://assets/tracks/suzuka/track.json",
+  "osm_relation": 284570,
+  "available": true
+}

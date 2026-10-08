@@ -70,6 +70,11 @@ relation = 9291096
 [elevation]
 # dataset = "srtm30m"        # default: chosen by coverage (see Data sources)
 # smooth_sigma_m = 45.0
+[[elevation.override]]        # correct the DEM profile on a stretch (bridges, crossovers)
+s = [4690.0, 4990.0]          # from, to (may wrap around the finish line)
+straighten = true             # straight line between the heights at the two ends, and / or
+offset = 0.8                  # metres added inside the stretch, fading out over ...
+blend = 120.0                 # ... this many metres on both sides (default 60)
 
 # Either names for the automatically detected turns ...
 [[turn]]
@@ -156,7 +161,8 @@ Also read the build's `WARNING:` lines; each one says what to put in the recipe.
 | Wrong number of turns, or numbers shifted | Look at `turns.auto_candidates` in `build_info.json`. Usually a flat-out kink is counted or missed: pin the table with `[[turn]]` entries (`id`, `name`, `direction`, `s`). |
 | A corner looks polygonal or has a far too small radius | OSM has too few nodes there. Improve OSM, or accept it: the road is only as good as the centreline. |
 | Road too narrow / wide, wrong camber | `[road]` keys or `[[road.override]]`. |
-| "the mesh could not be built" | The centreline folds or crosses itself (see Known limits). |
+| "the mesh could not be built" | The centreline folds on itself (see Known limits). |
+| "the lap crosses itself ... only N m apart in height" | A figure of eight: the DEM gives both roads the same height. Separate them by at least 5.5 m with `[[elevation.override]]` entries (see Crossovers). |
 | DEM voids, flat sea, steps in the terrain | Try another `[elevation] dataset`. |
 | Rolling hills around a circuit on a plain | That is DEM noise (a few metres): set `[terrain] smooth_sigma_m` (100 to 200), and raise `[elevation] smooth_sigma_m` for the road. |
 
@@ -205,6 +211,23 @@ curvature, capped at 0.03 rad; the grid drains left. 30 m grass verges, clipped 
 would fold. The start / finish lines and grid boxes are painted by the tarmac shader from
 the lap length and `start_s`, so they need nothing per track.
 
+**Crossovers** (`lib/centreline.py`, `cad/track/bridge.py`). A lap that crosses itself in
+plan view (Suzuka) needs no hand-written way list: the bridge way shares no node with the road
+under it, so the loop search sees one simple loop. The centreline step finds the crossing,
+records it in `track.json` (`crossings`: `s_lower`, `s_upper`, `clearance`) and stops unless
+the two roads are at least 5.5 m apart there; the DEM never gives that, so the recipe sets the
+heights with `[[elevation.override]]` (`straighten` removes the hump and the dip the DEM shows
+at a bridge, `offset` lifts the deck). The road step then builds the bridge: the upper road
+loses its verges where the ground belongs to the lower road and is carried by a concrete
+deck, with side walls down to the ground and an underpass for the lower road; the lower road
+ends its verges before the deck. The terrain keeps the ground of the lower road, pressed
+under it as far as its verge plus a mesh cell, and with a 10 m mesh that cutting is some
+70 m wide: the deck spans all of it, so it is far longer than the real bridge (Suzuka: 126 m
+against about 35 m) and looks like an embankment between retaining walls. The stretches go
+to `road_profile.json` (`bridges`); the runtime trackside puts a parapet with a fence on the
+deck and keeps the lower road's barriers inside the underpass. Tracks without a crossing get
+no extra keys and build exactly as before.
+
 **Terrain** (`lib/terrain.py`). A 20 m DEM grid over the centreline's bounding box plus
 450 m (snapped to 200 m), meshed at 10 m and pressed 0.3 m under the road and verges inside
 the track corridor; a 200 m grid over a 12 km square for the horizon.
@@ -228,6 +251,7 @@ tools/track/tracks/<id>.toml    recipes
 tools/track/tests/              offline tests
 tools/track/fetch_*.py          old entry points, now thin wrappers
 cad/track/road.py, banking.py   road mesh and cross-section
+cad/track/bridge.py             the bridge of a lap that crosses itself
 cad/track/trackside_profiles.py kerb / barrier profiles (track-independent)
 ```
 
@@ -292,10 +316,13 @@ of `track.json` and `terrain.json`. The terrain uses the same dataset as the cen
   and raise `smooth_sigma_m`. The racing line through a city is often not mapped as
   `highway=raceway`, `oneway` tags follow traffic (`ignore_oneway`), and dual carriageways
   are two ways: these need a relation or a hand-written way list.
-- **Bridges, tunnels and crossovers.** The DEM has one height per point, so a bridge gets
-  the valley floor (or a smeared mix) and a tunnel gets the hilltop. Where a track crosses
-  itself (Suzuka) the lower and upper road get the same height, the verge clipping treats
-  the crossing as a neighbouring road, and the terrain corridor keeps only the lower one.
+- **Bridges and tunnels.** The DEM has one height per point, so a bridge gets the valley
+  floor (or a smeared mix) and a tunnel gets the hilltop. `[[elevation.override]]` corrects
+  the road's height, but only a road that crosses the lap itself gets a deck: a bridge over
+  a river or a public road still stands on a terrain embankment, and there are no tunnels.
+- **Crossovers** are built (see How it works), with a deck much longer than the real bridge
+  and plain walls instead of the real abutments. Two crossings closer than 140 m along
+  either road, or roads that stay on top of each other for longer than that, stop the build.
 - **Sea and lakes** have no data in some datasets; voids are filled from the nearest valid
   point in the same grid row, which is fine for a horizon but not for a harbour chicane.
 - **Sparse OSM geometry.** A corner drawn with four nodes becomes a slightly polygonal

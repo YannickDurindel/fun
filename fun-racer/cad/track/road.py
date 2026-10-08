@@ -41,6 +41,15 @@ so shading and collision are seamless across chunk boundaries.
 
 UVs: UV0 = (s, lateral metres, + right), UV1 = (racing-line lateral offset, half width).
 The tarmac shader uses world-space XZ for texture tiling and UV0/UV1 for painted lines.
+
+Crossovers
+----------
+Where the lap crosses itself (track.json "crossings", a figure of eight) the upper road is
+carried over the lower one on a bridge, see cad/track/bridge.py: both roads lose their
+verges where the other one is in the way, and the upper road gets a concrete deck with side
+walls and an underpass for the lower road (extra node "bridge_NN", material "concrete").
+The stretches are written to road_profile.json ("bridges") for the trackside, which puts
+the parapets on the deck. A lap that does not cross itself builds exactly as before.
 """
 
 from __future__ import annotations
@@ -55,6 +64,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
 import banking  # noqa: E402
+import bridge as bridge_mod  # noqa: E402
 import road_textures  # noqa: E402
 from road_glb import Material, Primitive, write_glb  # noqa: E402
 
@@ -256,6 +266,8 @@ def build(track_path: Path = TRACK_DIR / "track.json", out_dir: Path = TRACK_DIR
     right_edge = P + R * hw[:, None]
     ext_l = verge_extent(P, left_edge, -Rh, hw, -1.0, step)
     ext_r = verge_extent(P, right_edge, Rh, hw, 1.0, step)
+    bridges = (bridge_mod.bridge_spans(d["crossings"], P, Rh, hw, ext_l, ext_r, step, VERGE_WIDTH)
+               if d.get("crossings") else [])
     rl = racing_line(P, step, hw)
 
     # ---- full-lap vertex grids: (n, rows, 3), rows ordered left -> right ----
@@ -354,6 +366,12 @@ def build(track_path: Path = TRACK_DIR / "track.json", out_dir: Path = TRACK_DIR
 
     mats = [Material("tarmac", (0.20, 0.20, 0.21, 1.0), 0.85),
             Material("grass", (0.22, 0.38, 0.14, 1.0), 0.95)]
+    if bridges:
+        mats.append(Material("concrete", (0.62, 0.61, 0.58, 1.0), 0.9))
+    for k, bridge in enumerate(bridges):
+        deck = bridge_mod.deck_primitive(bridge, P, T, R, Rh, hw, step)
+        tri_total += len(deck.indices)
+        chunks.append((f"bridge_{k:02d}", [deck]))
     scene_name = "".join(w.capitalize() for w in track_id.split("_")) + "Road"
     write_glb(out_dir / "road_mesh.glb", mats, chunks, scene_name,
               "fun/cad/track/road.py (parametric code-CAD)")
@@ -373,9 +391,11 @@ def build(track_path: Path = TRACK_DIR / "track.json", out_dir: Path = TRACK_DIR
         "verge_right": np.round(ext_r, 3).tolist(),
         "racing_line": np.round(rl, 3).tolist(),
     }
+    if bridges:
+        profile["bridges"] = bridges
     (out_dir / "road_profile.json").write_text(json.dumps(profile, separators=(",", ":")))
     road_textures.write_all(out_dir)
-    return {"chunks": nchunks, "triangles": tri_total,
+    return {"chunks": nchunks, "triangles": tri_total, "bridges": bridges,
             "verge_min": float(min(ext_l.min(), ext_r.min())),
             "width": (float(width.min()), float(width.max())),
             "bank": (float(bank.min()), float(bank.max()))}

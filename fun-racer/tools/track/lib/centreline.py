@@ -8,6 +8,12 @@ The plan view is resampled every 2 m (Catmull-Rom), lightly smoothed (sigma 4 m)
 the vertex kinks of the sparse OSM polyline, and scaled uniformly so the lap has exactly the
 official length. Elevation is sampled from the DEM every ~10 m at the true (unscaled)
 positions and smoothed along the lap (sigma 45 m) to remove embankment / tree noise.
+
+A DEM has one height per point, so it cannot describe a bridge: the deck gets the valley floor,
+and where the lap crosses itself both roads get the same height. The recipe corrects the
+profile with [[elevation.override]] entries (see apply_elevation_overrides); every place where
+the lap crosses itself in plan view is then recorded in track.json ("crossings"), and the build
+stops if the two roads are not at least MIN_CLEARANCE apart there.
 """
 import json
 import math
@@ -21,6 +27,10 @@ DEM_STEP = 10.0       # DEM sampling spacing, m
 PLAN_SIGMA = 4.0      # m, plan-view smoothing
 CURV_SIGMA = 6.0      # m, curvature smoothing
 DEFAULT_WIDTH = 13.0  # nominal width stored per point; road_profile.json has the real one
+OVERRIDE_BLEND = 60.0  # m, default blend of an [[elevation.override]] offset
+OVERRIDE_SIGMA = 10.0  # m, smoothing of the profile after overrides (rounds their corners)
+CROSSING_MIN_GAP = 150.0  # m along the lap: closer self-intersections are folds, not crossovers
+MIN_CLEARANCE = 5.5   # m between the two road surfaces of a crossover (deck 1.2 m + headroom)
 FRAME = "Godot metres: x=east, y=up (relative to finish line), z=-north; origin at finish line"
 
 
@@ -69,6 +79,83 @@ def _elevations(fetcher, latlon, recipe, log, warnings):
                              if vals[(i + d * sgn) % m] is not None))
                 vals[i] = near
     return vals, dataset
+
+
+def apply_elevation_overrides(y, step, overrides):
+    """Corrects the height profile ``y`` (one value per sample, closed lap) with the recipe's
+    [[elevation.override]] entries, in the order given:
+
+        s = [from, to]       the stretch, metres from the finish line (may wrap around it)
+        straighten = true    replace the DEM heights between the two ends by the straight
+                             line joining them (a bridge deck: the DEM shows the valley floor)
+        offset = 4.0         metres added inside the stretch, fading to 0 over ...
+        blend = 60.0         ... this many metres on either side (the ramps)
+
+    The result is smoothed lightly (OVERRIDE_SIGMA) so the ramps have no kinks."""
+    if not overrides:
+        return y
+    y = list(y)
+    n = len(y)
+    length = n * step
+    for o in overrides:
+        a, b = float(o["s"][0]), float(o["s"][1])
+        span = (b - a) % length
+        ia, count = int(round(a / step)) % n, max(1, int(round(span / step)))
+        if o.get("straighten"):
+            ya, yb = y[ia], y[(ia + count) % n]
+            for k in range(1, count):
+                y[(ia + k) % n] = ya + (yb - ya) * k / count
+        offset = float(o.get("offset", 0.0))
+        blend = float(o.get("blend", OVERRIDE_BLEND))
+        if offset:
+            for k in range(n):
+                t = (k * step - a) % length
+                if t <= span:
+                    w = 1.0
+                else:
+                    d = min(t - span, length - t)       # metres outside the stretch
+                    w = 0.5 + 0.5 * math.cos(math.pi * d / blend) if d < blend else 0.0
+                y[k] += offset * w
+    return geom.gauss_periodic(y, sigma=OVERRIDE_SIGMA / step)
+
+
+def find_crossings(samples, y, step):
+    """Places where the closed lap crosses itself in plan view (a figure of eight):
+    [{"s_lower", "s_upper", "clearance", "angle_deg"}], heights taken from ``y``."""
+    n = len(samples)
+    cell = 4.0 * step
+    grid = {}
+    for i, p in enumerate(samples):
+        grid.setdefault((int(math.floor(p[0] / cell)), int(math.floor(p[1] / cell))), []).append(i)
+    min_gap = int(CROSSING_MIN_GAP / step)
+    out, seen = [], set()
+    for i in range(n):
+        a, b = samples[i], samples[(i + 1) % n]
+        cx, cz = int(math.floor(a[0] / cell)), int(math.floor(a[1] / cell))
+        for gx in range(cx - 1, cx + 2):
+            for gz in range(cz - 1, cz + 2):
+                for j in grid.get((gx, gz), ()):
+                    if j <= i or min(j - i, n - (j - i)) < min_gap or (i, j) in seen:
+                        continue
+                    c, e = samples[j], samples[(j + 1) % n]
+                    d1, d2 = (b[0] - a[0], b[1] - a[1]), (e[0] - c[0], e[1] - c[1])
+                    den = d1[0] * d2[1] - d1[1] * d2[0]
+                    if abs(den) < 1e-12:
+                        continue
+                    t = ((c[0] - a[0]) * d2[1] - (c[1] - a[1]) * d2[0]) / den
+                    u = ((c[0] - a[0]) * d1[1] - (c[1] - a[1]) * d1[0]) / den
+                    if not (0.0 <= t < 1.0 and 0.0 <= u < 1.0):
+                        continue
+                    seen.add((i, j))
+                    ya = y[i] + (y[(i + 1) % n] - y[i]) * t
+                    yb = y[j] + (y[(j + 1) % n] - y[j]) * u
+                    sa, sb = (i + t) * step, (j + u) * step
+                    cos = (d1[0] * d2[0] + d1[1] * d2[1]) / (math.hypot(*d1) * math.hypot(*d2))
+                    angle = math.degrees(math.acos(max(-1.0, min(1.0, abs(cos)))))
+                    lower, upper = (sa, sb) if ya <= yb else (sb, sa)
+                    out.append({"s_lower": round(lower, 1), "s_upper": round(upper, 1),
+                                "clearance": round(abs(yb - ya), 2), "angle_deg": round(angle, 1)})
+    return sorted(out, key=lambda c: c["s_lower"])
 
 
 def build(recipe, fetcher, log=print):
@@ -173,6 +260,16 @@ def build(recipe, fetcher, log=print):
     dem_s = [i * step for i in dem_idx]
     y = geom.periodic_interp(dem_s, elev, [k * step for k in range(n)], length)
     y = geom.gauss_periodic(y, sigma=recipe.elev_sigma_m / step)
+    y = apply_elevation_overrides(y, step, recipe.elev_overrides)
+    crossings = find_crossings(samples, y, step)
+    for c in crossings:
+        if c["clearance"] < MIN_CLEARANCE:
+            raise BuildError(
+                f"the lap crosses itself at s = {c['s_lower']:.0f} m and s = {c['s_upper']:.0f} m, and "
+                f"the two roads are only {c['clearance']:.1f} m apart in height there (the DEM has one "
+                f"height per point). A crossover needs at least {MIN_CLEARANCE} m: raise the upper road "
+                "and / or lower the other one with [[elevation.override]] entries in the recipe "
+                "(s = [from, to], offset, straighten, blend; see tools/track/README.md)")
     base = y[0]
     y = [v - base for v in y]
 
@@ -221,6 +318,9 @@ def build(recipe, fetcher, log=print):
         "attribution": f"Centreline (c) OpenStreetMap contributors (ODbL 1.0), {src}. "
                        + net.attribution(dataset),
     }
+    if crossings:
+        # Only figure-of-eight laps have the key, so every other track.json is unchanged.
+        track["crossings"] = crossings
     grades = [p["grade"] for p in pts_out]
     info = {
         "id": recipe.id,
@@ -241,6 +341,9 @@ def build(recipe, fetcher, log=print):
         f"{track['direction']}, start_s {start_s:.1f}, finish from {sf_source}")
     log(f"elevation ({dataset}): range {track['elevation_range']} m, max climb {100 * max(grades):.1f} %, "
         f"max descent {100 * min(grades):.1f} %")
+    for c in crossings:
+        log(f"crossover: s = {c['s_upper']:.0f} m passes {c['clearance']:.1f} m above s = {c['s_lower']:.0f} m "
+            f"(the roads cross at {c['angle_deg']:.0f} degrees)")
     for t in turn_list:
         log(f"  {t['id']:>3} {t['name']:<24} s={t['s_apex']:7.1f}  {t['direction']:<5}  "
             f"min radius {t['min_radius']:.0f} m  elev {y[int(t['s_apex'] / step) % n]:+.1f} m")
