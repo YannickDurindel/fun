@@ -53,6 +53,7 @@ SECTION_KEYS = {
 TURN_KEYS = {"id", "name", "direction", "s"}
 OVERRIDE_KEYS = {"s", "width", "bank", "blend", "note"}
 ELEV_OVERRIDE_KEYS = {"s", "offset", "straighten", "blend", "note"}
+ROUND_KEYS = {"node", "reach_m", "note"}
 DIRECTIONS = {"clockwise", "anticlockwise"}
 
 
