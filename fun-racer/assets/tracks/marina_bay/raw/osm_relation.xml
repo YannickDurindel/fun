@@ -1,0 +1,2179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1311 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="172510077" visible="true" version="11" changeset="70194117" timestamp="2019-05-13T14:02:53Z" user="reenas" uid="9340863" lat="1.2931720" lon="103.8558226">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="232279092" visible="true" version="6" changeset="52454943" timestamp="2017-09-28T19:00:04Z" user="CapAhab" uid="6172866" lat="1.2909086" lon="103.8524294">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="232353185" visible="true" version="5" changeset="79674260" timestamp="2020-01-17T03:42:06Z" user="organti" uid="9279453" lat="1.2922316" lon="103.8540982"/>
+ <node id="232353226" visible="true" version="9" changeset="69924972" timestamp="2019-05-06T07:24:09Z" user="attili1" uid="8728806" lat="1.2926038" lon="103.8536185">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="232353353" visible="true" version="3" changeset="64974505" timestamp="2018-11-28T14:47:26Z" user="Malka7" uid="7671604" lat="1.2918487" lon="103.8544670"/>
+ <node id="232353925" visible="true" version="7" changeset="75357835" timestamp="2019-10-07T05:52:55Z" user="harishpuppala" uid="7446646" lat="1.2893739" lon="103.8515745"/>
+ <node id="232376467" visible="true" version="5" changeset="46155682" timestamp="2017-02-17T06:19:54Z" user="woodennature" uid="5084650" lat="1.2923897" lon="103.8532520"/>
+ <node id="233497179" visible="true" version="12" changeset="68421367" timestamp="2019-03-22T17:48:53Z" user="feta2" uid="6095836" lat="1.2930831" lon="103.8559769">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="233879421" visible="true" version="8" changeset="52427442" timestamp="2017-09-27T22:25:53Z" user="CapAhab" uid="6172866" lat="1.2913240" lon="103.8550077">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="233879440" visible="true" version="9" changeset="120578384" timestamp="2022-05-05T09:20:35Z" user="Retired Account" uid="741163" lat="1.2906494" lon="103.8557948"/>
+ <node id="233879466" visible="true" version="3" changeset="11328693" timestamp="2012-04-17T03:49:22Z" user="matx17" uid="602634" lat="1.2901714" lon="103.8563522">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="233879502" visible="true" version="2" changeset="11695137" timestamp="2012-05-25T04:19:13Z" user="matx17" uid="602634" lat="1.2898549" lon="103.8567861"/>
+ <node id="233879574" visible="true" version="10" changeset="171910795" timestamp="2025-09-14T10:48:30Z" user="GrabSG_AndyAng" uid="21274046" lat="1.2896858" lon="103.8586061">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="233879603" visible="true" version="16" changeset="120578384" timestamp="2022-05-05T09:20:35Z" user="Retired Account" uid="741163" lat="1.2895592" lon="103.8609857">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="233879753" visible="true" version="5" changeset="7470082" timestamp="2011-03-06T06:46:25Z" user="mapbreeze" uid="111118" lat="1.2914505" lon="103.8548655">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="233879798" visible="true" version="4" changeset="11328693" timestamp="2012-04-17T03:49:05Z" user="matx17" uid="602634" lat="1.2925727" lon="103.8568682"/>
+ <node id="233879856" visible="true" version="11" changeset="171508214" timestamp="2025-09-05T16:45:12Z" user="GrabSG_AndyAng" uid="21274046" lat="1.2915475" lon="103.8587030"/>
+ <node id="233879872" visible="true" version="16" changeset="120578384" timestamp="2022-05-05T09:20:35Z" user="Retired Account" uid="741163" lat="1.2913301" lon="103.8608319">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="233879899" visible="true" version="15" changeset="120578384" timestamp="2022-05-05T09:20:35Z" user="Retired Account" uid="741163" lat="1.2913321" lon="103.8609332">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="233880373" visible="true" version="9" changeset="54607659" timestamp="2017-12-13T20:59:36Z" user="cartogram" uid="6095772" lat="1.2923557" lon="103.8572319"/>
+ <node id="235070001" visible="true" version="6" changeset="180713956" timestamp="2026-04-01T10:30:05Z" user="dzonimn" uid="11608748" lat="1.2947585" lon="103.8625153"/>
+ <node id="235070344" visible="true" version="7" changeset="72857360" timestamp="2019-07-31T13:35:05Z" user="grabtaxi6" uid="10141444" lat="1.2913032" lon="103.8625310"/>
+ <node id="235070526" visible="true" version="5" changeset="72857360" timestamp="2019-07-31T13:35:05Z" user="grabtaxi6" uid="10141444" lat="1.2920520" lon="103.8628904"/>
+ <node id="235070560" visible="true" version="5" changeset="72857360" timestamp="2019-07-31T13:35:05Z" user="grabtaxi6" uid="10141444" lat="1.2924838" lon="103.8628207"/>
+ <node id="235070587" visible="true" version="4" changeset="45065922" timestamp="2017-01-11T01:01:38Z" user="TheNodeWarrior" uid="4759993" lat="1.2935764" lon="103.8624291"/>
+ <node id="235070624" visible="true" version="3" changeset="45065922" timestamp="2017-01-11T01:01:38Z" user="TheNodeWarrior" uid="4759993" lat="1.2940148" lon="103.8623460"/>
+ <node id="237012287" visible="true" version="8" changeset="141087909" timestamp="2023-09-11T02:44:46Z" user="GrabSG_akbaralibakar" uid="9366301" lat="1.2866054" lon="103.8537625"/>
+ <node id="237054799" visible="true" version="13" changeset="141416505" timestamp="2023-09-18T10:09:59Z" user="GrabSG_akbaralibakar" uid="9366301" lat="1.2871039" lon="103.8532676"/>
+ <node id="410939418" visible="true" version="4" changeset="25430642" timestamp="2014-09-14T12:13:03Z" user="rene78" uid="257555" lat="1.2892613" lon="103.8542660"/>
+ <node id="462263951" visible="true" version="6" changeset="72857360" timestamp="2019-07-31T13:35:05Z" user="grabtaxi6" uid="10141444" lat="1.2915327" lon="103.8628486"/>
+ <node id="479983003" visible="true" version="14" changeset="120578384" timestamp="2022-05-05T09:20:53Z" user="Retired Account" uid="741163" lat="1.2895650" lon="103.8608765">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="595497945" visible="true" version="13" changeset="75856514" timestamp="2019-10-17T17:54:57Z" user="feta2" uid="6095836" lat="1.2920774" lon="103.8577256"/>
+ <node id="634071195" visible="true" version="15" changeset="187774094" timestamp="2026-08-21T04:10:13Z" user="yeeto da cheeto" uid="21826942" lat="1.2895478" lon="103.8610813">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="1161612960" visible="true" version="7" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2894651" lon="103.8643271"/>
+ <node id="1161612993" visible="true" version="4" changeset="56339267" timestamp="2018-02-14T01:58:06Z" user="luked2000" uid="7128658" lat="1.2945431" lon="103.8623862"/>
+ <node id="1161612996" visible="true" version="5" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2941208" lon="103.8637308"/>
+ <node id="1161613002" visible="true" version="5" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2942320" lon="103.8636063"/>
+ <node id="1161613033" visible="true" version="3" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2887453" lon="103.8638073"/>
+ <node id="1161613070" visible="true" version="4" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2942570" lon="103.8635345"/>
+ <node id="1161613118" visible="true" version="5" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2892835" lon="103.8642651"/>
+ <node id="1161613127" visible="true" version="5" changeset="68195393" timestamp="2019-03-16T04:30:51Z" user="patodiez" uid="1856060" lat="1.2887014" lon="103.8628407"/>
+ <node id="1161613131" visible="true" version="4" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2942787" lon="103.8634356"/>
+ <node id="1161613167" visible="true" version="6" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2896515" lon="103.8643313"/>
+ <node id="1161613173" visible="true" version="4" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2942990" lon="103.8633351"/>
+ <node id="1161613185" visible="true" version="7" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2893596" lon="103.8643031"/>
+ <node id="1161613227" visible="true" version="4" changeset="59768617" timestamp="2018-06-12T08:48:20Z" user="naik4" uid="7671613" lat="1.2887279" lon="103.8632536"/>
+ <node id="1161613230" visible="true" version="4" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2887864" lon="103.8639319"/>
+ <node id="1188509769" visible="true" version="7" changeset="164574670" timestamp="2025-04-06T05:04:36Z" user="PurplePurplePurple" uid="19547380" lat="1.2925756" lon="103.8534982">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="tactile_paving" v="no"/>
+  <tag k="traffic_signals:sound" v="no"/>
+ </node>
+ <node id="1188527792" visible="true" version="5" changeset="72857360" timestamp="2019-07-31T13:35:05Z" user="grabtaxi6" uid="10141444" lat="1.2918067" lon="103.8629088"/>
+ <node id="1398079475" visible="true" version="4" changeset="115431761" timestamp="2021-12-27T15:21:09Z" user="dinastik" uid="1927974" lat="1.2916630" lon="103.8546550"/>
+ <node id="1446076194" visible="true" version="4" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2889170" lon="103.8640347"/>
+ <node id="1446076209" visible="true" version="5" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2895766" lon="103.8643387"/>
+ <node id="1446076213" visible="true" version="1" changeset="9399921" timestamp="2011-09-26T08:48:17Z" user="SennaHB" uid="429794" lat="1.2897557" lon="103.8572552"/>
+ <node id="1446076214" visible="true" version="3" changeset="54440863" timestamp="2017-12-07T19:35:22Z" user="FlyTy" uid="6095805" lat="1.2897940" lon="103.8569869"/>
+ <node id="1446076215" visible="true" version="2" changeset="45065922" timestamp="2017-01-11T01:01:40Z" user="TheNodeWarrior" uid="4759993" lat="1.2937185" lon="103.8623795"/>
+ <node id="1446076217" visible="true" version="2" changeset="45065922" timestamp="2017-01-11T01:01:40Z" user="TheNodeWarrior" uid="4759993" lat="1.2938660" lon="103.8623540"/>
+ <node id="1446076218" visible="true" version="4" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2941967" lon="103.8636644"/>
+ <node id="1446076223" visible="true" version="3" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2946271" lon="103.8629806"/>
+ <node id="1683099954" visible="true" version="1" changeset="11039617" timestamp="2012-03-20T10:21:57Z" user="marek kleciak" uid="338611" lat="1.2925175" lon="103.8533954"/>
+ <node id="1720073355" visible="true" version="13" changeset="171508214" timestamp="2025-09-05T16:45:12Z" user="GrabSG_AndyAng" uid="21274046" lat="1.2916120" lon="103.8585312"/>
+ <node id="1720073397" visible="true" version="6" changeset="54607659" timestamp="2017-12-13T20:59:36Z" user="cartogram" uid="6095772" lat="1.2923891" lon="103.8571760"/>
+ <node id="1720073406" visible="true" version="10" changeset="77773469" timestamp="2019-12-01T06:08:39Z" user="Frugol" uid="6744861" lat="1.2914743" lon="103.8590169"/>
+ <node id="1720073678" visible="true" version="1" changeset="11328693" timestamp="2012-04-17T03:49:22Z" user="matx17" uid="602634" lat="1.2899906" lon="103.8565472"/>
+ <node id="1743939385" visible="true" version="5" changeset="120578384" timestamp="2022-05-05T09:20:53Z" user="Retired Account" uid="741163" lat="1.2903222" lon="103.8561749"/>
+ <node id="1764796980" visible="true" version="10" changeset="169898803" timestamp="2025-08-03T11:03:24Z" user="Medformatik" uid="22075614" lat="1.2902257" lon="103.8562871">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="tactile_paving" v="yes"/>
+  <tag k="traffic_signals:sound" v="yes"/>
+ </node>
+ <node id="1764796983" visible="true" version="2" changeset="25430642" timestamp="2014-09-14T12:04:38Z" user="rene78" uid="257555" lat="1.2898254" lon="103.8568781"/>
+ <node id="1764796984" visible="true" version="1" changeset="11695137" timestamp="2012-05-25T04:19:12Z" user="matx17" uid="602634" lat="1.2899135" lon="103.8566645"/>
+ <node id="1780184887" visible="true" version="5" changeset="185027394" timestamp="2026-07-03T08:57:57Z" user="wmxwu" uid="20503922" lat="1.2896780" lon="103.8587507">
+  <tag k="crossing:signals" v="yes"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="tactile_paving" v="yes"/>
+ </node>
+ <node id="1780184888" visible="true" version="4" changeset="120578384" timestamp="2022-05-05T09:20:53Z" user="Retired Account" uid="741163" lat="1.2897309" lon="103.8577561"/>
+ <node id="1818161326" visible="true" version="2" changeset="120578384" timestamp="2022-05-05T09:20:53Z" user="Retired Account" uid="741163" lat="1.2897468" lon="103.8574561"/>
+ <node id="1818164136" visible="true" version="3" changeset="25430642" timestamp="2014-09-14T12:04:38Z" user="rene78" uid="257555" lat="1.2922894" lon="103.8552936"/>
+ <node id="1832823579" visible="true" version="7" changeset="168640626" timestamp="2025-07-08T09:42:55Z" user="GrabSG_AndyAng" uid="21274046" lat="1.2896305" lon="103.8596687"/>
+ <node id="1832823581" visible="true" version="7" changeset="168640626" timestamp="2025-07-08T09:42:55Z" user="GrabSG_AndyAng" uid="21274046" lat="1.2896398" lon="103.8595101"/>
+ <node id="1832823583" visible="true" version="5" changeset="171910795" timestamp="2025-09-14T10:48:30Z" user="GrabSG_AndyAng" uid="21274046" lat="1.2896553" lon="103.8591787"/>
+ <node id="1832823584" visible="true" version="4" changeset="171910795" timestamp="2025-09-14T10:48:30Z" user="GrabSG_AndyAng" uid="21274046" lat="1.2896723" lon="103.8588597"/>
+ <node id="1832823586" visible="true" version="4" changeset="120578384" timestamp="2022-05-05T09:20:53Z" user="Retired Account" uid="741163" lat="1.2897137" lon="103.8580786"/>
+ <node id="1832823589" visible="true" version="2" changeset="120578384" timestamp="2022-05-05T09:20:53Z" user="Retired Account" uid="741163" lat="1.2897535" lon="103.8573305"/>
+ <node id="1832823650" visible="true" version="5" changeset="167036637" timestamp="2025-06-01T06:34:00Z" user="❤️‍🔥" uid="10140394" lat="1.2904014" lon="103.8546839"/>
+ <node id="1832823668" visible="true" version="8" changeset="168992826" timestamp="2025-07-16T04:12:01Z" user="GrabSG_AndyAng" uid="21274046" lat="1.2914033" lon="103.8600553"/>
+ <node id="1832823669" visible="true" version="6" changeset="73711163" timestamp="2019-08-25T07:26:05Z" user="Frugol" uid="6744861" lat="1.2915233" lon="103.8587725"/>
+ <node id="1832823705" visible="true" version="6" changeset="171902357" timestamp="2025-09-14T06:51:02Z" user="GrabSG_AndyAng" uid="21274046" lat="1.2917790" lon="103.8582423"/>
+ <node id="2466494264" visible="true" version="1" changeset="17956914" timestamp="2013-09-21T13:42:51Z" user="jRonny" uid="780953" lat="1.2899715" lon="103.8565763"/>
+ <node id="2466494275" visible="true" version="2" changeset="120578384" timestamp="2022-05-05T09:20:55Z" user="Retired Account" uid="741163" lat="1.2897454" lon="103.8574822"/>
+ <node id="2466494277" visible="true" version="2" changeset="120578384" timestamp="2022-05-05T09:20:55Z" user="Retired Account" uid="741163" lat="1.2911304" lon="103.8552358"/>
+ <node id="2466494309" visible="true" version="1" changeset="17956914" timestamp="2013-09-21T13:42:52Z" user="jRonny" uid="780953" lat="1.2912783" lon="103.8550590"/>
+ <node id="2466494354" visible="true" version="4" changeset="68195393" timestamp="2019-03-16T04:30:51Z" user="patodiez" uid="1856060" lat="1.2909735" lon="103.8548828"/>
+ <node id="2466494363" visible="true" version="5" changeset="120578384" timestamp="2022-05-05T09:20:55Z" user="Retired Account" uid="741163" lat="1.2897405" lon="103.8575749"/>
+ <node id="2466494365" visible="true" version="4" changeset="120578384" timestamp="2022-05-05T09:20:55Z" user="Retired Account" uid="741163" lat="1.2904752" lon="103.8559972"/>
+ <node id="2466494373" visible="true" version="3" changeset="25430642" timestamp="2014-09-14T12:04:38Z" user="rene78" uid="257555" lat="1.2915866" lon="103.8549246"/>
+ <node id="2466494375" visible="true" version="1" changeset="17956914" timestamp="2013-09-21T13:42:53Z" user="jRonny" uid="780953" lat="1.2898782" lon="103.8567376"/>
+ <node id="2466494397" visible="true" version="1" changeset="17956914" timestamp="2013-09-21T13:42:53Z" user="jRonny" uid="780953" lat="1.2900794" lon="103.8564514"/>
+ <node id="2511487801" visible="true" version="6" changeset="177711595" timestamp="2026-01-26T09:26:53Z" user="gghx" uid="23643056" lat="1.2865708" lon="103.8536500">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="tactile_paving" v="no"/>
+ </node>
+ <node id="3010901881" visible="true" version="4" changeset="25430642" timestamp="2014-09-14T12:16:22Z" user="rene78" uid="257555" lat="1.2867007" lon="103.8537803"/>
+ <node id="3010901912" visible="true" version="7" changeset="115431761" timestamp="2021-12-27T15:21:09Z" user="dinastik" uid="1927974" lat="1.2889492" lon="103.8516398">
+  <tag k="traffic_calming" v="island"/>
+ </node>
+ <node id="3010901923" visible="true" version="2" changeset="25359249" timestamp="2014-09-11T02:13:20Z" user="peiwen" uid="2324175" lat="1.2897751" lon="103.8571045"/>
+ <node id="3059486888" visible="true" version="3" changeset="68430195" timestamp="2019-03-22T22:54:29Z" user="feta2" uid="6095836" lat="1.2927809" lon="103.8565140"/>
+ <node id="3059486893" visible="true" version="3" changeset="54607659" timestamp="2017-12-13T20:59:36Z" user="cartogram" uid="6095772" lat="1.2925027" lon="103.8569856"/>
+ <node id="3071267371" visible="true" version="2" changeset="25430642" timestamp="2014-09-14T12:04:38Z" user="rene78" uid="257555" lat="1.2928507" lon="103.8556295"/>
+ <node id="3071267396" visible="true" version="2" changeset="25430642" timestamp="2014-09-14T12:16:22Z" user="rene78" uid="257555" lat="1.2924047" lon="103.8539248"/>
+ <node id="3076643588" visible="true" version="4" changeset="68195393" timestamp="2019-03-16T04:30:51Z" user="patodiez" uid="1856060" lat="1.2887895" lon="103.8619413"/>
+ <node id="3076643589" visible="true" version="3" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2886770" lon="103.8639715"/>
+ <node id="3076643594" visible="true" version="2" changeset="59768617" timestamp="2018-06-12T08:48:32Z" user="naik4" uid="7671613" lat="1.2886587" lon="103.8638731"/>
+ <node id="3076643603" visible="true" version="2" changeset="59768617" timestamp="2018-06-12T08:48:32Z" user="naik4" uid="7671613" lat="1.2893749" lon="103.8612770"/>
+ <node id="3076643605" visible="true" version="2" changeset="59768617" timestamp="2018-06-12T08:48:32Z" user="naik4" uid="7671613" lat="1.2892211" lon="103.8612770"/>
+ <node id="3076643606" visible="true" version="3" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2896534" lon="103.8644482"/>
+ <node id="3076643611" visible="true" version="3" changeset="59768617" timestamp="2018-06-12T08:48:32Z" user="naik4" uid="7671613" lat="1.2894944" lon="103.8612069">
+  <tag k="barrier" v="yes"/>
+ </node>
+ <node id="3076643614" visible="true" version="3" changeset="68195393" timestamp="2019-03-16T04:30:51Z" user="patodiez" uid="1856060" lat="1.2947850" lon="103.8628791"/>
+ <node id="3076643616" visible="true" version="3" changeset="68195393" timestamp="2019-03-16T04:30:51Z" user="patodiez" uid="1856060" lat="1.2888304" lon="103.8615760"/>
+ <node id="3076643619" visible="true" version="3" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2893103" lon="103.8643984"/>
+ <node id="3076643620" visible="true" version="4" changeset="72536208" timestamp="2019-07-23T02:20:12Z" user="attili1" uid="8728806" lat="1.2912552" lon="103.8623470"/>
+ <node id="3076643622" visible="true" version="2" changeset="59768617" timestamp="2018-06-12T08:48:32Z" user="naik4" uid="7671613" lat="1.2890600" lon="103.8612981"/>
+ <node id="3076643623" visible="true" version="4" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2943212" lon="103.8637918"/>
+ <node id="3076643626" visible="true" version="2" changeset="59768617" timestamp="2018-06-12T08:48:32Z" user="naik4" uid="7671613" lat="1.2886748" lon="103.8635476"/>
+ <node id="3076643627" visible="true" version="4" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2943517" lon="103.8635351"/>
+ <node id="3076643628" visible="true" version="2" changeset="68195393" timestamp="2019-03-16T04:30:51Z" user="patodiez" uid="1856060" lat="1.2948393" lon="103.8627335"/>
+ <node id="3076643629" visible="true" version="3" changeset="68195393" timestamp="2019-03-16T04:30:51Z" user="patodiez" uid="1856060" lat="1.2943578" lon="103.8637208"/>
+ <node id="3076643632" visible="true" version="3" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2887646" lon="103.8640496"/>
+ <node id="3076644036" visible="true" version="2" changeset="59768617" timestamp="2018-06-12T08:48:32Z" user="naik4" uid="7671613" lat="1.2889054" lon="103.8613893"/>
+ <node id="3076644037" visible="true" version="3" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2895026" lon="103.8644596"/>
+ <node id="3736885019" visible="true" version="12" changeset="187774094" timestamp="2026-08-21T04:10:13Z" user="yeeto da cheeto" uid="21826942" lat="1.2912940" lon="103.8619805"/>
+ <node id="3736885022" visible="true" version="9" changeset="72536208" timestamp="2019-07-23T02:20:12Z" user="attili1" uid="8728806" lat="1.2913406" lon="103.8616157"/>
+ <node id="4281759834" visible="true" version="3" changeset="182628231" timestamp="2026-05-14T04:17:07Z" user="StoneChain" uid="13259724" lat="1.2916929" lon="103.8642117">
+  <tag k="name" v="Start Line"/>
+  <tag k="race course" v="start_end"/>
+ </node>
+ <node id="4281759839" visible="true" version="5" changeset="77773469" timestamp="2019-12-01T06:08:39Z" user="Frugol" uid="6744861" lat="1.2914445" lon="103.8593764"/>
+ <node id="4451336935" visible="true" version="4" changeset="53857753" timestamp="2017-11-16T22:41:46Z" user="happy-camper" uid="6346054" lat="1.2883511" lon="103.8523788"/>
+ <node id="4451336947" visible="true" version="4" changeset="53857753" timestamp="2017-11-16T22:41:46Z" user="happy-camper" uid="6346054" lat="1.2883390" lon="103.8524101"/>
+ <node id="4451336954" visible="true" version="5" changeset="53857753" timestamp="2017-11-16T22:41:46Z" user="happy-camper" uid="6346054" lat="1.2884014" lon="103.8523418"/>
+ <node id="4513378919" visible="true" version="1" changeset="43841981" timestamp="2016-11-21T09:28:32Z" user="dinastik" uid="1927974" lat="1.2920088" lon="103.8543182"/>
+ <node id="4600842968" visible="true" version="4" changeset="72857360" timestamp="2019-07-31T13:35:05Z" user="grabtaxi6" uid="10141444" lat="1.2914334" lon="103.8627650"/>
+ <node id="4600854642" visible="true" version="8" changeset="168642560" timestamp="2025-07-08T10:23:51Z" user="GrabSG_AndyAng" uid="21274046" lat="1.2913836" lon="103.8603800"/>
+ <node id="4689967578" visible="true" version="3" changeset="157872543" timestamp="2024-10-14T11:36:22Z" user="Magikart" uid="21292942" lat="1.2907304" lon="103.8523289">
+  <tag k="button_operated" v="yes"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="kerb" v="lowered"/>
+  <tag k="tactile_paving" v="yes"/>
+  <tag k="traffic_signals:sound" v="yes"/>
+ </node>
+ <node id="4726227141" visible="true" version="8" changeset="187774094" timestamp="2026-08-21T04:10:13Z" user="yeeto da cheeto" uid="21826942" lat="1.2913369" lon="103.8610957"/>
+ <node id="4726775783" visible="true" version="4" changeset="120578384" timestamp="2022-05-05T09:20:57Z" user="Retired Account" uid="741163" lat="1.2911468" lon="103.8552168"/>
+ <node id="4726775785" visible="true" version="4" changeset="68195393" timestamp="2019-03-16T04:30:51Z" user="patodiez" uid="1856060" lat="1.2910827" lon="103.8549222"/>
+ <node id="4727947772" visible="true" version="7" changeset="77773469" timestamp="2019-12-01T06:08:39Z" user="Frugol" uid="6744861" lat="1.2914593" lon="103.8591706"/>
+ <node id="4732505517" visible="true" version="2" changeset="53857753" timestamp="2017-11-16T22:41:47Z" user="happy-camper" uid="6346054" lat="1.2883751" lon="103.8523538"/>
+ <node id="4732525705" visible="true" version="3" changeset="54445307" timestamp="2017-12-07T23:13:41Z" user="FlyTy" uid="6095805" lat="1.2910839" lon="103.8525268"/>
+ <node id="5133993153" visible="true" version="2" changeset="53857753" timestamp="2017-11-16T22:41:47Z" user="happy-camper" uid="6346054" lat="1.2880957" lon="103.8523772"/>
+ <node id="5136090633" visible="true" version="6" changeset="72536208" timestamp="2019-07-23T02:20:12Z" user="attili1" uid="8728806" lat="1.2913404" lon="103.8615148">
+  <tag k="bus" v="yes"/>
+  <tag k="public_transport" v="stop_position"/>
+ </node>
+ <node id="5136107116" visible="true" version="3" changeset="174190328" timestamp="2025-11-04T12:12:03Z" user="wmxwu" uid="20503922" lat="1.2866461" lon="103.8537699">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="tactile_paving" v="yes"/>
+ </node>
+ <node id="5157731601" visible="true" version="3" changeset="59768617" timestamp="2018-06-12T08:48:39Z" user="naik4" uid="7671613" lat="1.2887046" lon="103.8627747"/>
+ <node id="5165925965" visible="true" version="9" changeset="120578384" timestamp="2022-05-05T09:21:03Z" user="Retired Account" uid="741163" lat="1.2895801" lon="103.8605926"/>
+ <node id="5233693837" visible="true" version="1" changeset="53857753" timestamp="2017-11-16T22:41:43Z" user="happy-camper" uid="6346054" lat="1.2884640" lon="103.8522876"/>
+ <node id="5233693838" visible="true" version="1" changeset="53857753" timestamp="2017-11-16T22:41:43Z" user="happy-camper" uid="6346054" lat="1.2885016" lon="103.8522399"/>
+ <node id="5270623340" visible="true" version="2" changeset="120578384" timestamp="2022-05-05T09:21:03Z" user="Retired Account" uid="741163" lat="1.2897548" lon="103.8573058"/>
+ <node id="5270928837" visible="true" version="2" changeset="76028761" timestamp="2019-10-22T06:04:13Z" user="Map3787" uid="10373200" lat="1.2908769" lon="103.8524116"/>
+ <node id="5270981855" visible="true" version="10" changeset="171508214" timestamp="2025-09-05T16:45:12Z" user="GrabSG_AndyAng" uid="21274046" lat="1.2917694" lon="103.8582593"/>
+ <node id="5270981856" visible="true" version="7" changeset="171508214" timestamp="2025-09-05T16:45:12Z" user="GrabSG_AndyAng" uid="21274046" lat="1.2919820" lon="103.8578896"/>
+ <node id="5411304500" visible="true" version="3" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2940727" lon="103.8638557"/>
+ <node id="5411304501" visible="true" version="3" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2941585" lon="103.8638501"/>
+ <node id="5411304502" visible="true" version="3" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2945220" lon="103.8630464"/>
+ <node id="5411304505" visible="true" version="3" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2944147" lon="103.8631271"/>
+ <node id="5411304506" visible="true" version="3" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2943611" lon="103.8634118"/>
+ <node id="5411304507" visible="true" version="2" changeset="68195393" timestamp="2019-03-16T04:30:51Z" user="patodiez" uid="1856060" lat="1.2943588" lon="103.8636225"/>
+ <node id="5411304508" visible="true" version="3" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2944007" lon="103.8632824"/>
+ <node id="5411304510" visible="true" version="2" changeset="68195393" timestamp="2019-03-16T04:30:51Z" user="patodiez" uid="1856060" lat="1.2947144" lon="103.8629382"/>
+ <node id="5411304511" visible="true" version="2" changeset="68195393" timestamp="2019-03-16T04:30:51Z" user="patodiez" uid="1856060" lat="1.2948213" lon="103.8628109"/>
+ <node id="5411304513" visible="true" version="3" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2893969" lon="103.8644413"/>
+ <node id="5411304514" visible="true" version="3" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2887063" lon="103.8640023"/>
+ <node id="5411304515" visible="true" version="2" changeset="59768617" timestamp="2018-06-12T08:48:42Z" user="naik4" uid="7671613" lat="1.2886633" lon="103.8639349"/>
+ <node id="5411304516" visible="true" version="3" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2887568" lon="103.8638756"/>
+ <node id="5411304517" visible="true" version="3" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2888263" lon="103.8639740"/>
+ <node id="5411304722" visible="true" version="2" changeset="59768617" timestamp="2018-06-12T08:48:42Z" user="naik4" uid="7671613" lat="1.2889754" lon="103.8613328"/>
+ <node id="5864347585" visible="true" version="6" changeset="168642560" timestamp="2025-07-08T10:23:51Z" user="GrabSG_AndyAng" uid="21274046" lat="1.2914253" lon="103.8597007"/>
+ <node id="5864381389" visible="true" version="3" changeset="180713956" timestamp="2026-04-01T10:30:05Z" user="dzonimn" uid="11608748" lat="1.2948194" lon="103.8625906"/>
+ <node id="5978628576" visible="true" version="2" changeset="120578384" timestamp="2022-05-05T09:21:03Z" user="Retired Account" uid="741163" lat="1.2897023" lon="103.8582930"/>
+ <node id="6046754591" visible="true" version="1" changeset="64298139" timestamp="2018-11-08T16:25:58Z" user="srivani1" uid="8607450" lat="1.2944856" lon="103.8623818"/>
+ <node id="6077839914" visible="true" version="2" changeset="90671689" timestamp="2020-09-10T03:10:17Z" user="pra_veen" uid="9419765" lat="1.2919144" lon="103.8529922"/>
+ <node id="6094193512" visible="true" version="1" changeset="64917881" timestamp="2018-11-27T01:44:17Z" user="zakriya1" uid="7671566" lat="1.2924516" lon="103.8570723"/>
+ <node id="6095372887" visible="true" version="1" changeset="64934156" timestamp="2018-11-27T12:18:45Z" user="Rakesh9" uid="7671617" lat="1.2912821" lon="103.8526354"/>
+ <node id="6340950159" visible="true" version="2" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2942661" lon="103.8638328"/>
+ <node id="6340950160" visible="true" version="2" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2944754" lon="103.8630531"/>
+ <node id="6340950161" visible="true" version="2" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2943371" lon="103.8632484"/>
+ <node id="6340950163" visible="true" version="2" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2940416" lon="103.8637574"/>
+ <node id="6340950165" visible="true" version="2" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2932544" lon="103.8638606"/>
+ <node id="6340950167" visible="true" version="2" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2945495" lon="103.8630271"/>
+ <node id="6340950168" visible="true" version="1" changeset="68195393" timestamp="2019-03-16T04:30:50Z" user="patodiez" uid="1856060" lat="1.2947048" lon="103.8624761"/>
+ <node id="6340950169" visible="true" version="1" changeset="68195393" timestamp="2019-03-16T04:30:50Z" user="patodiez" uid="1856060" lat="1.2946376" lon="103.8624309"/>
+ <node id="6340950170" visible="true" version="2" changeset="72857360" timestamp="2019-07-31T13:35:05Z" user="grabtaxi6" uid="10141444" lat="1.2926040" lon="103.8627941"/>
+ <node id="6340950171" visible="true" version="2" changeset="72857360" timestamp="2019-07-31T13:35:05Z" user="grabtaxi6" uid="10141444" lat="1.2928397" lon="103.8627184"/>
+ <node id="6340950173" visible="true" version="2" changeset="72857360" timestamp="2019-07-31T13:35:05Z" user="grabtaxi6" uid="10141444" lat="1.2914723" lon="103.8628065"/>
+ <node id="6340950174" visible="true" version="2" changeset="72857360" timestamp="2019-07-31T13:35:05Z" user="grabtaxi6" uid="10141444" lat="1.2916159" lon="103.8628898"/>
+ <node id="6340950175" visible="true" version="2" changeset="72857360" timestamp="2019-07-31T13:35:05Z" user="grabtaxi6" uid="10141444" lat="1.2916981" lon="103.8629054"/>
+ <node id="6340950179" visible="true" version="4" changeset="120578384" timestamp="2022-05-05T09:21:03Z" user="Retired Account" uid="741163" lat="1.2896130" lon="103.8599725"/>
+ <node id="6340950180" visible="true" version="1" changeset="68195393" timestamp="2019-03-16T04:30:51Z" user="patodiez" uid="1856060" lat="1.2891389" lon="103.8612786"/>
+ <node id="6340950181" visible="true" version="1" changeset="68195393" timestamp="2019-03-16T04:30:51Z" user="patodiez" uid="1856060" lat="1.2888544" lon="103.8614754"/>
+ <node id="6355011388" visible="true" version="1" changeset="68421367" timestamp="2019-03-22T17:48:53Z" user="feta2" uid="6095836" lat="1.2929484" lon="103.8562154"/>
+ <node id="6374444454" visible="true" version="1" changeset="68732340" timestamp="2019-03-31T18:38:17Z" user="nickjohnston" uid="2014259" lat="1.2888019" lon="103.8618303"/>
+ <node id="6413721257" visible="true" version="2" changeset="115431761" timestamp="2021-12-27T15:21:09Z" user="dinastik" uid="1927974" lat="1.2887807" lon="103.8518670"/>
+ <node id="6413721265" visible="true" version="2" changeset="115431761" timestamp="2021-12-27T15:21:09Z" user="dinastik" uid="1927974" lat="1.2886636" lon="103.8520374"/>
+ <node id="6432919892" visible="true" version="1" changeset="69646438" timestamp="2019-04-27T18:04:26Z" user="km2bp" uid="3610826" lat="1.2943413" lon="103.8623708"/>
+ <node id="6433028833" visible="true" version="1" changeset="69648282" timestamp="2019-04-27T19:31:53Z" user="km2bp" uid="3610826" lat="1.2937976" lon="103.8623658"/>
+ <node id="6433028834" visible="true" version="1" changeset="69648282" timestamp="2019-04-27T19:31:53Z" user="km2bp" uid="3610826" lat="1.2933616" lon="103.8625264"/>
+ <node id="6665734167" visible="true" version="1" changeset="72857360" timestamp="2019-07-31T13:35:05Z" user="grabtaxi6" uid="10141444" lat="1.2913649" lon="103.8626721"/>
+ <node id="6743567258" visible="true" version="1" changeset="73711163" timestamp="2019-08-25T07:26:05Z" user="Frugol" uid="6744861" lat="1.2915103" lon="103.8588089"/>
+ <node id="6769049627" visible="true" version="2" changeset="171902357" timestamp="2025-09-14T06:51:02Z" user="GrabSG_AndyAng" uid="21274046" lat="1.2917362" lon="103.8583143"/>
+ <node id="6782303341" visible="true" version="1" changeset="74250231" timestamp="2019-09-09T08:56:36Z" user="harishpuppala" uid="7446646" lat="1.2919894" lon="103.8578775"/>
+ <node id="6782303342" visible="true" version="4" changeset="171508214" timestamp="2025-09-05T16:45:12Z" user="GrabSG_AndyAng" uid="21274046" lat="1.2921020" lon="103.8576827"/>
+ <node id="6856578455" visible="true" version="2" changeset="115431761" timestamp="2021-12-27T15:21:09Z" user="dinastik" uid="1927974" lat="1.2890920" lon="103.8514513"/>
+ <node id="6988663055" visible="true" version="2" changeset="115431761" timestamp="2021-12-27T15:21:09Z" user="dinastik" uid="1927974" lat="1.2877239" lon="103.8525432"/>
+ <node id="6997023277" visible="true" version="1" changeset="77392484" timestamp="2019-11-21T18:01:46Z" user="organti" uid="9279453" lat="1.2896701" lon="103.8517392"/>
+ <node id="6997023278" visible="true" version="1" changeset="77392484" timestamp="2019-11-21T18:01:46Z" user="organti" uid="9279453" lat="1.2895140" lon="103.8516524"/>
+ <node id="7023019223" visible="true" version="2" changeset="172141116" timestamp="2025-09-19T04:34:05Z" user="GrabSG_AndyAng" uid="21274046" lat="1.2914491" lon="103.8592734"/>
+ <node id="7138225045" visible="true" version="2" changeset="120578384" timestamp="2022-05-05T09:21:03Z" user="Retired Account" uid="741163" lat="1.2909459" lon="103.8554503"/>
+ <node id="7759646003" visible="true" version="1" changeset="88591197" timestamp="2020-07-28T02:35:00Z" user="ki_ran" uid="10050951" lat="1.2924992" lon="103.8554120"/>
+ <node id="7863541446" visible="true" version="1" changeset="90220516" timestamp="2020-09-01T04:46:58Z" user="naik4" uid="7671613" lat="1.2919464" lon="103.8628983"/>
+ <node id="7863612116" visible="true" version="2" changeset="120578384" timestamp="2022-05-05T09:21:05Z" user="Retired Account" uid="741163" lat="1.2895948" lon="103.8603161"/>
+ <node id="7867763422" visible="true" version="2" changeset="120701308" timestamp="2022-05-08T13:00:29Z" user="MapTheWalk" uid="10499594" lat="1.2924912" lon="103.8537917">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="7891770123" visible="true" version="1" changeset="90671689" timestamp="2020-09-10T03:10:17Z" user="pra_veen" uid="9419765" lat="1.2921701" lon="103.8531320"/>
+ <node id="8169664152" visible="true" version="1" changeset="94877788" timestamp="2020-11-27T07:21:09Z" user="Map3787" uid="10373200" lat="1.2915357" lon="103.8549025"/>
+ <node id="8169664154" visible="true" version="1" changeset="94877788" timestamp="2020-11-27T07:21:09Z" user="Map3787" uid="10373200" lat="1.2918822" lon="103.8550798"/>
+ <node id="9370421301" visible="true" version="1" changeset="115431761" timestamp="2021-12-27T15:21:09Z" user="dinastik" uid="1927974" lat="1.2886362" lon="103.8520792"/>
+ <node id="9370421302" visible="true" version="1" changeset="115431761" timestamp="2021-12-27T15:21:09Z" user="dinastik" uid="1927974" lat="1.2891874" lon="103.8514743"/>
+ <node id="9370421303" visible="true" version="1" changeset="115431761" timestamp="2021-12-27T15:21:09Z" user="dinastik" uid="1927974" lat="1.2891414" lon="103.8514573"/>
+ <node id="9370421304" visible="true" version="1" changeset="115431761" timestamp="2021-12-27T15:21:09Z" user="dinastik" uid="1927974" lat="1.2876704" lon="103.8526038"/>
+ <node id="9370421307" visible="true" version="2" changeset="141087909" timestamp="2023-09-11T02:44:46Z" user="GrabSG_akbaralibakar" uid="9366301" lat="1.2874994" lon="103.8527757"/>
+ <node id="9370421308" visible="true" version="1" changeset="115431761" timestamp="2021-12-27T15:21:09Z" user="dinastik" uid="1927974" lat="1.2876606" lon="103.8526136"/>
+ <node id="9370423135" visible="true" version="1" changeset="115431761" timestamp="2021-12-27T15:21:09Z" user="dinastik" uid="1927974" lat="1.2920809" lon="103.8530832"/>
+ <node id="9383172239" visible="true" version="1" changeset="115628612" timestamp="2022-01-01T07:40:01Z" user="Map3787" uid="10373200" lat="1.2878349" lon="103.8524516"/>
+ <node id="9383172240" visible="true" version="1" changeset="115628612" timestamp="2022-01-01T07:40:01Z" user="Map3787" uid="10373200" lat="1.2882495" lon="103.8523827"/>
+ <node id="9569954749" visible="true" version="3" changeset="167180293" timestamp="2025-06-04T13:36:22Z" user="❤️‍🔥" uid="10140394" lat="1.2868763" lon="103.8534399"/>
+ <node id="9569954750" visible="true" version="3" changeset="167180293" timestamp="2025-06-04T13:36:22Z" user="❤️‍🔥" uid="10140394" lat="1.2867720" lon="103.8535107"/>
+ <node id="9569954751" visible="true" version="3" changeset="167180293" timestamp="2025-06-04T13:36:22Z" user="❤️‍🔥" uid="10140394" lat="1.2866113" lon="103.8536251">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="9569954753" visible="true" version="2" changeset="130041418" timestamp="2022-12-13T15:55:40Z" user="kenken234" uid="17241816" lat="1.2865738" lon="103.8536782"/>
+ <node id="9569954754" visible="true" version="2" changeset="130041418" timestamp="2022-12-13T15:55:40Z" user="kenken234" uid="17241816" lat="1.2865829" lon="103.8537184"/>
+ <node id="9814205647" visible="true" version="1" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2929856" lon="103.8638851"/>
+ <node id="9814205648" visible="true" version="1" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2931305" lon="103.8638658"/>
+ <node id="9814205649" visible="true" version="1" changeset="122316450" timestamp="2022-06-13T09:47:36Z" user="Wereldbol 1011010101100" uid="9564136" lat="1.2934466" lon="103.8638425"/>
+ <node id="9946316970" visible="true" version="1" changeset="124755205" timestamp="2022-08-11T03:37:40Z" user="GrabSG_zack" uid="7804167" lat="1.2914304" lon="103.8596063"/>
+ <node id="9946316973" visible="true" version="2" changeset="168642560" timestamp="2025-07-08T10:23:51Z" user="GrabSG_AndyAng" uid="21274046" lat="1.2914117" lon="103.8599232"/>
+ <node id="10046842560" visible="true" version="1" changeset="126536670" timestamp="2022-09-23T09:01:43Z" user="GrabSG_LydiaN" uid="10255156" lat="1.2882719" lon="103.8523895"/>
+ <node id="12071463879" visible="true" version="1" changeset="154345010" timestamp="2024-07-24T11:18:59Z" user="jayanth_ramesh" uid="12625715" lat="1.2915628" lon="103.8547543"/>
+ <node id="12169568595" visible="true" version="4" changeset="172477308" timestamp="2025-09-26T10:09:05Z" user="GrabSG_AndyAng" uid="21274046" lat="1.2918776" lon="103.8580705"/>
+ <node id="12169571327" visible="true" version="4" changeset="172477308" timestamp="2025-09-26T10:09:05Z" user="GrabSG_AndyAng" uid="21274046" lat="1.2918934" lon="103.8580435"/>
+ <node id="12522242614" visible="true" version="1" changeset="161624927" timestamp="2025-01-22T06:46:24Z" user="GrabSG_Charlie" uid="16591850" lat="1.2922407" lon="103.8540891"/>
+ <node id="12522242619" visible="true" version="1" changeset="161624927" timestamp="2025-01-22T06:46:24Z" user="GrabSG_Charlie" uid="16591850" lat="1.2923967" lon="103.8539328"/>
+ <node id="12762090856" visible="true" version="1" changeset="165066096" timestamp="2025-04-17T11:03:07Z" user="Madi-Red" uid="14550990" lat="1.2870678" lon="103.8533008"/>
+ <node id="12762090857" visible="true" version="1" changeset="165066096" timestamp="2025-04-17T11:03:07Z" user="Madi-Red" uid="14550990" lat="1.2870013" lon="103.8533443"/>
+ <node id="12762090858" visible="true" version="1" changeset="165066096" timestamp="2025-04-17T11:03:07Z" user="Madi-Red" uid="14550990" lat="1.2869481" lon="103.8533754"/>
+ <node id="12878473076" visible="true" version="1" changeset="167036637" timestamp="2025-06-01T06:34:00Z" user="❤️‍🔥" uid="10140394" lat="1.2906554" lon="103.8547722"/>
+ <node id="12878473097" visible="true" version="1" changeset="167036637" timestamp="2025-06-01T06:34:00Z" user="❤️‍🔥" uid="10140394" lat="1.2904397" lon="103.8560384"/>
+ <node id="12878476505" visible="true" version="1" changeset="167036637" timestamp="2025-06-01T06:34:00Z" user="❤️‍🔥" uid="10140394" lat="1.2905895" lon="103.8558644"/>
+ <node id="13003578482" visible="true" version="1" changeset="168992826" timestamp="2025-07-16T04:12:01Z" user="GrabSG_AndyAng" uid="21274046" lat="1.2914054" lon="103.8600220"/>
+ <node id="13698051659" visible="true" version="1" changeset="180713956" timestamp="2026-04-01T10:30:05Z" user="dzonimn" uid="11608748" lat="1.2948392" lon="103.8626592"/>
+ <node id="13826310653" visible="true" version="1" changeset="182628231" timestamp="2026-05-14T04:17:07Z" user="StoneChain" uid="13259724" lat="1.2904630" lon="103.8643543">
+  <tag k="name" v="Finish Line"/>
+ </node>
+ <node id="14014460565" visible="true" version="1" changeset="185712630" timestamp="2026-07-14T11:55:55Z" user="GeorgiSh" uid="23594736" lat="1.2894509" lon="103.8612471"/>
+ <node id="14014460566" visible="true" version="1" changeset="185712630" timestamp="2026-07-14T11:55:55Z" user="GeorgiSh" uid="23594736" lat="1.2893402" lon="103.8612770"/>
+ <node id="14108930868" visible="true" version="1" changeset="187774094" timestamp="2026-08-21T04:10:13Z" user="yeeto da cheeto" uid="21826942" lat="1.2895704" lon="103.8607750">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="crossing:markings" v="dots"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="14108930882" visible="true" version="1" changeset="187774094" timestamp="2026-08-21T04:10:13Z" user="yeeto da cheeto" uid="21826942" lat="1.2913384" lon="103.8607617">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="crossing:markings" v="dots"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="14108930883" visible="true" version="1" changeset="187774094" timestamp="2026-08-21T04:10:13Z" user="yeeto da cheeto" uid="21826942" lat="1.2913335" lon="103.8609809">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="crossing:markings" v="dots"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="16688065" visible="true" version="26" changeset="177998172" timestamp="2026-02-02T10:55:17Z" user="Tobias1996" uid="2907091">
+  <nd ref="233879753"/>
+  <nd ref="8169664152"/>
+  <nd ref="2466494373"/>
+  <nd ref="8169664154"/>
+  <nd ref="1818164136"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="70"/>
+  <tag k="name" v="Nicoll Highway"/>
+  <tag k="name:ms" v="Lebuhraya Nicoll"/>
+  <tag k="name:ta" v="நிகோல் நெடுஞ்சாலை"/>
+  <tag k="name:zh" v="尼诰大道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="21584500" visible="true" version="24" changeset="178092665" timestamp="2026-02-04T13:11:08Z" user="Tobias1996" uid="2907091">
+  <nd ref="6997023277"/>
+  <nd ref="4689967578"/>
+  <nd ref="5270928837"/>
+  <nd ref="232279092"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Saint Andrew's Road"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:left" v="yes"/>
+  <tag k="sidewalk:right" v="separate"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="through|through"/>
+ </way>
+ <way id="21701074" visible="true" version="32" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="3059486888"/>
+  <nd ref="233879798"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="6"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:both" v="separate"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="21805129" visible="true" version="34" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="462263951"/>
+  <nd ref="6340950174"/>
+  <nd ref="6340950175"/>
+  <nd ref="1188527792"/>
+  <nd ref="7863541446"/>
+  <nd ref="235070526"/>
+  <nd ref="235070560"/>
+  <nd ref="6340950170"/>
+  <nd ref="6340950171"/>
+  <nd ref="6433028834"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Republic Boulevard"/>
+  <tag k="name:en" v="Republic Boulevard"/>
+  <tag k="name:zh" v="共和国林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="left"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="29377119" visible="true" version="29" changeset="189856541" timestamp="2026-10-02T03:04:42Z" user="GrabSG_IkmalHakim" uid="22945856">
+  <nd ref="9370421307"/>
+  <nd ref="237054799"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="bridge:name" v="Anderson Bridge"/>
+  <tag k="highway" v="service"/>
+  <tag k="image" v="https://images.mapillary.com/4kwZ6YR3RVToi_vUG8YcJg/thumb-2048.jpg"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lanes:backward" v="1"/>
+  <tag k="lanes:forward" v="1"/>
+  <tag k="layer" v="1"/>
+  <tag k="lit" v="yes"/>
+  <tag k="mapillary" v="1215895535872042"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Fullerton Road"/>
+  <tag k="name:en" v="Fullerton Road"/>
+  <tag k="name:zh" v="浮尔顿路"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes:backward" v="through"/>
+  <tag k="turn:lanes:forward" v="through"/>
+ </way>
+ <way id="35037538" visible="true" version="21" changeset="182355007" timestamp="2026-05-07T19:51:23Z" user="confusedbuffalo" uid="242345">
+  <nd ref="3010901881"/>
+  <nd ref="410939418"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="bridge:name" v="Esplanade Bridge"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="layer" v="1"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="70"/>
+  <tag k="name" v="Esplanade Drive"/>
+  <tag k="name:en" v="Esplanade Drive"/>
+  <tag k="name:zh" v="海滨公园通道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:left" v="separate"/>
+  <tag k="sidewalk:right" v="no"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="start_date" v="1997"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="51511339" visible="true" version="11" changeset="182354944" timestamp="2026-05-07T19:49:33Z" user="confusedbuffalo" uid="242345">
+  <nd ref="233879753"/>
+  <nd ref="12071463879"/>
+  <tag k="foot" v="no"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Stamford Road"/>
+  <tag k="name:en" v="Stamford Road"/>
+  <tag k="name:zh" v="史丹福路"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="GPS &amp; Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="51511352" visible="true" version="16" changeset="182354944" timestamp="2026-05-07T19:49:33Z" user="confusedbuffalo" uid="242345">
+  <nd ref="172510077"/>
+  <nd ref="233497179"/>
+  <tag k="foot" v="no"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Bras Basah Road"/>
+  <tag k="name:en" v="Bras Basah Road"/>
+  <tag k="name:zh" v="勿拉士巴沙路"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="GPS &amp; Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="75067163" visible="true" version="25" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="233880373"/>
+  <nd ref="6782303342"/>
+  <nd ref="595497945"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:both" v="separate"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="100484287" visible="true" version="14" changeset="125232927" timestamp="2022-08-22T15:33:15Z" user="duckman56" uid="14864469">
+  <nd ref="1161613127"/>
+  <nd ref="1161613227"/>
+  <nd ref="1161613033"/>
+  <nd ref="5411304516"/>
+  <nd ref="1161613230"/>
+  <nd ref="5411304517"/>
+  <nd ref="1446076194"/>
+  <nd ref="1161613118"/>
+  <nd ref="1161613185"/>
+  <nd ref="1161612960"/>
+  <nd ref="1446076209"/>
+  <nd ref="1161613167"/>
+  <nd ref="9814205647"/>
+  <nd ref="9814205648"/>
+  <nd ref="6340950165"/>
+  <nd ref="9814205649"/>
+  <nd ref="6340950163"/>
+  <nd ref="1161612996"/>
+  <nd ref="1446076218"/>
+  <nd ref="1161613002"/>
+  <nd ref="1161613070"/>
+  <nd ref="1161613131"/>
+  <nd ref="1161613173"/>
+  <nd ref="6340950161"/>
+  <nd ref="5411304505"/>
+  <nd ref="6340950160"/>
+  <nd ref="5411304502"/>
+  <tag k="access" v="private"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Pit Lane"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="raceway" v="pitlane"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="152783801" visible="true" version="16" changeset="157921920" timestamp="2024-10-15T14:27:46Z" user="Ropino" uid="42123">
+  <nd ref="233879603"/>
+  <nd ref="479983003"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Avenue"/>
+  <tag k="name:zh" v="莱佛士大道"/>
+  <tag k="note" v="Part of it estimated ???"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="raceway" v="sometimes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="through|through|through;right"/>
+ </way>
+ <way id="155907160" visible="true" version="15" changeset="178092665" timestamp="2026-02-04T13:11:12Z" user="Tobias1996" uid="2907091">
+  <nd ref="232279092"/>
+  <nd ref="4732525705"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Saint Andrew's Road"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:left" v="yes"/>
+  <tag k="sidewalk:right" v="separate"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="through|through"/>
+ </way>
+ <way id="156457347" visible="true" version="16" changeset="182354944" timestamp="2026-05-07T19:49:33Z" user="confusedbuffalo" uid="242345">
+  <nd ref="1398079475"/>
+  <nd ref="232353353"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Stamford Road"/>
+  <tag k="name:en" v="Stamford Road"/>
+  <tag k="name:zh" v="史丹福路"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="GPS &amp; Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="173779754" visible="true" version="13" changeset="178092665" timestamp="2026-02-04T13:10:59Z" user="Tobias1996" uid="2907091">
+  <nd ref="232376467"/>
+  <nd ref="1683099954"/>
+  <nd ref="1188509769"/>
+  <nd ref="232353226"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Saint Andrew's Road"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:left" v="no"/>
+  <tag k="sidewalk:right" v="separate"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="through|through|through|through"/>
+ </way>
+ <way id="173791995" visible="true" version="24" changeset="187930886" timestamp="2026-08-24T10:32:34Z" user="GrabSG_yifeng" uid="24223704">
+  <nd ref="479983003"/>
+  <nd ref="14108930868"/>
+  <nd ref="5165925965"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Avenue"/>
+  <tag k="name:zh" v="莱佛士大道"/>
+  <tag k="note" v="Part of it estimated ???"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="raceway" v="sometimes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="173791997" visible="true" version="24" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="595497945"/>
+  <nd ref="6782303341"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="174262763" visible="true" version="20" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="3736885019"/>
+  <nd ref="3076643620"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="left|left|right|right"/>
+ </way>
+ <way id="176298699" visible="true" version="20" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="233879872"/>
+  <nd ref="233879899"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="180551367" visible="true" version="23" changeset="187930886" timestamp="2026-08-24T10:32:34Z" user="GrabSG_yifeng" uid="24223704">
+  <nd ref="6340950179"/>
+  <nd ref="1832823579"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Avenue"/>
+  <tag k="name:zh" v="莱佛士大道"/>
+  <tag k="note" v="Part of it estimated ???"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="left"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="303311924" visible="true" version="10" changeset="185712630" timestamp="2026-07-14T11:55:55Z" user="GeorgiSh" uid="23594736">
+  <nd ref="634071195"/>
+  <nd ref="3076643611"/>
+  <nd ref="14014460565"/>
+  <nd ref="3076643603"/>
+  <nd ref="14014460566"/>
+  <nd ref="3076643605"/>
+  <nd ref="6340950180"/>
+  <nd ref="3076643622"/>
+  <nd ref="5411304722"/>
+  <nd ref="3076644036"/>
+  <nd ref="6340950181"/>
+  <nd ref="3076643616"/>
+  <nd ref="6374444454"/>
+  <nd ref="3076643588"/>
+  <tag k="access" v="private"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Marina Bay Street Circuit"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="303314681" visible="true" version="14" changeset="177889405" timestamp="2026-01-30T13:46:09Z" user="Tobias1996" uid="2907091">
+  <nd ref="2466494363"/>
+  <nd ref="2466494275"/>
+  <nd ref="1818161326"/>
+  <nd ref="1832823589"/>
+  <nd ref="5270623340"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Avenue"/>
+  <tag k="name:zh" v="莱佛士大道"/>
+  <tag k="note" v="Part of it estimated ???"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="raceway" v="sometimes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="none|through|through|through;right"/>
+ </way>
+ <way id="383365018" visible="true" version="12" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="3736885022"/>
+  <nd ref="3736885019"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="383365019" visible="true" version="15" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="4726227141"/>
+  <nd ref="5136090633"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="448084962" visible="true" version="14" changeset="178092665" timestamp="2026-02-04T13:16:16Z" user="Tobias1996" uid="2907091">
+  <nd ref="3010901912"/>
+  <nd ref="6413721257"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lanes:backward" v="1"/>
+  <tag k="lanes:forward" v="1"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Connaught Drive"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes:backward" v="through"/>
+  <tag k="turn:lanes:forward" v="through"/>
+ </way>
+ <way id="459186771" visible="true" version="10" changeset="177998172" timestamp="2026-02-02T10:56:18Z" user="Tobias1996" uid="2907091">
+  <nd ref="7759646003"/>
+  <nd ref="3071267371"/>
+  <nd ref="172510077"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="70"/>
+  <tag k="name" v="Nicoll Highway"/>
+  <tag k="name:ms" v="Lebuhraya Nicoll"/>
+  <tag k="name:ta" v="நிகோல் நெடுஞ்சாலை"/>
+  <tag k="name:zh" v="尼诰大道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="through|through|through;right|right|right"/>
+ </way>
+ <way id="465064165" visible="true" version="11" changeset="180713956" timestamp="2026-04-01T10:30:05Z" user="dzonimn" uid="11608748">
+  <nd ref="5411304502"/>
+  <nd ref="6340950167"/>
+  <nd ref="1446076223"/>
+  <nd ref="5411304510"/>
+  <nd ref="3076643614"/>
+  <nd ref="5411304511"/>
+  <nd ref="3076643628"/>
+  <nd ref="13698051659"/>
+  <nd ref="5864381389"/>
+  <nd ref="235070001"/>
+  <nd ref="6340950168"/>
+  <nd ref="6340950169"/>
+  <nd ref="1161612993"/>
+  <tag k="access" v="private"/>
+  <tag k="foot" v="no"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Marina Bay Street Circuit"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="475215022" visible="true" version="24" changeset="189856541" timestamp="2026-10-02T03:04:42Z" user="GrabSG_IkmalHakim" uid="22945856">
+  <nd ref="6988663055"/>
+  <nd ref="9383172239"/>
+  <nd ref="5133993153"/>
+  <nd ref="9383172240"/>
+  <nd ref="10046842560"/>
+  <nd ref="4451336947"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="lit" v="yes"/>
+  <tag k="motor_vehicle" v="yes"/>
+  <tag k="name" v="Fullerton Road"/>
+  <tag k="name:en" v="Fullerton Road"/>
+  <tag k="name:zh" v="浮尔顿路"/>
+  <tag k="surface" v="cobblestone:flattened"/>
+ </way>
+ <way id="475217889" visible="true" version="12" changeset="178092665" timestamp="2026-02-04T13:16:11Z" user="Tobias1996" uid="2907091">
+  <nd ref="6856578455"/>
+  <nd ref="9370421303"/>
+  <nd ref="9370421302"/>
+  <nd ref="232353925"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Connaught Drive"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="right"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="through|through"/>
+ </way>
+ <way id="479284866" visible="true" version="9" changeset="157921920" timestamp="2024-10-15T14:27:47Z" user="Ropino" uid="42123">
+  <nd ref="634071195"/>
+  <nd ref="233879603"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Avenue"/>
+  <tag k="name:zh" v="莱佛士大道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source" v="aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="left;through|through|through;right|right"/>
+ </way>
+ <way id="479540200" visible="true" version="23" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="1720073355"/>
+  <nd ref="233879856"/>
+  <nd ref="1832823669"/>
+  <nd ref="6743567258"/>
+  <nd ref="1720073406"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="479540202" visible="true" version="13" changeset="187774094" timestamp="2026-08-21T04:10:13Z" user="yeeto da cheeto" uid="21826942">
+  <nd ref="4600854642"/>
+  <nd ref="14108930882"/>
+  <nd ref="233879872"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="through|through|through|through;right|right"/>
+ </way>
+ <way id="479565608" visible="true" version="10" changeset="177696448" timestamp="2026-01-25T20:04:09Z" user="Tobias1996" uid="2907091">
+  <nd ref="1832823584"/>
+  <nd ref="1780184887"/>
+  <nd ref="233879574"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Avenue"/>
+  <tag k="name:zh" v="莱佛士大道"/>
+  <tag k="note" v="Part of it estimated ???"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="both"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="none|through|through|through"/>
+ </way>
+ <way id="479565612" visible="true" version="14" changeset="188021197" timestamp="2026-08-26T04:10:33Z" user="GrabSG_IkmalHakim" uid="22945856">
+  <nd ref="1743939385"/>
+  <nd ref="12878473097"/>
+  <nd ref="2466494365"/>
+  <nd ref="12878476505"/>
+  <nd ref="233879440"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Avenue"/>
+  <tag k="name:zh" v="莱佛士大道"/>
+  <tag k="note" v="Part of it estimated ???"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="raceway" v="sometimes"/>
+  <tag k="sidewalk" v="separate"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="left;through|through|through|through|right"/>
+ </way>
+ <way id="479565613" visible="true" version="10" changeset="188021197" timestamp="2026-08-26T04:10:33Z" user="GrabSG_IkmalHakim" uid="22945856">
+  <nd ref="7138225045"/>
+  <nd ref="2466494277"/>
+  <nd ref="4726775783"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="6"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Avenue"/>
+  <tag k="name:zh" v="莱佛士大道"/>
+  <tag k="note" v="Part of it estimated ???"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="raceway" v="sometimes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="left|left;through|through|through|through;right|right"/>
+ </way>
+ <way id="479565615" visible="true" version="8" changeset="182354944" timestamp="2026-05-07T19:49:37Z" user="confusedbuffalo" uid="242345">
+  <nd ref="3071267396"/>
+  <nd ref="7867763422"/>
+  <nd ref="232353226"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Stamford Road"/>
+  <tag k="name:en" v="Stamford Road"/>
+  <tag k="name:zh" v="史丹福路"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="GPS &amp; Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="through|through|through|through"/>
+ </way>
+ <way id="479605911" visible="true" version="9" changeset="188021197" timestamp="2026-08-26T04:10:33Z" user="GrabSG_IkmalHakim" uid="22945856">
+  <nd ref="4726775783"/>
+  <nd ref="2466494309"/>
+  <nd ref="233879421"/>
+  <tag k="foot" v="no"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Avenue"/>
+  <tag k="name:zh" v="莱佛士大道"/>
+  <tag k="note" v="Part of it estimated ???"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="raceway" v="sometimes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="left;through|through|through|through;right|right"/>
+ </way>
+ <way id="479745478" visible="true" version="17" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="4727947772"/>
+  <nd ref="7023019223"/>
+  <nd ref="4281759839"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxheight" v="4.5"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="tunnel" v="building_passage"/>
+ </way>
+ <way id="479745479" visible="true" version="17" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="4281759839"/>
+  <nd ref="9946316970"/>
+  <nd ref="5864347585"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="480247943" visible="true" version="19" changeset="189856541" timestamp="2026-10-02T03:04:42Z" user="GrabSG_IkmalHakim" uid="22945856">
+  <nd ref="6988663055"/>
+  <nd ref="9370421304"/>
+  <nd ref="9370421308"/>
+  <nd ref="9370421307"/>
+  <tag k="highway" v="service"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lanes:backward" v="1"/>
+  <tag k="lanes:forward" v="1"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Fullerton Road"/>
+  <tag k="name:en" v="Fullerton Road"/>
+  <tag k="name:zh" v="浮尔顿路"/>
+  <tag k="sidewalk" v="right"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes:backward" v="through"/>
+  <tag k="turn:lanes:forward" v="through"/>
+ </way>
+ <way id="480250096" visible="true" version="12" changeset="178092665" timestamp="2026-02-04T13:11:02Z" user="Tobias1996" uid="2907091">
+  <nd ref="4732525705"/>
+  <nd ref="6095372887"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Saint Andrew's Road"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="left"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="through|through|through|through"/>
+ </way>
+ <way id="528537303" visible="true" version="11" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="5136090633"/>
+  <nd ref="3736885022"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="528539591" visible="true" version="10" changeset="182355007" timestamp="2026-05-07T19:51:23Z" user="confusedbuffalo" uid="242345">
+  <nd ref="237012287"/>
+  <nd ref="5136107116"/>
+  <nd ref="3010901881"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="70"/>
+  <tag k="name" v="Esplanade Drive"/>
+  <tag k="name:en" v="Esplanade Drive"/>
+  <tag k="name:zh" v="海滨公园通道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:left" v="separate"/>
+  <tag k="sidewalk:right" v="no"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="545362402" visible="true" version="15" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="5270981856"/>
+  <nd ref="12169571327"/>
+  <nd ref="12169568595"/>
+  <nd ref="1832823705"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxheight" v="4.5"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="tunnel" v="building_passage"/>
+ </way>
+ <way id="545362403" visible="true" version="11" changeset="185027442" timestamp="2026-07-03T08:57:02Z" user="wmxwu" uid="20503922">
+  <nd ref="1832823705"/>
+  <nd ref="5270981855"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="maxheight" v="4.5"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="tunnel" v="building_passage"/>
+  <tag k="turn:lanes" v="left;through|through|through|through|through"/>
+ </way>
+ <way id="581766308" visible="true" version="5" changeset="182355007" timestamp="2026-05-07T19:51:23Z" user="confusedbuffalo" uid="242345">
+  <nd ref="233879421"/>
+  <nd ref="4726775785"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="70"/>
+  <tag k="name" v="Esplanade Drive"/>
+  <tag k="name:en" v="Esplanade Drive"/>
+  <tag k="name:zh" v="海滨公园通道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="581942152" visible="true" version="12" changeset="187930886" timestamp="2026-08-24T10:32:34Z" user="GrabSG_yifeng" uid="24223704">
+  <nd ref="5165925965"/>
+  <nd ref="7863612116"/>
+  <nd ref="6340950179"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Avenue"/>
+  <tag k="name:zh" v="莱佛士大道"/>
+  <tag k="note" v="Part of it estimated ???"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="raceway" v="sometimes"/>
+  <tag k="sidewalk" v="left"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="584419619" visible="true" version="12" changeset="187774094" timestamp="2026-08-21T04:10:13Z" user="yeeto da cheeto" uid="21826942">
+  <nd ref="233879899"/>
+  <nd ref="14108930883"/>
+  <nd ref="4726227141"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="633311062" visible="true" version="12" changeset="188021197" timestamp="2026-08-26T04:10:33Z" user="GrabSG_IkmalHakim" uid="22945856">
+  <nd ref="1446076214"/>
+  <nd ref="1764796983"/>
+  <nd ref="233879502"/>
+  <nd ref="2466494375"/>
+  <nd ref="1764796984"/>
+  <nd ref="2466494264"/>
+  <nd ref="1720073678"/>
+  <nd ref="2466494397"/>
+  <nd ref="233879466"/>
+  <nd ref="1764796980"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Avenue"/>
+  <tag k="name:zh" v="莱佛士大道"/>
+  <tag k="note" v="Part of it estimated ???"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="raceway" v="sometimes"/>
+  <tag k="sidewalk" v="separate"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="none|through|through|through"/>
+ </way>
+ <way id="633340452" visible="true" version="10" changeset="177696448" timestamp="2026-01-25T20:04:14Z" user="Tobias1996" uid="2907091">
+  <nd ref="233879574"/>
+  <nd ref="5978628576"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Avenue"/>
+  <tag k="name:zh" v="莱佛士大道"/>
+  <tag k="note" v="Part of it estimated ???"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="both"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="none|through|through|through"/>
+ </way>
+ <way id="633340456" visible="true" version="12" changeset="177696448" timestamp="2026-01-25T20:03:56Z" user="Tobias1996" uid="2907091">
+  <nd ref="1832823581"/>
+  <nd ref="1832823583"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Avenue"/>
+  <tag k="name:zh" v="莱佛士大道"/>
+  <tag k="note" v="Part of it estimated ???"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="left"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="none|through|through|through"/>
+ </way>
+ <way id="633343709" visible="true" version="9" changeset="177696448" timestamp="2026-01-25T20:04:11Z" user="Tobias1996" uid="2907091">
+  <nd ref="5978628576"/>
+  <nd ref="1832823586"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Avenue"/>
+  <tag k="name:zh" v="莱佛士大道"/>
+  <tag k="note" v="Part of it estimated ???"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="right"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="none|through|through|through"/>
+ </way>
+ <way id="633871919" visible="true" version="12" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="5864347585"/>
+  <nd ref="9946316973"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="left;through|none|none|none|none"/>
+ </way>
+ <way id="633871920" visible="true" version="10" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="1832823668"/>
+  <nd ref="4600854642"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="6"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="left|through|through|through|through;right|right"/>
+ </way>
+ <way id="634770511" visible="true" version="9" changeset="182354944" timestamp="2026-05-07T19:49:47Z" user="confusedbuffalo" uid="242345">
+  <nd ref="4513378919"/>
+  <nd ref="232353185"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Stamford Road"/>
+  <tag k="name:en" v="Stamford Road"/>
+  <tag k="name:zh" v="史丹福路"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:both" v="separate"/>
+  <tag k="source" v="GPS &amp; Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="through|through|through|through"/>
+ </way>
+ <way id="634832601" visible="true" version="11" changeset="188021197" timestamp="2026-08-26T04:10:33Z" user="GrabSG_IkmalHakim" uid="22945856">
+  <nd ref="1764796980"/>
+  <nd ref="1743939385"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Avenue"/>
+  <tag k="name:zh" v="莱佛士大道"/>
+  <tag k="note" v="Part of it estimated ???"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="raceway" v="sometimes"/>
+  <tag k="sidewalk" v="separate"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="none|through|through|through"/>
+ </way>
+ <way id="635373148" visible="true" version="17" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="5270981855"/>
+  <nd ref="6769049627"/>
+  <nd ref="1720073355"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="635375722" visible="true" version="9" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="1720073397"/>
+  <nd ref="233880373"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="6"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:both" v="separate"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="left|left;through|through|through|through|through"/>
+ </way>
+ <way id="635394837" visible="true" version="10" changeset="187930886" timestamp="2026-08-24T10:32:34Z" user="GrabSG_yifeng" uid="24223704">
+  <nd ref="1832823579"/>
+  <nd ref="1832823581"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Avenue"/>
+  <tag k="name:zh" v="莱佛士大道"/>
+  <tag k="note" v="Part of it estimated ???"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="left"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="647084783" visible="true" version="12" changeset="178092665" timestamp="2026-02-04T13:10:56Z" user="Tobias1996" uid="2907091">
+  <nd ref="6077839914"/>
+  <nd ref="9370423135"/>
+  <nd ref="7891770123"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Saint Andrew's Road"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="left"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="left|through|through|through"/>
+ </way>
+ <way id="649336906" visible="true" version="8" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="6094193512"/>
+  <nd ref="1720073397"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="6"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:both" v="separate"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="left|left;through|through|through|through|through"/>
+ </way>
+ <way id="649520780" visible="true" version="8" changeset="178092665" timestamp="2026-02-04T13:10:53Z" user="Tobias1996" uid="2907091">
+  <nd ref="6095372887"/>
+  <nd ref="6077839914"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Saint Andrew's Road"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="left"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="649944021" visible="true" version="12" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="1720073406"/>
+  <nd ref="4727947772"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="none|through|through|through|through"/>
+ </way>
+ <way id="650084964" visible="true" version="8" changeset="182354944" timestamp="2026-05-07T19:49:50Z" user="confusedbuffalo" uid="242345">
+  <nd ref="232353353"/>
+  <nd ref="4513378919"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Stamford Road"/>
+  <tag k="name:en" v="Stamford Road"/>
+  <tag k="name:zh" v="史丹福路"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="GPS &amp; Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="654223306" visible="true" version="10" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="235070344"/>
+  <nd ref="6665734167"/>
+  <nd ref="4600842968"/>
+  <nd ref="6340950173"/>
+  <nd ref="462263951"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Republic Boulevard"/>
+  <tag k="name:en" v="Republic Boulevard"/>
+  <tag k="name:zh" v="共和国林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="left"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="672222982" visible="true" version="6" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="3076643620"/>
+  <nd ref="235070344"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Republic Boulevard"/>
+  <tag k="name:en" v="Republic Boulevard"/>
+  <tag k="name:zh" v="共和国林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="left|left"/>
+ </way>
+ <way id="684544691" visible="true" version="8" changeset="178092665" timestamp="2026-02-04T13:16:24Z" user="Tobias1996" uid="2907091">
+  <nd ref="6413721257"/>
+  <nd ref="6413721265"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lanes:backward" v="1"/>
+  <tag k="lanes:forward" v="1"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Connaught Drive"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes:backward" v="through;right"/>
+  <tag k="turn:lanes:forward" v="through"/>
+ </way>
+ <way id="686323967" visible="true" version="7" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="6432919892"/>
+  <nd ref="6046754591"/>
+  <nd ref="1161612993"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Republic Boulevard"/>
+  <tag k="name:en" v="Republic Boulevard"/>
+  <tag k="name:zh" v="共和国林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="686323968" visible="true" version="9" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="1446076215"/>
+  <nd ref="6433028833"/>
+  <tag k="highway" v="primary"/>
+  <tag k="image" v="https://images.mapillary.com/AYKz9KrqqwYJuXU8KLXNuA/thumb-2048.jpg"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="mapillary" v="1146291622500301"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Republic Boulevard"/>
+  <tag k="name:en" v="Republic Boulevard"/>
+  <tag k="name:zh" v="共和国林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="686335799" visible="true" version="8" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="6433028833"/>
+  <nd ref="1446076217"/>
+  <nd ref="235070624"/>
+  <nd ref="6432919892"/>
+  <tag k="highway" v="primary"/>
+  <tag k="image" v="https://images.mapillary.com/AYKz9KrqqwYJuXU8KLXNuA/thumb-2048.jpg"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="mapillary" v="1146291622500301"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Republic Boulevard"/>
+  <tag k="name:en" v="Republic Boulevard"/>
+  <tag k="name:zh" v="共和国林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="686335800" visible="true" version="8" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="6433028834"/>
+  <nd ref="235070587"/>
+  <nd ref="1446076215"/>
+  <tag k="highway" v="primary"/>
+  <tag k="image" v="https://images.mapillary.com/o72ouKUNKmshV92TGsV5zw/thumb-2048.jpg"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="mapillary" v="212247987118309"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Republic Boulevard"/>
+  <tag k="name:en" v="Republic Boulevard"/>
+  <tag k="name:zh" v="共和国林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="686335806" visible="true" version="3" changeset="127481883" timestamp="2022-10-13T17:09:44Z" user="kmpoppe (@ Mapillary Update)" uid="14309561">
+  <nd ref="3076643588"/>
+  <nd ref="5157731601"/>
+  <nd ref="1161613127"/>
+  <tag k="access" v="private"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="image" v="https://images.mapillary.com/8ANa6_FW5wLK1ixdGUS1MQ/thumb-2048.jpg"/>
+  <tag k="mapillary" v="212396450442941"/>
+  <tag k="name" v="Marina Bay Street Circuit"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="686335807" visible="true" version="4" changeset="182628231" timestamp="2026-05-14T04:17:07Z" user="StoneChain" uid="13259724">
+  <nd ref="1161613127"/>
+  <nd ref="3076643626"/>
+  <nd ref="3076643594"/>
+  <nd ref="5411304515"/>
+  <nd ref="3076643589"/>
+  <nd ref="5411304514"/>
+  <nd ref="3076643632"/>
+  <nd ref="3076643619"/>
+  <nd ref="5411304513"/>
+  <nd ref="3076644037"/>
+  <nd ref="3076643606"/>
+  <nd ref="13826310653"/>
+  <nd ref="4281759834"/>
+  <nd ref="5411304500"/>
+  <nd ref="5411304501"/>
+  <nd ref="6340950159"/>
+  <nd ref="3076643623"/>
+  <nd ref="3076643629"/>
+  <nd ref="5411304507"/>
+  <nd ref="3076643627"/>
+  <nd ref="5411304506"/>
+  <nd ref="5411304508"/>
+  <nd ref="5411304502"/>
+  <tag k="access" v="private"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Marina Bay Street Circuit"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="723073393" visible="true" version="9" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="6782303341"/>
+  <nd ref="5270981856"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="through|through|through|through|through"/>
+ </way>
+ <way id="747875236" visible="true" version="7" changeset="178092665" timestamp="2026-02-04T13:12:24Z" user="Tobias1996" uid="2907091">
+  <nd ref="6997023278"/>
+  <nd ref="6997023277"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Saint Andrew's Road"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:left" v="yes"/>
+  <tag k="sidewalk:right" v="separate"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="through|through"/>
+ </way>
+ <way id="747875237" visible="true" version="7" changeset="178092665" timestamp="2026-02-04T13:12:22Z" user="Tobias1996" uid="2907091">
+  <nd ref="232353925"/>
+  <nd ref="6997023278"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Saint Andrew's Road"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:left" v="yes"/>
+  <tag k="sidewalk:right" v="separate"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="750071183" visible="true" version="9" changeset="182354944" timestamp="2026-05-07T19:49:54Z" user="confusedbuffalo" uid="242345">
+  <nd ref="232353185"/>
+  <nd ref="12522242614"/>
+  <nd ref="12522242619"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Stamford Road"/>
+  <tag k="name:en" v="Stamford Road"/>
+  <tag k="name:zh" v="史丹福路"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:both" v="separate"/>
+  <tag k="source" v="GPS &amp; Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="through|through|through|through|right"/>
+ </way>
+ <way id="750071184" visible="true" version="7" changeset="182355007" timestamp="2026-05-07T19:51:23Z" user="confusedbuffalo" uid="242345">
+  <nd ref="4726775785"/>
+  <nd ref="2466494354"/>
+  <nd ref="12878473076"/>
+  <nd ref="1832823650"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="70"/>
+  <tag k="name" v="Esplanade Drive"/>
+  <tag k="name:en" v="Esplanade Drive"/>
+  <tag k="name:zh" v="海滨公园通道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="759511978" visible="true" version="5" changeset="178092665" timestamp="2026-02-04T13:16:12Z" user="Tobias1996" uid="2907091">
+  <nd ref="3010901912"/>
+  <nd ref="6856578455"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="1"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Connaught Drive"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="through"/>
+ </way>
+ <way id="763525862" visible="true" version="8" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="3059486893"/>
+  <nd ref="6094193512"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="6"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:both" v="separate"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="left|left;through|through|through|through|through"/>
+ </way>
+ <way id="763525863" visible="true" version="6" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="6355011388"/>
+  <nd ref="3059486888"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="6"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="left;through|through|none|none|none|none"/>
+ </way>
+ <way id="763525864" visible="true" version="6" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="233497179"/>
+  <nd ref="6355011388"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="763531722" visible="true" version="6" changeset="171508214" timestamp="2025-09-05T16:45:12Z" user="GrabSG_AndyAng" uid="21274046">
+  <nd ref="1832823586"/>
+  <nd ref="1780184888"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Avenue"/>
+  <tag k="name:zh" v="莱佛士大道"/>
+  <tag k="note" v="Part of it estimated ???"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="none|through|through|through;right"/>
+ </way>
+ <way id="764062389" visible="true" version="5" changeset="177977856" timestamp="2026-02-01T19:16:27Z" user="Tobias1996" uid="2907091">
+  <nd ref="5270623340"/>
+  <nd ref="1446076213"/>
+  <nd ref="3010901923"/>
+  <nd ref="1446076214"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Avenue"/>
+  <tag k="name:zh" v="莱佛士大道"/>
+  <tag k="note" v="Part of it estimated ???"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="raceway" v="sometimes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="none|through|through|through"/>
+ </way>
+ <way id="764062390" visible="true" version="7" changeset="188021197" timestamp="2026-08-26T04:10:33Z" user="GrabSG_IkmalHakim" uid="22945856">
+  <nd ref="233879440"/>
+  <nd ref="7138225045"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Avenue"/>
+  <tag k="name:zh" v="莱佛士大道"/>
+  <tag k="note" v="Part of it estimated ???"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="raceway" v="sometimes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="left;through|through|through|through;right"/>
+ </way>
+ <way id="767388313" visible="true" version="5" changeset="141462775" timestamp="2023-09-19T10:39:38Z" user="BodhidharmaI" uid="10255266">
+  <nd ref="410939418"/>
+  <nd ref="1832823650"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Marina Bay Street Circuit"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="767388315" visible="true" version="5" changeset="157921920" timestamp="2024-10-15T14:29:58Z" user="Ropino" uid="42123">
+  <nd ref="1780184888"/>
+  <nd ref="2466494363"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Avenue"/>
+  <tag k="name:zh" v="莱佛士大道"/>
+  <tag k="note" v="Part of it estimated ???"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="none|through|through|through;right"/>
+ </way>
+ <way id="831044956" visible="true" version="4" changeset="177998172" timestamp="2026-02-02T10:56:13Z" user="Tobias1996" uid="2907091">
+  <nd ref="1818164136"/>
+  <nd ref="7759646003"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="70"/>
+  <tag k="name" v="Nicoll Highway"/>
+  <tag k="name:ms" v="Lebuhraya Nicoll"/>
+  <tag k="name:ta" v="நிகோல் நெடுஞ்சாலை"/>
+  <tag k="name:zh" v="尼诰大道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="through|through|through;right|right"/>
+ </way>
+ <way id="842953325" visible="true" version="5" changeset="177696448" timestamp="2026-01-25T20:03:58Z" user="Tobias1996" uid="2907091">
+  <nd ref="1832823583"/>
+  <nd ref="1832823584"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Avenue"/>
+  <tag k="name:zh" v="莱佛士大道"/>
+  <tag k="note" v="Part of it estimated ???"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="both"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="none|through|through|through"/>
+ </way>
+ <way id="845894319" visible="true" version="4" changeset="187969382" timestamp="2026-08-25T05:00:32Z" user="Alfchua" uid="23955915">
+  <nd ref="7891770123"/>
+  <nd ref="232376467"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Saint Andrew's Road"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="left"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="left|left;slight_right|slight_right|slight_right"/>
+ </way>
+ <way id="1015882722" visible="true" version="2" changeset="178092665" timestamp="2026-02-04T13:16:42Z" user="Tobias1996" uid="2907091">
+  <nd ref="4451336954"/>
+  <nd ref="5233693837"/>
+  <nd ref="5233693838"/>
+  <nd ref="9370421301"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="1"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Connaught Drive"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="through"/>
+ </way>
+ <way id="1015882723" visible="true" version="2" changeset="178092665" timestamp="2026-02-04T13:16:39Z" user="Tobias1996" uid="2907091">
+  <nd ref="6413721265"/>
+  <nd ref="9370421301"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="1"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Connaught Drive"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="through"/>
+ </way>
+ <way id="1121759129" visible="true" version="6" changeset="177889405" timestamp="2026-01-30T13:17:28Z" user="Tobias1996" uid="2907091">
+  <nd ref="237054799"/>
+  <nd ref="12762090856"/>
+  <nd ref="12762090857"/>
+  <nd ref="12762090858"/>
+  <nd ref="9569954749"/>
+  <tag k="highway" v="service"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Fullerton Road"/>
+  <tag k="oneway" v="yes"/>
+ </way>
+ <way id="1121759130" visible="true" version="2" changeset="178092665" timestamp="2026-02-04T13:16:48Z" user="Tobias1996" uid="2907091">
+  <nd ref="4451336947"/>
+  <nd ref="4451336935"/>
+  <nd ref="4732505517"/>
+  <nd ref="4451336954"/>
+  <tag k="highway" v="residential"/>
+  <tag k="junction" v="roundabout"/>
+  <tag k="lanes" v="1"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Connaught Drive"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="right"/>
+ </way>
+ <way id="1121759131" visible="true" version="6" changeset="177889405" timestamp="2026-01-30T13:17:40Z" user="Tobias1996" uid="2907091">
+  <nd ref="9569954749"/>
+  <nd ref="9569954750"/>
+  <nd ref="9569954751"/>
+  <nd ref="2511487801"/>
+  <tag k="highway" v="service"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Fullerton Road"/>
+ </way>
+ <way id="1206760203" visible="true" version="5" changeset="177889405" timestamp="2026-01-30T13:17:47Z" user="Tobias1996" uid="2907091">
+  <nd ref="2511487801"/>
+  <nd ref="9569954753"/>
+  <nd ref="9569954754"/>
+  <nd ref="237012287"/>
+  <tag k="highway" v="service"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Fullerton Road"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1303467716" visible="true" version="3" changeset="182354944" timestamp="2026-05-07T19:49:56Z" user="confusedbuffalo" uid="242345">
+  <nd ref="12071463879"/>
+  <nd ref="1398079475"/>
+  <tag k="foot" v="no"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Stamford Road"/>
+  <tag k="name:en" v="Stamford Road"/>
+  <tag k="name:zh" v="史丹福路"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="GPS &amp; Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1392512181" visible="true" version="2" changeset="182354944" timestamp="2026-05-07T19:49:56Z" user="confusedbuffalo" uid="242345">
+  <nd ref="12522242619"/>
+  <nd ref="3071267396"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Stamford Road"/>
+  <tag k="name:en" v="Stamford Road"/>
+  <tag k="name:zh" v="史丹福路"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:both" v="separate"/>
+  <tag k="source" v="GPS &amp; Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="through|through|through|through|right"/>
+ </way>
+ <way id="1415079998" visible="true" version="3" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="13003578482"/>
+  <nd ref="1832823668"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="left;through|none|none|none|none"/>
+ </way>
+ <way id="1415079999" visible="true" version="3" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="9946316973"/>
+  <nd ref="13003578482"/>
+  <tag k="busway:left" v="lane"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lanes:bus" v="1"/>
+  <tag k="lanes:bus:conditional" v="1 @ (Mo-Sa 07:30-23:00)"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="left;through|none|none|none|none"/>
+ </way>
+ <way id="1498693105" visible="true" version="2" changeset="182355321" timestamp="2026-05-07T20:01:46Z" user="confusedbuffalo" uid="242345">
+  <nd ref="233879798"/>
+  <nd ref="3059486893"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="6"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Raffles Boulevard"/>
+  <tag k="name:en" v="Raffles Boulevard"/>
+  <tag k="name:zh" v="莱佛士林荫道"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:both" v="separate"/>
+  <tag k="source" v="Yahoo aerial images"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <relation id="421263" visible="true" version="107" changeset="182628231" timestamp="2026-05-14T04:17:07Z" user="StoneChain" uid="13259724">
+  <member type="way" ref="686335807" role="backward"/>
+  <member type="way" ref="100484287" role="pitlane"/>
+  <member type="way" ref="686335806" role="backward"/>
+  <member type="way" ref="747875236" role="backward"/>
+  <member type="way" ref="747875237" role="backward"/>
+  <member type="way" ref="475217889" role="backward"/>
+  <member type="way" ref="759511978" role="backward"/>
+  <member type="way" ref="448084962" role="forward"/>
+  <member type="way" ref="684544691" role="forward"/>
+  <member type="way" ref="1015882723" role="forward"/>
+  <member type="way" ref="1015882722" role="backward"/>
+  <member type="way" ref="1121759130" role="backward"/>
+  <member type="way" ref="475215022" role="backward"/>
+  <member type="way" ref="480247943" role="forward"/>
+  <member type="way" ref="29377119" role="forward"/>
+  <member type="way" ref="1121759129" role="forward"/>
+  <member type="way" ref="1121759131" role="forward"/>
+  <member type="way" ref="1206760203" role="forward"/>
+  <member type="way" ref="528539591" role="forward"/>
+  <member type="way" ref="767388313" role="forward"/>
+  <member type="way" ref="35037538" role="forward"/>
+  <member type="way" ref="750071184" role="forward"/>
+  <member type="way" ref="581766308" role="forward"/>
+  <member type="way" ref="479605911" role="forward"/>
+  <member type="way" ref="479565613" role="forward"/>
+  <member type="way" ref="764062390" role="backward"/>
+  <member type="way" ref="479565612" role="backward"/>
+  <member type="way" ref="634832601" role="backward"/>
+  <member type="way" ref="633311062" role="backward"/>
+  <member type="way" ref="764062389" role="backward"/>
+  <member type="way" ref="303314681" role="backward"/>
+  <member type="way" ref="767388315" role="backward"/>
+  <member type="way" ref="763531722" role="backward"/>
+  <member type="way" ref="633343709" role="backward"/>
+  <member type="way" ref="633340452" role="backward"/>
+  <member type="way" ref="479565608" role="backward"/>
+  <member type="way" ref="842953325" role="backward"/>
+  <member type="way" ref="633340456" role="backward"/>
+  <member type="way" ref="635394837" role="backward"/>
+  <member type="way" ref="180551367" role="backward"/>
+  <member type="way" ref="581942152" role="backward"/>
+  <member type="way" ref="173791995" role="backward"/>
+  <member type="way" ref="152783801" role="backward"/>
+  <member type="way" ref="479284866" role="backward"/>
+  <member type="way" ref="303311924" role="backward"/>
+  <member type="way" ref="465064165" role="forward"/>
+  <member type="way" ref="686323967" role="backward"/>
+  <member type="way" ref="686335799" role="backward"/>
+  <member type="way" ref="686323968" role="backward"/>
+  <member type="way" ref="686335800" role="backward"/>
+  <member type="way" ref="21805129" role="backward"/>
+  <member type="way" ref="654223306" role="backward"/>
+  <member type="way" ref="672222982" role="backward"/>
+  <member type="way" ref="174262763" role="backward"/>
+  <member type="way" ref="383365018" role="backward"/>
+  <member type="way" ref="528537303" role="backward"/>
+  <member type="way" ref="383365019" role="backward"/>
+  <member type="way" ref="584419619" role="backward"/>
+  <member type="way" ref="176298699" role="backward"/>
+  <member type="way" ref="479540202" role="backward"/>
+  <member type="way" ref="633871920" role="backward"/>
+  <member type="way" ref="1415079998" role="backward"/>
+  <member type="way" ref="1415079999" role="backward"/>
+  <member type="way" ref="633871919" role="backward"/>
+  <member type="way" ref="479745479" role="backward"/>
+  <member type="way" ref="479745478" role="backward"/>
+  <member type="way" ref="649944021" role="backward"/>
+  <member type="way" ref="479540200" role="backward"/>
+  <member type="way" ref="635373148" role="backward"/>
+  <member type="way" ref="545362403" role="backward"/>
+  <member type="way" ref="545362402" role="backward"/>
+  <member type="way" ref="723073393" role="backward"/>
+  <member type="way" ref="75067163" role="backward"/>
+  <member type="way" ref="635375722" role="backward"/>
+  <member type="way" ref="649336906" role="backward"/>
+  <member type="way" ref="763525862" role="backward"/>
+  <member type="way" ref="1498693105" role="backward"/>
+  <member type="way" ref="21701074" role="backward"/>
+  <member type="way" ref="763525863" role="backward"/>
+  <member type="way" ref="763525864" role="backward"/>
+  <member type="way" ref="51511352" role="backward"/>
+  <member type="way" ref="459186771" role="backward"/>
+  <member type="way" ref="831044956" role="backward"/>
+  <member type="way" ref="16688065" role="backward"/>
+  <member type="way" ref="51511339" role="forward"/>
+  <member type="way" ref="1303467716" role="forward"/>
+  <member type="way" ref="156457347" role="forward"/>
+  <member type="way" ref="650084964" role="forward"/>
+  <member type="way" ref="634770511" role="forward"/>
+  <member type="way" ref="750071183" role="forward"/>
+  <member type="way" ref="1392512181" role="forward"/>
+  <member type="way" ref="479565615" role="forward"/>
+  <member type="way" ref="173779754" role="backward"/>
+  <member type="way" ref="845894319" role="backward"/>
+  <member type="way" ref="647084783" role="backward"/>
+  <member type="way" ref="649520780" role="backward"/>
+  <member type="way" ref="480250096" role="backward"/>
+  <member type="way" ref="155907160" role="backward"/>
+  <member type="way" ref="21584500" role="backward"/>
+  <member type="way" ref="173791997" role="backward"/>
+  <member type="node" ref="4281759834" role="start"/>
+  <member type="node" ref="13826310653" role="finish"/>
+  <tag k="name" v="Marina Bay Street Circuit"/>
+  <tag k="type" v="circuit"/>
+  <tag k="wikidata" v="Q171390"/>
+  <tag k="wikipedia" v="en:Marina Bay Street Circuit"/>
+ </relation>
+</osm>

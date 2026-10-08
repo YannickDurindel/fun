@@ -1,0 +1,14 @@
+{
+  "id": "marina_bay",
+  "name": "Marina Bay Street Circuit",
+  "grand_prix": "Singapore Grand Prix",
+  "country": "Singapore",
+  "country_code": "SG",
+  "city": "Singapore",
+  "length_m": 4940,
+  "turns": 19,
+  "scene": "res://scenes/tracks/marina_bay.tscn",
+  "track_json": "res://assets/tracks/marina_bay/track.json",
+  "osm_relation": 421263,
+  "available": true
+}

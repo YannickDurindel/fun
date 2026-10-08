@@ -1,0 +1,177 @@
+# Marina Bay Street Circuit, Singapore: the layout raced since 2023 (4940 m, 19 turns,
+# anticlockwise), without the four corners under the Float grandstand.
+#
+#   .venv/bin/python tools/track/build_track.py marina_bay --offline
+
+id = "marina_bay"
+
+[osm]
+# type=circuit relation "Marina Bay Street Circuit": one closed loop of 99 ways, 4972 m in OSM
+# (+0.65 % on the official 4940 m), so it is the post-2023 layout: the run from Turn 15 to
+# Turn 16 is one straight. Public roads (Republic and Raffles Boulevard, Nicoll Highway,
+# Stamford Road, St Andrew's Road, Connaught Drive, Fullerton Road, Esplanade Drive, Raffles
+# Avenue) and the permanent raceway pieces around the pit building. A node has the role
+# "finish" and another "start", 137 m further on: the official race distance (306.143 km for
+# 62 laps of 4.940 km) gives the same 137 m offset.
+relation = 421263
+ignore_oneway = true      # the ways carry traffic oneway tags, which no loop follows
+
+# The roads are drawn as road centrelines, so where the lap turns at a junction the loop has
+# one sharp vertex (or a knot of them a few metres apart), and a 13 m wide road cannot follow
+# it: the mesh folds at Turn 11 and at the hairpin. These entries replace each vertex by a
+# corner of a plausible radius. The radii are estimates, not surveyed.
+# They also shorten the loop: 4896 m after rounding (-0.89 % on the official length), so the
+# plan view is scaled up by 0.9 %. A larger reach_m makes that worse.
+[[osm.round]]
+node = 172510077        # Raffles Boulevard -> Nicoll Highway: one 89 degree vertex
+reach_m = 21.0
+note = "Turn 7, Memorial"
+
+[[osm.round]]
+node = 233879753        # Nicoll Highway -> Stamford Road: one 112 degree vertex
+reach_m = 27.0
+note = "Turn 8"
+
+[[osm.round]]
+node = 6856578455       # St Andrew's Road -> Connaught Drive: 60 + 13 degrees in 5 m
+reach_m = 21.0
+note = "Turn 10, where the Singapore Sling chicane was until 2012"
+
+[[osm.round]]
+node = 4451336947       # Connaught Drive -> Fullerton Road: 16 R, 22 L, 22 L, 86 R in 11 m
+reach_m = 16.0
+note = "Turn 11"
+
+[[osm.round]]
+node = 9569954754       # Fullerton Road -> Esplanade Drive: 64 + 14 + 53 degrees in 9 m
+reach_m = 36.0
+note = "Turn 13, the hairpin"
+
+[[osm.round]]
+node = 233879421        # Esplanade Drive -> Raffles Avenue: one 112 degree vertex
+reach_m = 27.0
+note = "Turn 14"
+
+[layout]
+direction = "anticlockwise"
+
+[elevation]
+dataset = "terrarium"
+# The circuit is on flat reclaimed land, a few metres above the bay. The elevation data is a
+# surface model of a city centre: along the lap it reads -16 to +37 m (hotel towers, the
+# grandstands, the water under the Anderson and Esplanade bridges). None of that is the road,
+# so the profile is smoothed until only a slow drift is left: 5.4 m over the lap, 0.4 % at most.
+smooth_sigma_m = 1000.0
+
+[terrain]
+# Same reason: unsmoothed, every tower block is a hill beside the road. At 200 m the ground
+# near the lap still spans 34 m; at 500 m it is a gentle slope (19 m over 2.6 km) that falls
+# towards the bay and the sea.
+smooth_sigma_m = 500.0
+
+# The official 19 turns, pinned. Automatic detection finds 21: it also numbers the gentle
+# right bend of Republic Boulevard (s = 848, R 188 m) and the right bend of Fullerton Road
+# between the Anderson Bridge and the hairpin (s = 3007, R 60 m), which have no number.
+# The `s` values are positions on the rounded, rescaled centreline: after changing a reach_m
+# above, read the new apex positions from the build output and update them (the kerbs of
+# scripts/track/trackside_layouts/marina_bay.gd follow the apexes).
+# Names: only the ones in common use; "Fullerton hairpin" is a description, not an official name.
+[[turn]]
+id = "T1"
+name = "Sheares"
+direction = "left"
+s = 437.9
+
+[[turn]]
+id = "T2"
+direction = "right"
+s = 526.7
+
+[[turn]]
+id = "T3"
+direction = "left"
+s = 593.3
+
+[[turn]]
+id = "T4"
+direction = "left"
+s = 730.5
+
+[[turn]]
+id = "T5"
+direction = "right"
+s = 974.7
+
+[[turn]]
+id = "T6"
+direction = "right"
+s = 1446.9
+
+[[turn]]
+id = "T7"
+name = "Memorial"
+direction = "left"
+s = 1830.3
+
+[[turn]]
+id = "T8"
+direction = "right"
+s = 2040.2
+
+[[turn]]
+id = "T9"
+direction = "left"
+s = 2223.8
+
+[[turn]]
+id = "T10"
+name = "Singapore Sling"
+direction = "left"
+s = 2690.0
+
+[[turn]]
+id = "T11"
+direction = "right"
+s = 2823.1
+
+[[turn]]
+id = "T12"
+name = "Anderson Bridge"
+direction = "left"
+s = 2881.7
+
+[[turn]]
+id = "T13"
+name = "Fullerton hairpin"
+direction = "left"
+s = 3071.4
+
+[[turn]]
+id = "T14"
+direction = "right"
+s = 3608.1
+
+[[turn]]
+id = "T15"
+direction = "left"
+s = 3830.1
+
+[[turn]]
+id = "T16"
+direction = "right"
+s = 4364.9
+
+[[turn]]
+id = "T17"
+direction = "left"
+s = 4429.5
+
+[[turn]]
+id = "T18"
+direction = "left"
+s = 4722.1
+
+[[turn]]
+id = "T19"
+direction = "left"
+s = 4823.0
