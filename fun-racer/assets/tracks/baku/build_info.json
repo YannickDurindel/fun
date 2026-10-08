@@ -1,0 +1,467 @@
+{
+ "id": "baku",
+ "recipe": "tools/track/tracks/baku.toml",
+ "osm": {
+  "relation": 11266687,
+  "loop_ways": [
+   1168829203,
+   1329392228,
+   1168829202,
+   25402777,
+   1558829712,
+   1558829713,
+   165695131,
+   1415063177,
+   1415075088,
+   1415063178,
+   1415075090,
+   1558832743,
+   1558832741,
+   1558832740,
+   182645384,
+   177431273,
+   1558832742,
+   1558832738,
+   1548322891,
+   1548322892,
+   1548322893,
+   1548322894,
+   1415085013,
+   1415085014,
+   290633714,
+   167173315,
+   1413965638,
+   1558837058,
+   1069034735,
+   639403533,
+   1558839567,
+   476752809,
+   1279858618,
+   926192527,
+   476752810,
+   1050381554,
+   167173308,
+   1050381555,
+   500527621,
+   338326554,
+   822375070,
+   249018354,
+   1558855504,
+   1558855505,
+   131835265,
+   323377758,
+   1555062568,
+   179238852,
+   766787796
+  ],
+  "raw_length_m": 5975.1,
+  "length_m": 5969.2,
+  "official_length_m": 6003.0,
+  "length_error": -0.00563,
+  "candidates": [
+   {
+    "length_m": 5975.3,
+    "ways": [
+     1168829203,
+     1329392228,
+     1168829202,
+     25402777,
+     1558829712,
+     1558829713,
+     165695131,
+     1415063177,
+     1415075088,
+     1415063178,
+     1415075090,
+     1558832743,
+     1558832741,
+     1558832740,
+     182645384,
+     177431273,
+     1558832742,
+     1558832738,
+     1548322891,
+     1548322892,
+     1548322893,
+     1548322894,
+     1415085013,
+     1415085014,
+     290633714,
+     167173315,
+     1413965638,
+     1558837058,
+     1069034735,
+     639403533,
+     1558839567,
+     476752809,
+     1279858618,
+     926192527,
+     476752810,
+     1050381554,
+     167173308,
+     1050381555,
+     500527621,
+     338326554,
+     822375070,
+     249018354,
+     1558855504,
+     1558855505,
+     131835265,
+     323377758,
+     1555062568,
+     179238852,
+     766787796
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "finish: relation member role, start: relation member role",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 28.29,
+  "max_grade": 0.0545,
+  "min_grade": -0.0529,
+  "origin_m": -18.47
+ },
+ "turns": {
+  "official": 20,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Turn 1",
+    "direction": "left",
+    "s_apex": 323.8,
+    "min_radius": 18.2
+   },
+   {
+    "id": "T2",
+    "name": "Turn 2",
+    "direction": "left",
+    "s_apex": 661.6,
+    "min_radius": 18.7
+   },
+   {
+    "id": "T3",
+    "name": "Turn 3",
+    "direction": "left",
+    "s_apex": 1532.4,
+    "min_radius": 22.0
+   },
+   {
+    "id": "T4",
+    "name": "Turn 4",
+    "direction": "right",
+    "s_apex": 1759.7,
+    "min_radius": 23.9
+   },
+   {
+    "id": "T5",
+    "name": "Turn 5",
+    "direction": "left",
+    "s_apex": 2093.5,
+    "min_radius": 25.3
+   },
+   {
+    "id": "T6",
+    "name": "Turn 6",
+    "direction": "right",
+    "s_apex": 2149.8,
+    "min_radius": 23.4
+   },
+   {
+    "id": "T7",
+    "name": "Turn 7",
+    "direction": "right",
+    "s_apex": 2550.0,
+    "min_radius": 15.7
+   },
+   {
+    "id": "T8",
+    "name": "Əziz Əliyev küçəsi",
+    "direction": "left",
+    "s_apex": 2747.1,
+    "min_radius": 14.1
+   },
+   {
+    "id": "T9",
+    "name": "Əziz Əliyev küçəsi",
+    "direction": "right",
+    "s_apex": 2769.2,
+    "min_radius": 25.6
+   },
+   {
+    "id": "T10",
+    "name": "Əziz Əliyev küçəsi",
+    "direction": "left",
+    "s_apex": 2799.4,
+    "min_radius": 34.0
+   },
+   {
+    "id": "T11",
+    "name": "Turn 11",
+    "direction": "right",
+    "s_apex": 2851.7,
+    "min_radius": 16.7
+   },
+   {
+    "id": "T12",
+    "name": "Turn 12",
+    "direction": "left",
+    "s_apex": 2916.0,
+    "min_radius": 16.7
+   },
+   {
+    "id": "T13",
+    "name": "İstiqlaliyyət küçəsi",
+    "direction": "left",
+    "s_apex": 3322.3,
+    "min_radius": 67.8
+   },
+   {
+    "id": "T14",
+    "name": "İstiqlaliyyət küçəsi",
+    "direction": "left",
+    "s_apex": 3525.4,
+    "min_radius": 90.2
+   },
+   {
+    "id": "T15",
+    "name": "İstiqlaliyyət küçəsi",
+    "direction": "left",
+    "s_apex": 3768.7,
+    "min_radius": 18.4
+   },
+   {
+    "id": "T16",
+    "name": "Turn 16",
+    "direction": "left",
+    "s_apex": 4124.7,
+    "min_radius": 20.8
+   },
+   {
+    "id": "T17",
+    "name": "Neftçilər prospekti",
+    "direction": "right",
+    "s_apex": 4329.8,
+    "min_radius": 72.9
+   },
+   {
+    "id": "T18",
+    "name": "Turn 18",
+    "direction": "left",
+    "s_apex": 4555.0,
+    "min_radius": 87.3
+   },
+   {
+    "id": "T19",
+    "name": "Turn 19",
+    "direction": "right",
+    "s_apex": 4728.0,
+    "min_radius": 69.0
+   },
+   {
+    "id": "T20",
+    "name": "Neftçilər prospekti",
+    "direction": "right",
+    "s_apex": 5059.8,
+    "min_radius": 199.0
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 323.8,
+    "direction": "left",
+    "angle_deg": 86.5,
+    "kind": "corner",
+    "min_radius": 18.2,
+    "used": true
+   },
+   {
+    "s_apex": 372.0,
+    "direction": "left",
+    "angle_deg": 4.8,
+    "kind": "kink",
+    "min_radius": 197.6,
+    "used": false
+   },
+   {
+    "s_apex": 661.6,
+    "direction": "left",
+    "angle_deg": 90.6,
+    "kind": "corner",
+    "min_radius": 18.7,
+    "used": true
+   },
+   {
+    "s_apex": 1532.4,
+    "direction": "left",
+    "angle_deg": 84.6,
+    "kind": "corner",
+    "min_radius": 22.0,
+    "used": true
+   },
+   {
+    "s_apex": 1759.7,
+    "direction": "right",
+    "angle_deg": 89.0,
+    "kind": "corner",
+    "min_radius": 23.9,
+    "used": true
+   },
+   {
+    "s_apex": 1928.6,
+    "direction": "left",
+    "angle_deg": 7.5,
+    "kind": "kink",
+    "min_radius": 159.3,
+    "used": false
+   },
+   {
+    "s_apex": 2093.5,
+    "direction": "left",
+    "angle_deg": 74.3,
+    "kind": "corner",
+    "min_radius": 25.3,
+    "used": true
+   },
+   {
+    "s_apex": 2149.8,
+    "direction": "right",
+    "angle_deg": 70.2,
+    "kind": "corner",
+    "min_radius": 23.4,
+    "used": true
+   },
+   {
+    "s_apex": 2550.0,
+    "direction": "right",
+    "angle_deg": 110.1,
+    "kind": "corner",
+    "min_radius": 15.7,
+    "used": true
+   },
+   {
+    "s_apex": 2747.1,
+    "direction": "left",
+    "angle_deg": 74.2,
+    "kind": "corner",
+    "min_radius": 14.1,
+    "used": true
+   },
+   {
+    "s_apex": 2769.2,
+    "direction": "right",
+    "angle_deg": 31.9,
+    "kind": "corner",
+    "min_radius": 25.6,
+    "used": true
+   },
+   {
+    "s_apex": 2799.4,
+    "direction": "left",
+    "angle_deg": 32.4,
+    "kind": "corner",
+    "min_radius": 34.0,
+    "used": true
+   },
+   {
+    "s_apex": 2851.7,
+    "direction": "right",
+    "angle_deg": 76.1,
+    "kind": "corner",
+    "min_radius": 16.7,
+    "used": true
+   },
+   {
+    "s_apex": 2916.0,
+    "direction": "left",
+    "angle_deg": 91.3,
+    "kind": "corner",
+    "min_radius": 16.7,
+    "used": true
+   },
+   {
+    "s_apex": 3173.4,
+    "direction": "left",
+    "angle_deg": 5.3,
+    "kind": "kink",
+    "min_radius": 237.9,
+    "used": false
+   },
+   {
+    "s_apex": 3322.3,
+    "direction": "left",
+    "angle_deg": 41.7,
+    "kind": "corner",
+    "min_radius": 67.8,
+    "used": true
+   },
+   {
+    "s_apex": 3525.4,
+    "direction": "left",
+    "angle_deg": 20.2,
+    "kind": "corner",
+    "min_radius": 90.2,
+    "used": true
+   },
+   {
+    "s_apex": 3768.7,
+    "direction": "left",
+    "angle_deg": 62.6,
+    "kind": "corner",
+    "min_radius": 18.4,
+    "used": true
+   },
+   {
+    "s_apex": 4124.7,
+    "direction": "left",
+    "angle_deg": 87.5,
+    "kind": "corner",
+    "min_radius": 20.8,
+    "used": true
+   },
+   {
+    "s_apex": 4329.8,
+    "direction": "right",
+    "angle_deg": 18.7,
+    "kind": "corner",
+    "min_radius": 72.9,
+    "used": true
+   },
+   {
+    "s_apex": 4500.7,
+    "direction": "left",
+    "angle_deg": 4.7,
+    "kind": "kink",
+    "min_radius": 401.0,
+    "used": false
+   },
+   {
+    "s_apex": 4555.0,
+    "direction": "left",
+    "angle_deg": 29.0,
+    "kind": "corner",
+    "min_radius": 87.3,
+    "used": true
+   },
+   {
+    "s_apex": 4728.0,
+    "direction": "right",
+    "angle_deg": 40.9,
+    "kind": "corner",
+    "min_radius": 69.0,
+    "used": true
+   },
+   {
+    "s_apex": 5059.8,
+    "direction": "right",
+    "angle_deg": 11.1,
+    "kind": "kink",
+    "min_radius": 199.0,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

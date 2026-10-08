@@ -1,0 +1,14 @@
+{
+  "id": "baku",
+  "name": "Baku City Circuit",
+  "grand_prix": "Azerbaijan Grand Prix",
+  "country": "Azerbaijan",
+  "country_code": "AZ",
+  "city": "Baku",
+  "length_m": 6003,
+  "turns": 20,
+  "scene": "res://scenes/tracks/baku.tscn",
+  "track_json": "res://assets/tracks/baku/track.json",
+  "osm_relation": 11266687,
+  "available": true
+}

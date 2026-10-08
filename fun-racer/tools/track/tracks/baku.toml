@@ -1,0 +1,212 @@
+# Baku City Circuit, Azerbaijan Grand Prix (6003 m, 20 turns, anticlockwise).
+#
+#   .venv/bin/python tools/track/build_track.py baku --offline
+
+id = "baku"
+
+[osm]
+# type=circuit relation "Baku City Circuit": 49 ways, one closed loop of 5975 m (official
+# 6003 m, -0.46 %). The lap runs on public streets (Neftchilar Avenue, Pushkin, Khagani,
+# Bulbul Avenue, Zarifa Aliyeva, Aziz Aliyev, Istiglaliyyat, Niyazi: ordinary highway=* ways)
+# and on short highway=raceway links that draw the corners at the junctions. The relation
+# already picks one carriageway of every dual carriageway, and the pit lane is not on the loop.
+relation = 11266687
+# The streets' oneway tags follow traffic, and no closed loop obeys them.
+ignore_oneway = true
+
+[layout]
+# East along Neftchilar Avenue past the pits, then left at Turn 1.
+direction = "anticlockwise"
+# The relation has a "finish" and a "start" node 113 m apart. The Grand Prix runs 51 laps
+# over 306.049 km, 104 m less than 51 x 6.003 km: the grid's start line is 104 m after the
+# timing line, so the finish stays at the OSM node and the start goes 104 m after it.
+start_offset_m = 104.0
+
+[elevation]
+dataset = "terrarium"
+# A city: the elevation data is a surface model, so every block of buildings is a hill
+# (35 m range and 13 % grades at the default 45 m; the seafront straight, which is level in
+# reality, goes up and down by 6 m). The real profile is one long hill, the climb round the
+# old city from Turn 7 to Turns 13-14 and the descent to Turn 16, about 1.5 km from foot to
+# foot, and that survives a 200 m Gaussian.
+smooth_sigma_m = 200.0
+
+# Neftchilar Avenue is level along the shore. The surface model still shows a 3.6 m hump of
+# buildings on the main straight; a straight line from the exit of Turn 16 to the finish line
+# takes it out.
+[[elevation.override]]
+s = [4230.0, 5990.0]
+straighten = true
+
+# From Turn 6 to Turn 7 the lap runs on the avenue's other carriageway, 10 m beside the main
+# straight (s = 4730 to 5090). The smoothing along the lap drags the heights of the streets
+# before and after it into this stretch, which left it 1.3 to 3 m above the main straight:
+# two halves of one avenue with a step between them. Level it and bring it down to the main
+# straight's height; the ramps reach back to Turn 5 and forward into the climb after Turn 7.
+[[elevation.override]]
+s = [2130.0, 2540.0]
+straighten = true
+offset = -3.2
+blend = 130.0
+
+[terrain]
+# The same building noise around the lap. The slope of the city (rising inland from the
+# Caspian shore) is far longer than this and stays.
+smooth_sigma_m = 120.0
+
+[road]
+# Width estimates; OSM has none. The figures usually quoted are 13 m at the widest and 7.6 m
+# at the narrowest point (Turn 8), so 13 m is kept for the grid and 11 m is assumed elsewhere.
+base_width = 11.0
+grid_width = 13.0
+# Narrower than the nominal 13 m of track.json, so the drivers must be told.
+track_json_widths = true
+
+# The two carriageways of Neftchilar Avenue: OSM draws their centrelines 9.5 to 11.7 m
+# apart, so each road can only be 8 m wide if a wall is to stand between them.
+[[road.override]]
+s = [2175.0, 2530.0]
+width = 8.0
+blend = 30.0
+note = "Turn 6 to Turn 7, beside the main straight"
+
+[[road.override]]
+s = [4725.0, 5085.0]
+width = 8.0
+blend = 40.0
+note = "main straight beside the Turn 6 to Turn 7 stretch"
+
+[[road.override]]
+s = [2590.0, 2950.0]    # Aziz Aliyev street up to the walls, and round to Istiglaliyyat
+width = 9.0
+blend = 40.0
+note = "narrow streets from the exit of Turn 7 to the exit of Turn 12"
+
+[[road.override]]
+s = [2735.0, 2815.0]    # Turns 8 to 10 between the old city wall and the buildings
+width = 7.6
+blend = 25.0
+note = "the castle section: 7.6 m at its narrowest (the figure usually quoted)"
+
+# The 20 official turns. The automatic detection finds exactly these 20 (and four flat-out
+# kinks of 5 to 8 degrees that it leaves unnumbered); the table is pinned so that the numbers
+# cannot shift. The circuit has no official corner names: the names are descriptions.
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 323.8
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 661.6
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "left"
+s = 1532.4
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "right"
+s = 1759.7
+
+[[turn]]
+id = "T5"
+name = "Turn 5 (chicane)"
+direction = "left"
+s = 2093.5
+
+[[turn]]
+id = "T6"
+name = "Turn 6 (chicane)"
+direction = "right"
+s = 2149.8
+
+[[turn]]
+id = "T7"
+name = "Turn 7"
+direction = "right"
+s = 2550.0
+
+[[turn]]
+id = "T8"
+name = "Turn 8 (Castle)"
+direction = "left"
+s = 2747.1
+
+[[turn]]
+id = "T9"
+name = "Turn 9 (Castle)"
+direction = "right"
+s = 2769.2
+
+[[turn]]
+id = "T10"
+name = "Turn 10 (Castle)"
+direction = "left"
+s = 2799.4
+
+[[turn]]
+id = "T11"
+name = "Turn 11 (Old City)"
+direction = "right"
+s = 2851.7
+
+[[turn]]
+id = "T12"
+name = "Turn 12 (Old City)"
+direction = "left"
+s = 2916.0
+
+[[turn]]
+id = "T13"
+name = "Turn 13"
+direction = "left"
+s = 3322.3
+
+[[turn]]
+id = "T14"
+name = "Turn 14"
+direction = "left"
+s = 3525.4
+
+[[turn]]
+id = "T15"
+name = "Turn 15"
+direction = "left"
+s = 3768.7
+
+[[turn]]
+id = "T16"
+name = "Turn 16"
+direction = "left"
+s = 4124.7
+
+[[turn]]
+id = "T17"
+name = "Turn 17"
+direction = "right"
+s = 4329.8
+
+[[turn]]
+id = "T18"
+name = "Turn 18"
+direction = "left"
+s = 4555.0
+
+[[turn]]
+id = "T19"
+name = "Turn 19"
+direction = "right"
+s = 4728.0
+
+[[turn]]
+id = "T20"
+name = "Turn 20"
+direction = "right"
+s = 5059.8

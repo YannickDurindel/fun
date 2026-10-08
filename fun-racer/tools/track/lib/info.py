@@ -17,6 +17,7 @@ from .recipe import ROOT
 REFERENCE_ID = "red_bull_ring"   # its shaders / materials are the template for new tracks
 REFERENCE_DIR = os.path.join(ROOT, "assets", "tracks", REFERENCE_ID)
 CAD_DIR = os.path.join(ROOT, "cad", "track")
+NOMINAL_WIDTH = 13.0             # m, width stored per point of track.json (see track_json_widths)
 
 SCENE_TEMPLATE = """[gd_scene format=3]
 
@@ -193,6 +194,7 @@ def build_road(recipe, out_dir, log=print):
     from pathlib import Path
     with open(os.path.join(out_dir, "track.json"), encoding="utf-8") as f:
         track = json.load(f)
+    _check_track_widths(recipe, track)
     try:
         res = road.build(Path(out_dir) / "track.json", Path(out_dir), recipe.road, recipe.id)
     except ValueError as e:
@@ -210,6 +212,44 @@ def build_road(recipe, out_dir, log=print):
     _write_materials(recipe, track, out_dir, log)
     _write_trackside_profiles(out_dir, log)
     return res
+
+
+def road_widths(recipe, n, step, length, start_s, curvature):
+    """Width of the road the 'road' step builds, per centreline point (m, rounded to 1 mm):
+    the recipe's [road] table through cad/track/banking.py."""
+    _load_road_module()
+    import banking  # noqa: E402  (cad/track/banking.py, on sys.path now)
+    import numpy as np
+    try:
+        _, width = banking.profile(np.arange(n) * step, length, np.asarray(curvature, dtype=float),
+                                   start_s, recipe.road)
+    except ValueError as e:
+        raise BuildError(f"road: {e}") from e
+    return [round(float(w), 3) for w in width]
+
+
+def track_json_widths(recipe, n, step, length, start_s, curvature):
+    """The ``width`` of every point of track.json. Normally a nominal 13 m, whatever the road
+    step builds: the real widths are in road_profile.json. The game's drivers (the autopilot's
+    racing line, the bots' off-road test) read track.json, though, so a road built narrower
+    than that must say so there: with ``[road] track_json_widths = true`` these are the built
+    widths. Opt-in, so that the tracks built before the key existed stay byte for byte the same."""
+    if not recipe.road.get("track_json_widths"):
+        return [NOMINAL_WIDTH] * n
+    return road_widths(recipe, n, step, length, start_s, curvature)
+
+
+def _check_track_widths(recipe, track):
+    """track.json is written by the centreline step, and its widths depend on the [road] table:
+    stop if the two no longer agree (the table or track_json_widths changed since it ran)."""
+    pts = track["points"]
+    want = track_json_widths(recipe, len(pts), float(track["step"]), float(track["length"]),
+                             float(track.get("start_s", 0.0)), [p.get("curvature", 0.0) for p in pts])
+    worst = max(abs(float(p.get("width", w)) - w) for p, w in zip(pts, want))
+    if worst > 2e-3:
+        raise BuildError(f"road: the widths in track.json differ by up to {worst:.2f} m from the "
+                         "recipe's [road] table (its widths or track_json_widths changed since the "
+                         "centreline step ran). Run the build again with the 'centreline' step.")
 
 
 def write_track_info(recipe, out_dir, scene_dir, log=print):
