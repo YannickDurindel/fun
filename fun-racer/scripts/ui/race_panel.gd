@@ -126,8 +126,8 @@ func _build() -> void:
 	_time_label = _label(_top, Rect2(0, -4, 360, 82), _num_font, 64, COL_WAITING)
 	_time_label.text = "0:00.000"
 	_plate(_top, Rect2(14, 84, 332, 36), 12.0)
-	_lap_label = _label(_top, Rect2(34, 84, 110, 36), _small_font, 24, COL_WHITE, HORIZONTAL_ALIGNMENT_LEFT)
-	_best_label = _label(_top, Rect2(130, 84, 196, 36), _small_font, 24, COL_DIM, HORIZONTAL_ALIGNMENT_RIGHT)
+	_lap_label = _label(_top, Rect2(34, 84, 150, 36), _small_font, 24, COL_WHITE, HORIZONTAL_ALIGNMENT_LEFT)
+	_best_label = _label(_top, Rect2(150, 84, 176, 36), _small_font, 24, COL_DIM, HORIZONTAL_ALIGNMENT_RIGHT)
 	_hint = _label(_top, Rect2(-60, 124, 480, 30), _small_font, 21, COL_DIM)
 	_hint.text = "RESPAWN: BACKSPACE   RESTART: DEL"
 
@@ -269,7 +269,8 @@ func _process(delta: float) -> void:
 func _refresh() -> void:
 	if race == null:
 		return
-	var running := race.state == RaceManager.State.RACING
+	var finished := race.state == RaceManager.State.FINISHED
+	var running := race.state == RaceManager.State.RACING or finished   # finished: total time
 	var t := race.lap_time()
 	var ms := RaceTimer.to_ms(t)
 	if ms != _shown_ms or running != _shown_running:
@@ -279,11 +280,30 @@ func _refresh() -> void:
 			_time_label.add_theme_color_override(&"font_color", COL_WHITE if running else COL_WAITING)
 		_time_label.text = RaceTimer.format_time(t)
 	var lap_key := -1 if race.out_lap else race.laps_completed
+	if finished:
+		lap_key = -3
+	elif race.target_laps > 0:
+		lap_key += race.target_laps * 1000
 	if lap_key != _shown_lap or race.best_lap != _shown_best:
 		_shown_lap = lap_key
 		_shown_best = race.best_lap
-		_lap_label.text = "OUT LAP" if race.out_lap else "LAP %d" % (race.laps_completed + 1)
+		_lap_label.text = lap_text()
 		_best_label.text = "BEST  " + (RaceTimer.format_time(race.best_lap) if race.best_lap > 0.0 else "-:--.---")
+
+## "LAP 2" in time attack, "LAP 2 / 5" in race mode, "FINISHED" once the run is over.
+func lap_text() -> String:
+	if race == null:
+		return ""
+	if race.state == RaceManager.State.FINISHED:
+		return "FINISHED"
+	if race.out_lap:
+		return "OUT LAP"
+	if race.target_laps > 0:
+		return "LAP %d / %d" % [mini(race.laps_completed + 1, race.target_laps), race.target_laps]
+	return "LAP %d" % (race.laps_completed + 1)
+
+func get_lap_text() -> String:
+	return _lap_label.text
 
 func get_time_text() -> String:
 	return _time_label.text
