@@ -1,0 +1,14 @@
+{
+  "id": "albert_park",
+  "name": "Albert Park Circuit",
+  "grand_prix": "Australian Grand Prix",
+  "country": "Australia",
+  "country_code": "AU",
+  "city": "Melbourne",
+  "length_m": 5278,
+  "turns": 14,
+  "scene": "res://scenes/tracks/albert_park.tscn",
+  "track_json": "res://assets/tracks/albert_park/track.json",
+  "osm_relation": 280443,
+  "available": true
+}

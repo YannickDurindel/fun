@@ -404,6 +404,70 @@ def find_loop(data, recipe, log=print):
     return Loop(chain, names, way_list(best), length, directed, cands, warnings)
 
 
+def round_corners(data, loop, rounds, log=print):
+    """Applies the recipe's ``[[osm.round]]`` entries to ``loop`` (in place).
+
+    A circuit on public roads is drawn in OSM as the roads' centrelines, so where the lap
+    turns at a junction the loop has one sharp vertex, however wide and fast the real corner
+    is. Each entry replaces the loop from ``reach_m`` before its node to ``reach_m`` after it
+    (measured along the loop) by a quadratic Bezier curve with the node as control point: a
+    corner that begins and ends where the old loop was, with a minimum radius of about
+    reach_m * cos^2(a / 2) / sin(a / 2) for a turn of angle a. The new points are added to
+    ``data.nodes`` under made-up ids.
+    """
+    for k, spec in enumerate(rounds):
+        node, reach = str(spec["node"]), float(spec["reach_m"])
+        chain, names = loop.node_ids, loop.names
+        n = len(chain)
+        if node not in chain:
+            raise BuildError(f"[[osm.round]] node {node} is not on the loop (or was removed by an "
+                             "earlier [[osm.round]] entry)")
+        i = chain.index(node)
+        lat0, lon0 = data.nodes[node]
+        kx, ky = EARTH_M_PER_DEG * math.cos(math.radians(lat0)), EARTH_M_PER_DEG
+
+        def xy(m):
+            lat, lon = data.nodes[m]
+            return ((lon - lon0) * kx, (lat - lat0) * ky)
+
+        def walk(step):
+            """(index of the first node kept on this side, the point `reach` from the node)."""
+            done, j = 0.0, i
+            while True:
+                nxt = (j + step) % n
+                if nxt == i:
+                    raise BuildError(f"[[osm.round]] node {node}: reach_m = {reach:g} is longer "
+                                     "than the loop")
+                a, b = xy(chain[j]), xy(chain[nxt])
+                seg = math.dist(a, b)
+                if done + seg >= reach:
+                    t = (reach - done) / seg if seg > 0.0 else 1.0
+                    return nxt, (a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t)
+                done, j = done + seg, nxt
+
+        ia, pa = walk(-1)
+        ib, pb = walk(1)
+        kept = (ia - ib) % n + 1          # nodes from ib on, round the loop, to ia
+        if kept < 2 or (i - ib) % n < kept:
+            raise BuildError(f"[[osm.round]] node {node}: reach_m = {reach:g} covers the whole loop")
+        steps = max(4, int(math.ceil(2.0 * reach / 4.0)))
+        ends = (xy(chain[ia]), xy(chain[ib]))
+        new_ids = []
+        for q in range(steps + 1):
+            u = q / steps
+            # Control point (0, 0): the node itself.
+            p = ((1 - u) ** 2 * pa[0] + u ** 2 * pb[0], (1 - u) ** 2 * pa[1] + u ** 2 * pb[1])
+            if min(math.dist(p, e) for e in ends) < 0.5:
+                continue                  # (nearly) on a kept node: no double points
+            nid = f"round{k}_{q}"
+            data.nodes[nid] = (lat0 + p[1] / ky, lon0 + p[0] / kx)
+            new_ids.append(nid)
+        loop.node_ids = new_ids + [chain[(ib + q) % n] for q in range(kept)]
+        loop.names = [names[i]] * len(new_ids) + [names[(ib + q) % n] for q in range(kept)]
+        log(f"round: node {node} +/- {reach:g} m: {n - kept} loop nodes replaced by {len(new_ids)}")
+    return loop
+
+
 def start_finish_nodes(data, recipe, loop):
     """(finish (lat, lon) or None, start (lat, lon) or None, description of the source)."""
     on_loop = set(loop.node_ids)

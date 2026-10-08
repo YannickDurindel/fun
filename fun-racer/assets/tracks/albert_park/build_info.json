@@ -1,0 +1,462 @@
+{
+ "id": "albert_park",
+ "recipe": "tools/track/tracks/albert_park.toml",
+ "osm": {
+  "relation": 280443,
+  "loop_ways": [
+   979723478,
+   1126808201,
+   987030972,
+   987030985,
+   987030974,
+   987030973,
+   784076847,
+   987030977,
+   784076843,
+   784076839,
+   987030969,
+   1070446542,
+   784087846,
+   987030978,
+   987030966,
+   784083210,
+   987030982,
+   1050371045,
+   1013633268,
+   1013633269,
+   1050342733,
+   1021617920,
+   1021617874,
+   15856988,
+   979723480,
+   987030968,
+   784071296,
+   979723479,
+   979723477,
+   1253159342
+  ],
+  "raw_length_m": 5279.7,
+  "length_m": 5276.2,
+  "official_length_m": 5278.0,
+  "length_error": -0.00033,
+  "candidates": [
+   {
+    "length_m": 5314.4,
+    "ways": [
+     979723478,
+     1126808201,
+     987030972,
+     987030985,
+     987030974,
+     987030973,
+     784076847,
+     987030977,
+     784076843,
+     784076839,
+     987030969,
+     1070446542,
+     784087846,
+     987030978,
+     987030966,
+     784083210,
+     987030982,
+     1050371045,
+     1013633268,
+     1013633269,
+     1050342733,
+     1021617920,
+     1021617874,
+     15856988,
+     979723480,
+     987030968,
+     784071296,
+     979723479,
+     979723477,
+     1253159342
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "start: relation member role (finish line = start line)",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 2.43,
+  "max_grade": 0.0031,
+  "min_grade": -0.0031,
+  "origin_m": 7.98
+ },
+ "turns": {
+  "official": 14,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Aughtie Drive",
+    "direction": "right",
+    "s_apex": 380.1,
+    "min_radius": 19.9
+   },
+   {
+    "id": "T2",
+    "name": "Aughtie Drive",
+    "direction": "left",
+    "s_apex": 502.2,
+    "min_radius": 81.2
+   },
+   {
+    "id": "T3",
+    "name": "Aughtie Drive",
+    "direction": "right",
+    "s_apex": 1116.4,
+    "min_radius": 19.3
+   },
+   {
+    "id": "T4",
+    "name": "Turn 4",
+    "direction": "left",
+    "s_apex": 1250.5,
+    "min_radius": 28.5
+   },
+   {
+    "id": "T5",
+    "name": "Aughtie Drive",
+    "direction": "right",
+    "s_apex": 1518.6,
+    "min_radius": 92.5
+   },
+   {
+    "id": "T6",
+    "name": "Albert Road Drive",
+    "direction": "right",
+    "s_apex": 1672.6,
+    "min_radius": 137.5
+   },
+   {
+    "id": "T7",
+    "name": "Albert Road Drive",
+    "direction": "right",
+    "s_apex": 1894.7,
+    "min_radius": 46.1
+   },
+   {
+    "id": "T8",
+    "name": "Lakeside Drive",
+    "direction": "left",
+    "s_apex": 1944.7,
+    "min_radius": 91.9
+   },
+   {
+    "id": "T9",
+    "name": "Lakeside Drive",
+    "direction": "right",
+    "s_apex": 2126.8,
+    "min_radius": 131.1
+   },
+   {
+    "id": "T10",
+    "name": "Lakeside Drive",
+    "direction": "right",
+    "s_apex": 2238.8,
+    "min_radius": 118.7
+   },
+   {
+    "id": "T11",
+    "name": "Lakeside Drive",
+    "direction": "left",
+    "s_apex": 2789.1,
+    "min_radius": 200.2
+   },
+   {
+    "id": "T12",
+    "name": "Lakeside Drive",
+    "direction": "left",
+    "s_apex": 2893.1,
+    "min_radius": 250.1
+   },
+   {
+    "id": "T13",
+    "name": "Turn 13",
+    "direction": "left",
+    "s_apex": 3319.3,
+    "min_radius": 45.2
+   },
+   {
+    "id": "T14",
+    "name": "Turn 14",
+    "direction": "right",
+    "s_apex": 3447.3,
+    "min_radius": 24.9
+   },
+   {
+    "id": "T15",
+    "name": "Lakeside Drive",
+    "direction": "right",
+    "s_apex": 3737.4,
+    "min_radius": 137.5
+   },
+   {
+    "id": "T16",
+    "name": "Lakeside Drive",
+    "direction": "right",
+    "s_apex": 4151.6,
+    "min_radius": 25.7
+   },
+   {
+    "id": "T17",
+    "name": "Ross Gregory Drive",
+    "direction": "right",
+    "s_apex": 4391.7,
+    "min_radius": 58.1
+   },
+   {
+    "id": "T18",
+    "name": "Aughtie Drive",
+    "direction": "left",
+    "s_apex": 4661.8,
+    "min_radius": 15.7
+   },
+   {
+    "id": "T19",
+    "name": "Aughtie Drive",
+    "direction": "right",
+    "s_apex": 4775.8,
+    "min_radius": 52.0
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 380.1,
+    "direction": "right",
+    "angle_deg": 69.2,
+    "kind": "corner",
+    "min_radius": 19.9,
+    "used": true
+   },
+   {
+    "s_apex": 502.2,
+    "direction": "left",
+    "angle_deg": 71.3,
+    "kind": "corner",
+    "min_radius": 81.2,
+    "used": true
+   },
+   {
+    "s_apex": 1116.4,
+    "direction": "right",
+    "angle_deg": 107.6,
+    "kind": "corner",
+    "min_radius": 19.3,
+    "used": true
+   },
+   {
+    "s_apex": 1158.4,
+    "direction": "left",
+    "angle_deg": 6.1,
+    "kind": "kink",
+    "min_radius": 120.3,
+    "used": false
+   },
+   {
+    "s_apex": 1176.4,
+    "direction": "right",
+    "angle_deg": 5.7,
+    "kind": "kink",
+    "min_radius": 121.5,
+    "used": false
+   },
+   {
+    "s_apex": 1250.5,
+    "direction": "left",
+    "angle_deg": 81.7,
+    "kind": "corner",
+    "min_radius": 28.5,
+    "used": true
+   },
+   {
+    "s_apex": 1518.6,
+    "direction": "right",
+    "angle_deg": 55.8,
+    "kind": "corner",
+    "min_radius": 92.5,
+    "used": true
+   },
+   {
+    "s_apex": 1672.6,
+    "direction": "right",
+    "angle_deg": 16.8,
+    "kind": "corner",
+    "min_radius": 137.5,
+    "used": true
+   },
+   {
+    "s_apex": 1696.6,
+    "direction": "left",
+    "angle_deg": 7.0,
+    "kind": "kink",
+    "min_radius": 152.7,
+    "used": false
+   },
+   {
+    "s_apex": 1808.7,
+    "direction": "left",
+    "angle_deg": 6.7,
+    "kind": "kink",
+    "min_radius": 266.3,
+    "used": false
+   },
+   {
+    "s_apex": 1894.7,
+    "direction": "right",
+    "angle_deg": 73.2,
+    "kind": "corner",
+    "min_radius": 46.1,
+    "used": true
+   },
+   {
+    "s_apex": 1944.7,
+    "direction": "left",
+    "angle_deg": 39.6,
+    "kind": "corner",
+    "min_radius": 91.9,
+    "used": true
+   },
+   {
+    "s_apex": 2126.8,
+    "direction": "right",
+    "angle_deg": 53.3,
+    "kind": "corner",
+    "min_radius": 131.1,
+    "used": true
+   },
+   {
+    "s_apex": 2238.8,
+    "direction": "right",
+    "angle_deg": 21.8,
+    "kind": "corner",
+    "min_radius": 118.7,
+    "used": true
+   },
+   {
+    "s_apex": 2458.9,
+    "direction": "right",
+    "angle_deg": 13.7,
+    "kind": "kink",
+    "min_radius": 181.7,
+    "used": false
+   },
+   {
+    "s_apex": 2494.9,
+    "direction": "right",
+    "angle_deg": 14.4,
+    "kind": "kink",
+    "min_radius": 162.2,
+    "used": false
+   },
+   {
+    "s_apex": 2731.0,
+    "direction": "left",
+    "angle_deg": 4.6,
+    "kind": "kink",
+    "min_radius": 357.7,
+    "used": false
+   },
+   {
+    "s_apex": 2789.1,
+    "direction": "left",
+    "angle_deg": 17.7,
+    "kind": "corner",
+    "min_radius": 200.2,
+    "used": true
+   },
+   {
+    "s_apex": 2893.1,
+    "direction": "left",
+    "angle_deg": 31.3,
+    "kind": "corner",
+    "min_radius": 250.1,
+    "used": true
+   },
+   {
+    "s_apex": 3125.2,
+    "direction": "left",
+    "angle_deg": 11.9,
+    "kind": "kink",
+    "min_radius": 152.4,
+    "used": false
+   },
+   {
+    "s_apex": 3319.3,
+    "direction": "left",
+    "angle_deg": 50.4,
+    "kind": "corner",
+    "min_radius": 45.2,
+    "used": true
+   },
+   {
+    "s_apex": 3447.3,
+    "direction": "right",
+    "angle_deg": 50.0,
+    "kind": "corner",
+    "min_radius": 24.9,
+    "used": true
+   },
+   {
+    "s_apex": 3685.4,
+    "direction": "right",
+    "angle_deg": 9.0,
+    "kind": "kink",
+    "min_radius": 161.6,
+    "used": false
+   },
+   {
+    "s_apex": 3737.4,
+    "direction": "right",
+    "angle_deg": 15.5,
+    "kind": "corner",
+    "min_radius": 137.5,
+    "used": true
+   },
+   {
+    "s_apex": 3805.4,
+    "direction": "right",
+    "angle_deg": 6.3,
+    "kind": "kink",
+    "min_radius": 242.3,
+    "used": false
+   },
+   {
+    "s_apex": 4151.6,
+    "direction": "right",
+    "angle_deg": 90.2,
+    "kind": "corner",
+    "min_radius": 25.7,
+    "used": true
+   },
+   {
+    "s_apex": 4391.7,
+    "direction": "right",
+    "angle_deg": 77.6,
+    "kind": "corner",
+    "min_radius": 58.1,
+    "used": true
+   },
+   {
+    "s_apex": 4661.8,
+    "direction": "left",
+    "angle_deg": 105.9,
+    "kind": "corner",
+    "min_radius": 15.7,
+    "used": true
+   },
+   {
+    "s_apex": 4775.8,
+    "direction": "right",
+    "angle_deg": 94.1,
+    "kind": "corner",
+    "min_radius": 52.0,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}
