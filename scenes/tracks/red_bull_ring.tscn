@@ -1,0 +1,17 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/track/track.gd" id="1_track"]
+[ext_resource type="Script" path="res://scripts/track/placeholder_road.gd" id="2_road"]
+
+[node name="Track" type="Node3D"]
+script = ExtResource("1_track")
+track_json = "res://assets/tracks/red_bull_ring/track.json"
+
+[node name="Road" type="Node3D" parent="."]
+script = ExtResource("2_road")
+
+[node name="Trackside" type="Node3D" parent="."]
+
+[node name="Terrain" type="Node3D" parent="."]
+
+[node name="Race" type="Node" parent="."]

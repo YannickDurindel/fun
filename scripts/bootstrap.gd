@@ -3,11 +3,16 @@ extends Node
 ##   --autodrive          scripted full throttle with a gentle weave (for screenshots/tests)
 ##   --screenshot=PATH    save the viewport to PATH after --frames frames, then quit
 ##   --frames=N           frame count for --screenshot (default 120)
+##   --spawn_s=METRES     on a track, spawn the car this far around the lap (race scene)
 
 var autodrive: bool = false
 var screenshot_path: String = ""
 var screenshot_frames: int = 120
 var _frame: int = 0
+var spawn_s: float = -1.0
+## Optional driver used by --autodrive instead of the fixed weave. Any object with
+## get_throttle() / get_brake() / get_steer() -> float (e.g. a track follower / autopilot).
+var autodrive_provider: Object = null
 
 const KEY_ACTIONS: Dictionary = {
 	"accelerate": [KEY_UP, KEY_W],
@@ -29,6 +34,8 @@ func _ready() -> void:
 			screenshot_path = arg.get_slice("=", 1)
 		elif arg.begins_with("--frames="):
 			screenshot_frames = int(arg.get_slice("=", 1))
+		elif arg.begins_with("--spawn_s="):
+			spawn_s = float(arg.get_slice("=", 1))
 
 func _register_inputs() -> void:
 	for action: String in KEY_ACTIONS:
@@ -55,19 +62,22 @@ func _add_joy_axis(action: String, axis: JoyAxis, value: float) -> void:
 ## Driver inputs, overridden by autodrive. Car reads these instead of Input directly.
 func get_throttle() -> float:
 	if autodrive:
-		return 1.0
+		return _provider().get_throttle() if _provider() else 1.0
 	return Input.get_action_strength("accelerate")
 
 func get_brake() -> float:
 	if autodrive:
-		return 0.0
+		return _provider().get_brake() if _provider() else 0.0
 	return Input.get_action_strength("brake")
 
 ## -1 = full left, +1 = full right.
 func get_steer() -> float:
 	if autodrive:
-		return sin(Time.get_ticks_msec() / 1500.0) * 0.3
+		return _provider().get_steer() if _provider() else sin(Time.get_ticks_msec() / 1500.0) * 0.3
 	return Input.get_axis("steer_left", "steer_right")
+
+func _provider() -> Object:
+	return autodrive_provider if is_instance_valid(autodrive_provider) else null
 
 func _process(_delta: float) -> void:
 	if screenshot_path.is_empty():
