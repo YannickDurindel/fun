@@ -1,0 +1,21 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/car/car_body_visual.tscn" id="1_body"]
+[ext_resource type="PackedScene" path="res://scenes/car/wheel_visual.tscn" id="2_wheel"]
+
+[node name="GhostCar" type="Node3D"]
+physics_interpolation_mode = 2
+
+[node name="BodyVisual" parent="." instance=ExtResource("1_body")]
+
+[node name="WheelFL" parent="." instance=ExtResource("2_wheel")]
+wheel_index = 0
+
+[node name="WheelFR" parent="." instance=ExtResource("2_wheel")]
+wheel_index = 1
+
+[node name="WheelRL" parent="." instance=ExtResource("2_wheel")]
+wheel_index = 2
+
+[node name="WheelRR" parent="." instance=ExtResource("2_wheel")]
+wheel_index = 3

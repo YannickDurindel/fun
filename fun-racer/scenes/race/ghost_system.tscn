@@ -1,0 +1,14 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/race/ghost_player.gd" id="1_player"]
+[ext_resource type="Script" path="res://scripts/race/ghost_recorder.gd" id="2_recorder"]
+[ext_resource type="PackedScene" path="res://scenes/race/ghost_car.tscn" id="3_car"]
+
+[node name="Ghost" type="Node3D"]
+script = ExtResource("1_player")
+
+[node name="Recorder" type="Node" parent="."]
+script = ExtResource("2_recorder")
+
+[node name="GhostCar" parent="." instance=ExtResource("3_car")]
+visible = false

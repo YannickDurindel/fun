@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/race/autopilot.gd" id="9_autopilot"]
 [ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="m5_pause"]
 [ext_resource type="PackedScene" path="res://scenes/ui/results.tscn" id="m5_results"]
+[ext_resource type="PackedScene" path="res://scenes/race/ghost_system.tscn" id="g6_ghost"]
 
 [sub_resource type="WorldBoundaryShape3D" id="catch_shape"]
 
@@ -52,3 +53,5 @@ car_path = NodePath("../../Car")
 [node name="Autodrive" type="Node" parent="."]
 script = ExtResource("9_autopilot")
 car_path = NodePath("../Car")
+
+[node name="Ghost" parent="." instance=ExtResource("g6_ghost")]
