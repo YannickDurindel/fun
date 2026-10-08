@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/fx/driving_fx.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/fx/skid_marks.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/fx/tyre_smoke.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/fx/speed_lines.gd" id="4"]
+
+[node name="DrivingFX" type="Node3D"]
+script = ExtResource("1")
+
+[node name="SkidMarks" type="Node3D" parent="."]
+script = ExtResource("2")
+
+[node name="TyreSmoke" type="MultiMeshInstance3D" parent="."]
+script = ExtResource("3")
+
+[node name="SpeedLines" type="CanvasLayer" parent="."]
+script = ExtResource("4")

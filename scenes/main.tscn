@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/world/world.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://scenes/car/car.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/camera/chase_camera.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://scenes/audio/engine_audio.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://scenes/fx/driving_fx.tscn" id="8_fx"]
 
 [node name="Main" type="Node3D"]
 
@@ -24,3 +25,6 @@ car_path = NodePath("../Car")
 car_path = NodePath("../../Car")
 
 [node name="FX" type="Node3D" parent="."]
+
+[node name="DrivingFX" parent="FX" instance=ExtResource("8_fx")]
+car_path = NodePath("../../Car")
