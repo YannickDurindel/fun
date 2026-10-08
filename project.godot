@@ -1,0 +1,24 @@
+; Engine configuration file.
+config_version=5
+
+[application]
+config/name="Fun Racer"
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.7", "Mobile")
+
+[autoload]
+Bootstrap="*res://scripts/bootstrap.gd"
+
+[display]
+window/size/viewport_width=1600
+window/size/viewport_height=900
+window/vsync/vsync_mode=1
+
+[physics]
+common/physics_ticks_per_second=240
+common/max_physics_steps_per_frame=16
+3d/default_gravity=9.81
+
+[rendering]
+renderer/rendering_method="mobile"
+anti_aliasing/quality/msaa_3d=2

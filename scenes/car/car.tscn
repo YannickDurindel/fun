@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/car/car.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/car/car_body_visual.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/car/wheel_visual.tscn" id="3"]
+
+[sub_resource type="BoxShape3D" id="shape"]
+size = Vector3(1.8, 0.6, 5.2)
+
+[node name="Car" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+script = ExtResource("1")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("shape")
+
+[node name="BodyVisual" parent="." instance=ExtResource("2")]
+
+[node name="WheelFL" parent="." instance=ExtResource("3")]
+wheel_index = 0
+
+[node name="WheelFR" parent="." instance=ExtResource("3")]
+wheel_index = 1
+
+[node name="WheelRL" parent="." instance=ExtResource("3")]
+wheel_index = 2
+
+[node name="WheelRR" parent="." instance=ExtResource("3")]
+wheel_index = 3

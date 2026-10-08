@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3]
+
+[sub_resource type="BoxMesh" id="mesh"]
+size = Vector3(1.4, 0.5, 4.8)
+
+[sub_resource type="StandardMaterial3D" id="mat"]
+albedo_color = Color(0.85, 0.1, 0.1, 1)
+
+[node name="CarBodyVisual" type="Node3D"]
+
+[node name="Placeholder" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+mesh = SubResource("mesh")
+surface_material_override/0 = SubResource("mat")

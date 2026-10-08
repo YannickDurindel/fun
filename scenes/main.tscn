@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/world/world.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/car/car.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/camera/chase_camera.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://scenes/audio/engine_audio.tscn" id="5"]
+
+[node name="Main" type="Node3D"]
+
+[node name="World" parent="." instance=ExtResource("1")]
+
+[node name="Car" parent="." instance=ExtResource("2")]
+
+[node name="ChaseCamera" parent="." instance=ExtResource("3")]
+target_path = NodePath("../Car")
+
+[node name="EngineAudio" parent="." instance=ExtResource("5")]
+car_path = NodePath("../Car")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="UI" instance=ExtResource("4")]
+car_path = NodePath("../../Car")
+
+[node name="FX" type="Node3D" parent="."]
