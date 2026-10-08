@@ -4,3 +4,9 @@
 
 [node name="EngineAudio" type="Node3D"]
 script = ExtResource("1")
+
+[node name="EnginePlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="ScreechPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="WindPlayer" type="AudioStreamPlayer" parent="."]
