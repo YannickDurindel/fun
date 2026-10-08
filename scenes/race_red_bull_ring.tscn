@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" path="res://scenes/audio/engine_audio.tscn" id="7_audio"]
 [ext_resource type="PackedScene" path="res://scenes/fx/driving_fx.tscn" id="8_fx"]
 [ext_resource type="Script" path="res://scripts/track/placeholder_follower.gd" id="9_follow"]
+[ext_resource type="PackedScene" path="res://scenes/ui/race_panel.tscn" id="r4_panel"]
 
 [sub_resource type="WorldBoundaryShape3D" id="catch_shape"]
 
@@ -37,6 +38,8 @@ car_path = NodePath("../Car")
 
 [node name="HUD" parent="UI" instance=ExtResource("6_hud")]
 car_path = NodePath("../../Car")
+
+[node name="RacePanel" parent="UI" instance=ExtResource("r4_panel")]
 
 [node name="FX" type="Node3D" parent="."]
 

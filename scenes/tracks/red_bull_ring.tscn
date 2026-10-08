@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" path="res://scenes/tracks/rbr_road.tscn" id="u1_road"]
 [ext_resource type="PackedScene" path="res://scenes/tracks/rbr_trackside.tscn" id="u2_trackside"]
 [ext_resource type="PackedScene" path="res://scenes/tracks/rbr_terrain.tscn" id="t3_terrain"]
+[ext_resource type="Script" path="res://scripts/race/race_manager.gd" id="r4_race"]
 
 [node name="Track" type="Node3D"]
 script = ExtResource("1_track")
@@ -16,3 +17,4 @@ track_json = "res://assets/tracks/red_bull_ring/track.json"
 [node name="Terrain" parent="." instance=ExtResource("t3_terrain")]
 
 [node name="Race" type="Node" parent="."]
+script = ExtResource("r4_race")
