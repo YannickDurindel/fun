@@ -1,0 +1,14 @@
+{
+  "id": "hermanos_rodriguez",
+  "name": "Autódromo Hermanos Rodríguez",
+  "grand_prix": "Mexico City Grand Prix",
+  "country": "Mexico",
+  "country_code": "MX",
+  "city": "Mexico City",
+  "length_m": 4304,
+  "turns": 17,
+  "scene": "res://scenes/tracks/hermanos_rodriguez.tscn",
+  "track_json": "res://assets/tracks/hermanos_rodriguez/track.json",
+  "osm_relation": 16251935,
+  "available": true
+}
