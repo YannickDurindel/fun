@@ -21,6 +21,9 @@ signal sector_completed(sector: int, time: float, state: int)
 signal lap_completed(lap: int, time: float, delta: float, has_delta: bool, is_best: bool)
 signal lap_invalidated
 signal wrong_way_changed(active: bool)
+## MODE_RACE only: emitted once when `target_laps` laps are done. results: {laps: Array of lap
+## times, best: float, total: float, track_id: String}.
+signal race_finished(results: Dictionary)
 
 enum State { IDLE, COUNTDOWN, RACING }
 
@@ -35,7 +38,11 @@ const WRONG_WAY_TIME: float = 2.0
 const WRONG_WAY_SPEED: float = 20.0 / 3.6
 const GRID_ZONE: float = 30.0
 const RESCAN_INTERVAL: int = 30            ## ticks between full-lap rescans when far off the road
-const SAVE_PATH := "user://rbr_best.json"
+
+## Laps to complete before race_finished (0 = endless / time attack). Set from Game.config.
+var target_laps: int = 0
+## Lap times of this run, in order.
+var lap_times: PackedFloat32Array = []
 
 @export var persist_best: bool = true
 @export var countdown_enabled: bool = true
@@ -78,8 +85,11 @@ var _upside_timer: float = 0.0
 var _respawn_gen: int = 0
 var _rescan_cooldown: int = 0
 
-func _ready() -> void:
+func _enter_tree() -> void:
+	# Joined before any _ready so UI can find the manager whatever the sibling order.
 	add_to_group(&"race_manager")
+
+func _ready() -> void:
 	_register_restart_action()
 
 static func _register_restart_action() -> void:
@@ -151,6 +161,7 @@ func restart() -> void:
 	race_time = 0.0
 	lap_start_time = 0.0
 	laps_completed = 0
+	lap_times = PackedFloat32Array()
 	last_lap = -1.0
 	_has_cp = false
 	_cp_velocity = Vector3.ZERO
@@ -303,6 +314,7 @@ func _finish_crossed(t: float) -> void:
 		current_splits.append(lt)
 		laps_completed += 1
 		last_lap = lt
+		lap_times.append(lt)
 		var has_delta := best_lap > 0.0
 		var dlt := lt - best_lap if has_delta else 0.0
 		var is_best := not has_delta or lt < best_lap
@@ -372,10 +384,13 @@ func clear_best() -> void:
 	best_sectors.clear()
 	session_sectors.clear()
 
+func _save_path() -> String:
+	return "user://best_%s.json" % (track.track_id if track != null else "unknown")
+
 func _save_best() -> void:
 	if Bootstrap.autodrive:
 		return   # the autopilot's laps are not the player's best
-	var f := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	var f := FileAccess.open(_save_path(), FileAccess.WRITE)
 	if f == null:
 		return
 	f.store_string(JSON.stringify({
@@ -384,9 +399,9 @@ func _save_best() -> void:
 	}))
 
 func _load_best() -> void:
-	if not FileAccess.file_exists(SAVE_PATH):
+	if not FileAccess.file_exists(_save_path()):
 		return
-	var f := FileAccess.open(SAVE_PATH, FileAccess.READ)
+	var f := FileAccess.open(_save_path(), FileAccess.READ)
 	var d: Variant = JSON.parse_string(f.get_as_text()) if f else null
 	if not (d is Dictionary):
 		return

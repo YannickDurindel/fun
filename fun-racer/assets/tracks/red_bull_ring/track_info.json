@@ -1,0 +1,14 @@
+{
+  "id": "red_bull_ring",
+  "name": "Red Bull Ring",
+  "grand_prix": "Austrian Grand Prix",
+  "country": "Austria",
+  "country_code": "AT",
+  "city": "Spielberg",
+  "length_m": 4318,
+  "turns": 10,
+  "scene": "res://scenes/tracks/red_bull_ring.tscn",
+  "track_json": "res://assets/tracks/red_bull_ring/track.json",
+  "osm_relation": 5309181,
+  "available": true
+}

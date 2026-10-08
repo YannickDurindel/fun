@@ -3,6 +3,8 @@ extends Node3D
 ## Root of a track scene. Loads the centreline (TrackData) and exposes it to every system.
 ## Child slots (each owned by one subsystem): Road, Trackside, Terrain, Race.
 
+## Catalog id of this track (folder name under assets/tracks/).
+@export var track_id: String = "red_bull_ring"
 @export_file("*.json") var track_json: String = "res://assets/tracks/red_bull_ring/track.json"
 
 var data: TrackData

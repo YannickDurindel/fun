@@ -3,11 +3,13 @@ config_version=5
 
 [application]
 config/name="Fun Racer"
-run/main_scene="res://scenes/race_red_bull_ring.tscn"
+run/main_scene="res://scenes/menu/menu.tscn"
 config/features=PackedStringArray("4.7", "Mobile")
 
 [autoload]
 Bootstrap="*res://scripts/bootstrap.gd"
+Settings="*res://scripts/settings.gd"
+Game="*res://scripts/game.gd"
 
 [display]
 window/size/viewport_width=1600

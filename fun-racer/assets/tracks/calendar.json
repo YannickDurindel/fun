@@ -1,0 +1,245 @@
+{
+ "note": "F1 calendar circuits. A circuit becomes playable when assets/tracks/<id>/track_info.json exists.",
+ "tracks": [
+  {
+   "id": "albert_park",
+   "name": "Albert Park Circuit",
+   "grand_prix": "Australian Grand Prix",
+   "country": "Australia",
+   "country_code": "AU",
+   "city": "Melbourne",
+   "length_m": 5278,
+   "turns": 14
+  },
+  {
+   "id": "shanghai",
+   "name": "Shanghai International Circuit",
+   "grand_prix": "Chinese Grand Prix",
+   "country": "China",
+   "country_code": "CN",
+   "city": "Shanghai",
+   "length_m": 5451,
+   "turns": 16
+  },
+  {
+   "id": "suzuka",
+   "name": "Suzuka Circuit",
+   "grand_prix": "Japanese Grand Prix",
+   "country": "Japan",
+   "country_code": "JP",
+   "city": "Suzuka",
+   "length_m": 5807,
+   "turns": 18
+  },
+  {
+   "id": "bahrain",
+   "name": "Bahrain International Circuit",
+   "grand_prix": "Bahrain Grand Prix",
+   "country": "Bahrain",
+   "country_code": "BH",
+   "city": "Sakhir",
+   "length_m": 5412,
+   "turns": 15
+  },
+  {
+   "id": "jeddah",
+   "name": "Jeddah Corniche Circuit",
+   "grand_prix": "Saudi Arabian Grand Prix",
+   "country": "Saudi Arabia",
+   "country_code": "SA",
+   "city": "Jeddah",
+   "length_m": 6174,
+   "turns": 27
+  },
+  {
+   "id": "miami",
+   "name": "Miami International Autodrome",
+   "grand_prix": "Miami Grand Prix",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Miami Gardens",
+   "length_m": 5412,
+   "turns": 19
+  },
+  {
+   "id": "imola",
+   "name": "Autodromo Enzo e Dino Ferrari",
+   "grand_prix": "Emilia Romagna Grand Prix",
+   "country": "Italy",
+   "country_code": "IT",
+   "city": "Imola",
+   "length_m": 4909,
+   "turns": 19
+  },
+  {
+   "id": "monaco",
+   "name": "Circuit de Monaco",
+   "grand_prix": "Monaco Grand Prix",
+   "country": "Monaco",
+   "country_code": "MC",
+   "city": "Monte Carlo",
+   "length_m": 3337,
+   "turns": 19
+  },
+  {
+   "id": "catalunya",
+   "name": "Circuit de Barcelona-Catalunya",
+   "grand_prix": "Spanish Grand Prix",
+   "country": "Spain",
+   "country_code": "ES",
+   "city": "Montmeló",
+   "length_m": 4657,
+   "turns": 14
+  },
+  {
+   "id": "gilles_villeneuve",
+   "name": "Circuit Gilles Villeneuve",
+   "grand_prix": "Canadian Grand Prix",
+   "country": "Canada",
+   "country_code": "CA",
+   "city": "Montréal",
+   "length_m": 4361,
+   "turns": 14
+  },
+  {
+   "id": "red_bull_ring",
+   "name": "Red Bull Ring",
+   "grand_prix": "Austrian Grand Prix",
+   "country": "Austria",
+   "country_code": "AT",
+   "city": "Spielberg",
+   "length_m": 4318,
+   "turns": 10
+  },
+  {
+   "id": "silverstone",
+   "name": "Silverstone Circuit",
+   "grand_prix": "British Grand Prix",
+   "country": "United Kingdom",
+   "country_code": "GB",
+   "city": "Silverstone",
+   "length_m": 5891,
+   "turns": 18
+  },
+  {
+   "id": "spa",
+   "name": "Circuit de Spa-Francorchamps",
+   "grand_prix": "Belgian Grand Prix",
+   "country": "Belgium",
+   "country_code": "BE",
+   "city": "Stavelot",
+   "length_m": 7004,
+   "turns": 19
+  },
+  {
+   "id": "hungaroring",
+   "name": "Hungaroring",
+   "grand_prix": "Hungarian Grand Prix",
+   "country": "Hungary",
+   "country_code": "HU",
+   "city": "Mogyoród",
+   "length_m": 4381,
+   "turns": 14
+  },
+  {
+   "id": "zandvoort",
+   "name": "Circuit Zandvoort",
+   "grand_prix": "Dutch Grand Prix",
+   "country": "Netherlands",
+   "country_code": "NL",
+   "city": "Zandvoort",
+   "length_m": 4259,
+   "turns": 14
+  },
+  {
+   "id": "monza",
+   "name": "Autodromo Nazionale Monza",
+   "grand_prix": "Italian Grand Prix",
+   "country": "Italy",
+   "country_code": "IT",
+   "city": "Monza",
+   "length_m": 5793,
+   "turns": 11
+  },
+  {
+   "id": "baku",
+   "name": "Baku City Circuit",
+   "grand_prix": "Azerbaijan Grand Prix",
+   "country": "Azerbaijan",
+   "country_code": "AZ",
+   "city": "Baku",
+   "length_m": 6003,
+   "turns": 20
+  },
+  {
+   "id": "marina_bay",
+   "name": "Marina Bay Street Circuit",
+   "grand_prix": "Singapore Grand Prix",
+   "country": "Singapore",
+   "country_code": "SG",
+   "city": "Singapore",
+   "length_m": 4940,
+   "turns": 19
+  },
+  {
+   "id": "cota",
+   "name": "Circuit of the Americas",
+   "grand_prix": "United States Grand Prix",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Austin",
+   "length_m": 5513,
+   "turns": 20
+  },
+  {
+   "id": "hermanos_rodriguez",
+   "name": "Autódromo Hermanos Rodríguez",
+   "grand_prix": "Mexico City Grand Prix",
+   "country": "Mexico",
+   "country_code": "MX",
+   "city": "Mexico City",
+   "length_m": 4304,
+   "turns": 17
+  },
+  {
+   "id": "interlagos",
+   "name": "Autódromo José Carlos Pace",
+   "grand_prix": "São Paulo Grand Prix",
+   "country": "Brazil",
+   "country_code": "BR",
+   "city": "São Paulo",
+   "length_m": 4309,
+   "turns": 15
+  },
+  {
+   "id": "las_vegas",
+   "name": "Las Vegas Strip Circuit",
+   "grand_prix": "Las Vegas Grand Prix",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Las Vegas",
+   "length_m": 6201,
+   "turns": 17
+  },
+  {
+   "id": "lusail",
+   "name": "Lusail International Circuit",
+   "grand_prix": "Qatar Grand Prix",
+   "country": "Qatar",
+   "country_code": "QA",
+   "city": "Lusail",
+   "length_m": 5419,
+   "turns": 16
+  },
+  {
+   "id": "yas_marina",
+   "name": "Yas Marina Circuit",
+   "grand_prix": "Abu Dhabi Grand Prix",
+   "country": "United Arab Emirates",
+   "country_code": "AE",
+   "city": "Abu Dhabi",
+   "length_m": 5281,
+   "turns": 16
+  }
+ ]
+}

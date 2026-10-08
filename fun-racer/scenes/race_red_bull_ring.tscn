@@ -1,51 +1,6 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://scripts/race/race_setup.gd" id="1_setup"]
-[ext_resource type="PackedScene" path="res://scenes/world/sky_environment.tscn" id="2_sky"]
-[ext_resource type="PackedScene" path="res://scenes/tracks/red_bull_ring.tscn" id="3_track"]
-[ext_resource type="PackedScene" path="res://scenes/car/car.tscn" id="4_car"]
-[ext_resource type="PackedScene" path="res://scenes/camera/chase_camera.tscn" id="5_cam"]
-[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="6_hud"]
-[ext_resource type="PackedScene" path="res://scenes/audio/engine_audio.tscn" id="7_audio"]
-[ext_resource type="PackedScene" path="res://scenes/fx/driving_fx.tscn" id="8_fx"]
-[ext_resource type="PackedScene" path="res://scenes/ui/race_panel.tscn" id="r4_panel"]
-[ext_resource type="Script" path="res://scripts/race/autopilot.gd" id="9_autopilot"]
+[ext_resource type="PackedScene" path="res://scenes/race.tscn" id="1_race"]
 
-[sub_resource type="WorldBoundaryShape3D" id="catch_shape"]
-
-[node name="RaceRedBullRing" type="Node3D"]
-script = ExtResource("1_setup")
-
-[node name="SkyEnvironment" parent="." instance=ExtResource("2_sky")]
-
-[node name="Track" parent="." instance=ExtResource("3_track")]
-
-[node name="CatchPlane" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -80, 0)
-
-[node name="Collision" type="CollisionShape3D" parent="CatchPlane"]
-shape = SubResource("catch_shape")
-
-[node name="Car" parent="." instance=ExtResource("4_car")]
-
-[node name="ChaseCamera" parent="." instance=ExtResource("5_cam")]
-target_path = NodePath("../Car")
-
-[node name="EngineAudio" parent="." instance=ExtResource("7_audio")]
-car_path = NodePath("../Car")
-
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="HUD" parent="UI" instance=ExtResource("6_hud")]
-car_path = NodePath("../../Car")
-
-[node name="RacePanel" parent="UI" instance=ExtResource("r4_panel")]
-
-[node name="FX" type="Node3D" parent="."]
-
-[node name="DrivingFX" parent="FX" instance=ExtResource("8_fx")]
-car_path = NodePath("../../Car")
-
-[node name="Autodrive" type="Node" parent="."]
-script = ExtResource("9_autopilot")
-car_path = NodePath("../Car")
+[node name="RaceRedBullRing" instance=ExtResource("1_race")]
+track_id = "red_bull_ring"

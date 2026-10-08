@@ -15,6 +15,8 @@ func _run() -> void:
 		if f.begins_with("test_") and f.ends_with(".gd") and f != "test_case.gd" and (filter.is_empty() or f.contains(filter)):
 			files.append(f)
 	files.sort()
+	# Tests never read or write the player's real settings file.
+	root.get_node("/root/Settings").set(&"persist", false)
 	var passed := 0
 	var failed := 0
 	for f in files:

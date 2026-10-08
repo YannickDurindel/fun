@@ -3,6 +3,8 @@ extends Node
 ##   --autodrive          scripted full throttle with a gentle weave (for screenshots/tests)
 ##   --screenshot=PATH    save the viewport to PATH after --frames frames, then quit
 ##   --frames=N           frame count for --screenshot (default 120)
+##   --screen=NAME        open the menu on this screen (see scripts/menu/menu_router.gd)
+##   --track=ID           skip the menu and race this track (see scripts/game.gd for more)
 ##   --no-countdown       race scene starts immediately (no 3-2-1-GO)
 ##   --spawn_s=METRES     on a track, spawn the car this far around the lap (race scene)
 
@@ -11,6 +13,8 @@ var screenshot_path: String = ""
 var screenshot_frames: int = 120
 var _frame: int = 0
 var spawn_s: float = -1.0
+## --screen=NAME: menu screen to open directly (main, tracks, race_options, settings, controls, records).
+var start_screen: String = ""
 ## When true the race starts immediately (no 3-2-1 countdown). Set by --no-countdown and by
 ## the test runner so race-scene tests can drive straight away.
 var skip_countdown: bool = false
@@ -38,6 +42,8 @@ func _ready() -> void:
 			screenshot_path = arg.get_slice("=", 1)
 		elif arg.begins_with("--frames="):
 			screenshot_frames = int(arg.get_slice("=", 1))
+		elif arg.begins_with("--screen="):
+			start_screen = arg.get_slice("=", 1)
 		elif arg == "--no-countdown":
 			skip_countdown = true
 		elif arg.begins_with("--spawn_s="):
