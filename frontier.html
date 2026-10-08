@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frontier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --day: #d7e7df;
+    --day-dim: #b9cfc5;
+    --night: #123f49;
+    --night-dim: #0c2d34;
+    --stage-top: #2f3f45;
+    --stage-mid: #4a5c5f;
+    --stage-bottom: #a9bab8;
+    --ink: #d9e5e2;
+    --ink-dim: rgba(217,229,226,0.56);
+    --hairline: rgba(215,231,223,0.16);
+    --panel: rgba(10,18,20,0.28);
+  }
+
+  *{ box-sizing: border-box; }
+
+  html, body{ height: 100%; }
+
+  body{
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(180deg, var(--stage-top) 0%, var(--stage-mid) 52%, var(--stage-bottom) 100%);
+    color: var(--ink);
+    font-family: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(18px, 3vh, 30px);
+    padding: 20px;
+    overflow-x: hidden;
+  }
+
+  .mast{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    text-align: center;
+  }
+
+  .mast h1{
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .mast p{
+    margin: 0;
+    font-size: 11.5px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: var(--ink-dim);
+  }
+
+  .stage-wrap{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(14px, 2.4vh, 20px);
+  }
+
+  canvas{
+    display: block;
+    border-radius: 2px;
+    box-shadow:
+      0 30px 60px -20px rgba(4, 10, 12, 0.55),
+      0 2px 0 rgba(255,255,255,0.04) inset;
+  }
+
+  .readout{
+    display: flex;
+    align-items: baseline;
+    gap: 0.6em;
+    font-size: 14.5px;
+    letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 1px 3px rgba(6, 12, 14, 0.65);
+  }
+
+  .readout .label{ color: var(--ink-dim); font-weight: 400; }
+  .readout .day-count{ color: var(--day); font-weight: 600; }
+  .readout .night-count{ color: var(--night); font-weight: 600;
+    -webkit-text-stroke: 0.4px rgba(217,229,226,0.5);
+  }
+  .readout .sep{ color: var(--ink-dim); opacity: 0.5; }
+
+  .bar{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 4px;
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    background: var(--panel);
+    backdrop-filter: blur(6px);
+    opacity: 0.68;
+    transition: opacity 0.2s ease;
+  }
+  .bar:hover, .bar:focus-within{ opacity: 1; }
+
+  .bar button, .bar select{
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .bar button:hover, .bar select:hover{ background: rgba(217,229,226,0.1); }
+  .bar button:focus-visible, .bar select:focus-visible{
+    outline: 2px solid var(--day);
+    outline-offset: -2px;
+  }
+  .bar .div{ width: 1px; height: 16px; background: var(--hairline); margin: 0 2px; }
+  .bar select{ cursor: pointer; }
+  .bar select option{ background: #1c2b2f; color: var(--ink); }
+
+  .hint{
+    font-size: 10.5px;
+    color: var(--ink-dim);
+    letter-spacing: 0.03em;
+    max-width: 360px;
+    text-align: center;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+
+<div class="mast">
+  <h1>Frontier</h1>
+  <p>each ball is a prisoner of the color it isn't — it claims a cell only on impact</p>
+</div>
+
+<div class="stage-wrap">
+  <canvas id="stage" role="img" aria-label="Simulation of two circles, each unable to cross its own color, converting one bordering cell to its own team each time it collides with that border"></canvas>
+  <div class="readout" aria-live="polite">
+    <span class="label">day</span><span class="day-count" id="dayCount">0</span>
+    <span class="sep">|</span>
+    <span class="label">night</span><span class="night-count" id="nightCount">0</span>
+  </div>
+  <div class="bar">
+    <button id="toggleBtn" type="button">Pause</button>
+    <div class="div"></div>
+    <button id="resetBtn" type="button">Reset</button>
+    <div class="div"></div>
+    <label for="gridSel" style="display:none;">Grid density</label>
+    <select id="gridSel">
+      <option value="12">12 × 12</option>
+      <option value="16">16 × 16</option>
+      <option value="20" selected>20 × 20</option>
+      <option value="24">24 × 24</option>
+      <option value="28">28 × 28</option>
+    </select>
+    <div class="div"></div>
+    <label for="speedSel" style="display:none;">Ball speed</label>
+    <select id="speedSel">
+      <option value="1">1×</option>
+      <option value="2">2×</option>
+      <option value="3" selected>3×</option>
+      <option value="5">5×</option>
+      <option value="8">8×</option>
+    </select>
+  </div>
+  <p class="hint" id="reducedHint" hidden>Motion is reduced on this device. Press Play to run the simulation.</p>
+</div>
+
+<script>
+(function(){
+  var DAY = getVar('--day');
+  var NIGHT = getVar('--night');
+  function getVar(name){
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  }
+
+  var canvas = document.getElementById('stage');
+  var ctx = canvas.getContext('2d');
+  var dayEl = document.getElementById('dayCount');
+  var nightEl = document.getElementById('nightCount');
+  var toggleBtn = document.getElementById('toggleBtn');
+  var resetBtn = document.getElementById('resetBtn');
+  var gridSel = document.getElementById('gridSel');
+  var speedSel = document.getElementById('speedSel');
+  var reducedHint = document.getElementById('reducedHint');
+
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var DAY_TEAM = 0, NIGHT_TEAM = 1;
+
+  var N = 20;
+  var speedMult = 3;
+  var size = 0, cell = 0;
+  var grid, dayCount, nightCount, balls;
+  var running = !reduceMotion;
+  var lastT = null;
+  var rafId = null;
+
+  if (reduceMotion) reducedHint.hidden = false;
+
+  function setSize(){
+    var cssSize = Math.round(Math.min(window.innerWidth * 0.86, window.innerHeight * 0.6, 620));
+    size = cssSize;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.style.width = size + 'px';
+    canvas.style.height = size + 'px';
+    canvas.width = Math.round(size * dpr);
+    canvas.height = Math.round(size * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cell = size / N;
+  }
+
+  // Two solid rectangles to start: left half day, right half night.
+  function initGrid(){
+    grid = new Uint8Array(N * N);
+    dayCount = 0; nightCount = 0;
+    var half = N / 2;
+    for (var r = 0; r < N; r++){
+      for (var c = 0; c < N; c++){
+        var team = c < half ? DAY_TEAM : NIGHT_TEAM;
+        grid[r * N + c] = team;
+        if (team === DAY_TEAM) dayCount++; else nightCount++;
+      }
+    }
+  }
+
+  // Each ball can only travel through the *opposite* team's cells.
+  // Its own color is a solid wall to itself: it can't go through it.
+  // Flowing through the opposing color leaves those cells untouched.
+  // On collision with its own color, it converts the cell it is
+  // currently standing on (which must be the opposing, passable color)
+  // to its own color, then bounces off.
+  function initBalls(){
+    var speed = cell * 2.7 * speedMult;
+    var r = cell * 0.4;
+    function angle(){ return Math.random() * Math.PI * 2; }
+    var a1 = angle(), a2 = angle();
+    balls = [
+      { // night ball: wall = night, passable = day. Starts inside day territory.
+        x: size * 0.26, y: size * (0.28 + Math.random() * 0.44),
+        vx: Math.cos(a1) * speed, vy: Math.sin(a1) * speed,
+        r: r, wall: NIGHT_TEAM, pass: DAY_TEAM
+      },
+      { // day ball: wall = day, passable = night. Starts inside night territory.
+        x: size * 0.74, y: size * (0.28 + Math.random() * 0.44),
+        vx: Math.cos(a2) * speed, vy: Math.sin(a2) * speed,
+        r: r, wall: DAY_TEAM, pass: NIGHT_TEAM
+      }
+    ];
+  }
+
+  function convertCurrentCell(row, col, b){
+    row = Math.min(N - 1, Math.max(0, row));
+    col = Math.min(N - 1, Math.max(0, col));
+    var idx = row * N + col;
+    if (grid[idx] === b.pass){
+      grid[idx] = b.wall;
+      if (b.wall === DAY_TEAM){ dayCount++; nightCount--; }
+      else { nightCount++; dayCount--; }
+    }
+  }
+
+  // A pure mirror bounce only ever flips the sign of one velocity
+  // component, so the ratio |vx|/|vy| never changes — every ball
+  // settles onto one fixed diagonal and, on a grid, that quickly
+  // closes into a short repeating loop it retraces forever. A small
+  // random rotation on every bounce breaks that periodicity while
+  // keeping the speed (and the bounce itself) intact.
+  var MAX_JITTER_DEG = 22;
+  function jitterVelocity(b){
+    var maxRad = MAX_JITTER_DEG * Math.PI / 180;
+    var theta = (Math.random() * 2 - 1) * maxRad;
+    var cosT = Math.cos(theta), sinT = Math.sin(theta);
+    var nvx = b.vx * cosT - b.vy * sinT;
+    var nvy = b.vx * sinT + b.vy * cosT;
+    b.vx = nvx;
+    b.vy = nvy;
+  }
+
+  // Checks whether the ball would be blocked crossing into cell
+  // `targetIdx` along one axis, holding the other axis at `fixedIdx`.
+  // Returns 'edge' (board boundary), 'wall' (own-color cell), or null.
+  function axisBlock(b, targetIdx, fixedIdx, axisIsX){
+    if (targetIdx < 0 || targetIdx >= N) return 'edge';
+    var row = axisIsX ? fixedIdx : targetIdx;
+    var col = axisIsX ? targetIdx : fixedIdx;
+    return grid[row * N + col] === b.wall ? 'wall' : null;
+  }
+
+  // Moves one ball for this frame, treating any cell of its own wall
+  // color as solid. Both axes are checked against the SAME pre-move
+  // cell (row0/col0) so a diagonal step can never be resolved using a
+  // column or row the ball only reached by moving in the other axis
+  // first — that staleness is what let a ball slip diagonally past a
+  // wall corner it should have been blocked by. A diagonal move is
+  // also blocked outright when the corner cell itself is a wall, even
+  // if both flanking cells are open: two wall cells meeting only at a
+  // shared corner (or a wall corner cell reached only through open
+  // flanks) still pinch the gap shut for a ball with real width, and
+  // letting it cut through there is exactly what leaves it stranded
+  // in a pocket it can't find its way back out of.
+  function moveBall(b, dt){
+    var col0 = Math.min(N - 1, Math.max(0, Math.floor(b.x / cell)));
+    var row0 = Math.min(N - 1, Math.max(0, Math.floor(b.y / cell)));
+    var dx = b.vx * dt, dy = b.vy * dt;
+    var newX = b.x + dx, newY = b.y + dy;
+    var edgeX = dx > 0 ? newX + b.r : newX - b.r;
+    var edgeY = dy > 0 ? newY + b.r : newY - b.r;
+    var targetCol = dx !== 0 ? Math.floor(edgeX / cell) : col0;
+    var targetRow = dy !== 0 ? Math.floor(edgeY / cell) : row0;
+    var crossX = dx !== 0 && targetCol !== col0;
+    var crossY = dy !== 0 && targetRow !== row0;
+
+    var reasonX = crossX ? axisBlock(b, targetCol, row0, true) : null;
+    var reasonY = crossY ? axisBlock(b, targetRow, col0, false) : null;
+    var blockX = !!reasonX, blockY = !!reasonY;
+
+    // Both flanking cells are open, but the diagonal itself is a wall
+    // reached only through that corner pinch — block it on both axes.
+    if (crossX && crossY && !blockX && !blockY){
+      if (targetCol >= 0 && targetCol < N && targetRow >= 0 && targetRow < N &&
+          grid[targetRow * N + targetCol] === b.wall){
+        blockX = true; blockY = true;
+        reasonX = 'wall'; reasonY = 'wall';
+      }
+    }
+
+    if ((blockX && reasonX === 'wall') || (blockY && reasonY === 'wall')){
+      convertCurrentCell(row0, col0, b);
+    }
+
+    if (blockX){
+      b.vx = -b.vx;
+      b.x = dx > 0 ? col0 * cell + cell - b.r : col0 * cell + b.r;
+    } else {
+      b.x = newX;
+    }
+
+    if (blockY){
+      b.vy = -b.vy;
+      b.y = dy > 0 ? row0 * cell + cell - b.r : row0 * cell + b.r;
+    } else {
+      b.y = newY;
+    }
+
+    if (blockX || blockY) jitterVelocity(b);
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, size, size);
+    for (var row = 0; row < N; row++){
+      var runStart = 0;
+      var cur = grid[row * N];
+      for (var col = 1; col <= N; col++){
+        var v = col < N ? grid[row * N + col] : -1;
+        if (v !== cur){
+          ctx.fillStyle = cur === DAY_TEAM ? DAY : NIGHT;
+          var x0 = Math.round(runStart * cell);
+          var x1 = Math.round(col * cell);
+          var y0 = Math.round(row * cell);
+          var y1 = Math.round((row + 1) * cell);
+          ctx.fillRect(x0, y0, x1 - x0, y1 - y0);
+          runStart = col;
+          cur = v;
+        }
+      }
+    }
+    for (var i = 0; i < balls.length; i++){
+      var b = balls[i];
+      ctx.beginPath();
+      ctx.fillStyle = b.wall === DAY_TEAM ? DAY : NIGHT;
+      ctx.shadowColor = 'rgba(4,10,12,0.4)';
+      ctx.shadowBlur = 7;
+      ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    }
+  }
+
+  function updateReadout(){
+    dayEl.textContent = dayCount;
+    nightEl.textContent = nightCount;
+  }
+
+  function step(t){
+    rafId = requestAnimationFrame(step);
+    if (!running){ lastT = t; return; }
+    if (lastT == null) lastT = t;
+    var dt = Math.min((t - lastT) / 1000, 0.05);
+    lastT = t;
+
+    // At high speed multipliers a single frame (especially after a lag
+    // spike) can otherwise move a ball more than a full cell, which
+    // would skip straight through a wall instead of colliding with it.
+    // Sub-step so no individual move exceeds a safe fraction of a cell.
+    var maxV = 0;
+    for (var i = 0; i < balls.length; i++){
+      maxV = Math.max(maxV, Math.abs(balls[i].vx), Math.abs(balls[i].vy));
+    }
+    var maxStepDist = cell * 0.4;
+    var substeps = Math.max(1, Math.min(8, Math.ceil((maxV * dt) / maxStepDist)));
+    var subDt = dt / substeps;
+    for (var s = 0; s < substeps; s++){
+      for (var i = 0; i < balls.length; i++){
+        moveBall(balls[i], subDt);
+      }
+    }
+
+    draw();
+    updateReadout();
+  }
+
+  function reset(){
+    setSize();
+    initGrid();
+    initBalls();
+    draw();
+    updateReadout();
+  }
+
+  toggleBtn.addEventListener('click', function(){
+    running = !running;
+    toggleBtn.textContent = running ? 'Pause' : 'Play';
+    lastT = null;
+  });
+
+  resetBtn.addEventListener('click', function(){
+    reset();
+  });
+
+  gridSel.addEventListener('change', function(){
+    N = parseInt(gridSel.value, 10);
+    reset();
+  });
+
+  speedSel.addEventListener('change', function(){
+    var newMult = parseFloat(speedSel.value);
+    var ratio = newMult / speedMult;
+    speedMult = newMult;
+    for (var i = 0; i < balls.length; i++){
+      balls[i].vx *= ratio;
+      balls[i].vy *= ratio;
+    }
+  });
+
+  var resizeTimer = null;
+  window.addEventListener('resize', function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function(){
+      var oldSize = size;
+      setSize();
+      var scale = oldSize ? size / oldSize : 1;
+      for (var i = 0; i < balls.length; i++){
+        var b = balls[i];
+        b.x = Math.min(Math.max(b.x * scale, b.r), size - b.r);
+        b.y = Math.min(Math.max(b.y * scale, b.r), size - b.r);
+        b.r = cell * 0.4;
+      }
+      draw();
+    }, 120);
+  });
+
+  N = parseInt(gridSel.value, 10);
+  reset();
+  toggleBtn.textContent = running ? 'Pause' : 'Play';
+  rafId = requestAnimationFrame(step);
+})();
+</script>
+</body>
+</html>
