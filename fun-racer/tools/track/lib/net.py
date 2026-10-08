@@ -22,7 +22,14 @@ DATASETS = {
     "eudem25m": "EU-DEM v1.1 25 m (Copernicus, (c) European Union)",
     "srtm30m": "SRTM GL1 30 m (NASA / USGS, public domain)",
     "aster30m": "ASTER GDEM v3 30 m (NASA / METI, public domain)",
+    # Not an OpenTopoData dataset: Terrain Tiles on AWS Open Data (Mapzen "terrarium" PNG
+    # tiles; a global mosaic of SRTM, EU-DEM, 3DEP and others). No daily quota and a whole
+    # circuit needs only a handful of tiles, so this is the source to use when building many
+    # tracks. Select it with `[elevation] dataset = "terrarium"`.
+    "terrarium": "Terrain Tiles (Mapzen / AWS Open Data; SRTM, EU-DEM, 3DEP and other sources)",
 }
+TERRARIUM_URL = "https://s3.amazonaws.com/elevation-tiles-prod/terrarium"
+TERRARIUM_ZOOM = 13     # ~19 m * cos(latitude) per pixel, finer than the source DEMs
 # EU-DEM covers the EEA39 countries only. This box is a first guess; a null answer inside it
 # (North Africa, Russia, open sea) makes the build fall back to the next dataset.
 EUDEM_BOX = (34.0, 72.0, -25.0, 45.0)   # lat min, lat max, lon min, lon max
@@ -106,7 +113,46 @@ def fallback_dataset(dataset, lat):
 
 
 def attribution(dataset):
+    if dataset == "terrarium":
+        return f"Elevation: {DATASETS[dataset]}."
     return f"Elevation: {DATASETS.get(dataset, dataset)} via OpenTopoData."
+
+
+_tiles = {}   # (cache_dir, x, y) -> decoded height array, kept for the run
+
+
+def _terrarium_tile(fetcher, x, y):
+    key = (fetcher.cache_dir, x, y)
+    if key not in _tiles:
+        import io
+        import numpy as np
+        from PIL import Image
+        z = TERRARIUM_ZOOM
+        body = fetcher.get(f"{TERRARIUM_URL}/{z}/{x}/{y}.png", f"terrarium_{z}_{x}_{y}.png")
+        rgb = np.asarray(Image.open(io.BytesIO(body)).convert("RGB"), dtype=np.float64)
+        _tiles[key] = rgb[:, :, 0] * 256.0 + rgb[:, :, 1] + rgb[:, :, 2] / 256.0 - 32768.0
+    return _tiles[key]
+
+
+def _terrarium_elevations(fetcher, latlon):
+    """Bilinear samples of the terrarium tile pyramid at TERRARIUM_ZOOM (pixel centres)."""
+    import math
+    n = 2 ** TERRARIUM_ZOOM
+    out = []
+    for lat, lon in latlon:
+        fx = (lon + 180.0) / 360.0 * n * 256.0 - 0.5
+        la = math.radians(max(-85.0, min(85.0, lat)))
+        fy = (1.0 - math.asinh(math.tan(la)) / math.pi) / 2.0 * n * 256.0 - 0.5
+        x0, y0 = math.floor(fx), math.floor(fy)
+        tx, ty = fx - x0, fy - y0
+        h = 0.0
+        for dx, dy, w in ((0, 0, (1 - tx) * (1 - ty)), (1, 0, tx * (1 - ty)),
+                          (0, 1, (1 - tx) * ty), (1, 1, tx * ty)):
+            px = (x0 + dx) % (n * 256)
+            py = min(max(y0 + dy, 0), n * 256 - 1)
+            h += w * _terrarium_tile(fetcher, px // 256, py // 256)[py % 256, px % 256]
+        out.append(round(h, 2))
+    return out
 
 
 def fetch_elevations(fetcher, latlon, dataset, prefix):
@@ -114,6 +160,8 @@ def fetch_elevations(fetcher, latlon, dataset, prefix):
     ``<prefix>_<hash of the request>.json``."""
     if dataset not in DATASETS:
         raise BuildError(f"unknown DEM dataset '{dataset}' (known: {', '.join(DATASETS)})")
+    if dataset == "terrarium":
+        return _terrarium_elevations(fetcher, latlon)
     out = []
     for c in range(0, len(latlon), 100):
         chunk = latlon[c:c + 100]

@@ -254,7 +254,13 @@ sector tables. The same check from the command line:
 | Elevation, elsewhere | ASTER GDEM v3, 30 m (`aster30m`) | NASA / METI, free use; credit "ASTER GDEM is a product of METI and NASA". |
 | DEM access | [OpenTopoData](https://www.opentopodata.org) public API | Free service: at most 100 locations per request, 1 request per second, 1000 requests per day. |
 
-The dataset is chosen by coverage: EU-DEM inside its box (latitude 34 to 72, longitude -25
+`terrarium` is a fourth choice that does not go through OpenTopoData: Terrain Tiles on AWS
+Open Data (Mapzen's global mosaic of SRTM, EU-DEM, 3DEP and others, as PNG tiles at zoom 13).
+It has no daily quota and a circuit needs only a handful of tiles, so use it when building
+several tracks in a day: `[elevation] dataset = "terrarium"`. Credit: Mapzen Terrain Tiles
+and its sources (see https://github.com/tilezen/joerd/blob/master/docs/attribution.md).
+
+Without that setting the dataset is chosen by coverage: EU-DEM inside its box (latitude 34 to 72, longitude -25
 to 45), otherwise SRTM, otherwise ASTER. If EU-DEM answers with voids for more than a fifth
 of the centreline (it only covers the EEA countries) the build falls back to the next one.
 The choice is recorded in `build_info.json` (`dem_dataset`) and in the attribution strings
