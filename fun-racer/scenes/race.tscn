@@ -43,10 +43,11 @@ car_path = NodePath("../../Car")
 
 [node name="RacePanel" parent="UI" instance=ExtResource("r4_panel")]
 
+[node name="Standings" parent="UI" instance=ExtResource("m7_standings")]
+
 [node name="Results" parent="UI" instance=ExtResource("m5_results")]
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("m5_pause")]
-[node name="Standings" parent="UI" instance=ExtResource("m7_standings")]
 
 [node name="FX" type="Node3D" parent="."]
 
@@ -58,4 +59,5 @@ script = ExtResource("9_autopilot")
 car_path = NodePath("../Car")
 
 [node name="Ghost" parent="." instance=ExtResource("g6_ghost")]
+
 [node name="Bots" parent="." instance=ExtResource("m7_bots")]
