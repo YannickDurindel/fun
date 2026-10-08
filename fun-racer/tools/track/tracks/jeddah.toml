@@ -1,0 +1,215 @@
+# Jeddah Corniche Circuit, Saudi Arabia: the Grand Prix layout (6174 m, 27 turns,
+# anticlockwise).
+#
+#   .venv/bin/python tools/track/build_track.py jeddah --offline
+
+id = "jeddah"
+
+[osm]
+# No type=circuit relation. The lap is mapped as highway=raceway, oneway in race direction,
+# in nine pieces; the list is the Grand Prix loop in driving order from the exit of the last
+# corner (6194 m in OSM). Left out: the pit lane (1121870473, 1257884704, 1257884703), the
+# Formula E chicanes (1359884764, 1359884765) and short cut (1359884755), and the WTCR link
+# (1359884763).
+ways = [1359884760, 1359884759, 1359884758, 1359884756, 1359884762, 1007989410, 1359884757,
+        1257884699, 1359884761]
+
+# Turn 4 is drawn as three vertices that turn 66 degrees within 11 m, a 10 m radius; the real
+# corner is taken at well over 150 km/h. Rounded to a radius of about 58 m.
+[[osm.round]]
+node = 9842213990
+reach_m = 38.0
+note = "Turn 4"
+
+[layout]
+# OSM has no start / finish data. The official race distance (308.450 km for 50 laps of
+# 6.174 km) puts the timing line 250 m before the start line. Where the two lie on the
+# 1.06 km pit straight is an estimate: the timing line at the south end of the 260 m main
+# grandstand (OSM way 1154622779), which puts pole 245 m before the apex of Turn 1.
+finish = [21.630639, 39.105232]
+start_offset_m = 250.0
+
+[elevation]
+dataset = "terrarium"
+# The lap lies on reclaimed land at the shore, a few metres above the sea, and is flat. The
+# DEM is a 30 m surface model: unsmoothed, buildings, grandstands and the water's edge show
+# up as bumps of a few metres. Only the long-wave part is kept.
+smooth_sigma_m = 300.0
+
+[terrain]
+# Same noise beside the road; the sea and the lagoon stay at their own level.
+smooth_sigma_m = 150.0
+
+# The 27 turns, pinned. The circuit has no corner names; the well-known ones are described.
+# Automatic detection also finds 27 corners, but numbers them differently from Turn 21 on:
+# it counts both curvature peaks of the long flat-out left before the last hairpin (s = 5060
+# and 5278; here Turn 26 only) and none of the three 14 degree right kinks of the back
+# stretch (s = 3954, 4074, 4212; the middle one is Turn 21 here). That puts the fast
+# left-right chicane on the numbers 22 and 23, where it is on the real circuit, and the
+# junction of the Formula E short cut (way 1359884755, which Wikipedia describes as joining
+# "turn 3 to turn 22") just after Turn 3 and just before Turn 22. Which of the three kinks
+# carries the number 21 is a guess.
+#
+# Turn 13 is banked at 12 degrees in reality; the pipeline caps banking at 1.7 degrees.
+
+[[turn]]
+id = "T1"
+name = "Turn 1 (first chicane)"
+direction = "left"
+s = 495.0
+
+[[turn]]
+id = "T2"
+name = "Turn 2 (first chicane)"
+direction = "right"
+s = 539.0
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "left"
+s = 690.7
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 1004.0
+
+[[turn]]
+id = "T5"
+name = "Turn 5"
+direction = "right"
+s = 1055.9
+
+[[turn]]
+id = "T6"
+name = "Turn 6"
+direction = "left"
+s = 1309.5
+
+[[turn]]
+id = "T7"
+name = "Turn 7"
+direction = "left"
+s = 1385.3
+
+[[turn]]
+id = "T8"
+name = "Turn 8"
+direction = "right"
+s = 1463.2
+
+[[turn]]
+id = "T9"
+name = "Turn 9"
+direction = "right"
+s = 1644.8
+
+[[turn]]
+id = "T10"
+name = "Turn 10"
+direction = "left"
+s = 1710.7
+
+[[turn]]
+id = "T11"
+name = "Turn 11"
+direction = "right"
+s = 1826.5
+
+[[turn]]
+id = "T12"
+name = "Turn 12"
+direction = "left"
+s = 1916.3
+
+[[turn]]
+id = "T13"
+name = "Turn 13 (banked hairpin)"
+direction = "left"
+s = 2381.4
+
+[[turn]]
+id = "T14"
+name = "Turn 14"
+direction = "right"
+s = 2700.8
+
+[[turn]]
+id = "T15"
+name = "Turn 15"
+direction = "right"
+s = 2906.4
+
+[[turn]]
+id = "T16"
+name = "Turn 16"
+direction = "left"
+s = 3036.1
+
+[[turn]]
+id = "T17"
+name = "Turn 17"
+direction = "right"
+s = 3080.0
+
+[[turn]]
+id = "T18"
+name = "Turn 18"
+direction = "left"
+s = 3207.8
+
+[[turn]]
+id = "T19"
+name = "Turn 19"
+direction = "right"
+s = 3619.0
+
+[[turn]]
+id = "T20"
+name = "Turn 20"
+direction = "left"
+s = 3860.5
+
+[[turn]]
+id = "T21"
+name = "Turn 21"
+direction = "right"
+s = 4074.1
+
+[[turn]]
+id = "T22"
+name = "Turn 22 (fast chicane)"
+direction = "left"
+s = 4291.7
+
+[[turn]]
+id = "T23"
+name = "Turn 23 (fast chicane)"
+direction = "right"
+s = 4387.5
+
+[[turn]]
+id = "T24"
+name = "Turn 24"
+direction = "right"
+s = 4537.2
+
+[[turn]]
+id = "T25"
+name = "Turn 25"
+direction = "left"
+s = 4774.7
+
+[[turn]]
+id = "T26"
+name = "Turn 26"
+direction = "left"
+s = 5277.7
+
+[[turn]]
+id = "T27"
+name = "Turn 27 (final hairpin)"
+direction = "left"
+s = 5605.1
