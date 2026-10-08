@@ -19,6 +19,10 @@ extends RigidBody3D
 ##   * Drivetrain: speed-indexed acceleration table (punchy, tapering), 7-speed automatic with a
 ##     short torque dip on shifts, strong brakes, reverse, soft speed cap at 1000 km/h.
 ##   * Aero: downforce ~ v^2 (capped), heavier-than-earth gravity, angular damping in the air.
+##   * Terrain: driving forces, grip and downforce work in the road plane (average contact normal),
+##     so grades, crests and camber behave; hills pull with ~1 g (the extra gravity is for jumps).
+##     Each wheel reads the collider's `surface` meta (asphalt / kerb / grass / gravel) for grip and
+##     rolling drag; a wheel briefly unloaded by a kerb or bump keeps its grip for a few ms.
 
 signal respawned
 
@@ -39,6 +43,10 @@ const KMH: float = 3.6
 @export var gravity_multiplier: float = 1.4
 ## Local y of the ground plane when the car is at rest (wheel centres of the rear sit at y = 0).
 @export var ride_ground_y: float = -0.36
+## Multiplier on gravity's along-the-road component while grounded. 1.0 = hills pull like 1 g
+## (slower uphill, faster downhill, not dramatically); gravity_multiplier still applies normal to
+## the road and in the air.
+@export var slope_gravity_multiplier: float = 1.0
 
 @export_group("Suspension")
 ## Compression travel above the rest position before the bump stop (m).
@@ -105,16 +113,24 @@ const KMH: float = 3.6
 @export var lateral_grip_g: float = 2.2        ## lateral grip budget at zero speed, in g
 @export var aero_grip_g: float = 1.5e-4       ## extra grip in g per (m/s)^2
 @export var lateral_response_time: float = 0.02  ## s
-## Slip angle beyond the kinematic one that breaks traction into a drift (deg).
-@export var grip_break_angle_deg: float = 14.0
+## Slip angle beyond the kinematic one that breaks traction into a drift without braking (deg).
+## Large on purpose: landings, kerbs and long fast corners never start a slide (Trackmania: you
+## drift when you brake); only a real knock (wall, car) does. Smaller slips re-align in grip.
+@export var grip_break_angle_deg: float = 35.0
 ## Time constant for the heading to re-align with the velocity after a slide (s).
 @export var realign_time: float = 0.2
 
 @export_group("Drift")
 @export var drift_min_speed_kmh: float = 80.0
-@export var drift_steer_threshold: float = 0.5
-@export var drift_brake_threshold: float = 0.1
+## A drift needs a clear request: brake AND strong steer held together for drift_entry_time.
+## (Raised from 0.5 / 0.1 / instant so trail braking into a corner stays glued.)
+@export var drift_steer_threshold: float = 0.6
+@export var drift_brake_threshold: float = 0.3
+@export var drift_entry_time: float = 0.15     ## s of brake + steer before the rear lets go
 @export var drift_lateral_grip_g: float = 1.6  ## sliding friction budget, in g
+## Extra sliding friction in g per (m/s)^2 (aero load), so a high-speed drift still carves the
+## corner instead of washing wide.
+@export var drift_aero_grip_g: float = 1.5e-4
 @export var drift_drive_factor: float = 0.6    ## fraction of drive that reaches the road
 ## Fraction of the speed scrubbed by sliding friction that is kept (turns the slide, not stops it).
 @export var drift_speed_retention: float = 0.3
@@ -129,6 +145,17 @@ const KMH: float = 3.6
 @export var drift_min_time: float = 0.3        ## s before a drift may end by re-alignment
 @export var drift_recover_time: float = 0.3    ## s to ramp grip back to full after a drift
 @export var drift_recover_grip: float = 0.5    ## grip fraction right after a drift ends
+
+@export_group("Surfaces")
+## Grip multipliers (lateral, drive and brake) per surface, from the collider's `surface` meta.
+@export var kerb_grip: float = 1.0
+@export var grass_grip: float = 0.6
+@export var gravel_grip: float = 0.45
+## Extra rolling resistance (m/s^2) with every wheel on the surface, throttle or not.
+@export var grass_drag: float = 1.5
+@export var gravel_drag: float = 5.0
+## A wheel that lost contact less than this long ago (s) still grips (kerb hops, bumps).
+@export var contact_grace_time: float = 0.06
 
 @export_group("Wheels FX")
 @export var launch_spin_speed: float = 10.0    ## extra rear surface speed at launch (m/s)
@@ -165,6 +192,7 @@ var _ov_brake: float = 0.0
 var _ov_steer: float = 0.0
 var _respawn_pending: bool = false
 var _drift_dir: float = 0.0
+var _drift_request_time: float = 0.0
 var _grip_blend: float = 1.0
 var _shift_timer: float = 0.0
 var _wheel_omega: PackedFloat32Array = PackedFloat32Array([0, 0, 0, 0])
@@ -176,6 +204,13 @@ var _comp: PackedFloat32Array = PackedFloat32Array([0, 0, 0, 0])
 var _bar_roll: PackedFloat32Array = PackedFloat32Array([0, 0, 0, 0])
 var _hit_pos: Array[Vector3] = [Vector3.ZERO, Vector3.ZERO, Vector3.ZERO, Vector3.ZERO]
 var _hit_ok: Array[bool] = [false, false, false, false]
+var _air_time: PackedFloat32Array = PackedFloat32Array([0, 0, 0, 0])   ## s since last contact
+var _mu: PackedFloat32Array = PackedFloat32Array([1, 1, 1, 1])         ## grip of the last surface
+var _drag: PackedFloat32Array = PackedFloat32Array([0, 0, 0, 0])       ## drag of the last surface
+## Average surface grip / drag of the gripping wheels, and their fraction (0..1), this tick.
+var _surf_mu: float = 1.0
+var _surf_drag: float = 0.0
+var _grip_frac: float = 1.0
 
 func _ready() -> void:
 	spawn_transform = global_transform
@@ -247,10 +282,12 @@ func _reset_drivetrain() -> void:
 	is_drifting = false
 	drift_time = 0.0
 	_drift_dir = 0.0
+	_drift_request_time = 0.0
 	_grip_blend = 1.0
 	_shift_timer = 0.0
 	for i in 4:
 		_wheel_omega[i] = 0.0
+		_air_time[i] = 0.0
 		if i < wheels.size():
 			var w := wheels[i]
 			w.contact = false
@@ -305,6 +342,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		var ws := wheels[i]
 		if hit.is_empty():
 			_comp[i] = -travel_down
+			_air_time[i] += dt
 			ws.contact = false
 			ws.contact_point = xf * (WHEEL_OFFSETS[i] + Vector3(0.0, -travel_down - r, 0.0))
 			ws.contact_normal = up
@@ -319,6 +357,8 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			ws.contact = true
 			ws.contact_point = p
 			ws.contact_normal = n
+			_air_time[i] = 0.0
+			_set_surface(i, hit["collider"], hit["shape"])
 		# Travel relative to WHEEL_OFFSETS (wheel_visual adds it to the offset). The body rests
 		# level, so the smaller front wheels sit at -(REAR_WHEEL_RADIUS - FRONT_WHEEL_RADIUS).
 		ws.compression = _comp[i]
@@ -370,6 +410,22 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 	is_grounded = contacts > 0
 	var gf := contacts / 4.0
+	# Grip: wheels that touched within contact_grace_time still count, so a kerb or bump that
+	# unloads a wheel for a few ticks does not cut the friction budget (and the car's line).
+	var grip_n := 0
+	_surf_mu = 0.0
+	_surf_drag = 0.0
+	for i in 4:
+		if _air_time[i] <= contact_grace_time:
+			grip_n += 1
+			_surf_mu += _mu[i]
+			_surf_drag += _drag[i]
+	_grip_frac = grip_n / 4.0
+	if grip_n > 0:
+		_surf_mu /= grip_n
+		_surf_drag /= grip_n
+	else:
+		_surf_mu = 1.0
 
 	# ---- planar driving model
 	var n_avg := up
@@ -400,9 +456,15 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		kin_slip = atan2(-b_rear * w.dot(n_avg), v_long)
 
 	if contacts > 0:
+		# Hills pull with slope_gravity_multiplier, not the full jump gravity (no-op on flat ground).
+		var g_road := gravity_vec - n_avg * gravity_vec.dot(n_avg)
+		v -= g_road * ((gravity_multiplier - slope_gravity_multiplier) * dt * gf)
+		v_long = v.dot(f)
+		v_lat = v.dot(right)
+		var ggf := maxf(gf, _grip_frac)
 		_update_drift_state(dt, planar_kmh, kin_slip)
 		var a_long := _drivetrain(dt, v_long, contacts)
-		var new_long := _apply_longitudinal(v_long, a_long, dt, gf)
+		var new_long := _apply_longitudinal(v_long, a_long, dt, ggf)
 		var v_planar_before := v - n_avg * v.dot(n_avg)
 		v += f * (new_long - v_long)
 		v_long = new_long
@@ -411,7 +473,8 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		var new_yaw := yaw
 		if is_drifting:
 			# Rear lets go: sliding friction opposes lateral motion (curves the path, bleeds speed).
-			var max_dv := drift_lateral_grip_g * _gravity * dt * gf
+			var drift_g := drift_lateral_grip_g + drift_aero_grip_g * planar_speed * planar_speed
+			var max_dv := drift_g * _surf_mu * _gravity * dt * ggf
 			var speed_before := (v - n_avg * v.dot(n_avg)).length()
 			v -= right * clampf(v_lat, -max_dv, max_dv)
 			var v_planar_after := v - n_avg * v.dot(n_avg)
@@ -429,11 +492,11 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			var target := _drift_dir * deg_to_rad(target_deg)
 			var yaw_target := path_rate + (target - slip_angle) / drift_angle_time
 			var step := (yaw_target - yaw) * (1.0 - exp(-dt / drift_yaw_time))
-			var cap := drift_yaw_accel_max * dt * gf
+			var cap := drift_yaw_accel_max * dt * ggf
 			new_yaw = yaw + clampf(step, -cap, cap)
 		else:
 			# Grip: yaw follows the kinematic bicycle model, lateral slide is cancelled.
-			var grip := a_lat_max * _grip_blend
+			var grip := a_lat_max * _grip_blend * _surf_mu
 			var yaw_des := v_long * tan(steer_angle) / WHEELBASE
 			if planar_speed > 1.0:
 				var lim := grip / planar_speed
@@ -442,17 +505,17 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 				# Re-align heading with the velocity after a slide or a knock.
 				yaw_des -= (slip_angle - kin_slip) / realign_time
 			var step := (yaw_des - yaw) * (1.0 - exp(-dt / yaw_response_time))
-			var cap := yaw_accel_max * dt * gf
+			var cap := yaw_accel_max * dt * ggf
 			new_yaw = yaw + clampf(step, -cap, cap)
 			var lat_target := -b_rear * new_yaw
 			var dlat := (lat_target - v_lat) * (1.0 - exp(-dt / lateral_response_time))
-			var max_dv := grip * dt * gf
+			var max_dv := grip * dt * ggf
 			v += right * clampf(dlat, -max_dv, max_dv)
 		w += n_avg * (new_yaw - yaw)
 
-		# Downforce keeps it planted.
+		# Downforce keeps it planted, pressing into the road.
 		var df := minf(downforce_coef * v_long * v_long, downforce_max) * gf
-		v -= up * df * inv_mass * dt
+		v -= n_avg * df * inv_mass * dt
 	else:
 		_drivetrain(dt, v_long, 0)
 		w *= exp(-air_angular_damping * dt)
@@ -471,6 +534,32 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	speed_kmh = v.length() * KMH
 	_update_wheels(dt, xf, v, w, com, f, right)
 
+## Reads the surface of the collider under wheel i: the CollisionShape3D's `surface` meta wins,
+## then the body's; missing = asphalt.
+func _set_surface(i: int, collider: Object, shape_idx: int) -> void:
+	var surf: StringName = &"asphalt"
+	var body := collider as CollisionObject3D
+	if body != null:
+		var owner_node: Object = body.shape_owner_get_owner(body.shape_find_owner(shape_idx))
+		if owner_node != null and owner_node.has_meta(&"surface"):
+			surf = StringName(owner_node.get_meta(&"surface"))
+		elif body.has_meta(&"surface"):
+			surf = StringName(body.get_meta(&"surface"))
+	wheels[i].surface = surf
+	match surf:
+		&"kerb":
+			_mu[i] = kerb_grip
+			_drag[i] = 0.0
+		&"grass":
+			_mu[i] = grass_grip
+			_drag[i] = grass_drag
+		&"gravel":
+			_mu[i] = gravel_grip
+			_drag[i] = gravel_drag
+		_:
+			_mu[i] = 1.0
+			_drag[i] = 0.0
+
 func _update_steer_smoothing(dt: float) -> void:
 	var target := _raw_steer
 	if steer != 0.0 and signf(target) != signf(steer):
@@ -484,9 +573,14 @@ func _update_drift_state(dt: float, planar_kmh: float, kin_slip: float) -> void:
 	if not is_drifting:
 		_grip_blend = minf(1.0, _grip_blend + dt * (1.0 - drift_recover_grip) / maxf(drift_recover_time, 0.001))
 		if planar_kmh < drift_min_speed_kmh or forward_speed < 0.0:
+			_drift_request_time = 0.0
 			return
 		var excess := slip_angle - kin_slip
 		if brake_input > drift_brake_threshold and absf(steer) > drift_steer_threshold:
+			_drift_request_time += dt
+		else:
+			_drift_request_time = 0.0
+		if _drift_request_time >= drift_entry_time:
 			_enter_drift(-signf(steer))
 		elif _grip_blend >= 1.0 and absf(excess) > deg_to_rad(grip_break_angle_deg):
 			_enter_drift(signf(excess))
@@ -507,6 +601,7 @@ func _enter_drift(dir: float) -> void:
 	is_drifting = true
 	_drift_dir = dir
 	drift_time = 0.0
+	_drift_request_time = 0.0
 
 ## Returns the longitudinal acceleration request and updates gear / rpm.
 func _drivetrain(dt: float, v_long: float, contacts: int) -> float:
@@ -577,8 +672,9 @@ func _apply_longitudinal(v_long: float, a_drive: float, dt: float, gf: float) ->
 		dec += brake_input * brake_decel * (drift_brake_factor if is_drifting else 1.0)
 	if throttle < 0.05 and brake_input < 0.05 and absf(v_long) < 1.0:
 		dec += parking_decel
-	var nv := v_long + a_drive * dt * gf
-	return move_toward(nv, 0.0, dec * dt * gf)
+	# Low-grip surfaces cut traction and braking, and add rolling drag.
+	var nv := v_long + a_drive * _surf_mu * dt * gf
+	return move_toward(nv, 0.0, (dec * _surf_mu + _surf_drag) * dt * gf)
 
 func _update_wheels(dt: float, xf: Transform3D, v: Vector3, w: Vector3, com: Vector3,
 		f: Vector3, right: Vector3) -> void:
@@ -608,7 +704,7 @@ func _update_wheels(dt: float, xf: Transform3D, v: Vector3, w: Vector3, com: Vec
 			if not is_front and road_speed < launch_spin_fade and throttle > 0.5:
 				s = maxf(s, throttle * (1.0 - road_speed / launch_spin_fade))
 			if road_speed > 8.0 and brake_input > 0.5 and not is_drifting and gear != -1:
-				s = maxf(s, 0.35 * brake_input)
+				s = maxf(s, 0.25 * brake_input)   # tyre load hint, below the skid-mark threshold
 			if is_drifting and not is_front:
 				s = maxf(s, 0.85)
 			ws.slip = clampf(s, 0.0, 1.0)
