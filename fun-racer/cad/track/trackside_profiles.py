@@ -2,10 +2,12 @@
 
 Regenerate with one command (from the repo root):
 
-    .venv/bin/python cad/track/trackside_profiles.py
+    .venv/bin/python cad/track/trackside_profiles.py [output.json]
 
-The profiles are modelled as build123d 2D faces in a (u, h) plane and written to
-``assets/tracks/red_bull_ring/trackside_profiles.json``. Godot sweeps them along
+The profiles are the same for every track: the build pipeline (tools/track/build_track.py,
+"road" step) writes a copy into each track folder. They are modelled as build123d 2D faces
+in a (u, h) plane and written to ``assets/tracks/red_bull_ring/trackside_profiles.json``
+unless another output file is given. Godot sweeps them along
 the centreline-derived edge curves at runtime (``scripts/track/trackside.gd``),
 so the geometry follows whatever road widths / banking TrackData reports.
 
@@ -187,7 +189,8 @@ def concrete_wall() -> dict:
     }
 
 
-def main() -> None:
+def main(out: Path = OUT) -> None:
+    out = Path(out)
     data = {
         "_doc": __doc__.strip().splitlines()[0],
         "frame": "u = metres outward from the road edge / barrier line; h = metres above the road plane",
@@ -199,13 +202,15 @@ def main() -> None:
         "concrete": concrete_wall(),
         "edge_line": {"width": 0.2, "lift": 0.012},
     }
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(data, indent=1) + "\n")
-    print(f"wrote {OUT.relative_to(ROOT)}")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(data, indent=1) + "\n")
+    print(f"wrote {out.relative_to(ROOT) if out.is_relative_to(ROOT) else out}")
     for k in ("kerb_flat", "kerb_sawtooth", "kerb_sausage"):
         print(f"  {k}: {len(data[k]['top'])} top points, peak "
               f"{max(h for _, h in data[k]['top']) * 100:.1f} cm")
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+
+    main(Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else OUT)

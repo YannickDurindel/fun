@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
-"""Red Bull Ring road surface: code-CAD from track.json -> chunked GLB + profile.
+"""Road surface of a track: code-CAD from track.json -> chunked GLB + profile.
 
-    .venv/bin/python cad/track/road.py
+    .venv/bin/python cad/track/road.py [track_id] [--out DIR]
 
-Outputs (assets/tracks/red_bull_ring/):
+Normally run as the "road" step of tools/track/build_track.py. Widths and banking come from
+cad/track/banking.py: automatic defaults, or the tables / overrides of the track's recipe
+(tools/track/tracks/<id>.toml, section [road]).
+
+Outputs (assets/tracks/<id>/, or DIR):
     road_mesh.glb          chunks road_00..road_NN, each with two primitives:
                            "tarmac" (the racing surface) and "grass" (the verges)
     road_profile.json      per-centreline-point width, bank, verge extents and racing line,
@@ -15,7 +19,7 @@ Geometry
 A parametric mesh builder rather than an OCC sweep: a 4.3 km sweep with varying width and
 roll is slow and fragile in OpenCascade, and the result would be re-tessellated anyway.
 The road is a ruled surface defined exactly by its cross-sections, so we build those
-cross-sections directly at every track.json point (2.007 m apart), the same frame
+cross-sections directly at every track.json point (about 2 m apart), the same frame
 TrackData.sample() uses:
 
     T  = normalize(p[i+1] - p[i-1])                 forward
@@ -55,7 +59,8 @@ import road_textures  # noqa: E402
 from road_glb import Material, Primitive, write_glb  # noqa: E402
 
 ROOT = HERE.parent.parent
-TRACK_DIR = ROOT / "assets" / "tracks" / "red_bull_ring"
+TRACKS_DIR = ROOT / "assets" / "tracks"
+TRACK_DIR = TRACKS_DIR / "red_bull_ring"
 
 VERGE_WIDTH = 30.0       # m, nominal grass strip each side
 VERGE_DROP = 0.25        # m, total drop over VERGE_WIDTH (coordinated with the terrain unit)
@@ -68,15 +73,7 @@ def _norm(v: np.ndarray) -> np.ndarray:
     return v / np.linalg.norm(v, axis=-1, keepdims=True)
 
 
-def _cyclic_smooth(a: np.ndarray, sigma_pts: float) -> np.ndarray:
-    n = len(a)
-    r = int(4 * sigma_pts)
-    k = np.exp(-0.5 * (np.arange(-r, r + 1) / sigma_pts) ** 2)
-    k /= k.sum()
-    kk = np.zeros(n)
-    kk[: r + 1] = k[r:]
-    kk[-r:] = k[:r]
-    return np.real(np.fft.ifft(np.fft.fft(a) * np.fft.fft(kk)))
+_cyclic_smooth = banking.cyclic_smooth
 
 
 def _cyclic_min_filter(a: np.ndarray, r: int) -> np.ndarray:
@@ -202,6 +199,8 @@ def corner_infills(P: np.ndarray, s: np.ndarray, outer: np.ndarray, ext: np.ndar
         acc = np.zeros_like(poly3)
         for c in range(3):
             np.add.at(acc, tri[:, c], fn)
+        # Vertices the ear clipping left out (collinear / degenerate): straight up, not NaN.
+        acc[np.linalg.norm(acc, axis=-1) < 1e-9] = UP
         fills.append({
             "anchor": run[len(run) // 2],
             "positions": poly3,
@@ -226,8 +225,13 @@ def racing_line(P: np.ndarray, step: float, hw: np.ndarray) -> np.ndarray:
     return _cyclic_smooth(off, 6.0 / step)
 
 
-def build(track_path: Path = TRACK_DIR / "track.json", out_dir: Path = TRACK_DIR) -> dict:
-    d = json.loads(track_path.read_text())
+def build(track_path: Path = TRACK_DIR / "track.json", out_dir: Path = TRACK_DIR,
+          road_cfg: dict | None = None, track_id: str | None = None) -> dict:
+    """Builds the road of ``track_path`` into ``out_dir``. ``road_cfg`` is the recipe's [road]
+    table (None / {}: automatic widths and banking); ``track_id`` names the glTF scene."""
+    track_path, out_dir = Path(track_path), Path(out_dir)
+    track_id = track_id or track_path.parent.name
+    d = json.loads(track_path.read_text(encoding="utf-8"))
     P = np.array([p["p"] for p in d["points"]], dtype=float)
     n = len(P)
     step = float(d["step"])
@@ -237,8 +241,8 @@ def build(track_path: Path = TRACK_DIR / "track.json", out_dir: Path = TRACK_DIR
     T = _norm(np.roll(P, -1, 0) - np.roll(P, 1, 0))
     Rh = _norm(np.cross(T, UP))
     U0 = _norm(np.cross(Rh, T))
-    bank = banking.bank_at(s, length)
-    width = banking.width_at(s, length)
+    curvature = np.array([p.get("curvature", 0.0) for p in d["points"]], dtype=float)
+    bank, width = banking.profile(s, length, curvature, float(d.get("start_s", 0.0)), road_cfg or {})
     hw = 0.5 * width
     R = Rh * np.cos(bank)[:, None] - U0 * np.sin(bank)[:, None]
 
@@ -344,7 +348,8 @@ def build(track_path: Path = TRACK_DIR / "track.json", out_dir: Path = TRACK_DIR
 
     mats = [Material("tarmac", (0.20, 0.20, 0.21, 1.0), 0.85),
             Material("grass", (0.22, 0.38, 0.14, 1.0), 0.95)]
-    write_glb(out_dir / "road_mesh.glb", mats, chunks, "RedBullRingRoad",
+    scene_name = "".join(w.capitalize() for w in track_id.split("_")) + "Road"
+    write_glb(out_dir / "road_mesh.glb", mats, chunks, scene_name,
               "fun/cad/track/road.py (parametric code-CAD)")
 
     profile = {
@@ -370,8 +375,30 @@ def build(track_path: Path = TRACK_DIR / "track.json", out_dir: Path = TRACK_DIR
             "bank": (float(bank.min()), float(bank.max()))}
 
 
-if __name__ == "__main__":
-    info = build()
+def main(argv: list[str]) -> None:
+    """Stand-alone use: rebuilds the road of an existing track folder with its recipe."""
+    import argparse
+    ap = argparse.ArgumentParser(description="Rebuild the road mesh of a track folder.")
+    ap.add_argument("track_id", nargs="?", default="red_bull_ring")
+    ap.add_argument("--out", help="folder with track.json, also the output (default assets/tracks/<id>)")
+    args = ap.parse_args(argv)
+    track_id = args.track_id
+    out_dir = Path(args.out) if args.out else TRACKS_DIR / track_id
+    track_path = out_dir / "track.json"
+    if not track_path.exists():
+        track_path = TRACKS_DIR / track_id / "track.json"
+    # Only the [road] table matters here, so read it directly: the rest of the recipe (OSM
+    # source, lengths) may legitimately come from the build command line.
+    import tomllib
+    recipe_path = ROOT / "tools" / "track" / "tracks" / f"{track_id}.toml"
+    road_cfg = tomllib.loads(recipe_path.read_text(encoding="utf-8")).get("road", {}) if recipe_path.exists() else {}
+    if not road_cfg:
+        print(f"note: no [road] table in {recipe_path.name}: automatic widths and banking")
+    info = build(track_path, out_dir, road_cfg, track_id)
     print(f"road_mesh.glb: {info['chunks']} chunks, {info['triangles']} triangles; "
           f"width {info['width'][0]:.1f}-{info['width'][1]:.1f} m, bank "
           f"{info['bank'][0]:+.3f}..{info['bank'][1]:+.3f} rad, min verge {info['verge_min']:.1f} m")
+
+
+if __name__ == "__main__":
+    main(sys.argv[1:])

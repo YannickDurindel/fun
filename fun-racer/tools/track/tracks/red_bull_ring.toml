@@ -1,0 +1,177 @@
+# Red Bull Ring build recipe: the hand-made choices of the original (track-specific) scripts.
+# Rebuilding with this recipe reproduces assets/tracks/red_bull_ring/ exactly
+# (tools/track/tests/test_rebuild_rbr.py).
+#
+#   .venv/bin/python tools/track/build_track.py red_bull_ring --offline
+
+id = "red_bull_ring"
+length_m = 4318
+turns = 10
+
+[osm]
+relation = 5309181      # type=circuit; finish / start line nodes carry the roles "finish" / "start"
+
+[layout]
+direction = "clockwise"
+# The original build interpolated the OSM nodes with a uniform Catmull-Rom spline; new tracks
+# use the centripetal form, which does not overshoot next to long straight segments.
+spline = "uniform"
+# Sector 2 starts 150 m after the T4 apex, sector 3 120 m after the T7 apex.
+sectors = [2352.2, 3219.5]
+
+[elevation]
+dataset = "eudem25m"
+smooth_sigma_m = 45.0
+
+# The turn table the game shipped with. `s` pins each apex to the curvature peak within 12 m,
+# which replaces the automatic detection. (The automatic result differs: it follows the
+# circuit's geometry, see tools/track/README.md "Turn detection".)
+[[turn]]
+id = "T1"
+name = "Niki Lauda Kurve"
+direction = "right"
+s = 453.7
+
+[[turn]]
+id = "T2"
+name = "Turn 2 (kink)"
+direction = "right"
+s = 748.8
+
+[[turn]]
+id = "T3"
+name = "Remus"
+direction = "right"
+s = 1395.2
+
+[[turn]]
+id = "T4"
+name = "Schlossgold"
+direction = "right"
+s = 2202.2
+
+[[turn]]
+id = "T5"
+name = "Turn 5 (kink)"
+direction = "left"
+s = 2673.9
+
+[[turn]]
+id = "T6"
+name = "Rauch"
+direction = "left"
+s = 2814.4
+
+[[turn]]
+id = "T7"
+name = "Würth Kurve"
+direction = "left"
+s = 3099.5
+
+[[turn]]
+id = "T8"
+name = "Rindt"
+direction = "right"
+s = 3761.9
+
+[[turn]]
+id = "T9"
+name = "Red Bull Mobile"
+direction = "right"
+s = 3998.8
+
+[[turn]]
+id = "T10"
+name = "Turn 10"
+direction = "right"
+s = 4077.1
+
+[road]
+# Cross-section table, formerly hard-coded in cad/track/banking.py (see that file for the sign
+# convention). [s (m), value, note], smoothstep-interpolated, cyclic.
+# bank: radians, + = left edge higher (positive camber for a right-hander). |bank| <= 0.03.
+#
+# Values and sources (realistic estimates, NOT surveyed values):
+# * Crossfall on straights, 1.5-2 %: FIA International Sporting Code, Appendix O ("Circuit
+#   Regulations", Grade 1) requires a crossfall for drainage, typically 1.5 %-3 % on
+#   straights; modern Tilke-rebuilt circuits (the A1-Ring was rebuilt into the Red Bull Ring
+#   in 2010/11 and resurfaced in 2016) use about 1.5-2 % single-slope crossfall. Single slope
+#   (not a crown) is used so that the racing surface has no ridge.
+# * Start/finish straight drains LEFT (bank < 0): the pole slot is on the left (lateral
+#   -2.5 m) and Track.spawn_transform() uses the unbanked track.json frame, so a left side
+#   that is lower than the centreline lets the car drop a few cm onto the grid instead of
+#   starting with its left wheels inside the tarmac.
+# * Corner camber: the Red Bull Ring corners are essentially flat; there is no true banking
+#   anywhere on the lap (public descriptions only mention the elevation: about 63-65 m total,
+#   max +12 % up the hill to Remus and -9.3 % down; de.wikipedia.org/wiki/Red_Bull_Ring,
+#   motogp.com circuit guide, global.honda/en/F1/circuit/red-bull-ring/). We therefore model
+#   only a small positive camber of 2-3 % in T1, T4, Rindt (T8) and T9, keep the hairpin on
+#   the Remus crest nearly flat (2 %), and give the left-handers (T5/T6 Rauch, T7 Wuerth) the
+#   same with opposite sign. No public source gives exact per-corner camber.
+# * Widths: FIA Appendix O minimum is 12 m, and >= 15 m on the start straight for the grid.
+#   OSM carries no width tags for the circuit and no public source lists per-section widths,
+#   so these are estimates within the FIA rules and the commonly quoted 12-15 m range: 15 m
+#   on the start/finish straight, opening to 16 m through T1 and 15 m at Remus (T3) (the
+#   overtaking corners), 13-14.5 m on the climb and the T3-T4 straight, and 12.5-13 m through
+#   the twisty back section (T5-T7, described in previews as "flat but narrow").
+# Turn numbers in the notes are those of the [[turn]] table above.
+bank_keys = [
+  [0.0, -0.015, "start/finish straight + grid: 1.5 % crossfall draining left (see note)"],
+  [340.0, -0.015, "braking for T1"],
+  [430.0, 0.025, "T1 Niki Lauda: slight positive camber, uphill right"],
+  [500.0, 0.025, "T1 exit"],
+  [570.0, 0.018, "climb to Remus (T2 kink is flat out on crossfall)"],
+  [1330.0, 0.018, "braking for Remus"],
+  [1375.0, 0.02, "T3 Remus: hairpin on the crest, nearly flat"],
+  [1420.0, 0.02, "Remus exit"],
+  [1480.0, 0.018, "downhill straight to Schlossgold"],
+  [2140.0, 0.018, "braking for T4"],
+  [2185.0, 0.025, "T4 Schlossgold: positive camber, downhill right"],
+  [2240.0, 0.025, "T4 exit"],
+  [2300.0, 0.015, "gentle right towards T5"],
+  [2500.0, 0.015, ""],
+  [2610.0, -0.018, "crossfall flips to drain left for the left-hand section"],
+  [2650.0, -0.025, "T5 kink / T6 Rauch: left-handers, positive camber"],
+  [2830.0, -0.025, "Rauch exit"],
+  [2900.0, -0.018, "short straight"],
+  [2960.0, -0.025, "T7 Wuerth Kurve: long left"],
+  [3110.0, -0.025, "Wuerth exit"],
+  [3170.0, 0.015, "crossfall flips back: gentle right"],
+  [3300.0, 0.018, "downhill run to Rindt"],
+  [3700.0, 0.018, "approach to Rindt"],
+  [3745.0, 0.03, "T8 Rindt: fast right, the most cambered corner"],
+  [3830.0, 0.03, "Rindt exit"],
+  [3890.0, 0.018, "short straight"],
+  [3960.0, 0.025, "T9 Red Bull Mobile: positive camber"],
+  [4020.0, 0.025, "T9 exit"],
+  [4130.0, -0.015, "T10 onto the start/finish straight"],
+]
+# Full road width in metres. FIA Appendix O: >= 12 m, >= 15 m on the grid. Estimates.
+width_keys = [
+  [0.0, 15.0, "start/finish straight and grid"],
+  [330.0, 15.0, "braking zone T1"],
+  [420.0, 16.0, "T1 Niki Lauda opens up"],
+  [500.0, 16.0, ""],
+  [620.0, 13.5, "climb to Remus"],
+  [1280.0, 13.5, ""],
+  [1360.0, 15.0, "T3 Remus hairpin"],
+  [1440.0, 15.0, ""],
+  [1540.0, 13.5, "straight to Schlossgold"],
+  [2120.0, 13.5, ""],
+  [2180.0, 14.5, "T4 Schlossgold"],
+  [2260.0, 14.5, ""],
+  [2350.0, 13.0, "back section"],
+  [2620.0, 12.5, "T5-T7: fast but narrow"],
+  [3150.0, 12.5, ""],
+  [3300.0, 13.0, "run to Rindt"],
+  [3930.0, 13.0, ""],
+  [3990.0, 14.0, "T9 Red Bull Mobile"],
+  [4060.0, 14.0, ""],
+  [4160.0, 15.0, "start/finish straight"],
+]
+
+[terrain]
+# Same as the automatic bounds (centreline box + 450 m, snapped to 200 m); written out so a
+# change to the defaults cannot move the committed terrain.
+near = [-1600.0, 800.0, -1200.0, 600.0]      # x0, x1, z0, z1 (game metres)
+far = [-6400.0, 5600.0, -6200.0, 5800.0]
