@@ -69,9 +69,9 @@ func _ready() -> void:
 	_car = get_node_or_null(car_path) as Car
 	mix_rate = clampf(mix_rate, 22050.0, 48000.0)
 	_synth = EngineSynth.new(mix_rate, 12)
-	_engine_player = _make_player("EnginePlayer")
-	_screech_player = _make_player("ScreechPlayer")
-	_wind_player = _make_player("WindPlayer")
+	_engine_player = _make_player("EnginePlayer", &"Engine")
+	_screech_player = _make_player("ScreechPlayer", &"FX")
+	_wind_player = _make_player("WindPlayer", &"FX")
 
 	var gen := AudioStreamGenerator.new()
 	gen.mix_rate = mix_rate
@@ -92,12 +92,15 @@ func _ready() -> void:
 		_car.respawned.connect(_on_respawned)
 		_synth.reset(_car.rpm, _car.throttle)
 
-func _make_player(player_name: String) -> AudioStreamPlayer:
+## Players go to the Engine / FX buses (default_bus_layout.tres) so the audio options can set
+## their volumes; a bus that does not exist falls back to Master.
+func _make_player(player_name: String, bus_name: StringName) -> AudioStreamPlayer:
 	var p := get_node_or_null(player_name) as AudioStreamPlayer
 	if p == null:
 		p = AudioStreamPlayer.new()
 		p.name = player_name
 		add_child(p)
+	p.bus = bus_name
 	return p
 
 func _process(delta: float) -> void:

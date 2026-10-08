@@ -18,6 +18,7 @@ const SPEED_SMOOTH_RATE: float = 20.0
 const SPEED_HYSTERESIS: float = 0.55
 const DRIFT_FADE_RATE: float = 8.0
 const SHIFT_FLASH_HZ: float = 12.0
+const KMH_TO_MPH: float = 0.621371
 
 const COL_TIME_WAITING := Color(1, 1, 1, 0.55)
 const COL_TIME_RUNNING := Color(1, 1, 1, 1)
@@ -27,6 +28,7 @@ const COL_GEAR_SHIFT := Color(1.0, 0.25, 0.18)
 @export var car_path: NodePath
 
 var timer: RaceTimer = RaceTimer.new()
+## Smoothed speed in the displayed unit (km/h or mph, see gameplay/speed_unit).
 var display_speed: float = 0.0
 var shown_speed: int = 0
 
@@ -40,12 +42,15 @@ var _shown_flash: bool = false
 ## Physics ticks left during which the car's telemetry is stale after a respawn
 ## (Car.respawn() returns before recomputing speed/rpm/gear on that tick).
 var _respawn_hold: int = 0
+## Displayed unit per km/h: 1 for km/h, KMH_TO_MPH for mph.
+var _speed_factor: float = 1.0
 
 @onready var _timer_group: Control = $TimerGroup
 @onready var _time_label: Label = $TimerGroup/Time
 @onready var _hint: Label = $Hint
 @onready var _speedo: RpmGauge = $Speedo
 @onready var _speed_label: Label = $Speedo/Speed
+@onready var _unit_label: Label = $Speedo/Unit
 @onready var _gear_label: Label = $Speedo/Gear
 @onready var _drift_label: Label = $Speedo/Drift
 @onready var _inputs: InputDisplay = $Inputs
@@ -57,6 +62,25 @@ func _ready() -> void:
 	resized.connect(_layout)
 	_layout()
 	_refresh_timer_label()
+	Settings.changed.connect(_on_setting_changed)
+	_apply_gameplay_settings()
+
+## The gameplay options apply live: speed unit (km/h or mph) and input display visibility.
+func _on_setting_changed(section: String, _key: String) -> void:
+	if section == "gameplay":
+		_apply_gameplay_settings()
+
+func _apply_gameplay_settings() -> void:
+	var mph: bool = Settings.get_value("gameplay", "speed_unit") == "mph"
+	var factor := KMH_TO_MPH if mph else 1.0
+	if factor != _speed_factor:
+		# Convert the smoothed value so the readout switches at once instead of easing over.
+		display_speed *= factor / _speed_factor
+		_speed_factor = factor
+		shown_speed = roundi(display_speed)
+		_speed_label.text = str(shown_speed)
+	_unit_label.text = "MPH" if mph else "KM/H"
+	_inputs.visible = Settings.get_value("gameplay", "show_input_display")
 
 func _on_car_respawned() -> void:
 	timer.reset()
@@ -91,7 +115,7 @@ func _process(delta: float) -> void:
 	if not _car or _respawn_hold > 0:
 		return
 	# Speed: frame-rate independent exponential smoothing + hysteresis.
-	var target := absf(_car.speed_kmh)
+	var target := absf(_car.speed_kmh) * _speed_factor
 	display_speed = lerpf(display_speed, target, 1.0 - exp(-SPEED_SMOOTH_RATE * delta))
 	if absf(display_speed - shown_speed) >= SPEED_HYSTERESIS:
 		shown_speed = roundi(display_speed)
@@ -141,6 +165,9 @@ func get_time_text() -> String:
 
 func get_speed_text() -> String:
 	return _speed_label.text
+
+func get_speed_unit_text() -> String:
+	return _unit_label.text
 
 func _layout() -> void:
 	var s := clampf(size.y / REF_HEIGHT, 0.4, 4.0)
