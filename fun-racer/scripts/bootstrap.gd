@@ -22,19 +22,12 @@ var skip_countdown: bool = false
 ## get_throttle() / get_brake() / get_steer() -> float (e.g. a track follower / autopilot).
 var autodrive_provider: Object = null
 
-const KEY_ACTIONS: Dictionary = {
-	"accelerate": [KEY_UP, KEY_W],
-	"brake": [KEY_DOWN, KEY_S],
-	"steer_left": [KEY_LEFT, KEY_A],
-	"steer_right": [KEY_RIGHT, KEY_D],
-	"respawn": [KEY_BACKSPACE, KEY_ENTER],
-	"camera_1": [KEY_1],
-	"camera_2": [KEY_2],
-	"camera_3": [KEY_3],
-}
-
 func _ready() -> void:
 	_register_inputs()
+	if Settings.is_node_ready():
+		_on_settings_ready()
+	else:
+		Settings.ready.connect(_on_settings_ready, CONNECT_ONE_SHOT)
 	for arg: String in OS.get_cmdline_user_args() + OS.get_cmdline_args():
 		if arg == "--autodrive":
 			autodrive = true
@@ -49,27 +42,20 @@ func _ready() -> void:
 		elif arg.begins_with("--spawn_s="):
 			spawn_s = float(arg.get_slice("=", 1))
 
+## Input actions come from InputBindings (default table + the player's rebinds in Settings).
+## Bootstrap loads before Settings, so the defaults go in first and the saved bindings and
+## gamepad dead zone follow as soon as Settings is ready, then on every change.
 func _register_inputs() -> void:
-	for action: String in KEY_ACTIONS:
-		if not InputMap.has_action(action):
-			InputMap.add_action(action, 0.1)
-		for key: Key in KEY_ACTIONS[action]:
-			var ev := InputEventKey.new()
-			ev.physical_keycode = key
-			InputMap.action_add_event(action, ev)
-	_add_joy_axis("accelerate", JOY_AXIS_TRIGGER_RIGHT, 1.0)
-	_add_joy_axis("brake", JOY_AXIS_TRIGGER_LEFT, 1.0)
-	_add_joy_axis("steer_left", JOY_AXIS_LEFT_X, -1.0)
-	_add_joy_axis("steer_right", JOY_AXIS_LEFT_X, 1.0)
-	var b := InputEventJoypadButton.new()
-	b.button_index = JOY_BUTTON_B
-	InputMap.action_add_event("respawn", b)
+	InputBindings.apply_overrides({})
 
-func _add_joy_axis(action: String, axis: JoyAxis, value: float) -> void:
-	var ev := InputEventJoypadMotion.new()
-	ev.axis = axis
-	ev.axis_value = value
-	InputMap.action_add_event(action, ev)
+func _on_settings_ready() -> void:
+	InputBindings.apply()
+	if not Settings.changed.is_connected(_on_setting_changed):
+		Settings.changed.connect(_on_setting_changed)
+
+func _on_setting_changed(section: String, key: String) -> void:
+	if section == InputBindings.SECTION and (key == InputBindings.KEY or key == "gamepad_deadzone"):
+		InputBindings.apply()
 
 ## Driver inputs, overridden by autodrive. Car reads these instead of Input directly.
 func get_throttle() -> float:
