@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1311 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="9842213933" visible="true" version="3" changeset="162510038" timestamp="2025-02-14T16:39:55Z" user="Lyon-St-Clair" uid="9060372" lat="21.6279418" lon="39.1060302"/>
+ <node id="12579033568" visible="true" version="1" changeset="162393505" timestamp="2025-02-11T14:26:04Z" user="trackmap" uid="13790961" lat="21.6275104" lon="39.1061281"/>
+ <way id="1359884761" visible="true" version="3" changeset="179505546" timestamp="2026-03-07T18:43:03Z" user="n1xe" uid="23860294">
+  <nd ref="12579033568"/>
+  <nd ref="9842213933"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="layer" v="-1"/>
+  <tag k="name" v="حلبة كورنيش جدة"/>
+  <tag k="name:ar" v="حلبة كورنيش جدة"/>
+  <tag k="name:en" v="Jeddah Corniche Circuit"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q102141307"/>
+  <tag k="wikipedia" v="en:Jeddah Corniche Circuit"/>
+ </way>
+</osm>

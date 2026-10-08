@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1315 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="9299199971" visible="true" version="4" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6344688" lon="39.1038152"/>
+ <node id="9299212617" visible="true" version="5" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6348206" lon="39.1036245"/>
+ <node id="9299212618" visible="true" version="5" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6349671" lon="39.1030184"/>
+ <node id="9306419194" visible="true" version="4" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6347469" lon="39.1037114"/>
+ <node id="9306419195" visible="true" version="4" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6346795" lon="39.1037415"/>
+ <node id="9306419196" visible="true" version="4" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6350911" lon="39.1030360"/>
+ <node id="9306419197" visible="true" version="4" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6347389" lon="39.1033389"/>
+ <node id="9306419198" visible="true" version="4" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6352640" lon="39.1030762"/>
+ <node id="9306419199" visible="true" version="4" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6357626" lon="39.1032603"/>
+ <node id="9306419200" visible="true" version="4" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6359192" lon="39.1032934"/>
+ <node id="9306427657" visible="true" version="4" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6347257" lon="39.1032087"/>
+ <node id="9306427658" visible="true" version="4" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6347933" lon="39.1036757"/>
+ <node id="9842213958" visible="true" version="2" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6319687" lon="39.1047312"/>
+ <node id="9842213968" visible="true" version="1" changeset="122768933" timestamp="2022-06-23T17:37:43Z" user="palimpadum" uid="155936" lat="21.6348256" lon="39.1035727"/>
+ <node id="9842213969" visible="true" version="1" changeset="122768933" timestamp="2022-06-23T17:37:43Z" user="palimpadum" uid="155936" lat="21.6348047" lon="39.1034813"/>
+ <node id="9842213970" visible="true" version="2" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6347220" lon="39.1032721"/>
+ <node id="9842213971" visible="true" version="1" changeset="122768933" timestamp="2022-06-23T17:37:43Z" user="palimpadum" uid="155936" lat="21.6347825" lon="39.1030970"/>
+ <node id="9842213972" visible="true" version="1" changeset="122768933" timestamp="2022-06-23T17:37:43Z" user="palimpadum" uid="155936" lat="21.6348527" lon="39.1030413"/>
+ <node id="9842213973" visible="true" version="2" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6354235" lon="39.1031323"/>
+ <node id="9842213974" visible="true" version="2" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6360293" lon="39.1033049"/>
+ <node id="10260865662" visible="true" version="1" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6334557" lon="39.1041885"/>
+ <node id="10260865663" visible="true" version="1" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6348214" lon="39.1035216"/>
+ <node id="10260865664" visible="true" version="1" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6347560" lon="39.1031381"/>
+ <node id="10260865665" visible="true" version="1" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6349018" lon="39.1030225"/>
+ <node id="10260865666" visible="true" version="2" changeset="148257338" timestamp="2024-03-05T16:00:46Z" user="mikhail22" uid="6750151" lat="21.6356295" lon="39.1032207"/>
+ <node id="11694437927" visible="true" version="1" changeset="148257338" timestamp="2024-03-05T16:00:46Z" user="mikhail22" uid="6750151" lat="21.6358338" lon="39.1032755"/>
+ <node id="12579033584" visible="true" version="2" changeset="162510038" timestamp="2025-02-14T16:39:55Z" user="Lyon-St-Clair" uid="9060372" lat="21.6304245" lon="39.1053112"/>
+ <way id="1359884758" visible="true" version="3" changeset="179505546" timestamp="2026-03-07T18:43:03Z" user="n1xe" uid="23860294">
+  <nd ref="12579033584"/>
+  <nd ref="9842213958"/>
+  <nd ref="10260865662"/>
+  <nd ref="9299199971"/>
+  <nd ref="9306419195"/>
+  <nd ref="9306419194"/>
+  <nd ref="9306427658"/>
+  <nd ref="9299212617"/>
+  <nd ref="9842213968"/>
+  <nd ref="10260865663"/>
+  <nd ref="9842213969"/>
+  <nd ref="9306419197"/>
+  <nd ref="9842213970"/>
+  <nd ref="9306427657"/>
+  <nd ref="10260865664"/>
+  <nd ref="9842213971"/>
+  <nd ref="9842213972"/>
+  <nd ref="10260865665"/>
+  <nd ref="9299212618"/>
+  <nd ref="9306419196"/>
+  <nd ref="9306419198"/>
+  <nd ref="9842213973"/>
+  <nd ref="10260865666"/>
+  <nd ref="9306419199"/>
+  <nd ref="11694437927"/>
+  <nd ref="9306419200"/>
+  <nd ref="9842213974"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="layer" v="-1"/>
+  <tag k="name" v="حلبة كورنيش جدة"/>
+  <tag k="name:ar" v="حلبة كورنيش جدة"/>
+  <tag k="name:en" v="Jeddah Corniche Circuit"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q102141307"/>
+  <tag k="wikipedia" v="en:Jeddah Corniche Circuit"/>
+ </way>
+</osm>

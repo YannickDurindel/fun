@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1301 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="9299199973" visible="true" version="2" changeset="122768933" timestamp="2022-06-23T17:37:43Z" user="palimpadum" uid="155936" lat="21.6378725" lon="39.1030164"/>
+ <node id="9306419201" visible="true" version="3" changeset="122768933" timestamp="2022-06-23T17:37:43Z" user="palimpadum" uid="155936" lat="21.6383679" lon="39.1029294"/>
+ <node id="9306419202" visible="true" version="4" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6386394" lon="39.1029107"/>
+ <node id="9306419203" visible="true" version="5" changeset="142254368" timestamp="2023-10-07T04:17:22Z" user="patodiez" uid="1856060" lat="21.6389244" lon="39.1025634"/>
+ <node id="9306419204" visible="true" version="5" changeset="162510038" timestamp="2025-02-14T16:39:55Z" user="Lyon-St-Clair" uid="9060372" lat="21.6389791" lon="39.1024422"/>
+ <node id="9842213976" visible="true" version="3" changeset="162510038" timestamp="2025-02-14T16:39:55Z" user="Lyon-St-Clair" uid="9060372" lat="21.6364991" lon="39.1032708"/>
+ <node id="9842213988" visible="true" version="1" changeset="122768933" timestamp="2022-06-23T17:37:43Z" user="palimpadum" uid="155936" lat="21.6370341" lon="39.1031721"/>
+ <node id="9842213989" visible="true" version="2" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6387218" lon="39.1029085"/>
+ <node id="9842213990" visible="true" version="2" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6387788" lon="39.1028942"/>
+ <node id="9842213991" visible="true" version="2" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6388076" lon="39.1028620"/>
+ <way id="1359884762" visible="true" version="2" changeset="175788421" timestamp="2025-12-11T07:06:40Z" user="D=SW" uid="3491713">
+  <nd ref="9842213976"/>
+  <nd ref="9842213988"/>
+  <nd ref="9299199973"/>
+  <nd ref="9306419201"/>
+  <nd ref="9306419202"/>
+  <nd ref="9842213989"/>
+  <nd ref="9842213990"/>
+  <nd ref="9842213991"/>
+  <nd ref="9306419203"/>
+  <nd ref="9306419204"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="حلبة كورنيش جدة"/>
+  <tag k="name:ar" v="حلبة كورنيش جدة"/>
+  <tag k="name:en" v="Jeddah Corniche Circuit"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q102141307"/>
+  <tag k="wikipedia" v="en:Jeddah Corniche Circuit"/>
+ </way>
+</osm>

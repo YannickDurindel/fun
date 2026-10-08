@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1319 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="9299200009" visible="true" version="5" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6280733" lon="39.1031372"/>
+ <node id="9299200010" visible="true" version="5" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6269017" lon="39.1039327"/>
+ <node id="9299200011" visible="true" version="4" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6264287" lon="39.1044405"/>
+ <node id="9299200012" visible="true" version="4" changeset="122768933" timestamp="2022-06-23T17:37:43Z" user="palimpadum" uid="155936" lat="21.6256755" lon="39.1055550"/>
+ <node id="9306419164" visible="true" version="3" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6267031" lon="39.1041261"/>
+ <node id="9306419165" visible="true" version="4" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6272846" lon="39.1036241"/>
+ <node id="9316677710" visible="true" version="3" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6276253" lon="39.1033910"/>
+ <node id="9842213012" visible="true" version="3" changeset="142254368" timestamp="2023-10-07T04:17:22Z" user="patodiez" uid="1856060" lat="21.6291284" lon="39.1027469"/>
+ <node id="9842213013" visible="true" version="2" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6282229" lon="39.1030675"/>
+ <node id="9842213014" visible="true" version="3" changeset="142254368" timestamp="2023-10-07T04:17:22Z" user="patodiez" uid="1856060" lat="21.6287962" lon="39.1028455"/>
+ <node id="9842213015" visible="true" version="3" changeset="142254368" timestamp="2023-10-07T04:17:22Z" user="patodiez" uid="1856060" lat="21.6278363" lon="39.1032591"/>
+ <node id="9842213016" visible="true" version="2" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6263254" lon="39.1045712"/>
+ <node id="9842213917" visible="true" version="2" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6261976" lon="39.1047471"/>
+ <node id="9842213918" visible="true" version="1" changeset="122768933" timestamp="2022-06-23T17:37:43Z" user="palimpadum" uid="155936" lat="21.6258195" lon="39.1053313"/>
+ <node id="9842213919" visible="true" version="2" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6260306" lon="39.1049947"/>
+ <node id="9842213920" visible="true" version="1" changeset="122768933" timestamp="2022-06-23T17:37:43Z" user="palimpadum" uid="155936" lat="21.6254686" lon="39.1058699"/>
+ <node id="9842213921" visible="true" version="1" changeset="122768933" timestamp="2022-06-23T17:37:43Z" user="palimpadum" uid="155936" lat="21.6254079" lon="39.1059678"/>
+ <node id="9842213923" visible="true" version="2" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6253673" lon="39.1061100"/>
+ <node id="9842213924" visible="true" version="2" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6253614" lon="39.1061708"/>
+ <node id="9842213925" visible="true" version="1" changeset="122768933" timestamp="2022-06-23T17:37:43Z" user="palimpadum" uid="155936" lat="21.6253701" lon="39.1062281"/>
+ <node id="9842213926" visible="true" version="1" changeset="122768933" timestamp="2022-06-23T17:37:43Z" user="palimpadum" uid="155936" lat="21.6253856" lon="39.1062920"/>
+ <node id="9842213927" visible="true" version="1" changeset="122768933" timestamp="2022-06-23T17:37:43Z" user="palimpadum" uid="155936" lat="21.6254141" lon="39.1063486"/>
+ <node id="9842213930" visible="true" version="3" changeset="142254368" timestamp="2023-10-07T04:17:22Z" user="patodiez" uid="1856060" lat="21.6255633" lon="39.1064964"/>
+ <node id="9842213931" visible="true" version="3" changeset="142254368" timestamp="2023-10-07T04:17:22Z" user="patodiez" uid="1856060" lat="21.6257079" lon="39.1065451"/>
+ <node id="9842213932" visible="true" version="2" changeset="142254368" timestamp="2023-10-07T04:17:22Z" user="patodiez" uid="1856060" lat="21.6260987" lon="39.1064419"/>
+ <node id="10260865656" visible="true" version="1" changeset="130044283" timestamp="2022-12-13T17:20:39Z" user="Lexerati" uid="16953257" lat="21.6269546" lon="39.1062308"/>
+ <node id="10260865657" visible="true" version="2" changeset="142254368" timestamp="2023-10-07T04:17:22Z" user="patodiez" uid="1856060" lat="21.6264035" lon="39.1063554"/>
+ <node id="10738952222" visible="true" version="1" changeset="133743056" timestamp="2023-03-16T10:36:43Z" user="Chris112233" uid="5354676" lat="21.6254946" lon="39.1064472"/>
+ <node id="11245002817" visible="true" version="1" changeset="142254368" timestamp="2023-10-07T04:17:22Z" user="patodiez" uid="1856060" lat="21.6256347" lon="39.1065320"/>
+ <node id="11245002818" visible="true" version="1" changeset="142254368" timestamp="2023-10-07T04:17:22Z" user="patodiez" uid="1856060" lat="21.6257779" lon="39.1065363"/>
+ <node id="11245002819" visible="true" version="1" changeset="142254368" timestamp="2023-10-07T04:17:22Z" user="patodiez" uid="1856060" lat="21.6253819" lon="39.1060328"/>
+ <node id="11245024981" visible="true" version="1" changeset="142254368" timestamp="2023-10-07T04:17:22Z" user="patodiez" uid="1856060" lat="21.6266658" lon="39.1062931"/>
+ <node id="11245025015" visible="true" version="1" changeset="142254368" timestamp="2023-10-07T04:17:22Z" user="patodiez" uid="1856060" lat="21.6284816" lon="39.1029611"/>
+ <node id="12579033568" visible="true" version="1" changeset="162393505" timestamp="2025-02-11T14:26:04Z" user="trackmap" uid="13790961" lat="21.6275104" lon="39.1061281"/>
+ <node id="12579052225" visible="true" version="1" changeset="162393505" timestamp="2025-02-11T14:26:04Z" user="trackmap" uid="13790961" lat="21.6295029" lon="39.1026652"/>
+ <way id="1257884699" visible="true" version="6" changeset="179505546" timestamp="2026-03-07T18:43:03Z" user="n1xe" uid="23860294">
+  <nd ref="12579052225"/>
+  <nd ref="9842213012"/>
+  <nd ref="9842213014"/>
+  <nd ref="11245025015"/>
+  <nd ref="9842213013"/>
+  <nd ref="9299200009"/>
+  <nd ref="9842213015"/>
+  <nd ref="9316677710"/>
+  <nd ref="9306419165"/>
+  <nd ref="9299200010"/>
+  <nd ref="9306419164"/>
+  <nd ref="9299200011"/>
+  <nd ref="9842213016"/>
+  <nd ref="9842213917"/>
+  <nd ref="9842213919"/>
+  <nd ref="9842213918"/>
+  <nd ref="9299200012"/>
+  <nd ref="9842213920"/>
+  <nd ref="9842213921"/>
+  <nd ref="11245002819"/>
+  <nd ref="9842213923"/>
+  <nd ref="9842213924"/>
+  <nd ref="9842213925"/>
+  <nd ref="9842213926"/>
+  <nd ref="9842213927"/>
+  <nd ref="10738952222"/>
+  <nd ref="9842213930"/>
+  <nd ref="11245002817"/>
+  <nd ref="9842213931"/>
+  <nd ref="11245002818"/>
+  <nd ref="9842213932"/>
+  <nd ref="10260865657"/>
+  <nd ref="11245024981"/>
+  <nd ref="10260865656"/>
+  <nd ref="12579033568"/>
+  <tag k="fixme" v="Formula E version"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="layer" v="-1"/>
+  <tag k="name" v="حلبة كورنيش جدة"/>
+  <tag k="name:ar" v="حلبة كورنيش جدة"/>
+  <tag k="name:en" v="Jeddah Corniche Circuit"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q102141307"/>
+  <tag k="wikipedia" v="en:Jeddah Corniche Circuit"/>
+ </way>
+</osm>

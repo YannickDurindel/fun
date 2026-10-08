@@ -1,0 +1,14 @@
+{
+  "id": "jeddah",
+  "name": "Jeddah Corniche Circuit",
+  "grand_prix": "Saudi Arabian Grand Prix",
+  "country": "Saudi Arabia",
+  "country_code": "SA",
+  "city": "Jeddah",
+  "length_m": 6174,
+  "turns": 27,
+  "scene": "res://scenes/tracks/jeddah.tscn",
+  "track_json": "res://assets/tracks/jeddah/track.json",
+  "osm_relation": null,
+  "available": true
+}
