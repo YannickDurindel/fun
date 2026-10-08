@@ -58,19 +58,25 @@ func start_race(cfg: RaceConfig = null) -> void:
 	if info == null or not info.available:
 		push_error("Game: track '%s' is not available" % pending.track_id)
 		return
+	if not _can_change_scene():
+		return
 	config = pending.copy()
 	Settings.set_value("gameplay", "last_race", config.to_dict())
 	Settings.save()
 	set_paused(false)
 	race_loading.emit(info)
-	_change_scene(RACE_SCENE)
+	_change_scene(RACE_SCENE, info)
 
 func restart_race() -> void:
+	if not _can_change_scene():
+		return
 	set_paused(false)
 	race_loading.emit(current_track())
-	_change_scene(RACE_SCENE)
+	_change_scene(RACE_SCENE, current_track())
 
 func quit_to_menu(screen: String = "") -> void:
+	if not _can_change_scene():
+		return
 	set_paused(false)
 	menu_start_screen = screen
 	_change_scene(MENU_SCENE)
@@ -83,11 +89,19 @@ func set_paused(paused: bool) -> void:
 	pause_changed.emit(paused)
 
 ## Called by the race scene once the track is built and the car is on the grid.
+## The loading screen (Transitions) stays up until this, plus a few rendered frames.
 func notify_race_ready() -> void:
 	race_ready.emit()
 
-func _change_scene(path: String) -> void:
+## False while a scene transition is running: requests made then are dropped as a whole (no
+## config change, no signals), since Transitions would ignore the scene change anyway.
+func _can_change_scene() -> bool:
+	return scene_changer.is_valid() or not Transitions.busy
+
+## Scene changes go through the `Transitions` autoload: fade, loading screen when
+## `loading_info` is given, threaded load. Instant when headless (see Transitions.is_instant).
+func _change_scene(path: String, loading_info: TrackInfo = null) -> void:
 	if scene_changer.is_valid():
 		scene_changer.call(path)
 	else:
-		get_tree().change_scene_to_file.call_deferred(path)
+		Transitions.change_scene(path, loading_info)

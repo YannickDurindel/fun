@@ -10,6 +10,8 @@ config/features=PackedStringArray("4.7", "Mobile")
 Bootstrap="*res://scripts/bootstrap.gd"
 Settings="*res://scripts/settings.gd"
 Game="*res://scripts/game.gd"
+Transitions="*res://scripts/ui/transitions.gd"
+UISounds="*res://scripts/audio/ui_sounds.gd"
 
 [display]
 window/size/viewport_width=1600
