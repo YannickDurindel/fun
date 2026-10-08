@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1296 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="9383628155" visible="true" version="3" changeset="145422262" timestamp="2023-12-22T22:37:09Z" user="MooPoo7" uid="7596709" lat="25.9605278" lon="-80.2412444"/>
+ <node id="9383628156" visible="true" version="4" changeset="145422262" timestamp="2023-12-22T22:37:09Z" user="MooPoo7" uid="7596709" lat="25.9605793" lon="-80.2427626"/>
+ <node id="9383628157" visible="true" version="4" changeset="145422262" timestamp="2023-12-22T22:37:09Z" user="MooPoo7" uid="7596709" lat="25.9605690" lon="-80.2429085"/>
+ <node id="9383628158" visible="true" version="5" changeset="149290488" timestamp="2024-03-28T23:05:23Z" user="lorenzog89" uid="482753" lat="25.9605289" lon="-80.2429733"/>
+ <node id="9383628159" visible="true" version="4" changeset="145422262" timestamp="2023-12-22T22:37:09Z" user="MooPoo7" uid="7596709" lat="25.9604449" lon="-80.2430042"/>
+ <node id="9383628160" visible="true" version="4" changeset="145422262" timestamp="2023-12-22T22:37:09Z" user="MooPoo7" uid="7596709" lat="25.9603566" lon="-80.2429866"/>
+ <node id="9383628161" visible="true" version="5" changeset="149290488" timestamp="2024-03-28T23:05:23Z" user="lorenzog89" uid="482753" lat="25.9602380" lon="-80.2428870"/>
+ <node id="9383628162" visible="true" version="4" changeset="148014133" timestamp="2024-02-28T13:42:32Z" user="mikhail22" uid="6750151" lat="25.9599773" lon="-80.2424733"/>
+ <node id="9383628163" visible="true" version="3" changeset="119909568" timestamp="2022-04-19T14:05:15Z" user="DHK123" uid="4469513" lat="25.9598541" lon="-80.2422713"/>
+ <node id="9383628164" visible="true" version="5" changeset="145422262" timestamp="2023-12-22T22:37:09Z" user="MooPoo7" uid="7596709" lat="25.9597397" lon="-80.2419973"/>
+ <node id="9383628165" visible="true" version="4" changeset="145388506" timestamp="2023-12-21T23:33:34Z" user="MooPoo7" uid="7596709" lat="25.9597212" lon="-80.2418254"/>
+ <node id="9383628166" visible="true" version="4" changeset="145388506" timestamp="2023-12-21T23:33:34Z" user="MooPoo7" uid="7596709" lat="25.9597645" lon="-80.2415191"/>
+ <node id="9383628168" visible="true" version="4" changeset="145388506" timestamp="2023-12-21T23:33:34Z" user="MooPoo7" uid="7596709" lat="25.9600091" lon="-80.2409631"/>
+ <node id="9383628169" visible="true" version="4" changeset="145388506" timestamp="2023-12-21T23:33:34Z" user="MooPoo7" uid="7596709" lat="25.9601614" lon="-80.2405585"/>
+ <node id="9383628170" visible="true" version="4" changeset="145388506" timestamp="2023-12-21T23:33:34Z" user="MooPoo7" uid="7596709" lat="25.9602337" lon="-80.2402077"/>
+ <node id="9383628171" visible="true" version="4" changeset="145388506" timestamp="2023-12-21T23:33:34Z" user="MooPoo7" uid="7596709" lat="25.9602394" lon="-80.2400129"/>
+ <node id="9388348492" visible="true" version="3" changeset="145388506" timestamp="2023-12-21T23:33:34Z" user="MooPoo7" uid="7596709" lat="25.9599190" lon="-80.2411755"/>
+ <node id="11441670942" visible="true" version="2" changeset="148014133" timestamp="2024-02-28T13:42:32Z" user="mikhail22" uid="6750151" lat="25.9597818" lon="-80.2421393"/>
+ <node id="11441670943" visible="true" version="1" changeset="145388506" timestamp="2023-12-21T23:33:34Z" user="MooPoo7" uid="7596709" lat="25.9597332" lon="-80.2416623"/>
+ <node id="11441670944" visible="true" version="1" changeset="145388506" timestamp="2023-12-21T23:33:34Z" user="MooPoo7" uid="7596709" lat="25.9600916" lon="-80.2407670"/>
+ <node id="11441670945" visible="true" version="1" changeset="145388506" timestamp="2023-12-21T23:33:34Z" user="MooPoo7" uid="7596709" lat="25.9602079" lon="-80.2403804"/>
+ <node id="11441670946" visible="true" version="1" changeset="145388506" timestamp="2023-12-21T23:33:34Z" user="MooPoo7" uid="7596709" lat="25.9602355" lon="-80.2398086"/>
+ <node id="11445148300" visible="true" version="1" changeset="145422262" timestamp="2023-12-22T22:37:09Z" user="MooPoo7" uid="7596709" lat="25.9604825" lon="-80.2402253"/>
+ <node id="11445148301" visible="true" version="2" changeset="149290488" timestamp="2024-03-28T23:05:23Z" user="lorenzog89" uid="482753" lat="25.9603035" lon="-80.2429558"/>
+ <node id="11445148302" visible="true" version="1" changeset="145422262" timestamp="2023-12-22T22:37:09Z" user="MooPoo7" uid="7596709" lat="25.9604029" lon="-80.2430001"/>
+ <node id="11445148303" visible="true" version="1" changeset="145422262" timestamp="2023-12-22T22:37:09Z" user="MooPoo7" uid="7596709" lat="25.9604885" lon="-80.2429950"/>
+ <node id="11445148304" visible="true" version="1" changeset="145422262" timestamp="2023-12-22T22:37:09Z" user="MooPoo7" uid="7596709" lat="25.9605527" lon="-80.2429413"/>
+ <node id="11445148305" visible="true" version="1" changeset="145422262" timestamp="2023-12-22T22:37:09Z" user="MooPoo7" uid="7596709" lat="25.9605783" lon="-80.2428402"/>
+ <node id="11672599817" visible="true" version="1" changeset="148014133" timestamp="2024-02-28T13:42:32Z" user="mikhail22" uid="6750151" lat="25.9601831" lon="-80.2428011"/>
+ <node id="11770044844" visible="true" version="1" changeset="149290488" timestamp="2024-03-28T23:05:23Z" user="lorenzog89" uid="482753" lat="25.9602689" lon="-80.2429238"/>
+ <node id="13503679211" visible="true" version="1" changeset="177756038" timestamp="2026-01-27T10:09:50Z" user="mikhail22" uid="6750151" lat="25.9604656" lon="-80.2397843"/>
+ <way id="1472686141" visible="true" version="2" changeset="190090295" timestamp="2026-10-06T13:06:57Z" user="Sora 27" uid="22444120">
+  <nd ref="13503679211"/>
+  <nd ref="11445148300"/>
+  <nd ref="9383628155"/>
+  <nd ref="9383628156"/>
+  <nd ref="11445148305"/>
+  <nd ref="9383628157"/>
+  <nd ref="11445148304"/>
+  <nd ref="9383628158"/>
+  <nd ref="11445148303"/>
+  <nd ref="9383628159"/>
+  <nd ref="11445148302"/>
+  <nd ref="9383628160"/>
+  <nd ref="11445148301"/>
+  <nd ref="11770044844"/>
+  <nd ref="9383628161"/>
+  <nd ref="11672599817"/>
+  <nd ref="9383628162"/>
+  <nd ref="9383628163"/>
+  <nd ref="11441670942"/>
+  <nd ref="9383628164"/>
+  <nd ref="9383628165"/>
+  <nd ref="11441670943"/>
+  <nd ref="9383628166"/>
+  <nd ref="9388348492"/>
+  <nd ref="9383628168"/>
+  <nd ref="11441670944"/>
+  <nd ref="9383628169"/>
+  <nd ref="11441670945"/>
+  <nd ref="9383628170"/>
+  <nd ref="9383628171"/>
+  <nd ref="11441670946"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="no"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>
