@@ -77,6 +77,8 @@ def build(recipe, fetcher, log=print):
     data = osm.fetch(recipe, fetcher)
     loop = osm.find_loop(data, recipe, log)
     warnings += loop.warnings
+    if recipe.osm_round:
+        osm.round_corners(data, loop, recipe.osm_round, log)
     chain, names = loop.node_ids, loop.names
 
     # ---- start / finish ------------------------------------------------------------------

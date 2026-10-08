@@ -1,0 +1,141 @@
+# Albert Park Circuit, Melbourne: the layout raced since 2022 (5278 m, 14 turns, clockwise).
+#
+#   .venv/bin/python tools/track/build_track.py albert_park --offline
+
+id = "albert_park"
+
+[osm]
+# type=circuit relation "Albert Park Circuit". The lap runs on public park roads (Aughtie
+# Drive, Albert Road Drive, Lakeside Drive, Ross Gregory Drive: highway=unclassified /
+# tertiary / service, not raceway) and four short raceway-only links. Its members carry the
+# role "forward", the pit lane the role "pit_lane", and one node the role "start".
+# The old Turn 9-10 chicane (removed in 2021) is not in the relation.
+relation = 280443
+
+# The roads are drawn as road centrelines, so where the lap turns at a road junction the loop
+# has a single sharp vertex. These entries replace it by a corner of a plausible radius.
+[[osm.round]]
+node = 159355126        # Aughtie Drive -> Albert Road Drive: one 39 degree vertex
+reach_m = 60.0
+note = "Turn 5, taken flat out"
+
+[[osm.round]]
+node = 9649515932       # a 16 / 40 / 17 degree dogleg where two road pieces join
+reach_m = 20.0
+note = "straight between Turns 5 and 6"
+
+[[osm.round]]
+node = 159337120        # Albert Road Drive -> Lakeside Drive: one 90 degree vertex
+reach_m = 50.0
+note = "Turn 6, a fast corner since it was widened by 7.5 m in 2021"
+
+[[osm.round]]
+node = 7318990955       # Lakeside Drive -> Ross Gregory Drive: one 87 degree vertex
+reach_m = 30.0
+note = "Turn 11"
+
+[layout]
+direction = "clockwise"   # the ways have no oneway tags (traffic runs both ways)
+
+[elevation]
+dataset = "terrarium"
+# The park is flat (the lap stays within a few metres of the lake level), but the DEM is a
+# surface model: tree canopy and grandstands show up as 5 m bumps every 100 m (10 m range,
+# 10 % grades at the default 45 m). Only the long-wave part is real.
+smooth_sigma_m = 400.0
+
+# The official 14 turns. Automatic detection finds 19: it also numbers a gentle bend of
+# Albert Road Drive (s = 1673), both curvature peaks of the long Turn 8, the two left kinks of
+# the flat-out lakeside run where the old Turn 9-10 chicane was (s = 2789, 2893), and the
+# right kink before Ascari (s = 3737). The names are the grandstand / corner names of the
+# 1996-2020 layout carried over to the new numbers (old 11-12 -> 9-10, 13 -> 11, 14 -> 12,
+# 15 -> 13, 16 -> 14).
+[[turn]]
+id = "T1"
+name = "Brabham"
+direction = "right"
+s = 380.1
+
+[[turn]]
+id = "T2"
+name = "Jones"
+direction = "left"
+s = 502.2
+
+[[turn]]
+id = "T3"
+name = "Whiteford"
+direction = "right"
+s = 1116.4
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 1250.5
+
+[[turn]]
+id = "T5"
+name = "Turn 5"
+direction = "right"
+s = 1518.6
+
+[[turn]]
+id = "T6"
+name = "Turn 6"
+direction = "right"
+s = 1894.7
+
+[[turn]]
+id = "T7"
+name = "Turn 7"
+direction = "left"
+s = 1944.7
+
+[[turn]]
+id = "T8"
+name = "Turn 8"
+direction = "right"
+s = 2238.8
+
+[[turn]]
+id = "T9"
+name = "Waite (Turn 9)"
+direction = "left"
+s = 3319.3
+
+[[turn]]
+id = "T10"
+name = "Waite (Turn 10)"
+direction = "right"
+s = 3447.3
+
+[[turn]]
+id = "T11"
+name = "Ascari"
+direction = "right"
+s = 4151.6
+
+[[turn]]
+id = "T12"
+name = "Stewart"
+direction = "right"
+s = 4391.7
+
+[[turn]]
+id = "T13"
+name = "Senna"
+direction = "left"
+s = 4661.8
+
+[[turn]]
+id = "T14"
+name = "Prost"
+direction = "right"
+s = 4775.8
+
+[terrain]
+# The same surface-model noise as on the centreline: without smoothing the flat park and the
+# lake come out as 3 m lumps. The towers of St Kilda Road and Southbank (east and north)
+# stay as low hills.
+smooth_sigma_m = 120.0
