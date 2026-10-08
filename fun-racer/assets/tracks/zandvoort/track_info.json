@@ -1,0 +1,14 @@
+{
+  "id": "zandvoort",
+  "name": "Circuit Zandvoort",
+  "grand_prix": "Dutch Grand Prix",
+  "country": "Netherlands",
+  "country_code": "NL",
+  "city": "Zandvoort",
+  "length_m": 4259,
+  "turns": 14,
+  "scene": "res://scenes/tracks/zandvoort.tscn",
+  "track_json": "res://assets/tracks/zandvoort/track.json",
+  "osm_relation": 13545573,
+  "available": true
+}

@@ -1,0 +1,334 @@
+{
+ "id": "zandvoort",
+ "recipe": "tools/track/tracks/zandvoort.toml",
+ "osm": {
+  "relation": 13545573,
+  "loop_ways": [
+   1311566938,
+   1311566937,
+   1313671991,
+   1311566939,
+   1313671992,
+   1311566940,
+   1311710253,
+   24626850,
+   1311765615,
+   1311802779,
+   1311822339,
+   1311822340,
+   1311822341,
+   1311879069,
+   1311522211,
+   1311522212,
+   1313671989,
+   1311522213,
+   1313671990,
+   1311522214,
+   1311522215,
+   1311522216,
+   1311522217,
+   1311522218
+  ],
+  "raw_length_m": 4257.9,
+  "length_m": 4253.5,
+  "official_length_m": 4259.0,
+  "length_error": -0.00129,
+  "candidates": [
+   {
+    "length_m": 4258.0,
+    "ways": [
+     1311566938,
+     1311566937,
+     1313671991,
+     1311566939,
+     1313671992,
+     1311566940,
+     1311710253,
+     24626850,
+     1311765615,
+     1311802779,
+     1311822339,
+     1311822340,
+     1311822341,
+     1311879069,
+     1311522211,
+     1311522212,
+     1313671989,
+     1311522213,
+     1313671990,
+     1311522214,
+     1311522215,
+     1311522216,
+     1311522217,
+     1311522218
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "finish: relation member role, start: relation member role",
+ "dem_dataset": "ahn",
+ "elevation": {
+  "range_m": 8.42,
+  "max_grade": 0.062,
+  "min_grade": -0.051,
+  "origin_m": 5.12
+ },
+ "turns": {
+  "official": 14,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Tarzanbocht",
+    "direction": "right",
+    "s_apex": 380.4,
+    "min_radius": 38.1
+   },
+   {
+    "id": "T2",
+    "name": "Turn 2",
+    "direction": "left",
+    "s_apex": 546.6,
+    "min_radius": 194.5
+   },
+   {
+    "id": "T3",
+    "name": "Gerlachbocht",
+    "direction": "right",
+    "s_apex": 688.8,
+    "min_radius": 39.7
+   },
+   {
+    "id": "T4",
+    "name": "Hugenholtzbocht",
+    "direction": "left",
+    "s_apex": 813.0,
+    "min_radius": 32.7
+   },
+   {
+    "id": "T5",
+    "name": "Hunserug",
+    "direction": "right",
+    "s_apex": 1031.2,
+    "min_radius": 200.7
+   },
+   {
+    "id": "T6",
+    "name": "Rob Slotemakerbocht",
+    "direction": "left",
+    "s_apex": 1245.5,
+    "min_radius": 123.8
+   },
+   {
+    "id": "T7",
+    "name": "Rob Slotemakerbocht",
+    "direction": "right",
+    "s_apex": 1433.7,
+    "min_radius": 134.9
+   },
+   {
+    "id": "T8",
+    "name": "Scheivlak",
+    "direction": "right",
+    "s_apex": 1780.1,
+    "min_radius": 93.4
+   },
+   {
+    "id": "T9",
+    "name": "Mastersbocht",
+    "direction": "right",
+    "s_apex": 2028.4,
+    "min_radius": 30.6
+   },
+   {
+    "id": "T10",
+    "name": "Turn 10",
+    "direction": "right",
+    "s_apex": 2264.7,
+    "min_radius": 26.5
+   },
+   {
+    "id": "T11",
+    "name": "CM.com bocht",
+    "direction": "left",
+    "s_apex": 2474.9,
+    "min_radius": 44.8
+   },
+   {
+    "id": "T12",
+    "name": "Hans Ernst chicane",
+    "direction": "right",
+    "s_apex": 3099.6,
+    "min_radius": 16.3
+   },
+   {
+    "id": "T13",
+    "name": "Hans Ernst chicane",
+    "direction": "left",
+    "s_apex": 3209.8,
+    "min_radius": 32.4
+   },
+   {
+    "id": "T14",
+    "name": "Turn 14",
+    "direction": "right",
+    "s_apex": 3536.2,
+    "min_radius": 51.9
+   },
+   {
+    "id": "T15",
+    "name": "Arie Luyendykbocht",
+    "direction": "right",
+    "s_apex": 3774.4,
+    "min_radius": 113.9
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 380.4,
+    "direction": "right",
+    "angle_deg": 178.2,
+    "kind": "corner",
+    "min_radius": 38.1,
+    "used": true
+   },
+   {
+    "s_apex": 546.6,
+    "direction": "left",
+    "angle_deg": 24.0,
+    "kind": "corner",
+    "min_radius": 194.5,
+    "used": true
+   },
+   {
+    "s_apex": 688.8,
+    "direction": "right",
+    "angle_deg": 68.2,
+    "kind": "corner",
+    "min_radius": 39.7,
+    "used": true
+   },
+   {
+    "s_apex": 813.0,
+    "direction": "left",
+    "angle_deg": 176.7,
+    "kind": "corner",
+    "min_radius": 32.7,
+    "used": true
+   },
+   {
+    "s_apex": 1031.2,
+    "direction": "right",
+    "angle_deg": 27.9,
+    "kind": "corner",
+    "min_radius": 200.7,
+    "used": true
+   },
+   {
+    "s_apex": 1245.5,
+    "direction": "left",
+    "angle_deg": 45.1,
+    "kind": "corner",
+    "min_radius": 123.8,
+    "used": true
+   },
+   {
+    "s_apex": 1433.7,
+    "direction": "right",
+    "angle_deg": 34.8,
+    "kind": "corner",
+    "min_radius": 134.9,
+    "used": true
+   },
+   {
+    "s_apex": 1780.1,
+    "direction": "right",
+    "angle_deg": 120.4,
+    "kind": "corner",
+    "min_radius": 93.4,
+    "used": true
+   },
+   {
+    "s_apex": 1912.2,
+    "direction": "left",
+    "angle_deg": 9.0,
+    "kind": "kink",
+    "min_radius": 218.1,
+    "used": false
+   },
+   {
+    "s_apex": 2028.4,
+    "direction": "right",
+    "angle_deg": 80.8,
+    "kind": "corner",
+    "min_radius": 30.6,
+    "used": true
+   },
+   {
+    "s_apex": 2264.7,
+    "direction": "right",
+    "angle_deg": 154.5,
+    "kind": "corner",
+    "min_radius": 26.5,
+    "used": true
+   },
+   {
+    "s_apex": 2474.9,
+    "direction": "left",
+    "angle_deg": 165.8,
+    "kind": "corner",
+    "min_radius": 44.8,
+    "used": true
+   },
+   {
+    "s_apex": 2759.2,
+    "direction": "left",
+    "angle_deg": 12.6,
+    "kind": "kink",
+    "min_radius": 437.3,
+    "used": false
+   },
+   {
+    "s_apex": 3055.6,
+    "direction": "left",
+    "angle_deg": 6.1,
+    "kind": "kink",
+    "min_radius": 374.7,
+    "used": false
+   },
+   {
+    "s_apex": 3099.6,
+    "direction": "right",
+    "angle_deg": 88.4,
+    "kind": "corner",
+    "min_radius": 16.3,
+    "used": true
+   },
+   {
+    "s_apex": 3209.8,
+    "direction": "left",
+    "angle_deg": 158.3,
+    "kind": "corner",
+    "min_radius": 32.4,
+    "used": true
+   },
+   {
+    "s_apex": 3536.2,
+    "direction": "right",
+    "angle_deg": 97.8,
+    "kind": "corner",
+    "min_radius": 51.9,
+    "used": true
+   },
+   {
+    "s_apex": 3774.4,
+    "direction": "right",
+    "angle_deg": 112.6,
+    "kind": "corner",
+    "min_radius": 113.9,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

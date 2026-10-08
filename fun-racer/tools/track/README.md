@@ -262,6 +262,13 @@ It has no daily quota and a circuit needs only a handful of tiles, so use it whe
 several tracks in a day: `[elevation] dataset = "terrarium"`. Credit: Mapzen Terrain Tiles
 and its sources (see https://github.com/tilezen/joerd/blob/master/docs/attribution.md).
 
+`ahn` is for circuits in the Netherlands: the national lidar terrain model (AHN, ground
+level, 0.5 m), read from PDOK's WCS as averaged GeoTIFF tiles (about 9 x 11 m pixels for the
+centreline and the near terrain, ten times that for the horizon; six tiles for Zandvoort, no
+quota). The 25-30 m global sets flatten dunes: Zandvoort comes out with a 4.7 m elevation
+range from Terrain Tiles and 8.4 m from AHN. Water and buildings are voids, filled like any
+other. Credit: Actueel Hoogtebestand Nederland, via PDOK.
+
 Without that setting the dataset is chosen by coverage: EU-DEM inside its box (latitude 34 to 72, longitude -25
 to 45), otherwise SRTM, otherwise ASTER. If EU-DEM answers with voids for more than a fifth
 of the centreline (it only covers the EEA countries) the build falls back to the next one.

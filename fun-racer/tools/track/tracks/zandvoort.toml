@@ -1,0 +1,116 @@
+# Circuit Zandvoort, Grand Prix layout (4259 m, 14 turns, clockwise).
+#
+#   .venv/bin/python tools/track/build_track.py zandvoort --offline
+
+id = "zandvoort"
+
+[osm]
+# type=circuit "Grand Prix Formule 1 van Nederland": one closed loop of 24 ways (4258 m), the
+# finish and start lines are node members with the roles "finish" / "start".
+relation = 13545573
+
+[elevation]
+# The Dutch lidar terrain model. The global sets flatten the dunes: Terrain Tiles gives a lap
+# with 4.7 m between its lowest and highest point and no Hunserug at all, the lidar 8.5 m.
+# It also has no data over the North Sea (500 m west of Tarzan), where Terrain Tiles carries
+# the sea bed down to -17 m.
+dataset = "ahn"
+# The lidar is the real ground, not a 25 m surface model with trees in it, so it needs less
+# smoothing along the lap; 45 m would shave about a metre off the Hunserug crest.
+smooth_sigma_m = 25.0
+
+# The automatic detection finds these 14 and one more, a 194 m radius left kink between
+# Tarzan and Gerlach (s = 547) that the official map does not number. Pinned so the numbers
+# match it. Names are the ones in OpenStreetMap; turns 9 and 13 have no current name.
+[[turn]]
+id = "T1"
+name = "Tarzanbocht"
+direction = "right"
+s = 380.4
+
+[[turn]]
+id = "T2"
+name = "Gerlachbocht"
+direction = "right"
+s = 688.8
+
+[[turn]]
+id = "T3"
+name = "Hugenholtzbocht"
+direction = "left"
+s = 813.0
+
+[[turn]]
+id = "T4"
+name = "Hunserug"
+direction = "right"
+s = 1031.2
+
+[[turn]]
+id = "T5"
+name = "Rob Slotemakerbocht"
+direction = "left"
+s = 1245.5
+
+[[turn]]
+id = "T6"
+name = "Turn 6"
+direction = "right"
+s = 1433.7
+
+[[turn]]
+id = "T7"
+name = "Scheivlak"
+direction = "right"
+s = 1780.1
+
+[[turn]]
+id = "T8"
+name = "Mastersbocht"
+direction = "right"
+s = 2028.4
+
+[[turn]]
+id = "T9"
+name = "Turn 9"
+direction = "right"
+s = 2264.7
+
+[[turn]]
+id = "T10"
+name = "CM.com bocht"
+direction = "left"
+s = 2474.9
+
+[[turn]]
+id = "T11"
+name = "Hans Ernst chicane"
+direction = "right"
+s = 3099.6
+
+[[turn]]
+id = "T12"
+name = "Hans Ernst chicane"
+direction = "left"
+s = 3209.8
+
+[[turn]]
+id = "T13"
+name = "Turn 13"
+direction = "right"
+s = 3536.2
+
+[[turn]]
+id = "T14"
+name = "Arie Luyendykbocht"
+direction = "right"
+s = 3774.4
+
+# Banking. Hugenholtz and Arie Luyendyk are really banked at up to 18 degrees (0.31 rad); the
+# pipeline's limit is 0.03 rad, so both are driven almost flat here. The automatic camber
+# already reaches that limit in Hugenholtz (33 m radius); Arie Luyendyk (114 m) gets it by hand.
+[[road.override]]
+s = [3690.0, 3900.0]
+bank = 0.03
+blend = 40.0
+note = "Arie Luyendykbocht, right-hander: left (outside) edge higher"
