@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/track/terrain.gd" id="t3_script"]
+
+[node name="Terrain" type="Node3D"]
+script = ExtResource("t3_script")
+terrain_json = "res://assets/tracks/red_bull_ring/terrain.json"
