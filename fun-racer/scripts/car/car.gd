@@ -236,6 +236,17 @@ func _ready() -> void:
 	_ray.exclude = [get_rid()]
 	_ray.collision_mask = collision_mask
 	_reset_drivetrain()
+	_apply_control_settings()
+	Settings.changed.connect(_on_setting_changed)
+
+## Keyboard steering feel follows the player's Settings (controls screen).
+func _apply_control_settings() -> void:
+	key_steer_in_time = float(Settings.get_value("controls", "key_steer_in_time"))
+	key_steer_out_time = float(Settings.get_value("controls", "key_steer_out_time"))
+
+func _on_setting_changed(section: String, key: String) -> void:
+	if section == "controls" and key.begins_with("key_steer_"):
+		_apply_control_settings()
 
 func wheel_radius(i: int) -> float:
 	return FRONT_WHEEL_RADIUS if i < 2 else REAR_WHEEL_RADIUS
