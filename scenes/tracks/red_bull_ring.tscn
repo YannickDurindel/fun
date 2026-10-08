@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/track/track.gd" id="1_track"]
 [ext_resource type="Script" path="res://scripts/track/placeholder_road.gd" id="2_road"]
+[ext_resource type="PackedScene" path="res://scenes/tracks/rbr_terrain.tscn" id="t3_terrain"]
 
 [node name="Track" type="Node3D"]
 script = ExtResource("1_track")
@@ -12,6 +13,6 @@ script = ExtResource("2_road")
 
 [node name="Trackside" type="Node3D" parent="."]
 
-[node name="Terrain" type="Node3D" parent="."]
+[node name="Terrain" parent="." instance=ExtResource("t3_terrain")]
 
 [node name="Race" type="Node" parent="."]
