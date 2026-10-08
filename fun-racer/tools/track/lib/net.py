@@ -31,9 +31,20 @@ DATASETS = {
     # through PDOK's WCS as a few averaged GeoTIFF tiles. No quota. Select it with
     # `[elevation] dataset = "ahn"`.
     "ahn": "AHN DTM 0.5 m (Actueel Hoogtebestand Nederland, CC0) via PDOK",
+    # France and Monaco: IGN's terrain model (ground level: no buildings, no trees; 1 to 5 m
+    # in France, coarser data elsewhere), read point by point from the Geoplateforme altimetry
+    # service, 2000 locations per request. No daily quota. Select it with
+    # `[elevation] dataset = "ign"`.
+    "ign": "RGE ALTI (IGN, Licence Ouverte 2.0) via the Geoplateforme altimetry service",
 }
 TERRARIUM_URL = "https://s3.amazonaws.com/elevation-tiles-prod/terrarium"
 TERRARIUM_ZOOM = 13     # ~19 m * cos(latitude) per pixel, finer than the source DEMs
+IGN_URL = "https://data.geopf.fr/altimetrie/1.0/calcul/alti/rest/elevation.json"
+IGN_RESOURCE = "ign_rge_alti_wld"
+IGN_CHUNK = 2000        # locations per request (the service takes up to 5000)
+IGN_VOID = -20.0        # no data (the open sea) is -99999; the service also interpolates
+                        # towards it at the coast, so anything this low is sea (the lowest
+                        # ground of France is a few metres below sea level)
 AHN_URL = ("https://service.pdok.nl/rws/ahn/wcs/v1_0?service=WCS&version=2.0.1&request=GetCoverage"
            "&coverageId=dtm_05m&format=image/tiff&interpolation=AVERAGE"
            "&subsettingCrs=http://www.opengis.net/def/crs/EPSG/0/4326"
@@ -78,14 +89,18 @@ class Fetcher:
         with open(self.path(name), "wb") as f:
             f.write(body)
 
-    def download(self, url, retries=5):
+    def download(self, url, retries=5, data=None):
+        """Body of ``url``; ``data`` (the bytes of a JSON document) makes it a POST."""
         if self.offline:
             raise BuildError(f"--offline given but {url.split('?')[0]} is not in the cache "
                              f"({self.cache_dir})")
         err = None
         for attempt in range(retries):
             try:
-                req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+                headers = {"User-Agent": USER_AGENT}
+                if data is not None:
+                    headers["Content-Type"] = "application/json"
+                req = urllib.request.Request(url, data=data, headers=headers)
                 self.requests += 1
                 return urllib.request.urlopen(req, timeout=90).read()
             except urllib.error.HTTPError as e:
@@ -96,8 +111,8 @@ class Fetcher:
                 err = e
             self.log(f"  retry {attempt + 1}/{retries}: {err}")
             time.sleep(3.0 * (attempt + 1))
-        raise BuildError(f"download failed: {url[:120]}: {err} (OpenTopoData allows 1000 requests "
-                         "per day; everything fetched so far is cached, so just run again later)")
+        raise BuildError(f"download failed: {url[:120]}: {err} (everything fetched so far is cached, "
+                         "so just run again later; OpenTopoData allows 1000 requests per day)")
 
     def get(self, url, name):
         """Body of ``url``, from the cache file ``name`` when present."""
@@ -126,7 +141,7 @@ def fallback_dataset(dataset, lat):
 
 
 def attribution(dataset):
-    if dataset in ("terrarium", "ahn"):
+    if dataset in ("terrarium", "ahn", "ign"):
         return f"Elevation: {DATASETS[dataset]}."
     return f"Elevation: {DATASETS.get(dataset, dataset)} via OpenTopoData."
 
@@ -220,6 +235,44 @@ def _ahn_elevations(fetcher, latlon):
     return out
 
 
+def _ign_elevations(fetcher, latlon, prefix):
+    """Heights from IGN's altimetry service, cached as ``<prefix>_ign_<hash>.json``. The open
+    sea has no data there and is returned as 0.0 (sea level), not as a void; a request with
+    no data at all is returned as voids, so the callers' coverage checks still work."""
+    out = []
+    for c in range(0, len(latlon), IGN_CHUNK):
+        chunk = latlon[c:c + IGN_CHUNK]
+        lons = "|".join(f"{lo:.6f}" for _, lo in chunk)
+        lats = "|".join(f"{la:.6f}" for la, _ in chunk)
+        name = f"{prefix}_ign_{hashlib.sha1(f'{lats};{lons}'.encode()).hexdigest()[:12]}.json"
+        if fetcher.cached(name):
+            vals = json.loads(fetcher.read(name))["elevation"]
+        else:
+            body = json.dumps({"lon": lons, "lat": lats, "resource": IGN_RESOURCE,
+                               "delimiter": "|", "indent": "false", "measures": "false",
+                               "zonly": "true"}).encode()
+            try:
+                vals = json.loads(fetcher.download(IGN_URL, data=body))["elevations"]
+            except (ValueError, KeyError, TypeError) as e:
+                raise BuildError(f"IGN altimetry service: unexpected answer ({e})") from e
+            # Checked before it is cached: a bad answer must not stay in raw/.
+            if (not isinstance(vals, list) or len(vals) != len(chunk) or not all(
+                    v is None or (isinstance(v, (int, float)) and not isinstance(v, bool)) for v in vals)):
+                raise BuildError(f"IGN altimetry service: expected {len(chunk)} heights, got "
+                                 f"{str(vals)[:120]}")
+            # Stored compactly: only the heights; the request is identified by the hash.
+            fetcher.write(name, json.dumps({"dataset": "ign", "points": len(chunk),
+                                            "elevation": vals}, separators=(",", ":")).encode())
+            time.sleep(1.0)
+        if len(vals) != len(chunk):
+            raise BuildError(f"cache file {name} does not match its request")
+        out += [None if v is None or v < IGN_VOID else float(v) for v in vals]
+    if out and all(v is None for v in out):
+        # Nothing but voids is not a stretch of sea: the resource does not cover the place.
+        return out
+    return [0.0 if v is None else v for v in out]
+
+
 def fetch_elevations(fetcher, latlon, dataset, prefix):
     """Elevations in metres (None = no data) for (lat, lon) pairs, 100 per request, cached as
     ``<prefix>_<hash of the request>.json``."""
@@ -229,6 +282,8 @@ def fetch_elevations(fetcher, latlon, dataset, prefix):
         return _terrarium_elevations(fetcher, latlon)
     if dataset == "ahn":
         return _ahn_elevations(fetcher, latlon)
+    if dataset == "ign":
+        return _ign_elevations(fetcher, latlon, prefix)
     out = []
     for c in range(0, len(latlon), 100):
         chunk = latlon[c:c + 100]

@@ -133,7 +133,7 @@ def fetch(recipe, fetcher):
         if recipe.osm_relation not in data.relations:
             raise BuildError(f"OSM relation {recipe.osm_relation} not found in the OSM data "
                              f"({fetcher.path(name)})")
-    for wid in recipe.osm_ways:
+    for wid in list(recipe.osm_ways) + list(recipe.extra_ways):
         if wid not in data.ways:
             parse(fetcher.get(f"{OSM_API}/way/{wid}/full", f"osm_way_{wid}.xml"), data)
     if recipe.osm_bbox and not recipe.osm_relation:
@@ -158,6 +158,9 @@ def candidate_ways(data, recipe):
     else:
         ids = [w.id for w in data.ways.values() if w.tags.get("highway") == "raceway"]
         source = "raceway ways in the bounding box"
+    # Ways the relation (or the raceway filter) lacks: the search cuts them at the nodes they
+    # share with the other candidates, so a long road can lend just the piece the lap uses.
+    ids += [wid for wid in recipe.extra_ways if wid not in ids]
     ways = []
     for wid in ids:
         w = data.ways.get(wid)
@@ -201,6 +204,9 @@ def build_edges(ways, proj, recipe):
         for i, n in enumerate(w.nodes):
             use[n] = use.get(n, 0) + (1 if 0 < i < len(w.nodes) - 1 else 2)
     avoid = [a.lower() for a in recipe.avoid_names]
+    # Two loops that differ only by which side of a junction they take cannot be told apart
+    # by ways: [osm] avoid_nodes names a node of the wrong one, and no edge may touch it.
+    blocked = {str(n) for n in recipe.avoid_nodes}
     edges = []
     for w in ways:
         text = _way_text(w)
@@ -212,7 +218,8 @@ def build_edges(ways, proj, recipe):
             # A node used again (by this way or another) is a junction: cut here.
             if i == len(w.nodes) - 1 or use[w.nodes[i]] > 1:
                 seg = w.nodes[start:i + 1]
-                edges.append(Edge(len(edges), w.id, seg, proj.length(seg), ow, w.name, pit, alt))
+                if not blocked.intersection(seg):
+                    edges.append(Edge(len(edges), w.id, seg, proj.length(seg), ow, w.name, pit, alt))
                 start = i
     return edges
 
@@ -325,6 +332,10 @@ def find_loop(data, recipe, log=print):
         raise BuildError(f"no usable ways in {source}. Is it a type=circuit relation / are the "
                          "ways tagged highway=raceway? Otherwise list them: [osm] ways = [...]")
     proj = _Proj(data, ways)
+    on_ways = {n for w in ways for n in w.nodes}
+    for node in recipe.avoid_nodes:
+        if str(node) not in on_ways:
+            raise BuildError(f"recipe: osm.avoid_nodes: node {node} is not on any candidate way of {source}")
     edges = build_edges(ways, proj, recipe)
     cycles = _cycles(edges)
     warnings = []

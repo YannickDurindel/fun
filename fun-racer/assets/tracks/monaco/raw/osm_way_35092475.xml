@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1308 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="21911908" visible="true" version="4" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7381870" lon="7.4269542"/>
+ <node id="21911954" visible="true" version="4" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7383687" lon="7.4269176"/>
+ <node id="21911969" visible="true" version="3" changeset="11470342" timestamp="2012-05-01T14:36:25Z" user="Scrup" uid="378737" lat="43.7384518" lon="7.4268360"/>
+ <node id="21912089" visible="true" version="5" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7389156" lon="7.4259881"/>
+ <node id="918118157" visible="true" version="10" changeset="187780077" timestamp="2026-08-21T07:53:53Z" user="Dominik Dachs" uid="1436733" lat="43.7378776" lon="7.4264265">
+  <tag k="crossing" v="marked"/>
+  <tag k="crossing:markings" v="zebra"/>
+  <tag k="crossing_ref" v="zebra"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="1074584887" visible="true" version="4" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7380236" lon="7.4268275"/>
+ <node id="1110560509" visible="true" version="3" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7382767" lon="7.4269541"/>
+ <node id="1110560516" visible="true" version="2" changeset="11470342" timestamp="2012-05-01T14:36:25Z" user="Scrup" uid="378737" lat="43.7386376" lon="7.4265116"/>
+ <node id="1110560521" visible="true" version="6" changeset="140200720" timestamp="2023-08-21T21:03:17Z" user="Sohlman" uid="7546893" lat="43.7387673" lon="7.4262495">
+  <tag k="crossing" v="marked"/>
+  <tag k="crossing:markings" v="yes"/>
+  <tag k="crossing_ref" v="zebra"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_calming" v="table"/>
+ </node>
+ <node id="1110560543" visible="true" version="3" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7381161" lon="7.4269187"/>
+ <node id="1737326309" visible="true" version="11" changeset="187780077" timestamp="2026-08-21T07:53:53Z" user="Dominik Dachs" uid="1436733" lat="43.7379248" lon="7.4266199">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Terrasses du Casino"/>
+  <tag k="public_transport" v="stop_position"/>
+ </node>
+ <node id="1737326331" visible="true" version="2" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7379989" lon="7.4267945"/>
+ <node id="1737326367" visible="true" version="2" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7380647" lon="7.4268746"/>
+ <node id="1737326395" visible="true" version="2" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7381388" lon="7.4269336"/>
+ <node id="1737326398" visible="true" version="2" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7381623" lon="7.4269455"/>
+ <node id="1737326414" visible="true" version="2" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7382500" lon="7.4269578"/>
+ <node id="1737326444" visible="true" version="3" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7383452" lon="7.4269321"/>
+ <node id="1737326467" visible="true" version="2" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7384267" lon="7.4268673"/>
+ <node id="1737326497" visible="true" version="1" changeset="11470342" timestamp="2012-05-01T14:36:14Z" user="Scrup" uid="378737" lat="43.7384836" lon="7.4267889"/>
+ <node id="9153994022" visible="true" version="3" changeset="140459732" timestamp="2023-08-27T16:30:56Z" user="rene78" uid="257555" lat="43.7387118" lon="7.4263616">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Square Beaumarchais"/>
+  <tag k="public_transport" v="stop_position"/>
+ </node>
+ <node id="9416148722" visible="true" version="1" changeset="116117868" timestamp="2022-01-13T18:17:23Z" user="FUZZY_42" uid="5460758" lat="43.7385174" lon="7.4267281"/>
+ <node id="11449741815" visible="true" version="2" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7388571" lon="7.4260900">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Square Beaumarchais"/>
+  <tag k="public_transport" v="stop_position"/>
+ </node>
+ <node id="12571844659" visible="true" version="1" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7384013" lon="7.4268928"/>
+ <node id="12571844660" visible="true" version="1" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7383104" lon="7.4269448"/>
+ <node id="12571844661" visible="true" version="1" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7382152" lon="7.4269588"/>
+ <node id="12571844662" visible="true" version="1" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7380899" lon="7.4268990"/>
+ <node id="12571844663" visible="true" version="1" changeset="162324497" timestamp="2025-02-09T18:24:01Z" user="Marc Mongenet" uid="74847" lat="43.7380438" lon="7.4268527"/>
+ <node id="12571844664" visible="true" version="2" changeset="187780077" timestamp="2026-08-21T07:53:53Z" user="Dominik Dachs" uid="1436733" lat="43.7379299" lon="7.4266414"/>
+ <node id="14109303021" visible="true" version="1" changeset="187780077" timestamp="2026-08-21T07:53:53Z" user="Dominik Dachs" uid="1436733" lat="43.7379007" lon="7.4265316"/>
+ <node id="14109303022" visible="true" version="1" changeset="187780077" timestamp="2026-08-21T07:53:53Z" user="Dominik Dachs" uid="1436733" lat="43.7379518" lon="7.4267039"/>
+ <way id="35092475" visible="true" version="18" changeset="187780077" timestamp="2026-08-21T07:53:53Z" user="Dominik Dachs" uid="1436733">
+  <nd ref="21912089"/>
+  <nd ref="11449741815"/>
+  <nd ref="1110560521"/>
+  <nd ref="9153994022"/>
+  <nd ref="1110560516"/>
+  <nd ref="9416148722"/>
+  <nd ref="1737326497"/>
+  <nd ref="21911969"/>
+  <nd ref="1737326467"/>
+  <nd ref="12571844659"/>
+  <nd ref="21911954"/>
+  <nd ref="1737326444"/>
+  <nd ref="12571844660"/>
+  <nd ref="1110560509"/>
+  <nd ref="1737326414"/>
+  <nd ref="12571844661"/>
+  <nd ref="21911908"/>
+  <nd ref="1737326398"/>
+  <nd ref="1737326395"/>
+  <nd ref="1110560543"/>
+  <nd ref="12571844662"/>
+  <nd ref="1737326367"/>
+  <nd ref="12571844663"/>
+  <nd ref="1074584887"/>
+  <nd ref="1737326331"/>
+  <nd ref="14109303022"/>
+  <nd ref="12571844664"/>
+  <nd ref="1737326309"/>
+  <nd ref="14109303021"/>
+  <nd ref="918118157"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Avenue Princesse Alice"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q98925156"/>
+ </way>
+</osm>

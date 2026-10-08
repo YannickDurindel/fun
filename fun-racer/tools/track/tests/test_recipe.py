@@ -30,14 +30,18 @@ class RecipeTest(unittest.TestCase):
         self.assertEqual(r.source, os.path.join("tools", "track", "tracks", "red_bull_ring.toml"))
 
     def test_no_recipe_file_uses_calendar_and_command_line(self):
-        # Monaco: on the calendar, no recipe file (Imola has one now).
-        r = recipe.load("monaco", overrides={"osm_relation": 9291096, "name": None})
+        # A calendar circuit built without a recipe file. Every circuit of the calendar has one
+        # by now, so the empty recipe is given directly (load() does the same for a missing file).
+        r = recipe.from_dict("monaco", {}, overrides={"osm_relation": 9291096, "name": None})
         self.assertEqual((r.length_m, r.turns, r.country_code), (3337.0, 19, "MC"))
         self.assertEqual(r.osm_relation, 9291096)
         self.assertFalse(r.turns_pinned)
         self.assertEqual(r.spline, "centripetal")
         self.assertEqual(r.road, {})
         self.assertEqual(r.source, "")
+        # load() with no recipe file for the id: the same empty recipe.
+        r = recipe.load("no_such_circuit", overrides={"osm_relation": 1, "length_m": 4000.0})
+        self.assertEqual((r.length_m, r.source, r.road, r.turn_table), (4000.0, "", {}, []))
 
     def test_command_line_overrides_recipe(self):
         r = recipe.from_dict("red_bull_ring", {"length_m": 4000, "osm": {"relation": 1}},

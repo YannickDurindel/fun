@@ -1,0 +1,597 @@
+{
+ "id": "monaco",
+ "recipe": "tools/track/tracks/monaco.toml",
+ "osm": {
+  "relation": 148194,
+  "loop_ways": [
+   1470365907,
+   1470365906,
+   1148675745,
+   4230007,
+   568187257,
+   166399501,
+   434567309,
+   4230006,
+   4230009,
+   4229658,
+   161752645,
+   1082515450,
+   161775592,
+   1551240829,
+   1551240830,
+   35092475,
+   254596486,
+   157719644,
+   1081401616,
+   1453878835,
+   166399479,
+   1019174508,
+   4226740,
+   60767229,
+   168681959,
+   1081401617,
+   39839529,
+   1081401615,
+   214636589,
+   1081401614,
+   503475642,
+   485746484,
+   1081401613,
+   348019480,
+   1451501763,
+   4229536,
+   160004393,
+   1230247123,
+   4230891,
+   41929969,
+   1148199871
+  ],
+  "raw_length_m": 3323.5,
+  "length_m": 3310.1,
+  "official_length_m": 3337.0,
+  "length_error": -0.00807,
+  "candidates": [
+   {
+    "length_m": 3324.5,
+    "ways": [
+     1470365907,
+     1470365906,
+     1148675745,
+     4230007,
+     568187257,
+     166399501,
+     434567309,
+     4230006,
+     4230009,
+     4229658,
+     161752645,
+     1082515450,
+     161775592,
+     1551240829,
+     1551240830,
+     35092475,
+     254596486,
+     157719644,
+     1081401616,
+     1453878835,
+     166399479,
+     1019174508,
+     4226740,
+     60767229,
+     168681959,
+     1081401617,
+     39839529,
+     1081401615,
+     214636589,
+     1081401614,
+     503475642,
+     485746484,
+     1081401613,
+     348019480,
+     1451501763,
+     4229536,
+     160004393,
+     1230247123,
+     4230891,
+     41929969,
+     1148199871
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "ign",
+ "elevation": {
+  "range_m": 41.64,
+  "max_grade": 0.1029,
+  "min_grade": -0.0846,
+  "origin_m": 3.68
+ },
+ "turns": {
+  "official": 19,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Circuit de Monaco",
+    "direction": "right",
+    "s_apex": 219.8,
+    "min_radius": 18.1
+   },
+   {
+    "id": "T2",
+    "name": "Avenue d'Ostende",
+    "direction": "left",
+    "s_apex": 500.0,
+    "min_radius": 73.1
+   },
+   {
+    "id": "T3",
+    "name": "Avenue de Monte-Carlo",
+    "direction": "right",
+    "s_apex": 647.2,
+    "min_radius": 74.7
+   },
+   {
+    "id": "T4",
+    "name": "Avenue de Monte-Carlo",
+    "direction": "left",
+    "s_apex": 770.2,
+    "min_radius": 43.4
+   },
+   {
+    "id": "T5",
+    "name": "Avenue de Monte-Carlo",
+    "direction": "left",
+    "s_apex": 842.8,
+    "min_radius": 39.0
+   },
+   {
+    "id": "T6",
+    "name": "Place du Casino",
+    "direction": "right",
+    "s_apex": 905.3,
+    "min_radius": 30.2
+   },
+   {
+    "id": "T7",
+    "name": "Avenue des Spélugues",
+    "direction": "right",
+    "s_apex": 1135.2,
+    "min_radius": 16.8
+   },
+   {
+    "id": "T8",
+    "name": "Avenue des Spélugues",
+    "direction": "left",
+    "s_apex": 1197.7,
+    "min_radius": 43.6
+   },
+   {
+    "id": "T9",
+    "name": "Avenue des Spélugues",
+    "direction": "left",
+    "s_apex": 1268.3,
+    "min_radius": 10.4
+   },
+   {
+    "id": "T10",
+    "name": "Avenue Princesse Grace",
+    "direction": "right",
+    "s_apex": 1352.9,
+    "min_radius": 16.3
+   },
+   {
+    "id": "T11",
+    "name": "Circuit de Monaco",
+    "direction": "right",
+    "s_apex": 1443.7,
+    "min_radius": 13.7
+   },
+   {
+    "id": "T12",
+    "name": "Boulevard Louis II",
+    "direction": "right",
+    "s_apex": 1544.5,
+    "min_radius": 312.9
+   },
+   {
+    "id": "T13",
+    "name": "Boulevard Louis II",
+    "direction": "right",
+    "s_apex": 1945.7,
+    "min_radius": 180.2
+   },
+   {
+    "id": "T14",
+    "name": "Turn 14",
+    "direction": "left",
+    "s_apex": 2101.0,
+    "min_radius": 13.5
+   },
+   {
+    "id": "T15",
+    "name": "Circuit de Monaco",
+    "direction": "right",
+    "s_apex": 2123.2,
+    "min_radius": 13.3
+   },
+   {
+    "id": "T16",
+    "name": "Circuit de Monaco",
+    "direction": "left",
+    "s_apex": 2161.5,
+    "min_radius": 30.1
+   },
+   {
+    "id": "T17",
+    "name": "Route de la Piscine",
+    "direction": "left",
+    "s_apex": 2385.3,
+    "min_radius": 24.3
+   },
+   {
+    "id": "T18",
+    "name": "Circuit de Monaco",
+    "direction": "left",
+    "s_apex": 2548.6,
+    "min_radius": 32.2
+   },
+   {
+    "id": "T19",
+    "name": "Circuit de Monaco",
+    "direction": "right",
+    "s_apex": 2584.9,
+    "min_radius": 27.1
+   },
+   {
+    "id": "T20",
+    "name": "Circuit de Monaco",
+    "direction": "right",
+    "s_apex": 2711.9,
+    "min_radius": 17.4
+   },
+   {
+    "id": "T21",
+    "name": "Circuit de Monaco",
+    "direction": "left",
+    "s_apex": 2740.2,
+    "min_radius": 15.9
+   },
+   {
+    "id": "T22",
+    "name": "Circuit de Monaco",
+    "direction": "left",
+    "s_apex": 2877.3,
+    "min_radius": 85.9
+   },
+   {
+    "id": "T23",
+    "name": "Quai Antoine 1er",
+    "direction": "right",
+    "s_apex": 2935.8,
+    "min_radius": 14.1
+   },
+   {
+    "id": "T24",
+    "name": "Circuit de Monaco",
+    "direction": "right",
+    "s_apex": 3024.5,
+    "min_radius": 18.3
+   },
+   {
+    "id": "T25",
+    "name": "Avenue du Port",
+    "direction": "left",
+    "s_apex": 3054.7,
+    "min_radius": 55.6
+   },
+   {
+    "id": "T26",
+    "name": "Boulevard Albert 1er",
+    "direction": "right",
+    "s_apex": 3137.4,
+    "min_radius": 100.8
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 68.6,
+    "direction": "right",
+    "angle_deg": 8.2,
+    "kind": "kink",
+    "min_radius": 257.9,
+    "used": false
+   },
+   {
+    "s_apex": 129.0,
+    "direction": "right",
+    "angle_deg": 13.1,
+    "kind": "kink",
+    "min_radius": 200.4,
+    "used": false
+   },
+   {
+    "s_apex": 179.5,
+    "direction": "left",
+    "angle_deg": 8.6,
+    "kind": "kink",
+    "min_radius": 115.8,
+    "used": false
+   },
+   {
+    "s_apex": 219.8,
+    "direction": "right",
+    "angle_deg": 73.9,
+    "kind": "corner",
+    "min_radius": 18.1,
+    "used": true
+   },
+   {
+    "s_apex": 326.6,
+    "direction": "left",
+    "angle_deg": 7.1,
+    "kind": "kink",
+    "min_radius": 348.4,
+    "used": false
+   },
+   {
+    "s_apex": 441.6,
+    "direction": "right",
+    "angle_deg": 8.6,
+    "kind": "kink",
+    "min_radius": 158.7,
+    "used": false
+   },
+   {
+    "s_apex": 500.0,
+    "direction": "left",
+    "angle_deg": 19.7,
+    "kind": "corner",
+    "min_radius": 73.1,
+    "used": true
+   },
+   {
+    "s_apex": 584.7,
+    "direction": "right",
+    "angle_deg": 11.0,
+    "kind": "kink",
+    "min_radius": 140.4,
+    "used": false
+   },
+   {
+    "s_apex": 647.2,
+    "direction": "right",
+    "angle_deg": 15.3,
+    "kind": "corner",
+    "min_radius": 74.7,
+    "used": true
+   },
+   {
+    "s_apex": 770.2,
+    "direction": "left",
+    "angle_deg": 111.4,
+    "kind": "corner",
+    "min_radius": 43.4,
+    "used": true
+   },
+   {
+    "s_apex": 842.8,
+    "direction": "left",
+    "angle_deg": 26.1,
+    "kind": "corner",
+    "min_radius": 39.0,
+    "used": true
+   },
+   {
+    "s_apex": 905.3,
+    "direction": "right",
+    "angle_deg": 84.1,
+    "kind": "corner",
+    "min_radius": 30.2,
+    "used": true
+   },
+   {
+    "s_apex": 1135.2,
+    "direction": "right",
+    "angle_deg": 137.7,
+    "kind": "corner",
+    "min_radius": 16.8,
+    "used": true
+   },
+   {
+    "s_apex": 1197.7,
+    "direction": "left",
+    "angle_deg": 29.2,
+    "kind": "corner",
+    "min_radius": 43.6,
+    "used": true
+   },
+   {
+    "s_apex": 1238.0,
+    "direction": "right",
+    "angle_deg": 6.9,
+    "kind": "kink",
+    "min_radius": 105.3,
+    "used": false
+   },
+   {
+    "s_apex": 1268.3,
+    "direction": "left",
+    "angle_deg": 194.5,
+    "kind": "corner",
+    "min_radius": 10.4,
+    "used": true
+   },
+   {
+    "s_apex": 1352.9,
+    "direction": "right",
+    "angle_deg": 116.4,
+    "kind": "corner",
+    "min_radius": 16.3,
+    "used": true
+   },
+   {
+    "s_apex": 1391.3,
+    "direction": "left",
+    "angle_deg": 5.6,
+    "kind": "kink",
+    "min_radius": 115.2,
+    "used": false
+   },
+   {
+    "s_apex": 1443.7,
+    "direction": "right",
+    "angle_deg": 113.9,
+    "kind": "corner",
+    "min_radius": 13.7,
+    "used": true
+   },
+   {
+    "s_apex": 1544.5,
+    "direction": "right",
+    "angle_deg": 59.0,
+    "kind": "corner",
+    "min_radius": 312.9,
+    "used": true
+   },
+   {
+    "s_apex": 1945.7,
+    "direction": "right",
+    "angle_deg": 18.3,
+    "kind": "corner",
+    "min_radius": 180.2,
+    "used": true
+   },
+   {
+    "s_apex": 2101.0,
+    "direction": "left",
+    "angle_deg": 68.4,
+    "kind": "corner",
+    "min_radius": 13.5,
+    "used": true
+   },
+   {
+    "s_apex": 2123.2,
+    "direction": "right",
+    "angle_deg": 96.8,
+    "kind": "corner",
+    "min_radius": 13.3,
+    "used": true
+   },
+   {
+    "s_apex": 2161.5,
+    "direction": "left",
+    "angle_deg": 28.8,
+    "kind": "corner",
+    "min_radius": 30.1,
+    "used": true
+   },
+   {
+    "s_apex": 2385.3,
+    "direction": "left",
+    "angle_deg": 83.3,
+    "kind": "corner",
+    "min_radius": 24.3,
+    "used": true
+   },
+   {
+    "s_apex": 2548.6,
+    "direction": "left",
+    "angle_deg": 51.2,
+    "kind": "corner",
+    "min_radius": 32.2,
+    "used": true
+   },
+   {
+    "s_apex": 2584.9,
+    "direction": "right",
+    "angle_deg": 44.1,
+    "kind": "corner",
+    "min_radius": 27.1,
+    "used": true
+   },
+   {
+    "s_apex": 2645.4,
+    "direction": "left",
+    "angle_deg": 4.7,
+    "kind": "kink",
+    "min_radius": 251.0,
+    "used": false
+   },
+   {
+    "s_apex": 2711.9,
+    "direction": "right",
+    "angle_deg": 64.6,
+    "kind": "corner",
+    "min_radius": 17.4,
+    "used": true
+   },
+   {
+    "s_apex": 2740.2,
+    "direction": "left",
+    "angle_deg": 77.5,
+    "kind": "corner",
+    "min_radius": 15.9,
+    "used": true
+   },
+   {
+    "s_apex": 2877.3,
+    "direction": "left",
+    "angle_deg": 38.5,
+    "kind": "corner",
+    "min_radius": 85.9,
+    "used": true
+   },
+   {
+    "s_apex": 2935.8,
+    "direction": "right",
+    "angle_deg": 138.5,
+    "kind": "corner",
+    "min_radius": 14.1,
+    "used": true
+   },
+   {
+    "s_apex": 3024.5,
+    "direction": "right",
+    "angle_deg": 92.5,
+    "kind": "corner",
+    "min_radius": 18.3,
+    "used": true
+   },
+   {
+    "s_apex": 3054.7,
+    "direction": "left",
+    "angle_deg": 24.3,
+    "kind": "corner",
+    "min_radius": 55.6,
+    "used": true
+   },
+   {
+    "s_apex": 3085.0,
+    "direction": "right",
+    "angle_deg": 5.2,
+    "kind": "kink",
+    "min_radius": 155.3,
+    "used": false
+   },
+   {
+    "s_apex": 3137.4,
+    "direction": "right",
+    "angle_deg": 16.5,
+    "kind": "corner",
+    "min_radius": 100.8,
+    "used": true
+   },
+   {
+    "s_apex": 3290.6,
+    "direction": "right",
+    "angle_deg": 8.5,
+    "kind": "kink",
+    "min_radius": 319.3,
+    "used": false
+   }
+  ]
+ },
+ "warnings": []
+}
