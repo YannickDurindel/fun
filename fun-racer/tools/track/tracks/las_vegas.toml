@@ -1,0 +1,225 @@
+# Las Vegas Strip Circuit, Paradise, Nevada: the Grand Prix street circuit raced since 2023
+# (6201 m, 17 turns, anticlockwise).
+#
+#   .venv/bin/python tools/track/build_track.py las_vegas --offline
+
+id = "las_vegas"
+
+[osm]
+# type=circuit relation "Las Vegas Strip Circuit". One closed loop, 6217 m in OSM: the
+# purpose-built pit lot at Harmon Avenue / Koval Lane (highway=raceway), then public roads
+# (Koval Lane, Westchester Drive, the service roads round the Sphere, Sands Avenue, South Las
+# Vegas Boulevard, Harmon Avenue). The pit lane has the role "pit_lane"; the finish and start
+# lines are node members (start 92 m after the finish line, which matches the official race
+# distance: 50 laps of 6.201 km less 309.958 km = 92 m); 17 more node members carry
+# junction=yes and ref = 1..17, the official turn numbers.
+# The dual carriageways are mapped as two ways and the relation picks one side for each
+# stretch, so the lap follows that carriageway's centreline, not the full width the race uses.
+# The [[osm.round]] entries below shorten the loop to 6165 m, so the plan view is scaled up
+# by 0.58 % to the official length.
+relation = 16696508
+ignore_oneway = true    # the oneway tags follow traffic, against the race on some roads
+
+# The streets are drawn as road centrelines, so the lap turns at a junction on a single sharp
+# vertex. These entries replace it by a corner of a plausible radius.
+[[osm.round]]
+node = 13341696794      # Sands Avenue: the lap changes carriageway on a 23 m raceway link,
+to_node = 5717469572    # a 58 / 61 degree dogleg. Flat out in the race: an S-bend instead
+reach_m = 50.0
+note = "carriageway crossover on Sands Avenue between Turns 9 and 10"
+
+[[osm.round]]
+node = 12059212382      # Sphere service road -> Sands Avenue: one 90 degree vertex
+reach_m = 30.0
+note = "Turn 9"
+
+[[osm.round]]
+node = 12638889512      # one 77 degree vertex
+reach_m = 18.0
+note = "Turn 7"
+
+[[osm.round]]
+node = 12626696512      # Westchester Drive -> Sphere service road: one 36 degree vertex
+reach_m = 32.0
+note = "Turn 6 (entry of the long left round the Sphere)"
+
+[[osm.round]]
+node = 137743393        # Koval Lane -> Westchester Drive: one 90 degree vertex
+reach_m = 34.0
+note = "Turn 5"
+
+[[osm.round]]
+node = 5717585567       # pit lot -> Koval Lane: one 27 degree vertex
+reach_m = 30.0
+note = "Turn 4"
+
+[[osm.round]]
+node = 2852160857       # the Strip -> Harmon Avenue: one 47 degree vertex
+reach_m = 15.0
+note = "Turn 14"
+
+[[osm.round]]
+node = 1490596713       # Sands Avenue -> the Strip: one 71 degree vertex
+reach_m = 25.0
+note = "Turn 12"
+
+# The Strip bends gently left past the Venetian, Caesars Palace and the Bellagio. OSM draws
+# the bend as a polygon with 3 to 6 degree vertices, each of which becomes a 280-450 m bend a
+# car at 350 km/h has to lift for; the race is flat out from Turn 12 to Turn 14.
+[[osm.round]]
+node = 13154585537
+reach_m = 40.0
+note = "the Strip"
+
+[[osm.round]]
+node = 1307215334
+reach_m = 60.0
+note = "the Strip"
+
+[[osm.round]]
+node = 13154585535
+reach_m = 30.0
+note = "the Strip (Turn 13 kink)"
+
+[[osm.round]]
+node = 4210496188
+reach_m = 25.0
+note = "the Strip"
+
+[[osm.round]]
+node = 1307215330
+reach_m = 35.0
+note = "the Strip"
+
+[[osm.round]]
+node = 6091215751
+reach_m = 35.0
+note = "the Strip"
+
+[[osm.round]]
+node = 13060798867
+reach_m = 40.0
+note = "the Strip"
+
+[layout]
+direction = "anticlockwise"
+
+[elevation]
+dataset = "terrarium"
+# The valley floor slopes down to the east: the Strip at Harmon Avenue is the high point, the
+# Sphere the low point. Here Terrain Tiles come from the USGS 3DEP ground model, so the hotel
+# towers are not in the data (range 15.3 m at the default 45 m), but 2 % ripples are; the
+# long gradient is what is real.
+smooth_sigma_m = 150.0
+
+[terrain]
+smooth_sigma_m = 120.0
+
+# The official 17 turns, at the relation's numbered turn nodes. Automatic detection finds 18
+# corners: it numbers the crossover on Sands Avenue and both curvature peaks of Turn 10, and
+# has one number for the Turn 1-2 hairpin and none for Turns 13 and 15.
+# The corners have no official names; these are the streets and landmarks.
+[[turn]]
+id = "T1"
+name = "Turn 1 (hairpin)"
+direction = "left"
+s = 312.0
+
+[[turn]]
+id = "T2"
+name = "Turn 2 (hairpin exit)"
+direction = "left"
+s = 352.0
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "right"
+s = 593.0
+
+[[turn]]
+id = "T4"
+name = "Koval Lane"
+direction = "right"
+s = 695.0
+
+[[turn]]
+id = "T5"
+name = "Westchester Drive"
+direction = "right"
+s = 1615.0
+
+[[turn]]
+id = "T6"
+name = "Sphere (entry)"
+direction = "left"
+s = 1889.0
+
+[[turn]]
+id = "T7"
+name = "Sphere"
+direction = "left"
+s = 2068.0
+
+[[turn]]
+id = "T8"
+name = "Sphere (chicane)"
+direction = "right"
+s = 2124.0
+
+[[turn]]
+id = "T9"
+name = "Sands Avenue"
+direction = "left"
+s = 2269.0
+
+[[turn]]
+id = "T10"
+name = "Sands Avenue (right)"
+direction = "right"
+s = 2796.0
+
+[[turn]]
+id = "T11"
+name = "Sands Avenue (left)"
+direction = "left"
+s = 2995.0
+
+[[turn]]
+id = "T12"
+name = "The Strip (entry)"
+direction = "left"
+s = 3242.0
+
+[[turn]]
+id = "T13"
+name = "The Strip (kink)"
+direction = "left"
+s = 3920.0
+
+[[turn]]
+id = "T14"
+name = "Harmon Avenue (entry)"
+direction = "left"
+s = 5183.0
+
+# Officially a right-hander between two lefts. OSM draws Turn 14 to Turn 16 as a 120 m
+# diagonal between two left-hand vertices, with the Turn 15 node on the straight part: the
+# built lap has no right-hand bend here, and the entry only keeps the numbering.
+[[turn]]
+id = "T15"
+name = "Harmon Avenue (chicane)"
+direction = "right"
+s = 5227.5
+
+[[turn]]
+id = "T16"
+name = "Harmon Avenue (exit)"
+direction = "left"
+s = 5312.0
+
+[[turn]]
+id = "T17"
+name = "Turn 17"
+direction = "left"
+s = 6050.0
