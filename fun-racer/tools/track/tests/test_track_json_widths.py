@@ -29,10 +29,12 @@ class TrackJsonWidthsTest(unittest.TestCase):
             _recipe({"track_json_widths": "yes"})
 
     def test_nominal_width_without_the_key(self):
-        # No numpy needed, and whatever the [road] table says: this is what every track built
-        # before the key existed has in its track.json.
+        # No numpy needed. Without the key the width is nominal: 13 m, or the recipe's base
+        # width when that is narrower (the drivers must not plan outside the road). Tracks built
+        # before the key existed have no narrower base width, so they keep 13 m.
         road = {k: v for k, v in NARROW.items() if k != "track_json_widths"}
-        self.assertEqual(info.track_json_widths(_recipe(road), 5, STEP, 10.0, 0.0, [0.0] * 5), [13.0] * 5)
+        self.assertEqual(info.track_json_widths(_recipe(road), 5, STEP, 10.0, 0.0, [0.0] * 5), [11.0] * 5)
+        self.assertEqual(info.track_json_widths(_recipe({"base_width": 14.0}), 2, STEP, 4.0, 0.0, [0.0] * 2), [13.0] * 2)
         self.assertEqual(info.track_json_widths(_recipe({}), 3, STEP, 6.0, 0.0, [0.0] * 3), [13.0] * 3)
 
     @unittest.skipUnless(HAVE_NUMPY, "cad/track/banking.py needs numpy (use the project venv)")
@@ -52,7 +54,7 @@ class TrackJsonWidthsTest(unittest.TestCase):
         with self.assertRaises(BuildError):                                # centreline ran without the key
             info._check_track_widths(rec, _track([13.0] * N))
         off = _recipe({k: v for k, v in NARROW.items() if k != "track_json_widths"})
-        info._check_track_widths(off, _track([13.0] * N))
+        info._check_track_widths(off, _track([11.0] * N))                  # nominal = base width
         with self.assertRaises(BuildError):                                # the key was removed since
             info._check_track_widths(off, _track(built))
 

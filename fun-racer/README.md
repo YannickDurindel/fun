@@ -1,7 +1,7 @@
 # Fun Racer
 
 A Trackmania-style racer for Linux, built with Godot 4.7. You drive a CAD-modelled F1 car on real
-circuits rebuilt from open map and elevation data, starting with the Red Bull Ring: time attack
+circuits rebuilt from open map and elevation data, all 24 of the F1 calendar: time attack
 against your own ghost, or races against bots.
 
 ## Play
@@ -15,8 +15,7 @@ tools/bin/godot --path .  # start the game
 
 The game opens on the main menu:
 
-1. **Play** → choose a track. The Red Bull Ring is playable; the other F1 circuits are listed as
-   coming soon.
+1. **Play** → choose a track. All 24 circuits of the F1 calendar are playable.
 2. **Race options** → mode (time attack with endless laps, or a race of 1–20 laps), opponents
    (off, or 1–7 bots at easy / medium / hard), ghost car, countdown and starting camera.
 3. **Start race.** A loading screen shows the track while it builds.
@@ -91,24 +90,39 @@ T9 Red Bull Mobile 3982. The lap is 4318 m.
 tools/bin/godot --path . res://scenes/main.tscn     # infinite flat plane, no track
 ```
 
-## The track
+## The tracks
 
-- **Length and layout:** 4318 m and 10 turns. The centreline comes from OpenStreetMap and is scaled
-  to the official lap length.
-- **Elevation:** from the EU-DEM 25 m dataset. The lap has 68 m of elevation change and a climb of
-  up to about 14 % to Remus.
-- **Road:** 12.5–16 m wide with crossfall and light corner camber. Those widths and cambers are
-  estimates, because no public source lists them per corner.
-- **Trackside:** red/white and sausage kerbs, tarmac and gravel run-off, armco and concrete walls,
-  and grass terrain with the surrounding hills.
+All 24 circuits are built by one pipeline (`tools/track/build_track.py`) from open data, each
+from a recipe in `tools/track/tracks/<id>.toml`:
+
+- **Layout:** the centreline comes from OpenStreetMap and is scaled to the official lap length.
+- **Elevation:** from open elevation data (Terrain Tiles; the Dutch and French national ground
+  models for Zandvoort and Monaco; EU-DEM for the Red Bull Ring).
+- **Road:** widths and camber are estimates, because no public source lists them per corner.
+  Street circuits use narrower roads.
+- **Trackside:** kerbs, run-off and barriers. Permanent circuits get an automatic layout; the
+  Red Bull Ring and the street circuits have hand-written ones, with walls close to the road
+  on the street circuits.
 - **Surfaces:** grass and gravel have less grip than tarmac and slow the car down.
+
+Track ids for `--track=`: `albert_park`, `bahrain`, `baku`, `catalunya`, `cota`,
+`gilles_villeneuve`, `hermanos_rodriguez`, `hungaroring`, `imola`, `interlagos`, `jeddah`,
+`las_vegas`, `lusail`, `marina_bay`, `miami`, `monaco`, `monza`, `red_bull_ring`, `shanghai`,
+`silverstone`, `spa`, `suzuka`, `yas_marina`, `zandvoort`.
+
+Known limits: banking is capped at 1.7 degrees (Zandvoort's and Jeddah's banked corners are
+nearly flat), there are no buildings, tunnels, overpasses or water, desert circuits have grass
+verges, and short steep climbs come out gentler than in reality (Spa's Raidillon peaks at
+12.8 % against about 18 %). Each recipe file records what was checked against a source and
+what is an estimate.
 
 ## Tests and tools
 
 ```bash
 tests/run_tests.sh                 # all headless tests (about 5 minutes)
 tests/run_tests.sh --filter=car    # only test files whose name contains "car"
-tools/lap_demo.sh                  # autopilot drives two full laps and prints speeds per turn
+tools/lap_demo.sh                  # autopilot drives two full laps of the Red Bull Ring, speeds per turn
+tools/lap_check.sh monza           # autopilot lap check on any track: lap times, edge margin, impacts
 tools/screenshot.sh out.png        # render one frame of the main menu
 tools/screenshot.sh out.png res://scenes/race.tscn 300 --track=red_bull_ring --spawn_s=1300
 ```
