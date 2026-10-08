@@ -1,9 +1,15 @@
 class_name Autopilot
 extends Node
-## Autopilot driver for track scenes (Autodrive node). Registers itself as
-## Bootstrap.autodrive_provider, so `--autodrive` (or Bootstrap.autodrive = true) lets it drive.
+## Autopilot: a driving brain that laps a Track on its racing line. Two ways to use it:
+##   * Mode.PROVIDER (default, the race scene's Autodrive node): registers itself as
+##     Bootstrap.autodrive_provider, so `--autodrive` (or Bootstrap.autodrive = true) lets it
+##     drive the PLAYER car through Bootstrap.get_throttle/brake/steer().
+##   * Mode.DIRECT (bots, see BotDriver): drives its own `car` through
+##     Car.set_input_override() every think tick, whenever that car simulates.
+## The racing line and the speed profiles are cached statically (per track, per pace / car
+## tuning), so any number of drivers on one track share one precomputation.
 ##
-## Pipeline (computed once per track in _ready, cached per track file):
+## Pipeline (computed once per track, lazily or with prepare()):
 ##   1. Racing line: a lateral offset n(s) from the centreline, bounded by
 ##      +/-(width/2 - line_margin), found by curvature minimisation (Gauss-Seidel relaxation of
 ##      each point towards the midpoint of its neighbours, coarse-to-fine strides). Out-in-out.
@@ -28,7 +34,25 @@ extends Node
 ## Drift guard: the Car drifts on brake + |steer| > 0.5 above 80 km/h, so above
 ## `drift_guard_kmh` the brake is held below the drift threshold whenever |steer| is large.
 
+enum Mode { PROVIDER, DIRECT }
+
 @export var car_path: NodePath
+@export var mode: Mode = Mode.PROVIDER
+## DIRECT mode: the brain thinks every N physics ticks and holds its inputs in between
+## (4 = 60 Hz at 240 Hz physics). `think_phase` staggers several drivers over the ticks.
+@export var think_every: int = 1
+@export var think_phase: int = 0
+## Per-turn / tracking statistics (lap timing always runs). Off for bots: it is per-tick work.
+@export var collect_stats: bool = true
+@export_group("Pace")
+## Throttle ceiling (1 = flat out).
+@export var throttle_cap: float = 1.0
+## Multiplier on the profile's target speed (per-driver pace variation; <= 1).
+@export var speed_scale: float = 1.0
+## Lateral shift of this driver's line (m, + right), clamped to the road like the line itself.
+@export var line_shift: float = 0.0
+## How far past the racing-line bound (width/2 - line_margin) the shifted line may go (m).
+@export var line_shift_overrun: float = 0.0
 @export_group("Racing line")
 ## Distance kept between the racing line and the road edge (m).
 @export var line_margin: float = 1.5
@@ -93,21 +117,59 @@ var _clock: float = 0.0
 var _lap_t0: float = -1.0
 var _prev_s: float = -1.0
 var _turn_state: Array[Dictionary] = []
+var _tick: int = 0
 
 const RaceTimer := preload("res://scripts/ui/race_timer.gd")
 
+## Racing lines, keyed by track geometry + line options: {off, pts, k}.
 static var _cache: Dictionary = {}
+## Speed profiles, keyed by line key + pace + car tuning: {v, predicted}.
+static var _profile_cache: Dictionary = {}
+## Number of racing lines / profiles actually computed (tests check the sharing).
+static var line_builds: int = 0
+static var profile_builds: int = 0
+
+## The car this brain drives (set from car_path in _ready, or assign before / after).
+var car: Car:
+	get:
+		return _car
+	set(v):
+		set_car(v)
+## The track driven (defaults to the first node in group "track").
+var track: Track:
+	get:
+		return _track
+	set(v):
+		_track = v
+		_data = null
 
 func _ready() -> void:
 	process_physics_priority = -10   # run before the Car reads its inputs this tick
-	_car = get_node_or_null(car_path) as Car
-	_track = get_tree().get_first_node_in_group(&"track") as Track
-	if Bootstrap.autodrive_provider == null or not is_instance_valid(Bootstrap.autodrive_provider):
+	if _car == null:
+		set_car(get_node_or_null(car_path) as Car)
+	if _track == null:
+		_track = get_tree().get_first_node_in_group(&"track") as Track
+	if mode == Mode.PROVIDER and (Bootstrap.autodrive_provider == null \
+			or not is_instance_valid(Bootstrap.autodrive_provider)):
 		Bootstrap.autodrive_provider = self
+	# The racing line / profile are built lazily on the first tick this node actually drives,
+	# so loading the scene without --autodrive costs nothing. Call prepare() to build them now.
+
+func set_car(p_car: Car) -> void:
+	if _car == p_car:
+		return
+	if _car != null and is_instance_valid(_car) and _car.respawned.is_connected(_on_car_respawned):
+		_car.respawned.disconnect(_on_car_respawned)
+	_car = p_car
+	_data = null
 	if _car != null:
 		_car.respawned.connect(_on_car_respawned)
-	# The racing line / profile are built lazily on the first tick this node actually drives,
-	# so loading the scene without --autodrive costs nothing.
+
+## Builds (or fetches from the shared cache) the racing line and speed profile now.
+func prepare() -> bool:
+	if _data == null:
+		_setup()
+	return _data != null
 
 ## Teleports invalidate the local closest_s search window and the error derivative.
 func _on_car_respawned() -> void:
@@ -132,9 +194,33 @@ func get_steer() -> float:
 func target_speed_at(s: float) -> float:
 	return _lerp_arr(_v_prof, s)
 
-## Racing-line lateral offset (m, + right of the centreline) at s.
+## Lateral offset (m, + right of the centreline) of the line this driver follows at s: the
+## shared racing line plus this driver's line_shift, kept on the road.
 func line_offset_at(s: float) -> float:
-	return _lerp_arr(_line_off, s)
+	var off := _lerp_arr(_line_off, s)
+	if line_shift == 0.0 or _data == null:
+		return off
+	var bound := maxf(0.0, _data.width_at(s) * 0.5 - line_margin) + line_shift_overrun
+	return clampf(off + line_shift, minf(-bound, off), maxf(bound, off))
+
+## Metres of centreline s covered per metre driven along the racing line at s (the inside of
+## a corner is shorter than the centreline).
+func line_s_rate_at(s: float) -> float:
+	if _line_pts.is_empty():
+		return 1.0
+	var i := int(_data.wrap_s(s) / _data.step) % _n
+	return _data.step / maxf(0.1, _line_pts[i].distance_to(_line_pts[(i + 1) % _n]))
+
+## Unit direction of travel along the racing line at s.
+func line_direction_at(s: float) -> Vector3:
+	if _line_pts.is_empty():
+		return -_data.sample(s).basis.z
+	var i := int(_data.wrap_s(s) / _data.step) % _n
+	return (_line_pts[(i + 1) % _n] - _line_pts[i]).normalized()
+
+## Signed curvature (1/m, + = left) of the racing line at s.
+func line_curvature_at(s: float) -> float:
+	return _lerp_arr(_line_k, s)
 
 func reset_stats() -> void:
 	lap_time = -1.0
@@ -157,8 +243,9 @@ func _setup() -> void:
 	_n = _data.points.size()
 	if timing_s < 0.0:
 		timing_s = _data.start_s
-	# Only the (expensive, geometry-only) racing line is cached; the speed profile depends on
-	# the Car tuning and is cheap, so it is rebuilt every time.
+	# The (expensive, geometry-only) racing line is shared by every driver of the track; the
+	# speed profile also depends on the pace settings and the Car tuning, so it is shared by
+	# the drivers that agree on those. The arrays are shared by reference: never write to them.
 	var key := "%s|%d|%.3f|%s|%.3f" % [_track.track_json, _n, _data.length, use_racing_line, line_margin]
 	if _cache.has(key):
 		var c: Dictionary = _cache[key]
@@ -166,6 +253,7 @@ func _setup() -> void:
 		_line_pts = c["pts"]
 		_line_k = c["k"]
 	else:
+		line_builds += 1
 		_line_off = _racing_line() if use_racing_line else _zeros()
 		_line_pts = PackedVector3Array()
 		_line_pts.resize(_n)
@@ -174,8 +262,23 @@ func _setup() -> void:
 			_line_pts[i] = _data.points[i] + t.cross(Vector3.UP).normalized() * _line_off[i]
 		_line_k = _line_curvature()
 		_cache[key] = {"off": _line_off, "pts": _line_pts, "k": _line_k}
-	_v_prof = _speed_profile()
+	var pkey := key + "|" + _profile_key()
+	if _profile_cache.has(pkey):
+		var p: Dictionary = _profile_cache[pkey]
+		_v_prof = p["v"]
+		predicted_lap_time = p["predicted"]
+	else:
+		profile_builds += 1
+		_v_prof = _speed_profile()
+		_profile_cache[pkey] = {"v": _v_prof, "predicted": predicted_lap_time}
 	_init_turn_stats()
+
+## Everything _speed_profile() reads besides the racing line: pace settings and Car tuning.
+func _profile_key() -> String:
+	return var_to_str([lateral_usage, brake_usage, lateral_efficiency, v_cap, steer_gain,
+			drift_guard_kmh, drift_guard_steer, _car.steer_grip_usage, _car.lateral_grip_g,
+			_car.aero_grip_g, _car.brake_decel, _car.coast_decel, _car.drag_decel_coef,
+			_car.gravity_multiplier, _car.accel_curve_kmh, _car.accel_curve_ms2])
 
 func _zeros() -> PackedFloat32Array:
 	var a := PackedFloat32Array()
@@ -319,13 +422,38 @@ func _lerp_arr(arr: PackedFloat32Array, s: float) -> float:
 
 # ================================================================ driving
 func _physics_process(delta: float) -> void:
-	if not Bootstrap.autodrive or Bootstrap.autodrive_provider != self:
+	if mode == Mode.PROVIDER:
+		if not Bootstrap.autodrive or Bootstrap.autodrive_provider != self:
+			return
+	elif _car == null or not is_instance_valid(_car) or not _car.simulate:
 		return
 	if _data == null:
 		_setup()
 		if _data == null:
 			return
 	_clock += delta
+	if mode == Mode.PROVIDER:
+		_think(delta)
+		return
+	_tick += 1
+	var every := maxi(think_every, 1)
+	if (_tick + think_phase) % every != 0:
+		return   # the Car keeps the last override
+	_think(delta * every)
+	_car.set_input_override(_throttle, _brake, _steer)
+
+## Speed (m/s) this driver aims for at s when moving at v: the profile, read a little ahead
+## for the actuator lag, times the driver's pace scale.
+func _target_speed(s: float, v: float) -> float:
+	return minf(target_speed_at(s), target_speed_at(s + v * speed_preview_time)) * speed_scale
+
+## Subclass hook, called at the start of every think (dt = time since the previous one).
+func _before_think(_dt: float) -> void:
+	pass
+
+## One control step: reads the car, updates _throttle / _brake / _steer and the statistics.
+func _think(delta: float) -> void:
+	_before_think(delta)
 	var pos := _car.global_position
 	var s := _data.closest_s(pos, current_s)
 	current_s = s
@@ -353,7 +481,7 @@ func _physics_process(delta: float) -> void:
 	_steer = clampf(steer, -1.0, 1.0)
 
 	# ---- pedals: speed error against the profile
-	var v_t := minf(target_speed_at(s), target_speed_at(s + v * speed_preview_time))
+	var v_t := _target_speed(s, v)
 	var e := v_t - _car.forward_speed
 	if e > 0.0:
 		_throttle = clampf(0.45 + e * 0.6, 0.0, 1.0)
@@ -370,6 +498,7 @@ func _physics_process(delta: float) -> void:
 		_brake = minf(_brake, 0.08)   # below the Car's drift brake threshold
 	if _car.is_drifting:
 		_brake = 0.0
+	_throttle = minf(_throttle, throttle_cap)
 
 	_update_stats(s, v, err, off)
 
@@ -394,6 +523,25 @@ func _init_turn_stats() -> void:
 func _update_stats(s: float, v: float, err: float, off: float) -> void:
 	var moving := _car.simulate and v > 0.5
 	var kmh := v * Car.KMH
+	if collect_stats:
+		_update_turn_stats(s, kmh, err, off, moving)
+	_update_lap_timing(s, moving)
+
+## Lap timing on the physics clock (line: timing_s).
+func _update_lap_timing(s: float, moving: bool) -> void:
+	if _prev_s >= 0.0 and moving:
+		var a := _data.delta_s(timing_s, _prev_s)
+		var b := _data.delta_s(timing_s, s)
+		if a < 0.0 and b >= 0.0 and absf(b - a) < 50.0:
+			if _lap_t0 >= 0.0:
+				lap_time = _clock - _lap_t0
+				laps_completed += 1
+				last_lap_turn_stats = per_turn_stats.duplicate(true)
+			_lap_t0 = _clock
+	_prev_s = s
+	lap_clock = _clock - _lap_t0 if _lap_t0 >= 0.0 else 0.0
+
+func _update_turn_stats(s: float, kmh: float, err: float, off: float, moving: bool) -> void:
 	if moving:
 		max_speed_kmh = maxf(max_speed_kmh, kmh)
 		lateral_error_max = maxf(lateral_error_max, absf(err))
@@ -426,18 +574,6 @@ func _update_stats(s: float, v: float, err: float, off: float) -> void:
 			ts["max_before"] = 0.0
 		if not inside:
 			ts["max_before"] = maxf(ts["max_before"], kmh)
-	# Lap timing on the physics clock.
-	if _prev_s >= 0.0 and moving:
-		var a := _data.delta_s(timing_s, _prev_s)
-		var b := _data.delta_s(timing_s, s)
-		if a < 0.0 and b >= 0.0 and absf(b - a) < 50.0:
-			if _lap_t0 >= 0.0:
-				lap_time = _clock - _lap_t0
-				laps_completed += 1
-				last_lap_turn_stats = per_turn_stats.duplicate(true)
-			_lap_t0 = _clock
-	_prev_s = s
-	lap_clock = _clock - _lap_t0 if _lap_t0 >= 0.0 else 0.0
 
 ## Human-readable per-turn table plus lap figures.
 func report() -> String:

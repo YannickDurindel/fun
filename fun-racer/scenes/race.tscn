@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="m5_pause"]
 [ext_resource type="PackedScene" path="res://scenes/ui/results.tscn" id="m5_results"]
 [ext_resource type="PackedScene" path="res://scenes/race/ghost_system.tscn" id="g6_ghost"]
+[ext_resource type="PackedScene" path="res://scenes/race/bots.tscn" id="m7_bots"]
+[ext_resource type="PackedScene" path="res://scenes/ui/standings.tscn" id="m7_standings"]
 
 [sub_resource type="WorldBoundaryShape3D" id="catch_shape"]
 
@@ -44,6 +46,7 @@ car_path = NodePath("../../Car")
 [node name="Results" parent="UI" instance=ExtResource("m5_results")]
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("m5_pause")]
+[node name="Standings" parent="UI" instance=ExtResource("m7_standings")]
 
 [node name="FX" type="Node3D" parent="."]
 
@@ -55,3 +58,4 @@ script = ExtResource("9_autopilot")
 car_path = NodePath("../Car")
 
 [node name="Ghost" parent="." instance=ExtResource("g6_ghost")]
+[node name="Bots" parent="." instance=ExtResource("m7_bots")]
