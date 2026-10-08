@@ -82,6 +82,19 @@ class RecipeTest(unittest.TestCase):
             with self.subTest(extra=extra), self.assertRaisesRegex(BuildError, pattern):
                 recipe.from_dict("imola", {**base, **extra})
 
+    def test_osm_round(self):
+        base = {"osm": {"relation": 1}}
+        r = recipe.from_dict("imola", {"osm": {"relation": 1, "round": [
+            {"node": 42, "reach_m": 30.0, "note": "Turn 1"}]}})
+        self.assertEqual(r.osm_round, [{"node": 42, "reach_m": 30.0, "note": "Turn 1"}])
+        self.assertEqual(recipe.from_dict("imola", base).osm_round, [])
+        for bad, pattern in (({"node": 42, "reach_m": 30.0, "raech": 1}, "unknown key"),
+                             ({"node": "42", "reach_m": 30.0}, "needs node"),
+                             ({"node": 42, "reach_m": 0.5}, "needs node"),
+                             ({"node": 42}, "needs node")):
+            with self.subTest(bad=bad), self.assertRaisesRegex(BuildError, pattern):
+                recipe.from_dict("imola", {"osm": {"relation": 1, "round": [bad]}})
+
     def test_id_mismatch_and_bad_id(self):
         with self.assertRaisesRegex(BuildError, "does not match"):
             recipe.from_dict("imola", {"id": "monza", "osm": {"relation": 1}})
