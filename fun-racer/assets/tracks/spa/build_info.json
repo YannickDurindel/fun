@@ -1,0 +1,459 @@
+{
+ "id": "spa",
+ "recipe": "tools/track/tracks/spa.toml",
+ "osm": {
+  "relation": 284560,
+  "loop_ways": [
+   126807106,
+   1359025267,
+   126807103,
+   126807101,
+   126807109,
+   126807116,
+   175371353,
+   175371365,
+   126807100,
+   176133746,
+   126807114,
+   176133745,
+   178964809,
+   126807105,
+   637268672,
+   613486590,
+   126807099,
+   175178443,
+   175178448,
+   126807110,
+   126835639,
+   126835637,
+   126835638,
+   1430527230,
+   24449918,
+   126807113,
+   175195997,
+   126807111,
+   126807112,
+   1359025268
+  ],
+  "raw_length_m": 7002.1,
+  "length_m": 6997.7,
+  "official_length_m": 7004.0,
+  "length_error": -0.00089,
+  "candidates": [
+   {
+    "length_m": 7002.5,
+    "ways": [
+     126807106,
+     1359025267,
+     126807103,
+     126807101,
+     126807109,
+     126807116,
+     175371353,
+     175371365,
+     126807100,
+     176133746,
+     126807114,
+     176133745,
+     178964809,
+     126807105,
+     637268672,
+     613486590,
+     126807099,
+     175178443,
+     175178448,
+     126807110,
+     126835639,
+     126835637,
+     126835638,
+     1430527230,
+     24449918,
+     126807113,
+     175195997,
+     126807111,
+     126807112,
+     1359025268
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "start: relation member role (finish line = start line)",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 104.48,
+  "max_grade": 0.1276,
+  "min_grade": -0.1742,
+  "origin_m": 417.78
+ },
+ "turns": {
+  "official": 19,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "La Source",
+    "direction": "right",
+    "s_apex": 276.2,
+    "min_radius": 12.7
+   },
+   {
+    "id": "T2",
+    "name": "Turn 2",
+    "direction": "right",
+    "s_apex": 540.5,
+    "min_radius": 296.2
+   },
+   {
+    "id": "T3",
+    "name": "Eau Rouge",
+    "direction": "left",
+    "s_apex": 938.8,
+    "min_radius": 88.8
+   },
+   {
+    "id": "T4",
+    "name": "Raidillon",
+    "direction": "right",
+    "s_apex": 1022.9,
+    "min_radius": 86.0
+   },
+   {
+    "id": "T5",
+    "name": "Raidillon",
+    "direction": "left",
+    "s_apex": 1165.0,
+    "min_radius": 85.1
+   },
+   {
+    "id": "T6",
+    "name": "Kemmel",
+    "direction": "right",
+    "s_apex": 1519.3,
+    "min_radius": 156.4
+   },
+   {
+    "id": "T7",
+    "name": "Les Combes",
+    "direction": "right",
+    "s_apex": 2300.0,
+    "min_radius": 45.9
+   },
+   {
+    "id": "T8",
+    "name": "Les Combes",
+    "direction": "left",
+    "s_apex": 2402.1,
+    "min_radius": 44.4
+   },
+   {
+    "id": "T9",
+    "name": "Malmedy",
+    "direction": "right",
+    "s_apex": 2528.2,
+    "min_radius": 47.4
+   },
+   {
+    "id": "T10",
+    "name": "Bruxelles",
+    "direction": "right",
+    "s_apex": 2936.5,
+    "min_radius": 44.7
+   },
+   {
+    "id": "T11",
+    "name": "Speaker's Corner",
+    "direction": "left",
+    "s_apex": 3174.7,
+    "min_radius": 47.4
+   },
+   {
+    "id": "T12",
+    "name": "Double Gauche",
+    "direction": "left",
+    "s_apex": 3767.2,
+    "min_radius": 76.8
+   },
+   {
+    "id": "T13",
+    "name": "Double Gauche",
+    "direction": "left",
+    "s_apex": 3995.4,
+    "min_radius": 107.3
+   },
+   {
+    "id": "T14",
+    "name": "Fagnes",
+    "direction": "right",
+    "s_apex": 4427.8,
+    "min_radius": 66.6
+   },
+   {
+    "id": "T15",
+    "name": "Fagnes",
+    "direction": "left",
+    "s_apex": 4575.9,
+    "min_radius": 64.7
+   },
+   {
+    "id": "T16",
+    "name": "Campus",
+    "direction": "right",
+    "s_apex": 4866.2,
+    "min_radius": 45.9
+   },
+   {
+    "id": "T17",
+    "name": "Courbe Paul Frère",
+    "direction": "right",
+    "s_apex": 5068.3,
+    "min_radius": 88.5
+   },
+   {
+    "id": "T18",
+    "name": "Turn 18",
+    "direction": "right",
+    "s_apex": 5252.5,
+    "min_radius": 220.1
+   },
+   {
+    "id": "T19",
+    "name": "Blanchimont",
+    "direction": "left",
+    "s_apex": 5742.9,
+    "min_radius": 172.7
+   },
+   {
+    "id": "T20",
+    "name": "Blanchimont",
+    "direction": "left",
+    "s_apex": 6107.2,
+    "min_radius": 113.4
+   },
+   {
+    "id": "T21",
+    "name": "Chicane",
+    "direction": "right",
+    "s_apex": 6633.7,
+    "min_radius": 16.1
+   },
+   {
+    "id": "T22",
+    "name": "Turn 22",
+    "direction": "left",
+    "s_apex": 6687.7,
+    "min_radius": 16.0
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 276.2,
+    "direction": "right",
+    "angle_deg": 142.7,
+    "kind": "corner",
+    "min_radius": 12.7,
+    "used": true
+   },
+   {
+    "s_apex": 540.5,
+    "direction": "right",
+    "angle_deg": 16.2,
+    "kind": "corner",
+    "min_radius": 296.2,
+    "used": true
+   },
+   {
+    "s_apex": 938.8,
+    "direction": "left",
+    "angle_deg": 17.8,
+    "kind": "corner",
+    "min_radius": 88.8,
+    "used": true
+   },
+   {
+    "s_apex": 1022.9,
+    "direction": "right",
+    "angle_deg": 50.5,
+    "kind": "corner",
+    "min_radius": 86.0,
+    "used": true
+   },
+   {
+    "s_apex": 1165.0,
+    "direction": "left",
+    "angle_deg": 23.3,
+    "kind": "corner",
+    "min_radius": 85.1,
+    "used": true
+   },
+   {
+    "s_apex": 1519.3,
+    "direction": "right",
+    "angle_deg": 20.6,
+    "kind": "corner",
+    "min_radius": 156.4,
+    "used": true
+   },
+   {
+    "s_apex": 2300.0,
+    "direction": "right",
+    "angle_deg": 75.9,
+    "kind": "corner",
+    "min_radius": 45.9,
+    "used": true
+   },
+   {
+    "s_apex": 2402.1,
+    "direction": "left",
+    "angle_deg": 73.4,
+    "kind": "corner",
+    "min_radius": 44.4,
+    "used": true
+   },
+   {
+    "s_apex": 2528.2,
+    "direction": "right",
+    "angle_deg": 69.1,
+    "kind": "corner",
+    "min_radius": 47.4,
+    "used": true
+   },
+   {
+    "s_apex": 2936.5,
+    "direction": "right",
+    "angle_deg": 182.5,
+    "kind": "corner",
+    "min_radius": 44.7,
+    "used": true
+   },
+   {
+    "s_apex": 3174.7,
+    "direction": "left",
+    "angle_deg": 77.4,
+    "kind": "corner",
+    "min_radius": 47.4,
+    "used": true
+   },
+   {
+    "s_apex": 3404.9,
+    "direction": "right",
+    "angle_deg": 6.3,
+    "kind": "kink",
+    "min_radius": 260.4,
+    "used": false
+   },
+   {
+    "s_apex": 3767.2,
+    "direction": "left",
+    "angle_deg": 74.9,
+    "kind": "corner",
+    "min_radius": 76.8,
+    "used": true
+   },
+   {
+    "s_apex": 3995.4,
+    "direction": "left",
+    "angle_deg": 71.2,
+    "kind": "corner",
+    "min_radius": 107.3,
+    "used": true
+   },
+   {
+    "s_apex": 4427.8,
+    "direction": "right",
+    "angle_deg": 102.2,
+    "kind": "corner",
+    "min_radius": 66.6,
+    "used": true
+   },
+   {
+    "s_apex": 4575.9,
+    "direction": "left",
+    "angle_deg": 90.0,
+    "kind": "corner",
+    "min_radius": 64.7,
+    "used": true
+   },
+   {
+    "s_apex": 4866.2,
+    "direction": "right",
+    "angle_deg": 92.8,
+    "kind": "corner",
+    "min_radius": 45.9,
+    "used": true
+   },
+   {
+    "s_apex": 5068.3,
+    "direction": "right",
+    "angle_deg": 73.6,
+    "kind": "corner",
+    "min_radius": 88.5,
+    "used": true
+   },
+   {
+    "s_apex": 5252.5,
+    "direction": "right",
+    "angle_deg": 20.4,
+    "kind": "corner",
+    "min_radius": 220.1,
+    "used": true
+   },
+   {
+    "s_apex": 5470.7,
+    "direction": "right",
+    "angle_deg": 14.3,
+    "kind": "kink",
+    "min_radius": 225.5,
+    "used": false
+   },
+   {
+    "s_apex": 5708.9,
+    "direction": "left",
+    "angle_deg": 5.3,
+    "kind": "kink",
+    "min_radius": 204.5,
+    "used": false
+   },
+   {
+    "s_apex": 5742.9,
+    "direction": "left",
+    "angle_deg": 29.1,
+    "kind": "corner",
+    "min_radius": 172.7,
+    "used": true
+   },
+   {
+    "s_apex": 6107.2,
+    "direction": "left",
+    "angle_deg": 43.4,
+    "kind": "corner",
+    "min_radius": 113.4,
+    "used": true
+   },
+   {
+    "s_apex": 6399.5,
+    "direction": "right",
+    "angle_deg": 13.8,
+    "kind": "kink",
+    "min_radius": 338.6,
+    "used": false
+   },
+   {
+    "s_apex": 6633.7,
+    "direction": "right",
+    "angle_deg": 98.8,
+    "kind": "corner",
+    "min_radius": 16.1,
+    "used": true
+   },
+   {
+    "s_apex": 6687.7,
+    "direction": "left",
+    "angle_deg": 128.3,
+    "kind": "corner",
+    "min_radius": 16.0,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}
