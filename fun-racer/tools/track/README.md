@@ -92,6 +92,7 @@ name = "Tosa"
 # base_width = 13.0   grid_width = 15.0   crossfall = 0.015   camber_gain = 2.5
 # bank_keys = [[0.0, -0.015, "grid"], ...]     # full tables replace the defaults
 # width_keys = [[0.0, 15.0, "grid"], ...]
+# track_json_widths = true   # a road narrower than 13 m somewhere: see "Narrow roads"
 [[road.override]]             # or change single stretches
 s = [2700.0, 2950.0]          # from, to (may wrap around the finish line)
 width = 12.0
@@ -166,6 +167,7 @@ Also read the build's `WARNING:` lines; each one says what to put in the recipe.
 | Wrong number of turns, or numbers shifted | Look at `turns.auto_candidates` in `build_info.json`. Usually a flat-out kink is counted or missed: pin the table with `[[turn]]` entries (`id`, `name`, `direction`, `s`). |
 | A corner looks polygonal or has a far too small radius | OSM has too few nodes there. Improve OSM, or accept it: the road is only as good as the centreline. |
 | Road too narrow / wide, wrong camber | `[road]` keys or `[[road.override]]`. |
+| The autopilot drives off a narrow road, or into its walls | `[road] track_json_widths = true` (see Narrow roads). |
 | "the mesh could not be built" | The centreline folds on itself (see Known limits). |
 | "the lap crosses itself ... only N m apart in height" | A figure of eight: the DEM gives both roads the same height. Separate them by at least 5.5 m with `[[elevation.override]]` entries (see Crossovers). |
 | DEM voids, flat sea, steps in the terrain | Try another `[elevation] dataset`. |
@@ -215,6 +217,16 @@ flat-out kinks and not others, and nothing in the geometry says which.
 curvature, capped at 0.03 rad; the grid drains left. 30 m grass verges, clipped where they
 would fold. The start / finish lines and grid boxes are painted by the tarmac shader from
 the lap length and `start_s`, so they need nothing per track.
+
+**Narrow roads.** `track.json` carries a nominal width of 13 m at every point, whatever the
+road step builds; the real widths are in `road_profile.json`. The game's drivers (the
+autopilot's racing line, the bots' off-road test) read `track.json`, which is harmless while
+the road is 13 m or wider. A street circuit built narrower needs `[road] track_json_widths =
+true`: the centreline step then writes the widths of the `[road]` table into `track.json`
+(which needs numpy, like the road step). It is opt-in so that the tracks built before it stay
+byte for byte the same. The road step stops if `track.json` no longer agrees with the `[road]`
+table, which happens when the table is edited and only the road is rebuilt: run the
+centreline step again.
 
 **Crossovers** (`lib/centreline.py`, `cad/track/bridge.py`). A lap that crosses itself in
 plan view (Suzuka) needs no hand-written way list: the bridge way shares no node with the road

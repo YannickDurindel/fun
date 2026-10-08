@@ -47,7 +47,7 @@ SECTION_KEYS = {
     "layout": {"direction", "finish", "start", "start_offset_m", "sectors", "spline"},
     "elevation": {"dataset", "smooth_sigma_m", "override"},
     "road": {"base_width", "grid_width", "crossfall", "camber_gain", "bank_keys", "width_keys",
-             "override"},
+             "override", "track_json_widths"},
     "terrain": {"near", "far", "smooth_sigma_m"},
 }
 TURN_KEYS = {"id", "name", "direction", "s"}
@@ -256,6 +256,8 @@ def validate(r):
         if v is not None and (not isinstance(v, (int, float)) or not lo <= v <= hi):
             raise BuildError(f"recipe: road.{key} must be a number between {lo} and {hi}"
                              + (" (radians; 0.015 = 1.5 %)" if key == "crossfall" else ""))
+    if not isinstance(r.road.get("track_json_widths", False), bool):
+        raise BuildError("recipe: road.track_json_widths must be true or false")
     for o in r.road.get("override", []):
         _check_keys("[[road.override]]", o, OVERRIDE_KEYS)
         s = o.get("s")

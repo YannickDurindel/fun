@@ -19,14 +19,13 @@ import json
 import math
 import os
 
-from . import geom, net, osm, turns as turns_mod
+from . import geom, info as info_mod, net, osm, turns as turns_mod
 from .net import BuildError
 
 STEP = 2.0            # resample spacing, m
 DEM_STEP = 10.0       # DEM sampling spacing, m
 PLAN_SIGMA = 4.0      # m, plan-view smoothing
 CURV_SIGMA = 6.0      # m, curvature smoothing
-DEFAULT_WIDTH = 13.0  # nominal width stored per point; road_profile.json has the real one
 OVERRIDE_BLEND = 60.0  # m, default blend of an [[elevation.override]] offset
 OVERRIDE_SIGMA = 10.0  # m, smoothing of the profile after overrides (rounds their corners)
 CROSSING_MIN_GAP = 150.0  # m along the lap: closer self-intersections are folds, not crossovers
@@ -283,16 +282,18 @@ def build(recipe, fetcher, log=print):
         warnings += auto["warnings"]
     sectors = turns_mod.sectors(curv_s, step, recipe.sectors)
 
+    curv_out = [round(c, 5) for c in curv_s]
+    widths = info_mod.track_json_widths(recipe, n, step, length, start_s, curv_out)
     pts_out = []
     for k in range(n):
         g = (y[(k + 1) % n] - y[k - 1]) / (2 * step)
         pts_out.append({
             "s": round(k * step, 3),
             "p": [round(samples[k][0], 3), round(y[k], 3), round(samples[k][1], 3)],
-            "width": DEFAULT_WIDTH,
+            "width": widths[k],
             "bank": 0.0,
             "grade": round(g, 4),
-            "curvature": round(curv_s[k], 5),
+            "curvature": curv_out[k],
         })
 
     if recipe.osm_relation:

@@ -1,0 +1,1272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1303 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="276370536" visible="true" version="9" changeset="23405319" timestamp="2014-07-01T07:09:50Z" user="farid336" uid="2141437" lat="40.3672033" lon="49.8385545"/>
+ <node id="276370538" visible="true" version="11" changeset="122292820" timestamp="2022-06-12T18:05:53Z" user="MenKauRa" uid="1643499" lat="40.3693300" lon="49.8429139"/>
+ <node id="276370540" visible="true" version="9" changeset="80624238" timestamp="2020-02-06T06:59:17Z" user="vlae" uid="10323643" lat="40.3711852" lon="49.8486029"/>
+ <node id="276371182" visible="true" version="6" changeset="168981881" timestamp="2025-07-15T19:32:21Z" user="smaptious" uid="15166886" lat="40.3704894" lon="49.8432510"/>
+ <node id="276371597" visible="true" version="13" changeset="156694326" timestamp="2024-09-16T15:40:49Z" user="MenKauRa" uid="1643499" lat="40.3753742" lon="49.8540339"/>
+ <node id="276371827" visible="true" version="6" changeset="173928878" timestamp="2025-10-29T13:05:23Z" user="alikiso" uid="23389777" lat="40.3702180" lon="49.8456502"/>
+ <node id="276371995" visible="true" version="8" changeset="184348515" timestamp="2026-06-20T11:06:17Z" user="MenKauRa" uid="1643499" lat="40.3722258" lon="49.8445259"/>
+ <node id="276374004" visible="true" version="20" changeset="169256697" timestamp="2025-07-21T17:47:15Z" user="Lars_TheViking" uid="9007988" lat="40.3750116" lon="49.8497366"/>
+ <node id="276842653" visible="true" version="8" changeset="137754589" timestamp="2023-06-25T14:27:31Z" user="MenKauRa" uid="1643499" lat="40.3744093" lon="49.8546391"/>
+ <node id="276846862" visible="true" version="7" changeset="169256697" timestamp="2025-07-21T17:47:15Z" user="Lars_TheViking" uid="9007988" lat="40.3755970" lon="49.8516237"/>
+ <node id="276846863" visible="true" version="7" changeset="181645105" timestamp="2026-04-21T20:44:41Z" user="MenKauRa" uid="1643499" lat="40.3740327" lon="49.8469013"/>
+ <node id="276847442" visible="true" version="5" changeset="169256697" timestamp="2025-07-21T17:47:15Z" user="Lars_TheViking" uid="9007988" lat="40.3755552" lon="49.8514920"/>
+ <node id="276847443" visible="true" version="5" changeset="169256697" timestamp="2025-07-21T17:47:15Z" user="Lars_TheViking" uid="9007988" lat="40.3756525" lon="49.8518010"/>
+ <node id="276848321" visible="true" version="3" changeset="87475087" timestamp="2020-07-03T01:53:22Z" user="GinaroZ" uid="3432400" lat="40.3708293" lon="49.8475002"/>
+ <node id="276876530" visible="true" version="9" changeset="187067321" timestamp="2026-08-07T06:12:34Z" user="ApaRiver" uid="21971206" lat="40.3680560" lon="49.8400474"/>
+ <node id="276876589" visible="true" version="6" changeset="181734916" timestamp="2026-04-23T19:25:53Z" user="MenKauRa" uid="1643499" lat="40.3688589" lon="49.8366886"/>
+ <node id="276876590" visible="true" version="6" changeset="181734916" timestamp="2026-04-23T19:25:53Z" user="MenKauRa" uid="1643499" lat="40.3687253" lon="49.8370633"/>
+ <node id="276880945" visible="true" version="8" changeset="169043736" timestamp="2025-07-17T06:09:37Z" user="TaklamakanDesert" uid="15994195" lat="40.3678889" lon="49.8316892"/>
+ <node id="276881215" visible="true" version="10" changeset="122476813" timestamp="2022-06-16T18:44:22Z" user="MenKauRa" uid="1643499" lat="40.3665488" lon="49.8311006"/>
+ <node id="276881459" visible="true" version="11" changeset="181688991" timestamp="2026-04-22T19:50:34Z" user="MenKauRa" uid="1643499" lat="40.3688823" lon="49.8339129"/>
+ <node id="276887830" visible="true" version="8" changeset="122476813" timestamp="2022-06-16T18:44:22Z" user="MenKauRa" uid="1643499" lat="40.3671650" lon="49.8313437"/>
+ <node id="277334987" visible="true" version="5" changeset="119221635" timestamp="2022-04-02T00:48:51Z" user="Hikmat E Mammadov" uid="13571832" lat="40.3676905" lon="49.8315478"/>
+ <node id="277336019" visible="true" version="6" changeset="122476813" timestamp="2022-06-16T18:44:22Z" user="MenKauRa" uid="1643499" lat="40.3682624" lon="49.8323905"/>
+ <node id="277336118" visible="true" version="7" changeset="122476813" timestamp="2022-06-16T18:44:22Z" user="MenKauRa" uid="1643499" lat="40.3685626" lon="49.8330439"/>
+ <node id="1416166971" visible="true" version="6" changeset="122291939" timestamp="2022-06-12T17:41:40Z" user="MenKauRa" uid="1643499" lat="40.3695421" lon="49.8417261"/>
+ <node id="1416166973" visible="true" version="3" changeset="23405319" timestamp="2014-07-01T07:09:49Z" user="farid336" uid="2141437" lat="40.3692490" lon="49.8418425"/>
+ <node id="1416166974" visible="true" version="7" changeset="122291939" timestamp="2022-06-12T17:41:40Z" user="MenKauRa" uid="1643499" lat="40.3696427" lon="49.8417121"/>
+ <node id="1416166976" visible="true" version="4" changeset="122291939" timestamp="2022-06-12T17:41:40Z" user="MenKauRa" uid="1643499" lat="40.3691043" lon="49.8417939"/>
+ <node id="1466042013" visible="true" version="5" changeset="169089144" timestamp="2025-07-18T05:03:37Z" user="TaklamakanDesert" uid="15994195" lat="40.3687345" lon="49.8371798"/>
+ <node id="1467420792" visible="true" version="11" changeset="189007231" timestamp="2026-09-14T13:25:17Z" user="DaveF" uid="115894" lat="40.3652557" lon="49.8309831"/>
+ <node id="1770473714" visible="true" version="5" changeset="181734916" timestamp="2026-04-23T19:25:53Z" user="MenKauRa" uid="1643499" lat="40.3687495" lon="49.8372618"/>
+ <node id="1770473722" visible="true" version="2" changeset="122476813" timestamp="2022-06-16T18:44:22Z" user="MenKauRa" uid="1643499" lat="40.3687237" lon="49.8371176"/>
+ <node id="1770473731" visible="true" version="2" changeset="181734916" timestamp="2026-04-23T19:25:53Z" user="MenKauRa" uid="1643499" lat="40.3688301" lon="49.8368233"/>
+ <node id="1770473732" visible="true" version="3" changeset="181734916" timestamp="2026-04-23T19:25:53Z" user="MenKauRa" uid="1643499" lat="40.3688448" lon="49.8367898"/>
+ <node id="1797880831" visible="true" version="4" changeset="23405319" timestamp="2014-07-01T07:09:49Z" user="farid336" uid="2141437" lat="40.3687248" lon="49.8411486"/>
+ <node id="2101927480" visible="true" version="4" changeset="169038444" timestamp="2025-07-17T01:34:44Z" user="BikalLake" uid="19895016" lat="40.3751491" lon="49.8501887"/>
+ <node id="2125106195" visible="true" version="7" changeset="187327525" timestamp="2026-08-12T09:27:02Z" user="ApaRiver" uid="21971206" lat="40.3688464" lon="49.8362533"/>
+ <node id="2290884749" visible="true" version="4" changeset="182050732" timestamp="2026-04-30T21:07:47Z" user="MenKauRa" uid="1643499" lat="40.3671182" lon="49.8384273"/>
+ <node id="2290884750" visible="true" version="2" changeset="23405319" timestamp="2014-07-01T07:09:50Z" user="farid336" uid="2141437" lat="40.3690778" lon="49.8417595"/>
+ <node id="2290884754" visible="true" version="3" changeset="122291939" timestamp="2022-06-12T17:41:40Z" user="MenKauRa" uid="1643499" lat="40.3691692" lon="49.8418349"/>
+ <node id="2290884755" visible="true" version="3" changeset="122291939" timestamp="2022-06-12T17:41:40Z" user="MenKauRa" uid="1643499" lat="40.3691346" lon="49.8418184"/>
+ <node id="2290884756" visible="true" version="3" changeset="122291939" timestamp="2022-06-12T17:41:40Z" user="MenKauRa" uid="1643499" lat="40.3692132" lon="49.8418460"/>
+ <node id="2290884761" visible="true" version="5" changeset="183071129" timestamp="2026-05-23T14:41:32Z" user="MenKauRa" uid="1643499" lat="40.3699619" lon="49.8421159"/>
+ <node id="2557102477" visible="true" version="7" changeset="122260479" timestamp="2022-06-11T18:36:26Z" user="MenKauRa" uid="1643499" lat="40.3716680" lon="49.8500910"/>
+ <node id="2557155069" visible="true" version="4" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894" lat="40.3633451" lon="49.8354224"/>
+ <node id="2558476048" visible="true" version="3" changeset="87475087" timestamp="2020-07-03T01:53:22Z" user="GinaroZ" uid="3432400" lat="40.3712272" lon="49.8487342"/>
+ <node id="2844641823" visible="true" version="3" changeset="176885270" timestamp="2026-01-06T02:22:33Z" user="GravaneCanal" uid="18414165" lat="40.3738985" lon="49.8549323"/>
+ <node id="2941447471" visible="true" version="1" changeset="23405319" timestamp="2014-07-01T07:09:48Z" user="farid336" uid="2141437" lat="40.3686959" lon="49.8413111"/>
+ <node id="2941447472" visible="true" version="4" changeset="183071129" timestamp="2026-05-23T14:41:32Z" user="MenKauRa" uid="1643499" lat="40.3697165" lon="49.8417461"/>
+ <node id="2941447474" visible="true" version="2" changeset="122291939" timestamp="2022-06-12T17:41:40Z" user="MenKauRa" uid="1643499" lat="40.3689768" lon="49.8418955"/>
+ <node id="2941447475" visible="true" version="1" changeset="23405319" timestamp="2014-07-01T07:09:48Z" user="farid336" uid="2141437" lat="40.3688299" lon="49.8415609"/>
+ <node id="2941455965" visible="true" version="5" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894" lat="40.3641341" lon="49.8359745"/>
+ <node id="2941455972" visible="true" version="5" changeset="182050732" timestamp="2026-04-30T21:07:47Z" user="MenKauRa" uid="1643499" lat="40.3671107" lon="49.8386180"/>
+ <node id="2941455976" visible="true" version="3" changeset="182050732" timestamp="2026-04-30T21:07:47Z" user="MenKauRa" uid="1643499" lat="40.3670420" lon="49.8385131"/>
+ <node id="2941464307" visible="true" version="2" changeset="122291939" timestamp="2022-06-12T17:41:40Z" user="MenKauRa" uid="1643499" lat="40.3696813" lon="49.8417230"/>
+ <node id="2945156941" visible="true" version="4" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894" lat="40.3641913" lon="49.8360381"/>
+ <node id="3031367458" visible="true" version="2" changeset="122295102" timestamp="2022-06-12T19:14:03Z" user="MenKauRa" uid="1643499" lat="40.3640753" lon="49.8359273"/>
+ <node id="3077754616" visible="true" version="5" changeset="122293167" timestamp="2022-06-12T18:17:35Z" user="MenKauRa" uid="1643499" lat="40.3673716" lon="49.8390734">
+  <tag k="enforcement" v="maxspeed"/>
+  <tag k="highway" v="speed_camera"/>
+  <tag k="maxspeed" v="60"/>
+ </node>
+ <node id="3077754617" visible="true" version="5" changeset="122293167" timestamp="2022-06-12T18:17:35Z" user="MenKauRa" uid="1643499" lat="40.3674542" lon="49.8389888">
+  <tag k="enforcement" v="maxspeed"/>
+  <tag k="highway" v="speed_camera"/>
+  <tag k="maxspeed" v="60"/>
+ </node>
+ <node id="3077754627" visible="true" version="3" changeset="183071394" timestamp="2026-05-23T14:48:12Z" user="MenKauRa" uid="1643499" lat="40.3724068" lon="49.8444355">
+  <tag k="enforcement" v="maxspeed"/>
+  <tag k="highway" v="speed_camera"/>
+  <tag k="maxspeed" v="50"/>
+ </node>
+ <node id="3383981132" visible="true" version="3" changeset="168717388" timestamp="2025-07-09T22:41:42Z" user="PerpetualHiker" uid="11399630" lat="40.3741607" lon="49.8547871"/>
+ <node id="3454030819" visible="true" version="6" changeset="119483934" timestamp="2022-04-08T20:07:18Z" user="MenKauRa" uid="1643499" lat="40.3639098" lon="49.8311157"/>
+ <node id="3454030834" visible="true" version="4" changeset="119483934" timestamp="2022-04-08T20:07:18Z" user="MenKauRa" uid="1643499" lat="40.3657592" lon="49.8309343"/>
+ <node id="3454030843" visible="true" version="5" changeset="181734916" timestamp="2026-04-23T19:25:53Z" user="MenKauRa" uid="1643499" lat="40.3693624" lon="49.8359114"/>
+ <node id="3463121869" visible="true" version="6" changeset="181734916" timestamp="2026-04-23T19:25:53Z" user="MenKauRa" uid="1643499" lat="40.3691477" lon="49.8346874"/>
+ <node id="3463121877" visible="true" version="10" changeset="181841573" timestamp="2026-04-26T11:43:01Z" user="MenKauRa" uid="1643499" lat="40.3688452" lon="49.8363592"/>
+ <node id="3594182936" visible="true" version="3" changeset="119483934" timestamp="2022-04-08T20:07:18Z" user="MenKauRa" uid="1643499" lat="40.3626559" lon="49.8343061"/>
+ <node id="3594182942" visible="true" version="5" changeset="183071129" timestamp="2026-05-23T14:41:32Z" user="MenKauRa" uid="1643499" lat="40.3697660" lon="49.8417939"/>
+ <node id="3648243699" visible="true" version="3" changeset="87475087" timestamp="2020-07-03T01:53:22Z" user="GinaroZ" uid="3432400" lat="40.3712074" lon="49.8486724"/>
+ <node id="3648244741" visible="true" version="4" changeset="122297589" timestamp="2022-06-12T20:42:33Z" user="MenKauRa" uid="1643499" lat="40.3718508" lon="49.8506578"/>
+ <node id="3765773689" visible="true" version="4" changeset="122476813" timestamp="2022-06-16T18:44:22Z" user="MenKauRa" uid="1643499" lat="40.3677881" lon="49.8316014"/>
+ <node id="3889262340" visible="true" version="2" changeset="35913551" timestamp="2015-12-12T18:02:48Z" user="MenKauRa" uid="1643499" lat="40.3759653" lon="49.8528955"/>
+ <node id="4445139960" visible="true" version="3" changeset="156694326" timestamp="2024-09-16T15:40:49Z" user="MenKauRa" uid="1643499" lat="40.3755461" lon="49.8539269">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="4462419092" visible="true" version="6" changeset="164955076" timestamp="2025-04-14T19:37:04Z" user="cybermapper" uid="20663926" lat="40.3754718" lon="49.8539725">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="crossing:island" v="no"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="4462419096" visible="true" version="7" changeset="168717388" timestamp="2025-07-09T22:41:42Z" user="PerpetualHiker" uid="11399630" lat="40.3752240" lon="49.8541224">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="crossing:island" v="no"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="4475530721" visible="true" version="4" changeset="184348515" timestamp="2026-06-20T11:06:17Z" user="MenKauRa" uid="1643499" lat="40.3701204" lon="49.8453502">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="4489370565" visible="true" version="1" changeset="43497564" timestamp="2016-11-08T20:28:22Z" user="TheCountN" uid="3964884" lat="40.3739722" lon="49.8467214">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="4489370567" visible="true" version="2" changeset="164955769" timestamp="2025-04-14T19:57:55Z" user="cybermapper" uid="20663926" lat="40.3739938" lon="49.8467878">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="4489396194" visible="true" version="4" changeset="122297589" timestamp="2022-06-12T20:42:33Z" user="MenKauRa" uid="1643499" lat="40.3718192" lon="49.8505682"/>
+ <node id="4702367245" visible="true" version="3" changeset="119483934" timestamp="2022-04-08T20:07:18Z" user="MenKauRa" uid="1643499" lat="40.3659582" lon="49.8309220"/>
+ <node id="4702367250" visible="true" version="3" changeset="189007231" timestamp="2026-09-14T13:25:17Z" user="DaveF" uid="115894" lat="40.3635846" lon="49.8319515"/>
+ <node id="4702367253" visible="true" version="2" changeset="119483934" timestamp="2022-04-08T20:07:18Z" user="MenKauRa" uid="1643499" lat="40.3631032" lon="49.8331686"/>
+ <node id="4702367255" visible="true" version="5" changeset="122481154" timestamp="2022-06-16T20:42:55Z" user="MenKauRa" uid="1643499" lat="40.3661235" lon="49.8309367"/>
+ <node id="5079651134" visible="true" version="6" changeset="184348515" timestamp="2026-06-20T11:06:17Z" user="MenKauRa" uid="1643499" lat="40.3723298" lon="49.8444728">
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="5280753618" visible="true" version="3" changeset="169084119" timestamp="2025-07-18T00:01:34Z" user="smaptious" uid="15166886" lat="40.3700090" lon="49.8422111"/>
+ <node id="5607438769" visible="true" version="9" changeset="168626791" timestamp="2025-07-07T23:59:47Z" user="PerpetualHiker" uid="11399630" lat="40.3720939" lon="49.8514080"/>
+ <node id="6225812433" visible="true" version="4" changeset="169256697" timestamp="2025-07-21T17:47:15Z" user="Lars_TheViking" uid="9007988" lat="40.3749734" lon="49.8496235">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="6225812434" visible="true" version="4" changeset="169256697" timestamp="2025-07-21T17:47:15Z" user="Lars_TheViking" uid="9007988" lat="40.3750372" lon="49.8498190">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="7065820506" visible="true" version="4" changeset="182050732" timestamp="2026-04-30T21:07:47Z" user="MenKauRa" uid="1643499" lat="40.3689180" lon="49.8360944"/>
+ <node id="7190127942" visible="true" version="10" changeset="184348515" timestamp="2026-06-20T11:06:17Z" user="MenKauRa" uid="1643499" lat="40.3705250" lon="49.8433490">
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="yes"/>
+ </node>
+ <node id="7241246551" visible="true" version="3" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894" lat="40.3625813" lon="49.8345063"/>
+ <node id="7384081390" visible="true" version="2" changeset="156694326" timestamp="2024-09-16T15:40:49Z" user="MenKauRa" uid="1643499" lat="40.3756973" lon="49.8538434"/>
+ <node id="7678658474" visible="true" version="4" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894" lat="40.3626483" lon="49.8349273"/>
+ <node id="9630529519" visible="true" version="2" changeset="119483934" timestamp="2022-04-08T20:07:18Z" user="MenKauRa" uid="1643499" lat="40.3662844" lon="49.8309939"/>
+ <node id="9630529549" visible="true" version="10" changeset="183980062" timestamp="2026-06-11T16:39:47Z" user="MenKauRa" uid="1643499" lat="40.3691393" lon="49.8346650">
+  <tag k="button_operated" v="no"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="9652645366" visible="true" version="1" changeset="119483934" timestamp="2022-04-08T20:07:18Z" user="MenKauRa" uid="1643499" lat="40.3630761" lon="49.8332358"/>
+ <node id="9652645369" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T13:25:17Z" user="DaveF" uid="115894" lat="40.3639474" lon="49.8310815"/>
+ <node id="9652645370" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T13:25:17Z" user="DaveF" uid="115894" lat="40.3639219" lon="49.8310986"/>
+ <node id="9652645373" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T13:25:17Z" user="DaveF" uid="115894" lat="40.3639339" lon="49.8310884"/>
+ <node id="9652645374" visible="true" version="3" changeset="189007231" timestamp="2026-09-14T13:25:17Z" user="DaveF" uid="115894" lat="40.3645110" lon="49.8310547"/>
+ <node id="9652645376" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T13:25:17Z" user="DaveF" uid="115894" lat="40.3639696" lon="49.8310727"/>
+ <node id="9652645377" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T13:25:17Z" user="DaveF" uid="115894" lat="40.3640075" lon="49.8310623"/>
+ <node id="9652645397" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T13:25:17Z" user="DaveF" uid="115894" lat="40.3640383" lon="49.8310606"/>
+ <node id="9652651820" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T13:25:17Z" user="DaveF" uid="115894" lat="40.3638921" lon="49.8311728"/>
+ <node id="9652651824" visible="true" version="1" changeset="119483934" timestamp="2022-04-08T20:07:18Z" user="MenKauRa" uid="1643499" lat="40.3661771" lon="49.8309535"/>
+ <node id="9652651825" visible="true" version="1" changeset="119483934" timestamp="2022-04-08T20:07:18Z" user="MenKauRa" uid="1643499" lat="40.3660381" lon="49.8309240"/>
+ <node id="9652651826" visible="true" version="1" changeset="119483934" timestamp="2022-04-08T20:07:18Z" user="MenKauRa" uid="1643499" lat="40.3662292" lon="49.8309723"/>
+ <node id="9811381248" visible="true" version="2" changeset="135719064" timestamp="2023-05-04T22:28:48Z" user="Robot8A" uid="393359" lat="40.3737941" lon="49.8550024"/>
+ <node id="9812789080" visible="true" version="1" changeset="122291818" timestamp="2022-06-12T17:37:16Z" user="MenKauRa" uid="1643499" lat="40.3709294" lon="49.8445875"/>
+ <node id="9812789082" visible="true" version="4" changeset="169024342" timestamp="2025-07-16T17:05:53Z" user="smaptious" uid="15166886" lat="40.3707378" lon="49.8440058"/>
+ <node id="9812789084" visible="true" version="1" changeset="122291818" timestamp="2022-06-12T17:37:16Z" user="MenKauRa" uid="1643499" lat="40.3708947" lon="49.8444834"/>
+ <node id="9812799749" visible="true" version="1" changeset="122291939" timestamp="2022-06-12T17:41:40Z" user="MenKauRa" uid="1643499" lat="40.3689114" lon="49.8417306"/>
+ <node id="9812799762" visible="true" version="1" changeset="122291939" timestamp="2022-06-12T17:41:40Z" user="MenKauRa" uid="1643499" lat="40.3695704" lon="49.8417158"/>
+ <node id="9812799763" visible="true" version="1" changeset="122291939" timestamp="2022-06-12T17:41:40Z" user="MenKauRa" uid="1643499" lat="40.3696134" lon="49.8417091"/>
+ <node id="9812858715" visible="true" version="2" changeset="182050732" timestamp="2026-04-30T21:07:47Z" user="MenKauRa" uid="1643499" lat="40.3671631" lon="49.8384898"/>
+ <node id="9812867727" visible="true" version="2" changeset="182085793" timestamp="2026-05-01T17:25:29Z" user="MenKauRa" uid="1643499" lat="40.3670032" lon="49.8384684"/>
+ <node id="9813148803" visible="true" version="2" changeset="183071129" timestamp="2026-05-23T14:41:32Z" user="MenKauRa" uid="1643499" lat="40.3698928" lon="49.8419767"/>
+ <node id="9823327612" visible="true" version="1" changeset="122477297" timestamp="2022-06-16T18:54:42Z" user="MenKauRa" uid="1643499" lat="40.3686536" lon="49.8332933"/>
+ <node id="9823340878" visible="true" version="3" changeset="174214007" timestamp="2025-11-04T21:19:57Z" user="alikiso" uid="23389777" lat="40.3687328" lon="49.8373350"/>
+ <node id="9823340879" visible="true" version="3" changeset="174214007" timestamp="2025-11-04T21:19:57Z" user="alikiso" uid="23389777" lat="40.3686922" lon="49.8373731"/>
+ <node id="9823360097" visible="true" version="1" changeset="122476813" timestamp="2022-06-16T18:44:22Z" user="MenKauRa" uid="1643499" lat="40.3658756" lon="49.8309253"/>
+ <node id="9823360108" visible="true" version="1" changeset="122476813" timestamp="2022-06-16T18:44:22Z" user="MenKauRa" uid="1643499" lat="40.3680368" lon="49.8319016"/>
+ <node id="9823360111" visible="true" version="1" changeset="122476813" timestamp="2022-06-16T18:44:22Z" user="MenKauRa" uid="1643499" lat="40.3679949" lon="49.8318279"/>
+ <node id="9823360112" visible="true" version="1" changeset="122476813" timestamp="2022-06-16T18:44:22Z" user="MenKauRa" uid="1643499" lat="40.3679468" lon="49.8317555"/>
+ <node id="9823360115" visible="true" version="1" changeset="122476813" timestamp="2022-06-16T18:44:22Z" user="MenKauRa" uid="1643499" lat="40.3678426" lon="49.8316408"/>
+ <node id="9823366017" visible="true" version="1" changeset="122476813" timestamp="2022-06-16T18:44:22Z" user="MenKauRa" uid="1643499" lat="40.3677415" lon="49.8315717"/>
+ <node id="9823366030" visible="true" version="2" changeset="181734916" timestamp="2026-04-23T19:25:53Z" user="MenKauRa" uid="1643499" lat="40.3688529" lon="49.8367585"/>
+ <node id="9823366032" visible="true" version="3" changeset="174214007" timestamp="2025-11-04T21:19:57Z" user="alikiso" uid="23389777" lat="40.3687477" lon="49.8372983"/>
+ <node id="9823366033" visible="true" version="2" changeset="169089144" timestamp="2025-07-18T05:03:37Z" user="TaklamakanDesert" uid="15994195" lat="40.3687218" lon="49.8370883"/>
+ <node id="9823366034" visible="true" version="3" changeset="174214007" timestamp="2025-11-04T21:19:57Z" user="alikiso" uid="23389777" lat="40.3687449" lon="49.8372188"/>
+ <node id="10593475597" visible="true" version="2" changeset="137732437" timestamp="2023-06-24T19:14:58Z" user="MenKauRa" uid="1643499" lat="40.3673438" lon="49.8314116"/>
+ <node id="10869386371" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894" lat="40.3735104" lon="49.8551466"/>
+ <node id="10869386372" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894" lat="40.3734536" lon="49.8551723"/>
+ <node id="10869386373" visible="true" version="1" changeset="135719064" timestamp="2023-05-04T22:28:48Z" user="Robot8A" uid="393359" lat="40.3733815" lon="49.8551752"/>
+ <node id="10869386374" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894" lat="40.3733214" lon="49.8551314"/>
+ <node id="10869386375" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894" lat="40.3732719" lon="49.8550420"/>
+ <node id="11309681420" visible="true" version="1" changeset="143574362" timestamp="2023-11-03T13:16:16Z" user="Bakuvian" uid="653224" lat="40.3706977" lon="49.8438871"/>
+ <node id="11729823831" visible="true" version="5" changeset="169256697" timestamp="2025-07-21T17:47:15Z" user="Lars_TheViking" uid="9007988" lat="40.3755792" lon="49.8515706">
+  <tag k="crossing:markings" v="yes"/>
+  <tag k="crossing:signals" v="no"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="kerb" v="lowered"/>
+ </node>
+ <node id="12216054794" visible="true" version="1" changeset="157379490" timestamp="2024-10-02T13:37:52Z" user="cybermapper" uid="20663926" lat="40.3753526" lon="49.8540464"/>
+ <node id="12216060845" visible="true" version="1" changeset="157379409" timestamp="2024-10-02T13:35:27Z" user="cybermapper" uid="20663926" lat="40.3743876" lon="49.8546521"/>
+ <node id="12224096820" visible="true" version="3" changeset="168991766" timestamp="2025-07-16T03:14:25Z" user="BikalLake" uid="19895016" lat="40.3740687" lon="49.8470069">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="12348830215" visible="true" version="2" changeset="184348515" timestamp="2026-06-20T11:06:17Z" user="MenKauRa" uid="1643499" lat="40.3722918" lon="49.8444923">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="12367590228" visible="true" version="2" changeset="169256697" timestamp="2025-07-21T17:47:15Z" user="Lars_TheViking" uid="9007988" lat="40.3755748" lon="49.8515529">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="12988634893" visible="true" version="1" changeset="168671028" timestamp="2025-07-08T23:12:51Z" user="PerpetualHiker" uid="11399630" lat="40.3717988" lon="49.8505044"/>
+ <node id="12990498600" visible="true" version="2" changeset="181734916" timestamp="2026-04-23T19:25:53Z" user="MenKauRa" uid="1643499" lat="40.3694064" lon="49.8358329"/>
+ <node id="12990514004" visible="true" version="4" changeset="182050732" timestamp="2026-04-30T21:07:47Z" user="MenKauRa" uid="1643499" lat="40.3688911" lon="49.8361098"/>
+ <node id="12990514017" visible="true" version="4" changeset="182050732" timestamp="2026-04-30T21:07:47Z" user="MenKauRa" uid="1643499" lat="40.3688746" lon="49.8361268"/>
+ <node id="13003842717" visible="true" version="3" changeset="180683951" timestamp="2026-03-31T17:08:30Z" user="c4m3lion" uid="23955276" lat="40.3679101" lon="49.8317105">
+  <tag k="crossing:markings" v="yes"/>
+  <tag k="crossing:signals" v="no"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="13014858215" visible="true" version="1" changeset="169223913" timestamp="2025-07-21T05:38:03Z" user="ThompsonPlateau" uid="20951931" lat="40.3628808" lon="49.8337331"/>
+ <node id="13756149458" visible="true" version="1" changeset="181734916" timestamp="2026-04-23T19:25:53Z" user="MenKauRa" uid="1643499" lat="40.3693812" lon="49.8358914"/>
+ <node id="13756149461" visible="true" version="1" changeset="181734916" timestamp="2026-04-23T19:25:53Z" user="MenKauRa" uid="1643499" lat="40.3688575" lon="49.8367279"/>
+ <node id="13756149498" visible="true" version="1" changeset="181734916" timestamp="2026-04-23T19:25:53Z" user="MenKauRa" uid="1643499" lat="40.3688634" lon="49.8361482"/>
+ <node id="13756149499" visible="true" version="1" changeset="181734916" timestamp="2026-04-23T19:25:53Z" user="MenKauRa" uid="1643499" lat="40.3688501" lon="49.8361905"/>
+ <node id="13756149500" visible="true" version="1" changeset="181734916" timestamp="2026-04-23T19:25:53Z" user="MenKauRa" uid="1643499" lat="40.3693398" lon="49.8359233"/>
+ <node id="13756192601" visible="true" version="1" changeset="181734916" timestamp="2026-04-23T19:25:53Z" user="MenKauRa" uid="1643499" lat="40.3693960" lon="49.8358683"/>
+ <node id="13756192605" visible="true" version="1" changeset="181734916" timestamp="2026-04-23T19:25:53Z" user="MenKauRa" uid="1643499" lat="40.3688578" lon="49.8366421"/>
+ <node id="13756192713" visible="true" version="1" changeset="181734916" timestamp="2026-04-23T19:25:53Z" user="MenKauRa" uid="1643499" lat="40.3687167" lon="49.8373566"/>
+ <node id="13763369189" visible="true" version="1" changeset="181841573" timestamp="2026-04-26T11:43:01Z" user="MenKauRa" uid="1643499" lat="40.3688470" lon="49.8362060"/>
+ <node id="13783066057" visible="true" version="1" changeset="182050732" timestamp="2026-04-30T21:07:47Z" user="MenKauRa" uid="1643499" lat="40.3688463" lon="49.8364141"/>
+ <node id="13783066058" visible="true" version="1" changeset="182050732" timestamp="2026-04-30T21:07:47Z" user="MenKauRa" uid="1643499" lat="40.3688478" lon="49.8364627"/>
+ <node id="13783066059" visible="true" version="1" changeset="182050732" timestamp="2026-04-30T21:07:47Z" user="MenKauRa" uid="1643499" lat="40.3670819" lon="49.8385710"/>
+ <node id="13783066065" visible="true" version="3" changeset="183865062" timestamp="2026-06-09T09:26:39Z" user="MenKauRa" uid="1643499" lat="40.3671043" lon="49.8380764"/>
+ <node id="13826279381" visible="true" version="1" changeset="182627515" timestamp="2026-05-14T03:36:43Z" user="StoneChain" uid="13259724" lat="40.3716558" lon="49.8498691"/>
+ <node id="13826279385" visible="true" version="3" changeset="189007231" timestamp="2026-09-14T14:08:12Z" user="DaveF" uid="115894" lat="40.3719802" lon="49.8508813"/>
+ <node id="13826279390" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894" lat="40.3733503" lon="49.8549636"/>
+ <node id="13826279391" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894" lat="40.3734494" lon="49.8550761"/>
+ <node id="13826279392" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894" lat="40.3735873" lon="49.8550354"/>
+ <node id="13826310746" visible="true" version="1" changeset="182627604" timestamp="2026-05-14T03:43:44Z" user="StoneChain" uid="13259724" lat="40.3725853" lon="49.8529141">
+  <tag k="name" v="Start Line"/>
+ </node>
+ <node id="13826310747" visible="true" version="1" changeset="182627604" timestamp="2026-05-14T03:43:44Z" user="StoneChain" uid="13259724" lat="40.3721915" lon="49.8517072">
+  <tag k="name" v="Finish Line"/>
+ </node>
+ <node id="13866875481" visible="true" version="1" changeset="183071394" timestamp="2026-05-23T14:48:12Z" user="MenKauRa" uid="1643499" lat="40.3723548" lon="49.8444600">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="13866912249" visible="true" version="1" changeset="183071129" timestamp="2026-05-23T14:41:32Z" user="MenKauRa" uid="1643499" lat="40.3698249" lon="49.8418728"/>
+ <node id="13922396677" visible="true" version="1" changeset="183865062" timestamp="2026-06-09T09:26:39Z" user="MenKauRa" uid="1643499" lat="40.3670221" lon="49.8384878"/>
+ <node id="13929297066" visible="true" version="1" changeset="183980062" timestamp="2026-06-11T16:39:47Z" user="MenKauRa" uid="1643499" lat="40.3690979" lon="49.8345428">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="13953710316" visible="true" version="2" changeset="187206435" timestamp="2026-08-10T01:23:46Z" user="ApaRiver" uid="21971206" lat="40.3701953" lon="49.8455804">
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="13953710327" visible="true" version="1" changeset="184348515" timestamp="2026-06-20T11:06:17Z" user="MenKauRa" uid="1643499" lat="40.3705503" lon="49.8434279">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="14078062197" visible="true" version="1" changeset="187067321" timestamp="2026-08-07T06:12:34Z" user="ApaRiver" uid="21971206" lat="40.3679282" lon="49.8317327"/>
+ <node id="14078184112" visible="true" version="1" changeset="187070896" timestamp="2026-08-07T07:53:53Z" user="ApaRiver" uid="21971206" lat="40.3688201" lon="49.8415426"/>
+ <node id="14078184114" visible="true" version="1" changeset="187070896" timestamp="2026-08-07T07:53:53Z" user="ApaRiver" uid="21971206" lat="40.3684158" lon="49.8408379"/>
+ <node id="14078184116" visible="true" version="1" changeset="187070896" timestamp="2026-08-07T07:53:53Z" user="ApaRiver" uid="21971206" lat="40.3676243" lon="49.8395003"/>
+ <node id="14134539621" visible="true" version="1" changeset="188234806" timestamp="2026-08-30T09:05:13Z" user="qwf" uid="20436262" lat="40.3675418" lon="49.8393610"/>
+ <node id="14134539622" visible="true" version="1" changeset="188234806" timestamp="2026-08-30T09:05:13Z" user="qwf" uid="20436262" lat="40.3673493" lon="49.8388073"/>
+ <node id="14180561340" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894" lat="40.3761149" lon="49.8533885"/>
+ <node id="14180561341" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894" lat="40.3740110" lon="49.8547822"/>
+ <node id="14180561342" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894" lat="40.3761243" lon="49.8534739"/>
+ <node id="14180561343" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894" lat="40.3760471" lon="49.8536511"/>
+ <node id="14180561345" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894" lat="40.3761180" lon="49.8535457"/>
+ <node id="14180561346" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894" lat="40.3760966" lon="49.8535966"/>
+ <node id="14180561347" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894" lat="40.3742936" lon="49.8547080"/>
+ <node id="14180561348" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894" lat="40.3733887" lon="49.8550279"/>
+ <node id="14180561349" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894" lat="40.3735239" lon="49.8550708"/>
+ <node id="14180599600" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:50:01Z" user="DaveF" uid="115894" lat="40.3670828" lon="49.8381011"/>
+ <node id="14180627123" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:22:43Z" user="DaveF" uid="115894" lat="40.3730938" lon="49.8442488"/>
+ <node id="14180627124" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:22:43Z" user="DaveF" uid="115894" lat="40.3712441" lon="49.8450521"/>
+ <node id="14180627125" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:22:43Z" user="DaveF" uid="115894" lat="40.3711640" lon="49.8450420"/>
+ <node id="14180627126" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:22:43Z" user="DaveF" uid="115894" lat="40.3713463" lon="49.8450242"/>
+ <node id="14180627127" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:22:43Z" user="DaveF" uid="115894" lat="40.3729238" lon="49.8441890"/>
+ <node id="14180627128" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:22:43Z" user="DaveF" uid="115894" lat="40.3710394" lon="49.8449001"/>
+ <node id="14180627129" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:22:43Z" user="DaveF" uid="115894" lat="40.3729909" lon="49.8441879"/>
+ <node id="14180627130" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:22:43Z" user="DaveF" uid="115894" lat="40.3710997" lon="49.8449914"/>
+ <node id="14180627131" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:22:43Z" user="DaveF" uid="115894" lat="40.3731325" lon="49.8443221"/>
+ <node id="14180627132" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:22:43Z" user="DaveF" uid="115894" lat="40.3730501" lon="49.8442104"/>
+ <node id="14180657605" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T12:50:01Z" user="DaveF" uid="115894" lat="40.3670746" lon="49.8383323"/>
+ <node id="14180657606" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T12:50:01Z" user="DaveF" uid="115894" lat="40.3670897" lon="49.8383778"/>
+ <node id="14180657609" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T12:50:01Z" user="DaveF" uid="115894" lat="40.3670668" lon="49.8382789"/>
+ <node id="14180657610" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T12:50:01Z" user="DaveF" uid="115894" lat="40.3670739" lon="49.8381335"/>
+ <node id="14180677242" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:01:56Z" user="DaveF" uid="115894" lat="40.3694172" lon="49.8357828"/>
+ <node id="14180677243" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:01:56Z" user="DaveF" uid="115894" lat="40.3694162" lon="49.8357131"/>
+ <node id="14180677244" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:01:56Z" user="DaveF" uid="115894" lat="40.3691866" lon="49.8348172"/>
+ <node id="14180677245" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:01:56Z" user="DaveF" uid="115894" lat="40.3693998" lon="49.8356299"/>
+ <node id="14180755428" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:25:17Z" user="DaveF" uid="115894" lat="40.3643296" lon="49.8310604"/>
+ <node id="14180802139" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894" lat="40.3625604" lon="49.8348298"/>
+ <node id="14180802140" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894" lat="40.3656792" lon="49.8379377"/>
+ <node id="14180802141" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894" lat="40.3651313" lon="49.8373795"/>
+ <node id="14180802142" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894" lat="40.3625960" lon="49.8348803"/>
+ <node id="14180802143" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894" lat="40.3625482" lon="49.8346189"/>
+ <node id="14180802144" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894" lat="40.3653635" lon="49.8376596"/>
+ <node id="14180802145" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894" lat="40.3654987" lon="49.8378079"/>
+ <node id="14180802146" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894" lat="40.3668179" lon="49.8383244"/>
+ <node id="14180802147" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894" lat="40.3666560" lon="49.8382611"/>
+ <node id="14180802148" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894" lat="40.3669062" lon="49.8383824"/>
+ <node id="14180802149" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894" lat="40.3658289" lon="49.8380168"/>
+ <node id="14180802150" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894" lat="40.3659946" lon="49.8380801"/>
+ <node id="14180802151" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894" lat="40.3625402" lon="49.8347370"/>
+ <node id="14180802152" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894" lat="40.3655889" lon="49.8378847"/>
+ <node id="14180845360" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T14:09:29Z" user="DaveF" uid="115894" lat="40.3722515" lon="49.8517109"/>
+ <node id="14180845361" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:52:44Z" user="DaveF" uid="115894" lat="40.3710761" lon="49.8482649"/>
+ <node id="14180845362" visible="true" version="5" changeset="189007231" timestamp="2026-09-14T14:17:11Z" user="DaveF" uid="115894" lat="40.3722004" lon="49.8515831"/>
+ <node id="14180845363" visible="true" version="3" changeset="189007231" timestamp="2026-09-14T14:08:12Z" user="DaveF" uid="115894" lat="40.3720171" lon="49.8509724"/>
+ <node id="14180845364" visible="true" version="3" changeset="189007231" timestamp="2026-09-14T14:08:12Z" user="DaveF" uid="115894" lat="40.3721613" lon="49.8513003"/>
+ <node id="14180845365" visible="true" version="3" changeset="189007231" timestamp="2026-09-14T14:08:12Z" user="DaveF" uid="115894" lat="40.3720642" lon="49.8510657"/>
+ <node id="14180854750" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T14:08:12Z" user="DaveF" uid="115894" lat="40.3721412" lon="49.8512223"/>
+ <node id="14180855827" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T14:08:12Z" user="DaveF" uid="115894" lat="40.3721069" lon="49.8511413"/>
+ <node id="14180855828" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T14:08:12Z" user="DaveF" uid="115894" lat="40.3721665" lon="49.8514105"/>
+ <node id="14180889254" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T14:17:11Z" user="DaveF" uid="115894" lat="40.3721795" lon="49.8515128"/>
+ <way id="25402777" visible="true" version="26" changeset="164955076" timestamp="2025-04-14T19:37:04Z" user="cybermapper" uid="20663926">
+  <nd ref="276371597"/>
+  <nd ref="12216054794"/>
+  <nd ref="4462419096"/>
+  <nd ref="276842653"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lanes:backward" v="3"/>
+  <tag k="lanes:forward" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Puşkin küçəsi"/>
+  <tag k="name:az" v="Puşkin küçəsi"/>
+  <tag k="name:az-cyr" v="Пушкин күчәси"/>
+  <tag k="name:en" v="Pushkin Street"/>
+  <tag k="name:ru" v="улица Пушкина"/>
+  <tag k="oneway" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="131835265" visible="true" version="38" changeset="187070896" timestamp="2026-08-07T07:53:53Z" user="ApaRiver" uid="21971206">
+  <nd ref="2941447471"/>
+  <nd ref="14078184112"/>
+  <nd ref="2941447475"/>
+  <nd ref="9812799749"/>
+  <nd ref="2941447474"/>
+  <nd ref="276370538"/>
+  <nd ref="4475530721"/>
+  <nd ref="13953710316"/>
+  <nd ref="276371827"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="int_ref" v="E 60"/>
+  <tag k="lanes" v="4"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Neftçilər prospekti"/>
+  <tag k="name:az" v="Neftçilər prospekti"/>
+  <tag k="name:az-cyr" v="Нефтчиләр проспекти"/>
+  <tag k="name:en" v="Neftchilar Avenue"/>
+  <tag k="name:ru" v="проспект Нефтяников"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="165695131" visible="true" version="48" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894">
+  <nd ref="6225812434"/>
+  <nd ref="2101927480"/>
+  <nd ref="276847442"/>
+  <nd ref="12367590228"/>
+  <nd ref="11729823831"/>
+  <nd ref="276846862"/>
+  <nd ref="276847443"/>
+  <nd ref="3889262340"/>
+  <nd ref="14180561340"/>
+  <tag k="cycleway:both" v="shoulder"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Xaqani küçəsi"/>
+  <tag k="name:az" v="Xaqani küçəsi"/>
+  <tag k="name:en" v="Khagani Street"/>
+  <tag k="name:ru" v="улица Хагани"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="parking:lane:both" v="parallel"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q368862"/>
+  <tag k="wikipedia" v="en:Khaqani"/>
+ </way>
+ <way id="167173308" visible="true" version="22" changeset="159754965" timestamp="2024-11-29T20:09:01Z" user="cybermapper" uid="20663926">
+  <nd ref="3454030819"/>
+  <nd ref="9652651820"/>
+  <tag k="highway" v="primary"/>
+  <tag k="int_ref" v="AH8"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Niyazi küçəsi"/>
+  <tag k="name:en" v="Niyazi Street"/>
+  <tag k="name:ru" v="улица Ниязи"/>
+  <tag k="oneway" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="167173315" visible="true" version="23" changeset="156806224" timestamp="2024-09-19T07:48:07Z" user="cybermapper" uid="20663926">
+  <nd ref="2290884750"/>
+  <nd ref="1797880831"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="int_name" v="Neftchilar Prospect"/>
+  <tag k="int_ref" v="E 60"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Neftçilər prospekti"/>
+  <tag k="name:az" v="Neftçilər prospekti"/>
+  <tag k="name:az-cyr" v="Нефтчиләр проспекти"/>
+  <tag k="name:en" v="Neftchilar Avenue"/>
+  <tag k="name:ru" v="проспект Нефтяников"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="177431273" visible="true" version="20" changeset="189007231" timestamp="2026-09-14T12:22:43Z" user="DaveF" uid="115894">
+  <nd ref="276371995"/>
+  <nd ref="14180627126"/>
+  <tag k="cycleway:left" v="lane"/>
+  <tag k="cycleway:left:oneway" v="no"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Bülbül prospekti"/>
+  <tag k="name:az" v="Bülbül prospekti"/>
+  <tag k="name:en" v="Bulbul Avenue"/>
+  <tag k="name:ru" v="проспект Бюльбюля"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="oneway:bicycle" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="179238852" visible="true" version="49" changeset="189007231" timestamp="2026-09-14T13:52:44Z" user="DaveF" uid="115894">
+  <nd ref="276370540"/>
+  <nd ref="3648243699"/>
+  <nd ref="2558476048"/>
+  <nd ref="2557102477"/>
+  <nd ref="12988634893"/>
+  <nd ref="4489396194"/>
+  <nd ref="3648244741"/>
+  <nd ref="5607438769"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="int_ref" v="E 60"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Neftçilər prospekti"/>
+  <tag k="name:az" v="Neftçilər prospekti"/>
+  <tag k="name:az-cyr" v="Нефтчиләр проспекти"/>
+  <tag k="name:en" v="Neftchilar Avenue"/>
+  <tag k="name:ru" v="проспект Нефтяников"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="182645384" visible="true" version="23" changeset="168994023" timestamp="2025-07-16T05:15:06Z" user="BikalLake" uid="19895016">
+  <nd ref="5079651134"/>
+  <nd ref="12348830215"/>
+  <nd ref="276371995"/>
+  <tag k="cycleway:left" v="lane"/>
+  <tag k="cycleway:left:oneway" v="no"/>
+  <tag k="foot" v="no"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="name" v="Bülbül prospekti"/>
+  <tag k="name:az" v="Bülbül prospekti"/>
+  <tag k="name:en" v="Bulbul Avenue"/>
+  <tag k="name:ru" v="проспект Бюльбюля"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="oneway:bicycle" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="249018354" visible="true" version="37" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894">
+  <nd ref="2557155069"/>
+  <nd ref="3031367458"/>
+  <nd ref="2941455965"/>
+  <nd ref="2945156941"/>
+  <nd ref="14180802141"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Neftçilər prospekti"/>
+  <tag k="name:az" v="Neftçilər prospekti"/>
+  <tag k="name:az-cyr" v="Нефтчиләр проспекти"/>
+  <tag k="name:en" v="Neftchilar Avenue"/>
+  <tag k="name:ru" v="проспект Нефтяников"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="parking:both" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="290633714" visible="true" version="17" changeset="183071129" timestamp="2026-05-23T14:41:32Z" user="MenKauRa" uid="1643499">
+  <nd ref="2290884761"/>
+  <nd ref="9813148803"/>
+  <nd ref="13866912249"/>
+  <nd ref="3594182942"/>
+  <nd ref="2941447472"/>
+  <nd ref="2941464307"/>
+  <nd ref="1416166974"/>
+  <nd ref="9812799763"/>
+  <nd ref="9812799762"/>
+  <nd ref="1416166971"/>
+  <nd ref="1416166973"/>
+  <nd ref="2290884756"/>
+  <nd ref="2290884754"/>
+  <nd ref="2290884755"/>
+  <nd ref="1416166976"/>
+  <nd ref="2290884750"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="int_ref" v="E 60"/>
+  <tag k="lanes" v="4"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="323377758" visible="true" version="20" changeset="188516211" timestamp="2026-09-04T09:40:28Z" user="qwf" uid="20436262">
+  <nd ref="276371827"/>
+  <nd ref="276848321"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="int_ref" v="E 60"/>
+  <tag k="lanes" v="4"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Neftçilər prospekti"/>
+  <tag k="name:az" v="Neftçilər prospekti"/>
+  <tag k="name:az-cyr" v="Нефтчиләр проспекти"/>
+  <tag k="name:en" v="Neftchilar Avenue"/>
+  <tag k="name:ru" v="проспект Нефтяников"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="left|left;through|through|through"/>
+ </way>
+ <way id="338326554" visible="true" version="17" changeset="169223913" timestamp="2025-07-21T05:38:03Z" user="ThompsonPlateau" uid="20951931">
+  <nd ref="4702367253"/>
+  <nd ref="9652645366"/>
+  <nd ref="13014858215"/>
+  <nd ref="3594182936"/>
+  <nd ref="7241246551"/>
+  <tag k="highway" v="primary"/>
+  <tag k="int_ref" v="AH8"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Niyazi küçəsi"/>
+  <tag k="name:en" v="Niyazi Street"/>
+  <tag k="name:ru" v="улица Ниязи"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="476752809" visible="true" version="26" changeset="187067321" timestamp="2026-08-07T06:12:34Z" user="ApaRiver" uid="21971206">
+  <nd ref="276887830"/>
+  <nd ref="10593475597"/>
+  <nd ref="277334987"/>
+  <nd ref="9823366017"/>
+  <nd ref="3765773689"/>
+  <nd ref="9823360115"/>
+  <nd ref="276880945"/>
+  <nd ref="13003842717"/>
+  <nd ref="14078062197"/>
+  <nd ref="9823360112"/>
+  <nd ref="9823360111"/>
+  <nd ref="9823360108"/>
+  <nd ref="277336019"/>
+  <nd ref="277336118"/>
+  <nd ref="9823327612"/>
+  <nd ref="276881459"/>
+  <nd ref="13929297066"/>
+  <nd ref="9630529549"/>
+  <nd ref="3463121869"/>
+  <tag k="cycleway:right" v="track"/>
+  <tag k="highway" v="primary"/>
+  <tag k="int_ref" v="AH8"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="İstiqlaliyyət küçəsi"/>
+  <tag k="name:az" v="İstiqlaliyyət küçəsi"/>
+  <tag k="name:en" v="Istiglaliyyat Street"/>
+  <tag k="name:ru" v="улица Истиглалиййят"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="oneway:bicycle" v="no"/>
+  <tag k="parking:both" v="no"/>
+  <tag k="sidewalk:both" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q4472311"/>
+  <tag k="wikipedia" v="en:Istiglaliyyat Street"/>
+ </way>
+ <way id="476752810" visible="true" version="25" changeset="189007231" timestamp="2026-09-14T13:25:17Z" user="DaveF" uid="115894">
+  <nd ref="4702367255"/>
+  <nd ref="9652651825"/>
+  <nd ref="4702367245"/>
+  <nd ref="9823360097"/>
+  <nd ref="3454030834"/>
+  <nd ref="1467420792"/>
+  <nd ref="9652645374"/>
+  <nd ref="14180755428"/>
+  <nd ref="9652645397"/>
+  <tag k="highway" v="primary"/>
+  <tag k="int_ref" v="AH8"/>
+  <tag k="lane_markings" v="yes"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="İstiqlaliyyət küçəsi"/>
+  <tag k="name:az" v="İstiqlaliyyət küçəsi"/>
+  <tag k="name:en" v="Istiglaliyyat Street"/>
+  <tag k="name:ru" v="улица Истиглалиййят"/>
+  <tag k="oneway" v="no"/>
+  <tag k="parking:both" v="no"/>
+  <tag k="sidewalk:both" v="separate"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="500527621" visible="true" version="10" changeset="159754965" timestamp="2024-11-29T20:07:30Z" user="cybermapper" uid="20663926">
+  <nd ref="4702367250"/>
+  <nd ref="4702367253"/>
+  <tag k="highway" v="primary"/>
+  <tag k="int_ref" v="AH8"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Niyazi küçəsi"/>
+  <tag k="name:en" v="Niyazi Street"/>
+  <tag k="name:ru" v="улица Ниязи"/>
+  <tag k="oneway" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="639403533" visible="true" version="15" changeset="182050776" timestamp="2026-04-30T21:09:15Z" user="MenKauRa" uid="1643499">
+  <nd ref="12990498600"/>
+  <nd ref="13756192601"/>
+  <nd ref="13756149458"/>
+  <nd ref="3454030843"/>
+  <nd ref="13756149500"/>
+  <nd ref="7065820506"/>
+  <nd ref="12990514004"/>
+  <nd ref="12990514017"/>
+  <nd ref="13756149498"/>
+  <nd ref="13756149499"/>
+  <nd ref="13763369189"/>
+  <nd ref="2125106195"/>
+  <nd ref="3463121877"/>
+  <tag k="access" v="permissive"/>
+  <tag k="cycleway:right" v="lane"/>
+  <tag k="highway" v="service"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="20"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="766787796" visible="true" version="13" changeset="182627604" timestamp="2026-05-14T03:43:44Z" user="StoneChain" uid="13259724">
+  <nd ref="5607438769"/>
+  <nd ref="13826310747"/>
+  <nd ref="13826310746"/>
+  <nd ref="10869386375"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="int_ref" v="E 60"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Neftçilər prospekti"/>
+  <tag k="name:az" v="Neftçilər prospekti"/>
+  <tag k="name:az-cyr" v="Нефтчиләр проспекти"/>
+  <tag k="name:en" v="Neftchilar Avenue"/>
+  <tag k="name:ru" v="проспект Нефтяников"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:left" v="yes"/>
+  <tag k="sidewalk:right" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="822375070" visible="true" version="9" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894">
+  <nd ref="7241246551"/>
+  <nd ref="14180802143"/>
+  <nd ref="14180802151"/>
+  <nd ref="14180802139"/>
+  <nd ref="14180802142"/>
+  <nd ref="7678658474"/>
+  <nd ref="2557155069"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="sport" v="motor"/>
+ </way>
+ <way id="926192527" visible="true" version="13" changeset="180683911" timestamp="2026-03-31T17:21:25Z" user="c4m3lion" uid="23955276">
+  <nd ref="4702367255"/>
+  <nd ref="9652651824"/>
+  <nd ref="9652651826"/>
+  <nd ref="9630529519"/>
+  <nd ref="276881215"/>
+  <tag k="cycleway:right" v="track"/>
+  <tag k="highway" v="primary"/>
+  <tag k="int_ref" v="AH8"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="İstiqlaliyyət küçəsi"/>
+  <tag k="name:az" v="İstiqlaliyyət küçəsi"/>
+  <tag k="name:en" v="Istiglaliyyat Street"/>
+  <tag k="name:ru" v="улица Истиглалиййят"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="oneway:bicycle" v="no"/>
+  <tag k="sidewalk:both" v="separate"/>
+  <tag k="smoothness" v="good"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1050381554" visible="true" version="3" changeset="159754965" timestamp="2024-11-29T20:08:59Z" user="cybermapper" uid="20663926">
+  <nd ref="9652645397"/>
+  <nd ref="9652645377"/>
+  <nd ref="9652645376"/>
+  <nd ref="9652645369"/>
+  <nd ref="9652645373"/>
+  <nd ref="9652645370"/>
+  <nd ref="3454030819"/>
+  <tag k="highway" v="primary"/>
+  <tag k="int_ref" v="AH8"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="İstiqlaliyyət küçəsi"/>
+  <tag k="oneway" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1050381555" visible="true" version="7" changeset="181011991" timestamp="2026-04-07T17:21:02Z" user="c4m3lion" uid="23955276">
+  <nd ref="9652651820"/>
+  <nd ref="4702367250"/>
+  <tag k="highway" v="primary"/>
+  <tag k="int_ref" v="AH8"/>
+  <tag k="lane_markings" v="yes"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Niyazi küçəsi"/>
+  <tag k="name:en" v="Niyazi Street"/>
+  <tag k="name:ru" v="улица Ниязи"/>
+  <tag k="oneway" v="no"/>
+  <tag k="sidewalk" v="both"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1069034735" visible="true" version="24" changeset="189007231" timestamp="2026-09-14T12:50:28Z" user="DaveF" uid="115894">
+  <nd ref="3463121877"/>
+  <nd ref="13783066057"/>
+  <nd ref="13783066058"/>
+  <nd ref="13756192605"/>
+  <nd ref="276876589"/>
+  <nd ref="13756149461"/>
+  <nd ref="9823366030"/>
+  <nd ref="1770473732"/>
+  <nd ref="1770473731"/>
+  <nd ref="276876590"/>
+  <nd ref="9823366033"/>
+  <nd ref="1770473722"/>
+  <nd ref="1466042013"/>
+  <nd ref="9823366034"/>
+  <nd ref="1770473714"/>
+  <nd ref="9823366032"/>
+  <nd ref="9823340878"/>
+  <nd ref="13756192713"/>
+  <nd ref="9823340879"/>
+  <nd ref="13783066065"/>
+  <tag k="addr:street" v="Əziz Əliyev küç."/>
+  <tag k="bicycle" v="no"/>
+  <tag k="cycleway:right" v="lane"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="pedestrian"/>
+  <tag k="horse" v="permissive"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="motor_vehicle" v="no"/>
+  <tag k="name" v="Əziz Əliyev küçəsi"/>
+  <tag k="name:az" v="Əziz Əliyev küçəsi"/>
+  <tag k="name:en" v="Aziz Aliyev Street"/>
+  <tag k="oneway" v="no"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q4062274"/>
+  <tag k="wikipedia" v="en:Aziz Aliyev"/>
+ </way>
+ <way id="1168829202" visible="true" version="6" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894">
+  <nd ref="276842653"/>
+  <nd ref="12216060845"/>
+  <nd ref="14180561347"/>
+  <nd ref="3383981132"/>
+  <tag k="cycleway:right" v="lane"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Puşkin küçəsi"/>
+  <tag k="name:az" v="Puşkin küçəsi"/>
+  <tag k="name:az-cyr" v="Пушкин күчәси"/>
+  <tag k="name:en" v="Pushkin Street"/>
+  <tag k="name:ru" v="улица Пушкина"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1168829203" visible="true" version="4" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894">
+  <nd ref="10869386375"/>
+  <nd ref="10869386374"/>
+  <nd ref="10869386373"/>
+  <nd ref="10869386372"/>
+  <nd ref="10869386371"/>
+  <nd ref="9811381248"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="sport" v="motor"/>
+ </way>
+ <way id="1279858618" visible="true" version="6" changeset="167517743" timestamp="2025-06-12T05:59:36Z" user="Möhsün Babayev" uid="22343946">
+  <nd ref="276881215"/>
+  <nd ref="276887830"/>
+  <tag k="cycleway:right" v="track"/>
+  <tag k="highway" v="primary"/>
+  <tag k="int_ref" v="AH8"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="İstiqlaliyyət küçəsi"/>
+  <tag k="name:az" v="İstiqlaliyyət küçəsi"/>
+  <tag k="name:en" v="Istiglaliyyat Street"/>
+  <tag k="name:ru" v="улица Истиглалиййят"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="oneway:bicycle" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1329392228" visible="true" version="3" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894">
+  <nd ref="3383981132"/>
+  <nd ref="2844641823"/>
+  <nd ref="9811381248"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Puşkin küçəsi"/>
+  <tag k="name:az" v="Puşkin küçəsi"/>
+  <tag k="name:az-cyr" v="Пушкин күчәси"/>
+  <tag k="name:en" v="Pushkin Street"/>
+  <tag k="name:ru" v="улица Пушкина"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1413965638" visible="true" version="5" changeset="189007231" timestamp="2026-09-14T12:50:28Z" user="DaveF" uid="115894">
+  <nd ref="1797880831"/>
+  <nd ref="276876530"/>
+  <nd ref="3077754617"/>
+  <nd ref="14134539622"/>
+  <nd ref="276370536"/>
+  <nd ref="9812858715"/>
+  <nd ref="2290884749"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="int_name" v="Neftchilar Prospect"/>
+  <tag k="int_ref" v="E 60"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Neftçilər prospekti"/>
+  <tag k="name:az" v="Neftçilər prospekti"/>
+  <tag k="name:az-cyr" v="Нефтчиләр проспекти"/>
+  <tag k="name:en" v="Neftchilar Avenue"/>
+  <tag k="name:ru" v="проспект Нефтяников"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="parking:both" v="no"/>
+  <tag k="sidewalk" v="both"/>
+  <tag k="sidewalk:both:surface" v="paving_stones"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1415063177" visible="true" version="1" changeset="168990383" timestamp="2025-07-16T01:48:48Z" user="BikalLake" uid="19895016">
+  <nd ref="6225812433"/>
+  <nd ref="276374004"/>
+  <nd ref="6225812434"/>
+  <tag k="cycleway:both" v="shoulder"/>
+  <tag k="foot" v="no"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Xaqani küçəsi"/>
+  <tag k="name:az" v="Xaqani küçəsi"/>
+  <tag k="name:en" v="Khagani Street"/>
+  <tag k="name:ru" v="улица Хагани"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q368862"/>
+  <tag k="wikipedia" v="en:Khaqani"/>
+ </way>
+ <way id="1415063178" visible="true" version="2" changeset="168991766" timestamp="2025-07-16T03:14:25Z" user="BikalLake" uid="19895016">
+  <nd ref="276846863"/>
+  <nd ref="12224096820"/>
+  <tag k="cycleway:both" v="shoulder"/>
+  <tag k="foot" v="no"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Xaqani küçəsi"/>
+  <tag k="name:az" v="Xaqani küçəsi"/>
+  <tag k="name:en" v="Khagani Street"/>
+  <tag k="name:ru" v="улица Хагани"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q368862"/>
+  <tag k="wikipedia" v="en:Khaqani"/>
+ </way>
+ <way id="1415075088" visible="true" version="3" changeset="184941513" timestamp="2026-07-01T22:12:21Z" user="twx25" uid="24234029">
+  <nd ref="12224096820"/>
+  <nd ref="6225812433"/>
+  <tag k="cycleway:both" v="shoulder"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Xaqani küçəsi"/>
+  <tag k="name:az" v="Xaqani küçəsi"/>
+  <tag k="name:en" v="Khagani Street"/>
+  <tag k="name:ru" v="улица Хагани"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="parking:lane:both" v="parallel"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q368862"/>
+  <tag k="wikipedia" v="en:Khaqani"/>
+ </way>
+ <way id="1415075090" visible="true" version="1" changeset="168991766" timestamp="2025-07-16T03:14:25Z" user="BikalLake" uid="19895016">
+  <nd ref="4489370567"/>
+  <nd ref="276846863"/>
+  <tag k="cycleway:both" v="shoulder"/>
+  <tag k="foot" v="no"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Xaqani küçəsi"/>
+  <tag k="name:az" v="Xaqani küçəsi"/>
+  <tag k="name:en" v="Khagani Street"/>
+  <tag k="name:ru" v="улица Хагани"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q368862"/>
+  <tag k="wikipedia" v="en:Khaqani"/>
+ </way>
+ <way id="1415085013" visible="true" version="1" changeset="168994023" timestamp="2025-07-16T05:15:06Z" user="BikalLake" uid="19895016">
+  <nd ref="7190127942"/>
+  <nd ref="276371182"/>
+  <tag k="cycleway:both" v="shoulder"/>
+  <tag k="cycleway:left:oneway" v="-1"/>
+  <tag k="foot" v="no"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="int_ref" v="E 60"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Zərifə Əliyeva küçəsi"/>
+  <tag k="name:az" v="Zərifə Əliyeva küçəsi"/>
+  <tag k="name:en" v="Zarifa Aliyeva Street"/>
+  <tag k="name:ru" v="улица Зарифы Алиевой"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="oneway:bicycle" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1415085014" visible="true" version="1" changeset="168994023" timestamp="2025-07-16T05:15:06Z" user="BikalLake" uid="19895016">
+  <nd ref="276371182"/>
+  <nd ref="5280753618"/>
+  <nd ref="2290884761"/>
+  <tag k="cycleway:both" v="shoulder"/>
+  <tag k="cycleway:left:oneway" v="-1"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="int_ref" v="E 60"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Zərifə Əliyeva küçəsi"/>
+  <tag k="name:az" v="Zərifə Əliyeva küçəsi"/>
+  <tag k="name:en" v="Zarifa Aliyeva Street"/>
+  <tag k="name:ru" v="улица Зарифы Алиевой"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="oneway:bicycle" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1513267145" visible="true" version="7" changeset="189007231" timestamp="2026-09-14T14:17:11Z" user="DaveF" uid="115894">
+  <nd ref="14180845361"/>
+  <nd ref="13826279381"/>
+  <nd ref="13826279385"/>
+  <nd ref="14180845363"/>
+  <nd ref="14180845365"/>
+  <nd ref="14180855827"/>
+  <nd ref="14180854750"/>
+  <nd ref="14180845364"/>
+  <nd ref="14180855828"/>
+  <nd ref="14180889254"/>
+  <nd ref="14180845362"/>
+  <nd ref="14180845360"/>
+  <nd ref="13826279390"/>
+  <nd ref="14180561348"/>
+  <nd ref="13826279391"/>
+  <nd ref="14180561349"/>
+  <nd ref="13826279392"/>
+  <nd ref="14180561341"/>
+  <nd ref="14180561347"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Pit Lane"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1548322891" visible="true" version="1" changeset="187181225" timestamp="2026-08-09T13:59:01Z" user="qwf" uid="20436262">
+  <nd ref="9812789080"/>
+  <nd ref="9812789084"/>
+  <tag k="cycleway:both" v="shoulder"/>
+  <tag k="cycleway:left:oneway" v="-1"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="int_ref" v="E 60"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Zərifə Əliyeva küçəsi"/>
+  <tag k="name:az" v="Zərifə Əliyeva küçəsi"/>
+  <tag k="name:en" v="Zarifa Aliyeva Street"/>
+  <tag k="name:ru" v="улица Зарифы Алиевой"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="oneway:bicycle" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1548322892" visible="true" version="1" changeset="187181225" timestamp="2026-08-09T13:59:01Z" user="qwf" uid="20436262">
+  <nd ref="9812789084"/>
+  <nd ref="9812789082"/>
+  <tag k="cycleway:both" v="shoulder"/>
+  <tag k="cycleway:left:oneway" v="-1"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="int_ref" v="E 60"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Zərifə Əliyeva küçəsi"/>
+  <tag k="name:az" v="Zərifə Əliyeva küçəsi"/>
+  <tag k="name:en" v="Zarifa Aliyeva Street"/>
+  <tag k="name:ru" v="улица Зарифы Алиевой"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="oneway:bicycle" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1548322893" visible="true" version="1" changeset="187181225" timestamp="2026-08-09T13:59:01Z" user="qwf" uid="20436262">
+  <nd ref="9812789082"/>
+  <nd ref="11309681420"/>
+  <tag k="cycleway:both" v="shoulder"/>
+  <tag k="cycleway:left:oneway" v="-1"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="int_ref" v="E 60"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Zərifə Əliyeva küçəsi"/>
+  <tag k="name:az" v="Zərifə Əliyeva küçəsi"/>
+  <tag k="name:en" v="Zarifa Aliyeva Street"/>
+  <tag k="name:ru" v="улица Зарифы Алиевой"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="oneway:bicycle" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1548322894" visible="true" version="1" changeset="187181225" timestamp="2026-08-09T13:59:01Z" user="qwf" uid="20436262">
+  <nd ref="11309681420"/>
+  <nd ref="13953710327"/>
+  <nd ref="7190127942"/>
+  <tag k="cycleway:both" v="shoulder"/>
+  <tag k="cycleway:left:oneway" v="-1"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="int_ref" v="E 60"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Zərifə Əliyeva küçəsi"/>
+  <tag k="name:az" v="Zərifə Əliyeva küçəsi"/>
+  <tag k="name:en" v="Zarifa Aliyeva Street"/>
+  <tag k="name:ru" v="улица Зарифы Алиевой"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="oneway:bicycle" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1555062568" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T13:52:44Z" user="DaveF" uid="115894">
+  <nd ref="276848321"/>
+  <nd ref="14180845361"/>
+  <nd ref="276370540"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="int_ref" v="E 60"/>
+  <tag k="lanes" v="4"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Neftçilər prospekti"/>
+  <tag k="name:az" v="Neftçilər prospekti"/>
+  <tag k="name:az-cyr" v="Нефтчиләр проспекти"/>
+  <tag k="name:en" v="Neftchilar Avenue"/>
+  <tag k="name:ru" v="проспект Нефтяников"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="left|left;through|through|through"/>
+ </way>
+ <way id="1558829712" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894">
+  <nd ref="14180561343"/>
+  <nd ref="7384081390"/>
+  <nd ref="4445139960"/>
+  <nd ref="4462419092"/>
+  <nd ref="276371597"/>
+  <tag k="cycleway:both" v="shoulder"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Puşkin küçəsi"/>
+  <tag k="name:az" v="Puşkin küçəsi"/>
+  <tag k="name:az-cyr" v="Пушкин күчәси"/>
+  <tag k="name:en" v="Pushkin Street"/>
+  <tag k="name:ru" v="улица Пушкина"/>
+  <tag k="oneway" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1558829713" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:09:38Z" user="DaveF" uid="115894">
+  <nd ref="14180561343"/>
+  <nd ref="14180561346"/>
+  <nd ref="14180561345"/>
+  <nd ref="14180561342"/>
+  <nd ref="14180561340"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="sport" v="motor"/>
+ </way>
+ <way id="1558832738" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:22:43Z" user="DaveF" uid="115894">
+  <nd ref="14180627128"/>
+  <nd ref="9812789080"/>
+  <tag k="cycleway:both" v="shoulder"/>
+  <tag k="cycleway:left:oneway" v="-1"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="int_ref" v="E 60"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Zərifə Əliyeva küçəsi"/>
+  <tag k="name:az" v="Zərifə Əliyeva küçəsi"/>
+  <tag k="name:en" v="Zarifa Aliyeva Street"/>
+  <tag k="name:ru" v="улица Зарифы Алиевой"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="oneway:bicycle" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1558832740" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:22:43Z" user="DaveF" uid="115894">
+  <nd ref="14180627127"/>
+  <nd ref="3077754627"/>
+  <nd ref="13866875481"/>
+  <nd ref="5079651134"/>
+  <tag k="cycleway:left" v="lane"/>
+  <tag k="cycleway:left:oneway" v="no"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="name" v="Bülbül prospekti"/>
+  <tag k="name:az" v="Bülbül prospekti"/>
+  <tag k="name:en" v="Bulbul Avenue"/>
+  <tag k="name:ru" v="проспект Бюльбюля"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="oneway:bicycle" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1558832741" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:22:43Z" user="DaveF" uid="115894">
+  <nd ref="14180627131"/>
+  <nd ref="14180627123"/>
+  <nd ref="14180627132"/>
+  <nd ref="14180627129"/>
+  <nd ref="14180627127"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="sport" v="motor"/>
+ </way>
+ <way id="1558832742" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:22:43Z" user="DaveF" uid="115894">
+  <nd ref="14180627126"/>
+  <nd ref="14180627124"/>
+  <nd ref="14180627125"/>
+  <nd ref="14180627130"/>
+  <nd ref="14180627128"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="sport" v="motor"/>
+ </way>
+ <way id="1558832743" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T12:22:43Z" user="DaveF" uid="115894">
+  <nd ref="14180627131"/>
+  <nd ref="4489370565"/>
+  <nd ref="4489370567"/>
+  <tag k="cycleway:both" v="shoulder"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Xaqani küçəsi"/>
+  <tag k="name:az" v="Xaqani küçəsi"/>
+  <tag k="name:en" v="Khagani Street"/>
+  <tag k="name:ru" v="улица Хагани"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="parking:lane:both" v="parallel"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q368862"/>
+  <tag k="wikipedia" v="en:Khaqani"/>
+ </way>
+ <way id="1558837058" visible="true" version="2" changeset="189007231" timestamp="2026-09-14T12:50:01Z" user="DaveF" uid="115894">
+  <nd ref="2290884749"/>
+  <nd ref="14180657606"/>
+  <nd ref="14180657605"/>
+  <nd ref="14180657609"/>
+  <nd ref="14180657610"/>
+  <nd ref="14180599600"/>
+  <nd ref="13783066065"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="sport" v="motor"/>
+ </way>
+ <way id="1558839567" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:01:56Z" user="DaveF" uid="115894">
+  <nd ref="12990498600"/>
+  <nd ref="14180677242"/>
+  <nd ref="14180677243"/>
+  <nd ref="14180677245"/>
+  <nd ref="14180677244"/>
+  <nd ref="3463121869"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="sport" v="motor"/>
+ </way>
+ <way id="1558855504" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894">
+  <nd ref="14180802141"/>
+  <nd ref="14180802144"/>
+  <nd ref="14180802145"/>
+  <nd ref="14180802152"/>
+  <nd ref="14180802140"/>
+  <nd ref="14180802149"/>
+  <nd ref="14180802150"/>
+  <nd ref="14180802147"/>
+  <nd ref="14180802146"/>
+  <nd ref="14180802148"/>
+  <nd ref="9812867727"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="sport" v="motor"/>
+ </way>
+ <way id="1558855505" visible="true" version="1" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894">
+  <nd ref="9812867727"/>
+  <nd ref="13922396677"/>
+  <nd ref="2941455976"/>
+  <nd ref="13783066059"/>
+  <nd ref="2941455972"/>
+  <nd ref="3077754616"/>
+  <nd ref="14134539621"/>
+  <nd ref="14078184116"/>
+  <nd ref="14078184114"/>
+  <nd ref="2941447471"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Neftçilər prospekti"/>
+  <tag k="name:az" v="Neftçilər prospekti"/>
+  <tag k="name:az-cyr" v="Нефтчиләр проспекти"/>
+  <tag k="name:en" v="Neftchilar Avenue"/>
+  <tag k="name:ru" v="проспект Нефтяников"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="parking:both" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <relation id="11266687" visible="true" version="39" changeset="189007231" timestamp="2026-09-14T13:41:32Z" user="DaveF" uid="115894">
+  <member type="way" ref="1069034735" role=""/>
+  <member type="way" ref="1413965638" role=""/>
+  <member type="way" ref="167173315" role=""/>
+  <member type="way" ref="290633714" role=""/>
+  <member type="way" ref="1415085014" role=""/>
+  <member type="way" ref="1415085013" role=""/>
+  <member type="way" ref="1548322894" role=""/>
+  <member type="way" ref="1548322893" role=""/>
+  <member type="way" ref="1548322892" role=""/>
+  <member type="way" ref="1548322891" role=""/>
+  <member type="way" ref="1558832738" role=""/>
+  <member type="way" ref="177431273" role=""/>
+  <member type="way" ref="182645384" role=""/>
+  <member type="way" ref="1558832740" role=""/>
+  <member type="way" ref="1558832743" role=""/>
+  <member type="way" ref="1415075090" role=""/>
+  <member type="way" ref="1415063178" role=""/>
+  <member type="way" ref="1415075088" role=""/>
+  <member type="way" ref="1415063177" role=""/>
+  <member type="way" ref="165695131" role=""/>
+  <member type="way" ref="1558829712" role=""/>
+  <member type="way" ref="25402777" role=""/>
+  <member type="way" ref="1168829202" role=""/>
+  <member type="way" ref="1329392228" role=""/>
+  <member type="way" ref="1168829203" role=""/>
+  <member type="way" ref="766787796" role=""/>
+  <member type="way" ref="179238852" role=""/>
+  <member type="way" ref="1555062568" role=""/>
+  <member type="way" ref="323377758" role=""/>
+  <member type="way" ref="131835265" role=""/>
+  <member type="way" ref="1558855505" role=""/>
+  <member type="way" ref="249018354" role=""/>
+  <member type="way" ref="822375070" role=""/>
+  <member type="way" ref="500527621" role=""/>
+  <member type="way" ref="1050381555" role=""/>
+  <member type="way" ref="167173308" role=""/>
+  <member type="way" ref="1050381554" role=""/>
+  <member type="way" ref="476752810" role=""/>
+  <member type="way" ref="926192527" role=""/>
+  <member type="way" ref="1279858618" role=""/>
+  <member type="way" ref="476752809" role=""/>
+  <member type="way" ref="639403533" role=""/>
+  <member type="way" ref="1513267145" role="pit_lane"/>
+  <member type="node" ref="13826310746" role="start"/>
+  <member type="node" ref="13826310747" role="finish"/>
+  <member type="way" ref="1558832741" role=""/>
+  <member type="way" ref="1558829713" role=""/>
+  <member type="way" ref="1558832742" role=""/>
+  <member type="way" ref="1558837058" role=""/>
+  <member type="way" ref="1558839567" role=""/>
+  <member type="way" ref="338326554" role=""/>
+  <member type="way" ref="1558855504" role=""/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Baku City Circuit"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="type" v="circuit"/>
+  <tag k="wikidata" v="Q17004958"/>
+  <tag k="wikipedia" v="en:Baku City Circuit"/>
+ </relation>
+</osm>
