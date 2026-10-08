@@ -1,9 +1,0 @@
-[gd_scene format=3]
-
-[ext_resource type="Script" path="res://scripts/track/road.gd" id="1_rdscr"]
-[ext_resource type="PackedScene" path="res://assets/tracks/red_bull_ring/road_mesh.glb" id="2_rdglb"]
-
-[node name="Road" type="Node3D"]
-script = ExtResource("1_rdscr")
-
-[node name="RoadMesh" parent="." instance=ExtResource("2_rdglb")]

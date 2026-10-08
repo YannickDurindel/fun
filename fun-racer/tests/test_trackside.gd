@@ -17,7 +17,7 @@ func _trackside(root: Node) -> Trackside:
 
 func test_every_turn_has_a_kerb() -> void:
 	var d := TrackData.load_track("res://assets/tracks/red_bull_ring/track.json")
-	var kerbs := TracksideLayout.resolve_kerbs(d)
+	var kerbs := TracksideLayout.resolve_kerbs(d, "red_bull_ring")
 	for t: Dictionary in d.turns:
 		var n := 0
 		for k in kerbs:

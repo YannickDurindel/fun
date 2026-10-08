@@ -7,6 +7,14 @@ extends RefCounted
 
 const TRACKS_DIR := "res://assets/tracks"
 const CALENDAR := "res://assets/tracks/calendar.json"
+## Scene of a track whose track_info.json names none: the generic track scene, which builds
+## any track folder (race_setup.gd sets its track_id).
+const GENERIC_SCENE := "res://scenes/tracks/track.tscn"
+
+## Engine meta holding the extra folders (see set_extra_dirs). Not a static variable:
+## TrackCatalog.reload(), called on the class, is also Script.reload(), which re-initialises
+## every static variable of this script.
+const EXTRA_DIRS_META := &"track_catalog_extra_dirs"
 
 static var _cache: Array[TrackInfo] = []
 
@@ -31,6 +39,15 @@ static func find(id: String) -> TrackInfo:
 static func reload() -> void:
 	_cache = []
 
+## Also scans `dirs` (folders of track folders, like TRACKS_DIR) from now on and drops the
+## cached list. Tests point this at tests/fixtures/tracks; pass [] to undo.
+static func set_extra_dirs(dirs: PackedStringArray) -> void:
+	Engine.set_meta(EXTRA_DIRS_META, dirs)
+	_cache = []
+
+static func extra_dirs() -> PackedStringArray:
+	return Engine.get_meta(EXTRA_DIRS_META, PackedStringArray())
+
 static func _scan() -> Array[TrackInfo]:
 	var by_id := {}
 	var cal: Variant = _read_json(CALENDAR)
@@ -42,19 +59,29 @@ static func _scan() -> Array[TrackInfo]:
 			t.available = false
 			by_id[t.id] = t
 			i += 1
-	for d: String in DirAccess.get_directories_at(TRACKS_DIR):
-		var info: Variant = _read_json("%s/%s/track_info.json" % [TRACKS_DIR, d])
-		if not (info is Dictionary):
-			continue
-		var t := _from_dict(info as Dictionary)
-		if t.id.is_empty():
-			t.id = d
-		if by_id.has(t.id):
-			t.order = (by_id[t.id] as TrackInfo).order
-		if t.track_json.is_empty():
-			t.track_json = "%s/%s/track.json" % [TRACKS_DIR, t.id]
-		t.available = bool((info as Dictionary).get("available", true)) and ResourceLoader.exists(t.scene)
-		by_id[t.id] = t
+	var bases: Array[String] = [TRACKS_DIR]
+	bases.append_array(extra_dirs())
+	for base in bases:
+		for d: String in DirAccess.get_directories_at(base):
+			var folder := base.path_join(d)
+			var info: Variant = _read_json(folder.path_join("track_info.json"))
+			if not (info is Dictionary):
+				continue
+			var t := _from_dict(info as Dictionary)
+			if t.id.is_empty():
+				t.id = d
+			if base != TRACKS_DIR or t.id != d:
+				t.folder = folder
+			if by_id.has(t.id):
+				t.order = (by_id[t.id] as TrackInfo).order
+			if t.track_json.is_empty():
+				t.track_json = folder.path_join("track.json")
+			if t.scene.is_empty():
+				t.scene = GENERIC_SCENE
+			# The generic scene exists for every folder: what makes a track playable is its data.
+			t.available = bool((info as Dictionary).get("available", true)) and ResourceLoader.exists(t.scene) \
+					and FileAccess.file_exists(t.track_json)
+			by_id[t.id] = t
 	var out: Array[TrackInfo] = []
 	for t: TrackInfo in by_id.values():
 		out.append(t)

@@ -1,16 +1,33 @@
 class_name Terrain
 extends Node3D
-## Valley terrain around the Red Bull Ring, built at startup from the heightmaps baked by
-## tools/track/fetch_terrain.py:
+## Terrain around a track (the Track's `Terrain` slot), built at startup.
+##
+## With terrain.json in the track folder (heightmaps baked by tools/track/fetch_terrain.py):
 ##   * near grid (10 m, corridor-conformed under the road) -> chunked ArrayMeshes, each with a
 ##     trimesh StaticBody3D (meta surface = "grass");
 ##   * far grid (200 m, out to ~6 km) -> one low-poly hills mesh with a hole where the near
 ##     grid is (their shared edge matches exactly), plus coarse collision.
+## Without one (a track whose terrain is not built yet): a plain ground grid that follows the
+## centreline heights and stays just below the road and its verges (see _build_fallback_grid).
 ## Everything uses shaders/terrain.gdshader. Terrain does not cast shadows (cheap on HD 520).
 
-@export_file("*.json") var terrain_json: String = "res://assets/tracks/red_bull_ring/terrain.json"
+const TERRAIN_FILE := "terrain.json"
+## Fallback ground: grid step, margin around the lap, how far from the centreline the road
+## corridor reaches (road + full verge + a cell diagonal) and how far below the lowest point
+## of the road and its verges the ground sits.
+const FALLBACK_STEP: float = 20.0
+const FALLBACK_MARGIN: float = 400.0
+const FALLBACK_REACH: float = 70.0
+const FALLBACK_CLEARANCE: float = 0.35
+const FALLBACK_VERGE_DROP: float = 0.25   ## assumed when the Road slot cannot be asked
+
+## Leave empty to use terrain.json of the parent Track's folder.
+@export_file("*.json") var terrain_json: String = ""
 @export var chunk_cells: int = 40   ## near grid cells per chunk side (400 m)
 @export var collision: bool = true
+
+## True when no terrain.json was found and the plain fallback ground was built instead.
+var is_fallback: bool = false
 
 const SHADER := preload("res://shaders/terrain.gdshader")
 
@@ -30,12 +47,111 @@ var far_h: PackedFloat32Array
 var material: ShaderMaterial
 
 func _ready() -> void:
-	if not _load():
-		return
+	var track := get_parent() as Track
+	if terrain_json.is_empty() and track != null:
+		terrain_json = track.file_path(TERRAIN_FILE)
 	material = ShaderMaterial.new()
 	material.shader = SHADER
-	_build_near()
-	_build_far()
+	if not terrain_json.is_empty() and FileAccess.file_exists(terrain_json):
+		if _load():
+			_build_near()
+			_build_far()
+			return
+		_clear_grids()   # a broken bake: fall through to the plain ground
+	if track != null and track.data != null \
+			and _build_fallback_grid(track.data, track.get_node_or_null(^"Road") as RoadSurface):
+		is_fallback = true
+		_build_near()
+
+func _clear_grids() -> void:
+	near_h = PackedFloat32Array()
+	near_d = PackedInt32Array()
+	far_h = PackedFloat32Array()
+
+## Plain ground for a track without baked terrain, as a near grid (so _build_near() and
+## height_at() work unchanged). Every node within FALLBACK_REACH of the lap takes the lowest
+## road height in that radius minus FALLBACK_CLEARANCE, where the road height of a
+## cross-section is its lowest point (banked edges and verge ends, asked from the Road slot
+## `road` when it is a RoadSurface). The reach covers the road, a full verge and a cell
+## diagonal, so the ground stays below them. Nodes further out continue the nearest ground
+## outward (each ring = mean of the ring before).
+func _build_fallback_grid(d: TrackData, road: RoadSurface = null) -> bool:
+	if d.points.is_empty():
+		return false
+	var lo := Vector2(INF, INF)
+	var hi := Vector2(-INF, -INF)
+	for p in d.points:
+		lo = lo.min(Vector2(p.x, p.z))
+		hi = hi.max(Vector2(p.x, p.z))
+	near_step = FALLBACK_STEP
+	near_x0 = floorf((lo.x - FALLBACK_MARGIN) / near_step) * near_step
+	near_z0 = floorf((lo.y - FALLBACK_MARGIN) / near_step) * near_step
+	near_nx = ceili((hi.x + FALLBACK_MARGIN - near_x0) / near_step) + 1
+	near_nz = ceili((hi.y + FALLBACK_MARGIN - near_z0) / near_step) + 1
+	var count := near_nx * near_nz
+	near_h = PackedFloat32Array()
+	near_h.resize(count)
+	near_h.fill(INF)
+	var dist := PackedFloat32Array()
+	dist.resize(count)
+	dist.fill(INF)
+	# Stamp the corridor.
+	var stride := maxi(1, int(5.0 / maxf(d.step, 0.01)))
+	var reach_cells := ceili(FALLBACK_REACH / near_step)
+	var ring: PackedInt32Array = []
+	var ask_road := road != null and road.data == d and road.widths.size() == d.points.size()
+	for k in range(0, d.points.size(), stride):
+		var p := d.points[k]
+		var low := p.y - FALLBACK_VERGE_DROP - FALLBACK_CLEARANCE
+		if ask_road:
+			var s := k * d.step
+			var hw := road.half_width_at(s)
+			low = minf(p.y, minf(road.surface_point(s, -hw - road.verge_at(s, -1.0)).y,
+					road.surface_point(s, hw + road.verge_at(s, 1.0)).y)) - FALLBACK_CLEARANCE
+		var ci := roundi((p.x - near_x0) / near_step)
+		var cj := roundi((p.z - near_z0) / near_step)
+		for j in range(maxi(cj - reach_cells, 0), mini(cj + reach_cells, near_nz - 1) + 1):
+			for i in range(maxi(ci - reach_cells, 0), mini(ci + reach_cells, near_nx - 1) + 1):
+				var dx := near_x0 + i * near_step - p.x
+				var dz := near_z0 + j * near_step - p.z
+				var r := sqrt(dx * dx + dz * dz)
+				if r > FALLBACK_REACH:
+					continue
+				var g := j * near_nx + i
+				if near_h[g] == INF:
+					ring.append(g)
+				near_h[g] = minf(near_h[g], low)
+				dist[g] = minf(dist[g], r)
+	# Grow outward ring by ring.
+	var ring_dist := FALLBACK_REACH
+	while not ring.is_empty():
+		ring_dist += near_step
+		var sums := {}   # node -> Vector2(sum of heights, count) from the rings before
+		for g in ring:
+			var gi := g % near_nx
+			var gj := g / near_nx
+			for oj in range(-1, 2):
+				for oi in range(-1, 2):
+					var i := gi + oi
+					var j := gj + oj
+					if i < 0 or j < 0 or i >= near_nx or j >= near_nz:
+						continue
+					var q := j * near_nx + i
+					if near_h[q] != INF:
+						continue
+					var acc: Vector2 = sums.get(q, Vector2.ZERO)
+					sums[q] = acc + Vector2(near_h[g], 1.0)
+		ring = PackedInt32Array()
+		for q: int in sums:
+			var acc: Vector2 = sums[q]
+			near_h[q] = acc.x / acc.y
+			dist[q] = ring_dist
+			ring.append(q)
+	near_d = PackedInt32Array()
+	near_d.resize(count)
+	for g in count:
+		near_d[g] = mini(int(dist[g] * 10.0), 65535)
+	return true
 
 func _load() -> bool:
 	var f := FileAccess.open(terrain_json, FileAccess.READ)

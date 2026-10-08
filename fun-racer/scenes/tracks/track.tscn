@@ -1,0 +1,19 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/track/track.gd" id="1_track"]
+[ext_resource type="PackedScene" path="res://scenes/tracks/track_road.tscn" id="2_road"]
+[ext_resource type="PackedScene" path="res://scenes/tracks/track_trackside.tscn" id="3_trackside"]
+[ext_resource type="PackedScene" path="res://scenes/tracks/track_terrain.tscn" id="4_terrain"]
+[ext_resource type="Script" path="res://scripts/race/race_manager.gd" id="5_race"]
+
+[node name="Track" type="Node3D"]
+script = ExtResource("1_track")
+
+[node name="Road" parent="." instance=ExtResource("2_road")]
+
+[node name="Trackside" parent="." instance=ExtResource("3_trackside")]
+
+[node name="Terrain" parent="." instance=ExtResource("4_terrain")]
+
+[node name="Race" type="Node" parent="."]
+script = ExtResource("5_race")

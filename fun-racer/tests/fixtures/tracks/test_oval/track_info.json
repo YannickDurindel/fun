@@ -1,0 +1,11 @@
+{
+  "id": "test_oval",
+  "name": "Test Oval",
+  "grand_prix": "Fixture Grand Prix",
+  "country": "Nowhere",
+  "country_code": "",
+  "city": "",
+  "length_m": 615,
+  "turns": 6,
+  "available": true
+}
