@@ -91,6 +91,7 @@ blend = 40.0
 [terrain]
 # near = [x0, x1, z0, z1]     # game metres, multiples of 200; default: track box + 450 m
 # far = [x0, x1, z0, z1]      # default: a 12 km square around it
+# smooth_sigma_m = 150.0      # flat sites: blur the DEM so its noise does not become hills
 ```
 
 Unknown keys are an error, so typos do not go unnoticed. The Red Bull Ring recipe
@@ -157,6 +158,7 @@ Also read the build's `WARNING:` lines; each one says what to put in the recipe.
 | Road too narrow / wide, wrong camber | `[road]` keys or `[[road.override]]`. |
 | "the mesh could not be built" | The centreline folds or crosses itself (see Known limits). |
 | DEM voids, flat sea, steps in the terrain | Try another `[elevation] dataset`. |
+| Rolling hills around a circuit on a plain | That is DEM noise (a few metres): set `[terrain] smooth_sigma_m` (100 to 200), and raise `[elevation] smooth_sigma_m` for the road. |
 
 ## How it works
 

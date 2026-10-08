@@ -1,0 +1,234 @@
+{
+ "id": "shanghai",
+ "recipe": "tools/track/tracks/shanghai.toml",
+ "osm": {
+  "relation": 2094941,
+  "loop_ways": [
+   156328670
+  ],
+  "raw_length_m": 5465.3,
+  "length_m": 5459.5,
+  "official_length_m": 5451.0,
+  "length_error": 0.00157,
+  "candidates": [
+   {
+    "length_m": 5465.2,
+    "ways": [
+     156328670
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 3.25,
+  "max_grade": 0.0081,
+  "min_grade": -0.007,
+  "origin_m": 5.53
+ },
+ "turns": {
+  "official": 16,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Turn 1",
+    "direction": "right",
+    "s_apex": 814.7,
+    "min_radius": 29.8
+   },
+   {
+    "id": "T2",
+    "name": "Turn 2",
+    "direction": "left",
+    "s_apex": 928.5,
+    "min_radius": 29.6
+   },
+   {
+    "id": "T3",
+    "name": "Turn 3",
+    "direction": "right",
+    "s_apex": 1349.8,
+    "min_radius": 81.2
+   },
+   {
+    "id": "T4",
+    "name": "Turn 4",
+    "direction": "right",
+    "s_apex": 1599.4,
+    "min_radius": 18.0
+   },
+   {
+    "id": "T5",
+    "name": "Turn 5",
+    "direction": "left",
+    "s_apex": 2002.7,
+    "min_radius": 85.8
+   },
+   {
+    "id": "T6",
+    "name": "Turn 6",
+    "direction": "right",
+    "s_apex": 2392.1,
+    "min_radius": 73.3
+   },
+   {
+    "id": "T7",
+    "name": "Turn 7",
+    "direction": "left",
+    "s_apex": 2551.8,
+    "min_radius": 26.9
+   },
+   {
+    "id": "T8",
+    "name": "Turn 8",
+    "direction": "left",
+    "s_apex": 2671.6,
+    "min_radius": 31.8
+   },
+   {
+    "id": "T9",
+    "name": "Turn 9",
+    "direction": "left",
+    "s_apex": 3152.8,
+    "min_radius": 17.5
+   },
+   {
+    "id": "T10",
+    "name": "Turn 10",
+    "direction": "right",
+    "s_apex": 3230.7,
+    "min_radius": 32.4
+   },
+   {
+    "id": "T11",
+    "name": "Turn 11",
+    "direction": "right",
+    "s_apex": 4812.1,
+    "min_radius": 10.3
+   },
+   {
+    "id": "T12",
+    "name": "Turn 12",
+    "direction": "right",
+    "s_apex": 4893.9,
+    "min_radius": 65.9
+   },
+   {
+    "id": "T13",
+    "name": "Turn 13",
+    "direction": "left",
+    "s_apex": 5185.4,
+    "min_radius": 19.8
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 814.7,
+    "direction": "right",
+    "angle_deg": 302.4,
+    "kind": "corner",
+    "min_radius": 29.8,
+    "used": true
+   },
+   {
+    "s_apex": 928.5,
+    "direction": "left",
+    "angle_deg": 240.0,
+    "kind": "corner",
+    "min_radius": 29.6,
+    "used": true
+   },
+   {
+    "s_apex": 1349.8,
+    "direction": "right",
+    "angle_deg": 22.1,
+    "kind": "corner",
+    "min_radius": 81.2,
+    "used": true
+   },
+   {
+    "s_apex": 1599.4,
+    "direction": "right",
+    "angle_deg": 168.7,
+    "kind": "corner",
+    "min_radius": 18.0,
+    "used": true
+   },
+   {
+    "s_apex": 2002.7,
+    "direction": "left",
+    "angle_deg": 125.5,
+    "kind": "corner",
+    "min_radius": 85.8,
+    "used": true
+   },
+   {
+    "s_apex": 2392.1,
+    "direction": "right",
+    "angle_deg": 128.0,
+    "kind": "corner",
+    "min_radius": 73.3,
+    "used": true
+   },
+   {
+    "s_apex": 2551.8,
+    "direction": "left",
+    "angle_deg": 116.0,
+    "kind": "corner",
+    "min_radius": 26.9,
+    "used": true
+   },
+   {
+    "s_apex": 2671.6,
+    "direction": "left",
+    "angle_deg": 69.0,
+    "kind": "corner",
+    "min_radius": 31.8,
+    "used": true
+   },
+   {
+    "s_apex": 3152.8,
+    "direction": "left",
+    "angle_deg": 112.9,
+    "kind": "corner",
+    "min_radius": 17.5,
+    "used": true
+   },
+   {
+    "s_apex": 3230.7,
+    "direction": "right",
+    "angle_deg": 290.1,
+    "kind": "corner",
+    "min_radius": 32.4,
+    "used": true
+   },
+   {
+    "s_apex": 4812.1,
+    "direction": "right",
+    "angle_deg": 153.2,
+    "kind": "corner",
+    "min_radius": 10.3,
+    "used": true
+   },
+   {
+    "s_apex": 4893.9,
+    "direction": "right",
+    "angle_deg": 22.6,
+    "kind": "corner",
+    "min_radius": 65.9,
+    "used": true
+   },
+   {
+    "s_apex": 5185.4,
+    "direction": "left",
+    "angle_deg": 67.8,
+    "kind": "corner",
+    "min_radius": 19.8,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

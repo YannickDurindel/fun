@@ -1,0 +1,131 @@
+# Shanghai International Circuit, Grand Prix layout (5451 m, 16 turns, clockwise).
+#
+#   .venv/bin/python tools/track/build_track.py shanghai --offline
+
+id = "shanghai"
+
+[osm]
+# type=circuit relation: one way for the whole lap (156328670), the pit lane by member role,
+# and one node with the role "start" in front of the middle of the pit building.
+relation = 2094941
+
+[layout]
+# The way has no oneway tag. Heading west along the pit straight into the right-hand snail
+# (turns 1-2) is clockwise.
+direction = "clockwise"
+# OSM only has a "start" node. The Grand Prix runs 56 laps over 305.066 km, 190 m less than
+# 56 x 5.451 km: the timing line is 190 m before the grid's start line. So the finish line is
+# put 190 m before the OSM node, and the grid stays at the node.
+finish = [31.33771, 121.22255]
+start_offset_m = 190.0
+
+[elevation]
+dataset = "terrarium"
+# Reclaimed marshland: the real lap rises and falls by about 7 m, all of it built with the
+# circuit in 2003-04. The DEM here is flat land with a few metres of noise (if it is SRTM,
+# it was flown in 2000, before the circuit existed), so it cannot show the real profile: it
+# is smoothed harder than the default 45 m to keep the noise from becoming crests.
+smooth_sigma_m = 120.0
+
+[terrain]
+# Same reason: without this the noise shows as rolling hills around a circuit on a plain.
+smooth_sigma_m = 150.0
+
+# All 16 official turns, pinned: the automatic detection sees each snail (1-2-3-4 and
+# 11-12-13) as two long lobes and finds 13. The circuit has no official corner names; the
+# names in brackets are descriptions.
+[[turn]]
+id = "T1"
+name = "Turn 1 (Snail entry)"
+direction = "right"
+s = 609.0
+
+[[turn]]
+id = "T2"
+name = "Turn 2 (Snail)"
+direction = "right"
+s = 814.7
+
+[[turn]]
+id = "T3"
+name = "Turn 3 (Snail exit)"
+direction = "left"
+s = 928.5
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 1024.3
+
+[[turn]]
+id = "T5"
+name = "Turn 5 (kink)"
+direction = "right"
+s = 1349.8
+
+[[turn]]
+id = "T6"
+name = "Turn 6 (hairpin)"
+direction = "right"
+s = 1599.4
+
+[[turn]]
+id = "T7"
+name = "Turn 7"
+direction = "left"
+s = 2002.7
+
+[[turn]]
+id = "T8"
+name = "Turn 8"
+direction = "right"
+s = 2392.1
+
+[[turn]]
+id = "T9"
+name = "Turn 9"
+direction = "left"
+s = 2551.8
+
+[[turn]]
+id = "T10"
+name = "Turn 10"
+direction = "left"
+s = 2671.6
+
+[[turn]]
+id = "T11"
+name = "Turn 11"
+direction = "left"
+s = 3152.8
+
+[[turn]]
+id = "T12"
+name = "Turn 12"
+direction = "right"
+s = 3230.7
+
+[[turn]]
+id = "T13"
+name = "Turn 13 (onto the back straight)"
+direction = "right"
+s = 3414.4
+
+[[turn]]
+id = "T14"
+name = "Turn 14 (back-straight hairpin)"
+direction = "right"
+s = 4812.1
+
+[[turn]]
+id = "T15"
+name = "Turn 15"
+direction = "right"
+s = 4893.9
+
+[[turn]]
+id = "T16"
+name = "Turn 16"
+direction = "left"
+s = 5185.5

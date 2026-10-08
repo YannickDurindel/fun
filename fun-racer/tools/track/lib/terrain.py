@@ -105,6 +105,24 @@ def fetch_grid(fetcher, dataset, xs, zs, to_latlon, base):
     return h, voids
 
 
+def smooth_grid(h, sigma):
+    """Gaussian blur of a row-major grid; `sigma` in cells, edges repeat. Returns a new grid."""
+    if sigma <= 0.0:
+        return [row[:] for row in h]
+    r = max(1, int(math.ceil(3.0 * sigma)))
+    w = [math.exp(-0.5 * (k / sigma) ** 2) for k in range(-r, r + 1)]
+    tot = sum(w)
+    w = [x / tot for x in w]
+
+    def blur(v):
+        n = len(v)
+        return [sum(w[k + r] * v[min(n - 1, max(0, i + k))] for k in range(-r, r + 1)) for i in range(n)]
+
+    rows = [blur(row) for row in h]
+    cols = [blur([row[i] for row in rows]) for i in range(len(rows[0]))]
+    return [[cols[i][j] for i in range(len(cols))] for j in range(len(rows))]
+
+
 def cubic(p0, p1, p2, p3, t):
     return p1 + 0.5 * t * (p2 - p0 + t * (2 * p0 - 5 * p1 + 4 * p2 - p3 + t * (3 * (p1 - p2) + p3 - p0)))
 
@@ -272,6 +290,13 @@ def build(recipe, out_dir, fetcher, log=print):
     far, v2 = fetch_grid(fetcher, dataset, gx, gz, to_latlon, base)
     if v1 + v2:
         log(f"  {v1 + v2} DEM voids (sea / dataset edge) filled from the nearest valid point in their row")
+
+    sigma = float(recipe.terrain.get("smooth_sigma_m", 0.0))
+    if sigma > 0.0:
+        # Flat sites: the DEM's noise (a few metres) would otherwise show as rolling hills.
+        near_raw = smooth_grid(near_raw, sigma / FETCH_STEP)
+        far = smooth_grid(far, sigma / FAR_STEP)
+        log(f"  DEM smoothed with a {sigma:.0f} m Gaussian ([terrain] smooth_sigma_m)")
 
     profile, has_profile = load_profile(track, out_dir)
     if not has_profile:

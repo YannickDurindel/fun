@@ -1,0 +1,14 @@
+{
+  "id": "shanghai",
+  "name": "Shanghai International Circuit",
+  "grand_prix": "Chinese Grand Prix",
+  "country": "China",
+  "country_code": "CN",
+  "city": "Shanghai",
+  "length_m": 5451,
+  "turns": 16,
+  "scene": "res://scenes/tracks/shanghai.tscn",
+  "track_json": "res://assets/tracks/shanghai/track.json",
+  "osm_relation": 2094941,
+  "available": true
+}

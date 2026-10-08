@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://assets/tracks/shanghai/road_tarmac.gdshader" id="1_rdtar"]
+[ext_resource type="Texture2D" path="res://assets/tracks/shanghai/road_tarmac_albedo.png" id="2_rdtar"]
+
+[resource]
+resource_name = "tarmac"
+render_priority = 0
+shader = ExtResource("1_rdtar")
+shader_parameter/aggregate = ExtResource("2_rdtar")
