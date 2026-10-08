@@ -1,0 +1,10 @@
+id = "monza"
+
+[osm]
+bbox = [9.270, 45.608, 9.300, 45.636]
+# The box also holds the old banked oval, the Junior and Pirelli layouts and two alternative
+# pieces of the first chicane. These three make the Grand Prix loop ambiguous:
+#   38168747   pit lane
+#   38168756   alternative Variante del Rettifilo piece
+#   179968267  straight that bypasses the first chicane
+exclude_ways = [38168747, 38168756, 179968267]

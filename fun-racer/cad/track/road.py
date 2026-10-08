@@ -195,7 +195,13 @@ def corner_infills(P: np.ndarray, s: np.ndarray, outer: np.ndarray, ext: np.ndar
             continue
         tri = np.array(tris, dtype=np.uint32)
         fn = np.cross(poly3[tri[:, 1]] - poly3[tri[:, 0]], poly3[tri[:, 2]] - poly3[tri[:, 0]])
-        assert np.all(fn[:, 1] > 0.0), "infill triangle facing down"
+        # Chicane pockets can be non-simple polygons, where ear clipping winds a few triangles
+        # the other way: flip those so every triangle faces up, and drop zero-area ones.
+        down = fn[:, 1] < 0.0
+        tri[down] = tri[down][:, [0, 2, 1]]
+        tri = tri[np.abs(fn[:, 1]) > 1e-9]
+        if len(tri) == 0:
+            continue
         acc = np.zeros_like(poly3)
         for c in range(3):
             np.add.at(acc, tri[:, c], fn)
