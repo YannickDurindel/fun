@@ -1,0 +1,11 @@
+{
+  "id": "locked_demo",
+  "name": "Locked Demo Circuit",
+  "grand_prix": "Test Grand Prix",
+  "country": "Nowhere",
+  "country_code": "ZZ",
+  "city": "Testville",
+  "length_m": 5000,
+  "turns": 12,
+  "available": false
+}

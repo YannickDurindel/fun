@@ -50,17 +50,22 @@ func test_cards_list_every_track() -> void:
 	await _reset(menu)
 
 func test_locked_track_cannot_be_selected() -> void:
+	# A permanent locked fixture track: real circuits keep becoming playable.
+	TrackCatalog.set_extra_dirs(PackedStringArray(["res://tests/fixtures/locked_tracks"]))
+	TrackCatalog.reload()
 	var menu := await _open("tracks")
 	var screen := menu.current as TrackSelectScreen
-	var monza := screen.card_for("monza")
-	assert_true(monza != null and not monza.info.available, "Monza card is locked")
+	var monza := screen.card_for("locked_demo")
+	assert_true(monza != null and not monza.info.available, "Locked demo card is locked")
 	monza.grab_focus()
-	assert_true(screen.focused_info.id == "monza", "locked tracks can be browsed")
+	assert_true(screen.focused_info.id == "locked_demo", "locked tracks can be browsed")
 	monza.pressed.emit()
 	assert_true(not screen.select(monza.info), "select() refuses a locked track")
 	assert_true(menu.current_name == "tracks", "still on the track list")
 	assert_true(Game.pending.track_id == "red_bull_ring", "pending track unchanged (%s)" % Game.pending.track_id)
 	await _reset(menu)
+	TrackCatalog.set_extra_dirs(PackedStringArray())
+	TrackCatalog.reload()
 
 func test_select_playable_track_opens_race_options() -> void:
 	var menu := await _open("tracks")
@@ -185,16 +190,24 @@ func test_start_race_hands_over_config() -> void:
 	await _reset(menu)
 
 func test_start_is_blocked_for_a_locked_track() -> void:
+	# A permanent locked fixture track: real circuits keep becoming playable.
+	TrackCatalog.set_extra_dirs(PackedStringArray(["res://tests/fixtures/locked_tracks"]))
+	TrackCatalog.reload()
 	var menu := await _open("tracks")
-	Game.pending.track_id = "monza"
+	Game.pending.track_id = "locked_demo"
 	menu.go("race_options")
 	var screen := menu.current as RaceOptionsScreen
 	assert_true(screen.start_button.disabled, "START disabled for a coming-soon track")
 	screen._on_start()
 	assert_true(_changes.is_empty(), "no scene change")
 	await _reset(menu)
+	TrackCatalog.set_extra_dirs(PackedStringArray())
+	TrackCatalog.reload()
 
 func test_track_map_polyline() -> void:
+	# A permanent locked fixture track: real circuits keep becoming playable.
+	TrackCatalog.set_extra_dirs(PackedStringArray(["res://tests/fixtures/locked_tracks"]))
+	TrackCatalog.reload()
 	var rbr := TrackCatalog.find("red_bull_ring")
 	var map := TrackMap.new()
 	map.size = Vector2(400, 300)
@@ -232,11 +245,13 @@ func test_track_map_polyline() -> void:
 			assert_true(false, "polyline outside the resized rect: %s" % p)
 			break
 	# A coming-soon track has no geometry: placeholder, empty polyline.
-	map.set_track(TrackCatalog.find("monza"))
+	map.set_track(TrackCatalog.find("locked_demo"))
 	assert_true(not map.has_geometry() and map.polyline().is_empty(), "locked track shows the placeholder")
 	map.set_track(null)
 	assert_true(map.polyline().is_empty(), "null track is fine")
 	await get_tree().process_frame
+	TrackCatalog.set_extra_dirs(PackedStringArray())
+	TrackCatalog.reload()
 
 func test_best_lap_and_units() -> void:
 	var info := TrackInfo.new()

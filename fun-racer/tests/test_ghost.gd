@@ -350,6 +350,9 @@ func test_best_lap_is_saved_but_not_the_autopilots() -> void:
 	_end()
 
 func test_records_screen() -> void:
+	# A permanent locked fixture track: real circuits keep becoming playable.
+	TrackCatalog.set_extra_dirs(PackedStringArray(["res://tests/fixtures/locked_tracks"]))
+	TrackCatalog.reload()
 	_begin()
 	var info := TrackCatalog.find(TRACK)
 	var best_file := _tmp.path_join("best_%s.json" % TRACK)
@@ -369,10 +372,13 @@ func test_records_screen() -> void:
 	await get_tree().process_frame
 	var ids: Array[String] = screen.call(&"get_track_ids")
 	assert_true(ids.has(TRACK), "Red Bull Ring listed")
-	assert_true(not ids.has("monza"), "coming-soon tracks are not listed")
+	assert_true(not ids.has("locked_demo"), "coming-soon tracks are not listed")
 	var row: String = screen.call(&"get_row_text", TRACK)
 	assert_true(row.contains("RED BULL RING") and row.contains("1:07.482"), "row shows the best lap: " + row)
-	assert_true(screen.call(&"get_selected") == TRACK, "first track selected")
+	# The first playable track is selected; pick the one under test (many tracks are playable).
+	assert_true(not String(screen.call(&"get_selected")).is_empty(), "a track is selected on open")
+	screen.call(&"select", TRACK)
+	assert_true(screen.call(&"get_selected") == TRACK, "track selected")
 	assert_true(screen.call(&"get_best_text") == "1:07.482", "details show the best lap")
 	assert_true(not screen.call(&"is_empty_state_shown"), "no empty state with a record")
 	var rec: Dictionary = screen.call(&"read_record", info)
@@ -409,3 +415,5 @@ func test_records_screen() -> void:
 	assert_true(Game.pending.track_id == TRACK, "RACE THIS TRACK sets the pending track")
 	Game.pending.track_id = old_pending
 	_end()
+	TrackCatalog.set_extra_dirs(PackedStringArray())
+	TrackCatalog.reload()

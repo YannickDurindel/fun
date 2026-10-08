@@ -43,7 +43,7 @@ TOP_KEYS = {"id", "name", "full_name", "grand_prix", "country", "country_code", 
             "turns", "osm", "layout", "elevation", "turn", "road", "terrain"}
 SECTION_KEYS = {
     "osm": {"relation", "ways", "bbox", "exclude_ways", "avoid_names", "ignore_oneway",
-            "length_tolerance"},
+            "length_tolerance", "round"},
     "layout": {"direction", "finish", "start", "start_offset_m", "sectors", "spline"},
     "elevation": {"dataset", "smooth_sigma_m", "override"},
     "road": {"base_width", "grid_width", "crossfall", "camber_gain", "bank_keys", "width_keys",
@@ -75,6 +75,7 @@ class Recipe:
     avoid_names: list = field(default_factory=list)
     ignore_oneway: bool = False
     length_tolerance: float = 0.03
+    osm_round: list = field(default_factory=list)   # [[osm.round]]: {node, reach_m}
     # [layout]
     direction: str | None = None
     finish: list | None = None
@@ -152,6 +153,7 @@ def from_dict(track_id, data, overrides=None, calendar_path=CALENDAR, source="")
         avoid_names=list(osm.get("avoid_names", [])),
         ignore_oneway=bool(osm.get("ignore_oneway", False)),
         length_tolerance=float(osm.get("length_tolerance", 0.03)),
+        osm_round=osm.get("round", []),
         direction=lay.get("direction"), finish=_latlon("layout.finish", lay.get("finish")),
         start=_latlon("layout.start", lay.get("start")),
         start_offset_m=lay.get("start_offset_m"), sectors=lay.get("sectors"),
@@ -191,6 +193,15 @@ def validate(r):
         raise BuildError("recipe: layout.direction must be 'clockwise' or 'anticlockwise'")
     if r.spline not in ("centripetal", "uniform"):
         raise BuildError("recipe: layout.spline must be 'centripetal' or 'uniform'")
+    if not isinstance(r.osm_round, list) or not all(isinstance(o, dict) for o in r.osm_round):
+        raise BuildError("recipe: osm.round must be written as [[osm.round]] tables")
+    for o in r.osm_round:
+        _check_keys("[[osm.round]]", o, ROUND_KEYS)
+        node, reach = o.get("node"), o.get("reach_m")
+        if (not isinstance(node, int) or isinstance(node, bool) or isinstance(reach, bool)
+                or not isinstance(reach, (int, float)) or not 1.0 <= reach <= 500.0):
+            raise BuildError("recipe: [[osm.round]] needs node = <OSM node id> and reach_m = "
+                             "<metres, 1 to 500>")
     if not 0.0 < r.length_tolerance < 0.5:
         raise BuildError("recipe: osm.length_tolerance is a fraction, e.g. 0.03")
     if r.sectors is not None:

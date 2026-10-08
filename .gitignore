@@ -4,5 +4,5 @@ cleo/
 fun-racer/tools/bin/
 *.tmp
 __pycache__/
-.venv/
+.venv
 .claude/

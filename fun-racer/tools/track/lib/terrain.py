@@ -12,7 +12,8 @@ answers cached in raw/terrain_*.json):
 
 Bounds come from the centreline: its bounding box plus NEAR_MARGIN, snapped outward to the far
 grid's 200 m lattice; the far grid is a square of at least 12 km around it. A recipe can pin
-them with [terrain] near / far = [x0, x1, z0, z1].
+them with [terrain] near / far = [x0, x1, z0, z1]. [terrain] smooth_sigma_m smooths both grids
+(flat city circuits, where buildings in the surface model would become hills).
 
 Frame: x = east, z = -north, y = elevation - origin_elevation_m. The plan view (x, z) uses
 the same uniform scale k = official length / OSM length as the centreline, so terrain lines up.

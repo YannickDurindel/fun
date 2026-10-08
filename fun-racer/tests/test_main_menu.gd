@@ -135,9 +135,12 @@ func test_continue_starts_last_race() -> void:
 	await _close_menu(menu)
 
 func test_continue_hidden_and_best_lap() -> void:
+	# A permanent locked fixture track: real circuits keep becoming playable.
+	TrackCatalog.set_extra_dirs(PackedStringArray(["res://tests/fixtures/locked_tracks"]))
+	TrackCatalog.reload()
 	Game.pending = RaceConfig.new()
-	Game.pending.track_id = "monza"   # listed but not playable
-	Settings.set_value("gameplay", "last_race", {"track_id": "monza"})
+	Game.pending.track_id = "locked_demo"   # listed but not playable
+	Settings.set_value("gameplay", "last_race", {"track_id": "locked_demo"})
 	assert_true(MainMenu.last_race() == null, "no continue for an unavailable track")
 	var menu := await _open_menu()
 	var main := menu.current as MainMenu
@@ -158,6 +161,8 @@ func test_continue_hidden_and_best_lap() -> void:
 	f.close()
 	assert_true(MainMenu.best_lap(fake) < 0.0, "corrupt file: no best lap")
 	DirAccess.remove_absolute(fake.best_path())
+	TrackCatalog.set_extra_dirs(PackedStringArray())
+	TrackCatalog.reload()
 
 func test_backdrop() -> void:
 	var menu := await _open_menu()

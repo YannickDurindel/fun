@@ -30,8 +30,9 @@ class RecipeTest(unittest.TestCase):
         self.assertEqual(r.source, os.path.join("tools", "track", "tracks", "red_bull_ring.toml"))
 
     def test_no_recipe_file_uses_calendar_and_command_line(self):
-        r = recipe.load("imola", overrides={"osm_relation": 9291096, "name": None})
-        self.assertEqual((r.length_m, r.turns, r.country_code), (4909.0, 19, "IT"))
+        # Monaco: on the calendar, no recipe file (Imola has one now).
+        r = recipe.load("monaco", overrides={"osm_relation": 9291096, "name": None})
+        self.assertEqual((r.length_m, r.turns, r.country_code), (3337.0, 19, "MC"))
         self.assertEqual(r.osm_relation, 9291096)
         self.assertFalse(r.turns_pinned)
         self.assertEqual(r.spline, "centripetal")

@@ -2,6 +2,9 @@ extends TestCase
 ## Game shell: track catalog, settings, menu navigation and the menu -> race hand-off.
 
 func test_track_catalog() -> void:
+	# A permanent locked fixture track: real circuits keep becoming playable.
+	TrackCatalog.set_extra_dirs(PackedStringArray(["res://tests/fixtures/locked_tracks"]))
+	TrackCatalog.reload()
 	TrackCatalog.reload()
 	var all := TrackCatalog.all()
 	assert_true(all.size() >= 20, "calendar lists the F1 circuits (%d)" % all.size())
@@ -10,9 +13,11 @@ func test_track_catalog() -> void:
 	assert_true(all[0].available, "playable tracks sort first")
 	assert_between(rbr.length_m, 4300.0, 4330.0, "RBR length")
 	assert_true(ResourceLoader.exists(rbr.scene), "RBR scene exists")
-	var monza := TrackCatalog.find("monza")
-	assert_true(monza != null and not monza.available, "Monza is listed as coming soon")
+	var monza := TrackCatalog.find("locked_demo")
+	assert_true(monza != null and not monza.available, "Locked demo is listed as coming soon")
 	assert_true(TrackCatalog.playable().size() >= 1, "at least one playable track")
+	TrackCatalog.set_extra_dirs(PackedStringArray())
+	TrackCatalog.reload()
 
 func test_settings_round_trip() -> void:
 	assert_true(not Settings.persist, "tests must not touch the real settings file")

@@ -31,6 +31,9 @@ func _ready() -> void:
 		_on_settings_ready()
 	else:
 		Settings.ready.connect(_on_settings_ready, CONNECT_ONE_SHOT)
+	# Run as a main-loop script (-s: the test runner and the tools): never the player's session.
+	if OS.get_cmdline_args().has("-s") or OS.get_cmdline_args().has("--script"):
+		dev_run = true
 	for arg: String in OS.get_cmdline_user_args() + OS.get_cmdline_args():
 		if arg == "--no-save":
 			dev_run = true
