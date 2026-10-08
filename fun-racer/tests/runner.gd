@@ -17,6 +17,7 @@ func _run() -> void:
 	files.sort()
 	# Tests never read or write the player's real settings file.
 	root.get_node("/root/Settings").set(&"persist", false)
+	root.get_node("/root/Bootstrap").set(&"dev_run", true)
 	var passed := 0
 	var failed := 0
 	for f in files:
