@@ -15,11 +15,12 @@ profile with [[elevation.override]] entries (see apply_elevation_overrides); eve
 the lap crosses itself in plan view is then recorded in track.json ("crossings"), and the build
 stops if the two roads are not at least MIN_CLEARANCE apart there.
 """
+import bisect
 import json
 import math
 import os
 
-from . import geom, info as info_mod, net, osm, turns as turns_mod
+from . import geom, info as info_mod, layout, net, osm, turns as turns_mod
 from .net import BuildError
 
 STEP = 2.0            # resample spacing, m
@@ -28,6 +29,8 @@ PLAN_SIGMA = 4.0      # m, plan-view smoothing
 CURV_SIGMA = 6.0      # m, curvature smoothing
 OVERRIDE_BLEND = 60.0  # m, default blend of an [[elevation.override]] offset
 OVERRIDE_SIGMA = 10.0  # m, smoothing of the profile after overrides (rounds their corners)
+SMOOTH_BLEND = 40.0   # m, default blend of an [[elevation.smooth]] stretch
+WIDTH_TOLERANCE = 1.5  # m: an OSM width tag further than this from the recipe's width is reported
 CROSSING_MIN_GAP = 150.0  # m along the lap: closer self-intersections are folds, not crossovers
 MIN_CLEARANCE = 5.5   # m between the two road surfaces of a crossover (deck 1.2 m + headroom)
 FRAME = "Godot metres: x=east, y=up (relative to finish line), z=-north; origin at finish line"
@@ -118,6 +121,160 @@ def apply_elevation_overrides(y, step, overrides):
     return geom.gauss_periodic(y, sigma=OVERRIDE_SIGMA / step)
 
 
+def _cos_fade(d, blend):
+    """1 at distance 0, falling to 0 at ``blend`` metres (raised cosine)."""
+    return 0.5 + 0.5 * math.cos(math.pi * d / blend) if d < blend else 0.0
+
+
+def apply_local_smoothing(y, raw, lap, step, stretches):
+    """[[elevation.smooth]]: inside each stretch the profile is the raw DEM profile ``raw``
+    smoothed with the stretch's own sigma instead of the lap's (``lap``), fading back to the
+    lap's over ``blend`` metres on either side. A crest or a compression that the lap-wide
+    smoothing flattens can be kept sharp without letting the noise of the whole lap back in.
+
+        s = [from, to]      the stretch, metres (may wrap around the finish line)
+        sigma_m = 15.0      Gaussian sigma there (0 = the DEM samples as they are)
+        blend = 40.0        metres over which it fades back to the lap's smoothing
+
+    ``y`` is the profile after the [[elevation.override]] entries (``lap`` when there are
+    none). What the stretches change is added to it, so the smoothing that follows the
+    overrides does not blur the stretch again."""
+    if not stretches:
+        return y
+    n = len(y)
+    length = n * step
+    v = list(lap)
+    for o in stretches:
+        a, b = float(o["s"][0]), float(o["s"][1])
+        span = (b - a) % length
+        sigma = float(o["sigma_m"])
+        blend = float(o.get("blend", SMOOTH_BLEND))
+        local = geom.gauss_periodic(raw, sigma=sigma / step) if sigma > 0.0 else raw
+        for k in range(n):
+            t = (k * step - a) % length
+            w = 1.0 if t <= span else _cos_fade(min(t - span, length - t), blend) if blend > 0.0 else 0.0
+            v[k] += (local[k] - v[k]) * w
+    return [y[k] + (v[k] - lap[k]) for k in range(n)]
+
+
+def _keyed_profile(y, step, keys, join_m, base):
+    """``y`` with the [[elevation.key]] entries applied, for a finish line at ``base`` metres
+    above sea level (see apply_elevation_keys)."""
+    n = len(y)
+    length = n * step
+    m = len(keys)
+
+    def at(s):          # the profile before the keys, linear between samples
+        u = (s % length) / step
+        i = int(u) % n
+        return y[i] + (y[(i + 1) % n] - y[i]) * (u - int(u))
+
+    ks = [float(k["s"]) for k in keys]
+    target = [float(k["abs"]) if "abs" in k else base + float(k["y"]) for k in keys]
+    delta = [target[k] - at(ks[k]) for k in range(m)]
+    gap = [(ks[(k + 1) % m] - ks[k]) % length or length for k in range(m)]   # to the next key
+    # joined[k]: key k and the next one follow one curve.
+    joined = []
+    for k in range(m):
+        flag = keys[(k + 1) % m].get("join")
+        joined.append(m >= 2 and (flag is True or (flag is None and gap[k] <= join_m)))
+    secant = [(target[(k + 1) % m] - target[k]) / gap[k] for k in range(m)]
+    slope = []
+    for k in range(m):
+        before, after = joined[k - 1], joined[k]
+        d0, d1 = secant[k - 1], secant[k]
+        if before and after:
+            # Fritsch-Carlson: flat at a local extremum, else the weighted harmonic mean, which
+            # keeps the curve monotone between keys (no overshoot above a crest key).
+            if d0 * d1 <= 0.0:
+                slope.append(0.0)
+            else:
+                h0, h1 = gap[k - 1], gap[k]
+                slope.append(3.0 * (h0 + h1) / ((2.0 * h1 + h0) / d0 + (h1 + 2.0 * h0) / d1))
+        elif before or after:
+            # End of a run: leave it with the slope of the profile outside (the blend adds
+            # none at the key), as far as monotonicity allows.
+            d = d0 if before else d1
+            want = (at(ks[k] + step) - at(ks[k] - step)) / (2.0 * step)
+            slope.append(0.0 if want * d <= 0.0 else math.copysign(min(abs(want), 3.0 * abs(d)), d))
+        else:
+            slope.append(0.0)
+    # A blend never reaches the neighbouring key, so every key is met exactly.
+    room = 0.5 if m == 1 else 1.0         # a lone key: its two blends meet half a lap away
+    blend_after = [min(float(keys[k].get("blend", OVERRIDE_BLEND)), room * gap[k]) for k in range(m)]
+    blend_before = [min(float(keys[k].get("blend", OVERRIDE_BLEND)), room * gap[k - 1]) for k in range(m)]
+    out = []
+    for i in range(n):
+        s = i * step
+        j = (bisect.bisect_right(ks, s) - 1) % m    # the key at or before s (wrapping)
+        nxt = (j + 1) % m
+        t = (s - ks[j]) % length          # metres after key j
+        if joined[j]:
+            h = gap[j]
+            u = t / h
+            h00 = (1.0 + 2.0 * u) * (1.0 - u) ** 2
+            h10 = u * (1.0 - u) ** 2
+            h01 = u * u * (3.0 - 2.0 * u)
+            h11 = u * u * (u - 1.0)
+            out.append(h00 * target[j] + h10 * h * slope[j] + h01 * target[nxt] + h11 * h * slope[nxt])
+        else:
+            out.append(y[i] + delta[j] * _cos_fade(t, blend_after[j])
+                       + delta[nxt] * _cos_fade(gap[j] - t, blend_before[nxt]))
+    return out
+
+
+def apply_elevation_keys(y, step, keys, join_m):
+    """Pins the height profile ``y`` (metres above sea level, one value per sample, closed lap)
+    to the recipe's [[elevation.key]] entries (sorted by s):
+
+        s = 1180.0          where, metres from the finish line
+        y = 38.5            the height there, metres above the finish line, or ...
+        abs = 412.0         ... metres above sea level
+        blend = 60.0        metres over which the correction fades out on a side with no
+                            neighbouring key (default 60)
+        join = true         follow one curve from the previous key to this one, however far
+                            apart they are (false: never)
+
+    Keys closer together than ``join_m`` (or joined by hand) replace the profile between them
+    by a monotone cubic through the keys: a ramp declared by two keys is that ramp, a crest key
+    is the highest point, and nothing overshoots. Elsewhere the difference between key and
+    profile is added to the profile and fades out over ``blend``, so the DEM detail survives.
+
+    The keys are applied after the overrides and their smoothing and are not smoothed again:
+    a short steep ramp stays as steep as it was declared. ``y`` values are relative to the
+    finish line as it ends up after the keys (track.json's origin), which is solved for here,
+    so a key close to s = 0 moves the origin and the others still come out as written."""
+    if not keys:
+        return y
+    n = len(y)
+
+    def finish(base):
+        return _keyed_profile(y, step, keys, join_m, base)[0]
+
+    # finish(base) is (very nearly) affine in base: solve finish(base) = base.
+    b0 = y[0]
+    f0, f1 = finish(b0), finish(b0 + 1.0)
+    grow = f1 - f0
+    base = b0
+    if abs(1.0 - grow) > 1e-6:
+        base = (f0 - grow * b0) / (1.0 - grow)
+        for _ in range(200):               # the slope limiter makes it not exactly affine
+            nxt = finish(base)
+            if abs(nxt - base) < 1e-7:
+                break
+            base = nxt
+        else:
+            raise BuildError("recipe: the [[elevation.key]] entries around the finish line do not "
+                             "settle on a height for it. Add a key at s = 0 (y = 0, or an abs)")
+    elif abs(f0 - b0) > 1e-6:
+        raise BuildError("recipe: the [[elevation.key]] entries on both sides of the finish line "
+                         f"put it {f0 - b0:+.2f} m above itself (their y is relative to the finish "
+                         "line). Add a key at s = 0 with y = 0, or give them as abs")
+    out = _keyed_profile(y, step, keys, join_m, base)
+    assert len(out) == n
+    return out
+
+
 def find_crossings(samples, y, step):
     """Places where the closed lap crosses itself in plan view (a figure of eight):
     [{"s_lower", "s_upper", "clearance", "angle_deg"}], heights taken from ``y``."""
@@ -157,6 +314,54 @@ def find_crossings(samples, y, step):
     return sorted(out, key=lambda c: c["s_lower"])
 
 
+def osm_width_tags(data, sample_ways, step):
+    """The ``width`` tags of the loop's OSM ways as stretches of the lap:
+    [{"s": [from, to], "width": metres, "ways": [ids]}], neighbouring ways with the same width
+    merged (a stretch may wrap around the finish line). A hint only: mappers tag what they
+    measured on aerial imagery, kerb to kerb or wall to wall, and most circuits have no tag."""
+    n = len(sample_ways)
+    tag = [osm.width_tag(data.ways[w].tags) if w in data.ways else None for w in sample_ways]
+    if not any(t is not None for t in tag):
+        return []
+    if all(t == tag[0] for t in tag):
+        return [{"s": [0.0, round(n * step, 1)], "width": tag[0], "ways": sorted(set(sample_ways))}]
+    start = next(k for k in range(n) if tag[k] != tag[k - 1])     # a boundary: runs begin here
+    out, k = [], 0
+    while k < n:
+        i = (start + k) % n
+        run = 1
+        while k + run < n and tag[(start + k + run) % n] == tag[i]:
+            run += 1
+        if tag[i] is not None:
+            ids = []
+            for q in range(run):
+                w = sample_ways[(start + k + q) % n]
+                if w not in ids:
+                    ids.append(w)
+            out.append({"s": [round(i * step, 1), round(((i + run) % n) * step, 1)],
+                        "width": tag[i], "ways": ids})
+        k += run
+    return sorted(out, key=lambda r: r["s"][0])
+
+
+def width_tag_warnings(width_tags, built, step):
+    """One warning per OSM width stretch where the road the recipe builds is more than
+    WIDTH_TOLERANCE wider or narrower than the tag (``built``: width per sample)."""
+    n = len(built)
+    out = []
+    for r in width_tags:
+        first = int(round(r["s"][0] / step)) % n
+        count = int(round(((r["s"][1] - r["s"][0]) % (n * step)) / step)) or n
+        mine = [built[(first + q) % n] for q in range(count)]
+        lo, hi = min(mine), max(mine)
+        if hi < r["width"] - WIDTH_TOLERANCE or lo > r["width"] + WIDTH_TOLERANCE:
+            was = f"{lo:.1f} m" if hi - lo < 0.05 else f"{lo:.1f} to {hi:.1f} m"
+            out.append(f"OSM tags the road as {r['width']:g} m wide from s = {r['s'][0]:.0f} to "
+                       f"{r['s'][1]:.0f} m, the recipe builds it {was}: check the real width "
+                       "(the tag is a hint, it is not applied)")
+    return out
+
+
 def build(recipe, fetcher, log=print):
     """Returns (track dict for track.json, build info dict)."""
     warnings = []
@@ -166,6 +371,8 @@ def build(recipe, fetcher, log=print):
     if recipe.osm_round:
         osm.round_corners(data, loop, recipe.osm_round, log)
     chain, names = loop.node_ids, loop.names
+    # The way each node belongs to rides along with its name (for the OSM width tags).
+    names = list(zip(names, loop.node_ways or [0] * len(names)))
 
     # ---- start / finish ------------------------------------------------------------------
     finish, start, sf_source = osm.start_finish_nodes(data, recipe, loop)
@@ -223,9 +430,26 @@ def build(recipe, fetcher, log=print):
     samples, sample_names, step, raw_length = geom.catmull_resample(pts, names, STEP, recipe.spline)
     samples = geom.smooth_loop_xy(samples, sigma=PLAN_SIGMA / step)
     samples, step, osm_length = geom.respace(samples, STEP)
+    official = float(recipe.length_m)
+    shifted = 0.0
+    if recipe.shifts or any(p.get("separation") is not None for p in recipe.road.get("pair", [])):
+        was = samples[0]
+        samples, shifted = layout.apply(samples, step, recipe.shifts, recipe.road.get("pair", []),
+                                        official / osm_length)
+        samples, step, osm_length = geom.respace(samples, STEP)
+        # A stretch that includes the finish line takes it along: the origin of the frame
+        # stays on the line. (kx, ky are kept, so every other point keeps its lat / lon.)
+        moved = (samples[0][0] - was[0], samples[0][1] - was[1])
+        if moved != (0.0, 0.0):
+            samples = [(x - moved[0], z - moved[1]) for x, z in samples]
+            lat0, lon0 = lat0 - moved[1] / ky, lon0 + moved[0] / kx
+            frame = to_xz
+
+            def to_xz(lat, lon, frame=frame, moved=moved):
+                x, z = frame(lat, lon)
+                return (x - moved[0], z - moved[1])
     # OSM ways are rarely drawn to the official length; scale the plan view uniformly so the
     # lap is exactly the official one.
-    official = float(recipe.length_m)
     k_scale = official / osm_length
     scale_err = osm_length / official - 1.0
     if abs(scale_err) > 0.02:
@@ -237,6 +461,8 @@ def build(recipe, fetcher, log=print):
     length = official
     n = len(samples)
     sample_names = [sample_names[min(len(sample_names) - 1, int(k * len(sample_names) / n))] for k in range(n)]
+    sample_ways = [w for _, w in sample_names]
+    sample_names = [name for name, _ in sample_names]
 
     if start is not None:
         sx, sz = to_xz(*start)
@@ -256,9 +482,11 @@ def build(recipe, fetcher, log=print):
     latlon = [(lat0 - true_samples[i][1] / ky, lon0 + true_samples[i][0] / kx) for i in dem_idx]
     elev, dataset = _elevations(fetcher, latlon, recipe, log, warnings)
     dem_s = [i * step for i in dem_idx]
-    y = geom.periodic_interp(dem_s, elev, [k * step for k in range(n)], length)
-    y = geom.gauss_periodic(y, sigma=recipe.elev_sigma_m / step)
-    y = apply_elevation_overrides(y, step, recipe.elev_overrides)
+    raw = geom.periodic_interp(dem_s, elev, [k * step for k in range(n)], length)
+    lap = geom.gauss_periodic(raw, sigma=recipe.elev_sigma_m / step)
+    y = apply_elevation_overrides(lap, step, recipe.elev_overrides)
+    y = apply_local_smoothing(y, raw, lap, step, recipe.elev_smooth)
+    y = apply_elevation_keys(y, step, recipe.elev_keys, float(recipe.elev_key_join_m))
     crossings = find_crossings(samples, y, step)
     for c in crossings:
         if c["clearance"] < MIN_CLEARANCE:
@@ -283,6 +511,14 @@ def build(recipe, fetcher, log=print):
 
     curv_out = [round(c, 5) for c in curv_s]
     widths = info_mod.track_json_widths(recipe, n, step, length, start_s, curv_out)
+    width_tags = osm_width_tags(data, sample_ways, step)
+    if width_tags:
+        try:
+            built = info_mod.road_widths(recipe, n, step, length, start_s, curv_out)
+        except BuildError:
+            built = None        # no numpy here: the tags are recorded, just not compared
+        if built is not None:
+            warnings += width_tag_warnings(width_tags, built, step)
     pts_out = []
     for k in range(n):
         g = (y[(k + 1) % n] - y[k - 1]) / (2 * step)
@@ -337,6 +573,12 @@ def build(recipe, fetcher, log=print):
                   "auto": auto["turns"], "auto_candidates": auto["candidates"]},
         "warnings": warnings,
     }
+    if width_tags:
+        # Only where OSM has them (rare), so every other build_info.json is unchanged.
+        info["osm"]["width_tags"] = width_tags
+    if shifted:
+        log(f"layout: the centreline was moved sideways by up to {shifted:.1f} m "
+            "([[layout.shift]] / [[road.pair]] separation)")
     log(f"centreline: {length:.1f} m (OSM {osm_length:.1f} m, {100 * scale_err:+.2f} %), {n} points, "
         f"{track['direction']}, start_s {start_s:.1f}, finish from {sf_source}")
     log(f"elevation ({dataset}): range {track['elevation_range']} m, max climb {100 * max(grades):.1f} %, "

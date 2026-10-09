@@ -5,6 +5,7 @@
         [--osm-relation N] [--name "..."] [--length M] [--turns N] [--direction clockwise]
         [--offline] [--out DIR] [--cache DIR] [--steps centreline,road,terrain,surroundings,info]
         [--plot [FILE]] [--compare DIR]
+    .venv/bin/python tools/track/build_track.py <id> --report | --report-json [--out DIR]
 
 Steps (each reads the files of the ones before it from the output folder):
     centreline  OSM loop + DEM elevation -> track.json, build_info.json
@@ -55,12 +56,23 @@ def _parse_args(argv):
                          "With the surroundings step also <plot>_surroundings.png")
     ap.add_argument("--compare", metavar="DIR", help="compare the result with another build of the "
                                                      "track (e.g. the committed assets) and fail on a difference")
+    ap.add_argument("--report", action="store_true",
+                    help="build nothing: print the size report of the built track (per turn and straight: "
+                         "radius, width, bank, gradient, heights; see lib/report.py)")
+    ap.add_argument("--report-json", action="store_true", help="like --report, as JSON")
     return ap.parse_args(argv)
 
 
 def run(argv=None, log=print):
     args = _parse_args(argv)
-    steps = [s.strip() for s in args.steps.split(",") if s.strip()]
+    if args.report or args.report_json:
+        # Reads the built files only: no recipe, no network, nothing written.
+        import json
+        from lib import report
+        rep = report.build(os.path.abspath(args.out) if args.out else os.path.join(ROOT, "assets", "tracks", args.id))
+        log(json.dumps(rep, indent=1, ensure_ascii=False) if args.report_json else report.format_text(rep))
+        return 0
+    steps =[s.strip() for s in args.steps.split(",") if s.strip()]
     bad = [s for s in steps if s not in STEPS]
     if bad:
         raise BuildError(f"unknown step(s) {', '.join(bad)}; choose from {', '.join(STEPS)}")

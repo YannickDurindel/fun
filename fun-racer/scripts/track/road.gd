@@ -40,6 +40,10 @@ var chunk_ranges: Array = []          ## [[first_point, last_point], ...] per me
 ## [{deck: [s0, s1], upper_window: [s0, s1], lower_window: [s0, s1], parapet_offset,
 ##   barrier_room, ...}] - see cad/track/bridge.py.
 var bridges: Array[Dictionary] = []
+## Stretches that are the two carriageways of one road, from road_profile.json (the recipe's
+## [[road.pair]], usually none): [{a: [s0, s1], b: [s0, s1], side_a, side_b, gap, separation}],
+## side = the side of that stretch the other one is on (-1 left, +1 right) - cad/track/road.py.
+var pairs: Array[Dictionary] = []
 var verge_width: float = 30.0
 var verge_drop: float = 0.25
 var data: TrackData
@@ -96,6 +100,10 @@ func _load_profile() -> void:
 	for b: Variant in d.get("bridges", []):
 		if b is Dictionary and (b as Dictionary).has_all(["deck", "upper_window", "lower_window"]):
 			bridges.append(b)
+	pairs = []
+	for p: Variant in d.get("pairs", []):
+		if p is Dictionary and (p as Dictionary).has_all(["a", "b", "side_a", "side_b"]):
+			pairs.append(p)
 
 ## Profile array `key`, or `n` times `fallback` when it is missing or has the wrong size.
 static func _profile_array(d: Dictionary, key: String, n: int, fallback: float) -> PackedFloat32Array:
@@ -120,6 +128,7 @@ func _fallback_profile() -> void:
 	racing_line = banks.duplicate()
 	chunk_ranges = []
 	bridges = []
+	pairs = []
 	verge_width = RIBBON_VERGE_WIDTH
 	verge_drop = 0.25
 	var lims := TrackGeometry.no_limits(n)

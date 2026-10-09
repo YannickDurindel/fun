@@ -61,6 +61,15 @@ the outer edge of the upper verge hangs in the air. With ``[road] retaining_wall
 the recipe a concrete wall goes down from the outer edge of every verge that has a lower
 stretch of the lap within WALL_REACH, to WALL_FOOT below that stretch (extra nodes
 "wall_NN", material "concrete"). Off by default: every other track builds as before.
+
+Side-by-side roads
+------------------
+Two stretches of the lap that are the two carriageways of one road (``[[road.pair]]`` in the
+recipe: Baku's Turn 6 to Turn 7 road beside the main straight) are checked to leave room for
+a wall between their tarmac edges, so the two ribbons cannot overlap, and their verges meet
+half way between them instead of each stopping short of the other (pair_spans, pair_verges).
+The pairs are written to road_profile.json ("pairs") for the trackside, which builds one
+wall on that line instead of one per road. No pair: nothing changes.
 """
 
 from __future__ import annotations
@@ -94,6 +103,8 @@ WALL_MIN = 0.5           # m: no wall where the other road is less than this far
 WALL_ABEAM = 16.0        # m along the other road: it only takes the ground beside itself (a
                          # terrain mesh cell + terrain.py's COVER_SLACK), not ahead or behind
 WALL_OWN = 10            # centreline points either way that are the verge's own road
+PAIR_GAP = 1.5           # m between the tarmac edges of a [[road.pair]]: the room of one wall
+                         # (the default of the recipe key, tools/track/lib/recipe.py PAIR_GAP)
 UP = np.array([0.0, 1.0, 0.0])
 
 
@@ -139,6 +150,81 @@ def verge_extent(P: np.ndarray, edge: np.ndarray, out_dir: np.ndarray, hw: np.nd
     ext = np.minimum(ext, fold_limit)
     ext = _cyclic_box(_cyclic_min_filter(ext, 5), 5)
     return np.clip(ext, 0.0, VERGE_WIDTH)
+
+
+def _stretch_points(r: list, step: float, n: int) -> np.ndarray:
+    """Centreline point indices of the s range ``r`` = [from, to] (may wrap)."""
+    first = int(round(float(r[0]) / step)) % n
+    count = int(round(((float(r[1]) - float(r[0])) % (n * step)) / step)) + 1
+    return (first + np.arange(min(count, n))) % n
+
+
+def pair_spans(pairs: list, P: np.ndarray, Rh: np.ndarray, hw: np.ndarray, step: float) -> list[dict]:
+    """The recipe's [[road.pair]] entries measured on the built centreline. Each entry names
+    two stretches of the lap that are the two halves of one road (the carriageways of an
+    avenue); they must lie side by side with room for a wall between the tarmac edges
+    (``gap``, default PAIR_GAP), which is checked here, so the two ribbons can never overlap.
+
+    Returns per pair {"a", "b": the s ranges (cut back to where the other one is beside), "side_a", "side_b": the side of each stretch the
+    other one is on (-1 left, +1 right), "gap": [min, max] between the tarmac edges,
+    "separation": [min, max] between the centrelines, "legs": per stretch (points, half gap)}.
+    Raises ValueError when the stretches are too close for their widths."""
+    n = len(P)
+    xz = P[:, [0, 2]]
+    out = []
+    for p in pairs:
+        need = float(p.get("gap", PAIR_GAP))
+        idx = [_stretch_points(p["a"], step, n), _stretch_points(p["b"], step, n)]
+        entry = {"a": [float(v) for v in p["a"]], "b": [float(v) for v in p["b"]], "legs": []}
+        gaps, seps = [], []
+        for own, other, name in ((idx[0], idx[1], "a"), (idx[1], idx[0], "b")):
+            dist = np.linalg.norm(xz[own][:, None, :] - xz[other][None, :, :], axis=-1)
+            j = dist.argmin(1)
+            near = other[j]
+            sep = dist[np.arange(len(own)), j]
+            # Beside the other stretch, not beyond one of its ends.
+            abeam = (j > 0) & (j < len(other) - 1)
+            if not abeam.any():
+                raise ValueError(f"[[road.pair]] a = {p['a']}, b = {p['b']}: the two stretches do not "
+                                 "run beside each other anywhere")
+            gap = sep - hw[own] - hw[near]
+            side = np.sign(((xz[near] - xz[own]) * Rh[own][:, [0, 2]]).sum(-1))
+            if np.any(side[abeam] != side[abeam][0]):
+                raise ValueError(f"[[road.pair]] a = {p['a']}, b = {p['b']}: stretch {name} has the "
+                                 "other one on its left in places and on its right in others")
+            worst = int(np.argmin(np.where(abeam, gap, np.inf)))
+            if gap[worst] < need - 1e-6:
+                raise ValueError(
+                    f"[[road.pair]] a = {p['a']}, b = {p['b']}: at s = {own[worst] * step:.0f} m the "
+                    f"centrelines are {sep[worst]:.1f} m apart and the roads {2 * hw[own[worst]]:.1f} m "
+                    f"and {2 * hw[near[worst]]:.1f} m wide, which leaves {gap[worst]:.1f} m between "
+                    f"the tarmac edges; a wall needs {need:g} m. The centrelines must be "
+                    f"{hw[own[worst]] + hw[near[worst]] + need:.1f} m apart there: raise the pair's "
+                    "separation, end the stretches where the roads part, or narrow the roads there")
+            entry["side_" + name] = int(side[abeam][0])
+            # What the trackside is told: the part of the stretch that has the other one beside
+            # it. A point beyond the other stretch's end is an ordinary point of the lap.
+            k = np.flatnonzero(abeam)
+            entry[name] = [round(float(own[k[0]] * step), 3), round(float(own[k[-1]] * step), 3)]
+            entry["legs"].append((own, abeam, 0.5 * gap))
+            gaps.append(gap[abeam])
+            seps.append(sep[abeam])
+        gaps, seps = np.concatenate(gaps), np.concatenate(seps)
+        entry["gap"] = [round(float(gaps.min()), 2), round(float(gaps.max()), 2)]
+        entry["separation"] = [round(float(seps.min()), 2), round(float(seps.max()), 2)]
+        out.append(entry)
+    return out
+
+
+def pair_verges(spans: list[dict], ext_l: np.ndarray, ext_r: np.ndarray) -> None:
+    """Between the two roads of a pair both verges end on the line half way between the tarmac
+    edges (in place): one continuous median, with the pair's wall standing on the seam. The
+    general clipping of verge_extent() leaves a strip of nothing there, as it must between
+    two unrelated stretches of the lap."""
+    for sp in spans:
+        for (own, abeam, half), side in zip(sp["legs"], (sp["side_a"], sp["side_b"])):
+            ext = ext_l if side < 0 else ext_r
+            ext[own] = np.where(abeam, np.clip(half, 0.0, VERGE_WIDTH), ext[own])
 
 
 def _ear_clip(poly: np.ndarray) -> list[tuple[int, int, int]]:
@@ -338,6 +424,8 @@ def build(track_path: Path = TRACK_DIR / "track.json", out_dir: Path = TRACK_DIR
     right_edge = P + R * hw[:, None]
     ext_l = verge_extent(P, left_edge, -Rh, hw, -1.0, step)
     ext_r = verge_extent(P, right_edge, Rh, hw, 1.0, step)
+    pairs = pair_spans((road_cfg or {}).get("pair", []), P, Rh, hw, step)
+    pair_verges(pairs, ext_l, ext_r)
     bridges = (bridge_mod.bridge_spans(d["crossings"], P, Rh, hw, ext_l, ext_r, step, VERGE_WIDTH)
                if d.get("crossings") else [])
     rl = racing_line(P, step, hw)
@@ -477,9 +565,13 @@ def build(track_path: Path = TRACK_DIR / "track.json", out_dir: Path = TRACK_DIR
     }
     if bridges:
         profile["bridges"] = bridges
+    pairs = [{k: v for k, v in sp.items() if k != "legs"} for sp in pairs]
+    if pairs:
+        # Only laps with a [[road.pair]] have the key, so every other profile is unchanged.
+        profile["pairs"] = pairs
     (out_dir / "road_profile.json").write_text(json.dumps(profile, separators=(",", ":")))
     road_textures.write_all(out_dir)
-    return {"chunks": nchunks, "triangles": tri_total, "bridges": bridges,
+    return {"chunks": nchunks, "triangles": tri_total, "bridges": bridges, "pairs": pairs,
             "wall_length": wall_len,
             "verge_min": float(min(ext_l.min(), ext_r.min())),
             "width": (float(width.min()), float(width.max())),

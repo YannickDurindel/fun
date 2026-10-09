@@ -11,6 +11,7 @@ import shutil
 import subprocess
 import sys
 
+from . import recipe as recipe_mod
 from .net import BuildError
 from .recipe import ROOT
 
@@ -209,6 +210,10 @@ def build_road(recipe, out_dir, log=print):
         log(f"  bridge: deck s = {b['deck'][0]:.0f} to {b['deck'][1]:.0f} m ({b['span'][0]:.0f} to "
             f"{b['span'][1]:.0f} m above open ground), {b['clearance']:.1f} m over the road at "
             f"s = {b['s_lower']:.0f} m")
+    for p in res.get("pairs", []):
+        log(f"  pair: s = {p['a'][0]:.0f} to {p['a'][1]:.0f} m beside s = {p['b'][0]:.0f} to "
+            f"{p['b'][1]:.0f} m: centrelines {p['separation'][0]:.1f} to {p['separation'][1]:.1f} m "
+            f"apart, {p['gap'][0]:.1f} to {p['gap'][1]:.1f} m between the tarmac edges")
     if res.get("wall_length"):
         log(f"  retaining walls: {res['wall_length']:.0f} m ([road] retaining_walls)")
     _write_materials(recipe, track, out_dir, log)
@@ -231,14 +236,20 @@ def road_widths(recipe, n, step, length, start_s, curvature):
 
 
 def track_json_widths(recipe, n, step, length, start_s, curvature):
-    """The ``width`` of every point of track.json. Normally a nominal 13 m, whatever the road
-    step builds: the real widths are in road_profile.json. The game's drivers (the autopilot's
-    racing line, the bots' off-road test) read track.json, though, so a road built narrower
-    than that must say so there: with ``[road] track_json_widths = true`` these are the built
-    widths. Opt-in, so that the tracks built before the key existed stay byte for byte the same."""
-    if not recipe.road.get("track_json_widths"):
+    """The ``width`` of every point of track.json. The game's drivers (the autopilot's racing
+    line, the bots' off-road test) read it, so it has to be the road that is built: on a road
+    widened to 18 m they would otherwise keep to the middle 13 m, and on one narrowed to 9 m
+    they would plan a line through the wall.
+
+    So as soon as the recipe's [road] table states a width (base_width, grid_width, width_keys
+    or a width override) these are the built widths, the ones of road_profile.json. A recipe
+    without any gets the nominal 13 m (the road step's default is 13 m with a 15 m grid: the
+    tracks built before the widths were corrected, kept byte for byte). ``[road]
+    track_json_widths = false`` keeps the nominal value on a recipe that does set widths
+    (Red Bull Ring, Monaco: built before this rule), ``= true`` asks for the built widths
+    whatever the table says."""
+    if not recipe_mod.track_json_widths(recipe.road):
         # Never promise more road than the recipe's base width: the drivers plan inside it.
-        # (A stretch narrowed further needs track_json_widths = true.)
         return [min(NOMINAL_WIDTH, float(recipe.road.get("base_width", NOMINAL_WIDTH)))] * n
     return road_widths(recipe, n, step, length, start_s, curvature)
 
