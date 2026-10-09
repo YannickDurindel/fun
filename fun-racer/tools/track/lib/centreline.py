@@ -182,9 +182,8 @@ def build(recipe, fetcher, log=print):
         finish = data.nodes[chain[0]]
 
     def project(lat0, lon0):
-        kx = geom.EARTH_M_PER_DEG * math.cos(math.radians(lat0))
-        ky = geom.EARTH_M_PER_DEG
-        return kx, ky, (lambda lat, lon: ((lon - lon0) * kx, -(lat - lat0) * ky))
+        pr = geom.Projection(lat0, lon0)
+        return pr.kx, pr.ky, pr.to_xz
 
     lat0, lon0 = finish
     kx, ky, to_xz = project(lat0, lon0)

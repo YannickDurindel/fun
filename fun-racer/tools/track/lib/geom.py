@@ -9,6 +9,28 @@ import math
 EARTH_M_PER_DEG = 111320.0
 
 
+class Projection:
+    """Equirectangular lat / lon <-> plan-view metres around an origin: x = east, z = -north.
+
+    ``k`` is the uniform plan scale of a built track (official / OSM lap length, see
+    ``terrain.plan_scale``); 1.0 gives true metres. Every step that places something on the
+    map goes through this, so the centreline, the terrain and the surroundings line up. The
+    operation order is the one the centreline and terrain steps were first written with
+    (multiplying and dividing by k = 1.0 is exact), so their files do not change. The methods
+    are plain arithmetic and also take numpy arrays."""
+
+    def __init__(self, lat0, lon0, k=1.0):
+        self.lat0, self.lon0, self.k = lat0, lon0, k
+        self.kx = EARTH_M_PER_DEG * math.cos(math.radians(lat0))
+        self.ky = EARTH_M_PER_DEG
+
+    def to_xz(self, lat, lon):
+        return ((lon - self.lon0) * self.kx * self.k, -(lat - self.lat0) * self.ky * self.k)
+
+    def to_latlon(self, x, z):
+        return (self.lat0 - (z / self.k) / self.ky, self.lon0 + (x / self.k) / self.kx)
+
+
 def seg_dist(a, b, p):
     """Distance from p to segment a-b and the closest point on it (2D)."""
     ax, az = a
