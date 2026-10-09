@@ -17,15 +17,27 @@ extends Resource
 @export var wheel_inertia_rear: float = 1.3
 
 @export_group("Suspension")
-@export var spring_front: float = 200000.0     ## N/m at the wheel
-@export var spring_rear: float = 190000.0
-@export var damper_front: float = 9000.0       ## N s/m
-@export var damper_rear: float = 9000.0
-@export var arb_front: float = 120000.0        ## N/m of left-right travel difference
-@export var arb_rear: float = 60000.0
+## compression 0 = design ride height (body floor about 8 cm above the road). Rates are at
+## the wheel. Seen at one wheel: heave = spring + heave, roll = spring + 2 arb,
+## one-wheel bump = spring + arb + heave / 2. See scripts/car/sim/suspension.gd.
+@export var spring_front: float = 150000.0     ## N/m at the wheel, corner spring
+@export var spring_rear: float = 130000.0
+@export var heave_front: float = 70000.0       ## N/m at each wheel per m of mean axle travel (third element)
+@export var heave_rear: float = 70000.0
+@export var damper_front: float = 7000.0       ## N s/m in bump (compression), below the knee speed
+@export var damper_rear: float = 7000.0
+@export var damper_rebound_front: float = 11000.0   ## N s/m in rebound (extension), below the knee speed
+@export var damper_rebound_rear: float = 11000.0
+@export var damper_knee_speed: float = 0.25    ## m/s of wheel travel where the damper turns digressive
+@export var damper_high_speed_ratio: float = 0.4   ## damper slope above the knee, as a share of the slope below
+## Roll stiffness is 448 kN m/rad front, 353 rear: 56 % front against 46 % of the weight,
+## for mild understeer at the limit. More front bar = more understeer.
+@export var arb_front: float = 100000.0        ## N/m of left-right travel difference
+@export var arb_rear: float = 80000.0
 @export var travel_bump: float = 0.045         ## m of compression before the bump stop
 @export var travel_droop: float = 0.06         ## m of extension before the wheel hangs
-@export var bump_stop_rate: float = 1500000.0  ## N/m beyond travel_bump
+@export var bump_stop_rate: float = 1500000.0  ## N/m at first touch, beyond travel_bump
+@export var bump_stop_progression: float = 0.02   ## m into the bump stop over which its force doubles again (progressive)
 
 @export_group("Tyres")
 @export var tyre_mu: float = 1.75              ## peak friction coefficient at the reference load
