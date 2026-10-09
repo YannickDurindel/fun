@@ -55,9 +55,9 @@
    766787796
   ],
   "raw_length_m": 5975.1,
-  "length_m": 5969.2,
+  "length_m": 5965.6,
   "official_length_m": 6003.0,
-  "length_error": -0.00563,
+  "length_error": -0.00623,
   "candidates": [
    {
     "length_m": 5975.3,
@@ -119,7 +119,7 @@
  "dem_dataset": "terrarium",
  "elevation": {
   "range_m": 28.29,
-  "max_grade": 0.0545,
+  "max_grade": 0.0544,
   "min_grade": -0.0529,
   "origin_m": -18.47
  },
@@ -131,146 +131,146 @@
     "id": "T1",
     "name": "Turn 1",
     "direction": "left",
-    "s_apex": 323.8,
+    "s_apex": 324.0,
     "min_radius": 18.2
    },
    {
     "id": "T2",
     "name": "Turn 2",
     "direction": "left",
-    "s_apex": 661.6,
+    "s_apex": 662.1,
     "min_radius": 18.7
    },
    {
     "id": "T3",
     "name": "Turn 3",
     "direction": "left",
-    "s_apex": 1532.4,
+    "s_apex": 1533.5,
     "min_radius": 22.0
    },
    {
     "id": "T4",
     "name": "Turn 4",
     "direction": "right",
-    "s_apex": 1759.7,
-    "min_radius": 23.9
+    "s_apex": 1760.9,
+    "min_radius": 24.0
    },
    {
     "id": "T5",
     "name": "Turn 5",
     "direction": "left",
-    "s_apex": 2093.5,
-    "min_radius": 25.3
+    "s_apex": 2094.9,
+    "min_radius": 25.4
    },
    {
     "id": "T6",
     "name": "Turn 6",
     "direction": "right",
-    "s_apex": 2149.8,
-    "min_radius": 23.4
+    "s_apex": 2151.3,
+    "min_radius": 22.8
    },
    {
     "id": "T7",
     "name": "Turn 7",
     "direction": "right",
-    "s_apex": 2550.0,
-    "min_radius": 15.7
+    "s_apex": 2549.7,
+    "min_radius": 15.5
    },
    {
     "id": "T8",
     "name": "Əziz Əliyev küçəsi",
     "direction": "left",
-    "s_apex": 2747.1,
-    "min_radius": 14.1
+    "s_apex": 2746.9,
+    "min_radius": 14.3
    },
    {
     "id": "T9",
     "name": "Əziz Əliyev küçəsi",
     "direction": "right",
-    "s_apex": 2769.2,
-    "min_radius": 25.6
+    "s_apex": 2769.1,
+    "min_radius": 26.0
    },
    {
     "id": "T10",
     "name": "Əziz Əliyev küçəsi",
     "direction": "left",
-    "s_apex": 2799.4,
-    "min_radius": 34.0
+    "s_apex": 2799.3,
+    "min_radius": 34.2
    },
    {
     "id": "T11",
     "name": "Turn 11",
     "direction": "right",
-    "s_apex": 2851.7,
-    "min_radius": 16.7
+    "s_apex": 2851.6,
+    "min_radius": 16.8
    },
    {
     "id": "T12",
     "name": "Turn 12",
     "direction": "left",
     "s_apex": 2916.0,
-    "min_radius": 16.7
+    "min_radius": 16.8
    },
    {
     "id": "T13",
     "name": "İstiqlaliyyət küçəsi",
     "direction": "left",
-    "s_apex": 3322.3,
-    "min_radius": 67.8
+    "s_apex": 3322.5,
+    "min_radius": 67.9
    },
    {
     "id": "T14",
     "name": "İstiqlaliyyət küçəsi",
     "direction": "left",
-    "s_apex": 3525.4,
-    "min_radius": 90.2
+    "s_apex": 3525.7,
+    "min_radius": 90.3
    },
    {
     "id": "T15",
     "name": "İstiqlaliyyət küçəsi",
     "direction": "left",
-    "s_apex": 3768.7,
-    "min_radius": 18.4
+    "s_apex": 3769.2,
+    "min_radius": 18.6
    },
    {
     "id": "T16",
     "name": "Turn 16",
     "direction": "left",
-    "s_apex": 4124.7,
+    "s_apex": 4123.4,
     "min_radius": 20.8
    },
    {
     "id": "T17",
     "name": "Neftçilər prospekti",
     "direction": "right",
-    "s_apex": 4329.8,
-    "min_radius": 72.9
+    "s_apex": 4328.7,
+    "min_radius": 73.4
    },
    {
     "id": "T18",
     "name": "Turn 18",
     "direction": "left",
-    "s_apex": 4555.0,
-    "min_radius": 87.3
+    "s_apex": 4556.1,
+    "min_radius": 88.0
    },
    {
     "id": "T19",
     "name": "Turn 19",
     "direction": "right",
-    "s_apex": 4728.0,
-    "min_radius": 69.0
+    "s_apex": 4729.1,
+    "min_radius": 71.0
    },
    {
     "id": "T20",
     "name": "Neftçilər prospekti",
     "direction": "right",
-    "s_apex": 5059.8,
-    "min_radius": 199.0
+    "s_apex": 5071.3,
+    "min_radius": 237.9
    }
   ],
   "auto_candidates": [
    {
-    "s_apex": 323.8,
+    "s_apex": 324.0,
     "direction": "left",
     "angle_deg": 86.5,
     "kind": "corner",
@@ -278,15 +278,15 @@
     "used": true
    },
    {
-    "s_apex": 372.0,
+    "s_apex": 372.3,
     "direction": "left",
     "angle_deg": 4.8,
     "kind": "kink",
-    "min_radius": 197.6,
+    "min_radius": 197.7,
     "used": false
    },
    {
-    "s_apex": 661.6,
+    "s_apex": 662.1,
     "direction": "left",
     "angle_deg": 90.6,
     "kind": "corner",
@@ -294,7 +294,7 @@
     "used": true
    },
    {
-    "s_apex": 1532.4,
+    "s_apex": 1533.5,
     "direction": "left",
     "angle_deg": 84.6,
     "kind": "corner",
@@ -302,163 +302,163 @@
     "used": true
    },
    {
-    "s_apex": 1759.7,
+    "s_apex": 1760.9,
     "direction": "right",
     "angle_deg": 89.0,
     "kind": "corner",
-    "min_radius": 23.9,
+    "min_radius": 24.0,
     "used": true
    },
    {
-    "s_apex": 1928.6,
+    "s_apex": 1929.9,
     "direction": "left",
     "angle_deg": 7.5,
     "kind": "kink",
-    "min_radius": 159.3,
+    "min_radius": 159.6,
     "used": false
    },
    {
-    "s_apex": 2093.5,
+    "s_apex": 2094.9,
     "direction": "left",
-    "angle_deg": 74.3,
+    "angle_deg": 74.1,
     "kind": "corner",
-    "min_radius": 25.3,
+    "min_radius": 25.4,
     "used": true
    },
    {
-    "s_apex": 2149.8,
+    "s_apex": 2151.3,
     "direction": "right",
-    "angle_deg": 70.2,
+    "angle_deg": 70.9,
     "kind": "corner",
-    "min_radius": 23.4,
+    "min_radius": 22.8,
     "used": true
    },
    {
-    "s_apex": 2550.0,
+    "s_apex": 2549.7,
     "direction": "right",
     "angle_deg": 110.1,
     "kind": "corner",
-    "min_radius": 15.7,
+    "min_radius": 15.5,
     "used": true
    },
    {
-    "s_apex": 2747.1,
+    "s_apex": 2746.9,
     "direction": "left",
-    "angle_deg": 74.2,
+    "angle_deg": 73.6,
     "kind": "corner",
-    "min_radius": 14.1,
+    "min_radius": 14.3,
     "used": true
    },
    {
-    "s_apex": 2769.2,
+    "s_apex": 2769.1,
     "direction": "right",
-    "angle_deg": 31.9,
+    "angle_deg": 31.3,
     "kind": "corner",
-    "min_radius": 25.6,
+    "min_radius": 26.0,
     "used": true
    },
    {
-    "s_apex": 2799.4,
+    "s_apex": 2799.3,
     "direction": "left",
-    "angle_deg": 32.4,
+    "angle_deg": 32.1,
     "kind": "corner",
-    "min_radius": 34.0,
+    "min_radius": 34.2,
     "used": true
    },
    {
-    "s_apex": 2851.7,
+    "s_apex": 2851.6,
     "direction": "right",
     "angle_deg": 76.1,
     "kind": "corner",
-    "min_radius": 16.7,
+    "min_radius": 16.8,
     "used": true
    },
    {
     "s_apex": 2916.0,
     "direction": "left",
-    "angle_deg": 91.3,
+    "angle_deg": 91.4,
     "kind": "corner",
-    "min_radius": 16.7,
+    "min_radius": 16.8,
     "used": true
    },
    {
-    "s_apex": 3173.4,
+    "s_apex": 3173.6,
     "direction": "left",
     "angle_deg": 5.3,
     "kind": "kink",
-    "min_radius": 237.9,
+    "min_radius": 238.1,
     "used": false
    },
    {
-    "s_apex": 3322.3,
+    "s_apex": 3322.5,
     "direction": "left",
     "angle_deg": 41.7,
     "kind": "corner",
-    "min_radius": 67.8,
+    "min_radius": 67.9,
     "used": true
    },
    {
-    "s_apex": 3525.4,
+    "s_apex": 3525.7,
     "direction": "left",
-    "angle_deg": 20.2,
+    "angle_deg": 20.1,
     "kind": "corner",
-    "min_radius": 90.2,
+    "min_radius": 90.3,
     "used": true
    },
    {
-    "s_apex": 3768.7,
+    "s_apex": 3769.2,
     "direction": "left",
-    "angle_deg": 62.6,
+    "angle_deg": 62.8,
     "kind": "corner",
-    "min_radius": 18.4,
+    "min_radius": 18.6,
     "used": true
    },
    {
-    "s_apex": 4124.7,
+    "s_apex": 4123.4,
     "direction": "left",
-    "angle_deg": 87.5,
+    "angle_deg": 87.4,
     "kind": "corner",
     "min_radius": 20.8,
     "used": true
    },
    {
-    "s_apex": 4329.8,
+    "s_apex": 4328.7,
     "direction": "right",
-    "angle_deg": 18.7,
+    "angle_deg": 18.9,
     "kind": "corner",
-    "min_radius": 72.9,
+    "min_radius": 73.4,
     "used": true
    },
    {
-    "s_apex": 4500.7,
+    "s_apex": 4501.7,
     "direction": "left",
-    "angle_deg": 4.7,
+    "angle_deg": 4.8,
     "kind": "kink",
-    "min_radius": 401.0,
+    "min_radius": 401.2,
     "used": false
    },
    {
-    "s_apex": 4555.0,
+    "s_apex": 4556.1,
     "direction": "left",
-    "angle_deg": 29.0,
+    "angle_deg": 28.9,
     "kind": "corner",
-    "min_radius": 87.3,
+    "min_radius": 88.0,
     "used": true
    },
    {
-    "s_apex": 4728.0,
+    "s_apex": 4729.1,
     "direction": "right",
-    "angle_deg": 40.9,
+    "angle_deg": 41.0,
     "kind": "corner",
-    "min_radius": 69.0,
+    "min_radius": 71.0,
     "used": true
    },
    {
-    "s_apex": 5059.8,
+    "s_apex": 5071.3,
     "direction": "right",
-    "angle_deg": 11.1,
+    "angle_deg": 11.8,
     "kind": "kink",
-    "min_radius": 199.0,
+    "min_radius": 237.9,
     "used": true
    }
   ]

@@ -17,6 +17,8 @@ extends Node3D
 ##   * Crossovers (RoadSurface.bridges, a figure-of-eight lap): the two roads do not limit
 ##     each other's barrier lines; the upper road gets a concrete parapet on the bridge deck
 ##     and the lower road's barriers stay inside the underpass (see _crossover_limits).
+##   * Side-by-side carriageways (RoadSurface.pairs, the recipe's [[road.pair]]): one wall on
+##     the middle of the median instead of one per road (see _share_pair_walls).
 ##
 ## Collision bodies carry meta "surface" ("kerb", "asphalt", "gravel"); barriers also carry
 ## meta "barrier" = true, the group "trackside_barrier" and physics layer 5 (LAYER_BARRIER).
@@ -32,6 +34,7 @@ const LAYER_BARRIER: int = 1 << 4
 const KERB_PROFILE := {"flat": "kerb_flat", "saw": "kerb_sawtooth", "sausage": "kerb_sausage"}
 const SAUSAGE_GAP: float = 0.3      ## space between a kerb's outer edge and a sausage kerb
 const LIMIT_SLOPE: float = 0.3      ## automatic layout: max sideways run of the wall per metre
+const PAIR_RAMP: float = 20.0       ## m over which the two walls of a pair become its shared one
 
 @export var snap_to_road: bool = true
 @export var chunk_length: float = 200.0
@@ -55,6 +58,8 @@ var _space: PhysicsDirectSpaceState3D
 var _ray := PhysicsRayQueryParameters3D.new()
 var _off_r := PackedFloat32Array()   ## barrier line, centre offset to the right (m) per point
 var _off_l := PackedFloat32Array()
+var _pair_skip_l := PackedByteArray()   ## 1 = no barrier of its own on the left at this point
+var _pair_skip_r := PackedByteArray()   ## (the far side of a pair's shared wall); empty = none
 var _tools := {}                     ## Vector2i(chunk, material) -> SurfaceTool
 var _mats: Array[Material] = []
 var _bodies: Array[Node] = []        ## added at the end so ray snapping never hits our own
@@ -208,14 +213,16 @@ func _compute_barrier_offsets() -> void:
 	var lim_l := lims[0]
 	var lim_r := lims[1]
 	TrackGeometry.inside_limits(_data, lim_l, lim_r)
-	TrackGeometry.proximity_limits(_data, lim_l, lim_r, _crossover_pairs())
+	TrackGeometry.proximity_limits(_data, lim_l, lim_r, _crossover_pairs() + _carriageway_pairs())
 	_crossover_limits(lim_l, lim_r, edges)
+	_pair_limits(lim_l, lim_r, edges)
 	if layout.is_auto:
 		# Hand-made layouts keep the raw limits, so their walls stay exactly where they were.
 		_limit_slope(lim_l)
 		_limit_slope(lim_r)
 	_off_l = _finish_offsets(des_l, lim_l, edges)
 	_off_r = _finish_offsets(des_r, lim_r, edges)
+	_share_pair_walls(lim_l, lim_r, edges)
 
 ## Crossovers of the lap as the Road slot reports them ([] without a Road or on a normal lap).
 func _bridges() -> Array[Dictionary]:
@@ -252,6 +259,121 @@ func _crossover_limits(lim_l: PackedFloat32Array, lim_r: PackedFloat32Array, edg
 				var i := (first + k) % n
 				lim_l[i] = minf(lim_l[i], edges[i] + road.verge_left[i] + float(rooms[w]))
 				lim_r[i] = minf(lim_r[i], edges[i] + road.verge_right[i] + float(rooms[w]))
+
+## Side-by-side carriageways as the Road slot reports them ([] without a Road or a pair).
+func _pairs() -> Array[Dictionary]:
+	var none: Array[Dictionary] = []
+	var road := _road as RoadSurface
+	return road.pairs if road != null else none
+
+## The two stretches of each pair, for TrackGeometry.proximity_limits(): the line between them
+## is known exactly (_pair_limits), so they need not estimate it from each other.
+## Each stretch reaches PAIR_RAMP beyond its ends: where the roads part, an estimate made
+## across the lap is on a slant and can put the wall on the road edge.
+func _carriageway_pairs() -> Array:
+	var n := _data.points.size()
+	var beyond := _pair_beyond()
+	var out := []
+	for p in _pairs():
+		var a := _point_range(p["a"])
+		var b := _point_range(p["b"])
+		out.append([posmod(a[0] - beyond, n), (a[1] + beyond) % n, posmod(b[0] - beyond, n), (b[1] + beyond) % n])
+	return out
+
+## Centreline points in PAIR_RAMP.
+func _pair_beyond() -> int:
+	return ceili(PAIR_RAMP / _data.step)
+
+## The stretches of the pairs as [[first point, count, side, shares], ...]: `side` is the side
+## the other carriageway is on, and `shares` is true for the stretch that builds the one wall
+## between the two (the first, "a"); the other one builds none on that side.
+func _pair_legs() -> Array:
+	var n := _data.points.size()
+	var out := []
+	for p in _pairs():
+		for leg: Array in [["a", "side_a", true], ["b", "side_b", false]]:
+			var r := _point_range(p[leg[0]])
+			out.append([r[0], posmod(r[1] - r[0], n) + 1, float(p[leg[1]]), leg[2]])
+	return out
+
+## Between the carriageways of a pair the limit of both is the line half way between their
+## tarmac edges, which is where both verges end (cad/track/road.py: pair_verges).
+func _pair_limits(lim_l: PackedFloat32Array, lim_r: PackedFloat32Array, edges: PackedFloat32Array) -> void:
+	var road := _road as RoadSurface
+	var n := _data.points.size()
+	for leg: Array in _pair_legs():
+		var lim := lim_l if leg[2] < 0.0 else lim_r
+		var verge := road.verge_left if leg[2] < 0.0 else road.verge_right
+		var first: int = leg[0]
+		var count: int = leg[1]
+		for k in count:
+			var i := (first + k) % n
+			lim[i] = minf(lim[i], edges[i] + verge[i])
+		# Beyond either end, where the two no longer limit each other (_carriageway_pairs): no
+		# further out than at the end of the stretch.
+		for e: Array in _pair_ends(first, count):
+			lim[e[0]] = minf(lim[e[0]], edges[e[0]] + verge[e[1]])
+
+## The points within PAIR_RAMP beyond either end of a stretch, as [point, the end point of the
+## stretch on that side, points from that end (1 = next to it)].
+func _pair_ends(first: int, count: int) -> Array:
+	var n := _data.points.size()
+	var last := (first + count - 1) % n
+	var out := []
+	for k in range(1, _pair_beyond() + 1):
+		out.append([posmod(first - k, n), first, k])
+		out.append([(last + k) % n, last, k])
+	return out
+
+## One wall between the carriageways of a pair instead of one per road: along the stretch both
+## barrier lines are the middle of the median (the wall's body is centred on it), and the
+## second stretch does not build its own (_pair_skip). Over PAIR_RAMP before and after the
+## stretch the two roads' own walls close in on that line, so they meet where the shared wall
+## begins and no gap opens onto the median.
+func _share_pair_walls(lim_l: PackedFloat32Array, lim_r: PackedFloat32Array, edges: PackedFloat32Array) -> void:
+	var road := _road as RoadSurface
+	var n := _data.points.size()
+	_pair_skip_l.clear()
+	_pair_skip_r.clear()
+	for leg: Array in _pair_legs():
+		var left: bool = leg[2] < 0.0
+		var off := _off_l if left else _off_r
+		var lim := lim_l if left else lim_r
+		var verge := road.verge_left if left else road.verge_right
+		var first: int = leg[0]
+		var count: int = leg[1]
+		if not leg[3]:
+			var skip := _pair_skip_l if left else _pair_skip_r
+			if skip.is_empty():
+				skip.resize(n)
+			for k in count:
+				skip[(first + k) % n] = 1
+			if left:
+				_pair_skip_l = skip
+			else:
+				_pair_skip_r = skip
+		for k in count:
+			var i := (first + k) % n
+			off[i] = minf(edges[i] + verge[i] - _shared_wall_half(i), lim[i])
+		for e: Array in _pair_ends(first, count):
+			var i: int = e[0]
+			var w := 1.0 - float(e[2]) / (_pair_beyond() + 1)
+			off[i] = lerpf(off[i], minf(edges[i] + verge[e[1]] - _shared_wall_half(i), lim[i]), w)
+		if left:
+			_off_l = off
+		else:
+			_off_r = off
+
+## Half the thickness of the wall at point `i`: a concrete wall's body lies beyond the barrier
+## line, so the line of a wall that two roads share is that far short of the median's middle.
+func _shared_wall_half(i: int) -> float:
+	return 0.5 * float(_prof["concrete"]["collision"]["u1"]) if layout.is_concrete(i * _data.step) else 0.0
+
+## True when the barrier segment from point `i` to point `j` on `side` is the far side of a
+## pair's shared wall: the other carriageway builds it.
+func _pair_skip(i: int, j: int, side: float) -> bool:
+	var skip := _pair_skip_l if side < 0.0 else _pair_skip_r
+	return not skip.is_empty() and skip[i] == 1 and skip[j] == 1
 
 ## Turns the geometric limits into a continuous line: where a limit starts (the inside of a
 ## tight corner, another leg of the lap coming close) the wall closes in at LIMIT_SLOPE
@@ -603,6 +725,8 @@ func _build_barriers() -> void:
 			pts[i].y += acc / 5.0
 		for i in m:
 			var j := (i + 1) % m
+			if _pair_skip(i * stride, (j * stride) % n, side):
+				continue   # the other carriageway of a pair builds the wall between the two
 			var s := ss[i]
 			var s1 := ss[j] if j > 0 else _data.length
 			var ch := _chunk(s)

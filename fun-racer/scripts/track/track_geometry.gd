@@ -11,6 +11,8 @@ const INSIDE_FACTOR: float = 0.8    ## a strip on the inside reaches at most thi
 const INSIDE_WINDOW: int = 8        ## ... of the tightest radius within this many points either way
 const LEG_CELL: float = 25.0        ## spatial hash cell for the other-leg search (m)
 const LEG_MIN_GAP: float = 150.0    ## points closer than this along the lap are the same leg
+const MAX_PAIRS: int = 31           ## stretch pairs proximity_limits() can tell apart (2 bits each)
+const FIRST_STRETCH: int = 0x1555555555555555   ## the bits of the first stretches of all pairs
 
 ## Signed curvature (1/m) at every centreline point, + = LEFT-hand turn.
 static func curvature(data: TrackData) -> PackedFloat32Array:
@@ -45,24 +47,29 @@ static func inside_limits(data: TrackData, lim_l: PackedFloat32Array, lim_r: Pac
 		elif worst < -1e-4:
 			lim_r[i] = minf(lim_r[i], INSIDE_FACTOR / -worst)
 
-## Caps the limits at half the lateral distance to any other leg of the lap.
-## `crossovers` lists pairs of stretches that pass over each other at different heights, as
+## Caps the limits at the line half way to any other leg of the lap (between the road edges, by
+## TrackData's widths).
+## `crossovers` lists pairs of stretches that are not each other's neighbours in this sense, as
 ## [[first point, last point, first point, last point], ...] (inclusive, each may wrap the end
-## of the lap): the two stretches of a pair do not limit each other.
+## of the lap): the two stretches of a pair do not limit each other. They are the two roads of
+## a crossover, which pass over each other at different heights, and the two carriageways of
+## one road (the recipe's [[road.pair]]), whose shared limit is the line between them, set by
+## the caller from the road's own verges rather than estimated here.
 static func proximity_limits(data: TrackData, lim_l: PackedFloat32Array, lim_r: PackedFloat32Array,
 		crossovers: Array = []) -> void:
 	var n := data.points.size()
-	# pair_of[i] = 1 + 2 * pair for the first stretch of a pair, 2 + 2 * pair for the second.
-	var pair_of := PackedInt32Array()
+	# pair_of[i]: bit 2 * pair for a point of the first stretch of a pair, bit 2 * pair + 1 for
+	# the second (a point may be in several pairs: a carriageway that also passes a bridge).
+	var pair_of := PackedInt64Array()
 	if not crossovers.is_empty():
 		pair_of.resize(n)
-		for q in crossovers.size():
+		for q in mini(crossovers.size(), MAX_PAIRS):
 			var c: Array = crossovers[q]
 			for half in 2:
 				var first := posmod(int(c[2 * half]), n)
 				var count := posmod(int(c[2 * half + 1]) - first, n) + 1
 				for k in count:
-					pair_of[(first + k) % n] = 2 * q + 1 + half
+					pair_of[(first + k) % n] |= 1 << (2 * q + half)
 	var cell := LEG_CELL
 	var grid := {}
 	for i in n:
@@ -89,14 +96,18 @@ static func proximity_limits(data: TrackData, lim_l: PackedFloat32Array, lim_r: 
 					if mini(di, n - di) < skip:
 						continue
 					if not pair_of.is_empty() and pair_of[i] != 0 and pair_of[j] != 0 \
-							and pair_of[i] != pair_of[j] and (pair_of[i] - 1) >> 1 == (pair_of[j] - 1) >> 1:
-						continue   # the other road of a crossover: above or below, not beside
+							and ((((pair_of[i] & FIRST_STRETCH) << 1) & pair_of[j]) != 0
+							or (((pair_of[j] & FIRST_STRETCH) << 1) & pair_of[i]) != 0):
+						continue   # the other stretch of a pair: above or below, or limited by the caller
 					var dv := data.points[j] - p
 					dv.y = 0.0
 					var lat := dv.dot(rh)
 					if absf(dv.dot(th)) > absf(lat):
 						continue
-					var cap := absf(lat) * 0.5 - 0.5
+					# Half way between the two road edges (not between the centrelines: the
+					# two legs need not be equally wide), less half a metre.
+					var hw_i := 0.5 * data.widths[i]
+					var cap := hw_i + (absf(lat) - hw_i - 0.5 * data.widths[j]) * 0.5 - 0.5
 					if lat > 0.0:
 						lim_r[i] = minf(lim_r[i], cap)
 					else:

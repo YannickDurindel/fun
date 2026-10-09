@@ -44,15 +44,21 @@ TOP_KEYS = {"id", "name", "full_name", "grand_prix", "country", "country_code", 
 SECTION_KEYS = {
     "osm": {"relation", "ways", "bbox", "exclude_ways", "extra_ways", "avoid_nodes", "avoid_names",
             "ignore_oneway", "length_tolerance", "round"},
-    "layout": {"direction", "finish", "start", "start_offset_m", "sectors", "spline"},
-    "elevation": {"dataset", "smooth_sigma_m", "override"},
+    "layout": {"direction", "finish", "start", "start_offset_m", "sectors", "spline", "shift"},
+    "elevation": {"dataset", "smooth_sigma_m", "override", "key", "key_join_m", "smooth"},
     "road": {"base_width", "grid_width", "crossfall", "camber_gain", "bank_keys", "width_keys",
-             "override", "track_json_widths", "retaining_walls"},
+             "override", "track_json_widths", "retaining_walls", "pair"},
     "terrain": {"near", "far", "smooth_sigma_m"},
 }
 TURN_KEYS = {"id", "name", "direction", "s"}
 OVERRIDE_KEYS = {"s", "width", "bank", "blend", "note"}
 ELEV_OVERRIDE_KEYS = {"s", "offset", "straighten", "blend", "note"}
+ELEV_KEY_KEYS = {"s", "y", "abs", "blend", "join", "note"}
+ELEV_SMOOTH_KEYS = {"s", "sigma_m", "blend", "note"}
+SHIFT_KEYS = {"s", "lateral_m", "blend", "note"}
+PAIR_KEYS = {"a", "b", "separation", "gap", "blend", "note"}
+KEY_JOIN = 250.0      # m: [[elevation.key]] entries closer than this follow one curve
+PAIR_GAP = 1.5        # m between the tarmac edges of a [[road.pair]]: the room of one wall
 ROUND_KEYS = {"node", "to_node", "reach_m", "note"}
 DIRECTIONS = {"clockwise", "anticlockwise"}
 
@@ -90,6 +96,10 @@ class Recipe:
     dem_dataset: str | None = None
     elev_sigma_m: float = 45.0
     elev_overrides: list = field(default_factory=list)   # [[elevation.override]], see centreline.py
+    elev_keys: list = field(default_factory=list)        # [[elevation.key]], sorted by s
+    elev_key_join_m: float = KEY_JOIN
+    elev_smooth: list = field(default_factory=list)      # [[elevation.smooth]]
+    shifts: list = field(default_factory=list)           # [[layout.shift]]
     # [[turn]]
     turn_table: list = field(default_factory=list)
     # [road], [terrain]: plain dicts, read by cad/track/banking.py and lib/terrain.py
@@ -125,6 +135,36 @@ def _latlon(where, v):
             or not -90.0 <= v[0] <= 90.0 or not -180.0 <= v[1] <= 180.0):
         raise BuildError(f"recipe: {where} must be [lat, lon] in degrees")
     return [float(v[0]), float(v[1])]
+
+
+def _tables(where, v):
+    if not isinstance(v, list) or not all(isinstance(o, dict) for o in v):
+        raise BuildError(f"recipe: {where} must be written as [[{where}]] tables")
+    return [dict(o) for o in v]
+
+
+def _num(v):
+    return isinstance(v, (int, float)) and not isinstance(v, bool)
+
+
+def _stretch(v, length):
+    """True for [from, to]: two different distances inside the lap (the stretch may wrap)."""
+    return (isinstance(v, list) and len(v) == 2 and all(_num(x) for x in v)
+            and all(0.0 <= x < length for x in v) and v[0] != v[1])
+
+
+def sets_widths(road):
+    """True when the [road] table states a width anywhere: the road is then not the nominal
+    13 m, and the drivers (who read track.json) have to know."""
+    return (any(k in road for k in ("base_width", "grid_width", "width_keys"))
+            or any("width" in o for o in road.get("override", [])))
+
+
+def track_json_widths(road):
+    """Whether track.json carries the built widths: ``[road] track_json_widths`` when it is
+    written, otherwise on as soon as the table sets a width (see lib/info.py)."""
+    v = road.get("track_json_widths")
+    return sets_widths(road) if v is None else bool(v)
 
 
 def from_dict(track_id, data, overrides=None, calendar_path=CALENDAR, source=""):
@@ -165,6 +205,10 @@ def from_dict(track_id, data, overrides=None, calendar_path=CALENDAR, source="")
         spline=lay.get("spline", "centripetal"),
         dem_dataset=elev.get("dataset"), elev_sigma_m=float(elev.get("smooth_sigma_m", 45.0)),
         elev_overrides=[dict(o) for o in elev.get("override", [])],
+        elev_keys=_tables("elevation.key", elev.get("key", [])),
+        elev_key_join_m=elev.get("key_join_m", KEY_JOIN),
+        elev_smooth=_tables("elevation.smooth", elev.get("smooth", [])),
+        shifts=_tables("layout.shift", lay.get("shift", [])),
         turn_table=[dict(t) for t in data.get("turn", [])],
         road=dict(data.get("road", {})), terrain=dict(data.get("terrain", {})), source=source)
     for k, v in (overrides or {}).items():
@@ -268,6 +312,8 @@ def validate(r):
                              + (" (radians; 0.015 = 1.5 %)" if key == "crossfall" else ""))
     if not isinstance(r.road.get("track_json_widths", False), bool):
         raise BuildError("recipe: road.track_json_widths must be true or false")
+    if not isinstance(r.road.get("override", []), list):
+        raise BuildError("recipe: road.override must be written as [[road.override]] tables")
     for o in r.road.get("override", []):
         _check_keys("[[road.override]]", o, OVERRIDE_KEYS)
         s = o.get("s")
@@ -286,6 +332,7 @@ def validate(r):
                 or not isinstance(o.get("blend", 0.0), (int, float)) or o.get("blend", 0.0) < 0.0):
             raise BuildError("recipe: [[elevation.override]] offset and blend are metres (blend >= 0), "
                              "straighten is true / false")
+    _validate_size_tools(r)
     for key in ("near", "far"):
         b = r.terrain.get(key)
         if b is not None and (not isinstance(b, list) or len(b) != 4 or not (b[0] < b[1] and b[2] < b[3])):
@@ -293,6 +340,65 @@ def validate(r):
     sigma = r.terrain.get("smooth_sigma_m")
     if sigma is not None and (isinstance(sigma, bool) or not isinstance(sigma, (int, float)) or sigma < 0):
         raise BuildError("recipe: terrain.smooth_sigma_m must be a distance in metres (0 or more)")
+
+
+def _validate_size_tools(r):
+    """[[elevation.key]], [[elevation.smooth]], [[layout.shift]] and [[road.pair]]."""
+    if not _num(r.elev_key_join_m) or r.elev_key_join_m < 0.0:
+        raise BuildError("recipe: elevation.key_join_m is a distance in metres (0 or more)")
+    seen = set()
+    for o in r.elev_keys:
+        _check_keys("[[elevation.key]]", o, ELEV_KEY_KEYS)
+        s = o.get("s")
+        if (not _num(s) or not 0.0 <= s < r.length_m or ("y" in o) == ("abs" in o)
+                or not _num(o.get("y", o.get("abs")))):
+            raise BuildError("recipe: [[elevation.key]] needs s (metres, inside the lap) and either "
+                             "y (metres above the finish line) or abs (metres above sea level)")
+        if (not _num(o.get("blend", 1.0)) or o.get("blend", 1.0) <= 0.0
+                or not isinstance(o.get("join", False), bool)):
+            raise BuildError("recipe: [[elevation.key]] blend is metres (> 0), join is true / false")
+        if s in seen:
+            raise BuildError(f"recipe: two [[elevation.key]] entries at s = {s:g}")
+        seen.add(s)
+        if s == 0.0 and o.get("y", 0.0) != 0.0:
+            raise BuildError("recipe: an [[elevation.key]] at s = 0 is the finish line itself: its y "
+                             "is 0 by definition (use abs to pin its height above sea level)")
+    r.elev_keys.sort(key=lambda o: o["s"])
+    for o in r.elev_smooth:
+        _check_keys("[[elevation.smooth]]", o, ELEV_SMOOTH_KEYS)
+        sigma = o.get("sigma_m")
+        if (not _stretch(o.get("s"), r.length_m) or not _num(sigma) or not 0.0 <= sigma <= 500.0
+                or not _num(o.get("blend", 0.0)) or o.get("blend", 0.0) < 0.0):
+            raise BuildError("recipe: [[elevation.smooth]] needs s = [from, to] inside the lap and "
+                             "sigma_m (metres, 0 to 500); blend is metres (0 or more)")
+    for o in r.shifts:
+        _check_keys("[[layout.shift]]", o, SHIFT_KEYS)
+        lat = o.get("lateral_m")
+        if (not _stretch(o.get("s"), r.length_m) or not _num(lat) or not 0.0 < abs(lat) <= 30.0
+                or not _num(o.get("blend", 1.0)) or o.get("blend", 1.0) <= 0.0):
+            raise BuildError("recipe: [[layout.shift]] needs s = [from, to] inside the lap and "
+                             "lateral_m (metres, + = to the right, at most 30); blend is metres (> 0)")
+    pairs = r.road.get("pair", [])
+    if not isinstance(pairs, list) or not all(isinstance(o, dict) for o in pairs):
+        raise BuildError("recipe: road.pair must be written as [[road.pair]] tables")
+    for o in pairs:
+        _check_keys("[[road.pair]]", o, PAIR_KEYS)
+        if not _stretch(o.get("a"), r.length_m) or not _stretch(o.get("b"), r.length_m):
+            raise BuildError("recipe: [[road.pair]] needs a = [from, to] and b = [from, to], the two "
+                             "stretches that run side by side (metres, inside the lap)")
+        (a0, a1), (b0, b1) = o["a"], o["b"]
+        span = (a1 - a0) % r.length_m
+        if ((b0 - a0) % r.length_m <= span or (b1 - a0) % r.length_m <= span
+                or (a0 - b0) % r.length_m <= (b1 - b0) % r.length_m):
+            raise BuildError("recipe: the stretches a and b of a [[road.pair]] must not overlap")
+        sep, gap = o.get("separation"), o.get("gap", PAIR_GAP)
+        if sep is not None and (not _num(sep) or not 6.0 <= sep <= 60.0):
+            raise BuildError("recipe: [[road.pair]] separation is the distance between the two "
+                             "centrelines, 6 to 60 m")
+        if (not _num(gap) or not 0.5 <= gap <= 30.0 or not _num(o.get("blend", 1.0))
+                or o.get("blend", 1.0) <= 0.0):
+            raise BuildError("recipe: [[road.pair]] gap is the room between the two tarmac edges "
+                             "(0.5 to 30 m: a wall stands in it); blend is metres (> 0)")
 
 
 def load(track_id, path=None, overrides=None, calendar_path=CALENDAR):

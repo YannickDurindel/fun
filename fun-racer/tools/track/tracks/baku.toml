@@ -62,19 +62,29 @@ grid_width = 13.0
 # Narrower than the nominal 13 m of track.json, so the drivers must be told.
 track_json_widths = true
 
-# The two carriageways of Neftchilar Avenue: OSM draws their centrelines 9.5 to 11.7 m
-# apart, so each road can only be 8 m wide if a wall is to stand between them.
-[[road.override]]
-s = [2175.0, 2530.0]
-width = 8.0
-blend = 30.0
-note = "Turn 6 to Turn 7, beside the main straight"
+# The two carriageways of Neftchilar Avenue: Turn 6 to Turn 7 runs west on the inland one, the
+# flat-out run to the line comes back east on the seaward one, and during the race one
+# concrete wall with a debris fence separates the two (FIA event notes 2024: "the concrete
+# wall separating the straights between Turn 6 and Turn 7 [...] replaced"; planetf1.com,
+# "FIA reveal 16 changes to bonkers Baku track").
+# OSM draws the two centrelines only 9.5 to 11.7 m apart, which left room for two 8 m roads.
+# The carriageways are tagged lanes = 3 and lanes = 4 in OSM: 11 m (the base width) for the
+# Turn 6 to Turn 7 road and 12 m for the main straight are estimates from those lane counts
+# (3.5 m a lane, less the set-back of the walls), not surveyed widths. With 2.5 m for the
+# median that the wall stands on (estimate) the centrelines are 5.5 + 2.5 + 6.0 = 14 m apart.
+[[road.pair]]
+a = [2175.0, 2530.0]
+b = [4725.0, 5085.0]
+separation = 14.0
+gap = 2.0
+blend = 40.0
+note = "Turn 6 to Turn 7 beside the main straight: one wall between them"
 
 [[road.override]]
 s = [4725.0, 5085.0]
-width = 8.0
+width = 12.0
 blend = 40.0
-note = "main straight beside the Turn 6 to Turn 7 stretch"
+note = "main straight beside the Turn 6 to Turn 7 stretch: 4 lanes (estimate)"
 
 [[road.override]]
 s = [2590.0, 2950.0]    # Aziz Aliyev street up to the walls, and round to Istiglaliyyat

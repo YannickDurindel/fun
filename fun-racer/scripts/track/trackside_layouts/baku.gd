@@ -9,9 +9,9 @@ extends RefCounted
 ## 7, 15 and 16; they are not built, the wall just follows the corner.
 ##
 ## Between Turn 6 and Turn 7 the lap runs beside the main straight, on the other carriageway of
-## Neftchilar Avenue. The barrier code puts both walls on the line half way between the two
-## roads (TrackGeometry.proximity_limits), 0.25 to 1.3 m from the road edges: one wall between
-## the carriageways, as in reality.
+## Neftchilar Avenue. The recipe declares the two stretches a [[road.pair]], so the trackside
+## builds one wall for both, on the middle of the 2.5 m median between them
+## (Trackside._share_pair_walls): one wall between the carriageways, as in reality.
 ##
 ## Sides: "in" = inside of the corner, "out" = outside. Offsets are metres along the lap from
 ## the apex (negative = before the apex).
