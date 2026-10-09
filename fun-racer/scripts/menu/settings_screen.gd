@@ -17,12 +17,26 @@ const TAB_NAMES: Array[String] = ["graphics", "audio", "gameplay"]
 const TAB_HELP: Dictionary = {
 	"graphics": "Display, image quality and performance.",
 	"audio": "Volume of the engine, effects and menu sounds.",
-	"gameplay": "What the in-race display shows.",
+	"gameplay": "Handling model, driving aids and the in-race display.",
 }
 const RESOLUTIONS: Array[Vector2i] = [
 	Vector2i(1280, 720), Vector2i(1366, 768), Vector2i(1600, 900), Vector2i(1920, 1080),
 	Vector2i(2560, 1440), Vector2i(3840, 2160),
 ]
+## Driving aids of the simulation handling, in row order: key -> [title, description, options].
+const AID_KEYS: Array[String] = ["aid_traction_control", "aid_abs", "aid_auto_gearbox", "aid_steering_help", "aid_stability"]
+const AID_ROWS: Dictionary = {
+	"aid_traction_control": ["TRACTION CONTROL", "Eases the throttle when the rear wheels spin. LOW lets the rear slide a little.",
+			[["OFF", 0], ["LOW", 1], ["HIGH", 2]]],
+	"aid_abs": ["ANTI-LOCK BRAKES", "Releases the brakes just enough that the wheels never lock, so you can still steer.",
+			[["OFF", 0], ["ON", 1]]],
+	"aid_auto_gearbox": ["GEARBOX", "Automatic changes gear for you. You can still shift by hand at any time.",
+			[["MANUAL", false], ["AUTOMATIC", true]]],
+	"aid_steering_help": ["STEERING HELP", "Less steering lock at speed and a calmer centre: made for tilt and keyboard.",
+			[["OFF", 0], ["ON", 1]]],
+	"aid_stability": ["STABILITY HELP", "When the car starts to spin, adds a little opposite lock and eases the throttle.",
+			[["OFF", 0], ["ON", 1]]],
+}
 const COL_ROW_FOCUS := Color(0.10, 0.14, 0.24, 0.92)
 const BOLD_FONT := preload("res://assets/ui/fonts/BarlowCondensed-BoldItalic.ttf")
 const LEFT: float = 140.0
@@ -155,6 +169,8 @@ var current_tab: String = ""
 ## The quality preset picker (graphics tab).
 var preset_stepper: Stepper
 var back_button: Button
+## The "DRIVING AIDS" heading above the aid rows (gameplay tab).
+var aids_heading: Label
 var reset_button: Button
 var controls_button: Button
 
@@ -399,10 +415,30 @@ func _build_audio() -> void:
 	_add_slider("audio", "audio", "ui", "MENU", "Volume of menu and interface sounds.", 0, 100, 5)
 
 func _build_gameplay() -> void:
+	# Eight rows and a heading: a little tighter than the other tabs so they fit the panel.
+	(_pages["gameplay"] as VBoxContainer).add_theme_constant_override(&"separation", 1)
 	_add_choice("gameplay", "gameplay", "speed_unit", "SPEED UNIT",
 			"Unit of the speedometer.", [["KM/H", "kmh"], ["MPH", "mph"]])
 	_add_choice("gameplay", "gameplay", "show_input_display", "INPUT DISPLAY",
 			"Shows your throttle, brake and steering inputs in the corner of the screen.", [["OFF", false], ["ON", true]])
+	_add_choice("gameplay", "gameplay", "handling", "HANDLING",
+			"Arcade: easy and drifty. Simulation: real tyres, aero and gears. Applies from the next race.",
+			[["ARCADE", "arcade"], ["SIMULATION", "simulation"]])
+	var heading_box := MarginContainer.new()
+	heading_box.add_theme_constant_override(&"margin_left", 34)
+	heading_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	(_pages["gameplay"] as Control).add_child(heading_box)
+	aids_heading = Label.new()
+	aids_heading.name = "AidsHeading"
+	aids_heading.add_theme_font_override(&"font", BOLD_FONT)
+	aids_heading.add_theme_font_size_override(&"font_size", 22)
+	aids_heading.add_theme_color_override(&"font_color", COL_ACCENT)
+	aids_heading.custom_minimum_size = Vector2(0, 30)
+	aids_heading.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
+	heading_box.add_child(aids_heading)
+	for key: String in AID_KEYS:
+		var info: Array = AID_ROWS[key]
+		_add_choice("gameplay", "gameplay", key, info[0], info[1], info[2])
 
 ## Common sizes that fit the screen, plus whatever is currently set.
 func _resolution_options() -> Array:
@@ -587,6 +623,15 @@ func _on_setting_changed(_section: String, _key: String) -> void:
 	_dirty = true
 	_refresh()
 
+## The driving aids only act on the simulation handling: true when that is the chosen
+## handling, or when the car on track right now is a simulation car (the pause menu during a
+## race started before the choice changed, or with --handling=simulation).
+func _aids_in_use() -> bool:
+	if str(Settings.get_value("gameplay", "handling")) == "simulation" or Bootstrap.handling_override == Car.HANDLING_SIMULATION:
+		return true
+	var race := get_tree().get_first_node_in_group(&"race_manager") as RaceManager if is_inside_tree() else null
+	return race != null and race.car != null and race.car.handling == Car.HANDLING_SIMULATION
+
 ## Shows the stored settings in every widget (without re-emitting changes).
 func _refresh() -> void:
 	for id: String in _by_key:
@@ -605,3 +650,10 @@ func _refresh() -> void:
 	var fullscreen: bool = Settings.get_value("graphics", "fullscreen")
 	res.stepper.enabled = not fullscreen
 	res.title.modulate.a = 0.4 if fullscreen else 1.0
+	var sim := _aids_in_use()
+	aids_heading.text = "DRIVING AIDS" if sim else "DRIVING AIDS  ·  SIMULATION HANDLING ONLY"
+	aids_heading.modulate.a = 1.0 if sim else 0.6
+	for key: String in AID_KEYS:
+		var r := row("gameplay", key)
+		r.stepper.enabled = sim
+		r.title.modulate.a = 1.0 if sim else 0.4
