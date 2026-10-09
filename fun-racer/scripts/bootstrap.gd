@@ -5,6 +5,7 @@ extends Node
 ##   --frames=N           frame count for --screenshot (default 120)
 ##   --screen=NAME        open the menu on this screen (see scripts/menu/menu_router.gd)
 ##   --track=ID           skip the menu and race this track (see scripts/game.gd for more)
+##   --handling=MODEL     arcade or simulation car physics for this run
 ##   --no-countdown       race scene starts immediately (no 3-2-1-GO)
 ##   --spawn_s=METRES     on a track, spawn the car this far around the lap (race scene)
 
@@ -49,6 +50,8 @@ func _ready() -> void:
 			start_screen = arg.get_slice("=", 1)
 		elif arg == "--no-countdown":
 			skip_countdown = true
+		elif arg.begins_with("--handling="):
+			handling_override = StringName(arg.get_slice("=", 1))
 		elif arg.begins_with("--spawn_s="):
 			spawn_s = float(arg.get_slice("=", 1))
 
@@ -68,26 +71,58 @@ func _on_setting_changed(section: String, key: String) -> void:
 		InputBindings.apply()
 
 ## Driver inputs, overridden by autodrive. Car reads these instead of Input directly.
+## --handling=arcade|simulation: forces the car's handling model for this run.
+var handling_override: StringName = &""
+## An external analog controller (the phone): any object with
+##   is_active() -> bool, get_throttle() -> float, get_brake() -> float, get_steer() -> float,
+##   take_button(name: StringName) -> bool   (true once per press),
+##   is_button_down(name: StringName) -> bool
+## While it is active its values are combined with the keyboard / gamepad (the larger wins).
+var external_input: Object = null
+
+func _external() -> Object:
+	if is_instance_valid(external_input) and external_input.call(&"is_active"):
+		return external_input
+	return null
+
+## One-shot button of the external controller (shift_up, shift_down, respawn, pause ...).
+func take_button(button: StringName) -> bool:
+	var e := _external()
+	return e != null and bool(e.call(&"take_button", button))
+
+func is_button_down(button: StringName) -> bool:
+	var e := _external()
+	return e != null and bool(e.call(&"is_button_down", button))
+
 func get_throttle() -> float:
 	if autodrive:
 		return _provider().get_throttle() if _provider() else 1.0
-	return Input.get_action_strength("accelerate")
+	var e := _external()
+	return maxf(Input.get_action_strength("accelerate"), float(e.call(&"get_throttle")) if e else 0.0)
 
 func get_brake() -> float:
 	if autodrive:
 		return _provider().get_brake() if _provider() else 0.0
-	return Input.get_action_strength("brake")
+	var e := _external()
+	return maxf(Input.get_action_strength("brake"), float(e.call(&"get_brake")) if e else 0.0)
 
 ## -1 = full left, +1 = full right.
 func get_steer() -> float:
 	if autodrive:
 		return _provider().get_steer() if _provider() else sin(Time.get_ticks_msec() / 1500.0) * 0.3
-	return Input.get_axis("steer_left", "steer_right")
+	var local := Input.get_axis("steer_left", "steer_right")
+	var e := _external()
+	if e != null:
+		var ext := float(e.call(&"get_steer"))
+		return ext if absf(ext) > absf(local) else local
+	return local
 
 ## True when steering comes from keys (all-or-nothing), so the car can ramp it progressively.
 ## A gamepad stick or the autodrive provider is analog and is followed directly.
 func is_steer_digital() -> bool:
 	if autodrive:
+		return false
+	if _external() != null and absf(float(_external().call(&"get_steer"))) > 0.001:
 		return false
 	var l := Input.get_action_strength("steer_left")
 	var r := Input.get_action_strength("steer_right")

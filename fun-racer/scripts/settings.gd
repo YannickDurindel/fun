@@ -32,6 +32,7 @@ const DEFAULTS: Dictionary = {
 	"gameplay": {
 		"speed_unit": "kmh",        # "kmh" or "mph"
 		"show_input_display": true,
+		"handling": "arcade",       # car physics: "arcade" or "simulation"
 		"last_race": {},            # RaceConfig.to_dict() of the last started race
 	},
 }

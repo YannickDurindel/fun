@@ -26,6 +26,12 @@ extends RigidBody3D
 
 signal respawned
 
+## Handling models. &"arcade": the Trackmania-style model in this file. &"simulation": the
+## force-based model in scripts/car/sim (SimHandling), which takes over _integrate_forces.
+const HANDLING_ARCADE := &"arcade"
+const HANDLING_SIMULATION := &"simulation"
+const SIM_SPEC_PATH := "res://assets/car/specs/f1.tres"
+
 const WHEEL_OFFSETS: Array[Vector3] = [
 	Vector3(-0.80, 0.0, -1.80), Vector3(0.80, 0.0, -1.80),
 	Vector3(-0.78, 0.0, 1.80), Vector3(0.78, 0.0, 1.80),
@@ -183,6 +189,18 @@ var wheels: Array[WheelState] = []
 
 var spawn_transform: Transform3D
 
+## Which model drives this car. Empty = follow the game: the --handling= flag, else the
+## player's `gameplay/handling` setting. Set it before the car enters the tree to force one.
+@export var handling: StringName = &""
+## The simulation model when handling == &"simulation", else null.
+var sim: SimHandling
+# ---- simulation extras (arcade leaves the defaults)
+var ers_charge: float = 1.0          ## 0..1 of the lap's electric energy left
+var drs_open: bool = false
+var fuel_kg: float = 0.0
+var tyre_compound: StringName = &"medium"
+var gear_count: int = 7
+
 # ---------------------------------------------------------------- extra read-only state
 ## Signed slip angle between heading and planar velocity (rad, + = nose left of velocity).
 var slip_angle: float = 0.0
@@ -235,9 +253,43 @@ func _ready() -> void:
 	_ray = PhysicsRayQueryParameters3D.new()
 	_ray.exclude = [get_rid()]
 	_ray.collision_mask = collision_mask
+	if handling == &"":
+		handling = Bootstrap.handling_override if Bootstrap.handling_override != &"" \
+				else StringName(Settings.get_value("gameplay", "handling"))
+	if handling == HANDLING_SIMULATION:
+		sim = SimHandling.new(self, load(SIM_SPEC_PATH) as CarSpec)
+		_publish_sim_limits()
 	_reset_drivetrain()
 	_apply_control_settings()
 	Settings.changed.connect(_on_setting_changed)
+
+## PLACEHOLDER until the autopilot measures the simulation car itself: the autopilot and bots
+## plan from the arcade tuning values below, so in simulation they are set to conservative
+## limits the simulation car can reach. The arcade model is not running, nothing else reads them.
+func _publish_sim_limits() -> void:
+	gravity_multiplier = 1.0
+	lateral_grip_g = 1.15
+	aero_grip_g = 1.6e-4
+	steer_grip_usage = 0.85
+	brake_decel = 11.0
+	coast_decel = 1.0
+	max_steer_angle = sim.spec.max_steer_angle
+	accel_curve_kmh = PackedFloat32Array([0, 60, 120, 200, 260, 300, 330])
+	accel_curve_ms2 = PackedFloat32Array([7.0, 8.0, 8.5, 5.5, 3.5, 2.0, 0.3])
+
+## True when the steering input is all-or-nothing (keys) and is being ramped by this car.
+func is_steer_digital() -> bool:
+	return _steer_digital
+
+## Reads the `surface` meta of what wheel i stands on (asphalt / kerb / grass / gravel).
+func read_surface(i: int, collider: Object, shape_idx: int) -> void:
+	_set_surface(i, collider, shape_idx)
+
+func surface_grip(i: int) -> float:
+	return _mu[i]
+
+func surface_drag(i: int) -> float:
+	return _drag[i]
 
 ## Keyboard steering feel follows the player's Settings (controls screen).
 func _apply_control_settings() -> void:
@@ -284,6 +336,12 @@ func _physics_process(_delta: float) -> void:
 		_steer_digital = Bootstrap.is_steer_digital()
 		if Input.is_action_just_pressed("respawn"):
 			respawn()
+		if sim != null:
+			if Input.is_action_just_pressed(&"shift_up") or Bootstrap.take_button(&"shift_up"):
+				sim.request_shift(1)
+			if Input.is_action_just_pressed(&"shift_down") or Bootstrap.take_button(&"shift_down"):
+				sim.request_shift(-1)
+			sim.set_drs_button(Input.is_action_pressed(&"drs") or Bootstrap.is_button_down(&"drs"))
 
 func respawn() -> void:
 	linear_velocity = Vector3.ZERO
@@ -317,6 +375,8 @@ func _reset_drivetrain() -> void:
 			w.slip = 0.0
 			w.steer_angle = 0.0
 			w.compression = 0.0
+	if sim != null:
+		sim.reset()
 
 # ================================================================ simulation
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
@@ -328,6 +388,11 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		state.transform = spawn_transform
 		state.linear_velocity = Vector3.ZERO
 		state.angular_velocity = Vector3.ZERO
+		return
+
+	if sim != null:
+		_update_steer_smoothing(dt)
+		sim.integrate(state)
 		return
 
 	var xf := state.transform

@@ -13,6 +13,9 @@ func _run() -> void:
 	for a: String in OS.get_cmdline_user_args():
 		if a.begins_with("--lap-track="):
 			id = a.get_slice("=", 1)
+		elif a.begins_with("--handling="):
+			# Bootstrap parses this too; set here in case this script's args came first.
+			root.get_node("/root/Bootstrap").set(&"handling_override", StringName(a.get_slice("=", 1)))
 	var boot := root.get_node("/root/Bootstrap")
 	var game := root.get_node("/root/Game")
 	boot.set(&"autodrive", true)
@@ -87,8 +90,8 @@ func _run() -> void:
 		if int(pilot.get(&"laps_completed")) > laps.size():
 			laps.append(float(pilot.get(&"lap_time")))
 	var ok := laps.size() == 2 and worst_edge > 0.0 and impacts == 0
-	print("LAPCHECK %s %s laps=%s top=%.0fkm/h min_edge=%.2fm@s=%.0f impacts=%d%s progress=%.0fm/%.0fm sim=%.0fs" % [
-		id, "OK" if ok else "FAIL", str(laps.map(func(x: float) -> String: return "%d:%06.3f" % [int(x) / 60, fmod(x, 60.0)])),
+	print("LAPCHECK %s [%s] %s laps=%s top=%.0fkm/h min_edge=%.2fm@s=%.0f impacts=%d%s progress=%.0fm/%.0fm sim=%.0fs" % [
+		id, str(car.get(&"handling")), "OK" if ok else "FAIL", str(laps.map(func(x: float) -> String: return "%d:%06.3f" % [int(x) / 60, fmod(x, 60.0)])),
 		top * 3.6, worst_edge, worst_s, impacts, (" at s=" + str(impact_s.slice(0, 5))) if impacts > 0 else "",
 		progress, length * 2.0, t])
 	if laps.size() > 0 and "--lap-report" in OS.get_cmdline_user_args():
