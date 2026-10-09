@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/car/car.gd" id="1"]
 [ext_resource type="PackedScene" path="res://scenes/car/car_body_visual.tscn" id="2"]
 [ext_resource type="PackedScene" path="res://scenes/car/wheel_visual.tscn" id="3"]
+[ext_resource type="Script" path="res://scripts/car/body_motion.gd" id="4"]
 
 [sub_resource type="BoxShape3D" id="shape"]
 size = Vector3(1.9, 0.5, 5.4)
@@ -27,6 +28,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.03, 0)
 shape = SubResource("shape")
 
 [node name="BodyVisual" parent="." instance=ExtResource("2")]
+script = ExtResource("4")
 
 [node name="WheelFL" parent="." instance=ExtResource("3")]
 wheel_index = 0

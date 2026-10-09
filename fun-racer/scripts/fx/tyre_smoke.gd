@@ -6,7 +6,8 @@ extends MultiMeshInstance3D
 ## sinks below it, so smoke behaves the same on slopes, banking and the flat.
 
 const MAX_PER_SOURCE: int = 150
-const SOURCES: int = 2
+## Emitters that can be fed per step: the two rear wheels (arcade) or all four (simulation).
+const SOURCES: int = 4
 const MAX_RATE: float = 80.0          ## puffs per second per wheel at full intensity
 const LIFE_MIN: float = 1.3
 const LIFE_MAX: float = 2.1
@@ -20,7 +21,10 @@ const SPAWN_LIFT: float = 0.3         ## spawn height above the contact, along t
 const FLOOR_CLEARANCE: float = 0.2    ## puff centres stay at least this far above their road plane
 const TINT: Color = Color(0.86, 0.86, 0.88)
 
-var pool_size: int = MAX_PER_SOURCE * SOURCES
+## One pool shared by every source, so four wheels cost no more to draw than two.
+var pool_size: int = MAX_PER_SOURCE * 2
+## Puffs spawned by each source since the last clear() (for tests and tuning).
+var emitted := PackedInt32Array()
 
 var _pos := PackedVector3Array()
 var _vel := PackedVector3Array()
@@ -30,6 +34,7 @@ var _strength := PackedFloat32Array()
 var _rot := PackedFloat32Array()
 var _rot_speed := PackedFloat32Array()
 var _seed := PackedFloat32Array()
+var _tint := PackedColorArray()
 var _floor_p := PackedVector3Array()   ## road plane each puff was spawned on (point...
 var _floor_n := PackedVector3Array()   ## ...and unit normal)
 var _next: int = 0
@@ -65,6 +70,9 @@ func _ready() -> void:
 	_rot.resize(pool_size)
 	_rot_speed.resize(pool_size)
 	_seed.resize(pool_size)
+	_tint.resize(pool_size)
+	emitted.resize(SOURCES)
+	emitted.fill(0)
 	_floor_p.resize(pool_size)
 	_floor_n.resize(pool_size)
 	_life.fill(0.0)
@@ -74,10 +82,34 @@ func _ready() -> void:
 	_has_prev.resize(SOURCES)
 	_has_prev.fill(false)
 
+## Re-creates the pool with room for `count` puffs (drops the live ones). The simulation car
+## smokes from four wheels and needs more room than the arcade car's two.
+func set_pool_size(count: int) -> void:
+	if count == pool_size:
+		return
+	pool_size = count
+	_pos.resize(pool_size)
+	_vel.resize(pool_size)
+	_age.resize(pool_size)
+	_life.resize(pool_size)
+	_strength.resize(pool_size)
+	_rot.resize(pool_size)
+	_rot_speed.resize(pool_size)
+	_seed.resize(pool_size)
+	_tint.resize(pool_size)
+	_floor_p.resize(pool_size)
+	_floor_n.resize(pool_size)
+	_next = 0
+	if multimesh:
+		multimesh.visible_instance_count = 0
+		multimesh.instance_count = pool_size
+	clear()
+
 func clear() -> void:
 	_life.fill(0.0)
 	_accum.fill(0.0)
 	_has_prev.fill(false)
+	emitted.fill(0)
 	if multimesh:
 		multimesh.visible_instance_count = 0
 
@@ -88,11 +120,12 @@ func alive_count() -> int:
 			n += 1
 	return n
 
-## Advances the simulation. `positions`/`intensities` are per source (rear wheels);
+## Advances the simulation. `positions`/`intensities` are per source (wheels);
 ## intensity 0..1 drives the emission rate. `car_velocity` is inherited in part.
 ## `normals` (optional, per source) are the road normals at the contacts; world up if missing.
+## `tints` (optional, per source) colour the puffs of a source; the default grey if missing.
 func step(delta: float, positions: PackedVector3Array, intensities: PackedFloat32Array, car_velocity: Vector3,
-		normals: PackedVector3Array = PackedVector3Array()) -> void:
+		normals: PackedVector3Array = PackedVector3Array(), tints: PackedColorArray = PackedColorArray()) -> void:
 	if multimesh == null or delta <= 0.0:
 		return
 	for s in mini(SOURCES, positions.size()):
@@ -112,15 +145,17 @@ func step(delta: float, positions: PackedVector3Array, intensities: PackedFloat3
 		_accum[s] += MAX_RATE * k * delta
 		var n := int(_accum[s])
 		_accum[s] -= n
+		emitted[s] += n
+		var tint := tints[s] if s < tints.size() else TINT
 		for j in n:
 			# Spread spawns along the wheel path travelled this frame.
 			var f := (j + _rng.randf()) / float(n)
-			_spawn(from.lerp(p, f), car_velocity, k, contact, nrm)
+			_spawn(from.lerp(p, f), car_velocity, k, contact, nrm, tint)
 		_prev_src[s] = p
 		_has_prev[s] = true
 	_simulate(delta)
 
-func _spawn(p: Vector3, car_velocity: Vector3, k: float, floor_p: Vector3, floor_n: Vector3) -> void:
+func _spawn(p: Vector3, car_velocity: Vector3, k: float, floor_p: Vector3, floor_n: Vector3, tint: Color) -> void:
 	var i := _next
 	_next = (_next + 1) % pool_size
 	var spread := Vector3(_rng.randf_range(-1, 1), _rng.randf_range(0.2, 1.0), _rng.randf_range(-1, 1)) * 1.4
@@ -135,6 +170,7 @@ func _spawn(p: Vector3, car_velocity: Vector3, k: float, floor_p: Vector3, floor
 	_rot[i] = _rng.randf() * TAU
 	_rot_speed[i] = _rng.randf_range(-0.8, 0.8)
 	_seed[i] = _rng.randf()
+	_tint[i] = tint
 
 func _simulate(delta: float) -> void:
 	var mm := multimesh
@@ -159,7 +195,8 @@ func _simulate(delta: float) -> void:
 		var size := lerpf(SIZE_START, SIZE_END, 1.0 - (1.0 - t) * (1.0 - t))
 		var a := minf(_age[i] / 0.08, 1.0) * pow(1.0 - t, 1.6) * MAX_ALPHA * _strength[i]
 		mm.set_instance_transform(vis, Transform3D(Basis.from_scale(Vector3.ONE * size), p))
-		mm.set_instance_color(vis, Color(TINT.r, TINT.g, TINT.b, a))
+		var tint := _tint[i]
+		mm.set_instance_color(vis, Color(tint.r, tint.g, tint.b, a))
 		mm.set_instance_custom_data(vis, Color(_rot[i], _seed[i], 0.0, 0.0))
 		vis += 1
 	mm.visible_instance_count = vis
