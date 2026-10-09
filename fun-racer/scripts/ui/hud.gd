@@ -1,11 +1,15 @@
 extends Control
 ## Trackmania-style HUD: race timer (top centre), speedometer with RPM arc and
 ## gear (bottom right), input display (bottom left). Reads only the Car contract.
+## A simulation car also gets its own rev range on the arc, shift lights above the gauge and
+## the widgets of sim_widgets.gd (tyres, DRS, ERS, fuel, aids) left of the speedometer; all
+## of those stay hidden for an arcade car, whose HUD is unchanged.
 ## Every group is authored at 1080p and scaled to the viewport height.
 
 const RaceTimer := preload("res://scripts/ui/race_timer.gd")
 const RpmGauge := preload("res://scripts/ui/rpm_gauge.gd")
 const InputDisplay := preload("res://scripts/ui/input_display.gd")
+const SimWidgets := preload("res://scripts/ui/sim_widgets.gd")
 
 const REF_HEIGHT: float = 1080.0
 const MARGIN := Vector2(44.0, 34.0)
@@ -19,6 +23,10 @@ const SPEED_HYSTERESIS: float = 0.55
 const DRIFT_FADE_RATE: float = 8.0
 const SHIFT_FLASH_HZ: float = 12.0
 const KMH_TO_MPH: float = 0.621371
+## Gap between the simulation widgets and the speedometer (1080p px).
+const SIM_WIDGETS_GAP: float = 18.0
+## The shift lights start this fraction of the way from idle to the shift point.
+const SHIFT_LEDS_FROM: float = 0.62
 
 const COL_TIME_WAITING := Color(1, 1, 1, 0.55)
 const COL_TIME_RUNNING := Color(1, 1, 1, 1)
@@ -54,6 +62,7 @@ var _speed_factor: float = 1.0
 @onready var _gear_label: Label = $Speedo/Gear
 @onready var _drift_label: Label = $Speedo/Drift
 @onready var _inputs: InputDisplay = $Inputs
+@onready var _sim_widgets: SimWidgets = $SimWidgets
 
 func _ready() -> void:
 	_car = get_node_or_null(car_path) as Car
@@ -120,12 +129,29 @@ func _process(delta: float) -> void:
 	if absf(display_speed - shown_speed) >= SPEED_HYSTERESIS:
 		shown_speed = roundi(display_speed)
 		_speed_label.text = str(shown_speed)
-	# RPM arc + shift flash near the limiter.
-	var rpm_frac := clampf(_car.rpm / Car.MAX_RPM, 0.0, 1.0)
+	# RPM arc + shift flash near the limiter. The simulation car brings its own rev range.
+	var is_sim := _car.sim != null and _car.sim.spec != null
+	var max_rpm := Car.MAX_RPM
+	if is_sim:
+		var spec := _car.sim.spec
+		max_rpm = maxf(spec.rpm_max, 1000.0)
+		_speedo.set_rev_range(max_rpm, spec.rpm_shift_up)
+	var rpm_frac := clampf(_car.rpm / max_rpm, 0.0, 1.0)
 	_speedo.value = rpm_frac
 	_flash_clock = fmod(_flash_clock + delta * SHIFT_FLASH_HZ, 2.0)
-	var flash := rpm_frac >= RpmGauge.SHIFT_FLASH_FROM and _flash_clock < 1.0
+	var at_shift := rpm_frac >= _speedo.flash_from
+	var flash := at_shift and _flash_clock < 1.0
 	_speedo.flash_on = flash
+	if is_sim:
+		var idle_frac := _car.sim.spec.rpm_idle / max_rpm
+		var leds_from := lerpf(idle_frac, _speedo.flash_from, SHIFT_LEDS_FROM)
+		_speedo.shift_leds = 1.0 if at_shift \
+				else clampf(inverse_lerp(leds_from, _speedo.flash_from, rpm_frac), 0.0, 0.99)
+		_sim_widgets.update_from(_car, delta)
+	else:
+		_speedo.shift_leds = -1.0
+	if _sim_widgets.visible != is_sim:
+		_sim_widgets.visible = is_sim
 	# Gear (0 = neutral, negative = reverse).
 	if _car.gear != _shown_gear:
 		_shown_gear = _car.gear
@@ -181,3 +207,7 @@ func _layout() -> void:
 	_hint.position = Vector2((size.x - _hint.size.x * s) * 0.5, _timer_group.position.y + (_timer_group.size.y + 6.0) * s)
 	_inputs.scale = sv
 	_inputs.position = Vector2(m.x, size.y - _inputs.size.y * s - m.y)
+	# Simulation widgets: left of the speedometer, on its baseline.
+	_sim_widgets.scale = sv
+	_sim_widgets.position = Vector2(_speedo.position.x - (_sim_widgets.size.x + SIM_WIDGETS_GAP) * s,
+			size.y - _sim_widgets.size.y * s - m.y)

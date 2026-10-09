@@ -13,6 +13,12 @@ extends Node3D
 ##         Wheel               scale.x = side; tyre, rim, nut, brake disc
 ## Meshes come from cad/wheels/f1_wheels.py, modelled for a right-hand wheel (outer face +X);
 ## left wheels (index 0, 2) mirror them. Geometry numbers come from the same CAD script.
+##
+## The wheel travels with WheelState.compression for both handling models (the simulation
+## publishes it relative to this visual's hub, so the tyre stays on the road as the body
+## pitches, rolls and squats). For a simulation car two materials of the wheel also follow
+## the car: the brake disc glows with its temperature, and the sidewall stripe takes the
+## colour of the tyre compound. An arcade car keeps the wheel's own materials untouched.
 
 @export var wheel_index: int = 0
 
@@ -41,6 +47,23 @@ const BLUR_FULL_KMH: float = 230.0
 const BLUR_MAX_ALPHA: float = 0.92
 ## Wheel spin rates above this (rad/s, ~600 km/h) are treated as a state reset, not motion.
 const MAX_PLAUSIBLE_OMEGA: float = 500.0
+## Brake disc temperature (deg C) where the glow starts / is at its brightest.
+const BRAKE_GLOW_FROM: float = 550.0
+const BRAKE_GLOW_FULL: float = 1000.0
+const BRAKE_GLOW_COLOR := Color(1.0, 0.30, 0.05)
+const BRAKE_GLOW_ENERGY: float = 3.5
+## Material names in the wheel meshes (cad/wheels/f1_wheels.py).
+const DISC_MATERIAL := "carbon_disc"
+const STRIPE_MATERIAL := "stripe"
+## Paint colours of the sidewall stripe (the HUD badge in sim_widgets.gd uses brighter,
+## screen colours for the same compounds).
+const COMPOUND_COLORS := {
+	&"soft": Color(0.9, 0.08, 0.07),
+	&"medium": Color(0.95, 0.78, 0.05),
+	&"hard": Color(0.9, 0.9, 0.92),
+	&"intermediate": Color(0.1, 0.7, 0.2),
+	&"wet": Color(0.08, 0.3, 0.9),
+}
 
 static var _geometry_cache: Dictionary = {}
 
@@ -59,6 +82,12 @@ var _last_spin: float = 0.0
 var _has_last_spin: bool = false
 var _omega: float = 0.0
 var _rim_speed_kmh: float = 0.0
+## 0..1 glow of the brake disc (simulation only; 0 for an arcade car).
+var brake_glow: float = 0.0
+var _sim_materials_ready: bool = false
+var _disc_mat: StandardMaterial3D
+var _stripe_mat: StandardMaterial3D
+var _stripe_compound: StringName = &""
 
 static func geometry(front: bool) -> Dictionary:
 	if _geometry_cache.is_empty():
@@ -156,6 +185,45 @@ func _process(delta: float) -> void:
 		_pivot.position.y = -w.compression
 		_pivot.basis = Basis(Vector3(1.0, w.compression / _arm_length, 0.0), Vector3.UP, Vector3.BACK)
 	_update_blur(delta)
+	if _car.sim != null:
+		_update_sim_materials()
+
+## Simulation car: brake glow from the disc temperature, stripe colour from the compound.
+func _update_sim_materials() -> void:
+	if not _sim_materials_ready:
+		_sim_materials_ready = true
+		_disc_mat = _own_material(DISC_MATERIAL)
+		_stripe_mat = _own_material(STRIPE_MATERIAL)
+		if _disc_mat:
+			_disc_mat.emission = BRAKE_GLOW_COLOR
+	var st := _car.sim.state
+	if _disc_mat and st != null and wheel_index < st.brake_temp.size():
+		var glow := smoothstep(BRAKE_GLOW_FROM, BRAKE_GLOW_FULL, st.brake_temp[wheel_index])
+		if absf(glow - brake_glow) > 0.01 or (glow != brake_glow and (glow == 0.0 or glow == 1.0)):
+			brake_glow = glow
+			_disc_mat.emission_enabled = glow > 0.0
+			_disc_mat.emission_energy_multiplier = glow * glow * BRAKE_GLOW_ENERGY
+	if _stripe_mat and _car.tyre_compound != _stripe_compound:
+		_stripe_compound = _car.tyre_compound
+		if COMPOUND_COLORS.has(_stripe_compound):
+			_stripe_mat.albedo_color = COMPOUND_COLORS[_stripe_compound]
+
+## Gives this wheel its own copy of the wheel mesh's material named `material_name` (the
+## imported one is shared by every wheel of every car) and returns it; null if there is none.
+func _own_material(material_name: String) -> StandardMaterial3D:
+	var holder := get_node_or_null("Steer/Spin/Wheel")
+	if holder == null:
+		return null
+	for mi: MeshInstance3D in holder.find_children("*", "MeshInstance3D", true, false):
+		if mi.mesh == null:
+			continue
+		for s in mi.mesh.get_surface_count():
+			var mat := mi.mesh.surface_get_material(s) as StandardMaterial3D
+			if mat != null and mat.resource_name == material_name:
+				var own := mat.duplicate() as StandardMaterial3D
+				mi.set_surface_override_material(s, own)
+				return own
+	return null
 
 func _update_blur(delta: float) -> void:
 	if _blur == null or _blur_mat == null:

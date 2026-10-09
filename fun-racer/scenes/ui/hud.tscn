@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/ui/slanted_panel.gd" id="2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/ui/input_display.gd" id="4"]
 [ext_resource type="FontFile" path="res://assets/ui/fonts/BarlowCondensed-BoldItalic.ttf" id="5"]
 [ext_resource type="FontFile" path="res://assets/ui/fonts/BarlowCondensed-SemiBoldItalic.ttf" id="6"]
+[ext_resource type="Script" path="res://scripts/ui/sim_widgets.gd" id="7"]
 
 [sub_resource type="FontVariation" id="num_font"]
 base_font = ExtResource("5")
@@ -138,3 +139,11 @@ offset_right = 168.0
 offset_bottom = 112.0
 mouse_filter = 2
 script = ExtResource("4")
+
+[node name="SimWidgets" type="Control" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 348.0
+offset_bottom = 232.0
+mouse_filter = 2
+script = ExtResource("7")
