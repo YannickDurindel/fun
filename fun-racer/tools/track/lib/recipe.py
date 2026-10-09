@@ -40,8 +40,10 @@ CALENDAR = os.path.join(ROOT, "assets", "tracks", "calendar.json")
 RECIPE_DIR = os.path.join(ROOT, "tools", "track", "tracks")
 
 TOP_KEYS = {"id", "name", "full_name", "grand_prix", "country", "country_code", "city", "length_m",
-            "turns", "osm", "layout", "elevation", "turn", "road", "terrain"}
+            "turns", "osm", "layout", "elevation", "turn", "road", "terrain", "surroundings"}
 SECTION_KEYS = {
+    "surroundings": {"margin_m", "far_margin_m", "default_levels", "level_height_m", "tree_density",
+                     "tree_species", "building", "exclude", "add", "roof"},
     "osm": {"relation", "ways", "bbox", "exclude_ways", "extra_ways", "avoid_nodes", "avoid_names",
             "ignore_oneway", "length_tolerance", "round"},
     "layout": {"direction", "finish", "start", "start_offset_m", "sectors", "spline"},
@@ -95,6 +97,7 @@ class Recipe:
     # [road], [terrain]: plain dicts, read by cad/track/banking.py and lib/terrain.py
     road: dict = field(default_factory=dict)
     terrain: dict = field(default_factory=dict)
+    surroundings: dict = field(default_factory=dict)   # [surroundings], read by lib/surroundings.py
     source: str = ""
 
     @property
@@ -166,7 +169,8 @@ def from_dict(track_id, data, overrides=None, calendar_path=CALENDAR, source="")
         dem_dataset=elev.get("dataset"), elev_sigma_m=float(elev.get("smooth_sigma_m", 45.0)),
         elev_overrides=[dict(o) for o in elev.get("override", [])],
         turn_table=[dict(t) for t in data.get("turn", [])],
-        road=dict(data.get("road", {})), terrain=dict(data.get("terrain", {})), source=source)
+        road=dict(data.get("road", {})), terrain=dict(data.get("terrain", {})),
+        surroundings=dict(data.get("surroundings", {})), source=source)
     for k, v in (overrides or {}).items():
         if v is not None:
             setattr(r, k, v)
@@ -175,12 +179,99 @@ def from_dict(track_id, data, overrides=None, calendar_path=CALENDAR, source="")
     return r
 
 
+SURR_BUILDING_KEYS = {"osm", "height", "levels", "type", "remove", "note"}
+SURR_EXCLUDE_KEYS = {"osm", "polygon", "note"}
+SURR_ADD_KEYS = {"polygon", "height", "min_height", "kind", "note"}
+SURR_ROOF_KEYS = {"s", "clear_height", "kind", "note"}
+SURR_ADD_KINDS = {"building", "glass", "grandstand", "concrete", "metal", "screen", "light",   # solids
+                  "grass", "forest", "water", "sand", "paved", "farmland", "rock", "gravel",   # ground
+                  "scrub", "beach"}
+SURR_ROOF_KINDS = {"tunnel", "overpass", "gallery_left", "gallery_right"}
+SURR_TREE_SPECIES = {"mixed", "broadleaved", "needleleaved", "palm"}
+
+
+def _number(v, lo, hi):
+    return isinstance(v, (int, float)) and not isinstance(v, bool) and lo <= v <= hi
+
+
+def _osm_ref(v):
+    """An OSM object of the surroundings: a bare id (way or relation) or "way/123"."""
+    return (isinstance(v, int) and not isinstance(v, bool) and v > 0) or (
+        isinstance(v, str) and re.fullmatch(r"(node|way|relation)/[1-9][0-9]*", v) is not None)
+
+
+def _latlon_ring(v):
+    return (isinstance(v, list) and len(v) >= 3
+            and all(isinstance(p, list) and len(p) == 2 and _number(p[0], -90.0, 90.0)
+                    and _number(p[1], -180.0, 180.0) for p in v))
+
+
+def validate_surroundings(r):
+    """[surroundings]: see lib/surroundings.py for what the keys do."""
+    sur = r.surroundings
+    for key, lo, hi in (("margin_m", 50.0, 2000.0), ("far_margin_m", 0.0, 6000.0),
+                        ("default_levels", 1, 60), ("level_height_m", 2.0, 6.0),
+                        ("tree_density", 0.0, 1000.0)):
+        if key in sur and not _number(sur[key], lo, hi):
+            raise BuildError(f"recipe: surroundings.{key} must be a number between {lo} and {hi}")
+    def one_of(v, allowed):
+        return isinstance(v, str) and v in allowed
+
+    if not one_of(sur.get("tree_species", "mixed"), SURR_TREE_SPECIES):
+        raise BuildError("recipe: surroundings.tree_species must be one of "
+                         + ", ".join(sorted(SURR_TREE_SPECIES)))
+    tables = {}
+    for key, allowed in (("building", SURR_BUILDING_KEYS), ("exclude", SURR_EXCLUDE_KEYS),
+                         ("add", SURR_ADD_KEYS), ("roof", SURR_ROOF_KEYS)):
+        tables[key] = sur.get(key, [])
+        if not isinstance(tables[key], list) or not all(isinstance(o, dict) for o in tables[key]):
+            raise BuildError(f"recipe: surroundings.{key} must be written as [[surroundings.{key}]] tables")
+        for o in tables[key]:
+            _check_keys(f"[[surroundings.{key}]]", o, allowed)
+    for o in tables["building"]:
+        if not _osm_ref(o.get("osm")) or not ({"height", "levels", "type", "remove"} & set(o)):
+            raise BuildError("recipe: [[surroundings.building]] needs osm = <way or relation id> and "
+                             "a height, levels, type and/or remove = true")
+        if (("height" in o and not _number(o["height"], 0.5, 1000.0))
+                or ("levels" in o and not _number(o["levels"], 1, 250))
+                or ("type" in o and not isinstance(o["type"], str))
+                or not isinstance(o.get("remove", False), bool)):
+            raise BuildError("recipe: [[surroundings.building]] height is metres, levels a count, "
+                             "type a building=* value, remove true / false")
+    for o in tables["exclude"]:
+        if ("osm" in o) == ("polygon" in o) or ("osm" in o and not _osm_ref(o["osm"])) or (
+                "polygon" in o and not _latlon_ring(o["polygon"])):
+            raise BuildError("recipe: [[surroundings.exclude]] needs either osm = <id> or "
+                             "polygon = [[lat, lon], ...] (3 points or more)")
+    for o in tables["add"]:
+        if not _latlon_ring(o.get("polygon")) or not one_of(o.get("kind", "building"), SURR_ADD_KINDS):
+            raise BuildError("recipe: [[surroundings.add]] needs polygon = [[lat, lon], ...] and a "
+                             "kind out of " + ", ".join(sorted(SURR_ADD_KINDS)))
+        if (("height" in o and not _number(o["height"], 0.2, 1000.0))
+                or ("min_height" in o and not _number(o["min_height"], 0.0, 1000.0))):
+            raise BuildError("recipe: [[surroundings.add]] height and min_height are metres")
+        if "height" in o and o.get("min_height", 0.0) >= o["height"]:
+            raise BuildError("recipe: [[surroundings.add]] min_height must be below height (both "
+                             "are measured from the ground)")
+    for o in tables["roof"]:
+        s = o.get("s")
+        if (not isinstance(s, list) or len(s) != 2 or not all(_number(x, 0.0, r.length_m) for x in s)
+                or s[0] == s[1] or s[0] >= r.length_m or s[1] >= r.length_m):
+            raise BuildError("recipe: [[surroundings.roof]] needs s = [from, to] inside the lap")
+        if "clear_height" in o and not _number(o["clear_height"], 2.5, 40.0):
+            raise BuildError("recipe: [[surroundings.roof]] clear_height is metres (2.5 to 40)")
+        if not one_of(o.get("kind", "tunnel"), SURR_ROOF_KINDS):
+            raise BuildError("recipe: [[surroundings.roof]] kind must be one of "
+                             + ", ".join(sorted(SURR_ROOF_KINDS)))
+
+
 def validate(r):
     if r.length_m <= 0.0:
         raise BuildError(f"no official lap length for '{r.id}': it is not in assets/tracks/"
                          "calendar.json, so give length_m in the recipe or --length")
     if not 500.0 <= r.length_m <= 30000.0:
         raise BuildError(f"length_m = {r.length_m} m is not a plausible lap length")
+    validate_surroundings(r)
     if r.turns is not None and (not isinstance(r.turns, int) or r.turns < 1):
         raise BuildError("recipe: turns must be a positive integer")
     if sum(bool(x) for x in (r.osm_relation, r.osm_ways, r.osm_bbox)) == 0:

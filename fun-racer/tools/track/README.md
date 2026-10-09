@@ -265,6 +265,131 @@ tracks become one scene driven by the track id, the template (or the scene file)
 Until then `scripts/track/road.gd` and `trackside.gd` still load some files from the Red
 Bull Ring folder, so a new track is not playable from this pipeline alone.
 
+## Surroundings
+
+The `surroundings` step (after `terrain`, before `info`) bakes what really stands around the
+circuit: buildings, grandstands, water, woods, fields, car parks, other roads. It reads
+`track.json`, `road_profile.json` and the terrain grids, so it can run on its own:
+
+```sh
+.venv/bin/python tools/track/build_track.py monaco --steps surroundings --plot /tmp/monaco.png
+```
+
+`--plot` also writes `<plot>_surroundings.png`: land cover, footprints coloured by height
+(grandstands outlined in red), trees, water outlines and the centreline, with the far land
+cover beside it. Look at it before anything else. The step needs numpy, scipy and pillow
+(the project venv). Every file it writes is optional for the game, and no other step reads
+them. Offline it takes 5 to 20 s; the first run makes two Overpass requests.
+
+**Data.** Two Overpass API requests per track, reduced to the tags and the geometry the step
+uses and cached as `raw/surroundings_near_<hash>.json` (everything in the near terrain
+rectangle) and `raw/surroundings_far_<hash>.json` (land cover and coastline over the far
+terrain, tall buildings within `far_margin_m`). The query boxes are snapped outward to a
+coarse grid and the file name is a hash of those boxes, so a small change of the track's
+size or bounds still finds its cache. When the boxes do change, the next online run fetches
+new files: delete the old ones. To fetch a track again, delete its two files. `--offline`
+fails on a cache miss when the step is asked for by name; a build of all steps skips it
+with a warning that the scenery files in the folder are the old ones. Requests go one at a time for the
+whole machine (a lock on `~/.cache/fun-racer/overpass.lock`, 2 s apart), with a growing pause
+after HTTP 429 / 504 and a second server as a fallback, so several builds can run side by
+side. The public servers are often busy: a failed download just needs another run.
+
+**What is built**
+
+| Map feature | Becomes |
+|---|---|
+| `building`, `building:part` (ways and multipolygons with courtyards) | extruded footprint with a base 1.5 m under its lowest ground corner. Height: `height`, else `building:levels` (+ `roof:levels`), else the median of the tagged buildings within 150 m (town types), else a default by type. `min_height` / `building:min_level` lift a part off the ground. An outline whose parts cover 70 % of it is replaced by the parts. Four-cornered houses get a gabled roof, `roof:shape=pyramidal/dome` a pointed one, the rest a flat one. `building=roof` is a canopy on posts |
+| `building=grandstand`, `leisure=bleachers`, a name with "tribune" / "grandstand" | stepped seating (0.85 m rows) rising away from the nearest point of the track; `covered=yes` or a `roof:shape` adds a roof |
+| `natural=coastline` | the sea (level = 0 m above sea level), islands as holes |
+| `natural=water`, `landuse=basin/reservoir`, `waterway=riverbank/dock`; `waterway=river/canal/stream` lines | water in the land cover and, except streams, a water body with its own level (the 15th percentile of the ground along its bank); a body on a slope is cut into 150 m squares |
+| `natural=wood`, `landuse=forest` | forest + scattered trees (`leaf_type` picks the species) |
+| `natural=tree`, `natural=tree_row` | single trees |
+| `natural=scrub/heath`, parks, gardens, cemeteries, orchards | their class + bushes / sparse trees |
+| `natural=sand/beach/bare_rock/scree/...`, `landuse=farmland/meadow/grass/...`, golf bunkers and greens | their land-cover class |
+| `landuse=residential/commercial/industrial/retail`, `amenity=parking`, squares, aprons, `highway=*` (width from `width`, `lanes` or the road class), railways | paved (or gravel) areas and strips; tunnels leave no trace |
+| `bridge=*` on a road or path that is not the race track | a deck on a straight grade between its ends, on piers, lifted to 6.5 m above the track where it crosses it |
+| `man_made=tower/mast/chimney/silo/storage_tank/...`, `power=tower`, piers and breakwaters, street lamps within 60 m of the track | simple drums, spires, decks and poles |
+
+Nothing stands on the road. Solids are cut back to the road edge + 1.5 m: a building that
+overlaps the edge loses that strip, one the road runs through becomes a piece on each side.
+Trees keep off the verges of `road_profile.json` (+ 2 m), and off 35 m beyond the road edge
+on the outside of corners where the verge has its full width. Tree density is full within
+120 m of the track and falls to 35 % from 450 m.
+
+Beyond the detail rectangle (the near terrain rectangle, or the centreline box + `margin_m`)
+only buildings of 25 m and more are built, out to `far_margin_m`.
+
+**Outputs** (in `assets/tracks/<id>/`)
+
+| File | Content |
+|---|---|
+| `landcover.png` | 8-bit, one class id per 2.5 m cell over the near terrain rectangle. Row = z, column = x; cell (row j, column i) covers x0 + i * step to x0 + (i + 1) * step. Classes: 0 grass, 1 forest, 2 water, 3 sand, 4 urban paved, 5 farmland, 6 rock, 7 gravel / bare, 8 scrub, 9 beach |
+| `landcover_far.png` | the same per 50 m cell over the far terrain rectangle |
+| `landcover*.png.import` | written once: lossless, no mipmaps, `detect_3d` off, so the ids reach a shader untouched |
+| `scenery.glb` (+ `.import`) | one node `chunk_<i>_<j>` per 400 m square (i = floor((x - chunk_x0) / 400), j likewise for z; the origin is in `scenery.json`), one primitive per material: `building_wall`, `building_roof`, `building_glass`, `stand_seats`, `stand_structure`, `concrete`, `metal`, `emissive_window`, `emissive_light` (only the ones a track uses). Attributes POSITION, NORMAL, TEXCOORD_0, COLOR_0 |
+| `scenery_points.bin` | trees: little-endian float32 records (x, y, z, height, species), sorted by 400 m chunk. Species: 0 broadleaved, 1 needleleaved, 2 palm, 3 bush |
+| `scenery.json` | `landcover.near` / `.far` (file, x0, z0, step, nx, nz), `mesh` (chunk size and origin, triangles per material), `trees` (record layout, counts, `chunks` = [i, j, first record, count]), `water` ([{level, kind, polygon [[x, z], ...], triangles}]; holes are bridged into the polygon and `triangles` indexes it), `roofs`, `counts`, `default_heights`, `attribution` |
+
+Mesh conventions for the shaders: TEXCOORD_0 is in metres. On walls u runs along the wall
+(restarting at every corner sharper than 30 degrees) and v is the height above the building's
+lowest ground corner, negative in the plinth. On roofs it is the plan position relative to
+the building. On grandstand treads u runs along the row and v is the depth from the front.
+COLOR_0.rgb is the building's tint in linear colour (`building:colour` / `roof:colour` when
+tagged, else a palette entry picked by the object's id); COLOR_0.a is 1 on facades that have
+windows and 0 on blank surfaces (sheds, roofs, gable ends, structure). `emissive_light` is
+used by tunnel ceiling lamps and street lamp heads, `emissive_window` only by hand-added
+screens. Faces are flat shaded and wound counter-clockwise seen from outside.
+
+**Recipe**
+
+```toml
+[surroundings]
+# margin_m = 450          # detail rectangle = centreline box + this (default: the near terrain)
+# far_margin_m = 3000     # how far out buildings of 25 m and more are kept
+# default_levels = 2      # building=yes without any height, and no tagged neighbours
+# level_height_m = 3.0
+# tree_density = 120      # trees per hectare of forest beside the track; 0 = none
+# tree_species = "mixed"  # untagged woods: mixed, broadleaved, needleleaved or palm
+
+[[surroundings.building]]   # fix one building; the id is in scenery.json default_heights
+osm = 432751363             # a way or relation id, or "way/432751363"
+height = 44.0               # and / or levels = 12, type = "hotel", remove = true
+
+[[surroundings.exclude]]    # drop any map feature: by id ...
+osm = "way/507048725"
+[[surroundings.exclude]]    # ... or everything whose centre is in a polygon
+polygon = [[43.7352, 7.4210], [43.7352, 7.4213], [43.7356, 7.4213]]
+
+[[surroundings.add]]        # something the map lacks: footprint in lat / lon
+polygon = [[43.7352, 7.4210], [43.7352, 7.4213], [43.7356, 7.4213], [43.7356, 7.4210]]
+kind = "grandstand"         # solids: building, glass, grandstand, concrete, metal, screen
+height = 9.0                # (emissive_window), light (emissive_light); ground: grass, forest,
+# min_height = 7.0          # water, sand, paved, farmland, rock, gravel, scrub, beach
+
+[[surroundings.roof]]       # a tunnel or overpass over the road
+s = [1560.0, 1900.0]        # metres from the finish line; may wrap past the line
+clear_height = 6.0          # ceiling above the road centre (default 5.5)
+kind = "tunnel"             # tunnel, gallery_left / gallery_right (that side open, on
+                            # columns), overpass (a deck on four columns)
+```
+
+`scenery.json` lists every building whose height was guessed (`default_heights`: OSM id,
+type, height, where the guess came from, distance to the track, sorted by that distance):
+fix the ones near the road with `[[surroundings.building]]`. A solid that starts 4.5 m or
+more above the ground (`min_height`) is not cut by the road, so a `[[surroundings.add]]`
+with `min_height` puts a building over it. A roof shell stands 2 m beyond the road edge
+with walls and slab 0.8 m thick and ceiling lamps every 8 m; a building the roofed road runs
+through keeps its upper floors above the shell. Unknown keys fail, like everywhere else in
+the recipe.
+
+**Known gaps.** Roofs other than flat, gabled (four corners) and pointed; retaining walls,
+fences and hedges; water levels are one height per body, taken from the terrain model, and
+the terrain itself is not lowered under water; bridges are straight grades, without the
+real profile of a viaduct; a grandstand follows one axis of its footprint, so a curved
+stand steps along its chord; temporary grandstands and anything else missing from
+OpenStreetMap need `[[surroundings.add]]`. Map data: (c) OpenStreetMap contributors, ODbL
+1.0, via the Overpass API (the attribution is in `scenery.json`).
+
 ## Files
 
 ```

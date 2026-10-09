@@ -1,4 +1,4 @@
-"""Cached HTTP access to the OSM API and OpenTopoData.
+"""Cached HTTP access to the OSM API, the Overpass API and OpenTopoData.
 
 Every response is cached in the track's ``raw/`` folder, so a build can be repeated with
 ``--offline`` and the committed caches are what the tests run on.
@@ -16,6 +16,15 @@ import urllib.request
 USER_AGENT = "fun-racer/0.1 (track builder)"
 OSM_API = "https://api.openstreetmap.org/api/0.6"
 TOPO_API = "https://api.opentopodata.org/v1"
+# Overpass (the surroundings step): public instances, tried in turn. Their usage policy asks
+# for an identifying user agent and no parallel requests.
+OVERPASS_APIS = ("https://overpass-api.de/api/interpreter",
+                 "https://maps.mail.ru/osm/tools/overpass/api/interpreter")
+OVERPASS_USER_AGENT = "fun-racer/0.1 (track builder; https://github.com/YannickDurindel/fun)"
+OVERPASS_LOCK = "~/.cache/fun-racer/overpass.lock"
+OVERPASS_PAUSE = 2.0      # s between two requests, whichever build makes them
+OVERPASS_TIMEOUT = 180    # s, also given to the server in the query
+OVERPASS_RETRIES = 8
 
 # name -> (attribution, coverage note)
 DATASETS = {
@@ -121,6 +130,80 @@ class Fetcher:
         body = self.download(url)
         self.write(name, body)
         return body
+
+
+def _overpass_wait(lock_path, now=time.time, sleep=time.sleep):
+    """Sleeps until OVERPASS_PAUSE has passed since the last request of any build on this
+    machine (the lock file's modification time)."""
+    try:
+        wait = OVERPASS_PAUSE - (now() - os.path.getmtime(lock_path))
+    except OSError:
+        wait = 0.0
+    if 0.0 < wait <= OVERPASS_PAUSE:
+        sleep(wait)
+
+
+def _overpass_request(fetcher, query, opener=None, sleep=time.sleep):
+    """One Overpass answer as parsed JSON, trying the mirrors in turn. The public servers
+    answer 429 (too many requests) and 504 (busy) routinely: those are retried with a growing
+    pause, and so is the "remark" a server sends with HTTP 200 when it ran out of time."""
+    import urllib.parse
+    opener = opener or (lambda req: urllib.request.urlopen(req, timeout=OVERPASS_TIMEOUT + 30).read())
+    data = urllib.parse.urlencode({"data": query}).encode()
+    err = None
+    for attempt in range(OVERPASS_RETRIES):
+        url = OVERPASS_APIS[attempt % len(OVERPASS_APIS)]
+        try:
+            req = urllib.request.Request(url, data=data, headers={
+                "User-Agent": OVERPASS_USER_AGENT,
+                "Content-Type": "application/x-www-form-urlencoded"})
+            fetcher.requests += 1
+            res = json.loads(opener(req))
+            remark = str(res.get("remark", ""))
+            if "error" not in remark.lower() and isinstance(res.get("elements"), list):
+                return res
+            err = BuildError(f"Overpass remark: {remark[:160] or 'no elements in the answer'}")
+        except urllib.error.HTTPError as e:
+            err = e
+            e.close()
+            if e.code == 400:
+                raise BuildError(f"Overpass rejected the query (HTTP 400): {query[:200]}") from e
+        except Exception as e:  # timeouts, connection resets, a truncated JSON body
+            err = e
+        if attempt + 1 < OVERPASS_RETRIES:
+            pause = min(120.0, 8.0 * 2 ** attempt)
+            fetcher.log(f"  Overpass retry {attempt + 1}/{OVERPASS_RETRIES - 1} in {pause:.0f} s: {err}")
+            sleep(pause)
+    raise BuildError(f"Overpass download failed: {err} (the public servers are often busy; "
+                     "run the step again later)")
+
+
+def fetch_overpass(fetcher, query, name, reduce=None):
+    """Cached answer to an Overpass QL ``query`` as bytes. ``reduce`` (parsed JSON -> bytes)
+    turns the answer into what is kept in the cache file ``name``; default: the answer as is.
+
+    Overpass asks for one request at a time per user. Builds of several tracks may run side by
+    side, so the request is made under a machine-wide file lock, at least OVERPASS_PAUSE
+    seconds after the previous one."""
+    if fetcher.cached(name):
+        return fetcher.read(name)
+    if fetcher.offline:
+        raise BuildError(f"--offline given but the Overpass answer {name} is not in the cache "
+                         f"({fetcher.cache_dir})")
+    import fcntl
+    lock_path = os.path.expanduser(OVERPASS_LOCK)
+    os.makedirs(os.path.dirname(lock_path), exist_ok=True)
+    with open(lock_path, "a") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        try:
+            _overpass_wait(lock_path)
+            res = _overpass_request(fetcher, query)
+        finally:
+            os.utime(lock_path)
+            fcntl.flock(lock, fcntl.LOCK_UN)
+    body = reduce(res) if reduce else json.dumps(res, separators=(",", ":")).encode()
+    fetcher.write(name, body)
+    return body
 
 
 def choose_dataset(lat, lon):

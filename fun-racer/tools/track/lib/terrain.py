@@ -266,11 +266,7 @@ def build(recipe, out_dir, fetcher, log=print):
     base = track["origin_elevation_m"]
     k, info = plan_scale(track, out_dir)
     dataset = recipe.dem_dataset or info.get("dem_dataset") or net.choose_dataset(lat0, lon0)
-    kx = geom.EARTH_M_PER_DEG * math.cos(math.radians(lat0))
-    ky = geom.EARTH_M_PER_DEG
-
-    def to_latlon(x, z):
-        return (lat0 - (z / k) / ky, lon0 + (x / k) / kx)
+    to_latlon = geom.Projection(lat0, lon0, k).to_latlon
 
     pts = [p["p"] for p in track["points"]]
     near, far_b = default_bounds(pts)
