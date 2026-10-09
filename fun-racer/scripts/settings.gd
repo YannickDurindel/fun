@@ -33,6 +33,12 @@ const DEFAULTS: Dictionary = {
 		"speed_unit": "kmh",        # "kmh" or "mph"
 		"show_input_display": true,
 		"handling": "arcade",       # car physics: "arcade" or "simulation"
+		# Driving aids of the simulation handling (ignored by arcade). Applied live.
+		"aid_traction_control": 2,  # 0 off, 1 low, 2 high
+		"aid_abs": 1,               # 0 off, 1 on
+		"aid_auto_gearbox": true,
+		"aid_steering_help": 1,     # 0 off, 1 on: speed-sensitive lock and input smoothing
+		"aid_stability": 1,         # 0 off, 1 on: counter-steer and throttle help in a slide
 		"last_race": {},            # RaceConfig.to_dict() of the last started race
 	},
 }
