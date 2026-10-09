@@ -16,6 +16,9 @@ TOL_ANGLE = 1e-4      # rad: bank
 FILES = ("track.json", "road_profile.json", "road_mesh.glb", "terrain.json", "terrain_height.bin",
          "terrain_far.bin", "terrain_dist.bin", "track_info.json", "trackside_profiles.json",
          "road_tarmac_albedo.png", "road_grass_albedo.png")
+# The surroundings step is optional: its files are compared when both builds have them and
+# are not "missing" when only one does.
+OPTIONAL_FILES = ("landcover.png", "landcover_far.png", "scenery.glb", "scenery_points.bin", "scenery.json")
 
 
 def _sha(path):
@@ -130,6 +133,13 @@ def compare_dirs(a, b, files=FILES):
             p = both(name)
             if p:
                 check(name, name in identical, "byte-identical" if name in identical else "differs")
+    for name in OPTIONAL_FILES:
+        pa, pb = os.path.join(a, name), os.path.join(b, name)
+        if os.path.exists(pa) and os.path.exists(pb):
+            same = _sha(pa) == _sha(pb)
+            if same:
+                identical.append(name)
+            check(name, same, "byte-identical" if same else "differs")
     for name in missing:
         check(name, False, "present in only one of the two folders")
     return {"ok": bool(checks) and all(ok for _, ok, _ in checks), "checks": checks,

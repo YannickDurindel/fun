@@ -75,15 +75,30 @@ relation = 9291096
 # start_offset_m = 0            # start line this far after the finish line
 # sectors = [1650.0, 3300.0]    # where sectors 2 and 3 begin, metres from the finish line
 # spline = "centripetal"        # "uniform" only for the Red Bull Ring (its original build)
+# [[layout.shift]]              # move a stretch of the centreline sideways (see Size)
+# s = [1200.0, 1500.0]          #   from, to (may wrap around the finish line)
+# lateral_m = 2.5               #   metres, + = to the right in race direction
+# blend = 60.0                  #   metres over which it fades in and out (default 60)
 
 [elevation]
 # dataset = "srtm30m"        # default: chosen by coverage (see Data sources)
 # smooth_sigma_m = 45.0
+# key_join_m = 250.0         # [[elevation.key]] entries closer than this follow one curve
+[[elevation.smooth]]          # another smoothing on one stretch (keep a crest sharp)
+s = [900.0, 1250.0]           # from, to (may wrap around the finish line)
+sigma_m = 15.0                # Gaussian sigma there, metres (0 = the DEM samples as they are)
+blend = 40.0                  # metres over which it fades back to smooth_sigma_m (default 40)
 [[elevation.override]]        # correct the DEM profile on a stretch (bridges, crossovers)
 s = [4690.0, 4990.0]          # from, to (may wrap around the finish line)
 straighten = true             # straight line between the heights at the two ends, and / or
 offset = 0.8                  # metres added inside the stretch, fading out over ...
 blend = 120.0                 # ... this many metres on both sides (default 60)
+[[elevation.key]]             # pin the height at one distance (see Size)
+s = 1170.0                    # metres from the finish line
+y = -1.0                      # metres above the finish line; or abs = 416.8 (above sea level)
+blend = 60.0                  # fade-out on a side without a neighbouring key (default 60)
+# join = true                 # one curve from the previous key to this one, however far
+note = "top of Raidillon"
 
 # Either names for the automatically detected turns ...
 [[turn]]
@@ -98,12 +113,18 @@ name = "Tosa"
 # retaining_walls = true      # hillside circuits: a wall under each verge edge that has a
                               # lower stretch of the lap beside it (see Known limits)
 # width_keys = [[0.0, 15.0, "grid"], ...]
-# track_json_widths = true   # a road narrower than 13 m somewhere: see "Narrow roads"
+# track_json_widths = false  # keep a nominal width in track.json: see "Road widths"
 [[road.override]]             # or change single stretches
 s = [2700.0, 2950.0]          # from, to (may wrap around the finish line)
-width = 12.0
+width = 12.0                  # 6 to 30 m
 bank = -0.02                  # radians, + = left edge higher; limit +/- 0.03 unless
 blend = 40.0                  # [road] max_bank declares real banking, see "Banking"
+[[road.pair]]                 # two stretches that are the two carriageways of one road
+a = [2175.0, 2530.0]          # from, to of the first (it builds the wall between them)
+b = [4725.0, 5085.0]          # from, to of the second
+separation = 14.0             # optional: push the two centrelines this far apart
+gap = 2.0                     # least room between the tarmac edges, for the wall (default 1.5)
+blend = 40.0                  # metres over which the push fades in and out (default 60)
 
 [terrain]
 # near = [x0, x1, z0, z1]     # game metres, multiples of 200; default: track box + 450 m
@@ -122,6 +143,7 @@ cross-section table.
     [--steps centreline,road,terrain,info] [--plot [FILE]] [--compare DIR]
     [--osm-relation N | --osm-bbox w,s,e,n] [--name ...] [--length M] [--turns N]
     [--direction clockwise|anticlockwise] [--cache DIR]
+.venv/bin/python tools/track/build_track.py <id> --report | --report-json [--out DIR]
 ```
 
 | Step | Needs | Writes |
@@ -172,8 +194,11 @@ Also read the build's `WARNING:` lines; each one says what to put in the recipe.
 | Finish line in the middle of the longest straight, with a warning | OSM has no start / finish data: set `[layout] finish = [lat, lon]` (right-click the line on openstreetmap.org, "Show address"). |
 | Wrong number of turns, or numbers shifted | Look at `turns.auto_candidates` in `build_info.json`. Usually a flat-out kink is counted or missed: pin the table with `[[turn]]` entries (`id`, `name`, `direction`, `s`). |
 | A corner looks polygonal or has a far too small radius | OSM has too few nodes there. Improve OSM, or accept it: the road is only as good as the centreline. |
-| Road too narrow / wide, wrong camber | `[road]` keys or `[[road.override]]`. |
-| The autopilot drives off a narrow road, or into its walls | `[road] track_json_widths = true` (see Narrow roads). |
+| Road too narrow / wide, wrong camber | `[road]` keys or `[[road.override]]` (see Size). |
+| A hill too flat, too steep or in the wrong place | `[[elevation.key]]`, `[[elevation.smooth]]` (see Size). |
+| Two stretches of the lap squeezed against each other | `[[road.pair]]` with a `separation` (see Size). |
+| "OSM tags the road as N m wide" | A hint from the map's `width` tags. Check the real width; set it in `[road]` if the tag is right. |
+| The autopilot keeps to the middle of a wide road, or leaves a narrow one | `track.json` has a nominal width: remove `[road] track_json_widths = false` (see Road widths). |
 | "the mesh could not be built" | The centreline folds on itself (see Known limits). |
 | "the lap crosses itself ... only N m apart in height" | A figure of eight: the DEM gives both roads the same height. Separate them by at least 5.5 m with `[[elevation.override]]` entries (see Crossovers). |
 | DEM voids, flat sea, steps in the terrain | Try another `[elevation] dataset`. |
@@ -275,15 +300,115 @@ banked track with `tools/lap_check.sh <id>` in both handling modes and look at b
 the corner from the chase camera. `tests/fixtures/tracks/banked_oval` (an oval with two 18
 degree turns, `make_banked_oval.py`) is the reference case, `tests/test_banking.gd` its test.
 
-**Narrow roads.** `track.json` carries a nominal width of 13 m at every point, whatever the
-road step builds; the real widths are in `road_profile.json`. The game's drivers (the
-autopilot's racing line, the bots' off-road test) read `track.json`, which is harmless while
-the road is 13 m or wider. A street circuit built narrower needs `[road] track_json_widths =
-true`: the centreline step then writes the widths of the `[road]` table into `track.json`
-(which needs numpy, like the road step). It is opt-in so that the tracks built before it stay
-byte for byte the same. The road step stops if `track.json` no longer agrees with the `[road]`
-table, which happens when the table is edited and only the road is rebuilt: run the
-centreline step again.
+**Road widths.** The road step builds the widths of the `[road]` table and writes them to
+`road_profile.json`. The game's drivers (the autopilot's racing line, the bots' off-road test)
+read the `width` of `track.json` instead, so the two must agree: on a road widened to 18 m the
+drivers would otherwise keep to the middle 13 m, and on one narrowed to 9 m they would plan a
+line through the wall. The rule:
+
+- A recipe that states a width anywhere (`base_width`, `grid_width`, `width_keys`, or a
+  `[[road.override]]` with a `width`) gets the built widths in `track.json` (which needs
+  numpy in the centreline step, like the road step).
+- A recipe that states none gets a nominal 13 m at every point. The road step's own default is
+  13 m with a 15 m grid, so the grid is wider than the drivers think; that is how the tracks
+  were first built, and they stay byte for byte the same until their widths are set.
+- `[road] track_json_widths = false` keeps the nominal value (13 m, or `base_width` when that
+  is less) on a recipe that does state widths. Red Bull Ring and Monaco carry it, because they
+  were built before this rule; remove the line when their widths are corrected.
+  `track_json_widths = true` forces the built widths.
+
+The road step stops if `track.json` no longer agrees with the `[road]` table, which happens
+when the table is edited and only the road is rebuilt: run the centreline step again.
+Widths from 7 to 22 m and width changes rolled in over 15 m are driven cleanly by the autopilot
+in both handling modes; the recipe accepts 6 to 30 m.
+
+**Width tags** (`lib/osm.py`, `lib/centreline.py`). Where the loop's OSM ways carry a `width`
+tag (Zandvoort on all of them, single ways at Gilles Villeneuve and the Hungaroring), the
+centreline step records them as stretches of the lap in `build_info.json` (`osm.width_tags`:
+`s` range, `width`, `ways`) and warns when the road the recipe builds is more than 1.5 m off
+all along a stretch. They are never applied: a mapper's figure may be kerb to kerb or wall to
+wall, and one number covers a whole way.
+
+**Height keys** (`lib/centreline.py`). The DEM profile is smoothed with a 45 m Gaussian, which
+takes out the noise and with it every short steep ramp (Spa's Raidillon comes out at 12.8 %
+against about 17 % in reality), and a surface model adds what is not road (trees, buildings,
+the far bank of a cutting). `[[elevation.key]]` pins the road to a known height at a distance:
+`y` metres above the finish line, or `abs` metres above sea level.
+
+- Keys closer together than `[elevation] key_join_m` (250 m), or joined by hand with
+  `join = true` on the later one, replace the profile between them by a monotone cubic through
+  the keys: two keys declare a ramp, a key on a crest is the highest point, and nothing
+  overshoots. The slope at a key between two others follows from its neighbours (zero at a
+  crest or a dip); at the first and last key of a run it is the slope of the profile outside.
+- A key without a joined neighbour on one side adds its correction to the DEM profile there,
+  fading out over `blend`, so the detail of the DEM survives. A blend never reaches the next
+  key, so every key is met exactly.
+- Keys are applied after `[[elevation.override]]` and the 10 m smoothing that follows the
+  overrides, and nothing smooths the profile after them: a ramp is as steep as it was declared.
+- `y` is relative to the finish line as it ends up. A key next to the line moves the line (and
+  `origin_elevation_m`) with it and the other keys still come out as written; a key at s = 0
+  can only say `y = 0` or an `abs`. Keys with `y` joined across the line need one at s = 0.
+
+`[[elevation.smooth]]` is the lighter tool: on its stretch the DEM is smoothed with its own
+`sigma_m` instead of the lap's, which keeps a real crest or compression that the lap-wide
+smoothing rounds off, without letting the noise of the whole lap back in. What it changes is
+added after the overrides (so their 10 m smoothing does not blur it again) and before the keys.
+
+**Side-by-side roads** (`lib/layout.py`, `cad/track/road.py`, `scripts/track/trackside.gd`).
+OSM draws a road as one line near its middle, good to a few metres. That is not enough where
+two stretches of the lap are the two carriageways of one road: in Baku the Turn 6 to Turn 7
+road and the main straight are drawn 9.5 to 11.7 m apart, which once forced both down to 8 m.
+`[[road.pair]]` names the two stretches (`a`, `b`):
+
+- With `separation`, the centreline step pushes both away from each other, by the same amount,
+  until the centrelines are that far apart (never closer together), before the lap is scaled to
+  its official length. Give each road its real width with `[[road.override]]`; the separation
+  is half of each width plus the median. `[[layout.shift]]` moves a single stretch by a fixed
+  amount instead (a road drawn on the wrong side of a wide street). Either moves the points
+  the elevation is sampled at: with a tile dataset (`terrarium`) the cached tiles still serve
+  them, with an OpenTopoData dataset the centreline step needs the network again (about 25
+  requests) before `--offline` works. A stretch that includes the finish line takes the line,
+  and the origin of the frame, along with it.
+- The road step checks that `gap` metres are left between the two tarmac edges all along (the
+  build stops and says how far apart the centrelines must be), so the two ribbons can never
+  overlap, and ends both verges on the line half way between the edges: one continuous median.
+- The pair goes to `road_profile.json` (`pairs`, with the side each stretch has the other on
+  and the measured gap and separation). The runtime trackside builds one wall on the middle of
+  the median, drawn by stretch `a`, instead of one wall per road.
+
+The wall keeps the cars apart, and the drivers follow the lap with a position hint
+(`TrackData.closest_s(pos, hint)`), so the nearer centreline of the other carriageway does not
+confuse them; without a hint `closest_s` may answer with either stretch there.
+
+**Size report.** `build_track.py <id> --report` builds nothing and prints, from the files of
+the track folder (or of `--out DIR`): one row per turn and per straight with its s range,
+minimum radius, width, bank and gradient ranges and the height at entry, apex and exit; the
+lap's length, elevation range, total climb and steepest gradients with their positions; the
+OSM width tags, pairs, crossovers and the build's warnings. `--report-json` prints the same as
+JSON. Heights are metres above the finish line, gradients and bank per cent.
+
+### How to correct a track's size
+
+1. `build_track.py <id> --report > before.txt`. Put the reference figures beside it: official
+   length and turn count (already enforced), track width (FIA circuit documents, the circuit's
+   own data sheet), elevation range and the gradients that are quoted for it, the heights of
+   its named points. Write the source of every figure into the recipe as a comment, and mark
+   estimates as estimates.
+2. Widths: `[road] base_width` and `grid_width`, then `width_keys` or `[[road.override]]` for
+   the stretches that differ (a wide braking zone, a narrow chicane). Read the
+   `OSM width tag` lines of the report as a hint. If the recipe has
+   `track_json_widths = false`, remove it.
+3. Heights: compare `y in / y apex / y out` and `grade %` with the reference, turn by turn.
+   A hill that is right in height but too soft: `[[elevation.smooth]]` with a small `sigma_m`
+   on it. A height that is wrong: `[[elevation.key]]` at the points you know (foot, crest,
+   apex), two or more keys for a ramp. A spurious step (a bridge, trees): keys either side of
+   it with `join = true`, or `[[elevation.override]] straighten`.
+4. Two stretches side by side that had to be narrowed: `[[road.pair]]` with the real
+   `separation`, and the real widths.
+5. Rebuild all steps offline (`--offline`), `--report > after.txt`, and compare. Then
+   `tools/bin/godot --headless --path . --import`, `tools/lap_check.sh <id>` and
+   `--handling=simulation` (both must say `OK`), and the track's Godot test
+   (`tests/run_tests.sh --filter=track_<id>`), whose bands follow the new figures.
 
 **Crossovers** (`lib/centreline.py`, `cad/track/bridge.py`). A lap that crosses itself in
 plan view (Suzuka) needs no hand-written way list: the bridge way shares no node with the road
@@ -316,11 +441,137 @@ tracks become one scene driven by the track id, the template (or the scene file)
 Until then `scripts/track/road.gd` and `trackside.gd` still load some files from the Red
 Bull Ring folder, so a new track is not playable from this pipeline alone.
 
+## Surroundings
+
+The `surroundings` step (after `terrain`, before `info`) bakes what really stands around the
+circuit: buildings, grandstands, water, woods, fields, car parks, other roads. It reads
+`track.json`, `road_profile.json` and the terrain grids, so it can run on its own:
+
+```sh
+.venv/bin/python tools/track/build_track.py monaco --steps surroundings --plot /tmp/monaco.png
+```
+
+`--plot` also writes `<plot>_surroundings.png`: land cover, footprints coloured by height
+(grandstands outlined in red), trees, water outlines and the centreline, with the far land
+cover beside it. Look at it before anything else. The step needs numpy, scipy and pillow
+(the project venv). Every file it writes is optional for the game, and no other step reads
+them. Offline it takes 5 to 20 s; the first run makes two Overpass requests.
+
+**Data.** Two Overpass API requests per track, reduced to the tags and the geometry the step
+uses and cached as `raw/surroundings_near_<hash>.json` (everything in the near terrain
+rectangle) and `raw/surroundings_far_<hash>.json` (land cover and coastline over the far
+terrain, tall buildings within `far_margin_m`). The query boxes are snapped outward to a
+coarse grid and the file name is a hash of those boxes, so a small change of the track's
+size or bounds still finds its cache. When the boxes do change, the next online run fetches
+new files: delete the old ones. To fetch a track again, delete its two files. `--offline`
+fails on a cache miss when the step is asked for by name; a build of all steps skips it
+with a warning that the scenery files in the folder are the old ones. Requests go one at a time for the
+whole machine (a lock on `~/.cache/fun-racer/overpass.lock`, 2 s apart), with a growing pause
+after HTTP 429 / 504 and a second server as a fallback, so several builds can run side by
+side. The public servers are often busy: a failed download just needs another run.
+
+**What is built**
+
+| Map feature | Becomes |
+|---|---|
+| `building`, `building:part` (ways and multipolygons with courtyards) | extruded footprint with a base 1.5 m under its lowest ground corner. Height: `height`, else `building:levels` (+ `roof:levels`), else the median of the tagged buildings within 150 m (town types), else a default by type. `min_height` / `building:min_level` lift a part off the ground. An outline whose parts cover 70 % of it is replaced by the parts. Four-cornered houses get a gabled roof, `roof:shape=pyramidal/dome` a pointed one, the rest a flat one. `building=roof` is a canopy on posts |
+| `building=grandstand`, `leisure=bleachers`, a name with "tribune" / "grandstand" | stepped seating (0.85 m rows) rising away from the nearest point of the track; `covered=yes` or a `roof:shape` adds a roof |
+| `natural=coastline` | the sea (level = 0 m above sea level), islands as holes |
+| `natural=water`, `landuse=basin/reservoir`, `waterway=riverbank/dock`; `waterway=river/canal/stream` lines | water in the land cover and, except streams, a water body with its own level (the 15th percentile of the ground along its bank); a body on a slope is cut into 150 m squares |
+| `natural=wood`, `landuse=forest` | forest + scattered trees (`leaf_type` picks the species) |
+| `natural=tree`, `natural=tree_row` | single trees |
+| `natural=scrub/heath`, parks, gardens, cemeteries, orchards | their class + bushes / sparse trees |
+| `natural=sand/beach/bare_rock/scree/...`, `landuse=farmland/meadow/grass/...`, golf bunkers and greens | their land-cover class |
+| `landuse=residential/commercial/industrial/retail`, `amenity=parking`, squares, aprons, `highway=*` (width from `width`, `lanes` or the road class), railways | paved (or gravel) areas and strips; tunnels leave no trace |
+| `bridge=*` on a road or path that is not the race track | a deck on a straight grade between its ends, on piers, lifted to 6.5 m above the track where it crosses it |
+| `man_made=tower/mast/chimney/silo/storage_tank/...`, `power=tower`, piers and breakwaters, street lamps within 60 m of the track | simple drums, spires, decks and poles |
+
+Nothing stands on the road. Solids are cut back to the road edge + 1.5 m: a building that
+overlaps the edge loses that strip, one the road runs through becomes a piece on each side.
+Trees keep off the verges of `road_profile.json` (+ 2 m), and off 35 m beyond the road edge
+on the outside of corners where the verge has its full width. Tree density is full within
+120 m of the track and falls to 35 % from 450 m.
+
+Beyond the detail rectangle (the near terrain rectangle, or the centreline box + `margin_m`)
+only buildings of 25 m and more are built, out to `far_margin_m`.
+
+**Outputs** (in `assets/tracks/<id>/`)
+
+| File | Content |
+|---|---|
+| `landcover.png` | 8-bit, one class id per 2.5 m cell over the near terrain rectangle. Row = z, column = x; cell (row j, column i) covers x0 + i * step to x0 + (i + 1) * step. Classes: 0 grass, 1 forest, 2 water, 3 sand, 4 urban paved, 5 farmland, 6 rock, 7 gravel / bare, 8 scrub, 9 beach |
+| `landcover_far.png` | the same per 50 m cell over the far terrain rectangle |
+| `landcover*.png.import` | written once: lossless, no mipmaps, `detect_3d` off, so the ids reach a shader untouched |
+| `scenery.glb` (+ `.import`) | one node `chunk_<i>_<j>` per 400 m square (i = floor((x - chunk_x0) / 400), j likewise for z; the origin is in `scenery.json`), one primitive per material: `building_wall`, `building_roof`, `building_glass`, `stand_seats`, `stand_structure`, `concrete`, `metal`, `emissive_window`, `emissive_light` (only the ones a track uses). Attributes POSITION, NORMAL, TEXCOORD_0, COLOR_0 |
+| `scenery_points.bin` | trees: little-endian float32 records (x, y, z, height, species), sorted by 400 m chunk. Species: 0 broadleaved, 1 needleleaved, 2 palm, 3 bush |
+| `scenery.json` | `landcover.near` / `.far` (file, x0, z0, step, nx, nz), `mesh` (chunk size and origin, triangles per material), `trees` (record layout, counts, `chunks` = [i, j, first record, count]), `water` ([{level, kind, polygon [[x, z], ...], triangles}]; holes are bridged into the polygon and `triangles` indexes it), `roofs`, `counts`, `default_heights`, `attribution` |
+
+Mesh conventions for the shaders: TEXCOORD_0 is in metres. On walls u runs along the wall
+(restarting at every corner sharper than 30 degrees) and v is the height above the building's
+lowest ground corner, negative in the plinth. On roofs it is the plan position relative to
+the building. On grandstand treads u runs along the row and v is the depth from the front.
+COLOR_0.rgb is the building's tint in linear colour (`building:colour` / `roof:colour` when
+tagged, else a palette entry picked by the object's id); COLOR_0.a is 1 on facades that have
+windows and 0 on blank surfaces (sheds, roofs, gable ends, structure). `emissive_light` is
+used by tunnel ceiling lamps and street lamp heads, `emissive_window` only by hand-added
+screens. Faces are flat shaded and wound counter-clockwise seen from outside.
+
+**Recipe**
+
+```toml
+[surroundings]
+# margin_m = 450          # detail rectangle = centreline box + this (default: the near terrain)
+# far_margin_m = 3000     # how far out buildings of 25 m and more are kept
+# default_levels = 2      # building=yes without any height, and no tagged neighbours
+# level_height_m = 3.0
+# tree_density = 120      # trees per hectare of forest beside the track; 0 = none
+# tree_species = "mixed"  # untagged woods: mixed, broadleaved, needleleaved or palm
+
+[[surroundings.building]]   # fix one building; the id is in scenery.json default_heights
+osm = 432751363             # a way or relation id, or "way/432751363"
+height = 44.0               # and / or levels = 12, type = "hotel", remove = true
+
+[[surroundings.exclude]]    # drop any map feature: by id ...
+osm = "way/507048725"
+[[surroundings.exclude]]    # ... or everything whose centre is in a polygon
+polygon = [[43.7352, 7.4210], [43.7352, 7.4213], [43.7356, 7.4213]]
+
+[[surroundings.add]]        # something the map lacks: footprint in lat / lon
+polygon = [[43.7352, 7.4210], [43.7352, 7.4213], [43.7356, 7.4213], [43.7356, 7.4210]]
+kind = "grandstand"         # solids: building, glass, grandstand, concrete, metal, screen
+height = 9.0                # (emissive_window), light (emissive_light); ground: grass, forest,
+# min_height = 7.0          # water, sand, paved, farmland, rock, gravel, scrub, beach
+
+[[surroundings.roof]]       # a tunnel or overpass over the road
+s = [1560.0, 1900.0]        # metres from the finish line; may wrap past the line
+clear_height = 6.0          # ceiling above the road centre (default 5.5)
+kind = "tunnel"             # tunnel, gallery_left / gallery_right (that side open, on
+                            # columns), overpass (a deck on four columns)
+```
+
+`scenery.json` lists every building whose height was guessed (`default_heights`: OSM id,
+type, height, where the guess came from, distance to the track, sorted by that distance):
+fix the ones near the road with `[[surroundings.building]]`. A solid that starts 4.5 m or
+more above the ground (`min_height`) is not cut by the road, so a `[[surroundings.add]]`
+with `min_height` puts a building over it. A roof shell stands 2 m beyond the road edge
+with walls and slab 0.8 m thick and ceiling lamps every 8 m; a building the roofed road runs
+through keeps its upper floors above the shell. Unknown keys fail, like everywhere else in
+the recipe.
+
+**Known gaps.** Roofs other than flat, gabled (four corners) and pointed; retaining walls,
+fences and hedges; water levels are one height per body, taken from the terrain model, and
+the terrain itself is not lowered under water; bridges are straight grades, without the
+real profile of a viaduct; a grandstand follows one axis of its footprint, so a curved
+stand steps along its chord; temporary grandstands and anything else missing from
+OpenStreetMap need `[[surroundings.add]]`. Map data: (c) OpenStreetMap contributors, ODbL
+1.0, via the Overpass API (the attribution is in `scenery.json`).
+
 ## Files
 
 ```
 tools/track/build_track.py      the command
-tools/track/lib/                recipe, osm, centreline, turns, terrain, info, plot, compare, net, geom
+tools/track/lib/                recipe, osm, centreline, layout, turns, terrain, info, report, plot,
+                                compare, net, geom
 tools/track/tracks/<id>.toml    recipes
 tools/track/tests/              offline tests
 tools/track/fetch_*.py          old entry points, now thin wrappers

@@ -177,6 +177,10 @@ s = 3024.5
 # grid. Estimates; OSM has no widths here.
 base_width = 10.0
 grid_width = 12.0
+# track.json keeps one nominal width (the 10 m base) as it did before recipes that set a width
+# got the built widths by default. Remove this line when the widths are corrected, so that the
+# drivers see the 12 m grid and the widened hairpin.
+track_json_widths = false
 # The lap is cut into a hillside: Beau Rivage runs 30 m above the harbour front, and the legs
 # of Mirabeau, the hairpin and Portier are 5 to 8 m above each other, 25 m apart.
 retaining_walls = true

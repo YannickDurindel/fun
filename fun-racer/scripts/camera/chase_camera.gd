@@ -26,9 +26,18 @@ extends Camera3D
 ## off, the camera tracks the raw physics transform so the car stays steady.
 ## All filters are frame-rate independent (closed-form springs / exp decay).
 ##
-## Dev flag: --camera=N picks the starting mode (1..3).
+## Dev flags: --camera=N picks the starting mode (1..3).
+## Screenshot cameras (parsed by Bootstrap), which replace the rig while set:
+##   --cam-pos=x,y,z [--cam-look=x,y,z]  a fixed camera at a world position, looking at a
+##                                       point (default: at the car)
+##   --overview                          high above the circuit centre, looking down at
+##                                       OVERVIEW_PITCH_DEG and framing the whole lap; the fog
+##                                       is pushed back so the ground is visible from there
 
 enum Mode { CHASE_LOW = 1, CHASE_HIGH = 2, COCKPIT = 3 }
+
+const OVERVIEW_PITCH_DEG: float = 55.0
+const OVERVIEW_FOV: float = 50.0
 
 ## Car (or any Node3D) to follow. main.tscn sets this; keep the name.
 @export var target_path: NodePath
@@ -131,6 +140,10 @@ var _boom_to: Vector3
 var _boom_valid: bool = false
 var _boom_limit: float = INF     ## max boom length allowed by the last obstruction probe
 var _boom_len: float = INF       ## smoothed boom length actually used
+# --overview pose (see _setup_overview).
+var _fixed: bool = false
+var _fixed_pos: Vector3
+var _fixed_look: Vector3
 
 func _init() -> void:
 	# Exported values are not applied yet in _init, so this reads the script default;
@@ -151,6 +164,39 @@ func _ready() -> void:
 			if n >= 1 and n <= 3:
 				mode = n as Mode
 	set_target(get_node_or_null(target_path) as Node3D)
+	if Bootstrap.overview:
+		_setup_overview()
+
+## --overview: frames the whole lap from above (the camera stays there, see _process).
+func _setup_overview() -> void:
+	var track := get_tree().get_first_node_in_group(&"track") as Track
+	if track == null or track.data == null or track.data.points.is_empty():
+		return
+	var lo := track.data.points[0]
+	var hi := lo
+	for p in track.data.points:
+		lo = lo.min(p)
+		hi = hi.max(p)
+	var centre := (lo + hi) * 0.5
+	var radius := 0.0
+	for p in track.data.points:
+		radius = maxf(radius, Vector2(p.x - centre.x, p.z - centre.z).length())
+	# Far enough that the lap's circle fits the view height when seen at this pitch.
+	var pitch := deg_to_rad(OVERVIEW_PITCH_DEG)
+	var dist := maxf(radius, 50.0) * sin(pitch) / tan(deg_to_rad(OVERVIEW_FOV) * 0.5) * 1.12
+	_fixed_pos = centre + Vector3(0.0, sin(pitch), cos(pitch)) * dist
+	_fixed_look = centre
+	_fixed = true
+	fov = OVERVIEW_FOV
+	near = 1.0
+	far = maxf(far, dist * 4.0)
+	track.environment.push_fog_back(dist, track.find_sky())
+	if track.scenery != null:
+		track.scenery.set_tree_range_bonus(dist)
+	var terrain := track.get_node_or_null(^"Terrain") as Terrain
+	if terrain != null and terrain.material != null:
+		terrain.material.set_shader_parameter("max_view", far * 0.95)
+	global_transform = Transform3D(Basis.looking_at(_fixed_look - _fixed_pos, Vector3.UP), _fixed_pos)
 
 func set_target(t: Node3D) -> void:
 	if is_instance_valid(_target) and _target.has_signal("respawned") and _target.is_connected("respawned", _on_target_respawned):
@@ -202,10 +248,31 @@ func _process(delta: float) -> void:
 		set_mode(Mode.COCKPIT)
 	elif Bootstrap.take_button(&"camera"):
 		set_mode(int(mode) % 3 + 1)   # the phone's CAM button cycles the three views
+	if _fixed or Bootstrap.free_cam:
+		_update_fixed()
+		return
 	if not is_instance_valid(_target):
 		return
 	_update(delta)
 	_ground_dirty = true
+
+## The screenshot cameras: --overview, or --cam-pos looking at --cam-look / the car.
+func _update_fixed() -> void:
+	var pos := _fixed_pos
+	var look := _fixed_look
+	if not _fixed:
+		pos = Bootstrap.cam_pos
+		look = Bootstrap.cam_look
+		if not Bootstrap.cam_has_look:
+			if not is_instance_valid(_target):
+				return
+			look = _target_transform().origin
+		fov = fov_rest
+	var dir := look - pos
+	if dir.length_squared() < 1e-6:
+		return
+	var up := Vector3.UP if absf(dir.normalized().y) < 0.999 else Vector3.FORWARD
+	global_transform = Transform3D(Basis.looking_at(dir, up), pos)
 
 ## Car transform at render time (what the car mesh is drawn at this frame).
 func _target_transform() -> Transform3D:

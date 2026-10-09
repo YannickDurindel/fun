@@ -169,6 +169,10 @@ width_keys = [
   [4060.0, 14.0, ""],
   [4160.0, 15.0, "start/finish straight"],
 ]
+# track.json keeps the nominal 13 m it had before recipes that set a width got the built
+# widths by default. Remove this line when the widths are corrected, so that the drivers use
+# the full road.
+track_json_widths = false
 
 [terrain]
 # Same as the automatic bounds (centreline box + 450 m, snapped to 200 m); written out so a

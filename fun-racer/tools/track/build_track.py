@@ -3,14 +3,17 @@
 
     .venv/bin/python tools/track/build_track.py <id> [--recipe tools/track/tracks/<id>.toml]
         [--osm-relation N] [--name "..."] [--length M] [--turns N] [--direction clockwise]
-        [--offline] [--out DIR] [--cache DIR] [--steps centreline,road,terrain,info]
+        [--offline] [--out DIR] [--cache DIR] [--steps centreline,road,terrain,surroundings,info]
         [--plot [FILE]] [--compare DIR]
+    .venv/bin/python tools/track/build_track.py <id> --report | --report-json [--out DIR]
 
 Steps (each reads the files of the ones before it from the output folder):
     centreline  OSM loop + DEM elevation -> track.json, build_info.json
     road        cad/track/road.py        -> road_mesh.glb, road_profile.json, textures,
                                             materials, trackside_profiles.json
     terrain     DEM grids                -> terrain.json, terrain_*.bin
+    surroundings  OSM map features        -> landcover*.png, scenery.glb, scenery_points.bin,
+                                            scenery.json (optional for the game; needs numpy)
     info        track_info.json and, for a new track, scenes/tracks/<id>.tscn
 
 Output goes to assets/tracks/<id>/ unless --out is given; downloads are cached in
@@ -28,7 +31,7 @@ sys.path.insert(0, HERE)
 from lib import centreline, info as info_mod, net, recipe as recipe_mod, terrain  # noqa: E402
 from lib.net import BuildError  # noqa: E402
 
-STEPS = ("centreline", "road", "terrain", "info")
+STEPS = ("centreline", "road", "terrain", "surroundings", "info")
 
 
 def _parse_args(argv):
@@ -49,15 +52,27 @@ def _parse_args(argv):
                                     "exists, else <out>/raw)")
     ap.add_argument("--steps", default=",".join(STEPS), help="comma-separated subset of: " + ", ".join(STEPS))
     ap.add_argument("--plot", nargs="?", const="", metavar="FILE",
-                    help="write a top-down plot (PNG with matplotlib, else SVG); default <out>/plot.png")
+                    help="write a top-down plot (PNG with matplotlib, else SVG); default <out>/plot.png. "
+                         "With the surroundings step also <plot>_surroundings.png")
     ap.add_argument("--compare", metavar="DIR", help="compare the result with another build of the "
                                                      "track (e.g. the committed assets) and fail on a difference")
+    ap.add_argument("--report", action="store_true",
+                    help="build nothing: print the size report of the built track (per turn and straight: "
+                         "radius, width, bank, gradient, heights; see lib/report.py)")
+    ap.add_argument("--report-json", action="store_true", help="like --report, as JSON")
     return ap.parse_args(argv)
 
 
 def run(argv=None, log=print):
     args = _parse_args(argv)
-    steps = [s.strip() for s in args.steps.split(",") if s.strip()]
+    if args.report or args.report_json:
+        # Reads the built files only: no recipe, no network, nothing written.
+        import json
+        from lib import report
+        rep = report.build(os.path.abspath(args.out) if args.out else os.path.join(ROOT, "assets", "tracks", args.id))
+        log(json.dumps(rep, indent=1, ensure_ascii=False) if args.report_json else report.format_text(rep))
+        return 0
+    steps =[s.strip() for s in args.steps.split(",") if s.strip()]
     bad = [s for s in steps if s not in STEPS]
     if bad:
         raise BuildError(f"unknown step(s) {', '.join(bad)}; choose from {', '.join(STEPS)}")
@@ -101,6 +116,24 @@ def run(argv=None, log=print):
     if "terrain" in steps:
         need("track.json", "centreline")
         timed("terrain", lambda: terrain.build(rec, out_dir, fetcher, log))
+    surround = None
+    if "surroundings" in steps:
+        need("terrain.json", "terrain")
+        need("road_profile.json", "road")
+        try:
+            from lib import surroundings
+        except ImportError as e:
+            raise BuildError(f"the surroundings step needs numpy, scipy and pillow ({e}): run it "
+                             "with the project venv") from e
+        # An offline run of every step still builds the track when the map features were
+        # never fetched; asking for the step by name fails on the cache miss like any other.
+        if args.offline and args.steps == ",".join(STEPS) and not surroundings.have_cache(rec, out_dir, fetcher):
+            log("surroundings: skipped, the map features are not in the cache (run the step once online)")
+            if os.path.exists(os.path.join(out_dir, "scenery.json")):
+                log("WARNING: the scenery and land cover files in the output folder are from an earlier "
+                    "build and may no longer match the road and the terrain")
+        else:
+            surround = timed("surroundings", lambda: surroundings.build(rec, out_dir, fetcher, log))
     if "info" in steps:
         need("track.json", "centreline")
         scene_dir = os.path.join(ROOT, "scenes", "tracks") if in_repo else out_dir
@@ -111,6 +144,12 @@ def run(argv=None, log=print):
         from lib import plot
         path = plot.render(out_dir, args.plot or os.path.join(out_dir, "plot.png"))
         log(f"plot: {path}")
+        if surround is not None:
+            base, ext = os.path.splitext(path)
+            try:
+                log(f"plot: {surroundings.plot(surround, base + '_surroundings.png')}")
+            except ImportError:
+                log("plot: the surroundings picture needs matplotlib, skipped")
     for w in binfo.get("warnings", []):
         log(f"WARNING: {w}")
     log(f"done in {time.time() - t0:.1f} s ({fetcher.requests} network requests): "

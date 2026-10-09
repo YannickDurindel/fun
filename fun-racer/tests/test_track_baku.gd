@@ -111,10 +111,15 @@ func test_widths() -> void:
 		narrowest = minf(narrowest, w)
 	assert_between(narrowest, 7.5, 7.7, "narrowest point of the lap (m)")
 
-## The two carriageways of Neftchilar Avenue: side by side, never overlapping, level with each
-## other, so that one wall fits between them.
+## The two carriageways of Neftchilar Avenue (the recipe's [[road.pair]]): side by side at their
+## own widths, never overlapping, level with each other, with a median for one wall between.
+## Before the pair existed the OSM centrelines (9.5 to 11.7 m apart) forced both roads down to
+## 8 m; now the recipe moves them 14 m apart: 11 m for Turn 6 to Turn 7 (3 lanes), 12 m for the
+## main straight (4 lanes) and 2.5 m of median. Estimates, see tools/track/tracks/baku.toml.
 func test_the_two_carriageways_do_not_overlap() -> void:
 	var d := TrackData.load_track(PATH)
+	assert_between(d.width_at(2350.0), 10.9, 11.1, "width of the Turn 6 to Turn 7 road (m)")
+	assert_between(d.width_at(4900.0), 11.9, 12.1, "width of the main straight beside it (m)")
 	var s: float = OUTBOUND[0]
 	var closest := INF
 	while s <= float(OUTBOUND[1]):
@@ -131,11 +136,52 @@ func test_the_two_carriageways_do_not_overlap() -> void:
 			t += 2.0
 		var gap := best - 0.5 * (d.width_at(s) + d.width_at(best_t))
 		closest = minf(closest, best)
-		assert_true(gap > 1.2, "the roads are %.2f m apart at s=%.0f / s=%.0f" % [gap, s, best_t])
+		assert_true(gap > 2.3, "the roads are %.2f m apart at s=%.0f / s=%.0f" % [gap, s, best_t])
 		assert_true(absf(p.y - d.position_at(best_t).y) < 0.4, "step of %.2f m between the carriageways at s=%.0f" % [
 				p.y - d.position_at(best_t).y, s])
 		s += 10.0
-	assert_between(closest, 8.5, 12.0, "closest approach of the two centrelines (m)")
+	assert_between(closest, 13.8, 14.3, "closest approach of the two centrelines (m)")
+
+## One wall stands between the carriageways, on the middle of the median, not one per road:
+## looking left from either road the first barrier is the same wall, and the only one before
+## the other road's tarmac.
+func test_one_wall_between_the_carriageways() -> void:
+	var scene := _race()
+	var track := scene.get_node("Track") as Track
+	var ts := track.get_node("Trackside") as Trackside
+	var road := track.get_node("Road") as RoadSurface
+	await _built(ts)
+	var d := track.data
+	assert_true(road.pairs.size() == 1, "road_profile.json declares the pair (%d)" % road.pairs.size())
+	var space := scene.get_viewport().world_3d.direct_space_state
+	for s: float in [2230.0, 2350.0, 2480.0]:
+		var xf := ts.frame_at(s)
+		var from := xf.origin + Vector3.UP * 0.5
+		var left := -xf.basis.x
+		# The main straight, straight across: it runs the other way, s = 2350 beside s = 4905.
+		var other := d.closest_s(from + left * 14.0, 7255.0 - s)
+		var q := PhysicsRayQueryParameters3D.create(from, from + left * 30.0)
+		q.collision_mask = Trackside.LAYER_BARRIER
+		var hit := space.intersect_ray(q)
+		assert_true(not hit.is_empty(), "no wall between the carriageways at s=%.0f" % s)
+		if hit.is_empty():
+			continue
+		var dist := from.distance_to(hit["position"])
+		var mid := road.half_width_at(s) + 0.5 * (14.0 - road.half_width_at(s) - road.half_width_at(other))
+		assert_between(dist, mid - 0.6, mid + 0.6, "wall on the middle of the median at s=%.0f (m from the centre)" % s)
+		# From the other road, looking back: the same wall, seen from behind.
+		var back_from := d.position_at(other) + Vector3.UP * 0.5
+		var q2 := PhysicsRayQueryParameters3D.create(back_from, from)
+		q2.collision_mask = Trackside.LAYER_BARRIER
+		var hit2 := space.intersect_ray(q2)
+		assert_true(not hit2.is_empty(), "no wall seen from the main straight at s=%.0f" % other)
+		if not hit2.is_empty():
+			var thick := (hit2["position"] as Vector3).distance_to(hit["position"])
+			assert_true(thick < 0.8, "two walls %.2f m apart between the carriageways at s=%.0f" % [thick, s])
+		# Both barrier lines are that wall.
+		assert_true(absf(ts.barrier_offset(s, -1.0) + ts.barrier_offset(other, -1.0) + 0.58
+				- from.distance_to(back_from)) < 0.5, "the two barrier lines are one wall at s=%.0f" % s)
+	scene.queue_free()
 
 func test_sampling_round_trip() -> void:
 	var d := TrackData.load_track(PATH)
@@ -189,12 +235,13 @@ func test_walls_stand_close_to_the_road() -> void:
 			widest = maxf(widest, gap)
 			tightest = minf(tightest, gap)
 			assert_true(gap <= 4.0, "wall %.2f m from the road edge at s=%.0f (side %d)" % [gap, s, side])
-			assert_true(gap >= 0.2, "wall %.2f m from the road edge at s=%.0f (side %d)" % [gap, s, side])
+			assert_true(gap >= 0.7, "wall %.2f m from the road edge at s=%.0f (side %d)" % [gap, s, side])
 			var between := side < 0.0 and (road.s_in_range(s, [2150.0, 2550.0]) or road.s_in_range(s, MAIN_BESIDE_IT))
 			if not between:
 				assert_true(gap >= 1.9, "wall %.2f m from the road edge at s=%.0f (side %d)" % [gap, s, side])
 	assert_between(widest, 2.4, 4.0, "widest gap between road edge and wall (m)")
-	assert_between(tightest, 0.2, 1.0, "tightest gap, between the carriageways (m)")
+	# The shared wall is 0.58 m thick and stands on the middle of a median of 2.5 m or more.
+	assert_between(tightest, 0.7, 1.5, "tightest gap, between the carriageways (m)")
 	# A wall really is there: beside the grid, in the castle section, behind the old city, and
 	# between the carriageways (to the left of both).
 	var space := scene.get_viewport().world_3d.direct_space_state

@@ -121,14 +121,15 @@ func test_terrain_conforms_to_track_corridor() -> void:
 func test_race_scene_ground_beside_road() -> void:
 	# Full race scene (CAD road + verges + trackside + terrain): beside the real road edge there
 	# is always ground at the road/verge height (RoadSurface.surface_point), allowing for
-	# overlapping cross-sections on the inside of hairpins. Barriers are skipped.
+	# overlapping cross-sections on the inside of hairpins. Barriers are skipped, and so are
+	# the buildings and grandstands that really stand within the verge (pit building).
 	var scene := spawn("res://scenes/race_red_bull_ring.tscn")
 	await physics_frames(3)
 	var track := scene.get_node("Track") as Track
 	var d: TrackData = track.data
 	var road := track.get_node("Road")
 	var not_barrier := func(c: Object) -> bool:
-		return c != null and not (c.get_meta("barrier", false) or (c is Node and (c as Node).is_in_group(&"trackside_barrier")))
+		return c != null and not (c.get_meta("barrier", false) or (c is Node and ((c as Node).is_in_group(&"trackside_barrier") or (c as Node).is_in_group(&"scenery_body"))))
 	var bad := _probe_road(road, d, [3.0, 10.0, 20.0, 28.0],
 			func(_s: float, _lat: float, expect: Vector3, _covered: bool) -> String:
 		var hit: Variant = _ray_filtered(expect.x, expect.z, expect.y + 20.0, not_barrier)

@@ -73,6 +73,17 @@ class Loop:
     directed: bool       # True when the driving direction comes from oneway tags / way order
     candidates: list     # the best few cycles, for messages: (cost, length, [way ids])
     warnings: list = field(default_factory=list)
+    node_ways: list = field(default_factory=list)   # OSM way id per node, like ``names``
+
+
+def width_tag(tags):
+    """The ``width`` tag of a way in metres, None when it has none or it cannot be read
+    ("10", "10.5 m", "10,5"; feet and lane counts are not guessed at)."""
+    m = re.fullmatch(r"\s*([0-9]+(?:[.,][0-9]+)?)\s*(m|metres?|meters?)?\s*", str(tags.get("width", "")), re.I)
+    if not m:
+        return None
+    v = float(m.group(1).replace(",", "."))
+    return v if 2.0 <= v <= 60.0 else None
 
 
 def parse(xml_bytes, into=None):
@@ -296,7 +307,7 @@ def _open_ends(edges, proj):
 
 def chain_explicit(ways_by_id, way_ids, proj):
     """Chains ``way_ids`` in the order given (reversing a way when it only fits backwards)."""
-    chain, names = [], []
+    chain, names, node_ways = [], [], []
     for wid in way_ids:
         if wid not in ways_by_id:
             raise BuildError(f"recipe way {wid} was not found in the OSM data")
@@ -315,10 +326,12 @@ def chain_explicit(ways_by_id, way_ids, proj):
                 ids.reverse()
         chain += ids
         names += [w.name] * len(ids)
+        node_ways += [wid] * len(ids)
     if chain[0] != chain[-1]:
         raise BuildError(f"the recipe's way list does not close: it starts at node {chain[0]} "
                          f"and ends at node {chain[-1]}")
-    return Loop(chain[:-1], names[:-1], list(way_ids), proj.length(chain), True, [])
+    return Loop(chain[:-1], names[:-1], list(way_ids), proj.length(chain), True, [],
+                node_ways=node_ways[:-1])
 
 
 def find_loop(data, recipe, log=print):
@@ -397,22 +410,24 @@ def find_loop(data, recipe, log=print):
             "  Drop the ways of the wrong layout with [osm] exclude_ways = [...] (or avoid_names), "
             "or list the loop by hand: [osm] ways = [id, id, ...] in driving order.")
 
-    chain, names = [], []
+    chain, names, node_ways = [], [], []
     for ei, fwd in best:
         e = edges[ei]
         ids = e.nodes if fwd else e.nodes[::-1]
         chain += ids[1:]
         names += [e.name] * (len(ids) - 1)
+        node_ways += [e.way] * (len(ids) - 1)
     # Each junction node was appended by the edge that arrives at it; rotate so the chain
     # starts at the first edge's first node, like a hand-written way list would.
     chain, names = chain[-1:] + chain[:-1], names[-1:] + names[:-1]
+    node_ways = node_ways[-1:] + node_ways[:-1]
     directed = all(edges[ei].oneway != 0 for ei, _ in best)
     if not directed and not recipe.direction:
         warnings.append("the loop's ways carry no oneway tags, so the driving direction is a guess; "
                         "set [layout] direction in the recipe")
     log(f"loop: {len(way_list(best))} ways, {length:.1f} m in OSM vs official {recipe.length_m:.0f} m "
         f"({100 * (length / recipe.length_m - 1):+.2f} %), picked from {len(cycles)} closed loop(s) in {source}")
-    return Loop(chain, names, way_list(best), length, directed, cands, warnings)
+    return Loop(chain, names, way_list(best), length, directed, cands, warnings, node_ways)
 
 
 def round_corners(data, loop, rounds, log=print):
@@ -501,6 +516,9 @@ def round_corners(data, loop, rounds, log=print):
             new_ids.append(nid)
         loop.node_ids = new_ids + [chain[(ib + q) % n] for q in range(kept)]
         loop.names = [names[i]] * len(new_ids) + [names[(ib + q) % n] for q in range(kept)]
+        if loop.node_ways:
+            ways = loop.node_ways
+            loop.node_ways = [ways[i]] * len(new_ids) + [ways[(ib + q) % n] for q in range(kept)]
         what = f"node {node}" if i2 == i else f"nodes {chain[i]} to {chain[i2]}"
         log(f"round: {what} +/- {reach:g} m: {n - kept} loop nodes replaced by {len(new_ids)}")
     return loop
