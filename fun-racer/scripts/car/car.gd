@@ -136,6 +136,13 @@ const KMH: float = 3.6
 ## A drift needs a clear request: brake AND strong steer held together for drift_entry_time.
 ## (Raised from 0.5 / 0.1 / instant so trail braking into a corner stays glued.)
 @export var drift_steer_threshold: float = 0.6
+## Analog steering (phone, stick) held beyond this for overdrive_entry_time breaks the rear
+## loose without the brake, above overdrive_min_speed_kmh. Keys never do: they are always at 1.
+@export var overdrive_steer_threshold: float = 0.97
+@export var overdrive_entry_time: float = 0.45
+@export var overdrive_min_speed_kmh: float = 60.0
+@export var overdrive_hold_steer: float = 0.8
+@export var overdrive_slide_scale: float = 0.45  ## slide angle of a steering-only slide, x the brake drift's   ## the slide lasts while steering stays above this
 @export var drift_brake_threshold: float = 0.3
 ## A drift only lasts while the brake is held: it ends this long after the brake is released
 ## (0 = keep sliding for as long as steer is held, the old behaviour).
@@ -213,6 +220,13 @@ var drift_time: float = 0.0
 # ---------------------------------------------------------------- internals
 var _raw_steer: float = 0.0
 var _steer_digital: bool = false
+## True when a person steers with an analog device (phone tilt, gamepad stick): the last part
+## of the travel then asks for more than the grip, so the car can be made to slide.
+var _steer_overdrive: bool = false
+## Tests: treat the input override as a person on an analog device (steering overdrive on).
+var override_as_player: bool = false
+var _overdrive_time: float = 0.0
+var _drift_by_steer: bool = false
 var _drift_no_brake_time: float = 0.0
 var _override: bool = false
 var _ov_throttle: float = 0.0
@@ -329,11 +343,13 @@ func _physics_process(_delta: float) -> void:
 		brake_input = _ov_brake
 		_raw_steer = _ov_steer
 		_steer_digital = false
+		_steer_overdrive = override_as_player
 	else:
 		throttle = clampf(Bootstrap.get_throttle(), 0.0, 1.0)
 		brake_input = clampf(Bootstrap.get_brake(), 0.0, 1.0)
 		_raw_steer = clampf(Bootstrap.get_steer(), -1.0, 1.0)
 		_steer_digital = Bootstrap.is_steer_digital()
+		_steer_overdrive = not _steer_digital and not Bootstrap.autodrive
 		if Input.is_action_just_pressed("respawn"):
 			respawn()
 		if sim != null:
@@ -577,6 +593,8 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			var s_in := clampf(-steer * _drift_dir, -1.0, 1.0)
 			var target_deg := clampf(drift_base_angle_deg + s_in * drift_steer_angle_deg,
 					drift_min_angle_deg, drift_base_angle_deg + drift_steer_angle_deg)
+			if _drift_by_steer:
+				target_deg *= overdrive_slide_scale   # a slide from the steering alone is a mild one
 			var target := _drift_dir * deg_to_rad(target_deg)
 			var yaw_target := path_rate + (target - slip_angle) / drift_angle_time
 			var step := (yaw_target - yaw) * (1.0 - exp(-dt / drift_yaw_time))
@@ -662,6 +680,14 @@ func _update_steer_smoothing(dt: float) -> void:
 func _update_drift_state(dt: float, planar_kmh: float, kin_slip: float) -> void:
 	if not is_drifting:
 		_grip_blend = minf(1.0, _grip_blend + dt * (1.0 - drift_recover_grip) / maxf(drift_recover_time, 0.001))
+		if _steer_overdrive and absf(steer) > overdrive_steer_threshold and planar_kmh > overdrive_min_speed_kmh and forward_speed > 0.0:
+			_overdrive_time += dt
+			if _overdrive_time >= overdrive_entry_time:
+				_drift_by_steer = true
+				_enter_drift(-signf(steer))
+				return
+		else:
+			_overdrive_time = 0.0
 		if planar_kmh < drift_min_speed_kmh or forward_speed < 0.0:
 			_drift_request_time = 0.0
 			return
@@ -683,10 +709,17 @@ func _update_drift_state(dt: float, planar_kmh: float, kin_slip: float) -> void:
 		_drift_no_brake_time += dt
 		if drift_brake_release_time > 0.0 and _drift_no_brake_time > drift_brake_release_time:
 			steering = false
+	var min_kmh := drift_min_speed_kmh
+	if _drift_by_steer:
+		# A slide started with the steering alone lasts as long as the steering is held.
+		steering = _steer_overdrive and absf(steer) > overdrive_hold_steer
+		min_kmh = overdrive_min_speed_kmh
 	var aligned := absf(slip_angle) < deg_to_rad(drift_exit_angle_deg) and drift_time > drift_min_time
 	var reversed := signf(slip_angle) == -_drift_dir and absf(slip_angle) > deg_to_rad(drift_exit_angle_deg)
-	if not steering or aligned or reversed or planar_kmh < drift_min_speed_kmh * 0.5:
+	if not steering or aligned or reversed or planar_kmh < min_kmh * 0.5:
 		is_drifting = false
+		_drift_by_steer = false
+		_overdrive_time = 0.0
 		_drift_dir = 0.0
 		drift_time = 0.0
 		_grip_blend = drift_recover_grip

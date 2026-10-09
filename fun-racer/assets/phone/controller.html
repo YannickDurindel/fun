@@ -39,6 +39,9 @@ button.down { background: var(--accent); border-color: var(--accent); }
 	justify-content: center; font-size: calc(var(--u) * 11); font-weight: 700; }
 #digits div.next { border-color: var(--accent); }
 #pairmsg { min-height: 2.6em; color: var(--amber); }
+#secure { display: block; padding: calc(var(--u) * 2.5); border-radius: calc(var(--u) * 2); background: var(--accent);
+	color: #fff; font-weight: 700; text-decoration: none; touch-action: manipulation; }
+#secure small { display: block; font-weight: 400; font-size: calc(var(--u) * 3.3); margin-top: 0.3em; }
 #keys { flex: 0 0 44%; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(4, 1fr);
 	gap: calc(var(--u) * 2); }
 #keys button { font-size: calc(var(--u) * 9); font-weight: 600; }
@@ -66,7 +69,7 @@ button.down { background: var(--accent); border-color: var(--accent); }
 #steer .label { top: 12%; }
 #mid { grid-area: mid; display: flex; flex-direction: column; gap: calc(var(--u) * 1.5); min-width: 0; }
 #top { display: flex; gap: calc(var(--u) * 1.5); }
-#top button { flex: 1 1 0; height: calc(var(--u) * 10.5); font-size: calc(var(--u) * 3.6); color: var(--dim); letter-spacing: 0.04em; }
+#top button { flex: 1 1 0; height: calc(var(--u) * 10.5); font-size: calc(var(--u) * 3.0); color: var(--dim); letter-spacing: 0.04em; }
 #conn { display: flex; align-items: center; justify-content: center; gap: 0.5em; font-size: calc(var(--u) * 3.8); color: var(--dim); }
 #dot { width: 0.8em; height: 0.8em; border-radius: 50%; background: var(--amber); }
 #dot.on { background: var(--green); } #dot.off { background: var(--red); }
@@ -96,17 +99,20 @@ button.down { background: var(--accent); border-color: var(--accent); }
 			<p>Enter the 4-digit code shown on the PC in Options &rarr; Controls.</p>
 			<div id="digits"><div></div><div></div><div></div><div></div></div>
 			<div id="pairmsg"></div>
+			<a id="secure" class="hidden">TILT STEERING: open the secure page &rarr;<small>Chrome warns once about the certificate: tap Advanced, then Proceed.</small></a>
 		</div>
 		<div id="keys"></div>
 	</section>
 	<section id="pad" class="hidden">
 		<div id="steer" class="zone"><div class="rail"></div><div class="mark"></div><div class="knob"></div>
 			<div class="label">STEER<small>slide left / right</small></div></div>
-		<div id="brake" class="zone"><div class="fill"></div><div class="label">BRAKE<small>0 %</small></div></div>
+		<div id="brake" class="zone"><div class="fill"></div><div class="label">BRAKE<small></small></div></div>
 		<div id="mid">
 			<div id="top">
 				<button id="bcentre">CENTRE</button>
 				<button id="bmode">TILT</button>
+				<button id="bauto">AUTO GAS</button>
+				<button id="bcam" data-bit="32">CAM</button>
 				<button id="brespawn" data-bit="8">RESPAWN</button>
 				<button id="bpause" data-bit="16">PAUSE</button>
 			</div>
@@ -120,7 +126,7 @@ button.down { background: var(--accent); border-color: var(--accent); }
 				<button id="bup" data-bit="1">+<small>SHIFT</small></button>
 			</div>
 		</div>
-		<div id="gas" class="zone"><div class="fill"></div><div class="label">GAS<small>0 %</small></div></div>
+		<div id="gas" class="zone"><div class="fill"></div><div class="label">GAS<small></small></div></div>
 		<div id="veil" class="hidden">RECONNECTING&hellip;</div>
 	</section>
 </div>
@@ -132,6 +138,9 @@ button.down { background: var(--accent); border-color: var(--accent); }
 	var HTTP_PORT = Number("__HTTP_PORT__") || 0;
 	var SEND_MS = 16, PING_MS = 1000, SILENCE_MS = 2000, RETRY_MS = 1000, TILT_WAIT_MS = 1500;
 	var RAD = Math.PI / 180;
+	// Pedals are plain buttons (pressed = full, the car's traction control and ABS do the rest).
+	// Add ?pedals=analog to the address for pedals that follow the thumb's height.
+	var ANALOG_PEDALS = /[?&]pedals=analog/.test(location.search);
 	var $ = function (id) { return document.getElementById(id); };
 	var app = $("app"), pad = $("pad"), pairEl = $("pair");
 
@@ -175,6 +184,12 @@ button.down { background: var(--accent); border-color: var(--accent); }
 		return { x: x, y: y, w: el.offsetWidth, h: el.offsetHeight };
 	}
 
+	// Browsers give the tilt sensors only to a secure page: offer it before pairing.
+	if (!window.isSecureContext && HTTPS_PORT > 0) {
+		$("secure").href = "https://" + location.hostname + ":" + HTTPS_PORT + "/" + location.search;
+		$("secure").classList.remove("hidden");
+	}
+
 	// ------------------------------------------------------------------ inputs
 	var val = { gas: 0, brake: 0, steer: 0 };   // touch zones
 	var held = 0, latch = 0;                     // button bits: down now / pressed since last send
@@ -184,13 +199,14 @@ button.down { background: var(--accent); border-color: var(--accent); }
 	function zoneValue(name, e) {
 		var p = toApp(e), r = rectOf($(name));
 		if (name === "steer") return clamp(((p.u - r.x) / r.w - 0.5) / 0.4, -1, 1);
+		if (!ANALOG_PEDALS) return 1;                                // a button: touching it anywhere is full pedal
 		return clamp((1 - (p.v - r.y) / r.h - 0.08) / 0.8, 0, 1);   // 0 at the bottom, 1 at the top
 	}
 	function drawZones() {
 		["gas", "brake"].forEach(function (name) {
 			var el = $(name);
 			el.querySelector(".fill").style.transform = "scaleY(" + val[name].toFixed(3) + ")";
-			el.querySelector("small").textContent = Math.round(val[name] * 100) + " %";
+			el.querySelector("small").textContent = ANALOG_PEDALS ? Math.round(val[name] * 100) + " %" : "";
 		});
 		$("steer").querySelector(".knob").style.transform = "translateX(" + (val.steer * rectOf($("steer")).w * 0.4).toFixed(1) + "px)";
 	}
@@ -224,6 +240,7 @@ button.down { background: var(--accent); border-color: var(--accent); }
 		held = latch = 0;
 		Array.prototype.forEach.call(document.querySelectorAll("button.down"), function (b) { b.classList.remove("down"); });
 		drawZones();
+		drawAuto();
 	}
 
 	Array.prototype.forEach.call(document.querySelectorAll("button[data-bit]"), function (b) {
@@ -240,18 +257,53 @@ button.down { background: var(--accent); border-color: var(--accent); }
 		});
 	});
 
+	// ------------------------------------------------------------------ auto gas
+	// Like Real Racing 3: the car accelerates by itself, you steer and brake. Braking lifts the
+	// throttle. Remembered on this phone.
+	var autoGas = false;
+	try { autoGas = localStorage.getItem("autoGas") === "1"; } catch (e) { /* storage blocked */ }
+	function drawAuto() {
+		$("bauto").classList.toggle("down", autoGas);
+		$("gas").querySelector(".label").firstChild.nodeValue = autoGas ? "AUTO" : "GAS";
+	}
+	$("bauto").addEventListener("click", function () {
+		autoGas = !autoGas;
+		try { localStorage.setItem("autoGas", autoGas ? "1" : "0"); } catch (e) { /* storage blocked */ }
+		drawAuto();
+		vibrate(20);
+	});
+	drawAuto();
+
 	// ------------------------------------------------------------------ tilt steering
 	// Gravity gives the direction of "up" in the phone's own axes; its angle inside the screen
 	// plane is how far the phone is turned like a steering wheel. That works in both landscape
 	// orientations and with the browser locked in portrait, and has no gimbal trouble when the
 	// screen is upright.
-	var tiltDeg = 40, zero = null, trim = 0, lastRoll = 0;
+	var tiltDeg = 30, zero = null, trim = 0, lastRoll = 0;
 	var tiltListening = false, tiltSeen = false, tiltTimer = 0;
 
+	var oriEvents = 0, oriValid = 0, motEvents = 0, motValid = 0;   // shown when tilt does not start
+	var mx = 0, my = 0, motionSign = /iPhone|iPad|iPod/.test(navigator.userAgent) ? -1 : 1;
 	function onOrientation(e) {
+		oriEvents++;
 		if (e.beta === null || e.gamma === null || e.beta === undefined) return;
+		oriValid++;
 		var b = e.beta * RAD, g = e.gamma * RAD;
-		var ux = -Math.cos(b) * Math.sin(g), uy = Math.sin(b);
+		applyUp(-Math.cos(b) * Math.sin(g), Math.sin(b));
+	}
+	// Phones with only an accelerometer (no gyroscope or compass) send no usable orientation:
+	// gravity from the motion sensor gives the same "up" direction.
+	function onMotion(e) {
+		motEvents++;
+		var a = e.accelerationIncludingGravity;
+		if (!a || a.x === null || a.y === null || a.x === undefined) return;
+		motValid++;
+		if (oriValid > 0) return;            // the orientation sensor is better: smoother
+		mx += (motionSign * a.x / 9.81 - mx) * 0.2;
+		my += (motionSign * a.y / 9.81 - my) * 0.2;
+		applyUp(mx, my);
+	}
+	function applyUp(ux, uy) {
 		upX = ux;
 		if (!tiltSeen) { tiltSeen = true; tiltReady(); }
 		if (Math.sqrt(ux * ux + uy * uy) < 0.2) return;   // lying almost flat: keep the last value
@@ -266,6 +318,7 @@ button.down { background: var(--accent); border-color: var(--accent); }
 		if (!tiltListening) {
 			tiltListening = true;
 			window.addEventListener("deviceorientation", onOrientation);
+			window.addEventListener("devicemotion", onMotion);
 		}
 		clearTimeout(tiltTimer);
 		if (!tiltSeen) tiltTimer = setTimeout(function () { if (!tiltSeen) tiltUnavailable(""); }, TILT_WAIT_MS);
@@ -305,7 +358,9 @@ button.down { background: var(--accent); border-color: var(--accent); }
 			a.textContent = "Open the secure page for tilt";
 			note.appendChild(a);
 		} else {
-			note.textContent = (why || "No tilt sensor here") + " — steering by touch.";
+			if (!why && navigator.brave) why = "Brave blocks motion sensors (allow them in Site settings, or use Chrome)";
+			note.textContent = (why || "No tilt sensor here") + " — steering by touch. [secure " + (window.isSecureContext ? "yes" : "no") +
+				", orientation " + oriValid + "/" + oriEvents + ", motion " + motValid + "/" + motEvents + "]";
 		}
 		setTouchMode(true);
 	}
@@ -450,7 +505,7 @@ button.down { background: var(--accent); border-color: var(--accent); }
 		if (ws.bufferedAmount > 4096) return;   // the network is stalled: do not queue old inputs
 		var steer = touchMode ? val.steer : tiltSteer;
 		$("wheel").firstChild.style.transform = "scaleX(" + steer.toFixed(3) + ")";
-		ws.send('{"t":"in","s":' + steer.toFixed(3) + ',"th":' + val.gas.toFixed(3) + ',"b":' + val.brake.toFixed(3) +
+		ws.send('{"t":"in","s":' + steer.toFixed(3) + ',"th":' + (autoGas && val.brake <= 0 ? 1 : val.gas).toFixed(3) + ',"b":' + val.brake.toFixed(3) +
 			',"k":' + (held | latch) + ',"n":' + (++seq) + "}");
 		latch = 0;
 	}, SEND_MS);

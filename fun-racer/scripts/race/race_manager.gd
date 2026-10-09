@@ -186,7 +186,12 @@ func restart() -> void:
 	_has_cp = false
 	_cp_velocity = Vector3.ZERO
 	car.spawn_transform = _grid
+	if car.sim != null:
+		car.sim.condition.keep_on_reset = false   # a restart fits new tyres and the starting fuel
 	car.respawn()                    # snaps to the grid, zeroes velocities, emits respawned
+	if car.sim != null:
+		car.sim.condition.keep_on_reset = true    # respawns during the race keep the stint
+		car.sim.powertrain.new_lap(car.sim.state, car.sim.spec)
 	car.simulate = false             # frozen until GO
 	s = data.closest_s(_grid.origin)
 	# Grid (around start_s): standing-start lap 1 from GO. Just behind the line: the lap starts
@@ -457,6 +462,8 @@ func _finish_crossed(t: float) -> void:
 			best_splits = current_splits.duplicate()
 			if persist_best:
 				_save_best()
+		if car.sim != null:
+			car.sim.powertrain.new_lap(car.sim.state, car.sim.spec)   # per-lap energy limits
 		lap_completed.emit(laps_completed, lt, dlt, has_delta, is_best)
 		if target_laps > 0 and laps_completed >= target_laps:
 			_finish()

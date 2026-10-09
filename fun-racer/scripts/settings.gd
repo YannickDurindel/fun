@@ -32,7 +32,7 @@ const DEFAULTS: Dictionary = {
 		"phone_enabled": false,
 		"phone_port": 8080,         # HTTP + WebSocket
 		"phone_https_port": 8443,   # same page over TLS (iPhone tilt); 0 = no HTTPS
-		"phone_tilt_degrees": 40.0, # tilt for full lock, 15 .. 60
+		"phone_tilt_degrees": 30.0, # tilt for full lock, 15 .. 60
 		"phone_deadzone": 0.04,     # steering ignored around the centre, 0 .. 0.3
 		"phone_smoothing": 0.2,     # 0 = raw tilt, 1 = heavily filtered
 	},

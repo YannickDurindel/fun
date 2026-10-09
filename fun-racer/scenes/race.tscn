@@ -14,6 +14,9 @@
 [ext_resource type="PackedScene" path="res://scenes/race/ghost_system.tscn" id="g6_ghost"]
 [ext_resource type="PackedScene" path="res://scenes/race/bots.tscn" id="m7_bots"]
 [ext_resource type="PackedScene" path="res://scenes/ui/standings.tscn" id="m7_standings"]
+[ext_resource type="Script" path="res://scripts/race/slipstream.gd" id="s3_slipstream"]
+[ext_resource type="Script" path="res://scripts/ui/minimap.gd" id="u1_minimap"]
+[ext_resource type="PackedScene" path="res://scenes/ui/telemetry_overlay.tscn" id="s9_telemetry"]
 
 [sub_resource type="WorldBoundaryShape3D" id="catch_shape"]
 
@@ -45,9 +48,18 @@ car_path = NodePath("../../Car")
 
 [node name="Standings" parent="UI" instance=ExtResource("m7_standings")]
 
+[node name="Minimap" type="Control" parent="UI"]
+script = ExtResource("u1_minimap")
+
+[node name="TelemetryOverlay" parent="UI" instance=ExtResource("s9_telemetry")]
+car_path = NodePath("../../Car")
+
 [node name="Results" parent="UI" instance=ExtResource("m5_results")]
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("m5_pause")]
+
+[node name="Slipstream" type="Node" parent="."]
+script = ExtResource("s3_slipstream")
 
 [node name="FX" type="Node3D" parent="."]
 

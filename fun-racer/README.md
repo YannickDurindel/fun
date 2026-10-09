@@ -71,6 +71,12 @@ The page also shows speed and gear, and vibrates on gear shifts and kerbs (Andro
 Three sliders in the same section tune it: degrees of tilt for full lock (15–60°, default 40°),
 dead zone and smoothing. Keyboard and gamepad keep working at the same time.
 
+**Tilt steering needs Chrome and the secure address.** Use the `https://<PC address>:8443` address
+(the second QR code) and accept the certificate warning once (Advanced → Proceed). Brave blocks
+motion sensors by default: use Chrome, or allow "Motion sensors" for the page in Brave's site
+settings. **AUTO GAS** in the top row makes the car accelerate by itself, so you only steer and
+brake. Tilting all the way makes the car slide.
+
 **If the phone cannot open the page,** the PC's firewall is probably blocking the port. The game
 never changes your firewall; allow the port yourself. On Fedora:
 

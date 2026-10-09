@@ -352,7 +352,7 @@ func test_pairing_code_is_required() -> void:
 	assert_true(PhoneController.status == PhoneController.Status.WAITING, "still waiting for a phone")
 	# The right code.
 	var good: Client = await _paired()
-	assert_between(float(good.last_of("ok").get("deg", 0.0)), 39.9, 40.1, "the phone is told the tilt range")
+	assert_between(float(good.last_of("ok").get("deg", 0.0)), 29.9, 30.1, "the phone is told the tilt range")
 	assert_true(PhoneController.status == PhoneController.Status.CONNECTED, "status: connected")
 	# A stranger with a wrong code does not disturb the paired phone.
 	var stranger: Client = await _ws('{"t":"pair","c":"%s"}' % wrong_code)
@@ -607,7 +607,7 @@ func test_controls_screen_section() -> void:
 	Settings.set_value(SECTION, "key_steer_in_time", 0.7)
 	screen._ask_reset()
 	screen._on_dialog_ok()
-	assert_between(float(Settings.get_value(SECTION, "phone_tilt_degrees")), 40.0, 40.0, "RESET restores the tilt range")
+	assert_between(float(Settings.get_value(SECTION, "phone_tilt_degrees")), 30.0, 30.0, "RESET restores the tilt range")
 	assert_between(float(Settings.get_value(SECTION, "key_steer_in_time")), 0.4, 0.4, "... and the keyboard steering")
 	assert_true(PhoneController.status != PhoneController.Status.OFF and int(Settings.get_value(SECTION, "phone_port")) == _port, "RESET does not switch the phone controller off")
 	assert_true(not (screen.find_child("phone_smoothing", true, false) as HSlider).scrollable, "the mouse wheel scrolls the screen, not the sliders")

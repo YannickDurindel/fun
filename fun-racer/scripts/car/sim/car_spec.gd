@@ -22,12 +22,12 @@ extends Resource
 ## one-wheel bump = spring + arb + heave / 2. See scripts/car/sim/suspension.gd.
 @export var spring_front: float = 150000.0     ## N/m at the wheel, corner spring
 @export var spring_rear: float = 130000.0
-@export var heave_front: float = 70000.0       ## N/m at each wheel per m of mean axle travel (third element)
-@export var heave_rear: float = 70000.0
-@export var damper_front: float = 7000.0       ## N s/m in bump (compression), below the knee speed
-@export var damper_rear: float = 7000.0
-@export var damper_rebound_front: float = 11000.0   ## N s/m in rebound (extension), below the knee speed
-@export var damper_rebound_rear: float = 11000.0
+@export var heave_front: float = 190000.0       ## N/m at each wheel per m of mean axle travel (third element)
+@export var heave_rear: float = 200000.0
+@export var damper_front: float = 9000.0       ## N s/m in bump (compression), below the knee speed
+@export var damper_rear: float = 9000.0
+@export var damper_rebound_front: float = 14500.0   ## N s/m in rebound (extension), below the knee speed
+@export var damper_rebound_rear: float = 14500.0
 @export var damper_knee_speed: float = 0.25    ## m/s of wheel travel where the damper turns digressive
 @export var damper_high_speed_ratio: float = 0.4   ## damper slope above the knee, as a share of the slope below
 ## Roll stiffness is 448 kN m/rad front, 353 rear: 56 % front against 46 % of the weight,
@@ -71,10 +71,10 @@ extends Resource
 ## the weight near 150-160 km/h, is 3-4 times the weight at the end of a long straight, the
 ## drag area is about 1.2-1.3 m^2 and DRS is worth 10-15 km/h.
 @export var air_density: float = 1.225
-@export var cl_a: float = 6.6                  ## downforce coefficient x area (m^2) at the design ride height, medium wing
-@export var cd_a: float = 1.30                 ## drag coefficient x area (m^2), medium wing
+@export var cl_a: float = 6.45                 ## downforce coefficient x area (m^2) at the design ride height, medium wing
+@export var cd_a: float = 1.36                 ## drag coefficient x area (m^2), medium wing
 @export var aero_balance_front: float = 0.44   ## share of downforce on the front axle at the design ride height
-@export var drs_drag_factor: float = 0.89      ## drag multiplier with DRS open
+@export var drs_drag_factor: float = 0.87      ## drag multiplier with DRS open
 @export var drs_downforce_factor: float = 0.80 ## rear downforce multiplier with DRS open
 @export var drs_actuation_time: float = 0.10   ## s for the flap to travel fully open or closed
 @export var drs_close_throttle: float = 0.20   ## driver throttle below this counts as a lift and closes DRS
@@ -143,6 +143,7 @@ extends Resource
 @export var reverse_throttle: float = 0.35     ## share of the engine torque available in reverse
 @export var reverse_speed_max: float = 22.0    ## m/s, no more drive in reverse above this
 @export var reverse_select_speed: float = 0.5  ## m/s, the car counts as stopped below this
+@export var reverse_select_hold: float = 0.6   ## s the brake must be held at a standstill before reverse engages (a stop on a slope must not reverse at once)
 @export var reverse_select_brake: float = 0.5  ## brake pedal held above this at a standstill selects reverse
 @export var reverse_cancel_throttle: float = 0.05  ## throttle above this leaves reverse (and blocks selecting it)
 # -- limited-slip differential (clutch type): locking torque = preload + ramp x input torque
@@ -274,6 +275,9 @@ extends Resource
 # Steering help.
 @export var aid_steer_grip_usage: float = 0.9  ## share of the estimated lateral grip that full input asks for
 @export var aid_steer_slip_margin: float = 0.15   ## lock beyond that turn, x the tyre's peak slip angle
+@export var aid_steer_overdrive_start: float = 0.9   ## analog input beyond this adds lock past the grip limit (phone, stick)
+@export var aid_steer_overdrive_tc_slip: float = 1.5 ## traction control lets the rears slip this much more at full overdrive (power slide)
+@export var aid_steer_overdrive_gain: float = 1.2    ## extra lock at full input, x the grip-limit lock: the car can be made to slide
 @export var aid_steer_min_lock: float = 0.03   ## rad, smallest full-input lock at any speed
 @export var aid_steer_center_gain: float = 0.6 ## analog response slope at the centre (1 = linear)
 ## s, low-pass on analog (tilt) input. Kept short: the autopilot steers through this too and

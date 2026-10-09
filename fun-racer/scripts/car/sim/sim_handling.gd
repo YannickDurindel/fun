@@ -107,6 +107,7 @@ func integrate(body: PhysicsDirectBodyState3D) -> void:
 	s.in_brake = car.brake_input
 	s.in_steer = car.steer
 	s.in_steer_digital = car.is_steer_digital()
+	s.in_steer_overdrive = car._steer_overdrive
 	s.in_shift_up = _shift_up
 	s.in_shift_down = _shift_down
 	s.in_drs = _drs_button
@@ -251,7 +252,7 @@ func _publish(xf: Transform3D, v: Vector3, dt: float) -> void:
 	car.slip_angle = s.body_slip
 	car.is_grounded = s.on_ground > 0
 	var rear_slip := 0.5 * (absf(s.slip_angle[2]) + absf(s.slip_angle[3]))
-	car.is_drifting = s.speed > 12.0 and s.on_ground >= 2 and rear_slip > spec.tyre_peak_slip_angle * 1.3
+	car.is_drifting = s.speed > 12.0 and s.on_ground >= 2 and rear_slip > spec.tyre_peak_slip_angle_rear * 1.3
 	car.ers_charge = clampf(s.ers_energy / maxf(spec.ers_capacity, 1.0), 0.0, 1.0)
 	car.drs_open = s.drs_open
 	car.fuel_kg = s.fuel
@@ -269,7 +270,7 @@ func _publish(xf: Transform3D, v: Vector3, dt: float) -> void:
 		ws.spin_angle += s.omega[i] * dt
 		ws.steer_angle = s.steer_angle if i < 2 else 0.0
 		var sx := s.slip_ratio[i] / spec.tyre_peak_slip_ratio
-		var sy := tan(s.slip_angle[i]) / tan(spec.tyre_peak_slip_angle)
+		var sy := tan(s.slip_angle[i]) / tan(spec.tyre_peak_slip_angle if i < 2 else spec.tyre_peak_slip_angle_rear)
 		ws.slip = clampf(sqrt(sx * sx + sy * sy) - 0.9, 0.0, 1.0) if s.contact[i] and s.speed > 3.0 else 0.0
 		ws.load = s.load[i]
 		ws.slip_ratio = s.slip_ratio[i]

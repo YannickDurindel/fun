@@ -49,6 +49,7 @@ var _prev_w3: float = 0.0
 var _prev_axle: float = 0.0          ## N m sent to the rear axle last tick
 var _lap_distance: float = 0.0
 var _lap_signal: bool = false
+var _reverse_hold: float = 0.0   ## s the brake has been held at a standstill
 
 func setup(spec: CarSpec) -> void:
 	# Scale the relative curve so its peak power is spec.engine_power.
@@ -80,6 +81,7 @@ func reset(state: SimState, spec: CarSpec) -> void:
 	clutch_torque = 0.0
 	ers_flow = 0.0
 	_lap_signal = false
+	_reverse_hold = 0.0
 	_begin_lap()
 
 ## Overall ratio of the selected gear (engine turns per wheel turn; negative in reverse).
@@ -126,7 +128,7 @@ func step(state: SimState, spec: CarSpec, dt: float) -> void:
 	if state.gear != _gear or absf(alpha) > spec.driveline_accel_limit:
 		_adopt(state, spec, w_c)
 		alpha = 0.0
-	_select_reverse(state, spec)
+	_select_reverse(state, spec, dt)
 	_shift(state, spec, w_c)
 	state.shifting = maxf(0.0, state.shifting - dt)
 
@@ -246,11 +248,15 @@ func _adopt(state: SimState, spec: CarSpec, w_c: float) -> void:
 	_prev_axle = 0.0
 
 ## Reverse is selected at a standstill with the brake held and no throttle; throttle leaves it.
-func _select_reverse(state: SimState, spec: CarSpec) -> void:
+func _select_reverse(state: SimState, spec: CarSpec, dt: float) -> void:
 	if state.gear >= 1:
 		if state.speed < spec.reverse_select_speed \
 				and state.in_brake > spec.reverse_select_brake and state.in_throttle < spec.reverse_cancel_throttle:
-			_set_gear(state, -1)
+			_reverse_hold += dt
+			if _reverse_hold >= spec.reverse_select_hold:
+				_set_gear(state, -1)
+		else:
+			_reverse_hold = 0.0
 	elif state.gear == -1 and state.in_throttle > spec.reverse_cancel_throttle:
 		_set_gear(state, 1)
 

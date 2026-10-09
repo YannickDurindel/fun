@@ -324,7 +324,7 @@ func _build_phone() -> Control:
 	steps.clip_text = true
 	left.add_child(steps)
 	_phone_address = _phone_row(left, "ADDRESS", 28)
-	_phone_secure = _phone_row(left, "IPHONE (TILT)", 28)
+	_phone_secure = _phone_row(left, "TILT STEERING (SECURE)", 28)
 	_phone_code = _phone_row(left, "PAIRING CODE", 44)
 	_phone_code.add_theme_color_override(&"font_color", COL_CAPTURE)
 	_phone_firewall = Label.new()
@@ -337,7 +337,7 @@ func _build_phone() -> Control:
 	plain_font.opentype_features = {TextServerManager.get_primary_interface().name_to_tag("liga"): 0}
 	_phone_firewall.add_theme_font_override(&"font", plain_font)
 	left.add_child(_phone_firewall)
-	for caption: String in ["ANY PHONE", "IPHONE (TILT)"]:
+	for caption: String in ["TOUCH STEERING", "TILT STEERING (SECURE)"]:
 		var qr_box := VBoxContainer.new()
 		qr_box.add_theme_constant_override(&"separation", 4)
 		pairing.add_child(qr_box)
@@ -586,7 +586,7 @@ func _refresh_phone() -> void:
 	_phone_firewall.text = ("The phone cannot open the page? The PC's firewall is probably blocking it. On Fedora, run this yourself " \
 			+ "in a terminal:   sudo firewall-cmd %s   (until the next restart; the game never changes your firewall).") % ports
 	if not secure.is_empty():
-		_phone_firewall.text += "\niPhone: tilt needs the https address. Accept the browser's certificate warning once; the plain address steers by touch."
+		_phone_firewall.text += "\nTilt steering needs the https address. Accept the browser's certificate warning once (Advanced, then Proceed); the plain address steers by touch."
 
 ## While a device is locked out after wrong codes, the status line counts the seconds down.
 func _refresh_phone_lockout() -> void:

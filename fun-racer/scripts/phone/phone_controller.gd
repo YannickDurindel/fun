@@ -41,8 +41,8 @@ const SECTION := "controls"
 const PAGE_PATH := "res://assets/phone/controller.html"
 ## Bits of the "k" field. shift_up / shift_down / drs are polled by the car
 ## (Bootstrap.take_button / is_button_down); respawn and pause are injected as Input actions.
-const BUTTONS: Dictionary = {&"shift_up": 1, &"shift_down": 2, &"drs": 4, &"respawn": 8, &"pause": 16}
-const BUTTON_MASK := 31
+const BUTTONS: Dictionary = {&"shift_up": 1, &"shift_down": 2, &"drs": 4, &"respawn": 8, &"pause": 16, &"camera": 32}
+const BUTTON_MASK := 63
 const ACTION_BUTTONS: Array[StringName] = [&"respawn", &"pause"]
 const INPUT_TIMEOUT_MS := 300        ## silence after which every input is released
 const STATUS_INTERVAL_MS := 100

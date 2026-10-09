@@ -10,6 +10,7 @@ extends RefCounted
 var in_throttle: float = 0.0     ## 0..1
 var in_brake: float = 0.0        ## 0..1
 var in_steer: float = 0.0        ## -1 left .. +1 right
+var in_steer_overdrive: bool = false ## a person on an analog device: the end of the travel may exceed the grip
 var in_steer_digital: bool = false   ## true when steering comes from keys (all or nothing)
 var in_shift_up: bool = false    ## true for one tick when requested
 var in_shift_down: bool = false

@@ -32,6 +32,7 @@ var stability_help: bool = true
 var tc_cut: float = 0.0            ## 0..1 throttle removed by traction control
 var abs_release: float = 0.0       ## 0..1 pedal released by ABS
 var stability: float = 0.0         ## 0..1 strength of the stability help
+var overdrive: float = 0.0         ## 0..1, how far the driver is into the steering overdrive
 var steer_lock: float = 0.0        ## rad at the front wheels for full input, at this speed
 
 var _tc_int: float = 1.0           # integral part of the throttle ceiling
@@ -90,7 +91,13 @@ func step(state: SimState, spec: CarSpec, dt: float) -> void:
 	_a_lat_max = _lateral_limit(state, spec)
 	_step_steering(state, spec, dt)
 	_step_stability(state, spec, dt)
-	state.steer_angle = clampf(-_steer_norm * steer_lock + _countersteer, -spec.max_steer_angle, spec.max_steer_angle)
+	# Overdrive: the last part of an analog device's travel turns the wheels past the grip
+	# limit, and the stability help stands back, so the driver can throw the car into a slide.
+	overdrive = 0.0
+	if state.in_steer_overdrive:
+		overdrive = smoothstep(spec.aid_steer_overdrive_start, 1.0, absf(_steer_norm))
+	var lock := steer_lock * (1.0 + spec.aid_steer_overdrive_gain * overdrive)
+	state.steer_angle = clampf(-_steer_norm * lock + _countersteer * (1.0 - overdrive), -spec.max_steer_angle, spec.max_steer_angle)
 	_step_pedals(state, spec, dt)
 	_step_gearbox(state, spec, dt)
 	_step_drs(state, spec, dt)
@@ -187,7 +194,8 @@ func _step_pedals(state: SimState, spec: CarSpec, dt: float) -> void:
 	var peak := _peak_slip_ratio(spec)
 
 	# ---- stability: ease the throttle in a slide; cancel engine braking when the pedal is up
-	var demand := throttle * (1.0 - spec.aid_stab_throttle_cut * stability) * (1.0 - spec.aid_stab_understeer_cut * _understeer)
+	var stand_back := 1.0 - overdrive   # the driver asked for the slide
+	var demand := throttle * (1.0 - spec.aid_stab_throttle_cut * stability * stand_back) * (1.0 - spec.aid_stab_understeer_cut * _understeer * stand_back)
 	if brake <= 0.0:
 		demand = maxf(demand, minf(spec.aid_stab_drag_throttle * stability, 1.0))
 
@@ -202,6 +210,8 @@ func _step_pedals(state: SimState, spec: CarSpec, dt: float) -> void:
 			# Cornering uses the same grip: allow less wheel slip as the rear slip angle builds.
 			var lat := 0.5 * (absf(state.slip_angle[2]) + absf(state.slip_angle[3])) / _peak_slip_angle(spec)
 			target *= 1.0 - spec.aid_tc_lateral_trim * clampf(lat, 0.0, 1.0)
+		# In the steering overdrive the driver wants the rear to step out: allow much more slip.
+		target *= 1.0 + spec.aid_steer_overdrive_tc_slip * overdrive
 		var err := maxf(_slip_speed_over(state, 2, 1.0, target), _slip_speed_over(state, 3, 1.0, target))
 		var lo := clampf(spec.aid_tc_min_throttle, 0.0, 1.0)
 		_tc_int = clampf(_tc_int - spec.aid_tc_ki * err * dt, lo, 1.0)

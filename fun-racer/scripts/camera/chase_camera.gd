@@ -200,6 +200,8 @@ func _process(delta: float) -> void:
 		set_mode(Mode.CHASE_HIGH)
 	elif Input.is_action_just_pressed("camera_3"):
 		set_mode(Mode.COCKPIT)
+	elif Bootstrap.take_button(&"camera"):
+		set_mode(int(mode) % 3 + 1)   # the phone's CAM button cycles the three views
 	if not is_instance_valid(_target):
 		return
 	_update(delta)
