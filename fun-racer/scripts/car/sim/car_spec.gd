@@ -28,11 +28,31 @@ extends Resource
 @export var bump_stop_rate: float = 1500000.0  ## N/m beyond travel_bump
 
 @export_group("Tyres")
-@export var tyre_mu: float = 1.75              ## peak friction coefficient at the reference load
-@export var tyre_reference_load: float = 4000.0   ## N
-@export var tyre_load_sensitivity: float = 0.08   ## fraction of mu lost per reference load above it
-@export var tyre_peak_slip_ratio: float = 0.09
-@export var tyre_peak_slip_angle: float = 0.14 ## rad
+## The tyre model (tyre_model.gd) is a combined-slip "magic formula". Per axis the pure-slip
+## curve is F = D sin(C atan(Bx - E(Bx - atan Bx))): D is the peak force (mu x load), C sets how
+## much is left when fully sliding, B puts the peak at the slip given here, E rounds the top.
+## What each number does to the feel is noted with it; typical ranges are for racing slicks.
+@export var tyre_mu: float = 1.75              ## peak friction coefficient at the reference load. 1.6-1.9 for slicks; scales every limit (cornering, braking, traction)
+@export var tyre_reference_load: float = 4000.0   ## N, front tyre load at which mu = tyre_mu
+@export var tyre_load_sensitivity: float = 0.08   ## fraction of mu lost per reference load above it (mu ~ load^-k). 0.05-0.2; higher = load transfer costs more grip, so springs and bars move the balance more
+@export var tyre_peak_slip_ratio: float = 0.09 ## slip ratio of peak traction and braking. 0.07-0.12; lower = sharper bite, less margin before wheelspin or lock-up
+@export var tyre_peak_slip_angle: float = 0.14 ## rad, front slip angle of peak cornering force. 0.10-0.16; lower = more direct steering, less warning
+@export var tyre_peak_slip_angle_rear: float = 0.12   ## rad, same for the wider rear tyres. Lower than the front = the rear answers first and the car feels planted
+@export var tyre_reference_load_rear: float = 4800.0  ## N, rear reference load. Higher than the front = the wide rears keep more mu at a given load (understeer at the limit)
+@export var tyre_mu_long_scale: float = 1.05   ## longitudinal mu / lateral mu: the friction ellipse's aspect. 1.0-1.15
+@export var tyre_min_load_ratio: float = 0.25  ## load sensitivity stops raising mu below this share of the reference load (an unloaded tyre does not get endless grip)
+@export var tyre_slide_grip_long: float = 0.80 ## share of the peak force left at endless slip (locked or spinning wheel). 0.7-0.9; lower = locking up and wheelspin cost more
+@export var tyre_slide_grip_lat: float = 0.86  ## same when sliding sideways. 0.75-0.95; lower = the car snaps past the limit, higher = it drifts progressively
+@export var tyre_curvature_long: float = 0.2   ## E of the longitudinal curve, below 1. Higher = stiffer at small slip and a rounder, wider peak
+@export var tyre_curvature_lat: float = 0.3    ## E of the lateral curve, below 1. Higher = a broader plateau around the limit (forgiving with tilt steering)
+@export var tyre_relaxation_length: float = 0.3   ## m the tyre rolls to build 63 % of a new cornering force. 0.2-0.5; longer = lazier turn-in, softer response to steering jerks
+@export var tyre_relaxation_fade_lo: float = 5.0  ## m/s, below this the cornering force follows the slip angle at once (no lag, so a slow car cannot weave)
+@export var tyre_relaxation_fade_hi: float = 15.0 ## m/s, above this the full relaxation length applies
+@export var tyre_low_speed_damping_long: float = 15.0  ## s/m: cap on force per sliding speed along the wheel, per newton of load (acts below about 5 m/s). Numerical: summed over the car it must stay below about mass / tick or the stopped car buzzes
+@export var tyre_low_speed_damping_lat: float = 9.0    ## s/m, same across the wheel. Summed with the lever arms it must stay below about yaw inertia / tick; higher = truer slip angles at walking pace
+@export var tyre_stick_length: float = 0.02    ## m of tread deflection at the peak force when standing still (static friction). Shorter = holds a slope more rigidly
+@export var tyre_stick_fade_speed: float = 1.0 ## m/s, static friction fades out up to this rolling or sliding speed of the patch
+@export var tyre_pneumatic_trail: float = 0.03 ## m, lever of the self-aligning moment at small slip (it falls to zero at the limit: the steering goes light)
 
 @export_group("Aero")
 @export var air_density: float = 1.225
