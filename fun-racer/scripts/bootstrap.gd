@@ -17,6 +17,11 @@ extends Node
 ##   --scenery-dir=PATH   read the scenery files (landcover, scenery.*, environment.json,
 ##                        landmarks) from this folder instead of the track folder
 ##   --no-scenery         ignore every scenery file (the plain look, for comparisons)
+##   --tour=S1,S2,...     with --screenshot: one run, many pictures. After the --frames warm-up
+##                        the car is put at each distance in turn and a picture is saved as
+##                        PATH with "_<metres>" before the extension. --tour=every:400 takes
+##                        one every 400 m round the lap. --tour-frames=N settles N frames
+##                        (default 70) at each stop. Far quicker than one run per picture.
 ##   --bench=N            after the --frames warm-up, print the average frame time over N
 ##                        frames ("FRAMETIME ...") and quit (use with --disable-vsync)
 
@@ -53,6 +58,12 @@ var no_scenery: bool = false
 ## --bench=N: frames to time after the warm-up (0 = off).
 var bench_frames: int = 0
 var _bench_start_usec: int = 0
+## --tour: distances round the lap to photograph in one run; "every:N" is expanded on the track.
+var tour: PackedFloat32Array = PackedFloat32Array()
+var tour_every: float = 0.0
+var tour_frames: int = 70
+var _tour_i: int = -1
+var _tour_wait: int = 0
 
 func _ready() -> void:
 	_register_inputs()
@@ -100,6 +111,15 @@ func _init() -> void:
 			scenery_dir = arg.get_slice("=", 1)
 		elif arg == "--no-scenery":
 			no_scenery = true
+		elif arg.begins_with("--tour="):
+			var spec := arg.get_slice("=", 1)
+			if spec.begins_with("every:"):
+				tour_every = maxf(float(spec.get_slice(":", 1)), 10.0)
+			else:
+				for part in spec.split(",", false):
+					tour.append(float(part))
+		elif arg.begins_with("--tour-frames="):
+			tour_frames = maxi(5, int(arg.get_slice("=", 1)))
 		elif arg.begins_with("--bench="):
 			bench_frames = maxi(0, int(arg.get_slice("=", 1)))
 			dev_run = true
@@ -192,6 +212,10 @@ func _process(_delta: float) -> void:
 	if screenshot_path.is_empty() and bench_frames == 0:
 		return
 	_frame += 1
+	if (tour.size() > 0 or tour_every > 0.0) and not screenshot_path.is_empty():
+		if _frame >= screenshot_frames:
+			_tour_step()
+		return
 	if _frame == screenshot_frames:
 		if not screenshot_path.is_empty():
 			await RenderingServer.frame_post_draw
@@ -205,3 +229,37 @@ func _process(_delta: float) -> void:
 		var ms := float(Time.get_ticks_usec() - _bench_start_usec) / 1000.0 / bench_frames
 		print("FRAMETIME avg=%.2f ms (%.1f fps) over %d frames" % [ms, 1000.0 / maxf(ms, 1e-3), bench_frames])
 		get_tree().quit()
+
+## One step of --tour: move the car to the next stop, let the camera settle, save the picture.
+func _tour_step() -> void:
+	var track := get_tree().get_first_node_in_group(&"track") as Track
+	var car := get_tree().get_first_node_in_group(&"car") as Car
+	if car == null:
+		car = get_tree().current_scene.find_child("Car", true, false) as Car
+	if track == null or track.data == null or car == null:
+		push_error("--tour needs a race scene with a track and a car")
+		get_tree().quit(1)
+		return
+	if tour.is_empty():
+		var s := 0.0
+		while s < track.data.length:
+			tour.append(s)
+			s += tour_every
+	if _tour_wait > 0:
+		_tour_wait -= 1
+		if _tour_wait > 0:
+			return
+		set_process(false)
+		await RenderingServer.frame_post_draw
+		var path := "%s_%05d.%s" % [screenshot_path.get_basename(), int(round(tour[_tour_i])), screenshot_path.get_extension()]
+		var err := get_viewport().get_texture().get_image().save_png(path)
+		print("Screenshot saved to %s (err=%d)" % [path, err])
+		set_process(true)
+	_tour_i += 1
+	if _tour_i >= tour.size():
+		get_tree().quit()
+		return
+	var xf := track.spawn_transform(fposmod(tour[_tour_i], track.data.length), 0.0)
+	car.spawn_transform = xf
+	car.respawn()
+	_tour_wait = tour_frames
