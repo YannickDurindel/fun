@@ -46,6 +46,64 @@ Key positions follow your keyboard layout (on AZERTY, W/A are Z/Q).
   0.3 s above 110 km/h. The drift ends shortly after you release the brake.
 - **Respawn** puts you back at the last checkpoint with the speed you had there.
 
+### Phone controller
+
+Your phone can be the steering wheel and the pedals. There is no app to install: the game serves
+a web page over your Wi-Fi, and the phone sends its tilt and touches back about 60 times a second.
+
+1. Put the phone and the PC on the **same Wi-Fi network**.
+2. In **Options → Controls**, turn **Phone controller** on. The section opens and shows an
+   address, a QR code and a 4-digit pairing code. (It is at the top of the screen; the screen
+   scrolls.)
+3. Scan the QR code with the phone's camera, or type the address (`http://<PC address>:8080`)
+   in the phone's browser.
+4. Type the pairing code on the phone. The status on the PC changes to "Phone connected".
+5. Hold the phone in landscape, like a steering wheel, with the screen facing you:
+   - **turn it** left and right to steer; press **CENTRE** while holding it level to set the
+     straight-ahead position;
+   - the **right side** of the screen is the throttle and the **left side** is the brake. Both
+     are analog: thumb at the bottom is 0 %, at the top 100 %;
+   - **− / +** shift gears and **DRS** opens the wing (simulation handling); **RESPAWN** and
+     **PAUSE** are the small buttons at the top;
+   - **TILT / TOUCH** switches to steering with a slider under your left thumb.
+
+The page also shows speed and gear, and vibrates on gear shifts and kerbs (Android only).
+Three sliders in the same section tune it: degrees of tilt for full lock (15–60°, default 40°),
+dead zone and smoothing. Keyboard and gamepad keep working at the same time.
+
+**If the phone cannot open the page,** the PC's firewall is probably blocking the port. The game
+never changes your firewall; allow the port yourself. On Fedora:
+
+```bash
+sudo firewall-cmd --add-port=8080/tcp --add-port=8443/tcp   # until the next restart
+```
+
+If port 8080 is already taken, the game uses the next free one and shows it in the address.
+
+**iPhone, and phones that report "Tilt needs the secure address".** Browsers only give motion
+sensors to pages served over HTTPS (always on iOS, and on some Android browsers). The game
+therefore serves the same page over HTTPS on port 8443, with a certificate it creates on your
+PC the first time. Use the second address and QR code ("IPHONE (TILT)", `https://<PC address>:8443`),
+accept the browser's certificate warning once ("Show details" → "Visit this website" in Safari),
+then allow "Motion & Orientation Access" when asked. Over the plain `http://` address such a
+phone still works: the page says tilt is unavailable in one line and steers by touch instead.
+This path has been tested with scripted clients only, not on a real iPhone.
+
+Safety:
+
+- The option is **off by default**, and nothing listens on the network while it is off.
+- Nobody can drive without the pairing code. It changes every time the option is turned on,
+  and five wrong codes lock the device that sent them out for a while. One phone is paired at
+  a time.
+- If the phone stops sending for 0.3 s (connection lost, browser in the background), the game
+  releases throttle, brake and steering.
+- The game only talks to devices on your network that connect to it. It never contacts the
+  internet for this, and the page loads nothing from outside.
+
+`--phone` (after `--`) starts the phone controller for one run without changing the saved option,
+and prints the ports and the pairing code. The code is in `scripts/phone/` (server, WebSocket, QR encoder) and
+`assets/phone/controller.html` (the page).
+
 ### In a race
 
 - **Pause (Esc):** resume, restart, options, back to track select or the main menu. In time
@@ -63,7 +121,7 @@ Key positions follow your keyboard layout (on AZERTY, W/A are Z/Q).
   render scale. The Low preset is meant for integrated graphics.
 - **Audio:** master, engine, effects and menu volumes.
 - **Gameplay:** km/h or mph, and the on-screen input display.
-- **Controls:** rebinding, steering build-up and release, gamepad dead zone.
+- **Controls:** the phone controller, rebinding, steering build-up and release, gamepad dead zone.
 
 Settings are saved in Godot's user data folder (`~/.local/share/godot/app_userdata/Fun Racer/`),
 together with your best laps and ghosts.

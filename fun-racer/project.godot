@@ -13,6 +13,7 @@ Game="*res://scripts/game.gd"
 SettingsApply="*res://scripts/settings_apply.gd"
 Transitions="*res://scripts/ui/transitions.gd"
 UISounds="*res://scripts/audio/ui_sounds.gd"
+PhoneController="*res://scripts/phone/phone_controller.gd"
 
 [display]
 window/size/viewport_width=1600
