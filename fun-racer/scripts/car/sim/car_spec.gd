@@ -83,20 +83,68 @@ extends Resource
 @export var tow_downforce_loss_rear: float = 0.25  ## share of rear downforce lost
 
 @export_group("Power unit")
-@export var engine_power: float = 620000.0     ## W, combustion engine at peak
-@export var ers_power: float = 120000.0        ## W, electric deployment
-@export var ers_capacity: float = 4.0e6        ## J usable per lap
+# -- combustion engine: a 1.6 L turbo V6. Above 10,500 rpm the fuel flow is capped, so the
+#    power is nearly flat and the torque falls as 1/rpm.
+@export var engine_power: float = 620000.0     ## W, combustion engine at peak (the curve below is scaled to it)
+@export var ers_power: float = 120000.0        ## W, electric deployment (MGU-K)
+@export var ers_capacity: float = 4.0e6        ## J usable in the battery
 @export var engine_torque_max: float = 700.0   ## N m at the crank, engine + electric
 @export var rpm_idle: float = 4000.0
-@export var rpm_max: float = 13000.0           ## rev limit used in practice
-@export var rpm_shift_up: float = 12200.0
+@export var rpm_max: float = 15000.0           ## rev limit (the soft limiter ends here)
+@export var rpm_shift_up: float = 12400.0
 @export var rpm_shift_down: float = 8200.0
-@export var gear_ratios: PackedFloat32Array = PackedFloat32Array([2.85, 2.25, 1.86, 1.56, 1.33, 1.16, 1.03, 0.93])
-@export var final_drive: float = 3.55
-@export var reverse_ratio: float = 3.0
+## Overall ratios chosen with final_drive for a 0.36 m rear tyre: 1st = 70 km/h at 9,500 rpm,
+## 8th = 340 km/h at 11,800 rpm, steps closing from 1.30 to 1.15.
+@export var gear_ratios: PackedFloat32Array = PackedFloat32Array([3.68, 2.83, 2.246, 1.826, 1.51, 1.268, 1.084, 0.942])
+@export var final_drive: float = 5.0
+@export var reverse_ratio: float = 3.2
 @export var driveline_efficiency: float = 0.94
-@export var engine_brake_torque: float = 90.0  ## N m at the crank, throttle closed
-@export var shift_time: float = 0.03           ## s without drive torque per shift
+@export var engine_brake_torque: float = 90.0  ## N m at the crank, throttle closed, at engine_brake_rpm
+@export var shift_time: float = 0.03           ## s without combustion torque per upshift
+## Full-throttle torque curve of the combustion engine: rpm knots and the relative torque at
+## each (any unit; SimPowertrain scales it so the peak power is engine_power).
+@export var torque_curve_rpm: PackedFloat32Array = PackedFloat32Array([4000, 6000, 8000, 9000, 10000, 10500, 11000, 11500, 12000, 12500, 13000, 14000, 15000])
+@export var torque_curve: PackedFloat32Array = PackedFloat32Array([330, 430, 520, 550, 562, 564, 538, 515, 492, 470, 445, 390, 330])
+@export var engine_inertia: float = 0.045      ## kg m^2 at the crank: engine, clutch, MGU-K, input shaft
+@export var engine_brake_rpm: float = 12000.0  ## rpm at which engine_brake_torque is reached (0 at idle)
+@export var rpm_limiter_band: float = 300.0    ## rpm below rpm_max over which the torque fades out
+@export var idle_torque_max: float = 120.0     ## N m the idle governor may add below rpm_idle
+@export var idle_response: float = 0.03        ## s, time constant of the idle governor
+# -- clutch (automatic: anti-stall when rolling, slipping launch from rest)
+@export var clutch_torque_max: float = 900.0   ## N m the closed clutch can carry
+@export var rpm_clutch_bite: float = 4300.0    ## rpm where the clutch starts to bite when rolling
+@export var rpm_clutch_band: float = 800.0     ## rpm from the bite point to fully closed
+@export var rpm_launch: float = 9000.0         ## rpm where the clutch is fully closed in a full-throttle launch
+@export var rpm_launch_band: float = 3000.0    ## rpm below rpm_launch where it starts to bite in a launch
+# -- gearbox
+@export var shift_time_down: float = 0.06      ## s, longest a downshift waits for the rev-matching blip
+@export var shift_sync_rpm: float = 250.0      ## rpm of mismatch at which a blipped downshift closes the clutch
+@export var rpm_downshift_limit: float = 14200.0   ## a downshift that would rev higher than this is refused
+@export var reverse_throttle: float = 0.35     ## share of the engine torque available in reverse
+@export var reverse_speed_max: float = 22.0    ## m/s, no more drive in reverse above this
+@export var reverse_select_speed: float = 0.5  ## m/s, the car counts as stopped below this
+@export var reverse_select_brake: float = 0.5  ## brake pedal held above this at a standstill selects reverse
+@export var reverse_cancel_throttle: float = 0.05  ## throttle above this leaves reverse (and blocks selecting it)
+# -- limited-slip differential (clutch type): locking torque = preload + ramp x input torque
+@export var diff_preload: float = 60.0         ## N m across the rear wheels with no input torque
+@export var diff_ramp_power: float = 0.35      ## locking torque per N m of axle torque when driving
+@export var diff_ramp_coast: float = 0.25      ## ... when the engine brakes the axle
+@export var diff_lock_rate: float = 1.0        ## 0..1 share of the speed difference the diff may remove per tick
+# -- hybrid system (MGU-K and battery)
+@export var ers_torque_max: float = 200.0      ## N m at the crank, motor or generator
+@export var ers_efficiency: float = 0.95       ## each way between battery and crank
+@export var ers_deploy_throttle: float = 0.85  ## deployment fades in from this throttle to full throttle
+@export var ers_min_speed: float = 22.0        ## m/s, no deployment below (the car is traction limited)
+@export var ers_speed_band: float = 8.0        ## m/s over which deployment fades in above ers_min_speed
+@export var ers_taper_energy: float = 300000.0 ## J left below which the deployment tapers to zero
+@export var ers_deploy_limit: float = 4.0e6    ## J from the battery per lap
+@export var ers_harvest_limit: float = 2.0e6   ## J into the battery per lap from braking
+@export var ers_harvest_power: float = 120000.0    ## W at the crank while braking
+@export var ers_harvest_brake_min: float = 0.05    ## brake pedal above which braking harvest runs
+@export var ers_part_throttle_power: float = 70000.0   ## W harvested at part throttle from the engine's spare torque
+@export var ers_part_throttle_min: float = 0.1     ## part-throttle harvest runs between this throttle and ers_deploy_throttle
+@export var ers_lap_distance: float = 5000.0   ## m: the per-lap limits renew after this distance until new_lap() is called (0 = never)
+@export var driveline_accel_limit: float = 8000.0  ## rad/s^2: a rear axle speed change beyond this means the car was placed, not driven
 
 @export_group("Brakes")
 ## N m on all four wheels at full pedal with the discs in their working window. Sized for the
