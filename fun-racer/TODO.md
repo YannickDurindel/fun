@@ -86,6 +86,17 @@ One decision comes first, because half of this list depends on it:
 
 ## 3. Scenery
 
+The runtime for the first five items exists (`scripts/track/scenery.gd`,
+`scripts/track/track_environment.gd`, README "Scenery and time of day"): it shows whatever
+scenery files a track folder has. What is open per track is the data: the baked files and a
+hand-written `environment.json` and `landmarks.json`.
+
+Known gaps of the runtime: floodlights are one shared light plus glowing lamp heads, so there
+are no pools of light or several shadows per car; trees are opaque low-poly shapes; water has
+no shoreline foam or reflections of buildings; grandstand crowds are a speckle; a time of day
+is fixed per track (no session clock); an exported build must ship `landcover*.png` as plain
+files, because they are read as class ids, not as textures.
+
 - [ ] **Buildings and grandstands.** Today: none anywhere; street circuits run between walls
   on grass. Do: building blocks from the map data's footprints and heights, grandstands, pit
   buildings, and landmark models (Monaco's casino and harbour, the Las Vegas Sphere, the

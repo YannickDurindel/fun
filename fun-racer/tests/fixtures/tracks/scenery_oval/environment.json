@@ -1,0 +1,44 @@
+{
+ "preset": "temperate_day",
+ "time": "day",
+ "kerbs": {
+  "a": [
+   0.05,
+   0.25,
+   0.75
+  ],
+  "b": [
+   0.95,
+   0.95,
+   0.95
+  ],
+  "sausage": [
+   0.95,
+   0.45,
+   0.05
+  ]
+ },
+ "verge": {
+  "grass_color": [
+   0.24,
+   0.4,
+   0.12
+  ],
+  "dry_color": [
+   0.4,
+   0.42,
+   0.18
+  ]
+ },
+ "trees": {
+  "density": 1.0
+ },
+ "floodlights": {
+  "enabled": false,
+  "spacing_m": 60,
+  "height_m": 26
+ },
+ "stands": {
+  "crowd": 0.7
+ }
+}

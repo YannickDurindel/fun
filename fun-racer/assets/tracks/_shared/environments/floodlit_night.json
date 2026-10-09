@@ -1,0 +1,11 @@
+{
+ "time": "night",
+ "sun": {"azimuth_deg": 140, "elevation_deg": 48, "color": [0.62, 0.72, 1.0], "energy": 0.22},
+ "sky": {"top": [0.010, 0.016, 0.040], "horizon": [0.045, 0.055, 0.095], "stars": 1.0, "glow_color": [0.90, 0.55, 0.25], "glow": 0.35},
+ "ambient": {"color": [0.30, 0.37, 0.58], "energy": 0.24},
+ "fog": {"color": [0.045, 0.055, 0.095], "begin": 250, "end": 2900},
+ "exposure": 1.0,
+ "glow": {"intensity": 0.8, "threshold": 0.9, "bloom": 0.08},
+ "floodlights": {"enabled": true, "spacing_m": 60, "height_m": 28, "color": [1.0, 0.97, 0.90], "energy": 1.25, "reach_m": 90},
+ "buildings": {"lit_windows": 0.4, "window_color": [1.0, 0.80, 0.52]}
+}

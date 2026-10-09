@@ -1,0 +1,24 @@
+[
+ {
+  "model": "tower",
+  "at": {
+   "s": 153.6,
+   "side": -1,
+   "dist": 45.0
+  },
+  "yaw_deg": 0.0,
+  "scale": 1.0
+ },
+ {
+  "model": "tower.glb",
+  "at": {
+   "xz": [
+    -16.5,
+    -0.7
+   ]
+  },
+  "y_offset": -1.0,
+  "yaw_deg": 30.0,
+  "scale": 1.5
+ }
+]

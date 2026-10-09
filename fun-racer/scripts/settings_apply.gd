@@ -3,6 +3,7 @@ extends Node
 ## once at startup and again whenever `Settings.changed` fires, so the options screen is live.
 ##   Display   fullscreen / window size (centred) / vsync / FPS cap
 ##   3D        MSAA, render scale, shadow quality (atlas size, filter, sun shadows on/off)
+##             (`scenery` is applied by the track's Scenery node, which listens to Settings)
 ##   Audio     Master / Engine / FX / UI bus volumes (linear 0..1 -> dB, 0 = muted)
 ## Window calls are skipped when headless; a `--screenshot` run and an explicit `--resolution`
 ## keep the window they asked for.
@@ -11,9 +12,9 @@ extends Node
 
 ## What each quality preset sets (graphics keys). Anything else is "custom".
 const PRESETS: Dictionary = {
-	"low": {"render_scale": 0.7, "msaa": 0, "shadows": 1},     # Intel HD 520 class GPUs
-	"medium": {"render_scale": 1.0, "msaa": 2, "shadows": 2},  # the defaults
-	"high": {"render_scale": 1.0, "msaa": 3, "shadows": 3},
+	"low": {"render_scale": 0.7, "msaa": 0, "shadows": 1, "scenery": 0},     # Intel HD 520 class GPUs
+	"medium": {"render_scale": 1.0, "msaa": 2, "shadows": 2, "scenery": 1},  # the defaults
+	"high": {"render_scale": 1.0, "msaa": 3, "shadows": 3, "scenery": 2},
 }
 const PRESET_ORDER: Array[String] = ["low", "medium", "high"]
 const PRESET_CUSTOM := "custom"
@@ -64,6 +65,7 @@ func _ready() -> void:
 					overrides["graphics/" + key] = PRESETS[preset][key]
 			else:
 				push_warning("SettingsApply: unknown --quality=%s" % preset)
+	_adopt_new_preset_keys()
 	_ensure_buses()
 	get_tree().node_added.connect(_on_node_added)
 	Settings.changed.connect(_on_setting_changed)
@@ -95,6 +97,22 @@ func current_preset() -> String:
 		if matches:
 			return preset
 	return PRESET_CUSTOM
+
+## A save from before a preset key existed (`scenery`): when the keys the file does have
+## match a preset, the new key takes that preset's value, so "low" stays low.
+func _adopt_new_preset_keys() -> void:
+	for preset: String in PRESET_ORDER:
+		var missing: Array[String] = []
+		var matches := true
+		for key: String in PRESETS[preset]:
+			if ("graphics/" + key) in Settings.missing_on_load:
+				missing.append(key)
+			elif not is_equal_approx(float(Settings.get_value("graphics", key)), float(PRESETS[preset][key])):
+				matches = false
+		if matches and not missing.is_empty() and missing.size() < (PRESETS[preset] as Dictionary).size():
+			for key in missing:
+				Settings.set_value("graphics", key, PRESETS[preset][key])
+			return
 
 func apply_preset(preset: String) -> void:
 	if not PRESETS.has(preset):
@@ -220,5 +238,7 @@ func _on_setting_changed(section: String, key: String) -> void:
 				apply_window()
 			"vsync", "fps_cap":
 				apply_frame_pacing()
+			"scenery":
+				pass   # scripts/track/scenery.gd reacts to it
 			_:
 				apply_quality()

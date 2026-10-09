@@ -479,14 +479,18 @@ func _make_materials() -> void:
 	_mats.resize(Mat.size())
 	var rw := ShaderMaterial.new()
 	rw.shader = KERB_SHADER
-	rw.set_shader_parameter("color_a", Color(0.78, 0.07, 0.06))
-	rw.set_shader_parameter("color_b", Color(0.93, 0.93, 0.91))
+	# Kerb colours are the track's (environment.json "kerbs"; the defaults are red / white
+	# and a yellow sausage kerb).
+	var track := get_parent() as Track
+	var env := track.environment if track != null and track.environment != null else TrackEnvironment.new()
+	rw.set_shader_parameter("color_a", env.color("kerbs", "a"))
+	rw.set_shader_parameter("color_b", env.color("kerbs", "b"))
 	rw.set_shader_parameter("stripe", 1.0)
 	_mats[Mat.KERB_RW] = rw
 	var ye := ShaderMaterial.new()
 	ye.shader = KERB_SHADER
-	ye.set_shader_parameter("color_a", Color(0.95, 0.78, 0.05))
-	ye.set_shader_parameter("color_b", Color(0.95, 0.78, 0.05))
+	ye.set_shader_parameter("color_a", env.color("kerbs", "sausage"))
+	ye.set_shader_parameter("color_b", env.color("kerbs", "sausage"))
 	ye.set_shader_parameter("stripe", 0.0)
 	_mats[Mat.KERB_YELLOW] = ye
 	_mats[Mat.LINE] = _std(Color(0.92, 0.92, 0.90), 0.75)
