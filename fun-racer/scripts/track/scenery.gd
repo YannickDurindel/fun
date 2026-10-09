@@ -459,6 +459,7 @@ func _chunk_collision(mi: MeshInstance3D) -> void:
 	var body := StaticBody3D.new()
 	body.name = String(mi.name) + "_Body"
 	body.set_meta("surface", "asphalt")
+	body.add_to_group(&"scenery_body")
 	var cs := CollisionShape3D.new()
 	cs.shape = shape
 	body.add_child(cs)
