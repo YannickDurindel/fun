@@ -131,6 +131,37 @@ func lat_at(v: float) -> float:
 	var by_curv := lerpf(lat[i] / (speeds[i] * speeds[i]), lat[i + 1] / (speeds[i + 1] * speeds[i + 1]), t) * v * v
 	return minf(by_acc, by_curv)
 
+## Share of the extra tyre load on a banked road that is counted as extra grip (measured
+## cars). The car is pressed into the banking by its own cornering, and friction grows with
+## the load, but less than in proportion (load sensitivity), and the plan must not lean on
+## the last of it.
+const BANK_LOAD_USE: float = 0.5
+
+## Highest lateral acceleration of the path (m/s^2, horizontal) on a road banked `theta` rad
+## towards the inside of the corner (negative: adverse camber), where the flat-road limit is
+## `lat`. Across the banked road the car needs a cos(theta) of its cornering acceleration, and
+## gravity supplies g sin(theta) of that:  a cos = tyres + g sin.
+##   * arcade car: its friction budget does not depend on the load, and gravity along the road
+##     counts as in the Car (slope_gravity_multiplier, through the steering lock's usage).
+##   * measured car: the tyres also carry more, g cos + a sin against g on the flat, of which
+##     BANK_LOAD_USE counts:  a = (lat - mu' g (1 - cos) + g sin) / (cos - mu' sin).
+func banked_lat(lat: float, theta: float) -> float:
+	if theta == 0.0:
+		return lat
+	var sn := sin(theta)
+	var cs := cos(theta)
+	if analytic:
+		return maxf(0.2 * lat, (lat + bank_pull(theta)) / cs)
+	var mu := grip_mu() * BANK_LOAD_USE
+	return maxf(0.2 * lat, (lat - mu * G * (1.0 - cs) + bank_pull(theta)) / maxf(cs - mu * sn, 0.5))
+
+## What gravity adds to the cornering limit across a road banked `theta` rad towards the
+## inside of the corner (m/s^2; negative on adverse camber).
+func bank_pull(theta: float) -> float:
+	if analytic:
+		return _eff * _car.steer_grip_usage * G * _car.slope_gravity_multiplier * sin(theta)
+	return G * sin(theta)
+
 ## Lateral acceleration the tyres can hold at v, whether or not the steering reaches it.
 func grip_at(v: float) -> float:
 	if analytic:

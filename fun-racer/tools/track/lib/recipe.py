@@ -49,7 +49,7 @@ SECTION_KEYS = {
     "layout": {"direction", "finish", "start", "start_offset_m", "sectors", "spline", "shift"},
     "elevation": {"dataset", "smooth_sigma_m", "override", "key", "key_join_m", "smooth"},
     "road": {"base_width", "grid_width", "crossfall", "camber_gain", "bank_keys", "width_keys",
-             "override", "track_json_widths", "retaining_walls", "pair"},
+             "override", "track_json_widths", "retaining_walls", "pair", "max_bank", "shoulder"},
     "terrain": {"near", "far", "smooth_sigma_m"},
 }
 TURN_KEYS = {"id", "name", "direction", "s"}
@@ -63,6 +63,8 @@ KEY_JOIN = 250.0      # m: [[elevation.key]] entries closer than this follow one
 PAIR_GAP = 1.5        # m between the tarmac edges of a [[road.pair]]: the room of one wall
 ROUND_KEYS = {"node", "to_node", "reach_m", "note"}
 DIRECTIONS = {"clockwise", "anticlockwise"}
+AUTO_BANK = 0.03      # rad: cad/track/banking.py MAX_BANK, the limit without road.max_bank
+BANK_CEILING = 0.40   # rad: cad/track/banking.py BANK_CEILING
 
 
 @dataclass
@@ -396,11 +398,22 @@ def validate(r):
             raise BuildError(f"recipe: road.{key} must be [[s, value, \"note\"], ...] with s "
                              "ascending inside the lap")
     for key, lo, hi in (("crossfall", 0.0, 0.03), ("camber_gain", 0.0, 10.0), ("base_width", 6.0, 30.0),
-                        ("grid_width", 6.0, 30.0)):
+                        ("grid_width", 6.0, 30.0), ("max_bank", AUTO_BANK, BANK_CEILING),
+                        ("shoulder", 0.0, 10.0)):
         v = r.road.get(key)
-        if v is not None and (not isinstance(v, (int, float)) or not lo <= v <= hi):
+        if v is not None and (isinstance(v, bool) or not isinstance(v, (int, float)) or not lo <= v <= hi):
             raise BuildError(f"recipe: road.{key} must be a number between {lo} and {hi}"
-                             + (" (radians; 0.015 = 1.5 %)" if key == "crossfall" else ""))
+                             + (" (radians; 0.015 = 1.5 %)" if key == "crossfall" else "")
+                             + (" (radians; 0.314 = 18 degrees)" if key == "max_bank" else ""))
+    # Banking steeper than the automatic camber has to be declared (cad/track/banking.py).
+    bank_limit = float(r.road.get("max_bank", AUTO_BANK))
+    declared = [k[1] for k in r.road.get("bank_keys") or []]
+    declared += [o["bank"] for o in r.road.get("override", [])
+                 if isinstance(o, dict) and isinstance(o.get("bank"), (int, float))]
+    if any(abs(b) > bank_limit + 1e-9 for b in declared):
+        raise BuildError(f"recipe: a bank of {max(declared, key=abs):+g} rad exceeds the track's limit of "
+                         f"{bank_limit:g} rad. Real banking is declared with road.max_bank (radians, "
+                         f"up to {BANK_CEILING}; 18 degrees = 0.314), see tools/track/README.md")
     if not isinstance(r.road.get("track_json_widths", False), bool):
         raise BuildError("recipe: road.track_json_widths must be true or false")
     if not isinstance(r.road.get("override", []), list):

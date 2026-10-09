@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Autopilot lap check for any track, headless and faster than real time.
 # Usage: tools/lap_check.sh <track_id> [--handling=arcade|simulation] [--lap-report]
+#            [--lap-tracks-dir=res://tests/fixtures/tracks]   (a fixture or scratch track)
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 ID="${1:?track id required}"

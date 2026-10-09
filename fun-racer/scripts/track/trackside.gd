@@ -35,6 +35,10 @@ const KERB_PROFILE := {"flat": "kerb_flat", "saw": "kerb_sawtooth", "sausage": "
 const SAUSAGE_GAP: float = 0.3      ## space between a kerb's outer edge and a sausage kerb
 const LIMIT_SLOPE: float = 0.3      ## automatic layout: max sideways run of the wall per metre
 const PAIR_RAMP: float = 20.0       ## m over which the two walls of a pair become its shared one
+## Cross slope (sine) above which trackside points beside the road follow the Road slot's verge
+## surface instead of the extended road plane: just over the automatic camber (0.03 rad), so
+## the tracks without declared banking keep their geometry exactly.
+const BANKED_FROM: float = 0.035
 
 @export var snap_to_road: bool = true
 @export var chunk_length: float = 200.0
@@ -122,8 +126,8 @@ func edge_at(s: float) -> float:
 	return _data.width_at(s) * 0.5
 
 ## Road frame at s: origin on the centreline surface, +X right, +Y road normal, -Z forward.
-## Banking comes from the Road slot (+ = left edge higher); TrackData's own bank rotation is
-## not used (its sign convention differs and it is 0 everywhere today).
+## Banking comes from the Road slot (+ = left edge higher), which has the crossfall of every
+## track; TrackData only carries declared banking.
 func frame_at(s: float) -> Transform3D:
 	var fwd := _data.tangent_at(s)
 	var right := fwd.cross(Vector3.UP).normalized()
@@ -141,12 +145,16 @@ func frame_at(s: float) -> Transform3D:
 
 ## Point `dist` metres from the centreline on `side` (+1 right, -1 left). On the road it is
 ## the Road slot's real surface (crossfall included); beyond the edge the road plane at the
-## edge is extended outward (callers ray-snap those points onto the real verge).
+## edge is extended outward (callers ray-snap those points onto the real verge). Beside a
+## banked road (BANKED_FROM) that plane leaves the ground within a few metres, so there the
+## point is on the Road slot's verge surface itself.
 func lateral_point(s: float, side: float, dist: float, xf: Transform3D) -> Vector3:
 	var e := edge_at(s)
 	var d := minf(dist, e)
 	var p: Vector3
 	if _road != null and _road.has_method(&"surface_point"):
+		if dist > e and absf(xf.basis.x.y) > BANKED_FROM:
+			return _road.call(&"surface_point", s, side * dist)
 		p = _road.call(&"surface_point", s, side * d)
 	else:
 		p = xf.origin + xf.basis.x * side * d

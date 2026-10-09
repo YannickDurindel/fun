@@ -206,6 +206,8 @@ def build_road(recipe, out_dir, log=print):
     log(f"road: {res['chunks']} chunks, {res['triangles']} triangles; width {res['width'][0]:.1f}-"
         f"{res['width'][1]:.1f} m, bank {res['bank'][0]:+.3f}..{res['bank'][1]:+.3f} rad, "
         f"min verge {res['verge_min']:.1f} m" + ("" if recipe.road.get("bank_keys") else "  (automatic camber)"))
+    for note in res.get("notes", []):
+        log(f"  banking: {note}")
     for b in res.get("bridges", []):
         log(f"  bridge: deck s = {b['deck'][0]:.0f} to {b['deck'][1]:.0f} m ({b['span'][0]:.0f} to "
             f"{b['span'][1]:.0f} m above open ground), {b['clearance']:.1f} m over the road at "

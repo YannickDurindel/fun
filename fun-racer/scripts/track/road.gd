@@ -10,7 +10,10 @@ extends Node3D
 ##   * road_profile.json (the banking.py override) answers exact surface queries: the road is
 ##     ruled between the centreline cross-sections, so surface_point() matches the mesh to
 ##     within float error along each cross-section. Without it the plain track.json
-##     cross-section is used (flat, no racing line).
+##     cross-section is used (its width and bank, no racing line).
+##   * A track with declared banking (cad/track/banking.py) has "verge_slope_left" / "_right"
+##     in its profile: the verge leaves the road in the road's own plane and eases back to its
+##     normal fall (verge_rise()). Optional keys: without them the verge is the plain one.
 ##   * road_tarmac.tres / road_grass.tres: materials of the runtime ribbon (the GLB brings its
 ##     own); shared defaults live in assets/tracks/_shared.
 ##   * A lap that crosses itself (a figure of eight) has "bridges" in road_profile.json and a
@@ -46,6 +49,15 @@ var bridges: Array[Dictionary] = []
 var pairs: Array[Dictionary] = []
 var verge_width: float = 30.0
 var verge_drop: float = 0.25
+## Banked verge (cad/track/road.py: verge_shape): extra outward slope of each side's verge at
+## the road edge, kept for `verge_shoulder` m and fading out over `verge_blend` m. Empty on a
+## track without declared banking.
+var verge_slope_left: PackedFloat32Array = []
+var verge_slope_right: PackedFloat32Array = []
+var verge_shoulder: float = 3.0
+var verge_blend: float = 8.0
+## Steepest bank the runtime ribbon treats as plain camber (cad/track/banking.py MAX_BANK).
+const AUTO_BANK: float = 0.03
 var data: TrackData
 ## True when the mesh was built here at runtime (no road_mesh.glb in the track folder).
 var is_runtime_mesh: bool = false
@@ -95,6 +107,13 @@ func _load_profile() -> void:
 	verge_left = _profile_array(d, "verge_left", n, verge_width)
 	verge_right = _profile_array(d, "verge_right", n, verge_width)
 	racing_line = _profile_array(d, "racing_line", n, 0.0)
+	verge_slope_left = PackedFloat32Array()
+	verge_slope_right = PackedFloat32Array()
+	if d.has("verge_slope_left") and d.has("verge_slope_right"):
+		verge_slope_left = _profile_array(d, "verge_slope_left", n, 0.0)
+		verge_slope_right = _profile_array(d, "verge_slope_right", n, 0.0)
+		verge_shoulder = float(d.get("verge_shoulder", 3.0))
+		verge_blend = maxf(float(d.get("verge_blend", 8.0)), 0.01)
 	chunk_ranges = d.get("chunks", [])
 	bridges = []
 	for b: Variant in d.get("bridges", []):
@@ -113,19 +132,32 @@ static func _profile_array(d: Dictionary, key: String, n: int, fallback: float) 
 		a.fill(fallback)
 	return a
 
-## Without a usable profile, queries use the plain track.json cross-section: flat road, no
-## racing line, full verges except on the inside of tight corners (where neighbouring
-## cross-sections would fold over each other) and next to another leg of the lap (each leg
-## gets half the space between them).
+## Without a usable profile, queries use the plain track.json cross-section: its width and
+## bank (0 unless the track declares banking), no racing line, full verges except on the inside
+## of tight corners (where neighbouring cross-sections would fold over each other) and next to
+## another leg of the lap (each leg gets half the space between them).
 func _fallback_profile() -> void:
 	if data == null:
 		return
 	var n := data.points.size()
 	widths = data.widths.duplicate()
-	banks = PackedFloat32Array()
-	banks.resize(n)
-	banks.fill(0.0)
-	racing_line = banks.duplicate()
+	banks = data.banks.duplicate()
+	racing_line = PackedFloat32Array()
+	racing_line.resize(n)
+	racing_line.fill(0.0)
+	verge_slope_left = PackedFloat32Array()
+	verge_slope_right = PackedFloat32Array()
+	var steepest := 0.0
+	for b in banks:
+		steepest = maxf(steepest, absf(b))
+	if steepest > AUTO_BANK + 1e-6:
+		# Declared banking: the verge carries on in the plane of the road, as the CAD builds it.
+		verge_slope_left.resize(n)
+		verge_slope_right.resize(n)
+		for i in n:
+			var plane := tan(banks[i]) / maxf(_section_up_flat(i).y, 0.1)
+			verge_slope_left[i] = plane + 0.25 / RIBBON_VERGE_WIDTH
+			verge_slope_right[i] = -plane + 0.25 / RIBBON_VERGE_WIDTH
 	chunk_ranges = []
 	bridges = []
 	pairs = []
@@ -185,11 +217,12 @@ func _build_ribbon() -> void:
 			var s1 := s0 + data.step if j != 0 else data.length
 			var lat_i := _ribbon_laterals(i)
 			var lat_j := _ribbon_laterals(j)
-			for c in 3:   # strips: left verge, road, right verge
-				if c != 1 and maxf(absf(lat_i[c + 1] - lat_i[c]), absf(lat_j[c + 1] - lat_j[c])) < 0.05:
+			var road_strip := (lat_i.size() - 1) / 2
+			for c in lat_i.size() - 1:   # strips: left verge, road, right verge
+				if c != road_strip and maxf(absf(lat_i[c + 1] - lat_i[c]), absf(lat_j[c + 1] - lat_j[c])) < 0.05:
 					continue
-				verge_quads += 0 if c == 1 else 1
-				_ribbon_quad(road if c == 1 else verge, i, j, s0, s1,
+				verge_quads += 0 if c == road_strip else 1
+				_ribbon_quad(road if c == road_strip else verge, i, j, s0, s1,
 						lat_i[c], lat_i[c + 1], lat_j[c], lat_j[c + 1])
 		var mesh := ArrayMesh.new()
 		road.index()
@@ -207,10 +240,30 @@ func _build_ribbon() -> void:
 		holder.add_child(mi)
 		first += count
 
-## Lateral offsets of the four ribbon columns at point i: verge end, edge, edge, verge end.
+## Lateral offsets of the ribbon columns at point i, left to right: verge end, [banked verge
+## rows], edge, edge, [banked verge rows], verge end. A banked verge is curved over its first
+## verge_shoulder + verge_blend metres, so it gets a row every 2 m there.
 func _ribbon_laterals(i: int) -> Array[float]:
 	var hw := 0.5 * widths[i]
-	return [-hw - verge_left[i], -hw, hw, hw + verge_right[i]]
+	var out: Array[float] = [-hw - verge_left[i]]
+	var rows := _ribbon_verge_rows()
+	for k in range(rows.size() - 1, -1, -1):
+		out.append(-hw - minf(rows[k], verge_left[i]))
+	out.append(-hw)
+	out.append(hw)
+	for k in rows.size():
+		out.append(hw + minf(rows[k], verge_right[i]))
+	out.append(hw + verge_right[i])
+	return out
+
+func _ribbon_verge_rows() -> Array[float]:
+	var rows: Array[float] = []
+	if verge_slope_left.is_empty():
+		return rows
+	rows.append(verge_shoulder)
+	for k in range(1, 5):
+		rows.append(verge_shoulder + verge_blend * k / 4.0)
+	return rows
 
 ## One ribbon cell between cross-sections i (laterals a0..b0) and j (a1..b1), facing up.
 func _ribbon_quad(st: SurfaceTool, i: int, j: int, s0: float, s1: float,
@@ -333,7 +386,8 @@ func racing_line_at(s: float) -> float:
 	return lerpf(racing_line[r[0]], racing_line[r[1]], r[2])
 
 ## Exact surface point (road or verge) at s and lateral offset (+ right). Beyond the verge
-## the verge plane is extrapolated.
+## the verge plane is extrapolated. `lateral` is measured across the road in its own (banked)
+## plane, and horizontally from the road edge on the verge.
 func surface_point(s: float, lateral: float) -> Vector3:
 	var r := _idx(s)
 	var a := _section_point(r[0], lateral)
@@ -355,7 +409,24 @@ func _section_point(i: int, lateral: float) -> Vector3:
 	var side := signf(lateral)
 	var d := absf(lateral) - hw
 	var edge := p + rb * (side * hw)
-	return edge + rh * (side * d) + Vector3.DOWN * (verge_drop * d / verge_width)
+	return edge + rh * (side * d) + Vector3.UP * (verge_rise(i, side, d) - verge_drop * d / verge_width)
+
+## Height a banked verge gains over the plain one, `d` metres out from the road edge of
+## centreline point i on `side` (-1 left, +1 right): its extra slope counts in full on the
+## shoulder, then less and less over verge_blend (cad/track/road.py: verge_shape). 0 on a
+## track without declared banking.
+func verge_rise(i: int, side: float, d: float) -> float:
+	if verge_slope_left.is_empty():
+		return 0.0
+	var u := clampf(d - verge_shoulder, 0.0, verge_blend)
+	var reach := minf(d, verge_shoulder) + u - u * u / (2.0 * verge_blend)
+	return (verge_slope_left[i] if side < 0.0 else verge_slope_right[i]) * reach
+
+## Unbanked road normal of the cross-section at centreline point i.
+func _section_up_flat(i: int) -> Vector3:
+	var n := data.points.size()
+	var t := (data.points[(i + 1) % n] - data.points[(i - 1 + n) % n]).normalized()
+	return t.cross(Vector3.UP).normalized().cross(t).normalized()
 
 ## Road normal of the cross-section at centreline point i.
 func _section_up(i: int) -> Vector3:

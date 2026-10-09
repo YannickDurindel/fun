@@ -2,6 +2,8 @@ extends SceneTree
 ## Headless full-lap check for any track: the autopilot drives one standing lap and one flying
 ## lap; reports lap times, the closest approach to the road edge and any impacts.
 ## Usage: tools/lap_check.sh <track_id>     (exit code 0 = both laps clean)
+## --lap-tracks-dir=res://folder also looks for the track in that folder of track folders (a
+## fixture of tests/fixtures/tracks, or a scratch build copied into the project).
 
 const TICK := 1.0 / 240.0
 
@@ -13,6 +15,9 @@ func _run() -> void:
 	for a: String in OS.get_cmdline_user_args():
 		if a.begins_with("--lap-track="):
 			id = a.get_slice("=", 1)
+		elif a.begins_with("--lap-tracks-dir="):
+			(load("res://scripts/track/track_catalog.gd") as GDScript).call(
+					&"set_extra_dirs", PackedStringArray([a.get_slice("=", 1)]))
 		elif a.begins_with("--handling="):
 			# Bootstrap parses this too; set here in case this script's args came first.
 			root.get_node("/root/Bootstrap").set(&"handling_override", StringName(a.get_slice("=", 1)))
