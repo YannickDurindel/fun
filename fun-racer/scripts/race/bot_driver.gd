@@ -14,6 +14,12 @@ extends Autopilot
 ## margin; cached and shared by all bots of that difficulty), then every bot gets a seeded
 ## personal `speed_scale`, throttle ceiling and lateral line shift so the field spreads out
 ## instead of driving in single file.
+##
+## Either handling model: the pace settings scale the car's CarEnvelope (see Autopilot), so a
+## simulation bot uses the same fractions of the simulation car's measured limits, and drives
+## it with the Autopilot's simulation controller. Bots never wait for a measurement: if the
+## envelope is still being measured when the race starts they set off on the provisional
+## (conservative) one and switch when it arrives.
 
 const EASY := 0
 const MEDIUM := 1
@@ -26,6 +32,8 @@ const HARD := 2
 ## Measured flying laps on the Red Bull Ring, 7 bots (the Autopilot's own best is 1:16.72):
 ##   Easy 1:26.9-1:27.8 (+13.3..14.4 %), Medium 1:21.1-1:21.9 (+5.7..6.8 %),
 ##   Hard 1:17.5-1:18.2 (+1.0..1.9 %).
+## The same settings on the simulation car (skeleton parts, 3 bots; the Autopilot does 1:20.0):
+##   Easy 1:37.3-1:38.5, Medium 1:28.9-1:29.7, Hard 1:22.0-1:22.2.
 const PACE: Array[Dictionary] = [
 	{"lateral": 0.66, "brake": 0.60, "throttle": 0.86, "scale": Vector2(0.985, 0.965), "shift": 1.6, "mistakes": 14.0},
 	{"lateral": 0.77, "brake": 0.72, "throttle": 0.94, "scale": Vector2(0.995, 0.98), "shift": 1.2, "mistakes": 0.0},
@@ -44,6 +52,9 @@ const MISTAKE_LIFT_THROTTLE: float = 0.3
 ## car beats the profile by about that much (measured: rails laps were 1.6-2.0 % slower), so
 ## a bot keeps the same lap time whichever way it is moved.
 const RAIL_GAIN: float = 1.018
+## The simulation car does not quite reach its profile out of the corners (measured: laps on
+## rails at the profile's speed were 3 % quicker than simulated ones), hence a gain below 1.
+const RAIL_GAIN_SIM: float = 0.97
 
 var difficulty: int = MEDIUM
 var bot_index: int = 0
@@ -82,6 +93,7 @@ static func pace_of(p_difficulty: int) -> Dictionary:
 func configure(p_car: Car, p_track: Track, p_difficulty: int, index: int, p_seed: int = 0) -> void:
 	mode = Mode.DIRECT
 	collect_stats = false
+	wait_for_envelope = false
 	difficulty = clampi(p_difficulty, EASY, HARD)
 	bot_index = index
 	set_car(p_car)
@@ -216,9 +228,12 @@ func respawn_on_track() -> void:
 	current_s = s
 
 # ================================================================ on rails
+func _rail_gain() -> float:
+	return RAIL_GAIN_SIM if _car != null and _car.sim != null else RAIL_GAIN
+
 ## Current speed (m/s), whichever way the car is moved.
 func speed() -> float:
-	return rail_speed * RAIL_GAIN if on_rails else (_car.linear_velocity.length() if _car != null else 0.0)
+	return rail_speed * _rail_gain() if on_rails else (_car.linear_velocity.length() if _car != null else 0.0)
 
 ## Switches between the simulated Car and the cheap on-rails motion, keeping place and speed.
 ## Only meant for bots nobody can see closely: the hand-over is not perfectly smooth.
@@ -234,7 +249,7 @@ func set_on_rails(rails: bool) -> void:
 		var centre := _data.sample(current_s)
 		_rail_lateral_error = clampf((_car.global_position - centre.origin).dot(centre.basis.x)
 				- line_offset_at(current_s), -3.0, 3.0)
-		rail_speed = maxf(_car.forward_speed, 0.0) / RAIL_GAIN
+		rail_speed = maxf(_car.forward_speed, 0.0) / _rail_gain()
 		_car.simulate = false
 		_car.linear_velocity = Vector3.ZERO
 		_car.angular_velocity = Vector3.ZERO
@@ -250,11 +265,17 @@ func set_on_rails(rails: bool) -> void:
 		_car.global_transform = xf
 		_car.linear_velocity = -xf.basis.z * v
 		_car.angular_velocity = Vector3.ZERO
+		if _car.sim != null:
+			_car.sim.set_speed(v)   # wheels turning at road speed, in the right gear
 		_car.forward_speed = v
 		_car.speed_kmh = v * Car.KMH
 		_car.simulate = true
 		current_s = _rail_s
 		_have_prev_err = false
+		if _sim:
+			# Neutral inputs until the next think: the last ones are from before the rails.
+			_reset_sim_controller()
+			_car.set_input_override(0.0, 0.0, 0.0)
 		_stuck = 0.0
 		_upside = 0.0
 
@@ -273,13 +294,15 @@ func _physics_process(delta: float) -> void:
 	if not on_rails:
 		super(delta)
 		return
+	if _envelope_arrived():
+		_setup()   # the measured envelope has arrived: the rails follow its profile
 	_clock += delta
 	_tick += 1
 	var every := maxi(think_every, 1)
 	var thinking := (_tick + think_phase) % every == 0
 	if thinking:
 		_rail_think(delta * every)
-	_rail_s = _data.wrap_s(_rail_s + rail_speed * RAIL_GAIN * delta * line_s_rate_at(_rail_s))
+	_rail_s = _data.wrap_s(_rail_s + rail_speed * _rail_gain() * delta * line_s_rate_at(_rail_s))
 	if thinking or rail_smooth:
 		_car.global_transform = _rail_transform()
 
@@ -292,16 +315,17 @@ func _rail_think(dt: float) -> void:
 	var s := _rail_s
 	var v := rail_speed
 	var v_t := _target_speed(s, v)
-	var slope := G_TRACK * _car.gravity_multiplier * _data.grade_at(s)
+	var slope := _g_eff() * _data.grade_at(s)
+	var gain := _rail_gain()
 	if v < v_t:
 		v = minf(v_t, v + maxf(0.0, _accel_at(v) * throttle_cap - slope) * dt)
 	else:
-		v = maxf(v_t, v - maxf(1.0, _car.brake_decel * brake_usage + slope) * dt)
+		v = maxf(v_t, v - maxf(1.0, _env.brake_at(v) * brake_usage + slope) * dt)
 	rail_speed = v
 	_rail_lateral_error = move_toward(_rail_lateral_error, 0.0, 1.5 * dt)
 	if rail_smooth:
 		for i in _car.wheels.size():   # seen: keep the wheels turning
-			_car.wheels[i].spin_angle = fmod(_car.wheels[i].spin_angle + v * RAIL_GAIN / _car.wheel_radius(i) * dt, TAU * 1000.0)
-	_car.speed_kmh = v * RAIL_GAIN * Car.KMH
-	_car.forward_speed = v * RAIL_GAIN
+			_car.wheels[i].spin_angle = fmod(_car.wheels[i].spin_angle + v * gain / _car.wheel_radius(i) * dt, TAU * 1000.0)
+	_car.speed_kmh = v * gain * Car.KMH
+	_car.forward_speed = v * gain
 	_update_lap_timing(s, v > 0.5)
