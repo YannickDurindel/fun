@@ -33,6 +33,38 @@ extends Node
 ##
 ## Drift guard: the Car drifts on brake + |steer| > 0.5 above 80 km/h, so above
 ## `drift_guard_kmh` the brake is held below the drift threshold whenever |steer| is large.
+##
+## Everything the brain knows about the car comes from its CarEnvelope (lateral, braking and
+## acceleration limits against speed). For the arcade model the envelope is the analytic one
+## above and the pipeline is exactly as described. For the SIMULATION model (car.sim != null)
+## the envelope is measured on a hidden copy of the car, and both planning and driving differ,
+## because that car forgives nothing:
+##   * Line: the same curvature-minimising line, then opened up wherever it asks for a
+##     tighter turn than the car's steering lock gives at a sensible speed
+##     (_open_tight_corners): the arcade car turns in 7 m, this one needs about 15.
+##   * Profile (_speed_profile_sim): corner speed solved against the measured lat(v), reduced
+##     over crests; braking AND acceleration passes inside a friction ellipse (the share of
+##     grip the corner takes is not available to the pedals), so the plan itself trail-brakes
+##     into the apex and feeds the power in on the way out. The target is the lower of the two
+##     passes: what the car can really do, not only where it must brake.
+##   * Steering (_think_sim): feed-forward of the line's curvature a little ahead, through the
+##     measured steering map (input for a share of the cornering limit at this speed), plus a
+##     look-ahead feedback on lateral and heading error whose reach grows with speed, a little
+##     yaw damping and an inner loop on the curvature really driven. The heading error is
+##     taken against the body slip the corner should produce, so a tail that steps out is met
+##     with opposite lock. The command is rate limited and never asks the front tyres for
+##     more than their limit.
+##   * Pedals: wanted acceleration = the profile's own slope + a gain on the speed error,
+##     turned into pedal travel with the measured pedal maps, capped by the friction ellipse
+##     at the lateral acceleration of the moment, then governed on wheel slip (it holds the
+##     tyres short of their peak with or without the car's traction control and anti-lock).
+##     Off the brakes in a corner the throttle never drops below neutral (engine braking on
+##     the rear axle alone unsettles the car). In a slide the throttle goes to neutral and the
+##     brake is released until the car is straight again.
+##   * Gears: left to the car's automatic gearbox; the brain only shifts if the engine goes
+##     well past the shift points (i.e. the automatic is off).
+## Measured on the Red Bull Ring with the skeleton parts (flying lap, aids at their defaults):
+## 1:19.98 against a plan of 76.95 s; the difference is traction out of the corners.
 
 enum Mode { PROVIDER, DIRECT }
 
@@ -77,6 +109,40 @@ enum Mode { PROVIDER, DIRECT }
 @export var speed_preview_time: float = 0.12     ## s, profile read ahead for actuator lag
 @export var drift_guard_kmh: float = 85.0
 @export var drift_guard_steer: float = 0.4
+@export_group("Simulation car")
+## PROVIDER default: stand still while the car's envelope is being measured (a few seconds,
+## only when no valid envelope file exists) instead of setting off on provisional limits.
+@export var wait_for_envelope: bool = true
+## Multipliers on lateral_usage / brake_usage for the simulation car: its envelope is the
+## true tyre limit, where the arcade numbers already carry the arcade model's margins.
+@export var sim_lateral_scale: float = 1.0
+@export var sim_brake_scale: float = 1.0
+## Share of the traction limit used when accelerating out of a corner.
+@export var sim_traction_usage: float = 0.9
+## Share of the car's tightest practical curvature (CarEnvelope.max_curvature) the racing
+## line may ask for; corners tighter than that are opened up.
+@export var sim_line_lock_usage: float = 0.95
+@export var sim_lookahead_base: float = 6.0      ## m
+@export var sim_lookahead_time: float = 0.34     ## s
+@export var sim_lookahead_max: float = 45.0      ## m
+## Line curvature is read this far ahead (s) for the steering feed-forward (yaw lag).
+@export var sim_curvature_preview: float = 0.10
+## Weight of the body-slip excess in the heading error (1 = full counter-steer).
+@export var sim_slide_gain: float = 1.0
+@export var sim_steer_rate: float = 3.5          ## steering input per second
+## Gain on the difference between the curvature the car is turning and the one asked for:
+## under braking the car turns in far more sharply for the same lock (load on the nose).
+@export var sim_yaw_gain: float = 0.4
+## Gain of the inner loop on the curvature of the path really driven (from the lateral
+## acceleration) against the one asked for.
+@export var sim_path_gain: float = 0.8
+## Shape of the friction "ellipse" shared by cornering and the pedals:
+## long^p + lat^p <= 1. 2 = a true ellipse; lower leaves the tyres more in hand (1 = straight
+## trade-off). Braking into a corner gets the cautious one: the load on the nose makes the car
+## turn in much more sharply, long before the tyres themselves give up.
+@export var sim_trail_power: float = 1.6
+@export var sim_exit_power: float = 2.0
+@export var sim_speed_gain: float = 2.2          ## m/s^2 of wanted acceleration per m/s of error
 
 const G_TRACK := 9.81
 
@@ -118,6 +184,18 @@ var _lap_t0: float = -1.0
 var _prev_s: float = -1.0
 var _turn_state: Array[Dictionary] = []
 var _tick: int = 0
+var _env: CarEnvelope
+var _env_rev: int = -1
+var _sim: bool = false
+var _shift_cool: float = 0.0
+var _slide_hold: float = 0.0
+var _prev_vel: Vector3 = Vector3.ZERO
+var _have_prev_vel: bool = false
+var _a_lat: float = 0.0                  ## lateral acceleration of the car's path (m/s^2, + = left)
+## Simulation controller, last think: commanded curvature (1/m), heading error (rad), expected
+## body slip (rad), wanted acceleration (m/s^2), share of the grip left for the pedals (0..1),
+## 1 while a slide is being caught.
+var diag: PackedFloat32Array = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
 const RaceTimer := preload("res://scripts/ui/race_timer.gd")
 
@@ -176,6 +254,18 @@ func _on_car_respawned() -> void:
 	current_s = -1.0
 	_prev_s = -1.0
 	_have_prev_err = false
+	_reset_sim_controller()
+
+## The simulation controller carries state from one think to the next (rate-limited steering,
+## governed pedals, the slide timer): after a teleport it starts from neutral.
+func _reset_sim_controller() -> void:
+	_have_prev_vel = false
+	_a_lat = 0.0
+	_slide_hold = 0.0
+	if _sim:
+		_throttle = 0.0
+		_brake = 0.0
+		_steer = 0.0
 
 func _exit_tree() -> void:
 	if Bootstrap.autodrive_provider == self:
@@ -246,22 +336,39 @@ func _setup() -> void:
 	# The (expensive, geometry-only) racing line is shared by every driver of the track; the
 	# speed profile also depends on the pace settings and the Car tuning, so it is shared by
 	# the drivers that agree on those. The arrays are shared by reference: never write to them.
-	var key := "%s|%d|%.3f|%s|%.3f" % [_track.track_json, _n, _data.length, use_racing_line, line_margin]
+	_sim = _car.sim != null
+	_env = CarEnvelope.for_car(_car, lateral_efficiency)
+	_env_rev = CarEnvelope.revision
+	# The simulation car cannot turn as tightly as the arcade one: its line is opened up where
+	# it would ask for more than the car's lock gives (so it is a line of its own).
+	var k_limit := _env.max_curvature() * sim_line_lock_usage if _sim and use_racing_line else INF
+	var base_key := "%s|%d|%.3f|%s|%.3f" % [_track.track_json, _n, _data.length, use_racing_line, line_margin]
+	var key := base_key + "|k%.4f" % k_limit if k_limit < INF else base_key
 	if _cache.has(key):
 		var c: Dictionary = _cache[key]
 		_line_off = c["off"]
 		_line_pts = c["pts"]
 		_line_k = c["k"]
 	else:
-		line_builds += 1
-		_line_off = _racing_line() if use_racing_line else _zeros()
-		_line_pts = PackedVector3Array()
-		_line_pts.resize(_n)
-		for i in _n:
-			var t := _data.tangent_at(i * _data.step)
-			_line_pts[i] = _data.points[i] + t.cross(Vector3.UP).normalized() * _line_off[i]
-		_line_k = _line_curvature()
-		_cache[key] = {"off": _line_off, "pts": _line_pts, "k": _line_k}
+		if _cache.has(base_key):
+			var c: Dictionary = _cache[base_key]
+			_line_off = c["off"]
+			_line_pts = c["pts"]
+			_line_k = c["k"]
+		else:
+			line_builds += 1
+			_line_off = _racing_line() if use_racing_line else _zeros()
+			_line_pts = PackedVector3Array()
+			_line_pts.resize(_n)
+			for i in _n:
+				var t := _data.tangent_at(i * _data.step)
+				_line_pts[i] = _data.points[i] + t.cross(Vector3.UP).normalized() * _line_off[i]
+			_line_k = _line_curvature()
+			_cache[base_key] = {"off": _line_off, "pts": _line_pts, "k": _line_k}
+		if k_limit < INF:
+			# From the shared line (the expensive part), into arrays of its own.
+			_open_tight_corners(k_limit)
+			_cache[key] = {"off": _line_off, "pts": _line_pts, "k": _line_k}
 	var pkey := key + "|" + _profile_key()
 	if _profile_cache.has(pkey):
 		var p: Dictionary = _profile_cache[pkey]
@@ -275,6 +382,9 @@ func _setup() -> void:
 
 ## Everything _speed_profile() reads besides the racing line: pace settings and Car tuning.
 func _profile_key() -> String:
+	if _sim:
+		return var_to_str([&"sim", _env.key, _env.provisional, lateral_usage, brake_usage, v_cap,
+				sim_lateral_scale, sim_brake_scale, sim_traction_usage, sim_trail_power, sim_exit_power])
 	return var_to_str([lateral_usage, brake_usage, lateral_efficiency, v_cap, steer_gain,
 			drift_guard_kmh, drift_guard_steer, _car.steer_grip_usage, _car.lateral_grip_g,
 			_car.aero_grip_g, _car.brake_decel, _car.coast_decel, _car.drag_decel_coef,
@@ -325,6 +435,74 @@ func _racing_line() -> PackedFloat32Array:
 				off[i] = clampf(off[i] + (goal - here).dot(r[i]), -bound[i], bound[i])
 	return off
 
+## Widens the line where its curvature exceeds k_limit (1/m): there the bound on the inside
+## of the corner is moved outwards a little and the neighbourhood relaxed again, until the
+## corner fits or the road is used up. Rewrites _line_off, _line_pts and _line_k.
+func _open_tight_corners(k_limit: float) -> void:
+	var c := PackedVector2Array()
+	var r := PackedVector2Array()
+	var lo := PackedFloat32Array()   # lateral bounds, + = right
+	var hi := PackedFloat32Array()
+	c.resize(_n)
+	r.resize(_n)
+	lo.resize(_n)
+	hi.resize(_n)
+	for i in _n:
+		var p := _data.points[i]
+		c[i] = Vector2(p.x, p.z)
+		r[i] = _right(i)
+		var b := maxf(0.0, _data.widths[i] * 0.5 - line_margin)
+		lo[i] = -b
+		hi[i] = b
+	var off := _line_off.duplicate()
+	var reach := maxi(8, int(50.0 / _data.step))
+	for attempt in 24:
+		var tight: Array[int] = []
+		for i in _n:
+			if absf(_line_k[i]) > k_limit:
+				tight.append(i)
+		if tight.is_empty():
+			break
+		var active := PackedByteArray()
+		active.resize(_n)
+		active.fill(0)
+		var moved := false
+		for i in tight:
+			# k > 0 turns left: the inside is the left (negative offsets).
+			if _line_k[i] > 0.0:
+				if lo[i] < hi[i] - 0.05:
+					lo[i] = minf(lo[i] + 0.25, hi[i])
+					moved = true
+			elif hi[i] > lo[i] + 0.05:
+				hi[i] = maxf(hi[i] - 0.25, lo[i])
+				moved = true
+			for o in range(-reach, reach + 1):
+				active[(i + o + _n) % _n] = 1
+		if not moved:
+			break
+		for stage: Vector2i in [Vector2i(6, 30), Vector2i(3, 30), Vector2i(1, 30)]:
+			var k := stage.x
+			for it in stage.y:
+				for i in _n:
+					if active[i] == 0:
+						continue
+					var a := (i - k + _n) % _n
+					var b := (i + k) % _n
+					var a2 := (i - 2 * k + _n * 2) % _n
+					var b2 := (i + 2 * k) % _n
+					var near := c[a] + r[a] * off[a] + c[b] + r[b] * off[b]
+					var far := c[a2] + r[a2] * off[a2] + c[b2] + r[b2] * off[b2]
+					var goal := (near * 4.0 - far) / 6.0
+					var here := c[i] + r[i] * off[i]
+					off[i] = clampf(off[i] + (goal - here).dot(r[i]), lo[i], hi[i])
+		_line_off = off
+		_line_pts = PackedVector3Array()
+		_line_pts.resize(_n)
+		for i in _n:
+			var t := _data.tangent_at(i * _data.step)
+			_line_pts[i] = _data.points[i] + t.cross(Vector3.UP).normalized() * off[i]
+		_line_k = _line_curvature()
+
 func _line_point(i: int) -> Vector3:
 	return _line_pts[posmod(i, _n)]
 
@@ -351,24 +529,22 @@ func _line_curvature() -> PackedFloat32Array:
 
 ## Full-lock lateral acceleration of the car at speed v (m/s), from its own tuning.
 func _a_lat_full(v: float) -> float:
-	return lateral_efficiency * G_TRACK * _car.steer_grip_usage \
-			* (_car.lateral_grip_g + _car.aero_grip_g * v * v)
+	return _env.lat_at(v)
 
 func _accel_at(v: float) -> float:
-	var kmh := v * Car.KMH
-	var xs := _car.accel_curve_kmh
-	var ys := _car.accel_curve_ms2
-	var m := mini(xs.size(), ys.size())
-	if m == 0:
-		return 0.0
-	if kmh <= xs[0]:
-		return ys[0]
-	for i in range(1, m):
-		if kmh <= xs[i]:
-			return lerpf(ys[i - 1], ys[i], (kmh - xs[i - 1]) / maxf(xs[i] - xs[i - 1], 0.001))
-	return ys[m - 1]
+	return _env.accel_at(v)
+
+## The car's performance envelope (null before the first prepare()).
+func envelope() -> CarEnvelope:
+	return _env
+
+## Gravity the car feels along a slope (the arcade model scales it).
+func _g_eff() -> float:
+	return G_TRACK if _sim else G_TRACK * _car.gravity_multiplier
 
 func _speed_profile() -> PackedFloat32Array:
+	if _sim:
+		return _speed_profile_sim()
 	var g_eff := G_TRACK * _car.gravity_multiplier
 	var v := _zeros()
 	var ds := _zeros()
@@ -388,7 +564,7 @@ func _speed_profile() -> PackedFloat32Array:
 	# Backward pass (braking), twice round the loop to settle the wrap.
 	# Where the line curves enough that the steering input exceeds the drift guard, the
 	# controller may only lift / feather the brake, so the profile only counts on that decel.
-	var dec := _car.brake_decel * brake_usage
+	var dec := _env.brake_at(0.0) * brake_usage
 	var guard_v := drift_guard_kmh * 0.9 / Car.KMH
 	for lap in 2:
 		for j in range(_n - 1, -1, -1):
@@ -398,7 +574,7 @@ func _speed_profile() -> PackedFloat32Array:
 			if vn > guard_v:
 				var steer_frac := absf(_line_k[j]) * vn * vn / _a_lat_full(vn) * steer_gain
 				if steer_frac > drift_guard_steer * 0.85:
-					a = _car.coast_decel + _car.drag_decel_coef * vn * vn + _car.brake_decel * 0.08
+					a = _env.coast_at(vn) + _env.brake_at(vn) * 0.08
 			a = maxf(1.0, a + g_eff * grade[j])
 			v[j] = minf(v[j], sqrt(vn * vn + 2.0 * a * ds[j]))
 	# Forward pass (acceleration) for the predicted lap time.
@@ -412,6 +588,119 @@ func _speed_profile() -> PackedFloat32Array:
 	for j in _n:
 		predicted_lap_time += ds[j] / maxf(0.5 * (vf[j] + vf[(j + 1) % _n]), 1.0)
 	return v   # braking-limited envelope (the car accelerates as hard as it can below it)
+
+# ---------------------------------------------------------------- simulation car
+## Vertical curvature of the road along s (1/m): + in a dip (the car is pressed down), - over
+## a crest (it goes light). From the grades, lightly smoothed.
+func _vertical_curvature() -> PackedFloat32Array:
+	var raw := _zeros()
+	for i in _n:
+		var a := atan(_data.grades[(i - 2 + _n) % _n])
+		var b := atan(_data.grades[(i + 2) % _n])
+		raw[i] = (b - a) / (4.0 * _data.step)
+	var kv := _zeros()
+	for i in _n:
+		var sum := 0.0
+		for o in range(-3, 4):
+			sum += raw[(i + o + _n) % _n]
+		kv[i] = sum / 7.0
+	return kv
+
+## Share of the longitudinal grip left when `share` (0..1) of the lateral grip is in use.
+func _long_room(share: float, power: float) -> float:
+	var p := maxf(power, 0.5)
+	return pow(maxf(0.0, 1.0 - pow(clampf(share, 0.0, 1.0), p)), 1.0 / p)
+
+## Speed profile for the simulation car, from its measured envelope. See the class comment.
+func _speed_profile_sim() -> PackedFloat32Array:
+	var line_kv := _vertical_curvature()
+	var v := _zeros()
+	var ds := _zeros()
+	for i in _n:
+		ds[i] = maxf(0.1, _line_point(i).distance_to(_line_point(i + 1)))
+	var lu := clampf(lateral_usage * sim_lateral_scale, 0.1, 1.0)
+	var bu := clampf(brake_usage * sim_brake_scale, 0.1, 1.0)
+	var mu0 := _env.grip_mu()
+	# Envelope tables on a 1 m/s grid: the passes below read them a few thousand times.
+	var m := int(ceil(v_cap)) + 2
+	var trc_g := PackedFloat32Array()
+	trc_g.resize(m)
+	var lat_g := PackedFloat32Array()
+	var brk_g := PackedFloat32Array()
+	var acc_g := PackedFloat32Array()
+	var cst_g := PackedFloat32Array()
+	var grp_g := PackedFloat32Array()
+	grp_g.resize(m)
+	lat_g.resize(m)
+	brk_g.resize(m)
+	acc_g.resize(m)
+	cst_g.resize(m)
+	for j in m:
+		lat_g[j] = _env.lat_at(float(j))
+		grp_g[j] = _env.grip_at(float(j))
+		trc_g[j] = _env.traction_at(float(j)) * sim_traction_usage
+		brk_g[j] = _env.brake_at(float(j))
+		acc_g[j] = _env.accel_at(float(j))
+		cst_g[j] = _env.coast_at(float(j))
+	# Tightest curvature and sharpest crest near each point (conservative, as for the arcade car).
+	var kmax := _zeros()
+	var crest := _zeros()
+	for i in _n:
+		var kk := 0.0
+		var cc := 0.0
+		for o in range(-3, 4):
+			kk = maxf(kk, absf(_line_k[(i + o + _n) % _n]))
+			cc = minf(cc, line_kv[(i + o + _n) % _n])
+		kmax[i] = kk
+		crest[i] = cc
+	# Corner limit: the highest speed up to which k v^2 stays within the usable share of
+	# lat(v), less what a crest takes off the tyres. Scanned upwards: lat(v) is a table.
+	var v_floor := 4.0
+	for i in _n:
+		var kk := kmax[i]
+		v[i] = v_cap
+		if kk < 1e-5:
+			continue
+		var prev_room := 1.0
+		for j in range(int(v_floor), m):
+			var vv := float(j)
+			var room := lu * maxf(0.3 * lat_g[j], lat_g[j] + mu0 * crest[i] * vv * vv) - kk * vv * vv
+			if room < 0.0:
+				v[i] = v_floor if j == int(v_floor) else minf(v_cap, vv - 1.0 + prev_room / (prev_room - room))
+				break
+			prev_room = room
+	# Backward pass: braking inside the friction ellipse (what the corner uses of the grip is
+	# not there to brake with), so the car trail-brakes down to the apex speed.
+	for lap in 2:
+		for j in range(_n - 1, -1, -1):
+			var nxt := (j + 1) % _n
+			var vn := v[nxt]
+			var g := clampi(int(vn), 0, m - 2)
+			var t := clampf(vn - float(g), 0.0, 1.0)
+			var lat := lerpf(grp_g[g], grp_g[g + 1], t)
+			var light := mu0 * crest[j] * vn * vn
+			var share := clampf(absf(_line_k[j]) * vn * vn / maxf(lu * maxf(0.3 * lat, lat + light), 0.1), 0.0, 1.0)
+			var cst := lerpf(cst_g[g], cst_g[g + 1], t)
+			var a := bu * maxf(1.0, lerpf(brk_g[g], brk_g[g + 1], t) + light) * _long_room(share, sim_trail_power)
+			a = maxf(0.3, maxf(a, 0.7 * cst) + G_TRACK * _data.grades[j])
+			v[j] = minf(v[j], sqrt(vn * vn + 2.0 * a * ds[j]))
+	# Forward pass: traction inside the same ellipse, then the engine.
+	for lap in 2:
+		for j in _n:
+			var nxt := (j + 1) % _n
+			var vj := v[j]
+			var g := clampi(int(vj), 0, m - 2)
+			var t := clampf(vj - float(g), 0.0, 1.0)
+			var lat := lerpf(grp_g[g], grp_g[g + 1], t)
+			var light := mu0 * crest[j] * vj * vj
+			var share := clampf(absf(_line_k[j]) * vj * vj / maxf(lu * maxf(0.3 * lat, lat + light), 0.1), 0.0, 1.0)
+			var grip := maxf(1.0, lerpf(trc_g[g], trc_g[g + 1], t) + 0.5 * light) * _long_room(share, sim_exit_power)
+			var a := minf(lerpf(acc_g[g], acc_g[g + 1], t), grip) - G_TRACK * _data.grades[j]
+			v[nxt] = minf(v[nxt], sqrt(maxf(v_floor * v_floor, vj * vj + 2.0 * a * ds[j])))
+	predicted_lap_time = 0.0
+	for j in _n:
+		predicted_lap_time += ds[j] / maxf(0.5 * (v[j] + v[(j + 1) % _n]), 1.0)
+	return v
 
 func _lerp_arr(arr: PackedFloat32Array, s: float) -> float:
 	if arr.is_empty():
@@ -427,20 +716,32 @@ func _physics_process(delta: float) -> void:
 			return
 	elif _car == null or not is_instance_valid(_car) or not _car.simulate:
 		return
+	if _envelope_arrived():
+		_data = null   # plan again from the measured envelope
 	if _data == null:
 		_setup()
 		if _data == null:
 			return
 	_clock += delta
 	if mode == Mode.PROVIDER:
-		_think(delta)
+		if _sim:
+			_think_sim(delta)
+		else:
+			_think(delta)
 		return
 	_tick += 1
 	var every := maxi(think_every, 1)
 	if (_tick + think_phase) % every != 0:
 		return   # the Car keeps the last override
-	_think(delta * every)
+	if _sim:
+		_think_sim(delta * every)
+	else:
+		_think(delta * every)
 	_car.set_input_override(_throttle, _brake, _steer)
+
+## True when this driver still plans from a provisional envelope and the measured one is in.
+func _envelope_arrived() -> bool:
+	return _data != null and _env != null and _env.provisional and _env_rev != CarEnvelope.revision
 
 ## Speed (m/s) this driver aims for at s when moving at v: the profile, read a little ahead
 ## for the actuator lag, times the driver's pace scale.
@@ -500,6 +801,152 @@ func _think(delta: float) -> void:
 		_brake = 0.0
 	_throttle = minf(_throttle, throttle_cap)
 
+	_update_stats(s, v, err, off)
+
+## Direction of travel along the racing line at s, interpolated between its points (the plain
+## segment direction steps by several degrees per point in a hairpin).
+func _line_heading(s: float) -> Vector3:
+	var u := _data.wrap_s(s) / _data.step
+	var i := int(floorf(u)) % _n
+	var f := u - floorf(u)
+	var a := _line_pts[(i + 1) % _n] - _line_pts[(i - 1 + _n) % _n]
+	var b := _line_pts[(i + 2) % _n] - _line_pts[i]
+	return Vector3(lerpf(a.x, b.x, f), 0.0, lerpf(a.z, b.z, f)).normalized()
+
+## One control step for the simulation car. See the class comment.
+func _think_sim(delta: float) -> void:
+	_before_think(delta)
+	var pos := _car.global_position
+	var s := _data.closest_s(pos, current_s)
+	current_s = s
+	var vel := _car.linear_velocity
+	var v := vel.length()
+	var xf := _car.global_transform
+	var fwd := -xf.basis.z
+	var v_long := vel.dot(fwd)
+	var sf := _data.sample(s)
+	var off := (pos - sf.origin).dot(sf.basis.x)
+	var err := off - line_offset_at(s)        # + = car right of the line
+	if _env.provisional and wait_for_envelope:
+		# The envelope is being measured: wait on the spot (light brake: no reverse gear).
+		_throttle = 0.0
+		_brake = 0.3
+		_steer = 0.0
+		_update_stats(s, v, err, off)
+		return
+	var lu := clampf(lateral_usage * sim_lateral_scale, 0.1, 1.0)
+	var lat := maxf(_env.grip_at(v), 0.5)
+	# Lateral acceleration of the path itself (the yaw rate also counts the body rotating
+	# into the corner, which uses no grip), lightly filtered.
+	if _have_prev_vel and v > 2.0:
+		var a_vec := (vel - _prev_vel) / maxf(delta, 1e-4)
+		var left := Vector3.UP.cross(vel).normalized()
+		_a_lat = lerpf(_a_lat, a_vec.dot(left), clampf(delta / 0.04, 0.0, 1.0))
+	else:
+		_a_lat = 0.0
+	_prev_vel = vel
+	_have_prev_vel = true
+	var yaw := _car.angular_velocity.dot(xf.basis.y)      # + = turning left
+	var beta := atan2(vel.dot(xf.basis.x), maxf(absf(v_long), 1.0)) if v > 3.0 else 0.0
+
+	# ---- steering: curvature feed-forward + look-ahead feedback on lateral and heading error
+	var k_here := line_curvature_at(s)
+	var k_ff := line_curvature_at(s + v * sim_curvature_preview)
+	var head := _line_heading(s)
+	var e_psi := Vector3(fwd.x, 0.0, fwd.z).signed_angle_to(head, Vector3.UP)   # + = line is to the left
+	# Body slip the corner itself produces (nose in at speed, out when slow): only the excess
+	# is a slide, and that part of the heading error turns into opposite lock.
+	var share_line := _env.lateral_share(v, k_here)
+	var beta_ref := signf(k_here) * (_env.slip_rear_at(v) * share_line - _env.cg_to_rear * absf(k_here))
+	var slide := beta - beta_ref
+	var e_head := e_psi + (1.0 - sim_slide_gain) * beta + sim_slide_gain * beta_ref
+	var ld := clampf(sim_lookahead_base + v * sim_lookahead_time, sim_lookahead_base, sim_lookahead_max)
+	var k_cmd := k_ff + 2.0 / (ld * ld) * clampf(err, -4.0, 4.0) + 2.0 / ld * clampf(e_head, -0.6, 0.6)
+	if v > 10.0:
+		k_cmd -= sim_yaw_gain * clampf(yaw / v - k_here, -0.02, 0.02)
+		k_cmd += sim_path_gain * clampf(k_cmd - _a_lat / (v * v), -0.01, 0.01)
+	var want_steer := -signf(k_cmd) * _env.steer_for(v, k_cmd)
+	# Understeer: more lock on front tyres already past their limit only scrubs speed.
+	var front_slip := 0.5 * (absf(_car.wheels[0].slip_angle) + absf(_car.wheels[1].slip_angle))
+	if v > 8.0 and front_slip > 1.3 * maxf(_env.slip_front_at(v), 0.5 * _env.peak_slip_angle) \
+			and signf(want_steer) == signf(_steer) and absf(want_steer) > absf(_steer):
+		want_steer = _steer
+	_steer = clampf(move_toward(_steer, want_steer, sim_steer_rate * delta), -1.0, 1.0)
+
+	# ---- pedals: wanted acceleration from the profile's slope and the speed error
+	var sp := s + v * speed_preview_time
+	var v_t := minf(target_speed_at(s), target_speed_at(sp)) * speed_scale
+	var d := maxf(4.0, v * 0.25)
+	var v_a := target_speed_at(sp) * speed_scale
+	var v_b := target_speed_at(sp + d) * speed_scale
+	var a_ff := (v_b * v_b - v_a * v_a) / (2.0 * d)
+	if a_ff < 0.0:
+		# Below the braking curve there is nothing to brake for yet: carry on until it is met.
+		a_ff *= clampf(1.0 - (v_t - v_long) / 2.5, 0.0, 1.0)
+	var a_want := a_ff + sim_speed_gain * (v_t - v_long)
+	a_want += G_TRACK * _data.grade_at(s)     # the pedals also carry the car up the slope
+	var coast := _env.coast_at(v)
+	var acc := maxf(_env.accel_at(v), 0.2)
+	var brk := maxf(_env.brake_at(v), 2.0)
+	# Friction ellipse at the lateral acceleration of the moment (measured and commanded).
+	var share := clampf(maxf(absf(_a_lat), absf(k_cmd) * v * v) / (0.5 * (1.0 + lu) * lat), 0.0, 1.0)
+	var room := _long_room(share, sim_exit_power)
+	var trail_room := _long_room(share, sim_trail_power)
+	var hold := coast / (acc + coast) * _env.throttle_pedal_at(v)   # pedal that holds the speed
+	# Engine braking acts on the driven wheels alone: while cornering off the brakes the
+	# throttle stays at least neutral (no torque either way at the rear tyres); any slowing
+	# down beyond the air's drag is left to the brakes, which share it front to rear.
+	var cornering := clampf((share - 0.25) / 0.35, 0.0, 1.0)
+	var engine := _env.engine_brake_at(v)
+	var coast_now := coast - engine * cornering
+	var thr_want := 0.0
+	var brk_want := 0.0
+	if a_want < -coast_now - 0.4:
+		brk_want = (-a_want - coast_now) / maxf(brk - coast, 1.0) * _env.brake_pedal_at(v)
+	else:
+		thr_want = maxf(0.0, (a_want + coast) / (acc + coast)) * _env.throttle_pedal_at(v)
+		thr_want = maxf(thr_want, engine / (acc + coast) * _env.throttle_pedal_at(v) * cornering)
+	var grip_acc := _env.traction_at(v) * sim_traction_usage * room
+	thr_want = minf(thr_want, maxf(hold * 1.3, (grip_acc + coast) / (acc + coast) * _env.throttle_pedal_at(v)))
+	# Arriving too fast for the corner: the brakes come first, even at the price of the line.
+	var over := clampf((v_long - 1.03 * v_t) / maxf(0.08 * v_t, 0.5), 0.0, 1.0)
+	var brake_room := maxf(maxf(trail_room, 0.12), 0.6 * over)
+	brk_want = minf(brk_want, _env.brake_pedal_at(v) * brake_room * 1.1)
+	# A slide (rear tyres well past their limit, or the body far from where the corner puts
+	# it): neutral throttle and no brake until it is caught; spun round: stop.
+	var rear_slip := 0.5 * (absf(_car.wheels[2].slip_angle) + absf(_car.wheels[3].slip_angle))
+	if v > 8.0 and (rear_slip > 1.6 * _env.peak_slip_angle or absf(slide) > 0.12):
+		_slide_hold = 0.25
+	_slide_hold = maxf(0.0, _slide_hold - delta)
+	if _slide_hold > 0.0:
+		thr_want = minf(thr_want, hold)
+		brk_want = minf(brk_want, 0.08)
+	if v > 5.0 and (absf(beta) > 1.0 or v_long < -1.0):
+		thr_want = 0.0
+		brk_want = 0.45
+	if v < 2.0:
+		brk_want = minf(brk_want, 0.4)   # the gearbox takes a hard brake at rest for reverse
+	thr_want = minf(thr_want, throttle_cap)
+	var slip_use := _env.peak_slip_ratio * CarEnvelope.SLIP_USE
+	var thr_room := maxf(room, 0.3)
+	var brk_room := maxf(brake_room, 0.3)
+	_throttle = CarEnvelope.govern(thr_want, _throttle, CarEnvelope.spin_of(_car, thr_room), slip_use * thr_room, delta, 4.0)
+	_brake = CarEnvelope.govern(brk_want, _brake, CarEnvelope.lock_of(_car, brk_room), slip_use * brk_room, delta, 6.0)
+
+	# ---- gears: the automatic gearbox does it; act only if it clearly has not
+	_shift_cool = maxf(0.0, _shift_cool - delta)
+	if _shift_cool <= 0.0:
+		var shift := CarEnvelope.shift_wanted(_car)
+		if shift != 0:
+			_car.sim.request_shift(shift)
+			_shift_cool = 0.15
+
+	diag[0] = k_cmd
+	diag[1] = e_psi
+	diag[2] = beta_ref
+	diag[3] = a_want
+	diag[4] = room
+	diag[5] = 1.0 if _slide_hold > 0.0 else 0.0
 	_update_stats(s, v, err, off)
 
 func _steer_max(v: float) -> float:

@@ -1,8 +1,15 @@
 extends SceneTree
 ## Experiment: measures the Car's steady-state lateral acceleration at full steering lock for a
 ## sweep of speeds on flat ground (main scene), plus straight-line braking and acceleration.
-## The autopilot's speed profile constants come from this table.
+## The arcade autopilot's speed profile constants come from this table.
 ## Usage: tools/bin/godot --headless --path . --fixed-fps 240 --disable-vsync -s res://tools/lap_grip_sweep.gd
+##
+## With `-- --envelope` it measures the SIMULATION car instead (CarEnvelope.measure: steering
+## ramps, full-throttle runs and a stop on a flat pad), prints the table and writes
+## res://assets/car/envelopes/<spec>.json, the file the autopilot and the bots plan from.
+## Commit that file. Rerun after changing the car spec or a simulation part: the file carries a
+## hash of both, and a stale file is ignored (the game then measures by itself at the first
+## simulation race and keeps the result under user://). `-- --envelope --dry-run` only prints.
 
 const SPEEDS_KMH: Array[float] = [60.0, 80.0, 100.0, 130.0, 160.0, 200.0, 250.0, 300.0]
 
@@ -16,6 +23,9 @@ func _ticks(n: int) -> void:
 		await physics_frame
 
 func _run() -> void:
+	if "--envelope" in OS.get_cmdline_user_args():
+		await _envelope()
+		return
 	var scene: Node = (load("res://scenes/main.tscn") as PackedScene).instantiate()
 	root.add_child(scene)
 	_car = scene.get_node("Car") as RigidBody3D
@@ -76,3 +86,25 @@ func _brake_test() -> void:
 		t += 1.0 / 240.0
 	var dist := p0.distance_to(_car.global_position)
 	print("brake from %.0f km/h: %.2fs, %.1f m, mean decel %.2f m/s2 (v^2/2d = %.2f)" % [v0 * 3.6, t, dist, v0 / t, v0 * v0 / (2.0 * dist)])
+
+## Measures the simulation car's performance envelope and writes the committed file.
+func _envelope() -> void:
+	root.get_node("/root/Settings").set(&"persist", false)
+	# Loaded at run time: class names of the game are not known when this script is compiled.
+	var script: GDScript = load("res://scripts/race/car_envelope.gd")
+	var spec_path: String = (load("res://scripts/car/car.gd") as GDScript).get_script_constant_map()["SIM_SPEC_PATH"]
+	var env: RefCounted = await script.call(&"measure", root, spec_path)
+	print(env.call(&"describe"))
+	if not env.call(&"is_sane"):
+		print("ENVELOPE FAIL the measurement gave unusable numbers")
+		quit(1)
+		return
+	var path: String = script.call(&"res_path", spec_path)
+	if "--dry-run" in OS.get_cmdline_user_args():
+		print("ENVELOPE OK (dry run, %s not written)" % path)
+		quit(0)
+		return
+	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(path.get_base_dir()))
+	var ok: bool = env.call(&"save", ProjectSettings.globalize_path(path))
+	print("ENVELOPE %s %s key %s" % ["OK wrote" if ok else "FAIL could not write", path, env.get(&"key")])
+	quit(0 if ok else 1)
