@@ -179,3 +179,178 @@ track_json_widths = false
 # change to the defaults cannot move the committed terrain.
 near = [-1600.0, 800.0, -1200.0, 600.0]      # x0, x1, z0, z1 (game metres)
 far = [-6400.0, 5600.0, -6200.0, 5800.0]
+
+# ---------------------------------------------------------------------------------------------
+# Surroundings: what the map lacks or guesses wrongly around the circuit. Reference: aerial
+# imagery (Esri World Imagery; Wikimedia Commons "Luftaufnahme (c) Red Bull Ring", "Start-Ziel
+# Red Bull Ring", "Voestalpine Tribuene Spielberg"), compared place by place with screenshots.
+# Heights are estimates from those photographs unless a source is given. Footprints were
+# measured in game metres on the imagery (x east, z = -north) and are written as lat / lon.
+[surroundings]
+# The woods on the hills round the circuit are spruce forest (Styrian Fichtenwald); the map
+# rarely says so.
+tree_species = "needleleaved"
+building = [
+  # Pit building ("Box" on the map, 300 m long): garages, a glazed lounge floor and the roof
+  # terrace with its pavilions, three levels (photograph from the main grandstand).
+  {osm = 118364939, height = 11.0},
+  {osm = 194684180, height = 8.0},        # building at the pit exit
+  # Landhotel Schoenberghof above the T3-T4 straight: three storeys under a wide roof.
+  {osm = 155581853, levels = 3},
+  # Grandstands (top row above the lowest ground corner). Nord (T4) and Mitte are roofed
+  # (grey roofs on the imagery); their roofs are added below, 4 m above the top row.
+  {osm = 565072384, height = 13.5},
+  {osm = 1077517159, height = 15.0},
+  {osm = 194684176, type = "church", height = 12.0},   # the church of Schoenberg
+  # The villages (Spielberg, Schoenberg, Flatschach) and the farms on the slopes are mapped
+  # as building=yes, which would give flat-roofed boxes with shop windows: Styrian houses
+  # have two storeys under a pitched tile roof. Every untyped building of 40 to 600 m2
+  # further than 95 m from the track that is not one of the circuit's own is a house. (The
+  # pipeline only pitches the roof of four-cornered outlines; the others keep a flat one.)
+  {osm = 155451873, type = "house"}, {osm = 155451902, type = "house"}, {osm = 155451907, type = "house"},
+  {osm = 155451920, type = "house"}, {osm = 155451921, type = "house"}, {osm = 155451943, type = "house"},
+  {osm = 155451972, type = "house"}, {osm = 155451981, type = "house"}, {osm = 155452036, type = "house"},
+  {osm = 155459230, type = "house"}, {osm = 155459237, type = "house"}, {osm = 155459239, type = "house"},
+  {osm = 155459242, type = "house"}, {osm = 155459245, type = "house"}, {osm = 155459251, type = "house"},
+  {osm = 155459252, type = "house"}, {osm = 155459271, type = "house"}, {osm = 155459295, type = "house"},
+  {osm = 155459296, type = "house"}, {osm = 155459301, type = "house"}, {osm = 155459305, type = "house"},
+  {osm = 155459308, type = "house"}, {osm = 155459309, type = "house"}, {osm = 155459313, type = "house"},
+  {osm = 155581831, type = "house"}, {osm = 155581832, type = "house"}, {osm = 155581838, type = "house"},
+  {osm = 155581839, type = "house"}, {osm = 155581840, type = "house"}, {osm = 155581843, type = "house"},
+  {osm = 155581849, type = "house"}, {osm = 155581852, type = "house"}, {osm = 155581856, type = "house"},
+  {osm = 155581861, type = "house"}, {osm = 155646838, type = "house"}, {osm = 155646842, type = "house"},
+  {osm = 155646846, type = "house"}, {osm = 155646848, type = "house"}, {osm = 155646858, type = "house"},
+  {osm = 155646861, type = "house"}, {osm = 155646863, type = "house"}, {osm = 155646870, type = "house"},
+  {osm = 155646872, type = "house"}, {osm = 155646874, type = "house"}, {osm = 155646876, type = "house"},
+  {osm = 155646888, type = "house"}, {osm = 155646889, type = "house"}, {osm = 155646890, type = "house"},
+  {osm = 155646907, type = "house"}, {osm = 155646912, type = "house"}, {osm = 155646919, type = "house"},
+  {osm = 155646923, type = "house"}, {osm = 155646925, type = "house"}, {osm = 155646932, type = "house"},
+  {osm = 155646935, type = "house"}, {osm = 155646943, type = "house"}, {osm = 155646954, type = "house"},
+  {osm = 155646956, type = "house"}, {osm = 155646959, type = "house"}, {osm = 155646969, type = "house"},
+  {osm = 155646975, type = "house"}, {osm = 155646979, type = "house"}, {osm = 155646983, type = "house"},
+  {osm = 155646988, type = "house"}, {osm = 155646994, type = "house"}, {osm = 155646996, type = "house"},
+  {osm = 155647003, type = "house"}, {osm = 155647004, type = "house"}, {osm = 155647008, type = "house"},
+  {osm = 155647017, type = "house"}, {osm = 155647018, type = "house"}, {osm = 155647020, type = "house"},
+  {osm = 155647031, type = "house"}, {osm = 155647032, type = "house"}, {osm = 155647036, type = "house"},
+  {osm = 155647038, type = "house"}, {osm = 155647045, type = "house"}, {osm = 155647048, type = "house"},
+  {osm = 155647049, type = "house"}, {osm = 155647051, type = "house"}, {osm = 155647053, type = "house"},
+  {osm = 155647066, type = "house"}, {osm = 155647077, type = "house"}, {osm = 155647078, type = "house"},
+  {osm = 155647084, type = "house"}, {osm = 155647088, type = "house"}, {osm = 155647095, type = "house"},
+  {osm = 155647099, type = "house"}, {osm = 155647100, type = "house"}, {osm = 155647108, type = "house"},
+  {osm = 155647113, type = "house"}, {osm = 155647121, type = "house"}, {osm = 155647122, type = "house"},
+  {osm = 155647126, type = "house"}, {osm = 155647130, type = "house"}, {osm = 155647132, type = "house"},
+  {osm = 155647154, type = "house"}, {osm = 155647156, type = "house"}, {osm = 155647158, type = "house"},
+  {osm = 155647166, type = "house"}, {osm = 155647184, type = "house"}, {osm = 155647186, type = "house"},
+  {osm = 155647192, type = "house"}, {osm = 155647195, type = "house"}, {osm = 155647199, type = "house"},
+  {osm = 155647209, type = "house"}, {osm = 155647225, type = "house"}, {osm = 155647234, type = "house"},
+  {osm = 155647238, type = "house"}, {osm = 155647249, type = "house"}, {osm = 155647250, type = "house"},
+  {osm = 155647260, type = "house"}, {osm = 155647265, type = "house"}, {osm = 155647273, type = "house"},
+  {osm = 155647274, type = "house"}, {osm = 155647286, type = "house"}, {osm = 155647287, type = "house"},
+  {osm = 155647290, type = "house"}, {osm = 155647297, type = "house"}, {osm = 155647299, type = "house"},
+  {osm = 155653828, type = "house"}, {osm = 155653835, type = "house"}, {osm = 155653849, type = "house"},
+  {osm = 155653851, type = "house"}, {osm = 155653868, type = "house"}, {osm = 155653883, type = "house"},
+  {osm = 155653890, type = "house"}, {osm = 180527069, type = "house"}, {osm = 180527070, type = "house"},
+  {osm = 180527071, type = "house"}, {osm = 180527072, type = "house"}, {osm = 180527073, type = "house"},
+  {osm = 180527075, type = "house"}, {osm = 193996972, type = "house"}, {osm = 193996976, type = "house"},
+  {osm = 355110535, type = "house"}, {osm = 380589351, type = "house"}, {osm = 380589358, type = "house"},
+  {osm = 565072386, type = "house"}, {osm = 568520806, type = "house"}, {osm = 568520809, type = "house"},
+  {osm = 568520810, type = "house"}, {osm = 568520812, type = "house"}, {osm = 568520813, type = "house"},
+  {osm = 568520815, type = "house"}, {osm = 568520816, type = "house"}, {osm = 570403848, type = "house"},
+  {osm = 570593847, type = "house"}, {osm = 625286809, type = "house"}, {osm = 625286810, type = "house"},
+  {osm = 625286813, type = "house"}, {osm = 773620701, type = "house"}, {osm = 997690195, type = "house"},
+  {osm = 1194996477, type = "house"}, {osm = 1194996478, type = "house"}, {osm = 1194996480, type = "house"},
+  {osm = 1194996483, type = "house"}, {osm = 1453337236, type = "house"},
+]
+
+# The main grandstand is mapped as one outline that also holds the voestalpine wing behind
+# it, so the stand would get seat rows 40 m deep. It is rebuilt as two straight stands of
+# its real depth (about 15 m) under a roof; the wing is a landmark model (landmarks.json).
+[[surroundings.exclude]]
+osm = "way/312030921"
+
+# Village and farmyard areas (landuse=residential / farmyard) are painted as paved ground,
+# which turns Spielberg, Schoenberg and the farms into grey slabs. They are houses in gardens
+# and meadows: only the mapped roads and car parks stay paved.
+[[surroundings.exclude]]
+osm = "way/30366658"
+[[surroundings.exclude]]
+osm = "way/30366660"
+[[surroundings.exclude]]
+osm = "way/30366662"
+[[surroundings.exclude]]
+osm = "way/30366710"
+[[surroundings.exclude]]
+osm = "way/30366712"
+[[surroundings.exclude]]
+osm = "way/30366714"
+[[surroundings.exclude]]
+osm = "way/30366715"
+[[surroundings.exclude]]
+osm = "way/30366746"
+[[surroundings.exclude]]
+osm = "way/30367229"
+[[surroundings.exclude]]
+osm = "way/144379641"
+[[surroundings.exclude]]
+osm = "way/180323834"
+[[surroundings.exclude]]
+osm = "way/180527074"
+[[surroundings.exclude]]
+osm = "way/381739786"
+[[surroundings.exclude]]
+osm = "way/383467620"
+[[surroundings.exclude]]
+osm = "way/568559305"
+
+[[surroundings.add]]   # main grandstand, west half: 15 m deep, 4 m behind the mapped front edge (the service road and the fence are in front of it)
+polygon = [[47.219385, 14.762949], [47.219680, 14.764451], [47.219551, 14.764506], [47.219256, 14.763004]]
+kind = "grandstand"
+height = 10.0
+
+[[surroundings.add]]   # main grandstand, east half
+polygon = [[47.219680, 14.764450], [47.220360, 14.768284], [47.220230, 14.768334], [47.219550, 14.764500]]
+kind = "grandstand"
+height = 10.0
+
+[[surroundings.add]]   # its roof, west half: 2.5 m out over the front rows
+polygon = [[47.219406, 14.762940], [47.219702, 14.764442], [47.219543, 14.764510], [47.219247, 14.763007]]
+kind = "metal"
+height = 14.6
+min_height = 14.0
+
+[[surroundings.add]]   # roof, east half
+polygon = [[47.219702, 14.764441], [47.220382, 14.768276], [47.220222, 14.768338], [47.219541, 14.764503]]
+kind = "metal"
+height = 14.6
+min_height = 14.0
+
+[[surroundings.add]]   # back wall under the roof, west half
+polygon = [[47.219256, 14.763004], [47.219551, 14.764506], [47.219543, 14.764510], [47.219247, 14.763007]]
+kind = "concrete"
+height = 14.0
+
+[[surroundings.add]]   # back wall, east half
+polygon = [[47.219550, 14.764500], [47.220230, 14.768334], [47.220222, 14.768338], [47.219541, 14.764503]]
+kind = "concrete"
+height = 14.0
+
+[[surroundings.add]]   # roof of the Nord grandstand (T4)
+polygon = [[47.225103, 14.766571], [47.225112, 14.766202], [47.225308, 14.766215], [47.225550, 14.766176], [47.225783, 14.766097], [47.226024, 14.765965], [47.226266, 14.765794], [47.226356, 14.766110], [47.225971, 14.766373], [47.225756, 14.766492], [47.225532, 14.766558], [47.225264, 14.766584]]
+kind = "metal"
+height = 18.1
+min_height = 17.5
+
+[[surroundings.add]]   # roof of the Mitte grandstand
+polygon = [[47.222838, 14.761155], [47.222650, 14.760812], [47.223501, 14.759811], [47.223742, 14.760259], [47.223304, 14.760773], [47.223250, 14.760681]]
+kind = "metal"
+height = 19.6
+min_height = 19.0
+
+[[surroundings.add]]   # temporary steel grandstand east of the bull (race weekends)
+polygon = [[47.223859, 14.762565], [47.224055, 14.763725], [47.223903, 14.763777], [47.223706, 14.762618]]
+kind = "grandstand"
+height = 9.0
+
+[[surroundings.add]]   # hay meadow on the infield slope between the T3-T4 straight and T5-T6
+polygon = [[47.226159, 14.755265], [47.225801, 14.758823], [47.225487, 14.762776], [47.225416, 14.763567], [47.225174, 14.763632], [47.224754, 14.762908], [47.224664, 14.761722], [47.224798, 14.760404], [47.224798, 14.759218], [47.224950, 14.758164], [47.225264, 14.756714], [47.225935, 14.755660]]
+kind = "farmland"

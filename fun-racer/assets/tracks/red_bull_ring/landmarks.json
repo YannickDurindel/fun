@@ -1,0 +1,10 @@
+[
+ {"model": "bull", "at": {"xz": [-435, -335]}, "yaw_deg": 143, "y_offset": 1.0},
+ {"model": "voestalpine_wing", "at": {"xz": [-112.9, 82.2]}, "yaw_deg": 14.6},
+ {"model": "start_gantry", "at": {"s": 152, "side": 1, "dist": 0}},
+ {"model": "gantry", "at": {"s": 800, "side": 1, "dist": 0}},
+ {"model": "gantry", "at": {"s": 1125, "side": 1, "dist": 0}},
+ {"model": "gantry", "at": {"s": 1560, "side": 1, "dist": 0}},
+ {"model": "gantry", "at": {"s": 2500, "side": 1, "dist": 0}},
+ {"model": "gantry", "at": {"s": 3650, "side": 1, "dist": 0}}
+]
