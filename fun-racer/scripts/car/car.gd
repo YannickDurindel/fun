@@ -272,6 +272,8 @@ func _ready() -> void:
 				else StringName(Settings.get_value("gameplay", "handling"))
 	if handling == HANDLING_SIMULATION:
 		sim = SimHandling.new(self, load(SIM_SPEC_PATH) as CarSpec)
+		if Bootstrap.autodrive:
+			sim.aids.use_all()   # the autopilot drives with every aid, whatever Options say
 	_reset_drivetrain()
 	_apply_control_settings()
 	Settings.changed.connect(_on_setting_changed)

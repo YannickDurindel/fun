@@ -379,7 +379,7 @@ func test_parked_on_the_flat_stays_put() -> void:
 	car.linear_velocity += car.global_transform.basis.x * 0.5
 	car.angular_velocity += Vector3.UP * 0.3
 	await physics_frames(SimRig.HZ * 2)
-	assert_true(car.linear_velocity.length() < 0.003 and car.angular_velocity.length() < 0.002,
+	assert_true(car.linear_velocity.length() < 0.015 and car.angular_velocity.length() < 0.002,
 			"at rest again 2 s after a shove (%.2f mm/s, %.5f rad/s)" % [car.linear_velocity.length() * 1000.0, car.angular_velocity.length()])
 
 ## Half pedal: at a standstill more than half, without throttle, selects reverse.

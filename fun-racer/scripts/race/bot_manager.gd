@@ -177,6 +177,10 @@ func _spawn_bot(i: int, level: int) -> void:
 		var ray := car.get(&"_ray") as PhysicsRayQueryParameters3D
 		if ray != null:
 			ray.exclude = [car.get_rid(), player.get_rid()]
+	if car.sim != null:
+		car.sim.aids.use_all()   # bots keep their aids whatever the player chose
+		if player != null:
+			car.sim._ray.exclude = [car.get_rid(), player.get_rid()]
 	var driver := BotDriver.new()
 	driver.name = "Driver"
 	driver.configure(car, track, level, i, variation_seed)

@@ -139,12 +139,16 @@ func grip_at(v: float) -> float:
 
 ## Tightest curvature (1/m) the car should be asked to drive: what it turns at the fastest
 ## speed where its lock, not its grip, is the limit (tighter is possible, at a crawl).
+const MAX_CURVATURE_SPEED: float = 16.0   ## m/s, the lock (not grip) sets the radius below this
+
 func max_curvature() -> float:
 	if analytic or speeds.size() < 3:
 		return INF
 	var k := lat[1] / (speeds[1] * speeds[1])
 	for i in range(2, speeds.size()):
-		if steer[i][STEER_FRACS.size() - 1] < LOCK_LIMITED:
+		# Only the slow samples count: with the steering help, full input is the grip limit at
+		# every speed, which is not the mechanical lock.
+		if steer[i][STEER_FRACS.size() - 1] < LOCK_LIMITED or speeds[i] > MAX_CURVATURE_SPEED:
 			break
 		k = lat[i] / (speeds[i] * speeds[i])
 	return k
@@ -422,7 +426,7 @@ static func _provisional(spec_path: String, k: String) -> CarEnvelope:
 		var kin := v * v * tan(lock * 0.7) / Car.WHEELBASE
 		e.lat[i] = minf(tyre, kin)
 		e.brake[i] = 11.0
-		e.accel[i] = maxf(0.3, 7.5 - 7.0 * maxf(0.0, v - 35.0) / 55.0)
+		e.accel[i] = maxf(0.3, 5.0 - 4.6 * maxf(0.0, v - 35.0) / 55.0)
 		e.coast[i] = 1.0 + 3.0e-4 * v * v
 		e.throttle_pedal[i] = 1.0
 		e.brake_pedal[i] = 1.0

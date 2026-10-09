@@ -73,6 +73,16 @@ func reset(_state: SimState, _spec: CarSpec) -> void:
 	_drs_prev = false
 	_drs_press_time = 0.0
 
+## All aids on, whatever the player chose in Options: for bots and the autopilot (a player
+## who picks a manual gearbox must not leave the bots stuck in 1st).
+func use_all() -> void:
+	follow_settings = false
+	traction_control = 2
+	anti_lock = true
+	auto_gearbox = true
+	steering_help = true
+	stability_help = true
+
 func _on_setting_changed(section: String, key: String) -> void:
 	if section == SECTION and key.begins_with("aid_"):
 		_read_settings()

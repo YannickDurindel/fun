@@ -45,6 +45,24 @@ Key positions follow your keyboard layout (on AZERTY, W/A are Z/Q).
 - **The car grips unless you ask it to slide.** To drift, hold brake and steer together for about
   0.3 s above 110 km/h. The drift ends shortly after you release the brake.
 - **Respawn** puts you back at the last checkpoint with the speed you had there.
+- **A minimap** in the top right corner shows the circuit, the start line, your car (the red
+  arrow) and the bots.
+- **Analog steering can slide the car.** On a phone or a gamepad stick, holding the steering at
+  its very end for about half a second above 60 km/h breaks the rear loose into a mild slide.
+  Keys never do this.
+
+### Handling: arcade or simulation
+
+Options → Gameplay → **Handling** chooses the car's physics, from the next race:
+
+- **Arcade** (default): the Trackmania-style car described above.
+- **Simulation**: a force-based model with a combined-slip tyre model, suspension and load
+  transfer, ground-effect aerodynamics with DRS and slipstream, a turbo-hybrid power unit with
+  8 gears and energy deployment, brakes that lock, and tyre temperature, wear and fuel. It adds
+  shift up (E / pad RB), shift down (Q / pad LB) and DRS (Space / pad X), and five driving aids
+  in the same tab: traction control, ABS, automatic gearbox, steering help and stability help.
+  F3 shows a telemetry overlay. It is experimental: it laps cleanly on autopilot but is not
+  tuned to feel right yet. `--handling=simulation` on the command line forces it for one run.
 
 ### Phone controller
 
@@ -61,14 +79,16 @@ a web page over your Wi-Fi, and the phone sends its tilt and touches back about 
 5. Hold the phone in landscape, like a steering wheel, with the screen facing you:
    - **turn it** left and right to steer; press **CENTRE** while holding it level to set the
      straight-ahead position;
-   - the **right side** of the screen is the throttle and the **left side** is the brake. Both
-     are analog: thumb at the bottom is 0 %, at the top 100 %;
+   - the **right side** of the screen is the gas button and the **left side** is the brake
+     button: touching one anywhere is full pedal (add `?pedals=analog` to the address for
+     pedals that follow the height of your thumb);
+   - **AUTO GAS** accelerates for you, so you only steer and brake; **CAM** changes the view;
    - **− / +** shift gears and **DRS** opens the wing (simulation handling); **RESPAWN** and
      **PAUSE** are the small buttons at the top;
    - **TILT / TOUCH** switches to steering with a slider under your left thumb.
 
 The page also shows speed and gear, and vibrates on gear shifts and kerbs (Android only).
-Three sliders in the same section tune it: degrees of tilt for full lock (15–60°, default 40°),
+Three sliders in the same section tune it: degrees of tilt for full lock (15–60°, default 30°),
 dead zone and smoothing. Keyboard and gamepad keep working at the same time.
 
 **Tilt steering needs Chrome and the secure address.** Use the `https://<PC address>:8443` address
@@ -89,7 +109,7 @@ If port 8080 is already taken, the game uses the next free one and shows it in t
 **iPhone, and phones that report "Tilt needs the secure address".** Browsers only give motion
 sensors to pages served over HTTPS (always on iOS, and on some Android browsers). The game
 therefore serves the same page over HTTPS on port 8443, with a certificate it creates on your
-PC the first time. Use the second address and QR code ("IPHONE (TILT)", `https://<PC address>:8443`),
+PC the first time. Use the second address and QR code ("TILT STEERING (SECURE)", `https://<PC address>:8443`),
 accept the browser's certificate warning once ("Show details" → "Visit this website" in Safari),
 then allow "Motion & Orientation Access" when asked. Over the plain `http://` address such a
 phone still works: the page says tilt is unavailable in one line and steers by touch instead.

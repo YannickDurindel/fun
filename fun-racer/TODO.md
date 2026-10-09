@@ -17,6 +17,15 @@ One decision comes first, because half of this list depends on it:
 
 ## 1. Car physics
 
+> **Status (October 2026).** A first version of everything in this section exists as the
+> optional **Simulation** handling (Options → Gameplay): tyre model, suspension, aerodynamics
+> with DRS and tow, power unit with ERS and 8 gears, brakes, tyre temperature / wear / compounds,
+> fuel, driving aids, and an autopilot that measures the car. Arcade remains the default because
+> the simulation car does not feel right yet. What is left: tune it by driving (the bench in
+> `tools/sim_bench.sh` only proves the numbers; the autopilot laps the Red Bull Ring in about
+> 1:14 against a real 1:04), reduce its understeer, and give it a steering assistance that suits
+> a phone.
+
 - [ ] **Tyre model.** Today: lateral grip is a fixed budget (3.3 g plus aero) that cancels
   sideways speed. Do: a real slip-angle and slip-ratio tyre model (Pacejka or brush), with
   grip that depends on load, so understeer, oversteer and the limit feel real.
@@ -143,6 +152,12 @@ One decision comes first, because half of this list depends on it:
 - [ ] **Phone as a controller.** See the next section.
 
 ## 8. Phone as a game controller: steer, accelerate and brake
+
+> **Status (October 2026).** Done and tried on an Android phone: the game serves the page, pairs
+> with a 4-digit code and QR code, tilt steering (Chrome, over the `https` address; Brave blocks
+> the sensors), on/off gas and brake, AUTO GAS, CAM, shift, DRS, respawn and pause. Not tried:
+> iPhone. Left to do: a steering assistance like Real Racing 3 (help towards the racing line and
+> automatic braking), and vibration tuning.
 
 Goal: hold the phone like a steering wheel. Tilt it to steer; press the right side of the
 screen to accelerate and the left side to brake. No app to install: the phone opens a web page

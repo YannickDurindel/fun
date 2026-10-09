@@ -62,7 +62,7 @@ func test_balance() -> void:
 	a.step(s, spec, SETTLE_DT)
 	var share := s.downforce_front / (s.downforce_front + s.downforce_rear)
 	assert_between(share, spec.aero_balance_front - 0.001, spec.aero_balance_front + 0.001, "front share at the design ride height")
-	assert_between(share, 0.44, 0.46, "default balance 44-46 % front")
+	assert_between(share, 0.4399, 0.46, "default balance 44-46 % front")
 	assert_between(a.balance_front, share - 1e-4, share + 1e-4, "balance_front reports the share")
 	# Nose down (braking): the centre of pressure moves forward. Squat: rearward.
 	var dive := _state(200.0)

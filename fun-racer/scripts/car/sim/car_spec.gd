@@ -274,7 +274,7 @@ extends Resource
 @export var aid_shift_block_release_rpm: float = 1.25   ## ... unless the engine is below this x rpm_idle
 # Steering help.
 @export var aid_steer_grip_usage: float = 0.9  ## share of the estimated lateral grip that full input asks for
-@export var aid_steer_slip_margin: float = 0.15   ## lock beyond that turn, x the tyre's peak slip angle
+@export var aid_steer_slip_margin: float = 0.55   ## lock beyond that turn, x the tyre's peak slip angle
 @export var aid_steer_overdrive_start: float = 0.9   ## analog input beyond this adds lock past the grip limit (phone, stick)
 @export var aid_steer_overdrive_tc_slip: float = 1.5 ## traction control lets the rears slip this much more at full overdrive (power slide)
 @export var aid_steer_overdrive_gain: float = 1.2    ## extra lock at full input, x the grip-limit lock: the car can be made to slide
