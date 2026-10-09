@@ -28,6 +28,13 @@ const DEFAULTS: Dictionary = {
 		"key_steer_out_time": 0.12, # s to recentre
 		"gamepad_deadzone": 0.15,
 		"bindings": {},             # action -> Array of serialized events (empty = defaults)
+		# Phone as a controller (scripts/phone/phone_controller.gd). Nothing listens while off.
+		"phone_enabled": false,
+		"phone_port": 8080,         # HTTP + WebSocket
+		"phone_https_port": 8443,   # same page over TLS (iPhone tilt); 0 = no HTTPS
+		"phone_tilt_degrees": 40.0, # tilt for full lock, 15 .. 60
+		"phone_deadzone": 0.04,     # steering ignored around the centre, 0 .. 0.3
+		"phone_smoothing": 0.2,     # 0 = raw tilt, 1 = heavily filtered
 	},
 	"gameplay": {
 		"speed_unit": "kmh",        # "kmh" or "mph"

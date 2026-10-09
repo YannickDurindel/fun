@@ -1,12 +1,14 @@
 class_name ControlsScreen
 extends UIScreen
 ## Controls screen: rebind every game action (two keys + one gamepad input each), tune the
-## keyboard steering feel and the gamepad dead zone. Everything is stored in Settings
-## (`controls/*`) and saved when the screen is left.
+## keyboard steering feel and the gamepad dead zone, and set up the phone controller (on/off,
+## address, QR code, pairing code, tilt tuning: see scripts/phone/phone_controller.gd).
+## Everything is stored in Settings (`controls/*`) and saved when the screen is left.
 ##
 ## Works in the menu (router set) and stand-alone, e.g. inside the in-race pause menu:
 ## instance the scene, add it anywhere, and listen to `closed` (BACK / ui_cancel). It runs
-## while the tree is paused and scales its 1920x1080 layout to its own height.
+## while the tree is paused and scales its 1920x1080 layout to its own height. The sections
+## scroll (the focus is followed); the title and the BACK / RESET buttons stay in place.
 ##
 ## Capturing: activate a cell, then press the new key / button / stick direction.
 ## Esc cancels, Delete or Backspace unbinds the cell (on an empty cell those three keys are
@@ -31,14 +33,26 @@ const ANALOG_OUT_TIME := 0.035
 const COL_CAPTURE := Color(1.0, 0.82, 0.25)
 const COL_FOCUS_TEXT := Color(0.5, 0.72, 1.0)
 const HINT_IDLE := "Select a binding and press ENTER / Ⓐ to change it."
+## Each slider: settings key, row name, range, step, value format ("s", "%" or "deg"), hint.
 const SLIDERS: Array[Dictionary] = [
-	{"key": "key_steer_in_time", "name": "STEERING BUILD-UP", "min": 0.05, "max": 0.8,
+	{"key": "key_steer_in_time", "name": "STEERING BUILD-UP", "min": 0.05, "max": 0.8, "step": 0.01, "unit": "s",
 			"hint": "how long holding a key takes to reach full lock"},
-	{"key": "key_steer_out_time", "name": "STEERING RELEASE", "min": 0.03, "max": 0.4,
+	{"key": "key_steer_out_time", "name": "STEERING RELEASE", "min": 0.03, "max": 0.4, "step": 0.01, "unit": "s",
 			"hint": "how long the wheel takes to recentre when you let go"},
-	{"key": "gamepad_deadzone", "name": "GAMEPAD DEAD ZONE", "min": 0.0, "max": 0.4,
+	{"key": "gamepad_deadzone", "name": "GAMEPAD DEAD ZONE", "min": 0.0, "max": 0.4, "step": 0.01, "unit": "%",
 			"hint": "stick / trigger travel ignored around the rest position"},
 ]
+const PHONE_SLIDERS: Array[Dictionary] = [
+	{"key": "phone_tilt_degrees", "name": "TILT FOR FULL LOCK", "min": 15.0, "max": 60.0, "step": 1.0, "unit": "deg",
+			"hint": "how far the phone turns to reach full steering lock"},
+	{"key": "phone_deadzone", "name": "TILT DEAD ZONE", "min": 0.0, "max": 0.3, "step": 0.01, "unit": "%",
+			"hint": "tilt ignored around the centre"},
+	{"key": "phone_smoothing", "name": "TILT SMOOTHING", "min": 0.0, "max": 1.0, "step": 0.05, "unit": "%",
+			"hint": "steadies a shaky hand; more adds a little delay"},
+]
+const COL_PHONE_OFF := Color(1, 1, 1, 0.35)
+const COL_PHONE_OK := Color(0.2, 0.85, 0.42)
+const QR_SIZE := 236.0
 
 ## Smoothed steering shown by the preview bar: -1 full left .. +1 full right.
 var preview_steer: float = 0.0
@@ -48,6 +62,19 @@ var _hint: Label
 var _cells: Dictionary = {}          # "action:slot" -> Button
 var _sliders: Dictionary = {}        # settings key -> HSlider
 var _slider_values: Dictionary = {}  # settings key -> Label
+var _slider_units: Dictionary = {}   # settings key -> "s" / "%" / "deg"
+var _scroll: ScrollContainer
+var _phone_switch: CheckButton
+var _phone_light: ColorRect
+var _phone_status: Label
+var _phone_details: Control
+var _phone_address: Label
+var _phone_secure: Label
+var _phone_code: Label
+var _phone_firewall: Label
+var _phone_qr: Array[TextureRect] = []      # [plain address, secure address]
+var _phone_qr_text: Array[String] = ["", ""]
+var _phone_locked: bool = false
 var _steer_bar: SteerBar
 var _steer_value: Label
 var _back_button: Button
@@ -79,6 +106,7 @@ func on_enter() -> void:
 	_fit()
 	_refresh()
 	Settings.changed.connect(_on_setting_changed)
+	PhoneController.state_changed.connect(_refresh_phone)
 	var args := OS.get_cmdline_user_args()
 	if args.has("--capture-demo"):
 		_cap_frozen = true
@@ -130,7 +158,7 @@ func _build() -> void:
 
 	var col := VBoxContainer.new()
 	col.position = Vector2(MARGIN_X, 22.0)
-	col.custom_minimum_size = Vector2(CONTENT_WIDTH, 0.0)
+	col.custom_minimum_size = Vector2(CONTENT_WIDTH, DESIGN_HEIGHT - 44.0)
 	col.add_theme_constant_override(&"separation", 10)
 	_content.add_child(col)
 
@@ -149,8 +177,20 @@ func _build() -> void:
 	_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	head.add_child(_hint)
 
-	col.add_child(_build_bindings())
-	col.add_child(_build_feel())
+	# The sections are taller than the screen: they scroll, following the focus.
+	_scroll = ScrollContainer.new()
+	_scroll.name = "Sections"
+	_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	_scroll.follow_focus = true
+	col.add_child(_scroll)
+	var sections := VBoxContainer.new()
+	sections.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	sections.add_theme_constant_override(&"separation", 10)
+	_scroll.add_child(sections)
+	sections.add_child(_build_phone())
+	sections.add_child(_build_bindings())
+	sections.add_child(_build_feel())
 
 	var buttons := HBoxContainer.new()
 	buttons.add_theme_constant_override(&"separation", 16)
@@ -206,17 +246,7 @@ func _build_feel() -> Control:
 	box.add_theme_constant_override(&"separation", 4)
 	panel.add_child(box)
 	for def: Dictionary in SLIDERS:
-		var key: String = def["key"]
-		var slider := HSlider.new()
-		slider.name = key
-		slider.min_value = def["min"]
-		slider.max_value = def["max"]
-		slider.step = 0.01
-		slider.custom_minimum_size = Vector2(460, 36)
-		slider.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-		slider.value_changed.connect(_on_slider_changed.bind(key))
-		_sliders[key] = slider
-		_slider_values[key] = _feel_row(box, def["name"], slider, def["hint"])
+		_add_slider(box, def)
 	_steer_bar = SteerBar.new()
 	_steer_bar.name = "SteerBar"
 	_steer_bar.custom_minimum_size = Vector2(460, 30)
@@ -224,6 +254,127 @@ func _build_feel() -> Control:
 	_steer_value = _feel_row(box, "STEERING PREVIEW", _steer_bar,
 			"hold your steer keys or move the stick (select the bar to try ← →)")
 	return panel
+
+func _add_slider(parent: Control, def: Dictionary) -> void:
+	var key: String = def["key"]
+	var slider := HSlider.new()
+	slider.name = key
+	slider.min_value = def["min"]
+	slider.max_value = def["max"]
+	slider.step = def["step"]
+	slider.scrollable = false   # the mouse wheel scrolls the screen, it must not move sliders
+	slider.custom_minimum_size = Vector2(460, 36)
+	slider.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	slider.value_changed.connect(_on_slider_changed.bind(key))
+	_sliders[key] = slider
+	_slider_units[key] = def["unit"]
+	_slider_values[key] = _feel_row(parent, def["name"], slider, def["hint"])
+
+## The phone-controller section: one row while it is off, everything needed to pair while on.
+func _build_phone() -> Control:
+	var panel := PanelContainer.new()
+	panel.name = "Phone"
+	var box := VBoxContainer.new()
+	box.add_theme_constant_override(&"separation", 4)
+	panel.add_child(box)
+
+	var head := HBoxContainer.new()
+	head.add_theme_constant_override(&"separation", 20)
+	head.custom_minimum_size = Vector2(0.0, 46.0)
+	box.add_child(head)
+	var title := Label.new()
+	title.text = "PHONE CONTROLLER"
+	title.custom_minimum_size = Vector2(370.0, 0.0)
+	title.add_theme_font_size_override(&"font_size", 28)
+	head.add_child(title)
+	_phone_switch = CheckButton.new()
+	_phone_switch.name = "PhoneSwitch"
+	_phone_switch.custom_minimum_size = Vector2(150.0, 0.0)
+	_phone_switch.add_theme_font_size_override(&"font_size", 26)
+	_phone_switch.toggled.connect(_on_phone_toggled)
+	_phone_switch.focus_entered.connect(title.add_theme_color_override.bind(&"font_color", COL_FOCUS_TEXT))
+	_phone_switch.focus_exited.connect(title.remove_theme_color_override.bind(&"font_color"))
+	head.add_child(_phone_switch)
+	_phone_light = ColorRect.new()
+	_phone_light.custom_minimum_size = Vector2(18.0, 18.0)
+	_phone_light.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	head.add_child(_phone_light)
+	_phone_status = Label.new()
+	_phone_status.name = "PhoneStatus"
+	_phone_status.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_phone_status.add_theme_font_size_override(&"font_size", 26)
+	_phone_status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	head.add_child(_phone_status)
+
+	_phone_details = VBoxContainer.new()
+	_phone_details.name = "PhoneDetails"
+	_phone_details.add_theme_constant_override(&"separation", 4)
+	box.add_child(_phone_details)
+	# How to connect on the left, the QR codes on the right; the tuning sliders below.
+	var pairing := HBoxContainer.new()
+	pairing.add_theme_constant_override(&"separation", 24)
+	_phone_details.add_child(pairing)
+	var left := VBoxContainer.new()
+	left.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	left.add_theme_constant_override(&"separation", 4)
+	pairing.add_child(left)
+	var steps := Label.new()
+	steps.text = "Phone and PC on the same Wi-Fi  ·  scan the code or type the address  ·  enter the pairing code  ·  hold the phone like a wheel"
+	steps.theme_type_variation = &"DimLabel"
+	steps.clip_text = true
+	left.add_child(steps)
+	_phone_address = _phone_row(left, "ADDRESS", 28)
+	_phone_secure = _phone_row(left, "IPHONE (TILT)", 28)
+	_phone_code = _phone_row(left, "PAIRING CODE", 44)
+	_phone_code.add_theme_color_override(&"font_color", COL_CAPTURE)
+	_phone_firewall = Label.new()
+	_phone_firewall.theme_type_variation = &"DimLabel"
+	_phone_firewall.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_phone_firewall.custom_minimum_size = Vector2(900.0, 0.0)
+	# The UI font draws "--" as one long dash (a ligature), which would falsify the command.
+	var plain_font := FontVariation.new()
+	plain_font.base_font = get_theme_font(&"font", &"Label")
+	plain_font.opentype_features = {TextServerManager.get_primary_interface().name_to_tag("liga"): 0}
+	_phone_firewall.add_theme_font_override(&"font", plain_font)
+	left.add_child(_phone_firewall)
+	for caption: String in ["ANY PHONE", "IPHONE (TILT)"]:
+		var qr_box := VBoxContainer.new()
+		qr_box.add_theme_constant_override(&"separation", 4)
+		pairing.add_child(qr_box)
+		var qr := TextureRect.new()
+		qr.name = "QR%d" % _phone_qr.size()
+		qr.custom_minimum_size = Vector2(QR_SIZE, QR_SIZE)
+		qr.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		qr.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		qr.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		qr_box.add_child(qr)
+		_phone_qr.append(qr)
+		var caption_label := Label.new()
+		caption_label.text = caption
+		caption_label.theme_type_variation = &"DimLabel"
+		caption_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		qr_box.add_child(caption_label)
+	for def: Dictionary in PHONE_SLIDERS:
+		_add_slider(_phone_details, def)
+	return panel
+
+## Adds a row  [name][text]  to the phone section and returns the text label.
+func _phone_row(parent: Control, title: String, font_size: int) -> Label:
+	var row := HBoxContainer.new()
+	row.add_theme_constant_override(&"separation", 20)
+	row.custom_minimum_size = Vector2(0.0, 46.0)
+	parent.add_child(row)
+	var name_label := Label.new()
+	name_label.text = title
+	name_label.custom_minimum_size = Vector2(370.0, 0.0)
+	name_label.add_theme_font_size_override(&"font_size", 28)
+	row.add_child(name_label)
+	var value := Label.new()
+	value.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	value.add_theme_font_size_override(&"font_size", font_size)
+	value.clip_text = true
+	row.add_child(value)
+	return value
 
 ## Adds a row  [name][control][value][hint]  and returns its value label.
 func _feel_row(parent: Control, title: String, control: Control, hint: String) -> Label:
@@ -382,8 +533,91 @@ func _refresh() -> void:
 	for key: String in _sliders:
 		var v := float(Settings.get_value("controls", key))
 		(_sliders[key] as HSlider).set_value_no_signal(v)
-		(_slider_values[key] as Label).text = ("%d %%" % roundi(v * 100.0)) if key == "gamepad_deadzone" else ("%.2f s" % v)
+		var text := "%.2f s" % v
+		match str(_slider_units[key]):
+			"%": text = "%d %%" % roundi(v * 100.0)
+			"deg": text = "%d°" % roundi(v)
+		(_slider_values[key] as Label).text = text
+	_refresh_phone()
 	_update_hint()
+
+## The phone section: switch, status light and text, addresses, QR codes, pairing code.
+func _refresh_phone() -> void:
+	if _phone_switch == null:
+		return
+	var enabled := PhoneController.is_enabled()
+	_phone_switch.set_pressed_no_signal(enabled)
+	_phone_switch.text = "ON" if enabled else "OFF"
+	_phone_details.visible = PhoneController.status == PhoneController.Status.WAITING \
+			or PhoneController.status == PhoneController.Status.CONNECTED
+	_phone_status.remove_theme_color_override(&"font_color")
+	match PhoneController.status:
+		PhoneController.Status.OFF:
+			_phone_light.color = COL_PHONE_OFF
+			_phone_status.text = "Off  ·  steer by tilting your phone, with pedals on its screen. Nothing listens on the network while this is off."
+			_phone_status.add_theme_color_override(&"font_color", COL_TEXT_DIM)
+		PhoneController.Status.WAITING:
+			_phone_light.color = COL_CAPTURE
+			_phone_status.text = "Waiting for a phone…"
+		PhoneController.Status.CONNECTED:
+			_phone_light.color = COL_PHONE_OK
+			_phone_status.text = "Phone connected"
+		PhoneController.Status.ERROR:
+			_phone_light.color = COL_HILITE
+			_phone_status.text = PhoneController.error_text
+	_refresh_phone_lockout()
+	if not _phone_details.visible:
+		return
+	var plain := PhoneController.urls(false)
+	var secure := PhoneController.urls(true)
+	_phone_address.text = _address_text(plain, "No network address found: is this PC on the Wi-Fi / LAN?")
+	var no_secure := "HTTPS is off: iPhones steer by touch"
+	if PhoneController.is_https_pending():
+		no_secure = "preparing the certificate…"
+	elif not PhoneController.https_error.is_empty():
+		no_secure = PhoneController.https_error
+	_phone_secure.text = _address_text(secure, no_secure)
+	_phone_code.text = "  ".join(PhoneController.pairing_code.split(""))
+	_set_qr(0, plain[0] if not plain.is_empty() else "")
+	_set_qr(1, secure[0] if not secure.is_empty() else "")
+	var ports := "--add-port=%d/tcp" % PhoneController.port
+	if PhoneController.https_port > 0:
+		ports += " --add-port=%d/tcp" % PhoneController.https_port
+	_phone_firewall.text = ("The phone cannot open the page? The PC's firewall is probably blocking it. On Fedora, run this yourself " \
+			+ "in a terminal:   sudo firewall-cmd %s   (until the next restart; the game never changes your firewall).") % ports
+	if not secure.is_empty():
+		_phone_firewall.text += "\niPhone: tilt needs the https address. Accept the browser's certificate warning once; the plain address steers by touch."
+
+## While a device is locked out after wrong codes, the status line counts the seconds down.
+func _refresh_phone_lockout() -> void:
+	var left := ceili(PhoneController.lockout_left())
+	_phone_locked = left > 0
+	if PhoneController.status != PhoneController.Status.WAITING and PhoneController.status != PhoneController.Status.CONNECTED:
+		return
+	var base := "Phone connected" if PhoneController.status == PhoneController.Status.CONNECTED else "Waiting for a phone…"
+	var text := ("%s   ·   too many wrong codes from a device: it is locked out for %d s" % [base, left]) if left > 0 else base
+	if _phone_status.text != text:
+		_phone_status.text = text
+
+func _address_text(urls: PackedStringArray, fallback: String) -> String:
+	if urls.is_empty():
+		return fallback
+	if urls.size() == 1:
+		return urls[0]
+	return "%s    (or %s)" % [urls[0], ", ".join(urls.slice(1))]
+
+func _set_qr(index: int, text: String) -> void:
+	var rect := _phone_qr[index]
+	(rect.get_parent() as Control).visible = not text.is_empty()
+	if text == _phone_qr_text[index]:
+		return
+	_phone_qr_text[index] = text
+	var qr := QRCode.encode(text) if not text.is_empty() else null
+	rect.texture = ImageTexture.create_from_image(qr.to_image(8, 4)) if qr != null else null
+
+func _on_phone_toggled(on: bool) -> void:
+	PhoneController.set_enabled(on)
+	_refresh_phone()   # also when nothing changed (the switch shows the setting, not the click)
 
 func _update_hint() -> void:
 	if _capturing:
@@ -410,7 +644,11 @@ func _grab_initial_focus() -> void:
 	if is_dialog_open():
 		_dialog_cancel.grab_focus()
 	else:
+		# The screen opens at the top (the phone section), whatever is focused first.
+		_scroll.follow_focus = false
 		cell(InputBindings.actions()[0], InputBindings.SLOT_KEY_1).grab_focus()
+		_scroll.scroll_vertical = 0
+		_scroll.set_deferred(&"follow_focus", true)
 
 # ---------------------------------------------------------------------------- capture
 
@@ -524,7 +762,15 @@ func dialog_text() -> String:
 
 func _ask_reset() -> void:
 	var do_reset := func() -> void:
-		Settings.reset("controls")   # bindings, steering feel, dead zone
+		# Bindings, steering feel, dead zones and tilt tuning. Whether the phone controller is
+		# on, and its ports, are not "controls to reset": a paired phone stays connected.
+		for key: String in Settings.DEFAULTS["controls"]:
+			if key in ["phone_enabled", "phone_port", "phone_https_port"]:
+				continue
+			var value: Variant = Settings.default_value("controls", key)
+			if value is Dictionary or value is Array:
+				value = value.duplicate(true)
+			Settings.set_value("controls", key, value)
 		InputBindings.apply()
 		_dirty = true
 		_refresh()
@@ -563,6 +809,8 @@ func _process(delta: float) -> void:
 			cancel_capture()
 		elif ceili(_cap_time_left) != before:
 			_update_hint()
+	if _phone_locked:
+		_refresh_phone_lockout()
 	_update_preview(delta)
 
 ## Same smoothing as the car (Car._update_steer_smoothing), fed by the live bindings.
@@ -571,6 +819,10 @@ func _update_preview(delta: float) -> void:
 	var r := Input.get_action_strength(&"steer_right")
 	var target := 0.0 if (_capturing or is_dialog_open()) else clampf(r - l, -1.0, 1.0)
 	var digital := (l == 0.0 or l == 1.0) and (r == 0.0 or r == 1.0)
+	# A paired phone steers the preview too, so its tilt settings can be felt here.
+	if PhoneController.is_active() and target == 0.0 and not (_capturing or is_dialog_open()):
+		target = PhoneController.get_steer()
+		digital = false
 	preview_steer = smooth_steer(preview_steer, target, delta,
 			float(Settings.get_value("controls", "key_steer_in_time")) if digital else ANALOG_IN_TIME,
 			float(Settings.get_value("controls", "key_steer_out_time")) if digital else ANALOG_OUT_TIME)

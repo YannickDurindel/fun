@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#07090d">
+<title>Fun Racer controller</title>
+<!--
+  The phone controller of Fun Racer. Served by the game itself (scripts/phone/phone_controller.gd);
+  one file, no external resources. Tilt steers, the right zone is the throttle, the left zone
+  the brake. Protocol: see the header of phone_controller.gd.
+-->
+<style>
+:root { --u: 4px; --bg: #07090d; --panel: #121722; --line: #2a3242; --text: #fff; --dim: #9aa3b5;
+	--accent: #2973ff; --red: #ed2929; --green: #2fd36b; --amber: #ffd140; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: var(--bg); color: var(--text);
+	font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+	-webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+	touch-action: none; overscroll-behavior: none; }
+#app { position: fixed; left: 0; top: 0; width: 100%; height: 100%; transform-origin: 0 0; overflow: hidden;
+	font-size: calc(var(--u) * 4.4); }
+button { font: inherit; color: inherit; background: var(--panel); border: 1px solid var(--line);
+	border-radius: calc(var(--u) * 2); padding: 0; margin: 0; touch-action: none; cursor: pointer; }
+button.down { background: var(--accent); border-color: var(--accent); }
+.hidden { display: none !important; }
+
+/* ---- pairing screen ---- */
+#pair { position: absolute; inset: 0; display: flex; gap: calc(var(--u) * 5); padding: calc(var(--u) * 5); }
+#pair .info { flex: 1 1 0; display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+#pair h1 { margin: 0; font-size: calc(var(--u) * 9); font-style: italic; letter-spacing: 0.04em; }
+#pair h1 span { color: var(--red); }
+#pair p { margin: calc(var(--u) * 2) 0; color: var(--dim); }
+#digits { display: flex; gap: calc(var(--u) * 2.5); margin: calc(var(--u) * 3) 0; }
+#digits div { width: calc(var(--u) * 13); height: calc(var(--u) * 17); border-radius: calc(var(--u) * 2);
+	background: var(--panel); border: 2px solid var(--line); display: flex; align-items: center;
+	justify-content: center; font-size: calc(var(--u) * 11); font-weight: 700; }
+#digits div.next { border-color: var(--accent); }
+#pairmsg { min-height: 2.6em; color: var(--amber); }
+#keys { flex: 0 0 44%; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(4, 1fr);
+	gap: calc(var(--u) * 2); }
+#keys button { font-size: calc(var(--u) * 9); font-weight: 600; }
+
+/* ---- controller ---- */
+#pad { position: absolute; inset: 0; display: grid; gap: calc(var(--u) * 1.5); padding: calc(var(--u) * 1.5);
+	grid-template-columns: 29% 1fr 29%; grid-template-areas: "brake mid gas"; }
+#pad.touch { grid-template-columns: 1fr 31% 14.5% 14.5%; grid-template-areas: "steer mid brake gas"; }
+.zone { position: relative; overflow: hidden; border-radius: calc(var(--u) * 3); background: var(--panel);
+	border: 1px solid var(--line); touch-action: none; }
+.zone .fill { position: absolute; left: 0; right: 0; bottom: 0; height: 100%; transform-origin: 50% 100%;
+	transform: scaleY(0); opacity: 0.85; pointer-events: none; }
+.zone .label { position: absolute; left: 0; right: 0; top: 42%; text-align: center; font-weight: 700;
+	font-size: calc(var(--u) * 6); letter-spacing: 0.08em; pointer-events: none; }
+.zone .label small { display: block; font-weight: 400; font-size: calc(var(--u) * 4.4); color: var(--dim); margin-top: 0.3em; }
+#gas { grid-area: gas; } #gas .fill { background: linear-gradient(#35e07a, #128a43); }
+#brake { grid-area: brake; } #brake .fill { background: linear-gradient(#ff5a4d, #a01414); }
+#steer { grid-area: steer; display: none; }
+#pad.touch #steer { display: block; }
+#steer .rail { position: absolute; left: 8%; right: 8%; top: 50%; height: 2px; background: var(--line); }
+#steer .mark { position: absolute; left: 50%; top: 30%; bottom: 30%; width: 2px; background: var(--line); }
+#steer .knob { position: absolute; left: 50%; top: 50%; width: calc(var(--u) * 16); height: calc(var(--u) * 16);
+	margin: calc(var(--u) * -8) 0 0 calc(var(--u) * -8); border-radius: 50%; background: var(--accent); opacity: 0.9;
+	pointer-events: none; }
+#steer .label { top: 12%; }
+#mid { grid-area: mid; display: flex; flex-direction: column; gap: calc(var(--u) * 1.5); min-width: 0; }
+#top { display: flex; gap: calc(var(--u) * 1.5); }
+#top button { flex: 1 1 0; height: calc(var(--u) * 10.5); font-size: calc(var(--u) * 3.6); color: var(--dim); letter-spacing: 0.04em; }
+#conn { display: flex; align-items: center; justify-content: center; gap: 0.5em; font-size: calc(var(--u) * 3.8); color: var(--dim); }
+#dot { width: 0.8em; height: 0.8em; border-radius: 50%; background: var(--amber); }
+#dot.on { background: var(--green); } #dot.off { background: var(--red); }
+#dash { flex: 1 1 0; display: flex; align-items: center; justify-content: center; gap: calc(var(--u) * 5); min-height: 0; }
+#speed { font-size: calc(var(--u) * 17); font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
+#speed small { font-size: calc(var(--u) * 4); color: var(--dim); font-weight: 400; margin-left: 0.3em; }
+#gear { font-size: calc(var(--u) * 17); font-weight: 700; color: var(--amber); line-height: 1; }
+#wheel { position: relative; height: calc(var(--u) * 3); border-radius: calc(var(--u) * 1.5); background: var(--panel); overflow: hidden; }
+#wheel i { position: absolute; top: 0; bottom: 0; left: 50%; width: 50%; background: var(--accent); transform-origin: 0 50%; transform: scaleX(0); }
+#wheel b { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; margin-left: -1px; background: #fff; opacity: 0.7; }
+#note { font-size: calc(var(--u) * 3.3); line-height: 1.25; color: var(--amber); text-align: center; }
+#note:empty { display: none; }
+#note a { color: #8fb6ff; touch-action: manipulation; }
+#shift { display: flex; gap: calc(var(--u) * 1.5); height: 34%; }
+#shift button { flex: 1 1 0; font-size: calc(var(--u) * 5.2); font-weight: 700; letter-spacing: 0.04em; }
+#shift button small { display: block; font-size: calc(var(--u) * 3.2); font-weight: 400; color: var(--dim); }
+#shift #bdrs { flex: 0.8 1 0; }
+#veil { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center;
+	background: rgba(7, 9, 13, 0.82); font-size: calc(var(--u) * 7); font-weight: 700; color: var(--amber); pointer-events: none; }
+</style>
+</head>
+<body>
+<div id="app">
+	<section id="pair">
+		<div class="info">
+			<h1>FUN <span>RACER</span></h1>
+			<p>Enter the 4-digit code shown on the PC in Options &rarr; Controls.</p>
+			<div id="digits"><div></div><div></div><div></div><div></div></div>
+			<div id="pairmsg"></div>
+		</div>
+		<div id="keys"></div>
+	</section>
+	<section id="pad" class="hidden">
+		<div id="steer" class="zone"><div class="rail"></div><div class="mark"></div><div class="knob"></div>
+			<div class="label">STEER<small>slide left / right</small></div></div>
+		<div id="brake" class="zone"><div class="fill"></div><div class="label">BRAKE<small>0 %</small></div></div>
+		<div id="mid">
+			<div id="top">
+				<button id="bcentre">CENTRE</button>
+				<button id="bmode">TILT</button>
+				<button id="brespawn" data-bit="8">RESPAWN</button>
+				<button id="bpause" data-bit="16">PAUSE</button>
+			</div>
+			<div id="conn"><span id="dot"></span><span id="conntext">connecting</span></div>
+			<div id="dash"><div id="speed">0<small>km/h</small></div><div id="gear">N</div></div>
+			<div id="wheel"><i></i><b></b></div>
+			<div id="note"></div>
+			<div id="shift">
+				<button id="bdown" data-bit="2">&minus;<small>SHIFT</small></button>
+				<button id="bdrs" data-bit="4">DRS</button>
+				<button id="bup" data-bit="1">+<small>SHIFT</small></button>
+			</div>
+		</div>
+		<div id="gas" class="zone"><div class="fill"></div><div class="label">GAS<small>0 %</small></div></div>
+		<div id="veil" class="hidden">RECONNECTING&hellip;</div>
+	</section>
+</div>
+<script>
+"use strict";
+(function () {
+	// Filled in by the game when it serves the page (0 = no HTTPS port).
+	var HTTPS_PORT = Number("__HTTPS_PORT__") || 0;
+	var HTTP_PORT = Number("__HTTP_PORT__") || 0;
+	var SEND_MS = 16, PING_MS = 1000, SILENCE_MS = 2000, RETRY_MS = 1000, TILT_WAIT_MS = 1500;
+	var RAD = Math.PI / 180;
+	var $ = function (id) { return document.getElementById(id); };
+	var app = $("app"), pad = $("pad"), pairEl = $("pair");
+
+	function clamp(v, lo, hi) { return v < lo ? lo : (v > hi ? hi : v); }
+	function wrap(deg) { while (deg > 180) deg -= 360; while (deg < -180) deg += 360; return deg; }
+	function vibrate(ms) { try { if (navigator.vibrate) navigator.vibrate(ms); } catch (e) { /* unsupported */ } }
+
+	// ------------------------------------------------------------------ layout
+	// The controller is always drawn in landscape. If the browser stays in portrait (rotation
+	// lock), the whole page is turned 90 degrees with CSS and touches are mapped back.
+	var rot = 0, upX = 0;
+	function layout() {
+		var w = window.innerWidth, h = window.innerHeight;
+		if (h > w) {
+			if (rot === 0 || Math.abs(upX) > 0.5) rot = upX < -0.5 ? -90 : (upX > 0.5 || rot === 0 ? 90 : rot);
+			app.style.width = h + "px";
+			app.style.height = w + "px";
+			app.style.transform = rot === 90 ? "translateX(" + w + "px) rotate(90deg)" : "translateY(" + h + "px) rotate(-90deg)";
+			app.style.setProperty("--u", (w / 100) + "px");
+		} else {
+			rot = 0;
+			app.style.width = w + "px";
+			app.style.height = h + "px";
+			app.style.transform = "none";
+			app.style.setProperty("--u", (h / 100) + "px");
+		}
+	}
+	window.addEventListener("resize", layout);
+	window.addEventListener("orientationchange", function () { setTimeout(layout, 200); });
+	layout();
+
+	// Pointer position in the (possibly rotated) app's own coordinates.
+	function toApp(e) {
+		if (rot === 90) return { u: e.clientY, v: window.innerWidth - e.clientX };
+		if (rot === -90) return { u: window.innerHeight - e.clientY, v: e.clientX };
+		return { u: e.clientX, v: e.clientY };
+	}
+	function rectOf(el) {
+		var x = 0, y = 0, n = el;
+		while (n && n !== app) { x += n.offsetLeft; y += n.offsetTop; n = n.offsetParent; }
+		return { x: x, y: y, w: el.offsetWidth, h: el.offsetHeight };
+	}
+
+	// ------------------------------------------------------------------ inputs
+	var val = { gas: 0, brake: 0, steer: 0 };   // touch zones
+	var held = 0, latch = 0;                     // button bits: down now / pressed since last send
+	var touchMode = false, tiltSteer = 0;
+	var owners = {};                             // pointerId -> zone name
+
+	function zoneValue(name, e) {
+		var p = toApp(e), r = rectOf($(name));
+		if (name === "steer") return clamp(((p.u - r.x) / r.w - 0.5) / 0.4, -1, 1);
+		return clamp((1 - (p.v - r.y) / r.h - 0.08) / 0.8, 0, 1);   // 0 at the bottom, 1 at the top
+	}
+	function drawZones() {
+		["gas", "brake"].forEach(function (name) {
+			var el = $(name);
+			el.querySelector(".fill").style.transform = "scaleY(" + val[name].toFixed(3) + ")";
+			el.querySelector("small").textContent = Math.round(val[name] * 100) + " %";
+		});
+		$("steer").querySelector(".knob").style.transform = "translateX(" + (val.steer * rectOf($("steer")).w * 0.4).toFixed(1) + "px)";
+	}
+	function releaseZone(name, id) {
+		delete owners[id];
+		for (var other in owners) if (owners[other] === name) return;   // another finger still holds it
+		val[name] = 0;
+		drawZones();
+	}
+	["gas", "brake", "steer"].forEach(function (name) {
+		var el = $(name);
+		el.addEventListener("pointerdown", function (e) {
+			e.preventDefault();
+			try { el.setPointerCapture(e.pointerId); } catch (err) { /* old browser */ }
+			owners[e.pointerId] = name;
+			val[name] = zoneValue(name, e);
+			drawZones();
+		});
+		el.addEventListener("pointermove", function (e) {
+			if (owners[e.pointerId] !== name) return;
+			val[name] = zoneValue(name, e);
+			drawZones();
+		});
+		["pointerup", "pointercancel", "lostpointercapture"].forEach(function (type) {
+			el.addEventListener(type, function (e) { if (owners[e.pointerId] === name) releaseZone(name, e.pointerId); });
+		});
+	});
+	function releaseAll() {
+		owners = {};
+		val.gas = val.brake = val.steer = 0;
+		held = latch = 0;
+		Array.prototype.forEach.call(document.querySelectorAll("button.down"), function (b) { b.classList.remove("down"); });
+		drawZones();
+	}
+
+	Array.prototype.forEach.call(document.querySelectorAll("button[data-bit]"), function (b) {
+		var bit = Number(b.getAttribute("data-bit"));
+		b.addEventListener("pointerdown", function (e) {
+			e.preventDefault();
+			try { b.setPointerCapture(e.pointerId); } catch (err) { /* old browser */ }
+			held |= bit; latch |= bit;
+			b.classList.add("down");
+			vibrate(12);
+		});
+		["pointerup", "pointercancel", "lostpointercapture"].forEach(function (type) {
+			b.addEventListener(type, function () { held &= ~bit; b.classList.remove("down"); });
+		});
+	});
+
+	// ------------------------------------------------------------------ tilt steering
+	// Gravity gives the direction of "up" in the phone's own axes; its angle inside the screen
+	// plane is how far the phone is turned like a steering wheel. That works in both landscape
+	// orientations and with the browser locked in portrait, and has no gimbal trouble when the
+	// screen is upright.
+	var tiltDeg = 40, zero = null, trim = 0, lastRoll = 0;
+	var tiltListening = false, tiltSeen = false, tiltTimer = 0;
+
+	function onOrientation(e) {
+		if (e.beta === null || e.gamma === null || e.beta === undefined) return;
+		var b = e.beta * RAD, g = e.gamma * RAD;
+		var ux = -Math.cos(b) * Math.sin(g), uy = Math.sin(b);
+		upX = ux;
+		if (!tiltSeen) { tiltSeen = true; tiltReady(); }
+		if (Math.sqrt(ux * ux + uy * uy) < 0.2) return;   // lying almost flat: keep the last value
+		var angle = Math.atan2(ux, uy) / RAD;             // 0 = portrait upright, 90 = top of the phone to the left
+		if (zero === null) zero = ux >= 0 ? 90 : -90;
+		var roll = wrap(angle - zero);
+		if (Math.abs(roll) > 120) { zero = wrap(zero + 180); roll = wrap(angle - zero); }   // phone flipped over
+		lastRoll = roll;
+		tiltSteer = clamp(-(roll - trim) / tiltDeg, -1, 1);
+	}
+	function listenTilt() {
+		if (!tiltListening) {
+			tiltListening = true;
+			window.addEventListener("deviceorientation", onOrientation);
+		}
+		clearTimeout(tiltTimer);
+		if (!tiltSeen) tiltTimer = setTimeout(function () { if (!tiltSeen) tiltUnavailable(""); }, TILT_WAIT_MS);
+	}
+	// Must run inside a tap: iOS shows its motion permission prompt only then.
+	function startTilt() {
+		var asked = false;
+		try {
+			[window.DeviceMotionEvent, window.DeviceOrientationEvent].forEach(function (cls) {
+				if (cls && typeof cls.requestPermission === "function") {
+					asked = true;
+					cls.requestPermission().then(function (answer) {
+						if (answer === "granted") listenTilt();
+						else tiltUnavailable("Motion access was denied");
+					}).catch(function () { tiltUnavailable("Motion access was refused"); });
+				}
+			});
+		} catch (e) { /* fall through to the plain listener */ }
+		if (typeof window.DeviceOrientationEvent === "undefined") { tiltUnavailable(""); return; }
+		if (!asked) listenTilt();
+	}
+	function tiltReady() {
+		clearTimeout(tiltTimer);
+		$("note").textContent = "";
+		setTouchMode(false);
+		layout();
+	}
+	// No sensor data: say why in one line and steer by touch instead.
+	function tiltUnavailable(why) {
+		if (tiltSeen) return;
+		var note = $("note");
+		note.textContent = "";
+		if (!window.isSecureContext && HTTPS_PORT > 0) {
+			note.appendChild(document.createTextNode("No tilt on this address, steering by touch. "));
+			var a = document.createElement("a");
+			a.href = "https://" + location.hostname + ":" + HTTPS_PORT + "/";
+			a.textContent = "Open the secure page for tilt";
+			note.appendChild(a);
+		} else {
+			note.textContent = (why || "No tilt sensor here") + " — steering by touch.";
+		}
+		setTouchMode(true);
+	}
+	function setTouchMode(on) {
+		touchMode = on;
+		pad.classList.toggle("touch", on);
+		$("bmode").textContent = on ? "TOUCH" : "TILT";
+		$("bcentre").classList.toggle("hidden", on);
+		val.steer = 0;
+		drawZones();
+	}
+	$("bmode").addEventListener("click", function () {
+		if (touchMode) {
+			if (tiltSeen) setTouchMode(false); else startTilt();   // a tap: may ask for permission again
+		} else {
+			setTouchMode(true);
+		}
+	});
+	$("bcentre").addEventListener("click", function () {
+		trim = clamp(lastRoll, -60, 60);
+		vibrate(20);
+	});
+
+	// ------------------------------------------------------------------ screen
+	var wakeLock = null, triedFullscreen = false;
+	function keepAwake() {
+		try {
+			if (navigator.wakeLock && document.visibilityState === "visible") {
+				navigator.wakeLock.request("screen").then(function (lock) { wakeLock = lock; }).catch(function () { /* denied */ });
+			}
+		} catch (e) { /* unsupported (needs a secure page) */ }
+	}
+	function goFullscreen() {
+		if (triedFullscreen) return;
+		triedFullscreen = true;
+		try {
+			var el = document.documentElement;
+			var req = el.requestFullscreen || el.webkitRequestFullscreen;
+			if (!req) return;
+			var done = req.call(el, { navigationUI: "hide" });
+			var lock = function () {
+				try { if (screen.orientation && screen.orientation.lock) screen.orientation.lock("landscape").catch(function () { /* not allowed */ }); } catch (e) { /* unsupported */ }
+			};
+			if (done && done.then) done.then(lock).catch(function () { /* refused */ }); else lock();
+		} catch (e) { /* unsupported (iPhone) */ }
+	}
+	document.addEventListener("visibilitychange", function () {
+		if (document.visibilityState === "visible") keepAwake(); else releaseAll();
+	});
+	window.addEventListener("blur", releaseAll);
+	document.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+	document.addEventListener("gesturestart", function (e) { e.preventDefault(); });
+	document.addEventListener("touchmove", function (e) { e.preventDefault(); }, { passive: false });
+
+	// ------------------------------------------------------------------ connection
+	var ws = null, code = "", wanted = false, paired = false, everPaired = false, failures = 0;
+	var seq = 0, lastHeard = 0, retryTimer = 0, rtt = -1;
+
+	function setConn(cls, text) {
+		$("dot").className = cls;
+		$("conntext").textContent = text;
+	}
+	function showPairing(message) {
+		wanted = false; paired = false;
+		clearTimeout(retryTimer);
+		if (ws) { try { ws.close(); } catch (e) { /* already closed */ } }
+		releaseAll();
+		entered = "";
+		drawDigits();
+		$("pairmsg").textContent = message || "";
+		pad.classList.add("hidden");
+		pairEl.classList.remove("hidden");
+	}
+	function connect() {
+		clearTimeout(retryTimer);
+		if (!wanted) return;
+		var socket;
+		try {
+			socket = new WebSocket((location.protocol === "https:" ? "wss://" : "ws://") + location.host + "/ws");
+		} catch (e) {
+			retryTimer = setTimeout(connect, RETRY_MS);
+			return;
+		}
+		ws = socket;
+		socket.onopen = function () {
+			lastHeard = Date.now();
+			socket.send(JSON.stringify({ t: "pair", c: code }));
+		};
+		socket.onmessage = function (ev) {
+			if (socket !== ws) return;
+			var m;
+			try { m = JSON.parse(ev.data); } catch (e) { return; }
+			if (!m || typeof m !== "object") return;
+			lastHeard = Date.now();
+			if (m.t === "ok") {
+				paired = true; everPaired = true; failures = 0; seq = 0;
+				if (typeof m.deg === "number") tiltDeg = clamp(m.deg, 15, 60);
+				pairEl.classList.add("hidden");
+				pad.classList.remove("hidden");
+				$("veil").classList.add("hidden");
+				setConn("on", "connected");
+				drawZones();
+			} else if (m.t === "no") {
+				showPairing(m.r === "locked" ? "Too many wrong codes. Wait " + (m.w || 10) + " s, then try again." : "Wrong code. Check the PC screen.");
+			} else if (m.t === "bye") {
+				showPairing("Another phone took over the controls.");
+			} else if (m.t === "cfg") {
+				if (typeof m.deg === "number") tiltDeg = clamp(m.deg, 15, 60);
+			} else if (m.t === "st") {
+				$("speed").firstChild.nodeValue = String(m.sp | 0);
+				$("gear").textContent = m.g < 0 ? "R" : (m.g === 0 ? "N" : String(m.g | 0));
+				if (m.v > 0) vibrate(Math.min(m.v | 0, 400));
+			} else if (m.t === "po") {
+				rtt = Math.max(0, Math.round(performance.now() - m.x));
+				if (paired) setConn("on", "connected · " + rtt + " ms");
+			}
+		};
+		socket.onclose = function () {
+			if (socket !== ws) return;
+			ws = null;
+			paired = false;
+			if (!wanted) return;
+			failures++;
+			releaseAll();
+			if (everPaired) {
+				$("veil").classList.remove("hidden");
+				setConn("off", "reconnecting");
+			} else if (failures >= 3) {
+				$("pairmsg").textContent = location.protocol === "https:" && HTTP_PORT > 0
+					? "This browser refuses the secure connection. Open http://" + location.hostname + ":" + HTTP_PORT + " instead."
+					: "Cannot reach the game. Same Wi-Fi? Is the option still on?";
+			}
+			retryTimer = setTimeout(connect, RETRY_MS);
+		};
+		socket.onerror = function () { /* onclose follows */ };
+	}
+
+	// About 60 times a second: the whole input state, so a lost message never sticks.
+	setInterval(function () {
+		if (!ws || !paired || ws.readyState !== 1) return;
+		if (Date.now() - lastHeard > SILENCE_MS) { try { ws.close(); } catch (e) { /* closing */ } return; }
+		if (ws.bufferedAmount > 4096) return;   // the network is stalled: do not queue old inputs
+		var steer = touchMode ? val.steer : tiltSteer;
+		$("wheel").firstChild.style.transform = "scaleX(" + steer.toFixed(3) + ")";
+		ws.send('{"t":"in","s":' + steer.toFixed(3) + ',"th":' + val.gas.toFixed(3) + ',"b":' + val.brake.toFixed(3) +
+			',"k":' + (held | latch) + ',"n":' + (++seq) + "}");
+		latch = 0;
+	}, SEND_MS);
+	setInterval(function () {
+		if (ws && paired && ws.readyState === 1) ws.send('{"t":"pg","x":' + Math.round(performance.now()) + "}");
+	}, PING_MS);
+
+	// ------------------------------------------------------------------ pairing screen
+	var entered = "";
+	function drawDigits() {
+		var boxes = $("digits").children;
+		for (var i = 0; i < 4; i++) {
+			boxes[i].textContent = entered.charAt(i);
+			boxes[i].className = i === entered.length ? "next" : "";
+		}
+	}
+	// Runs inside the tap on the 4th digit, so the browser allows fullscreen, the wake lock and
+	// the motion permission prompt.
+	function submit() {
+		code = entered;
+		wanted = true; everPaired = false; failures = 0;
+		$("pairmsg").textContent = "Connecting…";
+		goFullscreen();
+		keepAwake();
+		if (!tiltSeen) { setTouchMode(true); startTilt(); }
+		connect();
+	}
+	function typeKey(k) {
+		if (entered.length === 4) {   // typing again cancels a pending try
+			wanted = false; entered = "";
+			clearTimeout(retryTimer);
+			if (ws) { try { ws.close(); } catch (e) { /* already closed */ } }
+		}
+		if (k === "del") entered = entered.slice(0, -1);
+		else if (entered.length < 4) entered += k;
+		$("pairmsg").textContent = "";
+		drawDigits();
+		if (entered.length === 4) submit();
+	}
+	["1", "2", "3", "4", "5", "6", "7", "8", "9", "del", "0"].forEach(function (k) {
+		var b = document.createElement("button");
+		b.textContent = k === "del" ? "⌫" : k;
+		b.addEventListener("click", function () { typeKey(k); });
+		$("keys").appendChild(b);
+	});
+	document.addEventListener("keydown", function (e) {
+		if (pairEl.classList.contains("hidden")) return;
+		if (e.key >= "0" && e.key <= "9") typeKey(e.key);
+		else if (e.key === "Backspace") typeKey("del");
+	});
+	drawDigits();
+})();
+</script>
+</body>
+</html>
