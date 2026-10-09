@@ -35,12 +35,40 @@ extends Resource
 @export var tyre_peak_slip_angle: float = 0.14 ## rad
 
 @export_group("Aero")
+## Reference figures for a 2020s F1 car (sources in scripts/car/sim/aero.gd): downforce equals
+## the weight near 150-160 km/h, is 3-4 times the weight at the end of a long straight, the
+## drag area is about 1.2-1.3 m^2 and DRS is worth 10-15 km/h.
 @export var air_density: float = 1.225
-@export var cl_a: float = 3.6                  ## downforce coefficient x area (m^2)
-@export var cd_a: float = 1.15                 ## drag coefficient x area (m^2)
-@export var aero_balance_front: float = 0.44   ## share of downforce on the front axle
-@export var drs_drag_factor: float = 0.80      ## drag multiplier with DRS open
-@export var drs_downforce_factor: float = 0.85 ## rear downforce multiplier with DRS open
+@export var cl_a: float = 6.6                  ## downforce coefficient x area (m^2) at the design ride height, medium wing
+@export var cd_a: float = 1.30                 ## drag coefficient x area (m^2), medium wing
+@export var aero_balance_front: float = 0.44   ## share of downforce on the front axle at the design ride height
+@export var drs_drag_factor: float = 0.89      ## drag multiplier with DRS open
+@export var drs_downforce_factor: float = 0.80 ## rear downforce multiplier with DRS open
+@export var drs_actuation_time: float = 0.10   ## s for the flap to travel fully open or closed
+@export var drs_close_throttle: float = 0.20   ## driver throttle below this counts as a lift and closes DRS
+## Wing trim: 0 = lowest downforce (Monza), 0.5 = medium, 1 = highest (Monaco).
+@export_range(0.0, 1.0) var wing_level: float = 0.5
+@export var wing_downforce_range: float = 0.30 ## wing downforce changes by +- this share between trims 0.5 and 0 / 1
+@export var wing_drag_range: float = 0.16      ## drag changes by +- this share between trims 0.5 and 0 / 1
+## Ground-effect floor. Its downforce grows as the car runs lower, up to an optimum mean
+## compression, then falls (the floor chokes when it is too close to the road).
+@export var floor_share: float = 0.50          ## share of cl_a made by the floor at the design ride height
+@export var floor_balance_front: float = 0.42  ## floor centre of pressure, share on the front axle
+@export var floor_gain: float = 0.10           ## extra floor downforce (share) at the optimum compression
+@export var floor_optimal_compression: float = 0.018   ## m, mean of the front and rear axle compression
+@export var floor_stall_loss: float = 0.10     ## floor downforce lost (share) one optimum-compression beyond the optimum
+@export var floor_min_factor: float = 0.50     ## the floor never makes less than this share of its design downforce
+@export var floor_cop_per_rake: float = 2.0    ## front share gained by the floor per m of (front - rear) compression
+@export var floor_cop_shift_max: float = 0.08  ## limit of that shift
+@export var ride_height_filter_time: float = 0.06  ## s, low-pass on the ride heights the aero sees (no loop with the dampers)
+## Yaw: the car slides sideways and the wings and floor work in crooked air.
+@export var yaw_reference_angle: float = 0.35  ## rad of body slip at which the full yaw effect is reached
+@export var yaw_downforce_loss: float = 0.35   ## share of downforce lost at the reference angle, on top of the lower airspeed along the car
+@export var yaw_drag_gain: float = 0.25        ## share of drag gained at the reference angle
+## Tow (state.tow = 1: right behind another car).
+@export var tow_drag_loss: float = 0.20        ## share of drag lost
+@export var tow_downforce_loss_front: float = 0.35 ## share of front downforce lost (dirty air: understeer)
+@export var tow_downforce_loss_rear: float = 0.25  ## share of rear downforce lost
 
 @export_group("Power unit")
 @export var engine_power: float = 620000.0     ## W, combustion engine at peak
