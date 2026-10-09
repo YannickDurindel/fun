@@ -99,8 +99,38 @@ extends Resource
 @export var shift_time: float = 0.03           ## s without drive torque per shift
 
 @export_group("Brakes")
-@export var brake_torque_max: float = 14500.0  ## N m, all four wheels at full pedal
-@export var brake_bias_front: float = 0.57
+## N m on all four wheels at full pedal with the discs in their working window. Sized for the
+## grip the car has near 300 km/h with its downforce: below that, full pedal locks the wheels.
+@export var brake_torque_max: float = 13000.0
+@export var brake_bias_front: float = 0.60     ## share of the brake torque on the front axle
+## Brake migration: front share added as the pedal is released (at zero pedal the share is
+## brake_bias_front + this). Negative moves the balance rearwards off the pedal. 0 = fixed.
+@export var brake_bias_migration: float = 0.12
+@export var brake_pedal_gamma: float = 1.3     ## pedal map exponent (1 = linear, > 1 = progressive)
+@export var brake_line_pressure_max: float = 1.6e7   ## Pa, the most either circuit can reach
+@export var brake_piston_area_front: float = 0.0021  ## m^2, pistons on one side of a front caliper
+@export var brake_piston_area_rear: float = 0.0016
+@export var brake_disc_radius_front: float = 0.135   ## m, effective (pad centre) radius
+@export var brake_disc_radius_rear: float = 0.115
+@export var brake_pad_mu: float = 0.6          ## carbon on carbon, in the working window
+## Share of the rear axle's brake demand left to the electric motor (energy harvesting). The
+## friction brakes drop it; the power unit must supply it as negative drive torque. 0 = none.
+@export var brake_rear_regen_share: float = 0.0
+@export var brake_temp_start: float = 450.0    ## deg C after a reset (warm)
+@export var brake_temp_ambient: float = 25.0   ## deg C of the cooling air
+@export var brake_temp_cold: float = 150.0     ## deg C: at and below, friction is brake_friction_cold
+@export var brake_temp_work_low: float = 400.0 ## deg C: working window, full friction
+@export var brake_temp_work_high: float = 1000.0
+@export var brake_temp_fade: float = 1300.0    ## deg C: at and above, friction is brake_friction_fade
+@export var brake_friction_cold: float = 0.65  ## friction relative to the working window
+@export var brake_friction_fade: float = 0.60
+@export var brake_heat_capacity_front: float = 2400.0   ## J/K, one disc with its pads
+@export var brake_heat_capacity_rear: float = 1800.0
+@export var brake_cooling_base: float = 4.0    ## W/K to the air at a standstill
+@export var brake_cooling_per_speed: float = 0.8   ## W/K more per m/s of car speed (ducts)
+@export var brake_cooling_rear_factor: float = 0.5 ## rear ducts' cooling relative to the fronts
+@export var brake_radiation_area: float = 0.10 ## m^2 of disc surface that radiates
+@export var brake_emissivity: float = 0.8
 
 @export_group("Fuel")
 @export var fuel_capacity: float = 110.0       ## kg
