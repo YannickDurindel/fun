@@ -10,6 +10,13 @@ answers cached in raw/terrain_*.json):
     BLEND m. The outer BORDER m blend to the bilinear far grid so both meshes meet.
   * far grid: 200 m spacing out to ~6 km for the low-poly surrounding hills.
 
+A track with declared banking (road_profile.json has "verge_slope_left", see
+cad/track/banking.py) gets the exact banked section, and a second pass: a 10 m mesh triangle
+cannot follow the apron of a banked corner (the slope changes by a third within 8 m) or the
+twist into the banking, so every triangle near such a stretch is sampled every REFINE_STEP m
+and its three vertices are lowered until it lies under the target everywhere. Other tracks
+skip both, and build byte for byte as before.
+
 Bounds come from the centreline: its bounding box plus NEAR_MARGIN, snapped outward to the far
 grid's 200 m lattice; the far grid is a square of at least 12 km around it. A recipe can pin
 them with [terrain] near / far = [x0, x1, z0, z1]. [terrain] smooth_sigma_m smooths both grids
@@ -50,6 +57,9 @@ CELL_REACH = 14.2   # m: a mesh cell diagonal. Vertices up to this far beyond a 
                     # verge stay under it too, so no triangle straddling the verge edge rises
                     # through it (e.g. towards a higher leg of a hairpin).
 BLEND = 40.0        # corridor -> raw DEM blend distance
+REFINE_STEP = 2.0   # m: sample spacing of the banked-corridor check, see refine_banked()
+REFINE_BANK = 0.03  # rad: stretches banked steeper than the automatic camber are checked
+REFINE_AROUND = 15  # centreline points either side of such a stretch that are checked too
 BORDER = 160.0      # near-grid border band blended to the far grid
 
 
@@ -165,9 +175,14 @@ def load_profile(track, out_dir):
             pr = json.load(f)
         if len(pr["width"]) != n:
             raise BuildError("road_profile.json does not match track.json: run the 'road' step again")
-        return {"width": pr["width"], "bank": pr["bank"], "verge_l": pr["verge_left"],
-                "verge_r": pr["verge_right"], "verge_width": pr.get("verge_width", VERGE),
-                "verge_drop": pr.get("verge_drop", 0.25)}, True
+        profile = {"width": pr["width"], "bank": pr["bank"], "verge_l": pr["verge_left"],
+                   "verge_r": pr["verge_right"], "verge_width": pr.get("verge_width", VERGE),
+                   "verge_drop": pr.get("verge_drop", 0.25)}
+        if "verge_slope_left" in pr:
+            # Declared banking (cad/track/road.py): the verge's extra slope on each side.
+            profile.update(slope_l=pr["verge_slope_left"], slope_r=pr["verge_slope_right"],
+                           shoulder=pr["verge_shoulder"], verge_blend=pr["verge_blend"])
+        return profile, True
     pts = track["points"]
     return {"width": [p.get("width", 13.0) for p in pts], "bank": [p.get("bank", 0.0) for p in pts],
             "verge_l": [VERGE] * n, "verge_r": [VERGE] * n, "verge_width": VERGE, "verge_drop": 0.25}, False
@@ -181,6 +196,9 @@ def make_corridor(track, profile):
     the track by its grade, minus CLEARANCE and VERGE_SLOPE per metre past the edge. Only
     where several cross-sections genuinely cover the same spot (the inside of corners, other
     legs of a hairpin) the lowest of them wins, so the terrain stays under all of them.
+
+    corridor.probe(x, z) -> (distance, nearest point index or None, target, weight) is the same
+    with the index of the nearest cross-section.
     """
     pts = [p["p"] for p in track["points"]]
     grades = [p.get("grade", 0.0) for p in track["points"]]
@@ -189,6 +207,14 @@ def make_corridor(track, profile):
     verge_l, verge_r = profile["verge_l"], profile["verge_r"]
     vdrop = profile["verge_drop"] / profile["verge_width"]
     n = len(pts)
+    banked = "slope_l" in profile
+    if banked:
+        cos_banks = [math.cos(b) for b in profile["bank"]]
+        slope_l, slope_r = profile["slope_l"], profile["slope_r"]
+        shoulder, vblend = profile["shoulder"], profile["verge_blend"]
+        # The road normal leans along the track by the grade: its vertical part scales what
+        # the bank lifts (cad/track/road.py: U0).
+        up_y = [1.0 / math.sqrt(1.0 + g * g) for g in grades]
     tangents = []
     for i in range(n):
         a, b = pts[i - 1], pts[(i + 1) % n]
@@ -202,7 +228,24 @@ def make_corridor(track, profile):
     reach = max(widths) * 0.5 + VERGE + FLAT_MARGIN + BLEND
     rc = int(math.ceil(reach / CELL))
 
+    def target_banked(i, along, lat_r):
+        """The section as cad/track/road.py builds it: the road rolled about the centreline (so
+        its edge is hw * cos(bank) out in plan view), then the banked verge."""
+        hw = widths[i] * 0.5
+        y = pts[i][1] + grades[i] * along
+        rise = sin_banks[i] * up_y[i]
+        out = abs(lat_r) - hw * cos_banks[i]
+        if out <= 0.0:
+            return y - lat_r * rise / cos_banks[i] - CLEARANCE
+        side = 1.0 if lat_r > 0.0 else -1.0
+        u = min(max(out - shoulder, 0.0), vblend)
+        reach = min(out, shoulder) + u - u * u / (2.0 * vblend)      # road.py: verge_shape()
+        y += (slope_r[i] if lat_r > 0.0 else slope_l[i]) * reach
+        return y - side * hw * rise - vdrop * out - CLEARANCE - VERGE_SLOPE * min(out, VERGE)
+
     def target(i, along, lat_r):
+        if banked:
+            return target_banked(i, along, lat_r)
         hw = widths[i] * 0.5
         y = pts[i][1] + grades[i] * along
         out = abs(lat_r) - hw
@@ -213,7 +256,7 @@ def make_corridor(track, profile):
             y -= side * hw * sin_banks[i] + vdrop * out
         return y - CLEARANCE - VERGE_SLOPE * min(max(0.0, out), VERGE)
 
-    def corridor(x, z):
+    def probe(x, z):
         cx, cz = int(math.floor(x / CELL)), int(math.floor(z / CELL))
         best_d, best = 1e9, None
         cand = []
@@ -232,7 +275,7 @@ def make_corridor(track, profile):
                     if d < best_d:
                         best_d, best = d, (i, along, lat_r)
         if best is None:
-            return best_d, None
+            return best_d, None, 0.0, 1.0
         i0 = best[0]
         y = target(*best)
         for i, along, lat_r in cand:
@@ -243,9 +286,87 @@ def make_corridor(track, profile):
                 y = min(y, target(i, along, lat_r))
         hw = widths[i0] * 0.5
         w = smoothstep(hw + VERGE + FLAT_MARGIN, hw + VERGE + FLAT_MARGIN + BLEND, best_d)
-        return best_d, (y, w)
+        return best_d, i0, y, w
 
+    def corridor(x, z):
+        d, i0, y, w = probe(x, z)
+        return d, (None if i0 is None else (y, w))
+
+    corridor.probe = probe
     return corridor
+
+
+def refine_banked(heights, nearest, mx, mz, corridor, profile, log=print):
+    """Lowers the near grid ``heights`` (row-major, in place) wherever one of its triangles
+    would rise above the corridor target beside a banked stretch of the road. ``nearest`` is
+    the nearest centreline point of every vertex within the verge's reach, else None.
+
+    The grid is a 10 m mesh, split as scripts/track/terrain.gd splits it (each cell along the
+    diagonal from (i + 1, j) to (i, j + 1)); the target is curved across a banked verge and
+    twisted along the transition into the banking, so a flat triangle through three correct
+    vertices can still cut through the road. Each triangle near such a stretch is sampled every
+    REFINE_STEP m; where it is above the target, its vertices go down, each in proportion to
+    its weight at the worst sample (so the vertex beside the trouble moves, not the one at the
+    far end of the verge, where the terrain shows), until no sample is above. Lowering can
+    only help the neighbouring triangles. Returns the number of triangles lowered and the
+    largest excess (m)."""
+    banks = profile["bank"]
+    n = len(banks)
+    steep = [False] * n
+    for i, b in enumerate(banks):
+        if abs(b) > REFINE_BANK:
+            for k in range(-REFINE_AROUND, REFINE_AROUND + 1):
+                steep[(i + k) % n] = True
+    if not any(steep):
+        return 0, 0.0
+    nx, nz = len(mx), len(mz)
+    step = mx[1] - mx[0]
+    m = max(2, int(round(step / REFINE_STEP)))
+    # Only cells with a vertex beside a steep stretch are sampled.
+    near = [i0 is not None and steep[i0] for i0 in nearest]
+    lowered, worst = 0, 0.0
+    for j in range(nz - 1):
+        for i in range(nx - 1):
+            a = j * nx + i
+            quad = (a, a + 1, a + nx, a + nx + 1)
+            if not any(near[q] for q in quad):
+                continue
+            corner = {a: (mx[i], mz[j]), a + 1: (mx[i + 1], mz[j]),
+                      a + nx: (mx[i], mz[j + 1]), a + nx + 1: (mx[i + 1], mz[j + 1])}
+            for tri in ((a, a + 1, a + nx), (a + 1, a + nx + 1, a + nx)):
+                p0, p1, p2 = (corner[q] for q in tri)
+                samples = []                # (weights of the three vertices, target)
+                for u in range(m + 1):
+                    for v in range(m + 1 - u):
+                        if (u, v) in ((0, 0), (m, 0), (0, m)):
+                            continue        # the vertices are on the target already
+                        b1, b2 = u / m, v / m
+                        b0 = 1.0 - b1 - b2
+                        d, i0, y, w = corridor.probe(b0 * p0[0] + b1 * p1[0] + b2 * p2[0],
+                                                     b0 * p0[1] + b1 * p1[1] + b2 * p2[1])
+                        if i0 is not None and w <= 0.0:   # beyond the flat zone the terrain is the DEM's
+                            samples.append(((b0, b1, b2), y))
+                first = 0.0
+                for attempt in range(12):
+                    excess, at = 0.0, None
+                    for b, y in samples:
+                        e = sum(bq * heights[q] for bq, q in zip(b, tri)) - y
+                        if e > excess:
+                            excess, at = e, b
+                    if excess <= 1e-6:
+                        break
+                    first = first or excess
+                    # Lowers the triangle by exactly the excess at the worst sample; the last
+                    # attempt lowers all of it, which settles every sample.
+                    norm = sum(bq * bq for bq in at) if attempt < 11 else 1.0
+                    for bq, q in zip(at, tri):
+                        heights[q] -= excess * (bq / norm if attempt < 11 else 1.0)
+                if first > 0.0:
+                    lowered += 1
+                    worst = max(worst, first)
+    log(f"  banked corridor: {lowered} mesh triangles lowered by up to {worst:.2f} m to stay under "
+        "the road and its verge")
+    return lowered, worst
 
 
 def plan_scale(track, out_dir):
@@ -306,7 +427,8 @@ def build(recipe, out_dir, fetcher, log=print):
 
     # ---- near mesh grid ----------------------------------------------------------------
     mx, mz = grid_axis(NEAR_X0, NEAR_X1, MESH_STEP), grid_axis(NEAR_Z0, NEAR_Z1, MESH_STEP)
-    heights, dists = [], []
+    heights, dists, nearest = [], [], []
+    verge_reach = max(profile["width"]) * 0.5 + VERGE + CELL_REACH
     for z in mz:
         for x in mx:
             u, v = (x - NEAR_X0) / FETCH_STEP, (z - NEAR_Z0) / FETCH_STEP
@@ -316,12 +438,14 @@ def build(recipe, out_dir, fetcher, log=print):
             if edge < BORDER:
                 hf = bilinear(far, (x - FAR_X0) / FAR_STEP, (z - FAR_Z0) / FAR_STEP)
                 h = hf + (h - hf) * smoothstep(0.0, BORDER, edge)
-            d, c = corridor(x, z)
-            if c is not None:
-                target, w = c
+            d, i0, target, w = corridor.probe(x, z)
+            if i0 is not None:
                 h = target + (h - target) * w
             heights.append(h)
             dists.append(min(65535, int(round(d * 10.0))))
+            nearest.append(i0 if d <= verge_reach else None)
+    if "slope_l" in profile:
+        refine_banked(heights, nearest, mx, mz, corridor, profile, log)
     # Far grid: vertices inside / on the near rectangle take the near surface (they are
     # skipped by the far mesh except on the boundary, where they must match exactly).
     nmx = len(mx)

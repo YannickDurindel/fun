@@ -58,9 +58,11 @@ One decision comes first, because half of this list depends on it:
   the lap, so short steep sections are too gentle. Spa's Raidillon peaks at 12.8 % against
   about 18 %. Do: use lidar ground models where countries publish them (done for Zandvoort and
   Monaco) and hand-correct signature climbs and crests.
-- [ ] **Banking.** Today: capped at 1.7°. Zandvoort (18°) and Jeddah turn 13 (12°) are nearly
-  flat. Do: lift the cap, tilt the terrain and verges with the road, and check the car and
-  autopilot on banked corners.
+- [ ] **Banking.** The pipeline and the game now build and drive real banking (declared per
+  track with `[road] max_bank`, see `tools/track/README.md`, "Banking"; proven on the
+  `banked_oval` fixture and a scratch Zandvoort). Still to do: declare it in the recipes of
+  Zandvoort (turns 3 and 14, 19° and 18°) and Jeddah (turn 13, 12°) and rebuild them; a
+  cross-section that is steeper at the top than at the bottom (Hugenholtz).
 - [ ] **Road width and camber.** Today: pipeline defaults (12–15 m, light camber) except on
   the Red Bull Ring and the street circuits, and even those are estimates. Do: measure widths
   per section from aerial imagery and set them in the recipes.

@@ -284,6 +284,7 @@ def build(recipe, fetcher, log=print):
 
     curv_out = [round(c, 5) for c in curv_s]
     widths = info_mod.track_json_widths(recipe, n, step, length, start_s, curv_out)
+    banks = track_json_banks(recipe, n, step, length, round(start_s, 3), curv_out)
     pts_out = []
     for k in range(n):
         g = (y[(k + 1) % n] - y[k - 1]) / (2 * step)
@@ -291,7 +292,7 @@ def build(recipe, fetcher, log=print):
             "s": round(k * step, 3),
             "p": [round(samples[k][0], 3), round(y[k], 3), round(samples[k][1], 3)],
             "width": widths[k],
-            "bank": 0.0,
+            "bank": banks[k],
             "grade": round(g, 4),
             "curvature": curv_out[k],
         })
@@ -349,6 +350,27 @@ def build(recipe, fetcher, log=print):
         log(f"  {t['id']:>3} {t['name']:<24} s={t['s_apex']:7.1f}  {t['direction']:<5}  "
             f"min radius {t['min_radius']:.0f} m  elev {y[int(t['s_apex'] / step) % n]:+.1f} m")
     return track, info
+
+
+def track_json_banks(recipe, n, step, length, start_s, curvature):
+    """The ``bank`` of every point of track.json (rad, + = left edge higher). 0.0 unless the
+    recipe declares banking steeper than the automatic camber ([road] max_bank, see
+    cad/track/banking.py): then it is the bank the road step builds, as in road_profile.json,
+    so that TrackData.sample() is the real road frame for the game's drivers and the spawn.
+    Declared only, so that every other track.json stays byte for byte the same. The arguments
+    are the ones the road step reads back from track.json (start_s and curvature rounded)."""
+    from . import recipe as recipe_mod
+    if float(recipe.road.get("max_bank", recipe_mod.AUTO_BANK)) <= recipe_mod.AUTO_BANK:
+        return [0.0] * n     # (decided here: banking.py needs numpy, this step otherwise does not)
+    info_mod._load_road_module()
+    import banking  # noqa: E402  (cad/track/banking.py, on sys.path now)
+    import numpy as np
+    try:
+        bank, _ = banking.profile(np.arange(n) * step, length, np.asarray(curvature, dtype=float),
+                                  start_s, recipe.road)
+    except ValueError as e:
+        raise BuildError(f"road: {e}") from e
+    return np.round(bank, 6).tolist()
 
 
 def write(track, info, out_dir):

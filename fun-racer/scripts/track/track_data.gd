@@ -5,6 +5,10 @@ extends RefCounted
 ## finish line in race direction, wrapping at `length`.
 ## sample(s) basis: -Z = forward along the track, +Y = road normal (includes banking),
 ## +X = right-hand side of the road when driving.
+## Banking: `banks` is 0 on most tracks (their crossfall and camber, at most 0.03 rad, are
+## only in the Road slot's road_profile.json). A track whose recipe declares real banking
+## (tools/track/README.md, "Banking") carries the built bank here too, so sample() and
+## lateral_offset() work in the banked road plane.
 
 var name: String = ""
 var length: float = 0.0

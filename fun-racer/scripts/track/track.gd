@@ -44,7 +44,9 @@ func file_path(file: String) -> String:
 	return dir().path_join(file)
 
 ## Car spawn transform at distance s: on the road surface, `lateral` metres right of centre,
-## origin raised to the Car's axle height (wheel centres at local y = 0).
+## origin raised to the Car's axle height (wheel centres at local y = 0). On a track with
+## declared banking the frame is the banked road plane (TrackData.sample), so the car starts
+## flat on the banking; elsewhere the crossfall (at most 0.03 rad) is left to the suspension.
 func spawn_transform(s: float, lateral: float = 0.0) -> Transform3D:
 	var xf := data.sample(s)
 	xf.origin += xf.basis.x * lateral + xf.basis.y * (Car.REAR_WHEEL_RADIUS + 0.05)

@@ -102,8 +102,8 @@ name = "Tosa"
 [[road.override]]             # or change single stretches
 s = [2700.0, 2950.0]          # from, to (may wrap around the finish line)
 width = 12.0
-bank = -0.02                  # radians, + = left edge higher; limit +/- 0.03
-blend = 40.0
+bank = -0.02                  # radians, + = left edge higher; limit +/- 0.03 unless
+blend = 40.0                  # [road] max_bank declares real banking, see "Banking"
 
 [terrain]
 # near = [x0, x1, z0, z1]     # game metres, multiples of 200; default: track box + 450 m
@@ -224,6 +224,57 @@ curvature, capped at 0.03 rad; the grid drains left. 30 m grass verges, clipped 
 would fold. The start / finish lines and grid boxes are painted by the tarmac shader from
 the lap length and `start_s`, so they need nothing per track.
 
+**Banking.** The automatic camber stops at 0.03 rad (1.7 degrees). A corner that is really
+banked is declared in the recipe: `max_bank` raises the track's limit (up to 0.40 rad, 23
+degrees) and an override (or `bank_keys`) gives the angle. Zandvoort's two banked corners
+would read:
+
+```toml
+[road]
+max_bank = 0.34               # radians: the steepest bank this track may have
+# shoulder = 3.0              # m the verge carries on in the plane of the road (default 3)
+
+[[road.override]]
+s = [770.0, 860.0]            # where the full banking holds
+bank = -0.33                  # 19 degrees; - = right edge higher: the outside of a left-hander
+blend = 45.0                  # m before and after over which it comes in and goes out
+note = "Hugenholtzbocht"
+
+[[road.override]]
+s = [3700.0, 3890.0]
+bank = 0.314                  # 18 degrees; + = left edge higher: the outside of a right-hander
+blend = 90.0
+note = "Arie Luyendykbocht"
+```
+
+Radians = degrees x 0.01745. The sign is the side that is higher, so banking into a corner is
+`+` for a right-hander and `-` for a left-hander. With `max_bank` above 0.03 the build changes
+in four ways, and only then (every other track builds byte for byte as before):
+
+- `track.json` carries the built bank per point (it is 0 otherwise), so the game's drivers,
+  the spawn and the lateral offsets work in the banked road plane. Run the `centreline` step
+  again after changing the banking; the road step stops if the two disagree.
+- The verge leaves the road in the road's own plane for `shoulder` metres and eases back to
+  its normal fall over the next 8 m: a berm on the high side, where the barrier stands, an
+  apron on the low side. `road_profile.json` gets `verge_slope_left` / `verge_slope_right`
+  (extra outward slope per point), `verge_shoulder` and `verge_blend`; the game treats the
+  keys as optional.
+- The terrain follows that section exactly, and every 10 m mesh triangle beside a banked
+  stretch is sampled every 2 m and lowered until none of it is above the road or the verge
+  (the build log says how many and by how much).
+- The road may not twist faster than 0.012 rad/m (0.69 degrees per metre: about what the
+  Hugenholtzbocht does, flat to 19 degrees in some 40 m). An override whose `blend` is shorter
+  than 1.5 x angle / 0.012 is lengthened and the log says so; `bank_keys` that twist faster
+  are an error. That limit suits a hairpin. A corner taken at 250 km/h and more needs a much
+  longer blend, 80 to 100 m for 18 degrees: at 0.012 rad/m the road rolls away under the car
+  at about a radian per second and it leaves the ground with its outer wheels.
+
+In the game both cars use the banking: gravity along the road does part of the cornering, and
+the autopilot plans a banked corner faster than a flat one (`CarEnvelope.banked_lat`). Check a
+banked track with `tools/lap_check.sh <id>` in both handling modes and look at both sides of
+the corner from the chase camera. `tests/fixtures/tracks/banked_oval` (an oval with two 18
+degree turns, `make_banked_oval.py`) is the reference case, `tests/test_banking.gd` its test.
+
 **Narrow roads.** `track.json` carries a nominal width of 13 m at every point, whatever the
 road step builds; the real widths are in `road_profile.json`. The game's drivers (the
 autopilot's racing line, the bots' off-road test) read `track.json`, which is harmless while
@@ -336,9 +387,12 @@ of `track.json` and `terrain.json`. The terrain uses the same dataset as the cen
 - **Widths and camber are estimates.** OSM rarely has widths for circuits, and nobody
   publishes per-corner camber. Defaults follow the FIA Grade 1 rules; correct them in the
   recipe when you know better.
-- **No real banking.** Bank is capped at 0.03 rad (1.7 degrees) because the terrain sits
-  only 0.3 m under the road centre. Zandvoort's 18 degree corners or an oval cannot be
-  represented yet.
+- **Banking is one plane per cross-section, and only where a recipe declares it** (see
+  "Banking"). No recipe does yet: Zandvoort's and Jeddah's banked corners are still built at
+  the automatic 0.03 rad. The real Hugenholtzbocht is steeper at the top than at the bottom
+  (4.5 to 19 degrees); here a cross-section has one angle. Where the verge of a banked corner
+  is clipped short by another leg of the lap, its outer edge can stand above the terrain,
+  as on a hillside circuit (`retaining_walls`).
 - **DEM resolution.** 25-30 m cells, smoothed over 45 m along the lap: crests and
   compressions shorter than about 100 m are flattened, and cuttings, embankments and
   earthworks narrower than a cell are missing or smeared. EU-DEM and SRTM are surface

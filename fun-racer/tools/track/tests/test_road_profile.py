@@ -75,7 +75,7 @@ class RoadProfileTest(unittest.TestCase):
         self.assertAlmostEqual(float(width[int(4310.0 / step)]), 14.0, places=6)
 
     def test_bank_over_the_limit_is_rejected(self):
-        with self.assertRaisesRegex(ValueError, "hard limit"):
+        with self.assertRaisesRegex(ValueError, "must be declared with .road. max_bank"):
             self.banking.profile(self.s, self.length, self.curv, self.start_s,
                                  {"override": [{"s": [100.0, 300.0], "bank": 0.2}]})
 

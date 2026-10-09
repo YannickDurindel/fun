@@ -35,6 +35,15 @@ The verge is clipped where it would reach closer to another part of the track th
 its own centreline (inside of hairpins, parallel sections), so it never folds or
 overlaps. Road edge and verge share exact edge positions, so there is no step.
 
+Banked verge: on a track with declared banking (banking.declared(), [road] max_bank) the
+verge first carries on in the plane of the road for a shoulder ([road] shoulder, default
+VERGE_SHOULDER m), then its slope eases linearly back to the normal fall over VERGE_BLEND m
+(verge_shape). The high side of a banked corner so becomes a berm that the barrier stands
+on, the low side an apron, without a shelf, a cliff or a trough at the road edge. The extra
+slope per side and point is written to road_profile.json ("verge_slope_left" / "_right",
+"verge_shoulder", "verge_blend"), where the terrain step and scripts/track/road.gd read it;
+such a verge has more rows (VERGE_STEPS) so the mesh follows the curve.
+
 Chunks: ~180 m each; consecutive chunks share their boundary cross-section bit-for-bit
 (same float arrays), and normals are computed on the whole closed lap before splitting,
 so shading and collision are seamless across chunk boundaries.
@@ -86,6 +95,9 @@ TRACK_DIR = TRACKS_DIR / "red_bull_ring"
 VERGE_WIDTH = 30.0       # m, nominal grass strip each side
 VERGE_DROP = 0.25        # m, total drop over VERGE_WIDTH (coordinated with the terrain unit)
 VERGE_ROWS = (0.0, 0.08, 0.3, 1.0)   # fractions of the verge extent
+VERGE_SHOULDER = 3.0     # m: a banked verge keeps the road's cross slope this far (kerbs fit on it)
+VERGE_BLEND = 8.0        # m: and returns to the normal fall over this distance
+VERGE_STEPS = 4          # mesh rows across VERGE_BLEND (2 m apart: within 2 cm of the curve)
 CHUNK_POINTS = 90        # centreline points per chunk (~180 m)
 WALL_REACH = 52.0        # m in plan view: a lower road this near takes the ground under a
                          # verge edge (half road + verge + a terrain mesh cell, see terrain.py)
@@ -139,6 +151,16 @@ def verge_extent(P: np.ndarray, edge: np.ndarray, out_dir: np.ndarray, hw: np.nd
     ext = np.minimum(ext, fold_limit)
     ext = _cyclic_box(_cyclic_min_filter(ext, 5), 5)
     return np.clip(ext, 0.0, VERGE_WIDTH)
+
+
+def verge_shape(d: np.ndarray, shoulder: float, blend: float = VERGE_BLEND) -> np.ndarray:
+    """Distance over which a banked verge's extra slope counts, ``d`` metres out from the road
+    edge: all of it on the shoulder, then less and less over ``blend`` (the slope falls off
+    linearly), constant beyond. The verge's height against the road edge is
+    ``-VERGE_DROP / VERGE_WIDTH * d + slope * verge_shape(d)``; terrain.py and road.gd use the
+    same formula."""
+    u = np.clip(np.asarray(d, dtype=float) - shoulder, 0.0, blend)
+    return np.minimum(d, shoulder) + u - u * u / (2.0 * blend)
 
 
 def _ear_clip(poly: np.ndarray) -> list[tuple[int, int, int]]:
@@ -330,7 +352,16 @@ def build(track_path: Path = TRACK_DIR / "track.json", out_dir: Path = TRACK_DIR
     Rh = _norm(np.cross(T, UP))
     U0 = _norm(np.cross(Rh, T))
     curvature = np.array([p.get("curvature", 0.0) for p in d["points"]], dtype=float)
-    bank, width = banking.profile(s, length, curvature, float(d.get("start_s", 0.0)), road_cfg or {})
+    notes: list[str] = []
+    bank, width = banking.profile(s, length, curvature, float(d.get("start_s", 0.0)), road_cfg or {}, notes)
+    # track.json carries the bank of a track with declared banking (0 otherwise): the game's
+    # drivers read it there, so a table that changed since the centreline step must not pass.
+    want = np.round(bank, 6) if banking.declared(road_cfg) else np.zeros(n)
+    have = np.array([p.get("bank", 0.0) for p in d["points"]], dtype=float)
+    if np.abs(have - want).max() > 2e-6:
+        raise ValueError("the bank in track.json differs from the recipe's [road] table (its banking "
+                         "or max_bank changed since the centreline step ran). Run the build again "
+                         "with the 'centreline' step.")
     hw = 0.5 * width
     R = Rh * np.cos(bank)[:, None] - U0 * np.sin(bank)[:, None]
 
@@ -346,11 +377,29 @@ def build(track_path: Path = TRACK_DIR / "track.json", out_dir: Path = TRACK_DIR
     road_lat = np.stack([-hw, np.zeros(n), hw], 1)
     road_v = P[:, None, :] + R[:, None, :] * road_lat[:, :, None]
 
+    # Declared banking: the verge starts in the plane of the road (its slope along Rh, + =
+    # rising outward) instead of at the normal fall. As written to the profile, so that the
+    # mesh and the readers of the profile agree to the last digit.
+    banked = banking.declared(road_cfg)
+    shoulder = float((road_cfg or {}).get("shoulder", VERGE_SHOULDER))
+    plane = np.tan(bank) / U0[:, 1]
+    slope_l = np.round(plane + VERGE_DROP / VERGE_WIDTH, 5)
+    slope_r = np.round(-plane + VERGE_DROP / VERGE_WIDTH, 5)
+
     def verge(edge: np.ndarray, out: np.ndarray, ext: np.ndarray, side: float):
-        f = np.array(VERGE_ROWS)
-        dd = ext[:, None] * f[None, :]                       # (n, rows) outward distance
+        if banked:
+            rows = [0.0, shoulder] + [shoulder + VERGE_BLEND * k / VERGE_STEPS
+                                      for k in range(1, VERGE_STEPS + 1)]
+            rows = sorted(set(r for r in rows if r < VERGE_WIDTH))
+            # Rows at fixed distances, ending at the verge's extent wherever that comes first.
+            dd = np.minimum(np.array(rows + [VERGE_WIDTH])[None, :], ext[:, None])
+        else:
+            f = np.array(VERGE_ROWS)
+            dd = ext[:, None] * f[None, :]                   # (n, rows) outward distance
         v = edge[:, None, :] + out[:, None, :] * dd[:, :, None]
         v[:, :, 1] -= VERGE_DROP * dd / VERGE_WIDTH
+        if banked:
+            v[:, :, 1] += (slope_l if side < 0 else slope_r)[:, None] * verge_shape(dd, shoulder)
         lat = side * (hw[:, None] + dd)
         if side < 0:                                         # reorder left -> right
             v, lat = v[:, ::-1], lat[:, ::-1]
@@ -475,12 +524,20 @@ def build(track_path: Path = TRACK_DIR / "track.json", out_dir: Path = TRACK_DIR
         "verge_right": np.round(ext_r, 3).tolist(),
         "racing_line": np.round(rl, 3).tolist(),
     }
+    if banked:
+        # Only tracks with declared banking have the keys, so every other profile is unchanged.
+        profile["convention"] += ("; a banked verge adds verge_slope_<side> * verge_shape(distance "
+                                  "out), see cad/track/road.py")
+        profile["verge_shoulder"] = shoulder
+        profile["verge_blend"] = VERGE_BLEND
+        profile["verge_slope_left"] = slope_l.tolist()
+        profile["verge_slope_right"] = slope_r.tolist()
     if bridges:
         profile["bridges"] = bridges
     (out_dir / "road_profile.json").write_text(json.dumps(profile, separators=(",", ":")))
     road_textures.write_all(out_dir)
     return {"chunks": nchunks, "triangles": tri_total, "bridges": bridges,
-            "wall_length": wall_len,
+            "wall_length": wall_len, "notes": notes,
             "verge_min": float(min(ext_l.min(), ext_r.min())),
             "width": (float(width.min()), float(width.max())),
             "bank": (float(bank.min()), float(bank.max()))}
