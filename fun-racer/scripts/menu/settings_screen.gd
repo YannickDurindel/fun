@@ -386,7 +386,7 @@ func _build_graphics() -> void:
 	for preset: String in SettingsApply.PRESET_ORDER:
 		preset_options.append([preset.to_upper(), preset])
 	var preset_row := _add_choice("graphics", "", "", "QUALITY PRESET",
-			"Sets anti-aliasing, shadows and render scale together. LOW suits integrated graphics.", preset_options)
+			"Sets anti-aliasing, shadows, scenery and render scale together. LOW suits integrated graphics.", preset_options)
 	preset_stepper = preset_row.stepper
 	preset_stepper.fallback_text = "CUSTOM"
 	preset_stepper.picked.connect(func(v: Variant) -> void: SettingsApply.apply_preset(str(v)))
@@ -405,6 +405,9 @@ func _build_graphics() -> void:
 	_add_choice("graphics", "graphics", "shadows", "SHADOWS",
 			"Resolution and softness of the sun shadows. OFF is the fastest.",
 			[["OFF", 0], ["LOW", 1], ["MEDIUM", 2], ["HIGH", 3]])
+	_add_choice("graphics", "graphics", "scenery", "SCENERY",
+			"Trees, buildings and grandstands around the track. LOW draws fewer trees and plainer buildings.",
+			[["LOW", 0], ["MEDIUM", 1], ["HIGH", 2]])
 	_add_slider("graphics", "graphics", "render_scale", "RENDER SCALE",
 			"Renders the 3D view at a lower resolution, then upscales. The biggest speed-up.", 50, 100, 5)
 

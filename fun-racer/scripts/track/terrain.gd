@@ -10,6 +10,13 @@ extends Node3D
 ## Without one (a track whose terrain is not built yet): a plain ground grid that follows the
 ## centreline heights and stays just below the road and its verges (see _build_fallback_grid).
 ## Everything uses shaders/terrain.gdshader. Terrain does not cast shadows (cheap on HD 520).
+##
+## Ground types: with landcover.png / landcover_far.png in the track folder (8-bit class id per
+## cell, grids described by scenery.json, see Scenery) the shader paints every class with the
+## track's palette (TrackEnvironment "terrain_palette") instead of plain grass. Vertices on
+## water cells are lowered below the water level of the body they lie in, so the water planes
+## Scenery draws are what shows; the collision keeps the baked heights. Without the files the
+## terrain looks exactly as before.
 
 const TERRAIN_FILE := "terrain.json"
 ## Fallback ground: grid step, margin around the lap, how far from the centreline the road
@@ -20,6 +27,17 @@ const FALLBACK_MARGIN: float = 400.0
 const FALLBACK_REACH: float = 70.0
 const FALLBACK_CLEARANCE: float = 0.35
 const FALLBACK_VERGE_DROP: float = 0.25   ## assumed when the Road slot cannot be asked
+const LANDCOVER_FILE := "landcover.png"
+const LANDCOVER_FAR_FILE := "landcover_far.png"
+const CLASS_WATER: int = 2
+## Water cells: the visible ground ends up this far below the water level (or, for a cell in
+## no water body of scenery.json, this far below its own height).
+const WATER_DEPTH: float = 2.0
+## Coarsest mip of the near land cover the shader uses (2.5 m cells -> 40 m).
+const LANDCOVER_MAX_LOD: int = 4
+## Where a vertex looks for water cells: itself, then 4 m around it.
+const WATER_PROBES: Array[Vector2] = [Vector2.ZERO, Vector2(4.0, 0.0), Vector2(-4.0, 0.0),
+		Vector2(0.0, 4.0), Vector2(0.0, -4.0)]
 
 ## Leave empty to use terrain.json of the parent Track's folder.
 @export_file("*.json") var terrain_json: String = ""
@@ -45,6 +63,20 @@ var far_nx: int
 var far_nz: int
 var far_h: PackedFloat32Array
 var material: ShaderMaterial
+## terrain.json "origin_latlon" (lat, lon of the frame origin) and "plan_scale": what turns a
+## latitude / longitude into track metres (see latlon_to_xz). `has_origin` false = not baked.
+var origin_latlon: Vector2 = Vector2.ZERO
+var plan_scale: float = 1.0
+var has_origin: bool = false
+## True when land-cover textures are in use.
+var has_landcover: bool = false
+## Number of mesh vertices lowered because they lie on water cells.
+var sunk_vertices: int = 0
+
+var _lc_near := {}   ## {bytes, x0, z0, step, nx, nz} of landcover.png, empty without one
+var _lc_far := {}
+var _water: Array[Dictionary] = []   ## {level, polygon: PackedVector2Array, rect: Rect2}
+var _layers: int = 1
 
 func _ready() -> void:
 	var track := get_parent() as Track
@@ -52,6 +84,8 @@ func _ready() -> void:
 		terrain_json = track.file_path(TERRAIN_FILE)
 	material = ShaderMaterial.new()
 	material.shader = SHADER
+	if track != null:
+		_setup_look(track)
 	if not terrain_json.is_empty() and FileAccess.file_exists(terrain_json):
 		if _load():
 			_build_near()
@@ -164,6 +198,11 @@ func _load() -> bool:
 		return false
 	var meta: Dictionary = parsed
 	var dir := terrain_json.get_base_dir()
+	var origin: Variant = meta.get("origin_latlon")
+	if origin is Array and (origin as Array).size() >= 2:
+		origin_latlon = Vector2(float(origin[0]), float(origin[1]))
+		plan_scale = float(meta.get("plan_scale", 1.0))
+		has_origin = true
 	var near: Dictionary = meta["near"]
 	near_x0 = float(near["x0"])
 	near_z0 = float(near["z0"])
@@ -201,6 +240,116 @@ func height_at(x: float, z: float) -> float:
 	var b := lerpf(near_h[(j + 1) * near_nx + i], near_h[(j + 1) * near_nx + i + 1], tu)
 	return lerpf(a, b, tv)
 
+## Track-frame (x, z) of a latitude / longitude, with the origin and plan scale of terrain.json.
+func latlon_to_xz(lat: float, lon: float) -> Vector2:
+	var m := 111320.0 * plan_scale
+	return Vector2((lon - origin_latlon.y) * m * cos(deg_to_rad(origin_latlon.x)), -(lat - origin_latlon.x) * m)
+
+## Land-cover class id at world (x, z) (TrackEnvironment.CLASSES), -1 where there is no data.
+func class_at(x: float, z: float) -> int:
+	for grid: Dictionary in [_lc_near, _lc_far]:
+		if grid.is_empty():
+			continue
+		var i := floori((x - float(grid["x0"])) / float(grid["step"]))
+		var j := floori((z - float(grid["z0"])) / float(grid["step"]))
+		if i >= 0 and j >= 0 and i < int(grid["nx"]) and j < int(grid["nz"]):
+			return (grid["bytes"] as PackedByteArray)[j * int(grid["nx"]) + i]
+	return -1
+
+# ------------------------------------------------------------------------- look
+## Palette, land-cover textures, water bodies and floodlight term for the shader, from the
+## Track's environment and scenery files. Nothing is set when the track has none of them.
+func _setup_look(track: Track) -> void:
+	var env := track.environment
+	if env == null:
+		return
+	_lc_near = _load_landcover(track.scenery_path(LANDCOVER_FILE), track.scenery_meta.get("near", {}), true)
+	_lc_far = _load_landcover(track.scenery_path(LANDCOVER_FAR_FILE), track.scenery_meta.get("far", {}), false)
+	has_landcover = not _lc_near.is_empty() or not _lc_far.is_empty()
+	if has_landcover:
+		material.set_shader_parameter("has_landcover", true)
+		material.set_shader_parameter("pal_a", env.palette(0))
+		material.set_shader_parameter("pal_b", env.palette(1))
+		for body: Dictionary in track.scenery_meta.get("water", []):
+			var poly: PackedVector2Array = body["polygon"]
+			var rect := Rect2(poly[0], Vector2.ZERO)
+			for p in poly:
+				rect = rect.expand(p)
+			_water.append({"level": float(body["level"]), "polygon": poly, "rect": rect})
+	if env.active:
+		material.set_shader_parameter("grass_a", env.palette(0)[0])
+		material.set_shader_parameter("grass_b", env.palette(1)[0])
+		if not env.mowing_stripes():
+			material.set_shader_parameter("stripe_strength", 0.0)
+		if env.floodlit():
+			# The floodlights do not light the terrain (see TrackEnvironment): the shader adds
+			# them near the track instead.
+			_layers = TrackEnvironment.LAYER_FAR
+			var flood := env.flood_light().srgb_to_linear()
+			material.set_shader_parameter("flood", Vector3(flood.r, flood.g, flood.b))
+			material.set_shader_parameter("flood_reach", env.number("floodlights", "reach_m"))
+
+## One land-cover grid: the class bytes (for class_at and the water cells) and its texture on
+## the shader. `grid` = {x0, z0, step, nx, nz} of scenery.json. Empty when there is no file.
+func _load_landcover(path: String, grid: Variant, near: bool) -> Dictionary:
+	if path.is_empty() or not FileAccess.file_exists(path):
+		return {}
+	# Read as raw PNG, never as an imported texture: the values are class ids, not colours.
+	var img := Image.new()
+	if img.load_png_from_buffer(FileAccess.get_file_as_bytes(path)) != OK or img.is_empty():
+		push_warning("Terrain: cannot read %s" % path)
+		return {}
+	if not (grid is Dictionary and (grid as Dictionary).has("step")):
+		push_warning("Terrain: %s has no grid in scenery.json, ignored" % path.get_file())
+		return {}
+	img.convert(Image.FORMAT_R8)
+	var g: Dictionary = grid
+	var out := {"bytes": img.get_data(), "x0": float(g["x0"]), "z0": float(g["z0"]),
+		"step": float(g["step"]), "nx": img.get_width(), "nz": img.get_height()}
+	var prefix := "lc_near" if near else "lc_far"
+	var lods := LANDCOVER_MAX_LOD if near else 0
+	material.set_shader_parameter(prefix, _class_texture(img, lods))
+	material.set_shader_parameter(prefix + "_rect", Vector4(out["x0"], out["z0"], 1.0 / float(out["step"]), float(lods)))
+	material.set_shader_parameter(prefix + "_size", Vector2(img.get_width(), img.get_height()))
+	return out
+
+## Texture of class ids with point-sampled mipmaps (averaged ids would be other classes).
+static func _class_texture(img: Image, lods: int) -> ImageTexture:
+	if lods <= 0:
+		return ImageTexture.create_from_image(img)
+	var w := img.get_width()
+	var h := img.get_height()
+	var data := img.get_data()
+	var level := 1
+	while true:
+		var lw := maxi(1, w >> level)
+		var lh := maxi(1, h >> level)
+		var mip := img.duplicate() as Image
+		mip.resize(lw, lh, Image.INTERPOLATE_NEAREST)
+		data.append_array(mip.get_data())
+		if lw == 1 and lh == 1:
+			break
+		level += 1
+	return ImageTexture.create_from_image(Image.create_from_data(w, h, true, Image.FORMAT_R8, data))
+
+## Visible height of a vertex at (x, z) with baked height h: lowered when it lies on or
+## right beside a water cell (so a stream narrower than the mesh grid still gets a bed).
+func _visible_height(x: float, z: float, h: float) -> float:
+	if not has_landcover:
+		return h
+	var p := Vector2(INF, INF)
+	for o: Vector2 in WATER_PROBES:
+		if class_at(x + o.x, z + o.y) == CLASS_WATER:
+			p = Vector2(x + o.x, z + o.y)
+			break
+	if p.x == INF:
+		return h
+	sunk_vertices += 1
+	for body in _water:
+		if (body["rect"] as Rect2).has_point(p) and Geometry2D.is_point_in_polygon(p, body["polygon"]):
+			return minf(h, float(body["level"]) - WATER_DEPTH)
+	return h - WATER_DEPTH
+
 static func _u16(bytes: PackedByteArray) -> PackedInt32Array:
 	var out := PackedInt32Array()
 	out.resize(bytes.size() / 2)
@@ -235,6 +384,10 @@ func _build_near_chunk(ci: int, cj: int, w: int, h: int) -> void:
 	verts.resize((w + 1) * (h + 1))
 	normals.resize(verts.size())
 	uvs.resize(verts.size())
+	var solid := PackedVector3Array()   # baked heights for the collision, when water lowers any
+	if has_landcover:
+		solid.resize(verts.size())
+	var lowered := false
 	var k := 0
 	for j in range(cj, cj + h + 1):
 		for i in range(ci, ci + w + 1):
@@ -242,9 +395,13 @@ func _build_near_chunk(ci: int, cj: int, w: int, h: int) -> void:
 			verts[k] = Vector3(near_x0 + i * near_step, near_h[g], near_z0 + j * near_step)
 			normals[k] = _grid_normal(near_h, near_nx, near_nz, near_step, i, j)
 			uvs[k] = Vector2(near_d[g] * 0.1, 0.0)
+			if has_landcover:
+				solid[k] = verts[k]
+				verts[k].y = _visible_height(verts[k].x, verts[k].z, verts[k].y)
+				lowered = lowered or verts[k].y != solid[k].y
 			k += 1
 	_grid_indices(idx, w, h, PackedByteArray())
-	_add_mesh("Near_%d_%d" % [ci, cj], verts, normals, uvs, idx)
+	_add_mesh("Near_%d_%d" % [ci, cj], verts, normals, uvs, idx, solid if lowered else PackedVector3Array())
 
 ## Two triangles per cell (clockwise seen from above = Godot front face up). `skip[c]` != 0 omits a cell.
 func _grid_indices(idx: PackedInt32Array, w: int, h: int, skip: PackedByteArray) -> void:
@@ -265,10 +422,20 @@ func _build_far() -> void:
 	verts.resize(far_nx * far_nz)
 	normals.resize(verts.size())
 	uvs.resize(verts.size())
+	var solid := PackedVector3Array()   # as in _build_near_chunk
+	if has_landcover:
+		solid.resize(verts.size())
+	var lowered := false
 	for j in far_nz:
 		for i in far_nx:
 			var g := j * far_nx + i
-			verts[g] = Vector3(far_x0 + i * far_step, far_h[g], far_z0 + j * far_step)
+			var fx := far_x0 + i * far_step
+			var fz := far_z0 + j * far_step
+			verts[g] = Vector3(fx, far_h[g], fz)
+			if has_landcover:
+				solid[g] = verts[g]
+				verts[g].y = _visible_height(fx, fz, far_h[g])
+				lowered = lowered or verts[g].y != far_h[g]
 			normals[g] = _grid_normal(far_h, far_nx, far_nz, far_step, i, j)
 			uvs[g] = Vector2(1000.0, 0.0)
 	# Hole: skip far cells covered by the near grid.
@@ -283,10 +450,12 @@ func _build_far() -> void:
 			skip[j * (far_nx - 1) + i] = 1 if (cx > near_x0 and cx < near_x1 and cz > near_z0 and cz < near_z1) else 0
 	var idx := PackedInt32Array()
 	_grid_indices(idx, far_nx - 1, far_nz - 1, skip)
-	_add_mesh("FarHills", verts, normals, uvs, idx)
+	_add_mesh("FarHills", verts, normals, uvs, idx, solid if lowered else PackedVector3Array())
 
+## `solid`: the vertices the collision is built from when they differ from the visible ones
+## (water cells), empty = the same.
 func _add_mesh(node_name: String, verts: PackedVector3Array, normals: PackedVector3Array,
-		uvs: PackedVector2Array, idx: PackedInt32Array) -> void:
+		uvs: PackedVector2Array, idx: PackedInt32Array, solid := PackedVector3Array()) -> void:
 	var arrays := []
 	arrays.resize(Mesh.ARRAY_MAX)
 	arrays[Mesh.ARRAY_VERTEX] = verts
@@ -300,10 +469,20 @@ func _add_mesh(node_name: String, verts: PackedVector3Array, normals: PackedVect
 	mi.name = node_name
 	mi.mesh = mesh
 	mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	mi.layers = _layers
 	add_child(mi)
 	if not collision:
 		return
-	var shape := mesh.create_trimesh_shape()
+	var shape: ConcavePolygonShape3D
+	if solid.is_empty():
+		shape = mesh.create_trimesh_shape()
+	else:
+		var faces := PackedVector3Array()
+		faces.resize(idx.size())
+		for n in idx.size():
+			faces[n] = solid[idx[n]]
+		shape = ConcavePolygonShape3D.new()
+		shape.set_faces(faces)
 	var body := StaticBody3D.new()
 	body.name = node_name + "_Body"
 	body.set_meta("surface", "grass")

@@ -2,6 +2,17 @@
 # Renders a scene (default main) with autodrive and saves a PNG after N frames.
 # Usage: tools/screenshot.sh OUT.png [res://scene.tscn] [frames] [extra user args, e.g. --spawn_s=1300]
 #
+# Extra user args go to the game (scripts/bootstrap.gd). Useful ones for judging a track:
+#   --track=ID --spawn_s=METRES --camera=1|2|3   where the car is and which chase camera
+#   --cam-pos=x,y,z [--cam-look=x,y,z]           fixed free camera (looks at the car without --cam-look)
+#   --overview                                   the whole lap from high above, fog pushed back
+#   --time=day|dusk|night                        lighting override, to compare times of day
+#   --quality=low|medium|high                    graphics preset (trees, facades, shadows ...)
+#   --scenery-dir=PATH                           read the scenery files from another folder
+#   --no-scenery                                 the track without any scenery file
+# Example: tools/screenshot.sh "$PWD/shots/monaco_night.png" res://scenes/race.tscn 300 \
+#              --track=monaco --spawn_s=1300 --camera=2 --time=night
+#
 # The render happens OFF-SCREEN: a private virtual Wayland compositor (kwin_wayland --virtual)
 # is started for the run, so no window appears on the desktop. Only one screenshot renders at
 # a time on the machine (a lock in ~/.cache/fun-racer), so parallel callers queue instead of

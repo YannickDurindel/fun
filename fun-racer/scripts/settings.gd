@@ -16,6 +16,7 @@ const DEFAULTS: Dictionary = {
 		"msaa": 2,                  # Viewport.MSAA_*: 0 off, 1 2x, 2 4x, 3 8x
 		"shadows": 2,               # 0 off, 1 low, 2 medium, 3 high
 		"render_scale": 1.0,        # 3D resolution scale, 0.5 .. 1.0
+		"scenery": 1,               # trackside scenery: 0 low, 1 medium, 2 high
 	},
 	"audio": {
 		"master": 1.0,              # linear 0..1 per bus
@@ -54,6 +55,8 @@ const DEFAULTS: Dictionary = {
 var persist: bool = true
 
 var _values: Dictionary = {}
+## "section/key" of every setting the loaded file did not have (a save from an older version).
+var missing_on_load: Array[String] = []
 
 func _ready() -> void:
 	_values = DEFAULTS.duplicate(true)
@@ -116,7 +119,9 @@ func load_from_disk() -> void:
 		return
 	for section: String in DEFAULTS:
 		for key: String in DEFAULTS[section]:
-			if cf.has_section_key(section, key):
+			if not cf.has_section_key(section, key):
+				missing_on_load.append(section + "/" + key)
+			else:
 				var v: Variant = cf.get_value(section, key)
 				if typeof(v) == typeof(DEFAULTS[section][key]) or (v is float and DEFAULTS[section][key] is int) \
 						or (v is int and DEFAULTS[section][key] is float):
