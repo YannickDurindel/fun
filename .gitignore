@@ -6,3 +6,4 @@ fun-racer/tools/bin/
 __pycache__/
 .venv
 .claude/
+fun-racer/shots/
