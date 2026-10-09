@@ -1,0 +1,29 @@
+[
+ {
+  "model": "runoff_paint",
+  "at": {
+   "xz": [
+    0.0,
+    0.0
+   ]
+  },
+  "y_offset": 0.3012
+ },
+ {
+  "model": "start_gantry",
+  "at": {
+   "s": 74.0,
+   "side": 1,
+   "dist": 0.0
+  }
+ },
+ {
+  "model": "pit_roof",
+  "at": {
+   "s": 180.0,
+   "side": -1,
+   "dist": 32.0
+  },
+  "y_offset": 10.4
+ }
+]
