@@ -16,6 +16,138 @@ relation = 284540
 
 [elevation]
 dataset = "terrarium"
+# The height of the road, pinned every 40 m to the lidar terrain model of the Institut
+# Cartografic i Geologic de Catalunya (ICGC "MET2m", 2 m cells, ground level, CC BY 4.0;
+# WMS https://geoserveis.icgc.cat/serveis/catalunya/icgc_mdt2m/wms, layer MET2m, read with
+# GetFeatureInfo on the centreline every 20 m and averaged 1-2-1). y = metres above the finish
+# line (120.49 m above sea level in that model).
+# Why: Terrain Tiles (a 30 m surface model, smoothed over 45 m) were up to 6 m off here. They
+# put a 15.5 m hump between Renault and Repsol where the road climbs steadily at 1.4 %, had
+# the back straight 4 to 6 m too low, and made the climb to Campsa 8.5 % (lidar: 6.2 %).
+# Lidar figures the keys reproduce: elevation range 29.7 m (commonly quoted: about 30 m, e.g. f1-fansite.com);
+# lowest point the apex of Elf (-8.2 m), highest the exit of Banc Sabadell (+21.6 m); steepest
+# climb +6.2 % from turn 8 to Campsa, steepest descent -6.5 % out of Seat, -5.5 % from
+# Europcar to New Holland, -2.5 % at most on the main straight.
+# The keys are closer together than key_join_m, so the whole lap is one curve through them.
+key = [
+  {s = 0.0, y = 0.00},
+  {s = 40.0, y = 0.00},
+  {s = 80.0, y = -0.03},
+  {s = 120.0, y = -0.02},
+  {s = 160.0, y = 0.00},
+  {s = 200.0, y = -0.03},
+  {s = 240.0, y = -0.03},
+  {s = 280.0, y = -0.04},
+  {s = 320.0, y = -0.20},
+  {s = 360.0, y = -0.51},
+  {s = 400.0, y = -0.96},
+  {s = 440.0, y = -1.59},
+  {s = 480.0, y = -2.33},
+  {s = 520.0, y = -3.28},
+  {s = 560.0, y = -4.22},
+  {s = 600.0, y = -5.05},
+  {s = 640.0, y = -5.79},
+  {s = 680.0, y = -6.40},
+  {s = 720.0, y = -6.88},
+  {s = 760.0, y = -7.34},
+  {s = 800.0, y = -7.80},
+  {s = 840.0, y = -8.13},
+  {s = 880.0, y = -7.88},
+  {s = 920.0, y = -7.07},
+  {s = 960.0, y = -5.78},
+  {s = 1000.0, y = -4.12},
+  {s = 1040.0, y = -2.38},
+  {s = 1080.0, y = -0.59},
+  {s = 1120.0, y = 1.20},
+  {s = 1160.0, y = 2.80},
+  {s = 1200.0, y = 4.10},
+  {s = 1240.0, y = 5.10},
+  {s = 1280.0, y = 5.87},
+  {s = 1320.0, y = 6.48},
+  {s = 1360.0, y = 7.00},
+  {s = 1400.0, y = 7.55},
+  {s = 1440.0, y = 8.08},
+  {s = 1480.0, y = 8.60},
+  {s = 1520.0, y = 9.12},
+  {s = 1560.0, y = 9.70},
+  {s = 1600.0, y = 10.26},
+  {s = 1640.0, y = 10.80},
+  {s = 1680.0, y = 11.36},
+  {s = 1720.0, y = 11.91},
+  {s = 1760.0, y = 12.35},
+  {s = 1800.0, y = 12.80},
+  {s = 1840.0, y = 13.11},
+  {s = 1880.0, y = 13.02},
+  {s = 1920.0, y = 12.60},
+  {s = 1960.0, y = 11.95},
+  {s = 2000.0, y = 11.15},
+  {s = 2040.0, y = 10.27},
+  {s = 2080.0, y = 9.04},
+  {s = 2120.0, y = 7.51},
+  {s = 2160.0, y = 5.53},
+  {s = 2200.0, y = 3.16},
+  {s = 2240.0, y = 0.73},
+  {s = 2280.0, y = -1.49},
+  {s = 2320.0, y = -3.28},
+  {s = 2360.0, y = -4.60},
+  {s = 2400.0, y = -5.37},
+  {s = 2440.0, y = -5.62},
+  {s = 2480.0, y = -5.42},
+  {s = 2520.0, y = -4.77},
+  {s = 2560.0, y = -3.55},
+  {s = 2600.0, y = -1.87},
+  {s = 2640.0, y = 0.32},
+  {s = 2680.0, y = 2.68},
+  {s = 2720.0, y = 5.09},
+  {s = 2760.0, y = 7.49},
+  {s = 2800.0, y = 9.94},
+  {s = 2840.0, y = 12.27},
+  {s = 2880.0, y = 14.23},
+  {s = 2920.0, y = 15.62},
+  {s = 2960.0, y = 16.34},
+  {s = 3000.0, y = 16.59},
+  {s = 3040.0, y = 16.33},
+  {s = 3080.0, y = 15.89},
+  {s = 3120.0, y = 15.45},
+  {s = 3160.0, y = 14.94},
+  {s = 3200.0, y = 14.50},
+  {s = 3240.0, y = 14.02},
+  {s = 3280.0, y = 13.53},
+  {s = 3320.0, y = 13.04},
+  {s = 3360.0, y = 12.56},
+  {s = 3400.0, y = 12.07},
+  {s = 3440.0, y = 11.59},
+  {s = 3480.0, y = 11.18},
+  {s = 3520.0, y = 10.94},
+  {s = 3560.0, y = 11.46},
+  {s = 3600.0, y = 12.32},
+  {s = 3640.0, y = 13.81},
+  {s = 3680.0, y = 15.46},
+  {s = 3720.0, y = 17.21},
+  {s = 3760.0, y = 18.83},
+  {s = 3800.0, y = 20.19},
+  {s = 3840.0, y = 21.10},
+  {s = 3880.0, y = 21.52},
+  {s = 3920.0, y = 21.49},
+  {s = 3960.0, y = 20.99},
+  {s = 4000.0, y = 20.08},
+  {s = 4040.0, y = 18.74},
+  {s = 4080.0, y = 16.91},
+  {s = 4120.0, y = 14.82},
+  {s = 4160.0, y = 12.70},
+  {s = 4200.0, y = 10.60},
+  {s = 4240.0, y = 8.58},
+  {s = 4280.0, y = 6.85},
+  {s = 4320.0, y = 5.39},
+  {s = 4360.0, y = 4.18},
+  {s = 4400.0, y = 3.27},
+  {s = 4440.0, y = 2.60},
+  {s = 4480.0, y = 2.04},
+  {s = 4520.0, y = 1.52},
+  {s = 4560.0, y = 0.95},
+  {s = 4600.0, y = 0.42},
+  {s = 4640.0, y = 0.11},
+]
 
 # The turn table is pinned because of turn 11: the left kink after La Caixa is one continuous
 # left-hand bend with turn 10 in the centreline (the curvature never drops to straight between
@@ -105,3 +237,165 @@ id = "T14"
 name = "New Holland"
 direction = "right"
 s = 4305.5
+
+[road]
+# Width. Published: 12 m (MotoGP's circuit data sheet, motogp.com event page "Catalunya":
+# "Width 12 m"). Measured on ICGC's 25 cm orthophoto (ortofoto_color_vigent, CC BY 4.0), white
+# line to white line, +/- 0.3 m: main straight 12.3 to 12.6 m; Elf to Seat 11.7 to 11.9 m;
+# Wuerth, the climb to Campsa, the back straight and the stadium 11.2 to 11.6 m; La Caixa
+# (the 2021 corner) 14.4 m at the apex. The table follows the measurements; the game's
+# default was 13 m with a 15 m grid.
+width_keys = [
+  [0.0, 12.5, "main straight and grid (measured 12.3-12.6)"],
+  [770.0, 12.5, "braking for Elf"],
+  [840.0, 12.0, "T1 Elf (measured 11.7-11.9 from here to Seat; published 12)"],
+  [2450.0, 12.0, "after the turn 6 kink"],
+  [2540.0, 11.5, "T7 Wuerth (measured 11.2-11.6 from here to New Holland)"],
+  [3410.0, 11.5, "end of the back straight"],
+  [3470.0, 14.0, "T10 La Caixa: the 2021 corner opens to 14.4 m (measured)"],
+  [3520.0, 14.0, ""],
+  [3580.0, 11.5, "turn 11 kink"],
+  [4400.0, 11.5, "T14 New Holland exit"],
+  [4480.0, 12.5, "onto the main straight"],
+]
+# Crossfall and camber, radians, + = left edge higher. Measured on ICGC's 2 m lidar model as
+# the height difference 4 m left and right of the centreline, every 20 m (noise about 1 %).
+# The game cannot build more than 0.03 rad (3 %) yet, so every corner below sits on the cap;
+# the REAL figures, for when the cap goes: Elf +4 to +6 %, turn 2 -4.5 to -5.4 %, Renault
+# +2 to +3 %, Repsol +5.5 %, Seat -6 to -7 %, Wuerth -6 %, turn 8 +4.5 %, Campsa +3.5 %,
+# Banc Sabadell +4 to +5.6 %, Europcar +3 to +4.7 %, New Holland +4 to +4.7 %. Straights:
+# main straight +2 to +3 % as far as the pit exit, then +1 %; back straight -1.2 %.
+# La Caixa is flat at the apex and falls to the INSIDE of the next bend at its exit (+4 %
+# at s = 3540 to 3580, off camber for the left kink that follows); built at +2 %.
+bank_keys = [
+  [0.0, 0.02, "main straight, grid: drains to the right (measured +2 to +3 %)"],
+  [280.0, 0.02, ""],
+  [330.0, 0.011, "after the pit exit: +1 %"],
+  [770.0, 0.011, "braking for Elf"],
+  [805.0, 0.03, "T1 Elf (real +4 to +6 %)"],
+  [885.0, 0.03, ""],
+  [918.0, -0.03, "T2 (real -4.5 to -5.4 %)"],
+  [1005.0, -0.03, ""],
+  [1058.0, 0.024, "T3 Renault: +2 to +3 % all the way round"],
+  [1600.0, 0.02, "run to Repsol: +2 %"],
+  [1650.0, 0.03, "T4 Repsol (real +5.5 %)"],
+  [1830.0, 0.03, ""],
+  [1885.0, 0.02, ""],
+  [1960.0, 0.015, "crest before Seat"],
+  [2005.0, -0.012, ""],
+  [2085.0, -0.03, "T5 Seat (real -6 to -7 %)"],
+  [2170.0, -0.03, ""],
+  [2210.0, -0.02, ""],
+  [2270.0, -0.013, "turn 6 kink: -1 to -2 %"],
+  [2500.0, -0.013, ""],
+  [2530.0, -0.03, "T7 Wuerth (real -6 %)"],
+  [2585.0, -0.03, ""],
+  [2618.0, 0.03, "T8 (real +4.5 %)"],
+  [2690.0, 0.03, ""],
+  [2735.0, 0.015, "climb to Campsa: +1.5 %"],
+  [2830.0, 0.015, ""],
+  [2870.0, 0.03, "T9 Campsa (real +3.5 %)"],
+  [2980.0, 0.03, ""],
+  [3035.0, 0.02, ""],
+  [3110.0, 0.008, ""],
+  [3150.0, -0.012, "back straight: -1.2 %"],
+  [3465.0, -0.015, "braking for La Caixa"],
+  [3500.0, 0.0, "T10 La Caixa: flat at the apex"],
+  [3545.0, 0.02, "La Caixa exit: off camber (real +4 %)"],
+  [3585.0, 0.02, ""],
+  [3620.0, 0.002, "turn 11 kink: flat"],
+  [3665.0, 0.002, ""],
+  [3705.0, 0.03, "T12 Banc Sabadell (real +4 to +5.6 %)"],
+  [3890.0, 0.03, ""],
+  [3925.0, 0.015, ""],
+  [4000.0, 0.02, ""],
+  [4040.0, 0.03, "T13 Europcar (real +3 to +4.7 %)"],
+  [4130.0, 0.03, ""],
+  [4220.0, 0.02, "between the two last corners: +2 to +3 %"],
+  [4290.0, 0.03, "T14 New Holland (real +4 to +4.7 %)"],
+  [4420.0, 0.03, ""],
+  [4470.0, 0.025, "onto the main straight: +2 to +3 %"],
+  [4640.0, 0.02, ""],
+]
+
+# ---- surroundings (race weekend). References: ICGC orthophoto (25 cm, CC BY 4.0) for the
+# footprints and positions; 2024/2025 race photos (Wikimedia Commons "2024 Spanish Grand
+# Prix", circuitcat.com / barcelonacircuithospitality.com galleries) for heights and shapes;
+# circuitcat.com news "The Rooftop stands as an iconic new emblem" (June 2024) for the
+# Rooftop. Heights without a published figure are estimates from photos (storeys of about
+# 4 m, people and cars for scale) and say so.
+#
+# environment.json (same references): Spanish GP in June at 15:00 CEST; sun computed for
+# 41.57 N, 1 June, 13:00 UTC: elevation 65 deg, bearing 223 deg. Dry yellow-olive slopes,
+# harvested cereal fields, dark Aleppo / stone pine woods, pale beige gravel traps, hazy sky;
+# red / white seats in the main grandstand, blue and grey in the others, sold out.
+[surroundings]
+tree_species = "needleleaved"   # untagged woods round the circuit are Aleppo / stone pine
+
+[[surroundings.building]]       # pit building: garages, a hospitality floor and the roof
+osm = "way/33742578"            # canopy (photo of the main straight, 2025): estimate 13 m
+height = 13.0
+
+[[surroundings.building]]       # control tower at the end of the pit building, beside the
+osm = "way/151609932"           # finish line: about 7 storeys and the red top box in the
+height = 28.0                   # 2025 photo, estimate 28 m
+
+[[surroundings.building]]       # Graderia principal: two tiers, top row about 21 m above
+osm = "way/33742643"            # the ground (photos), estimate
+height = 21.0
+
+[[surroundings.building]]       # medical centre behind the paddock: two storeys, estimate
+osm = "way/151609926"
+height = 8.0
+
+[[surroundings.building]]       # "VIP Rooftop" (the Rooftop, opened June 2024) is a bridge
+osm = "way/1372681544"          # over the back straight: built by hand below, off the ground
+remove = true
+
+[[surroundings.add]]            # the Rooftop: the bridge over the back straight. Underside
+polygon = [[41.572487, 2.260407], [41.572562, 2.260598], [41.572164, 2.260877],
+           [41.572125, 2.260986], [41.57196, 2.260886], [41.572033, 2.260673],
+           [41.5721, 2.260714]]
+kind = "building"               # about 7.5 m above the road, top floor and roof canopy
+min_height = 7.5                # about 17 m (race photo 2025, cars for scale): estimates
+height = 17.0
+
+[[surroundings.add]]            # the Rooftop's south tower, 30 m (circuitcat.com), at the
+polygon = [[41.57196, 2.260886], [41.572035, 2.260932], [41.57201, 2.261005],
+           [41.571935, 2.26096]]
+kind = "building"               # south-east end of the bridge
+height = 30.0
+
+# Tribuna G wraps round the outside of Banc Sabadell in one curved outline. A grandstand
+# rises along one axis of its footprint, and for this banana shape the axis came out pointing
+# at the track: the stand showed its 14 m back wall to the cars. It is rebuilt as five
+# straight pieces on the same outline (corner points of the OSM way), each facing the track.
+[[surroundings.exclude]]
+osm = "way/152007381"
+
+[[surroundings.add]]
+polygon = [[41.573384, 2.258071], [41.573753, 2.258175], [41.573846, 2.258532], [41.573272, 2.258344]]
+kind = "grandstand"
+
+[[surroundings.add]]
+polygon = [[41.573753, 2.258175], [41.574301, 2.258654], [41.57416, 2.258864], [41.573846, 2.258532]]
+kind = "grandstand"
+
+[[surroundings.add]]
+polygon = [[41.574301, 2.258654], [41.574452, 2.258949], [41.574276, 2.259082], [41.57416, 2.258864]]
+kind = "grandstand"
+
+[[surroundings.add]]
+polygon = [[41.574452, 2.258949], [41.574744, 2.259662], [41.574562, 2.259818], [41.574276, 2.259082]]
+kind = "grandstand"
+
+[[surroundings.add]]
+polygon = [[41.574744, 2.259662], [41.575061, 2.260183], [41.574897, 2.260366], [41.574562, 2.259818]]
+kind = "grandstand"
+
+[[surroundings.add]]            # the roof over the Graderia principal (2002, Tilke): one
+polygon = [[41.570999, 2.26265], [41.568801, 2.260799], [41.568919, 2.260548],
+           [41.571117, 2.262399]]
+kind = "metal"                  # cantilevered steel roof over the whole stand, its edge
+min_height = 25.0               # about 25 m up (photos; estimate)
+height = 26.2

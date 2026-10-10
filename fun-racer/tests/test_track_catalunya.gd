@@ -50,8 +50,21 @@ func test_dimensions_match_real_circuit() -> void:
 	for p in d.points:
 		lo = minf(lo, p.y)
 		hi = maxf(hi, p.y)
-	# Published: about 30 m between the lowest and the highest point.
-	assert_between(hi - lo, 24.0, 38.0, "elevation range (m)")
+	# Published: about 30 m between the lowest and the highest point; the ICGC lidar model the
+	# recipe pins the road to gives 29.7 m.
+	assert_between(hi - lo, 27.0, 32.0, "elevation range (m)")
+	# Steepest grades on the lidar profile: +6.2 % from turn 8 to Campsa, -6.5 % out of Seat
+	# (the 30 m DEM made the Campsa climb 8.5 %).
+	var steepest := 0.0
+	for g in d.grades:
+		steepest = maxf(steepest, absf(g))
+	assert_between(steepest * 100.0, 5.0, 7.0, "steepest gradient (%)")
+	# Widths measured on the ICGC orthophoto (published: 12 m): 12.5 m on the main straight,
+	# 12 m from Elf to Seat, 11.5 m from Wuerth on, 14 m at the apex of La Caixa.
+	assert_between(d.width_at(d.start_s), 12.3, 12.7, "grid width (m)")
+	assert_between(d.width_at(1400.0), 11.8, 12.2, "width between Renault and Repsol (m)")
+	assert_between(d.width_at(3200.0), 11.3, 11.7, "back straight width (m)")
+	assert_between(d.width_at(3495.0), 13.5, 14.5, "width at La Caixa (m)")
 	assert_true(d.turns.size() == 14, "expected 14 turns, got %d" % d.turns.size())
 	var last := -1.0
 	for t in d.turns:
@@ -91,6 +104,30 @@ func test_layout_is_the_grand_prix_lap() -> void:
 	var grid_y := d.position_at(d.start_s).y
 	var t12_y := d.position_at(float(d.turns[11]["s_apex"])).y
 	assert_true(t12_y - grid_y > 15.0, "Banc Sabadell is %.1f m above the grid, expected > 15" % (t12_y - grid_y))
+
+## The hand-made trackside table (deep gravel traps, walls 6 m from the main straight) and
+## the race-day look (June afternoon, sun in the south-west) are the ones used.
+func test_trackside_and_environment() -> void:
+	var d := _data()
+	if d == null:
+		assert_true(false, "track data missing")
+		return
+	var layout := TracksideLayout.for_track(ID, d)
+	assert_true(not layout.is_auto, "catalunya uses its trackside table")
+	assert_true(layout.is_concrete(100.0) and not layout.is_concrete(2000.0),
+			"wall on the main straight, armco at Seat")
+	var deepest := 0.0
+	for r in layout.runoff:
+		if r["turn"] == "T1":
+			deepest = maxf(deepest, float(r["u1"]))
+	assert_true(deepest >= 40.0, "the Elf gravel trap is %.0f m deep, expected >= 40" % deepest)
+	var env := FileAccess.get_file_as_string("res://assets/tracks/catalunya/environment.json")
+	var parsed: Variant = JSON.parse_string(env)
+	assert_true(parsed is Dictionary, "environment.json parses")
+	if parsed is Dictionary:
+		var sun: Dictionary = (parsed as Dictionary).get("sun", {})
+		assert_between(float(sun.get("azimuth_deg", 0.0)), 200.0, 245.0, "afternoon sun bearing (deg)")
+		assert_true((parsed as Dictionary).get("time", "") == "day", "the race is run by day")
 
 func test_race_scene_spawns_car_on_track() -> void:
 	var scene := _race()

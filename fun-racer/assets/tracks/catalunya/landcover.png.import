@@ -2,10 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
+uid="uid://bctkvuumf4vcm"
+path="res://.godot/imported/landcover.png-59c556da7724a64170d625eaf98ffb22.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/tracks/catalunya/landcover.png"
+dest_files=["res://.godot/imported/landcover.png-59c556da7724a64170d625eaf98ffb22.ctex"]
 
 [params]
 
