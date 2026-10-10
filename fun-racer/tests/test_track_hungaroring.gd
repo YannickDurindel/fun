@@ -38,8 +38,14 @@ func test_dimensions_match_real_circuit() -> void:
 			lo = y
 			lo_s = i * d.step
 		hi = maxf(hi, y)
-	# Published: about 35 m between the pit straight and the valley floor.
-	assert_between(hi - lo, 28.0, 45.0, "elevation range (m)")
+	# Published (Mercedes-AMG F1): 238.9 m above sea level on the start / finish straight,
+	# 204.2 m shortly after Turn 3, so 34.7 m. The recipe pins both points, hence the narrow band
+	# (it was 28 to 45 m while the terrain model alone gave 39 m).
+	assert_between(hi - lo, 33.5, 36.0, "elevation range (m)")
+	var raw: Variant = JSON.parse_string(FileAccess.get_file_as_string(PATH))
+	var sea := float((raw as Dictionary).get("origin_elevation_m", 0.0)) if raw is Dictionary else 0.0
+	assert_between(sea + hi, 238.0, 239.8, "highest point above sea level (m)")
+	assert_between(sea + lo, 203.4, 205.0, "lowest point above sea level (m)")
 	assert_true(d.turns.size() == 14, "expected 14 turns, got %d" % d.turns.size())
 	var last := -1.0
 	var rights := 0
@@ -60,6 +66,20 @@ func test_dimensions_match_real_circuit() -> void:
 	assert_true(lo_s > float(d.turns[2]["s_apex"]) and lo_s < float(d.turns[3]["s_apex"]),
 			"lowest point between T3 and T4 (s=%.0f)" % lo_s)
 	assert_true(d.position_at(float(d.turns[0]["s_apex"])).y < d.position_at(0.0).y - 8.0, "downhill into T1")
+	# Widths, edge line to edge line (FIA sheet: 11 to 15 m; measured on aerial imagery, see the
+	# recipe): 15 m on the start / finish straight, 13.5 m through Turn 1, 10 m in the narrow
+	# middle sector. Before the widths were set the whole lap was 13 m.
+	var wmin := INF
+	var wmax := 0.0
+	for w in d.widths:
+		wmin = minf(wmin, w)
+		wmax = maxf(wmax, w)
+	assert_between(wmin, 9.9, 10.1, "narrowest road (m)")
+	assert_between(wmax, 14.9, 15.1, "widest road (m)")
+	assert_between(d.width_at(200.0), 14.9, 15.1, "start / finish straight (m)")
+	assert_between(d.width_at(float(d.turns[0]["s_apex"])), 13.0, 14.0, "Turn 1 (m)")
+	assert_between(d.width_at(float(d.turns[7]["s_apex"])), 9.9, 10.1, "Turn 8, middle sector (m)")
+	assert_between(d.width_at(float(d.turns[13]["s_apex"])), 11.5, 12.6, "Turn 14 (m)")
 	# Clockwise: the signed area of the plan view (x east, z south) is positive.
 	var area := 0.0
 	for i in d.points.size():
@@ -73,7 +93,7 @@ func test_sampling_round_trip() -> void:
 	if d == null:
 		assert_true(false, "track.json failed to load")
 		return
-	for s: float in [0.0, 613.8, 2374.0, 3771.2, 4370.0]:
+	for s: float in [0.0, 593.7, 2354.0, 3751.1, 4370.0]:
 		var xf := d.sample(s)
 		assert_true(absf(xf.basis.y.dot(Vector3.UP)) > 0.95, "road normal mostly up at s=%.0f" % s)
 		var back := d.closest_s(xf.origin + xf.basis.x * 3.0)
@@ -89,7 +109,7 @@ func test_race_scene_spawns_car_on_track() -> void:
 		return
 	assert_true(track.get_node("Road").find_children("*", "MeshInstance3D", true, false).size() > 0, "road mesh loaded")
 	var s := track.data.closest_s(car.global_position)
-	assert_true(absf(track.data.lateral_offset(car.global_position)) < 6.5, "car on the road after spawn")
+	assert_true(absf(track.data.lateral_offset(car.global_position)) < 7.5, "car on the 15 m road after spawn")
 	assert_true(absf(track.data.delta_s(track.data.start_s, s)) < 30.0, "car spawns near the start line (s=%.1f)" % s)
 	var road_y := track.data.position_at(s).y
 	assert_between(car.global_position.y - road_y, 0.2, 0.6, "car resting on road surface")

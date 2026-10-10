@@ -1,0 +1,9 @@
+[
+ {"model": "pit_building", "at": {"s": 90, "side": 1, "dist": 48.5}},
+ {"model": "main_grandstand", "at": {"s": 81, "side": -1, "dist": 29}},
+ {"model": "start_gantry", "at": {"s": 0.5, "side": 1, "dist": 0}},
+ {"model": "footbridge_rust", "at": {"s": 2449, "side": 1, "dist": 0}},
+ {"model": "footbridge_white", "at": {"s": 3208, "side": 1, "dist": 0}},
+ {"model": "footbridge_white", "at": {"s": 3648, "side": 1, "dist": 0}},
+ {"model": "footbridge_white", "at": {"s": 3825, "side": 1, "dist": 0}}
+]
