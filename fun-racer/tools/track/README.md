@@ -313,8 +313,8 @@ line through the wall. The rule:
   13 m with a 15 m grid, so the grid is wider than the drivers think; that is how the tracks
   were first built, and they stay byte for byte the same until their widths are set.
 - `[road] track_json_widths = false` keeps the nominal value (13 m, or `base_width` when that
-  is less) on a recipe that does state widths. Red Bull Ring and Monaco carry it, because they
-  were built before this rule; remove the line when their widths are corrected.
+  is less) on a recipe that does state widths. Red Bull Ring carries it, because it
+  was built before this rule and shared tests pin its geometry.
   `track_json_widths = true` forces the built widths.
 
 The road step stops if `track.json` no longer agrees with the `[road]` table, which happens

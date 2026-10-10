@@ -89,9 +89,10 @@ class TrackJsonWidthsTest(unittest.TestCase):
         info._check_track_widths(default, _track(built))                   # no key: the built widths
 
     def test_committed_tracks_pass_the_check(self):
-        # The reference track switches the key off and has a nominal track.json; so does Monaco.
+        # The reference track switches the key off and has a nominal track.json. Monaco states
+        # its real widths, so its track.json carries them.
         info._check_track_widths(recipe.load("red_bull_ring"), helpers.rbr_track())
-        self.assertFalse(recipe.track_json_widths(recipe.load("monaco").road))
+        self.assertTrue(recipe.track_json_widths(recipe.load("monaco").road))
         self.assertFalse(recipe.track_json_widths(recipe.load("red_bull_ring").road))
 
 
