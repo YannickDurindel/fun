@@ -15,9 +15,9 @@
    772754608
   ],
   "raw_length_m": 4316.5,
-  "length_m": 4310.2,
+  "length_m": 4311.6,
   "official_length_m": 4304.0,
-  "length_error": 0.00145,
+  "length_error": 0.00176,
   "candidates": [
    {
     "length_m": 4316.6,
@@ -38,10 +38,10 @@
  "start_finish_source": "finish: relation member role, start: relation member role",
  "dem_dataset": "terrarium",
  "elevation": {
-  "range_m": 3.47,
-  "max_grade": 0.0052,
+  "range_m": 3.43,
+  "max_grade": 0.0051,
   "min_grade": -0.004,
-  "origin_m": 2237.36
+  "origin_m": 2237.32
  },
  "turns": {
   "official": 17,
@@ -51,179 +51,179 @@
     "id": "T1",
     "name": "Autódromo Hermanos Rodríguez",
     "direction": "right",
-    "s_apex": 1216.3,
-    "min_radius": 19.2
+    "s_apex": 1215.7,
+    "min_radius": 19.8
    },
    {
     "id": "T2",
     "name": "Autódromo Hermanos Rodríguez",
     "direction": "left",
-    "s_apex": 1302.2,
-    "min_radius": 17.4
+    "s_apex": 1303.6,
+    "min_radius": 17.5
    },
    {
     "id": "T3",
     "name": "Autódromo Hermanos Rodríguez",
     "direction": "right",
-    "s_apex": 1356.1,
-    "min_radius": 18.0
+    "s_apex": 1355.5,
+    "min_radius": 18.1
    },
    {
     "id": "T4",
     "name": "Autódromo Hermanos Rodríguez",
     "direction": "right",
-    "s_apex": 1462.0,
-    "min_radius": 256.3
+    "s_apex": 1463.3,
+    "min_radius": 257.4
    },
    {
     "id": "T5",
     "name": "Autódromo Hermanos Rodríguez",
     "direction": "left",
-    "s_apex": 2059.1,
+    "s_apex": 2060.2,
     "min_radius": 18.3
    },
    {
     "id": "T6",
     "name": "Autódromo Hermanos Rodríguez",
     "direction": "right",
-    "s_apex": 2133.0,
+    "s_apex": 2132.0,
     "min_radius": 16.3
    },
    {
     "id": "T7",
     "name": "Autódromo Hermanos Rodríguez",
     "direction": "right",
-    "s_apex": 2292.8,
+    "s_apex": 2293.7,
     "min_radius": 19.5
    },
    {
     "id": "T8",
     "name": "Autódromo Hermanos Rodríguez",
     "direction": "left",
-    "s_apex": 2616.4,
+    "s_apex": 2615.1,
     "min_radius": 29.3
    },
    {
     "id": "T9",
     "name": "Autódromo Hermanos Rodríguez",
     "direction": "right",
-    "s_apex": 2710.2,
-    "min_radius": 74.4
+    "s_apex": 2711.0,
+    "min_radius": 74.5
    },
    {
     "id": "T10",
     "name": "Autódromo Hermanos Rodríguez",
     "direction": "left",
-    "s_apex": 2820.1,
-    "min_radius": 70.8
+    "s_apex": 2818.8,
+    "min_radius": 71.1
    },
    {
     "id": "T11",
     "name": "Autódromo Hermanos Rodríguez",
     "direction": "right",
-    "s_apex": 2997.8,
+    "s_apex": 2996.4,
     "min_radius": 38.0
    },
    {
     "id": "T12",
     "name": "Autódromo Hermanos Rodríguez",
     "direction": "left",
-    "s_apex": 3087.7,
+    "s_apex": 3086.3,
     "min_radius": 60.4
    },
    {
     "id": "T13",
     "name": "Autódromo Hermanos Rodríguez",
     "direction": "left",
-    "s_apex": 3275.4,
-    "min_radius": 199.4
+    "s_apex": 3275.9,
+    "min_radius": 199.5
    },
    {
     "id": "T14",
     "name": "Autódromo Hermanos Rodríguez",
     "direction": "right",
-    "s_apex": 3658.9,
+    "s_apex": 3657.2,
     "min_radius": 21.6
    },
    {
     "id": "T15",
     "name": "Autódromo Hermanos Rodríguez",
     "direction": "left",
-    "s_apex": 3840.6,
+    "s_apex": 3840.9,
     "min_radius": 15.6
    },
    {
     "id": "T16",
     "name": "Autódromo Hermanos Rodríguez",
     "direction": "right",
-    "s_apex": 3900.6,
+    "s_apex": 3900.7,
     "min_radius": 23.7
    },
    {
     "id": "T17",
     "name": "Autódromo Hermanos Rodríguez",
     "direction": "left",
-    "s_apex": 3942.5,
+    "s_apex": 3942.7,
     "min_radius": 53.9
    },
    {
     "id": "T18",
     "name": "Autódromo Hermanos Rodríguez",
     "direction": "right",
-    "s_apex": 4026.4,
+    "s_apex": 4026.5,
     "min_radius": 19.1
    },
    {
     "id": "T19",
     "name": "Autódromo Hermanos Rodríguez",
     "direction": "right",
-    "s_apex": 4188.2,
-    "min_radius": 73.4
+    "s_apex": 4190.2,
+    "min_radius": 76.5
    }
   ],
   "auto_candidates": [
    {
-    "s_apex": 1216.3,
+    "s_apex": 1215.7,
     "direction": "right",
-    "angle_deg": 86.1,
+    "angle_deg": 85.2,
     "kind": "corner",
-    "min_radius": 19.2,
+    "min_radius": 19.8,
     "used": true
    },
    {
-    "s_apex": 1302.2,
+    "s_apex": 1303.6,
     "direction": "left",
     "angle_deg": 71.8,
     "kind": "corner",
-    "min_radius": 17.4,
+    "min_radius": 17.5,
     "used": true
    },
    {
-    "s_apex": 1356.1,
+    "s_apex": 1355.5,
     "direction": "right",
-    "angle_deg": 72.2,
+    "angle_deg": 72.0,
     "kind": "corner",
-    "min_radius": 18.0,
+    "min_radius": 18.1,
     "used": true
    },
    {
-    "s_apex": 1462.0,
+    "s_apex": 1463.3,
     "direction": "right",
     "angle_deg": 19.1,
     "kind": "corner",
-    "min_radius": 256.3,
+    "min_radius": 257.4,
     "used": true
    },
    {
-    "s_apex": 2059.1,
+    "s_apex": 2060.2,
     "direction": "left",
-    "angle_deg": 95.9,
+    "angle_deg": 95.7,
     "kind": "corner",
     "min_radius": 18.3,
     "used": true
    },
    {
-    "s_apex": 2133.0,
+    "s_apex": 2132.0,
     "direction": "right",
     "angle_deg": 114.9,
     "kind": "corner",
@@ -231,7 +231,7 @@
     "used": true
    },
    {
-    "s_apex": 2292.8,
+    "s_apex": 2293.7,
     "direction": "right",
     "angle_deg": 131.9,
     "kind": "corner",
@@ -239,39 +239,39 @@
     "used": true
    },
    {
-    "s_apex": 2616.4,
+    "s_apex": 2615.1,
     "direction": "left",
-    "angle_deg": 66.2,
+    "angle_deg": 66.3,
     "kind": "corner",
     "min_radius": 29.3,
     "used": true
    },
    {
-    "s_apex": 2710.2,
+    "s_apex": 2711.0,
     "direction": "right",
-    "angle_deg": 39.1,
+    "angle_deg": 39.3,
     "kind": "corner",
-    "min_radius": 74.4,
+    "min_radius": 74.5,
     "used": true
    },
    {
-    "s_apex": 2820.1,
+    "s_apex": 2818.8,
     "direction": "left",
-    "angle_deg": 62.2,
+    "angle_deg": 62.1,
     "kind": "corner",
-    "min_radius": 70.8,
+    "min_radius": 71.1,
     "used": true
    },
    {
-    "s_apex": 2997.8,
+    "s_apex": 2996.4,
     "direction": "right",
-    "angle_deg": 67.9,
+    "angle_deg": 68.1,
     "kind": "corner",
     "min_radius": 38.0,
     "used": true
    },
    {
-    "s_apex": 3087.7,
+    "s_apex": 3086.3,
     "direction": "left",
     "angle_deg": 47.6,
     "kind": "corner",
@@ -279,59 +279,59 @@
     "used": true
    },
    {
-    "s_apex": 3275.4,
+    "s_apex": 3275.9,
     "direction": "left",
     "angle_deg": 21.1,
     "kind": "corner",
-    "min_radius": 199.4,
+    "min_radius": 199.5,
     "used": true
    },
    {
-    "s_apex": 3658.9,
+    "s_apex": 3657.2,
     "direction": "right",
-    "angle_deg": 80.2,
+    "angle_deg": 80.0,
     "kind": "corner",
     "min_radius": 21.6,
     "used": true
    },
    {
-    "s_apex": 3840.6,
+    "s_apex": 3840.9,
     "direction": "left",
-    "angle_deg": 142.4,
+    "angle_deg": 142.3,
     "kind": "corner",
     "min_radius": 15.6,
     "used": true
    },
    {
-    "s_apex": 3900.6,
+    "s_apex": 3900.7,
     "direction": "right",
-    "angle_deg": 82.0,
+    "angle_deg": 81.9,
     "kind": "corner",
     "min_radius": 23.7,
     "used": true
    },
    {
-    "s_apex": 3942.5,
+    "s_apex": 3942.7,
     "direction": "left",
-    "angle_deg": 21.0,
+    "angle_deg": 20.9,
     "kind": "corner",
     "min_radius": 53.9,
     "used": true
    },
    {
-    "s_apex": 4026.4,
+    "s_apex": 4026.5,
     "direction": "right",
-    "angle_deg": 126.3,
+    "angle_deg": 126.4,
     "kind": "corner",
     "min_radius": 19.1,
     "used": true
    },
    {
-    "s_apex": 4188.2,
+    "s_apex": 4190.2,
     "direction": "right",
-    "angle_deg": 54.9,
+    "angle_deg": 54.8,
     "kind": "corner",
-    "min_radius": 73.4,
+    "min_radius": 76.5,
     "used": true
    }
   ]
