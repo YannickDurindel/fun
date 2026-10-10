@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://by8jhbjrw4ulr"
-path="res://.godot/imported/scenery.glb-4d41d0cc9e4df96f0d43b1054f9b9fc9.scn"
+uid="uid://byohj6rt6kp1s"
+path="res://.godot/imported/start_gantry.glb-e6e6af63038711c1aa76ec3669a2abac.scn"
 
 [deps]
 
-source_file="res://assets/tracks/interlagos/scenery.glb"
-dest_files=["res://.godot/imported/scenery.glb-4d41d0cc9e4df96f0d43b1054f9b9fc9.scn"]
+source_file="res://assets/tracks/interlagos/landmarks/start_gantry.glb"
+dest_files=["res://.godot/imported/start_gantry.glb-e6e6af63038711c1aa76ec3669a2abac.scn"]
 
 [params]
 
@@ -23,14 +23,14 @@ nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
 nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true
-meshes/ensure_tangents=false
-meshes/generate_lods=false
-meshes/create_shadow_meshes=false
-meshes/light_baking=0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
-meshes/force_disable_compression=true
+meshes/force_disable_compression=false
 skins/use_named_skins=true
-animation/import=false
+animation/import=true
 animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true

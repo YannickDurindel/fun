@@ -31,9 +31,9 @@
    138567242
   ],
   "raw_length_m": 4313.0,
-  "length_m": 4309.7,
+  "length_m": 4306.1,
   "official_length_m": 4309.0,
-  "length_error": 0.00017,
+  "length_error": -0.00067,
   "candidates": [
    {
     "length_m": 4313.1,
@@ -70,10 +70,10 @@
  "start_finish_source": "finish: relation member role, start: relation member role",
  "dem_dataset": "terrarium",
  "elevation": {
-  "range_m": 42.9,
-  "max_grade": 0.1016,
-  "min_grade": -0.0803,
-  "origin_m": 785.28
+  "range_m": 42.46,
+  "max_grade": 0.1017,
+  "min_grade": -0.0801,
+  "origin_m": 785.09
  },
  "turns": {
   "official": 15,
@@ -83,207 +83,215 @@
     "id": "T1",
     "name": "S do Senna",
     "direction": "left",
-    "s_apex": 387.9,
-    "min_radius": 28.7
+    "s_apex": 386.3,
+    "min_radius": 27.6
    },
    {
     "id": "T2",
     "name": "S do Senna",
     "direction": "right",
-    "s_apex": 481.9,
+    "s_apex": 480.3,
     "min_radius": 30.1
    },
    {
     "id": "T3",
     "name": "S do Senna",
     "direction": "left",
-    "s_apex": 575.9,
+    "s_apex": 572.4,
     "min_radius": 94.4
    },
    {
     "id": "T4",
     "name": "Descida do Lago",
     "direction": "left",
-    "s_apex": 1453.7,
-    "min_radius": 38.1
+    "s_apex": 1453.0,
+    "min_radius": 38.2
    },
    {
     "id": "T5",
     "name": "Descida do Lago",
     "direction": "left",
-    "s_apex": 1609.6,
-    "min_radius": 97.0
+    "s_apex": 1609.1,
+    "min_radius": 97.5
    },
    {
     "id": "T6",
     "name": "Curva do Laranjinha",
     "direction": "right",
-    "s_apex": 2197.5,
-    "min_radius": 52.7
+    "s_apex": 2195.5,
+    "min_radius": 53.0
    },
    {
     "id": "T7",
     "name": "Esse",
     "direction": "right",
-    "s_apex": 2365.5,
-    "min_radius": 25.5
+    "s_apex": 2363.6,
+    "min_radius": 25.6
    },
    {
     "id": "T8",
     "name": "Pinherinho",
     "direction": "left",
-    "s_apex": 2551.4,
+    "s_apex": 2551.8,
     "min_radius": 40.9
    },
    {
     "id": "T9",
     "name": "Bico de Pato",
     "direction": "right",
-    "s_apex": 2691.4,
-    "min_radius": 91.8
+    "s_apex": 2689.9,
+    "min_radius": 92.5
    },
    {
     "id": "T10",
     "name": "Bico de Pato",
     "direction": "right",
-    "s_apex": 2809.3,
-    "min_radius": 21.9
+    "s_apex": 2808.0,
+    "min_radius": 22.0
    },
    {
     "id": "T11",
     "name": "Mergulho",
     "direction": "left",
-    "s_apex": 3025.3,
-    "min_radius": 85.8
+    "s_apex": 3024.1,
+    "min_radius": 86.1
    },
    {
     "id": "T12",
     "name": "Junção",
     "direction": "left",
-    "s_apex": 3295.2,
+    "s_apex": 3294.3,
     "min_radius": 25.3
    },
    {
     "id": "T13",
     "name": "Café",
     "direction": "left",
-    "s_apex": 3427.2,
-    "min_radius": 58.0
+    "s_apex": 3426.4,
+    "min_radius": 58.1
    },
    {
     "id": "T14",
     "name": "Subida dos Boxes",
     "direction": "left",
-    "s_apex": 3701.1,
-    "min_radius": 105.5
+    "s_apex": 3702.6,
+    "min_radius": 105.9
    },
    {
     "id": "T15",
     "name": "Arquibancadas",
     "direction": "left",
-    "s_apex": 4091.1,
-    "min_radius": 235.5
+    "s_apex": 4008.8,
+    "min_radius": 237.0
    }
   ],
   "auto_candidates": [
    {
-    "s_apex": 387.9,
+    "s_apex": 386.3,
     "direction": "left",
-    "angle_deg": 121.4,
+    "angle_deg": 121.3,
     "kind": "corner",
-    "min_radius": 28.7,
+    "min_radius": 27.6,
     "used": true
    },
    {
-    "s_apex": 481.9,
+    "s_apex": 480.3,
     "direction": "right",
-    "angle_deg": 79.7,
+    "angle_deg": 79.6,
     "kind": "corner",
     "min_radius": 30.1,
     "used": true
    },
    {
-    "s_apex": 575.9,
+    "s_apex": 572.4,
     "direction": "left",
-    "angle_deg": 105.0,
+    "angle_deg": 105.2,
     "kind": "corner",
     "min_radius": 94.4,
     "used": true
    },
    {
-    "s_apex": 1037.8,
+    "s_apex": 1034.7,
     "direction": "left",
-    "angle_deg": 6.0,
+    "angle_deg": 5.8,
     "kind": "kink",
-    "min_radius": 230.6,
+    "min_radius": 233.5,
     "used": false
    },
    {
-    "s_apex": 1453.7,
+    "s_apex": 1078.8,
+    "direction": "right",
+    "angle_deg": 4.2,
+    "kind": "kink",
+    "min_radius": 297.0,
+    "used": false
+   },
+   {
+    "s_apex": 1453.0,
     "direction": "left",
-    "angle_deg": 94.6,
+    "angle_deg": 94.4,
     "kind": "corner",
-    "min_radius": 38.1,
+    "min_radius": 38.2,
     "used": true
    },
    {
-    "s_apex": 1609.6,
+    "s_apex": 1609.1,
     "direction": "left",
-    "angle_deg": 61.4,
+    "angle_deg": 61.6,
     "kind": "corner",
-    "min_radius": 97.0,
+    "min_radius": 97.5,
     "used": true
    },
    {
-    "s_apex": 2197.5,
+    "s_apex": 2195.5,
     "direction": "right",
     "angle_deg": 133.4,
     "kind": "corner",
-    "min_radius": 52.7,
+    "min_radius": 53.0,
     "used": true
    },
    {
-    "s_apex": 2365.5,
+    "s_apex": 2363.6,
     "direction": "right",
-    "angle_deg": 134.8,
+    "angle_deg": 135.0,
     "kind": "corner",
-    "min_radius": 25.5,
+    "min_radius": 25.6,
     "used": true
    },
    {
-    "s_apex": 2551.4,
+    "s_apex": 2551.8,
     "direction": "left",
-    "angle_deg": 172.1,
+    "angle_deg": 172.2,
     "kind": "corner",
     "min_radius": 40.9,
     "used": true
    },
    {
-    "s_apex": 2691.4,
+    "s_apex": 2689.9,
     "direction": "right",
     "angle_deg": 30.1,
     "kind": "corner",
-    "min_radius": 91.8,
+    "min_radius": 92.5,
     "used": true
    },
    {
-    "s_apex": 2809.3,
+    "s_apex": 2808.0,
     "direction": "right",
     "angle_deg": 152.8,
     "kind": "corner",
-    "min_radius": 21.9,
+    "min_radius": 22.0,
     "used": true
    },
    {
-    "s_apex": 3025.3,
+    "s_apex": 3024.1,
     "direction": "left",
     "angle_deg": 103.4,
     "kind": "corner",
-    "min_radius": 85.8,
+    "min_radius": 86.1,
     "used": true
    },
    {
-    "s_apex": 3295.2,
+    "s_apex": 3294.3,
     "direction": "left",
     "angle_deg": 99.2,
     "kind": "corner",
@@ -291,35 +299,35 @@
     "used": true
    },
    {
-    "s_apex": 3427.2,
+    "s_apex": 3426.4,
     "direction": "left",
-    "angle_deg": 29.1,
+    "angle_deg": 28.9,
     "kind": "corner",
-    "min_radius": 58.0,
+    "min_radius": 58.1,
     "used": true
    },
    {
-    "s_apex": 3521.2,
+    "s_apex": 3522.5,
     "direction": "left",
-    "angle_deg": 13.1,
+    "angle_deg": 12.9,
     "kind": "kink",
-    "min_radius": 177.1,
+    "min_radius": 177.6,
     "used": false
    },
    {
-    "s_apex": 3701.1,
+    "s_apex": 3702.6,
     "direction": "left",
     "angle_deg": 48.2,
     "kind": "corner",
-    "min_radius": 105.5,
+    "min_radius": 105.9,
     "used": true
    },
    {
-    "s_apex": 4091.1,
+    "s_apex": 4008.8,
     "direction": "left",
-    "angle_deg": 21.4,
+    "angle_deg": 21.7,
     "kind": "corner",
-    "min_radius": 235.5,
+    "min_radius": 237.0,
     "used": true
    }
   ]

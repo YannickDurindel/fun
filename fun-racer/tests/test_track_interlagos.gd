@@ -28,8 +28,10 @@ func test_dimensions_match_real_circuit() -> void:
 	for p in d.points:
 		lo = minf(lo, p.y)
 		hi = maxf(hi, p.y)
-	# Published: about 43 m between the top of the start straight and the lake.
-	assert_between(hi - lo, 36.0, 50.0, "elevation range (m)")
+	# Published: 43 m between the highest and the lowest point (formula1.com, 2016). Built
+	# 42.5 m once the start straight climbs steadily (the terrain model had 42.9 m with a
+	# hump and two dips beside the stands).
+	assert_between(hi - lo, 40.0, 45.0, "elevation range (m)")
 	assert_true(d.turns.size() == 15, "expected 15 turns, got %d" % d.turns.size())
 	var last := -1.0
 	for t in d.turns:
@@ -54,6 +56,91 @@ func test_dimensions_match_real_circuit() -> void:
 	assert_true(lake_y < lo + 3.0, "Descida do Lago is the low point (y=%.1f, min %.1f)" % [lake_y, lo])
 	assert_true(grid_y > hi - 5.0, "the grid is near the top (y=%.1f, max %.1f)" % [grid_y, hi])
 	assert_between(d.position_at(0.0).y - juncao_y, 25.0, 40.0, "climb from Junção to the line (m)")
+
+## Widths measured on the aerial picture (the recipe gives the method): a narrow circuit, 14 m
+## on the grid, 10 to 11 m on the Reta Oposta and into Junção. The build used to have the
+## default 13 m everywhere and 15 m on the grid.
+func test_widths_are_the_measured_ones() -> void:
+	var d := TrackData.load_track(PATH)
+	if d == null:
+		assert_true(false, "track.json failed to load")
+		return
+	var lo := INF
+	var hi := -INF
+	for i in d.points.size():
+		var w := d.width_at(i * d.step)
+		lo = minf(lo, w)
+		hi = maxf(hi, w)
+	assert_between(lo, 9.9, 10.1, "narrowest point: the run to Junção (m)")
+	assert_between(hi, 13.9, 14.1, "widest point: the grid (m)")
+	assert_between(d.width_at(d.start_s), 13.9, 14.1, "grid (m)")
+	assert_between(d.width_at(1100.0), 10.9, 11.1, "Reta Oposta (m)")
+	assert_between(d.width_at(float(_turn(d, "T3")["s_apex"]) + 30.0), 13.4, 13.6, "Curva do Sol (m)")
+	assert_between(d.width_at(float(_turn(d, "T1")["s_apex"])), 12.4, 12.6, "Senna S (m)")
+	assert_between(d.width_at(3900.0), 13.4, 13.6, "Subida dos Boxes (m)")
+
+## Curva do Sol and the Subida dos Boxes / Arquibancadas are banked to the left over their whole
+## length (at the road step's limit of 0.03 rad; the real banking is steeper), and the road
+## climbs without a dip from the foot of the Subida dos Boxes to the crest before the Senna S.
+func test_banking_and_the_climb_to_the_line() -> void:
+	var d := TrackData.load_track(PATH)
+	if d == null:
+		assert_true(false, "track.json failed to load")
+		return
+	# The built cross-section is in road_profile.json (track.json carries no bank).
+	var profile: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(
+			PATH.get_base_dir().path_join("road_profile.json")))
+	var bank: Array = profile["bank"]
+	var step := float(profile["step"])
+	for s: float in [600.0, 680.0, 3700.0, 3900.0, 4080.0]:
+		# Negative = right-hand edge higher: banked into a left-hander.
+		assert_between(float(bank[roundi(s / step)]), -0.0301, -0.029, "bank at s=%.0f (rad)" % s)
+	var s := 3460.0
+	var last := d.position_at(s).y
+	var dips := 0.0
+	while s < d.length + 270.0:
+		s += 10.0
+		var y := d.position_at(d.wrap_s(s)).y
+		dips = maxf(dips, last - y)
+		last = y
+	assert_true(dips < 0.05, "the climb from Café to the crest never goes down (worst %.2f m)" % dips)
+	# Steepest part: about 10 % on the Subida dos Boxes ramp after Café.
+	var steepest := 0.0
+	for k in 20:
+		steepest = maxf(steepest, d.grade_at(3440.0 + k * 10.0))
+	assert_between(steepest, 0.085, 0.105, "steepest gradient of the final climb")
+
+## The hand-made trackside table is in use: tarmac run-off only, walls close to the road.
+func test_trackside_table() -> void:
+	var d := TrackData.load_track(PATH)
+	if d == null:
+		assert_true(false, "track.json failed to load")
+		return
+	var layout := TracksideLayout.for_track(ID, d)
+	assert_true(not layout.is_auto, "interlagos has its own trackside table")
+	assert_true(layout.barrier_straight <= 6.0, "walls stand close to the road")
+	for r in layout.runoff:
+		assert_true(r["kind"] == "tarmac", "no gravel at Interlagos (%s)" % r["turn"])
+	assert_true(layout.is_concrete(0.0) and layout.is_concrete(4000.0) and layout.is_concrete(1000.0),
+			"wall and fence in front of the pits, the terraces and sector G")
+	assert_true(not layout.is_concrete(2500.0), "armco in the infield")
+	for k in layout.kerbs:
+		assert_true(k["len"] > 0.0, "kerb with a length (%s)" % k["turn"])
+
+## Landmarks: every model named in landmarks.json exists, and the run-off paint is laid on
+## the terrain node it was generated for (tools/track/landmarks/interlagos.py).
+func test_landmark_files() -> void:
+	var dir := PATH.get_base_dir()
+	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(dir.path_join("landmarks.json")))
+	assert_true(parsed is Array and (parsed as Array).size() == 3, "three landmark entries")
+	if not parsed is Array:
+		return
+	var names: Array[String] = []
+	for e: Dictionary in parsed:
+		names.append(String(e["model"]))
+		assert_true(FileAccess.file_exists(dir.path_join("landmarks/%s.glb" % e["model"])), "model %s" % e["model"])
+	assert_true("runoff_paint" in names and "start_gantry" in names and "pit_roof" in names, "models: %s" % [names])
+	assert_true(FileAccess.file_exists(dir.path_join("environment.json")), "environment.json")
 
 func test_sampling_round_trip() -> void:
 	var d := TrackData.load_track(PATH)
@@ -94,7 +181,18 @@ func test_race_scene_spawns_car_on_track() -> void:
 		assert_true(road != null and not road.is_runtime_mesh, "road comes from road_mesh.glb")
 		assert_true(not (track.get_node("Terrain") as Terrain).is_fallback, "terrain is the baked one")
 		var s := d.closest_s(car.global_position)
-		assert_true(absf(d.lateral_offset(car.global_position)) < 6.5, "car on the road after spawn")
+		# The whole car (about 2 m wide) on the 14 m grid.
+		assert_true(absf(d.lateral_offset(car.global_position)) < d.width_at(d.start_s) * 0.5 - 1.0,
+				"car on the road after spawn")
+		var scenery := track.get_node_or_null("Scenery") as Scenery
+		assert_true(scenery != null and scenery.landmark_count == 3, "three landmarks placed")
+		var terrain := track.get_node("Terrain") as Terrain
+		for e: Dictionary in JSON.parse_string(FileAccess.get_file_as_string(PATH.get_base_dir().path_join("landmarks.json"))):
+			if String(e["model"]) == "runoff_paint":
+				# The paint is in track coordinates: its node must end up at y = 0.
+				var at: Array = e["at"]["xz"]
+				assert_between(terrain.height_at(float(at[0]), float(at[1])) + float(e["y_offset"]), -0.005, 0.005,
+						"run-off paint sits at track height (regenerate the landmarks after a terrain rebuild)")
 		assert_true(absf(d.delta_s(d.start_s, s)) < 30.0, "car spawns near the start line (s=%.1f)" % s)
 		assert_between(car.global_position.y - d.position_at(s).y, 0.2, 0.6, "car resting on road surface")
 	scene.queue_free()

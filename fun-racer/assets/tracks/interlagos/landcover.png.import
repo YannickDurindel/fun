@@ -2,10 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
+uid="uid://hqkuakl0koos"
+path="res://.godot/imported/landcover.png-9640c5ae5f41fe2d2e548b6d0ff5651d.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/tracks/interlagos/landcover.png"
+dest_files=["res://.godot/imported/landcover.png-9640c5ae5f41fe2d2e548b6d0ff5651d.ctex"]
 
 [params]
 

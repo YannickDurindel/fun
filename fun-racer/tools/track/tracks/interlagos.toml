@@ -1,6 +1,7 @@
 # Autódromo José Carlos Pace (Interlagos), São Paulo: Grand Prix circuit, anticlockwise.
 #
 #   .venv/bin/python tools/track/build_track.py interlagos --offline
+#   .venv/bin/python tools/track/landmarks/interlagos.py
 
 id = "interlagos"
 
@@ -12,9 +13,125 @@ id = "interlagos"
 # timing line, as the published race distance (71 laps = 305.879 km = 71 x 4.309 - 0.060) says.
 relation = 6781071
 
+[layout]
+# OpenStreetMap draws the start straight along its western edge: on the aerial picture (Esri
+# World Imagery, 0.55 m per pixel) the tarmac lies 9 to 11 m to the left of the mapped line
+# and only 3 m to the right of it from the pit entry to the footbridge before the Senna S,
+# while the mapped pit building and grandstands fit the same picture within 2 m. Moved to the
+# middle of the road, so the pit wall and the stands are at their real distance. Estimate:
+# measured every 10 m, median 3.4 m.
+[[layout.shift]]
+s = [4150.0, 280.0]
+lateral_m = -3.4
+blend = 120.0
+note = "start straight: the mapped line is the right-hand edge of the road"
+
 [elevation]
 # Outside EU-DEM coverage; Terrain Tiles are SRTM-based here.
 dataset = "terrarium"
+
+# SRTM is a surface model: beside the concrete terraces of sector A, the roofed stands and the
+# pit building it gives the start straight a 4 m hump at s = 3880, a dip at s = 4000 and
+# another at s = 4240. The real road climbs without a break from Junção to a crest between the
+# start line and the Senna S ("the highest point is on the rise between the start-finish line
+# and Turn 1", formula1.com, "Highs and lows", 2016; 33 m from the exit of Junção to the
+# braking point of Turn 1, same source: built 33.0 m). The keys keep the heights the model has
+# at the foot of the steep ramp (s = 3640), at the line and on the crest, and put a steady
+# climb between them. Estimate: no survey of the straight is published.
+[[elevation.key]]
+s = 3640.0
+y = -6.7
+note = "top of the 10 % ramp of the Subida dos Boxes (height of the terrain model)"
+
+[[elevation.key]]
+s = 3780.0
+y = -4.4
+
+[[elevation.key]]
+s = 3920.0
+y = -2.9
+
+[[elevation.key]]
+s = 4060.0
+y = -1.7
+
+[[elevation.key]]
+s = 4200.0
+y = -0.7
+
+[[elevation.key]]
+s = 0.0
+y = 0.0
+
+[[elevation.key]]
+s = 140.0
+y = 1.3
+
+[[elevation.key]]
+s = 275.0
+y = 2.4
+note = "crest before the braking zone of the Senna S, the highest point of the lap"
+
+[road]
+# Widths: no figure per section is published (the FIA circuit licence list gives none, and
+# OpenStreetMap has no width tag on these ways). Estimates, measured between the white lines
+# on Esri World Imagery (0.55 m per pixel, so +/- 1 m) every 10 m round the lap. Interlagos is
+# narrow: "narrower than the average for Formula 1 circuits" (Scuderia Ferrari, São Paulo
+# Grand Prix preview 2025). The previous build had the default 13 m, 15 m on the grid.
+width_keys = [
+  [0.0, 14.0, "start line and grid (pit wall to the right-hand white line)"],
+  [60.0, 14.0, ""],
+  [130.0, 12.5, "start straight past the grid"],
+  [520.0, 12.5, "Senna S"],
+  [570.0, 13.5, "Curva do Sol"],
+  [700.0, 13.5, ""],
+  [790.0, 12.5, ""],
+  [890.0, 11.0, "Reta Oposta"],
+  [1380.0, 11.0, ""],
+  [1440.0, 12.0, "Descida do Lago, first part"],
+  [1520.0, 13.0, "Descida do Lago, second part"],
+  [1630.0, 13.0, ""],
+  [1710.0, 10.5, "climb to Ferradura"],
+  [2000.0, 10.5, ""],
+  [2070.0, 12.5, "Ferradura and Laranjinha"],
+  [2210.0, 12.5, ""],
+  [2270.0, 11.0, ""],
+  [2330.0, 11.0, ""],
+  [2380.0, 12.0, "the Esse and Pinheirinho"],
+  [2570.0, 12.0, ""],
+  [2630.0, 11.0, ""],
+  [2740.0, 11.0, ""],
+  [2785.0, 12.0, "Bico de Pato"],
+  [2830.0, 12.0, ""],
+  [2875.0, 10.5, ""],
+  [2920.0, 10.5, ""],
+  [2990.0, 11.5, "Mergulho"],
+  [3100.0, 11.5, ""],
+  [3160.0, 10.0, "run to Junção"],
+  [3230.0, 10.0, ""],
+  [3285.0, 12.0, "Junção"],
+  [3600.0, 12.5, "Subida do Café"],
+  [3700.0, 13.5, "Subida dos Boxes and Arquibancadas"],
+  [4150.0, 13.5, ""],
+  [4250.0, 14.0, "pit wall begins"],
+]
+
+# Banking: Curva do Sol and the long left of the Subida dos Boxes / Arquibancadas are visibly
+# banked (drone photographs of 2023 on Wikimedia Commons, "Vista aérea del Autódromo José
+# Carlos Pace"); no angle is published. Estimate: 3 to 5 degrees. The road step allows
+# 0.03 rad (1.7 degrees) at most, so both get that limit over their whole length instead of
+# only around the apex.
+[[road.override]]
+s = [545.0, 715.0]
+bank = -0.03
+blend = 40.0
+note = "Curva do Sol, banked left"
+
+[[road.override]]
+s = [3610.0, 4120.0]
+bank = -0.03
+blend = 60.0
+note = "Subida dos Boxes and Arquibancadas, banked left"
 
 # The official turn table, pinned. Numbers follow the `raceway:corner_number` tags of the OSM
 # ways. Automatic detection also finds 15 turns, but counts the long Ferradura right-hander as
@@ -109,3 +226,503 @@ id = "T15"
 name = "Arquibancadas"
 direction = "left"
 s = 4091.1
+
+# ----------------------------------------------------------------------------------------
+# Surroundings. References: Esri World Imagery (aerial picture, 0.55 m per pixel), the drone
+# photographs "Vista aérea del Autódromo José Carlos Pace" 01 to 06 and "Topo do S de
+# Interlagos" on Wikimedia Commons, and the organiser's grandstand map. Polygons are lat, lon.
+#
+# The look (assets/tracks/interlagos/environment.json, which cannot carry comments) comes from
+# the same pictures: a São Paulo Grand Prix afternoon (early November, lights out at 14:00
+# local time = 14:09 solar time at 46.70 W: sun 59 degrees up on bearing 277), the warm haze
+# of the city, yellow-green grass with dry patches, red latosol where the ground is bare
+# (class "sand"), terracotta tile roofs (the "urban" colours), kerbs in the colours of the
+# flag (yellow and blue blocks, green behind), dark green lake water, blue seats in sector G
+# and bare concrete steps in sector A.
+#
+# Landmark models (run-off paint, start gantry, pit roof): tools/track/landmarks/interlagos.py,
+# to be run again after every rebuild of the road or the terrain.
+[surroundings]
+# The circuit lies in a bowl: from the road a driver sees the rim of low houses and, over it,
+# only the tower blocks. Houses are built within 330 m of the lap (the far rim of the bowl as
+# seen from the start straight); beyond that only buildings of 25 m and more, as everywhere.
+# This takes scenery.glb from 12.1 MB to about a third.
+margin_m = 330.0
+# Atlantic-forest remnants and planted street trees: no conifers.
+tree_species = "broadleaved"
+# São Paulo's suburbs are houses of two floors (sobrados).
+default_levels = 2
+
+# The pit building: garages with the hospitality floor above and the white tensile roof, about
+# 11 m from the pit lane to the roof edge (three floors in the drone photographs; the map has
+# no height). A height counts from the lowest ground corner of the footprint, and the terrain
+# model drops 6 m towards the paddock behind the building (-4.5 m against +1.3 m on the road):
+# 16.3 m puts the roof edge 10.5 m above the road, under the roof landmark.
+[[surroundings.building]]
+osm = 33779114
+height = 16.3
+note = "pit building"
+
+# Race control and the media centre at the head of the pit lane (five floors, dark glass).
+[[surroundings.building]]
+osm = 1262374301
+height = 19.0
+type = "office"
+note = "race control tower"
+
+# The paddock building behind the pits ("Prefeitura de São Paulo" on its fascia): four
+# terraced floors, about 17 m on its uphill side. Its footprint spans 15 m of slope in the
+# terrain model, so the height from the lowest corner is 26 m (estimate).
+[[surroundings.building]]
+osm = 138433083
+height = 26.0
+note = "paddock building"
+
+# The bank outside the Senna S is mapped as one building under construction; the stands that
+# are built on it for the race are added below.
+[[surroundings.building]]
+osm = 1563340820
+remove = true
+
+# Grandstands the map lacks, as they stand on a Grand Prix weekend. Positions and depths are
+# measured on Esri World Imagery; heights are estimates from the row counts in the drone
+# photographs of 2023 on Wikimedia Commons ("Vista aérea del Autódromo José Carlos Pace" 01 to
+# 06) at 0.45 m per row. Sector names follow the organiser's ticket map.
+#
+# Sector A: the open concrete terraces along the Subida dos Boxes and the first half of the
+# start straight (grey steps, yellow stair strips), 550 m long, about 14 m deep.
+
+[[surroundings.add]]
+polygon = [[-23.698141, -46.700026], [-23.698554, -46.700172], [-23.698521, -46.700314], [-23.698084, -46.700160]]
+kind = "grandstand"
+height = 7.0
+note = "sector A terraces, Subida dos Boxes"
+
+[[surroundings.add]]
+polygon = [[-23.698560, -46.700173], [-23.698954, -46.700281], [-23.698923, -46.700424], [-23.698526, -46.700316]]
+kind = "grandstand"
+height = 7.0
+note = "sector A terraces, Subida dos Boxes"
+
+[[surroundings.add]]
+polygon = [[-23.698960, -46.700282], [-23.699354, -46.700383], [-23.699323, -46.700527], [-23.698928, -46.700425]]
+kind = "grandstand"
+height = 7.0
+note = "sector A terraces, Subida dos Boxes"
+
+[[surroundings.add]]
+polygon = [[-23.699359, -46.700385], [-23.699752, -46.700487], [-23.699721, -46.700630], [-23.699329, -46.700528]]
+kind = "grandstand"
+height = 7.0
+note = "sector A terraces, Subida dos Boxes"
+
+[[surroundings.add]]
+polygon = [[-23.699757, -46.700488], [-23.700150, -46.700593], [-23.700117, -46.700736], [-23.699726, -46.700631]]
+kind = "grandstand"
+height = 7.0
+note = "sector A terraces, Subida dos Boxes"
+
+[[surroundings.add]]
+polygon = [[-23.700155, -46.700594], [-23.700557, -46.700696], [-23.700534, -46.700841], [-23.700123, -46.700737]]
+kind = "grandstand"
+height = 7.0
+note = "sector A terraces, Subida dos Boxes"
+
+[[surroundings.add]]
+polygon = [[-23.700563, -46.700697], [-23.700982, -46.700750], [-23.700977, -46.700897], [-23.700540, -46.700842]]
+kind = "grandstand"
+height = 7.0
+note = "sector A terraces, Subida dos Boxes"
+
+[[surroundings.add]]
+polygon = [[-23.700988, -46.700750], [-23.701414, -46.700736], [-23.701430, -46.700882], [-23.700983, -46.700897]]
+kind = "grandstand"
+height = 7.0
+note = "sector A terraces, Subida dos Boxes"
+
+[[surroundings.add]]
+polygon = [[-23.701409, -46.700697], [-23.701834, -46.700622], [-23.701865, -46.700785], [-23.701428, -46.700863]]
+kind = "grandstand"
+height = 7.5
+note = "sector A terraces, start straight"
+
+[[surroundings.add]]
+polygon = [[-23.701840, -46.700621], [-23.702249, -46.700514], [-23.702287, -46.700676], [-23.701871, -46.700784]]
+kind = "grandstand"
+height = 7.5
+note = "sector A terraces, start straight"
+
+[[surroundings.add]]
+polygon = [[-23.702254, -46.700513], [-23.702659, -46.700399], [-23.702697, -46.700561], [-23.702292, -46.700675]]
+kind = "grandstand"
+height = 7.5
+note = "sector A terraces, start straight"
+
+[[surroundings.add]]
+polygon = [[-23.702664, -46.700398], [-23.703067, -46.700283], [-23.703106, -46.700445], [-23.702702, -46.700559]]
+kind = "grandstand"
+height = 7.5
+note = "sector A terraces, start straight"
+
+# Scaffold stand on the outside of the Subida dos Boxes, before the terraces (built for the
+# race; under construction in the 2023 drone photographs).
+
+[[surroundings.add]]
+polygon = [[-23.697283, -46.699054], [-23.697465, -46.699409], [-23.697340, -46.699504], [-23.697146, -46.699127]]
+kind = "grandstand"
+height = 11.0
+note = "temporary stand, Subida dos Boxes"
+
+[[surroundings.add]]
+polygon = [[-23.697469, -46.699414], [-23.697707, -46.699727], [-23.697599, -46.699845], [-23.697343, -46.699510]]
+kind = "grandstand"
+height = 11.0
+note = "temporary stand, Subida dos Boxes"
+
+[[surroundings.add]]
+polygon = [[-23.697711, -46.699731], [-23.698022, -46.699982], [-23.697950, -46.700129], [-23.697604, -46.699850]]
+kind = "grandstand"
+height = 11.0
+note = "temporary stand, Subida dos Boxes"
+
+# Sector G: the long stand with blue seats on the outside of the Reta Oposta.
+
+[[surroundings.add]]
+polygon = [[-23.704577, -46.695050], [-23.703835, -46.694826], [-23.703876, -46.694655], [-23.704622, -46.694880]]
+kind = "grandstand"
+height = 10.0
+note = "sector G, Reta Oposta"
+
+[[surroundings.add]]
+polygon = [[-23.703830, -46.694825], [-23.703063, -46.694627], [-23.703088, -46.694452], [-23.703871, -46.694654]]
+kind = "grandstand"
+height = 10.0
+note = "sector G, Reta Oposta"
+
+[[surroundings.add]]
+polygon = [[-23.703058, -46.694626], [-23.702353, -46.694440], [-23.702396, -46.694270], [-23.703083, -46.694451]]
+kind = "grandstand"
+height = 10.0
+note = "sector G, Reta Oposta"
+
+[[surroundings.add]]
+polygon = [[-23.702348, -46.694438], [-23.701615, -46.694220], [-23.701657, -46.694050], [-23.702391, -46.694268]]
+kind = "grandstand"
+height = 10.0
+note = "sector G, Reta Oposta"
+
+# Sector R: the covered stand on the bank outside the Curva do Sol.
+
+[[surroundings.add]]
+polygon = [[-23.706482, -46.697582], [-23.706572, -46.697055], [-23.706671, -46.697056], [-23.706574, -46.697623]]
+kind = "grandstand"
+height = 8.0
+note = "sector R, Curva do Sol"
+
+[[surroundings.add]]
+polygon = [[-23.706572, -46.697048], [-23.706521, -46.696543], [-23.706616, -46.696514], [-23.706671, -46.697049]]
+kind = "grandstand"
+height = 8.0
+note = "sector R, Curva do Sol"
+
+[[surroundings.add]]
+polygon = [[-23.706519, -46.696536], [-23.706318, -46.696073], [-23.706401, -46.696014], [-23.706614, -46.696506]]
+kind = "grandstand"
+height = 8.0
+note = "sector R, Curva do Sol"
+
+[[surroundings.add]]
+polygon = [[-23.706474, -46.697579], [-23.706551, -46.697255], [-23.706563, -46.696956], [-23.706535, -46.696653], [-23.706443, -46.696341], [-23.706311, -46.696079], [-23.706408, -46.696009], [-23.706549, -46.696287], [-23.706649, -46.696629], [-23.706680, -46.696952], [-23.706667, -46.697270], [-23.706582, -46.697626]]
+kind = "metal"
+height = 12.4
+min_height = 12.0
+note = "sector R roof"
+
+# Sectors D and H: covered scaffold stands round the outside of the Senna S, on the bank
+# behind the run-off. The map has the bank as one curved outline (way 1563340820, tagged
+# building=construction); a stand steps along one axis, so it is replaced by four straight
+# blocks.
+
+[[surroundings.add]]
+polygon = [[-23.706221, -46.699701], [-23.706465, -46.699549], [-23.706533, -46.699653], [-23.706270, -46.699817]]
+kind = "grandstand"
+height = 9.0
+note = "sectors D / H, outside the Senna S"
+
+[[surroundings.add]]
+polygon = [[-23.706217, -46.699692], [-23.706460, -46.699541], [-23.706538, -46.699660], [-23.706274, -46.699825]]
+kind = "metal"
+height = 13.4
+min_height = 13.0
+note = "sectors D / H roof"
+
+[[surroundings.add]]
+polygon = [[-23.706524, -46.699500], [-23.706790, -46.699117], [-23.706899, -46.699162], [-23.706599, -46.699598]]
+kind = "grandstand"
+height = 9.0
+note = "sectors D / H, outside the Senna S"
+
+[[surroundings.add]]
+polygon = [[-23.706518, -46.699492], [-23.706781, -46.699113], [-23.706907, -46.699166], [-23.706604, -46.699606]]
+kind = "metal"
+height = 13.4
+min_height = 13.0
+note = "sectors D / H roof"
+
+[[surroundings.add]]
+polygon = [[-23.706824, -46.698990], [-23.706682, -46.698395], [-23.706773, -46.698314], [-23.706939, -46.699012]]
+kind = "grandstand"
+height = 9.0
+note = "sectors D / H, outside the Senna S"
+
+[[surroundings.add]]
+polygon = [[-23.706815, -46.698988], [-23.706676, -46.698401], [-23.706780, -46.698308], [-23.706948, -46.699013]]
+kind = "metal"
+height = 13.4
+min_height = 13.0
+note = "sectors D / H roof"
+
+[[surroundings.add]]
+polygon = [[-23.706637, -46.698337], [-23.706466, -46.698156], [-23.706546, -46.698062], [-23.706722, -46.698250]]
+kind = "grandstand"
+height = 9.0
+note = "sectors D / H, outside the Senna S"
+
+[[surroundings.add]]
+polygon = [[-23.706630, -46.698343], [-23.706460, -46.698163], [-23.706552, -46.698055], [-23.706729, -46.698243]]
+kind = "metal"
+height = 13.4
+min_height = 13.0
+note = "sectors D / H roof"
+
+# Sectors B and M, the permanent stands opposite the pits, are in the map without their
+# roofs (white sheet roofs on steel frames, about 17 m above the road).
+
+[[surroundings.add]]
+polygon = [[-23.702872, -46.700319], [-23.703724, -46.700078], [-23.703785, -46.700334], [-23.702933, -46.700575]]
+kind = "metal"
+height = 17.4
+min_height = 17.0
+note = "sector B roof (first block)"
+
+[[surroundings.add]]
+polygon = [[-23.703906, -46.700026], [-23.704463, -46.699872], [-23.704523, -46.700129], [-23.703967, -46.700283]]
+kind = "metal"
+height = 17.4
+min_height = 17.0
+note = "sector B roof (second block)"
+
+[[surroundings.add]]
+polygon = [[-23.704516, -46.699858], [-23.705948, -46.699450], [-23.706030, -46.699709], [-23.704577, -46.700124]]
+kind = "metal"
+height = 17.4
+min_height = 17.0
+note = "sector M roof"
+
+# Over the road. The enclosed footbridge from sector M to the pit building, just before the
+# braking zone of the Senna S (dark box girder, about 6 m clear; position from the aerial
+# picture).
+
+[[surroundings.add]]
+polygon = [[-23.705848, -46.699061], [-23.705889, -46.699045], [-23.706099, -46.699608], [-23.706040, -46.699633]]
+kind = "concrete"
+height = 9.2
+min_height = 6.0
+note = "footbridge before the Senna S"
+
+# Steel sign gantries over the Reta Oposta and over the Subida dos Boxes (start of the pit
+# entry), both visible on the aerial picture; legs behind the barriers.
+
+[[surroundings.add]]
+polygon = [[-23.703278, -46.695127], [-23.703257, -46.695122], [-23.703304, -46.694882], [-23.703325, -46.694887]]
+kind = "metal"
+height = 8.2
+min_height = 6.6
+note = "sign gantry"
+
+[[surroundings.add]]
+polygon = [[-23.703278, -46.695127], [-23.703257, -46.695122], [-23.703259, -46.695112], [-23.703279, -46.695117]]
+kind = "metal"
+height = 6.6
+note = "gantry leg"
+
+[[surroundings.add]]
+polygon = [[-23.703323, -46.694897], [-23.703302, -46.694892], [-23.703304, -46.694882], [-23.703325, -46.694887]]
+kind = "metal"
+height = 6.6
+note = "gantry leg"
+
+[[surroundings.add]]
+polygon = [[-23.699165, -46.700058], [-23.699186, -46.700063], [-23.699135, -46.700302], [-23.699114, -46.700297]]
+kind = "metal"
+height = 8.2
+min_height = 6.6
+note = "sign gantry"
+
+[[surroundings.add]]
+polygon = [[-23.699165, -46.700058], [-23.699186, -46.700063], [-23.699184, -46.700073], [-23.699163, -46.700067]]
+kind = "metal"
+height = 6.6
+note = "gantry leg"
+
+[[surroundings.add]]
+polygon = [[-23.699116, -46.700287], [-23.699137, -46.700292], [-23.699135, -46.700302], [-23.699114, -46.700297]]
+kind = "metal"
+height = 6.6
+note = "gantry leg"
+
+# Covered scaffold footbridge over the climb after Café, put up for the race (roofed deck on
+# two scaffold towers; drone photographs of 2023).
+
+[[surroundings.add]]
+polygon = [[-23.697194, -46.697839], [-23.697212, -46.697945], [-23.696894, -46.698010], [-23.696876, -46.697904]]
+kind = "metal"
+height = 10.0
+min_height = 6.2
+note = "temporary footbridge after Café"
+
+[[surroundings.add]]
+polygon = [[-23.697229, -46.697832], [-23.697247, -46.697938], [-23.697203, -46.697947], [-23.697185, -46.697841]]
+kind = "metal"
+height = 10.0
+note = "footbridge tower"
+
+[[surroundings.add]]
+polygon = [[-23.696911, -46.697897], [-23.696929, -46.698003], [-23.696885, -46.698012], [-23.696867, -46.697906]]
+kind = "metal"
+height = 10.0
+note = "footbridge tower"
+
+# The water tower of the Sabesp reservoirs beside Avenida Interlagos (a blue mushroom, about
+# 32 m, above the Subida dos Boxes; the five round tanks are in the map) and the white lattice
+# tower in the infield beside Pinheirinho. Heights are estimates from the drone photographs.
+
+[[surroundings.add]]
+polygon = [[-23.697806, -46.701260], [-23.697792, -46.701265], [-23.697784, -46.701277], [-23.697784, -46.701293], [-23.697792, -46.701306], [-23.697806, -46.701311], [-23.697820, -46.701306], [-23.697828, -46.701293], [-23.697828, -46.701277], [-23.697820, -46.701265]]
+kind = "concrete"
+height = 28.0
+note = "water tower, stem"
+
+[[surroundings.add]]
+polygon = [[-23.697806, -46.701192], [-23.697756, -46.701210], [-23.697725, -46.701256], [-23.697725, -46.701314], [-23.697756, -46.701361], [-23.697806, -46.701378], [-23.697856, -46.701361], [-23.697887, -46.701314], [-23.697887, -46.701256], [-23.697856, -46.701210]]
+kind = "concrete"
+height = 32.0
+min_height = 27.5
+note = "water tower, tank"
+
+[[surroundings.add]]
+polygon = [[-23.700398, -46.698183], [-23.700420, -46.698193], [-23.700429, -46.698217], [-23.700420, -46.698240], [-23.700398, -46.698250], [-23.700377, -46.698240], [-23.700368, -46.698217], [-23.700377, -46.698193]]
+kind = "metal"
+height = 5.0
+note = "infield lattice tower, foot"
+
+[[surroundings.add]]
+polygon = [[-23.700398, -46.698198], [-23.700410, -46.698204], [-23.700415, -46.698217], [-23.700410, -46.698230], [-23.700398, -46.698235], [-23.700386, -46.698230], [-23.700381, -46.698217], [-23.700386, -46.698204]]
+kind = "metal"
+height = 11.0
+min_height = 5.0
+note = "infield lattice tower, waist"
+
+[[surroundings.add]]
+polygon = [[-23.700398, -46.698183], [-23.700420, -46.698193], [-23.700429, -46.698217], [-23.700420, -46.698240], [-23.700398, -46.698250], [-23.700377, -46.698240], [-23.700368, -46.698217], [-23.700377, -46.698193]]
+kind = "metal"
+height = 16.0
+min_height = 11.0
+note = "infield lattice tower, head"
+
+# Trees the map lacks (aerial picture): the belt between the terraces and Avenida Interlagos,
+# the clump inside Bico de Pato, the trees between the Subida dos Boxes and the Laranjinha
+# loop, and the wood outside the climb after Café.
+
+[[surroundings.add]]
+polygon = [[-23.698129, -46.700203], [-23.698599, -46.700356], [-23.699040, -46.700474], [-23.699477, -46.700586], [-23.699911, -46.700700], [-23.700351, -46.700818], [-23.700834, -46.700906], [-23.701331, -46.700913], [-23.701807, -46.700838], [-23.702260, -46.700724], [-23.702697, -46.700601], [-23.703132, -46.700478], [-23.703196, -46.700744], [-23.702760, -46.700867], [-23.702322, -46.700990], [-23.701855, -46.701108], [-23.701351, -46.701186], [-23.700811, -46.701179], [-23.700294, -46.701085], [-23.699851, -46.700967], [-23.699419, -46.700853], [-23.698982, -46.700742], [-23.698537, -46.700623], [-23.698032, -46.700457]]
+kind = "forest"
+note = "trees behind sector A"
+
+[[surroundings.add]]
+polygon = [[-23.699506, -46.699933], [-23.699243, -46.700024], [-23.699012, -46.700086], [-23.698703, -46.700135], [-23.698701, -46.699821], [-23.698951, -46.699779], [-23.699169, -46.699721], [-23.699397, -46.699642]]
+kind = "forest"
+note = "clump inside Bico de Pato"
+
+[[surroundings.add]]
+polygon = [[-23.698101, -46.699470], [-23.698228, -46.699556], [-23.698370, -46.699633], [-23.698528, -46.699687], [-23.698490, -46.699838], [-23.698319, -46.699779], [-23.698160, -46.699695], [-23.698014, -46.699595]]
+kind = "forest"
+note = "trees inside the Subida dos Boxes"
+
+[[surroundings.add]]
+polygon = [[-23.698776, -46.699596], [-23.698979, -46.699651], [-23.699183, -46.699705], [-23.699390, -46.699758], [-23.699599, -46.699811], [-23.699549, -46.700040], [-23.699341, -46.699987], [-23.699134, -46.699934], [-23.698928, -46.699880], [-23.698723, -46.699824]]
+kind = "forest"
+note = "trees inside the Subida dos Boxes"
+
+[[surroundings.add]]
+polygon = [[-23.696642, -46.697479], [-23.696701, -46.697899], [-23.696778, -46.698314], [-23.696919, -46.698739], [-23.697077, -46.699108], [-23.696770, -46.699271], [-23.696607, -46.698889], [-23.696448, -46.698411], [-23.696366, -46.697967], [-23.696302, -46.697516]]
+kind = "forest"
+note = "wood outside the climb after Café"
+
+# The pond outside the Descida do Lago (the big lake behind it is in the map).
+
+[[surroundings.add]]
+polygon = [[-23.698971, -46.694894], [-23.698936, -46.695135], [-23.698916, -46.695462], [-23.698958, -46.695802], [-23.698697, -46.695877], [-23.698646, -46.695473], [-23.698669, -46.695090], [-23.698705, -46.694846]]
+kind = "water"
+note = "pond outside the Descida do Lago"
+
+# Bare red earth (class "sand", coloured as the local soil in environment.json): the bank
+# inside the start of the Reta Oposta and the stripped ground in the middle of the infield.
+
+[[surroundings.add]]
+polygon = [[-23.705108, -46.696327], [-23.704759, -46.696211], [-23.704396, -46.696096], [-23.704036, -46.695985], [-23.703669, -46.695875], [-23.703278, -46.695760], [-23.702983, -46.695687], [-23.703070, -46.695176], [-23.703419, -46.695263], [-23.703794, -46.695373], [-23.704162, -46.695484], [-23.704528, -46.695596], [-23.704893, -46.695712], [-23.705254, -46.695831]]
+kind = "sand"
+note = "red earth inside the Reta Oposta"
+
+[[surroundings.add]]
+polygon = [[-23.698045, -46.698144], [-23.697616, -46.697851], [-23.697198, -46.697570], [-23.698326, -46.697288], [-23.698444, -46.697217], [-23.698324, -46.697565], [-23.697622, -46.697394], [-23.697770, -46.696946], [-23.697839, -46.696710], [-23.697564, -46.696894], [-23.697996, -46.697185], [-23.698432, -46.697483]]
+kind = "sand"
+note = "stripped ground in the infield"
+
+# The city. The map has the streets and the houses of Interlagos, Cidade Dutra and Socorro but
+# no landuse=residential under them, so the suburbs came out as grass. The built-up ground
+# around the autodrome (its boundary follows the perimeter wall on the aerial picture) and, on
+# the far grid, the city between and north of the two reservoirs.
+
+[[surroundings.add]]
+polygon = [[-23.708615, -46.708959], [-23.676270, -46.708959], [-23.676270, -46.701452], [-23.696935, -46.701452], [-23.700529, -46.701207], [-23.703224, -46.700912], [-23.705919, -46.700569], [-23.706997, -46.700127], [-23.708615, -46.700127]]
+kind = "paved"
+note = "city west of the autodrome (Interlagos)"
+
+[[surroundings.add]]
+polygon = [[-23.708615, -46.700127], [-23.706997, -46.700127], [-23.707447, -46.699146], [-23.707536, -46.697184], [-23.707267, -46.695221], [-23.706638, -46.693848], [-23.705470, -46.691983], [-23.705470, -46.680503], [-23.734670, -46.680503], [-23.734670, -46.696202], [-23.708615, -46.696202]]
+kind = "paved"
+note = "city south of the autodrome (Cidade Dutra)"
+
+[[surroundings.add]]
+polygon = [[-23.705470, -46.691983], [-23.703224, -46.691689], [-23.702146, -46.693259], [-23.698911, -46.693455], [-23.697833, -46.692670], [-23.697833, -46.691296], [-23.700079, -46.691296], [-23.700079, -46.680503], [-23.705470, -46.680503]]
+kind = "paved"
+note = "city east of the autodrome"
+
+[[surroundings.add]]
+polygon = [[-23.696935, -46.701452], [-23.695857, -46.700716], [-23.695587, -46.698165], [-23.695497, -46.693259], [-23.676270, -46.693259], [-23.676270, -46.701452]]
+kind = "paved"
+note = "city north of the autodrome (Socorro)"
+
+[[surroundings.add]]
+polygon = [[-23.676270, -46.708959], [-23.649316, -46.708959], [-23.649316, -46.637328], [-23.691544, -46.637328], [-23.691544, -46.693259], [-23.676270, -46.693259]]
+kind = "paved"
+note = "São Paulo north of the reservoirs"
+
+[[surroundings.add]]
+polygon = [[-23.670879, -46.755077], [-23.649316, -46.755077], [-23.649316, -46.708959], [-23.670879, -46.708959]]
+kind = "paved"
+note = "north-west of Guarapiranga"
+
+[[surroundings.add]]
+polygon = [[-23.734670, -46.755077], [-23.670879, -46.755077], [-23.670879, -46.747227], [-23.734670, -46.747227]]
+kind = "paved"
+note = "west of Guarapiranga"
+
+# Tarmac of the paddock car park (class "gravel", coloured as asphalt in environment.json, so
+# that it does not take the roof colours of the city ground).
+
+[[surroundings.add]]
+polygon = [[-23.704212, -46.698459], [-23.703404, -46.697674], [-23.701966, -46.698018], [-23.701876, -46.697184], [-23.702685, -46.696595], [-23.703763, -46.696889], [-23.704841, -46.696987], [-23.705740, -46.697674], [-23.705650, -46.698263]]
+kind = "gravel"
+note = "paddock car park"
