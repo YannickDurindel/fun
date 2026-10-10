@@ -80,10 +80,10 @@
  "start_finish_source": "start: relation member role (finish line = start line)",
  "dem_dataset": "terrarium",
  "elevation": {
-  "range_m": 104.48,
-  "max_grade": 0.1276,
-  "min_grade": -0.1742,
-  "origin_m": 417.78
+  "range_m": 102.21,
+  "max_grade": 0.1548,
+  "min_grade": -0.0743,
+  "origin_m": 416.56
  },
  "turns": {
   "official": 19,
