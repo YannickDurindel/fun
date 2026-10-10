@@ -2,10 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
+uid="uid://5i0ulx73xsx"
+path="res://.godot/imported/landcover_far.png-fadced3e9efe6f3c111ea0d3bb039cf3.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/tracks/shanghai/landcover_far.png"
+dest_files=["res://.godot/imported/landcover_far.png-fadced3e9efe6f3c111ea0d3bb039cf3.ctex"]
 
 [params]
 

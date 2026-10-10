@@ -19,16 +19,202 @@ direction = "clockwise"
 finish = [31.33771, 121.22255]
 start_offset_m = 190.0
 
+# Turn 14: OSM draws the hairpin with a 10 m radius, which is the line along the inside
+# kerb. On Esri World Imagery the tarmac there is about 18 m wide between an inside kerb of
+# 3 m radius and an outer edge of 21 m, so its middle turns on 12 m: the apex is moved 2.5 m
+# to the outside (left), which also leaves room for the real width.
+[[layout.shift]]
+s = [4797.0, 4827.0]
+lateral_m = -2.5
+blend = 30.0
+note = "turn 14 hairpin: middle of the tarmac instead of the inside kerb"
+
 [elevation]
 dataset = "terrarium"
-# Reclaimed marshland: the real lap rises and falls by about 7 m, all of it built with the
-# circuit in 2003-04. The DEM here is flat land with a few metres of noise (if it is SRTM,
-# it was flown in 2000, before the circuit existed), so it cannot show the real profile: it
-# is smoothed harder than the default 45 m to keep the noise from becoming crests.
+# Reclaimed marshland: every metre of height on the lap was built with the circuit in
+# 2003-04 (40,000 piles under a polystyrene fill; FIA media kit, Chinese Grand Prix 2026).
+# The DEM is flat land with a few metres of noise (SRTM was flown in 2000, before the
+# circuit existed) and even puts the snail of turns 1-3 at the LOWEST point of the lap, where
+# the real one is the highest. So the profile is smoothed hard and then pinned all round the
+# lap with the keys below.
 smooth_sigma_m = 120.0
 
+# Sourced figures:
+#   * "The high point at Turn 2 is just 7.4 m higher than the low of the long back straight"
+#     (formula1.com, "Highs and lows - which F1 track has the most elevation changes?").
+#   * "Maximum uphill slope: 3 %. Maximum downhill slope: 8 %" (FIA media kit 2026; the same
+#     on tilke.de, "Max. Rise & Fall: 3 % | 8 %").
+#   * The climb is the approach and first half of turn 1, the crest is in the middle of the
+#     turn 1-2 spiral (the corner goes blind there) and the 8 % fall is the drop from turn 2
+#     to the turn 3 hairpin (lap guides and onboard laps).
+# The keys follow one monotone curve from each to the next (join), with zero slope at the
+# crest and in the dip, so the steepest point of a ramp is 1.5 x its mean slope:
+#   climb  0.0 -> +5.9 m over 295 m = 2.0 % mean, 3.0 % at its steepest;
+#   fall  +5.9 -> -0.6 m over 122 m = 5.3 % mean, 8.0 % at its steepest.
+# Everything else is an ESTIMATE: no survey of the rest of the lap is published. The plain
+# is given gentle sub-metre drifts in the direction the smoothed DEM has them, with the
+# lowest point (-1.5 m) put on the back straight as the source says.
+[[elevation.key]]
+s = 0.0
+y = 0.0
+join = true
+note = "finish line"
+
+[[elevation.key]]
+s = 495.0
+y = 0.0
+join = true
+note = "foot of the climb, braking for turn 1 (pit straight level: estimate)"
+
+[[elevation.key]]
+s = 790.0
+y = 5.9
+join = true
+note = "crest before the turn 2 apex: highest point, 7.4 m above the back-straight low"
+
+[[elevation.key]]
+s = 912.0
+y = -0.6
+join = true
+note = "dip before the turn 3 apex, foot of the 8 % fall (height: estimate)"
+
+[[elevation.key]]
+s = 1024.0
+y = -0.3
+join = true
+note = "turn 4 (estimate)"
+
+[[elevation.key]]
+s = 1350.0
+y = 0.2
+join = true
+note = "turn 5 kink (estimate)"
+
+[[elevation.key]]
+s = 1600.0
+y = -0.4
+join = true
+note = "turn 6 hairpin, braking slightly downhill (estimate)"
+
+[[elevation.key]]
+s = 2000.0
+y = -0.9
+join = true
+note = "turn 7 (estimate)"
+
+[[elevation.key]]
+s = 2390.0
+y = -0.7
+join = true
+note = "turn 8 (estimate)"
+
+[[elevation.key]]
+s = 2670.0
+y = -0.9
+join = true
+note = "turn 10 (estimate)"
+
+[[elevation.key]]
+s = 3150.0
+y = -1.2
+join = true
+note = "turn 11 (estimate)"
+
+[[elevation.key]]
+s = 3414.0
+y = -1.0
+join = true
+note = "turn 13 (estimate)"
+
+[[elevation.key]]
+s = 4300.0
+y = -1.5
+join = true
+note = "low point of the lap, on the back straight (position along it: estimate)"
+
+[[elevation.key]]
+s = 4812.0
+y = -1.2
+join = true
+note = "turn 14 hairpin (estimate)"
+
+[[elevation.key]]
+s = 5185.0
+y = -0.3
+join = true
+note = "turn 16 (estimate)"
+
+[road]
+# "Track width: 13-15 m" (tilke.de, the designer's data sheet). No per-section table is
+# published, so the sections were MEASURED on Esri World Imagery (0.3 m pixels, kerb to
+# white line, good to about +/- 0.6 m): 14.2-15.0 m on the pit straight, 14.3-15.2 m on the
+# back straight, 13.3-14.5 m everywhere else (most readings 14.0), and the three hairpins
+# opened out at the apex: about 16 m at turn 6, 15 m at turn 11 and 18 m at turn 14 ("a
+# hairpin that's good for overtaking as it's unusually wide", FIA media kit 2026).
+base_width = 14.0
+grid_width = 15.0
+
+[[road.override]]
+s = [5235.0, 480.0]
+width = 15.0
+blend = 40.0
+note = "pit straight, turn 16 exit to the turn 1 braking zone (measured 14.2-15.0 m)"
+
+[[road.override]]
+s = [1080.0, 1300.0]
+width = 13.5
+blend = 40.0
+note = "turn 4 to turn 5 (measured 13.2-13.3 m)"
+
+[[road.override]]
+s = [1585.0, 1615.0]
+width = 16.0
+blend = 30.0
+note = "turn 6 hairpin apex (measured about 16 m)"
+
+[[road.override]]
+s = [1980.0, 2230.0]
+width = 13.5
+blend = 40.0
+note = "turn 7 and the change of direction to turn 8 (measured 13.3 m)"
+
+[[road.override]]
+s = [3140.0, 3165.0]
+width = 15.0
+blend = 25.0
+note = "turn 11 apex (measured about 15 m)"
+
+[[road.override]]
+s = [3640.0, 4760.0]
+width = 15.0
+blend = 60.0
+note = "back straight (measured 14.3-15.2 m)"
+
+[[road.override]]
+s = [4797.0, 4827.0]
+width = 18.0
+blend = 30.0
+note = "turn 14 hairpin apex (measured about 18 m)"
+
+# Banking. The FIA media kit speaks of "the gentle banking at the ever tightening opening
+# sequence of corners", and turn 13 is banked the same way onto the back straight; no angle
+# is published anywhere I could find. The pipeline caps
+# bank at 0.03 rad (1.7 degrees), so both get the cap over their whole length instead of
+# only at the curvature peak. + = left edge higher (right-handers).
+[[road.override]]
+s = [560.0, 850.0]
+bank = 0.03
+blend = 40.0
+note = "turns 1-2, banked spiral (real figure higher than the cap)"
+
+[[road.override]]
+s = [3300.0, 3560.0]
+bank = 0.03
+blend = 40.0
+note = "turn 13, banked (real figure higher than the cap)"
+
 [terrain]
-# Same reason: without this the noise shows as rolling hills around a circuit on a plain.
+# Same reason as the road: without this the DEM noise shows as rolling hills on a plain.
 smooth_sigma_m = 150.0
 
 # All 16 official turns, pinned: the automatic detection sees each snail (1-2-3-4 and
@@ -129,3 +315,375 @@ id = "T16"
 name = "Turn 16"
 direction = "left"
 s = 5185.5
+
+# ---------------------------------------------------------------------------------------
+# Surroundings. The rings below are printed by tools/track/landmarks/shanghai.py --recipe
+# (which also builds the landmark models), so stands and models share one set of measures.
+[surroundings]
+# Untagged buildings inside the venue are single-storey service blocks (toilets, marshals'
+# stores, kart-track sheds): 4 m instead of the two-storey default.
+default_levels = 1
+level_height_m = 4.0
+# Reclaimed marsh with planted rows of camphor trees and willows: no conifers.
+tree_species = "broadleaved"
+
+# The map has the main complex and stands H and K in 3D building parts with heights (wings
+# 24.5-35 m, grandstand roof from 29.75 m, canopies with rims at 19 and 23.5 m on masts of
+# 29 and 33 m). The step can only build such parts as boxes and flat discs on four posts,
+# and the outlines they belong to as seating cut off at the road. So the outlines and those
+# parts are excluded here; plain seating is added below and the wings, the roof and the
+# canopies are landmark models with the map's own measures. The glass towers under the
+# wings, the red stair drums and the pit building stay as the map has them.
+[[surroundings.exclude]]
+osm = "way/107371135"
+note = "A看台: main grandstand + wings in one outline"
+
+[[surroundings.exclude]]
+osm = "way/1372574254"
+note = "seating slab of the main grandstand (a 24.5 m box)"
+
+[[surroundings.exclude]]
+osm = "way/1371942058"
+note = "roof of the main grandstand (a 5 m thick box): landmark main_complex"
+
+[[surroundings.exclude]]
+osm = "way/1371942059"
+note = "east wing (a box): landmark main_complex"
+
+[[surroundings.exclude]]
+osm = "way/1371942060"
+note = "west wing (a box): landmark main_complex"
+
+[[surroundings.exclude]]
+osm = "way/1372223261"
+note = "H看台: outline of the lotus canopies"
+
+[[surroundings.exclude]]
+osm = "way/1372223262"
+note = "K看台: outline of the lotus canopies"
+
+[[surroundings.exclude]]
+polygon = [[31.338192, 121.226267], [31.335904, 121.228045], [31.336093, 121.228379], [31.338381, 121.226600]]
+note = "stand H: the map's canopies, masts and seating slab (landmark lotus_h + the seating below)"
+
+[[surroundings.exclude]]
+polygon = [[31.337689, 121.225453], [31.335476, 121.227344], [31.335275, 121.227020], [31.337487, 121.225130]]
+note = "stand K: the same (landmark lotus_k)"
+
+# Main grandstand seating: "400-metres long and 40.6-metres wide ... its height ranges from
+# 2.74 metres to 27 metres" (mondodr.com, on the grandstand's sound system). Front row
+# 17.2 m left of the centreline (OSM outline), from under one wing to under the other.
+[[surroundings.add]]
+kind = "grandstand"
+polygon = [[31.337606, 121.222825], [31.336800, 121.218819], [31.336445, 121.218917], [31.337250, 121.222923]]
+height = 27.0
+note = "main grandstand (A)"
+
+# Stands H and K under the lotus canopies either side of the hairpin: 13 m to the top row
+# (OSM, ways 156346098 / 156346102). H is placed 2.5 m further from the back straight than
+# the map has it, as Esri World Imagery shows it (see LOTUS_H in the landmark script).
+[[surroundings.add]]
+kind = "grandstand"
+polygon = [[31.338242, 121.226355], [31.335953, 121.228133], [31.336073, 121.228344], [31.338361, 121.226565]]
+height = 13.0
+note = "grandstand H, left of the back straight"
+
+[[surroundings.add]]
+kind = "grandstand"
+polygon = [[31.337652, 121.225394], [31.335439, 121.227284], [31.335312, 121.227080], [31.337525, 121.225190]]
+height = 13.0
+note = "grandstand K, left of the run from turn 14 to turn 16"
+
+# Ground the map leaves as grass and Esri World Imagery shows paved.
+[[surroundings.add]]
+kind = "paved"
+polygon = [[31.337760, 121.222431], [31.337079, 121.219047], [31.337657, 121.218888], [31.338338, 121.222271]]
+note = "pit lane, pit building and the paddock road behind it, up to the lake"
+
+[[surroundings.add]]
+kind = "paved"
+polygon = [[31.339644, 121.221971], [31.339150, 121.222866], [31.338385, 121.223024], [31.338115, 121.222392], [31.338250, 121.221918]]
+note = "paddock east of the lake (helipad side)"
+
+[[surroundings.add]]
+kind = "paved"
+polygon = [[31.339060, 121.219074], [31.339419, 121.219917], [31.339644, 121.221971], [31.339347, 121.221918], [31.339258, 121.219917], [31.339132, 121.219390]]
+note = "paddock north of the lake"
+
+[[surroundings.add]]
+kind = "paved"
+polygon = [[31.338025, 121.218389], [31.339060, 121.219074], [31.339150, 121.219390], [31.337935, 121.218705]]
+note = "paddock west of the lake"
+
+[[surroundings.add]]
+kind = "paved"
+polygon = [[31.341084, 121.220601], [31.341219, 121.220970], [31.340409, 121.221444], [31.339644, 121.221497], [31.339509, 121.220549], [31.340409, 121.220443]]
+note = "car park inside turn 8"
+
+[[surroundings.add]]
+kind = "paved"
+polygon = [[31.336225, 121.218494], [31.337152, 121.223129], [31.336630, 121.223340], [31.335686, 121.218652]]
+note = "plaza behind the main grandstand"
+
+# Heights the map does not have. ESTIMATES by building type (single-storey factory halls,
+# an elevated metro station); none of them is nearer than 200 m to the road.
+[[surroundings.building]]
+osm = "way/325702226"
+height = 12.0
+note = "factory hall west of the circuit (Anting)"
+
+[[surroundings.building]]
+osm = "way/325702232"
+height = 12.0
+note = "factory hall west of the circuit (Anting)"
+
+[[surroundings.building]]
+osm = "relation/21496622"
+height = 14.0
+note = "Shanghai Circuit metro station (line 11, elevated)"
+
+[[surroundings.building]]
+osm = "way/157211254"
+height = 8.0
+note = "hall beside the kart track"
+
+[[surroundings.building]]
+osm = "way/157211255"
+height = 8.0
+note = "hall beside the kart track"
+
+[[surroundings.building]]
+osm = "way/157211256"
+height = 8.0
+note = "hall beside the kart track"
+
+# Housing estates of Jiading new town, 0.9 to 1.5 km east of the back straight, seen over
+# stand H and the canal: the map has none of them. Slab centres read off Esri World Imagery;
+# heights are ESTIMATES from their shadows (see HOUSING in tools/track/landmarks/shanghai.py).
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.340207, 121.237276], [31.340328, 121.237805], [31.340198, 121.237846], [31.340076, 121.237317]]
+height = 58.0
+note = "housing tower, Jiading new town (south estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.339676, 121.237497], [31.339797, 121.238026], [31.339667, 121.238067], [31.339546, 121.237538]]
+height = 58.0
+note = "housing tower, Jiading new town (south estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.340927, 121.237950], [31.341048, 121.238479], [31.340917, 121.238520], [31.340796, 121.237991]]
+height = 58.0
+note = "housing tower, Jiading new town (south estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.340783, 121.239077], [31.340904, 121.239606], [31.340773, 121.239647], [31.340652, 121.239118]]
+height = 58.0
+note = "housing tower, Jiading new town (south estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.339964, 121.239309], [31.340085, 121.239838], [31.339955, 121.239879], [31.339834, 121.239350]]
+height = 58.0
+note = "housing tower, Jiading new town (south estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.341125, 121.240436], [31.341246, 121.240965], [31.341115, 121.241006], [31.340994, 121.240477]]
+height = 58.0
+note = "housing tower, Jiading new town (south estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.340450, 121.240773], [31.340571, 121.241302], [31.340440, 121.241343], [31.340319, 121.240814]]
+height = 58.0
+note = "housing tower, Jiading new town (south estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.342087, 121.240215], [31.342208, 121.240744], [31.342078, 121.240785], [31.341957, 121.240256]]
+height = 58.0
+note = "housing tower, Jiading new town (south estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.342474, 121.241900], [31.342595, 121.242429], [31.342465, 121.242470], [31.342344, 121.241941]]
+height = 58.0
+note = "housing tower, Jiading new town (south estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.341646, 121.242132], [31.341767, 121.242661], [31.341637, 121.242702], [31.341516, 121.242173]]
+height = 58.0
+note = "housing tower, Jiading new town (south estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.341026, 121.242922], [31.341147, 121.243451], [31.341016, 121.243492], [31.340895, 121.242963]]
+height = 58.0
+note = "housing tower, Jiading new town (south estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.346568, 121.236507], [31.346680, 121.236996], [31.346558, 121.237034], [31.346446, 121.236546]]
+height = 48.0
+note = "housing tower, Jiading new town (middle estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.346856, 121.237635], [31.346968, 121.238123], [31.346846, 121.238161], [31.346734, 121.237673]]
+height = 48.0
+note = "housing tower, Jiading new town (middle estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.347387, 121.239215], [31.347499, 121.239703], [31.347377, 121.239741], [31.347265, 121.239253]]
+height = 48.0
+note = "housing tower, Jiading new town (middle estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.347000, 121.239446], [31.347112, 121.239935], [31.346990, 121.239973], [31.346878, 121.239484]]
+height = 48.0
+note = "housing tower, Jiading new town (middle estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.346136, 121.239783], [31.346248, 121.240272], [31.346126, 121.240310], [31.346015, 121.239822]]
+height = 48.0
+note = "housing tower, Jiading new town (middle estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.348350, 121.235833], [31.348461, 121.236322], [31.348340, 121.236360], [31.348228, 121.235871]]
+height = 48.0
+note = "housing tower, Jiading new town (middle estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.348251, 121.237182], [31.348362, 121.237670], [31.348241, 121.237708], [31.348129, 121.237220]]
+height = 48.0
+note = "housing tower, Jiading new town (middle estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.348062, 121.238309], [31.348173, 121.238797], [31.348052, 121.238835], [31.347940, 121.238347]]
+height = 48.0
+note = "housing tower, Jiading new town (middle estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.350860, 121.231988], [31.350972, 121.232477], [31.350850, 121.232515], [31.350738, 121.232027]]
+height = 45.0
+note = "housing tower, Jiading new town (north estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.350761, 121.233126], [31.350873, 121.233614], [31.350751, 121.233653], [31.350639, 121.233164]]
+height = 45.0
+note = "housing tower, Jiading new town (north estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.350662, 121.235601], [31.350774, 121.236090], [31.350652, 121.236128], [31.350540, 121.235640]]
+height = 45.0
+note = "housing tower, Jiading new town (north estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.349987, 121.236507], [31.350099, 121.236996], [31.349977, 121.237034], [31.349865, 121.236546]]
+height = 45.0
+note = "housing tower, Jiading new town (north estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.349222, 121.237972], [31.349334, 121.238460], [31.349212, 121.238498], [31.349101, 121.238010]]
+height = 45.0
+note = "housing tower, Jiading new town (north estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.347576, 121.241922], [31.347688, 121.242410], [31.347566, 121.242448], [31.347454, 121.241960]]
+height = 45.0
+note = "housing tower, Jiading new town (north estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.349222, 121.242712], [31.349334, 121.243200], [31.349212, 121.243238], [31.349101, 121.242750]]
+height = 45.0
+note = "housing tower, Jiading new town (north estate)"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.346695, 121.232261], [31.346823, 121.232821], [31.346719, 121.232853], [31.346591, 121.232294]]
+height = 18.0
+note = "six-storey housing row, Jiading new town"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.347055, 121.233736], [31.347183, 121.234295], [31.347079, 121.234328], [31.346951, 121.233768]]
+height = 18.0
+note = "six-storey housing row, Jiading new town"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.346155, 121.232893], [31.346283, 121.233453], [31.346179, 121.233485], [31.346051, 121.232926]]
+height = 18.0
+note = "six-storey housing row, Jiading new town"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.346515, 121.234368], [31.346643, 121.234927], [31.346539, 121.234960], [31.346411, 121.234400]]
+height = 18.0
+note = "six-storey housing row, Jiading new town"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.345616, 121.233420], [31.345744, 121.233979], [31.345639, 121.234012], [31.345511, 121.233452]]
+height = 18.0
+note = "six-storey housing row, Jiading new town"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.345975, 121.234894], [31.346104, 121.235454], [31.345999, 121.235487], [31.345871, 121.234927]]
+height = 18.0
+note = "six-storey housing row, Jiading new town"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.344806, 121.233841], [31.344934, 121.234401], [31.344830, 121.234433], [31.344702, 121.233874]]
+height = 18.0
+note = "six-storey housing row, Jiading new town"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.345166, 121.235316], [31.345294, 121.235875], [31.345190, 121.235908], [31.345061, 121.235348]]
+height = 18.0
+note = "six-storey housing row, Jiading new town"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.344176, 121.234157], [31.344304, 121.234717], [31.344200, 121.234749], [31.344072, 121.234190]]
+height = 18.0
+note = "six-storey housing row, Jiading new town"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.344536, 121.235632], [31.344664, 121.236191], [31.344560, 121.236224], [31.344432, 121.235665]]
+height = 18.0
+note = "six-storey housing row, Jiading new town"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.345796, 121.236264], [31.345924, 121.236823], [31.345819, 121.236856], [31.345691, 121.236297]]
+height = 18.0
+note = "six-storey housing row, Jiading new town"
+
+[[surroundings.add]]
+kind = "building"
+polygon = [[31.344896, 121.236791], [31.345024, 121.237350], [31.344920, 121.237383], [31.344792, 121.236823]]
+height = 18.0
+note = "six-storey housing row, Jiading new town"

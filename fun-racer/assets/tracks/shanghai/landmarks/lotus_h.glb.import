@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://66h34ujn1utf"
-path="res://.godot/imported/scenery.glb-6d262e79b22065cd9e11ac37f5b62e03.scn"
+uid="uid://c6khru0rifou"
+path="res://.godot/imported/lotus_h.glb-3d072eaeee99ad032bcd22c6760cd574.scn"
 
 [deps]
 
-source_file="res://assets/tracks/shanghai/scenery.glb"
-dest_files=["res://.godot/imported/scenery.glb-6d262e79b22065cd9e11ac37f5b62e03.scn"]
+source_file="res://assets/tracks/shanghai/landmarks/lotus_h.glb"
+dest_files=["res://.godot/imported/lotus_h.glb-3d072eaeee99ad032bcd22c6760cd574.scn"]
 
 [params]
 
