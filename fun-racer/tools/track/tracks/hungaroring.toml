@@ -8,21 +8,100 @@ id = "hungaroring"
 relation = 284557       # type=circuit "Hungaroring": two raceway ways, one closed loop, no pit lane
 
 [layout]
-# OSM has no start / finish line. The line is placed from the surroundings mapped in OSM: it
-# lies next to the pit building, about 40 m after the building's last-corner end, with the
-# "Grid 1" to "Grid 3" grandstands along the 200 m behind it, which puts the T1 apex about
-# 610 m after the line. Estimated to about +/- 30 m; not surveyed. The grid starts at the line.
-finish = [47.57890, 19.24832]
+# OSM has no start / finish line. The line is under the start-light gantry, which the aerial
+# imagery (Esri World Imagery, 2025, 0.2 m per pixel) shows across the track 20 m beyond the
+# point first estimated from the mapped grandstands; the T1 apex is then 594 m after the line.
+# Read off the picture to about +/- 5 m. The grid starts at the line.
+finish = [47.57902, 19.24813]
 # Approximate sector lines: in the valley before the climb to T4, and on the straight
 # between T11 and T12. (The automatic thirds would put sector 3 between T10 and T11.)
-sectors = [1480.0, 3250.0]
+sectors = [1460.0, 3230.0]
 
 [elevation]
 dataset = "terrarium"
 
+# Mercedes-AMG F1 ("Why Hungary is the best Grand Prix on the F1 calendar",
+# mercedesamgf1.com): the highest point is 238.9 m above sea level on the start / finish
+# straight, the lowest 204.2 m "shortly after Turn 3": 34.7 m between them. The terrain model
+# is a surface model and gives 242.4 m on the straight, where the road runs between the main
+# grandstand and the pit building (both about 300 m long and 20 m and more high), and 203.4 m
+# in the valley: 39.0 m. Keys bring both points to the published heights: three along the
+# straight between the two buildings (one curve from the exit of Turn 14 to the crest), one in
+# the valley.
+[[elevation.key]]
+s = 4130.0
+abs = 238.0
+blend = 150.0
+note = "exit of T14: below the crest of the straight (estimate; the model has it 1.5 m above the line, with the Grid grandstands on the bank beside it)"
+
+[[elevation.key]]
+s = 4330.0
+abs = 238.6
+join = true
+note = "the straight still climbs gently past the last grandstands (estimate)"
+
+[[elevation.key]]
+s = 100.0
+abs = 238.9
+join = true
+blend = 200.0
+note = "highest point, on the start / finish straight (Mercedes-AMG F1)"
+
+[[elevation.key]]
+s = 1510.0
+abs = 204.2
+blend = 160.0
+note = "lowest point, shortly after Turn 3 (Mercedes-AMG F1)"
+
+[road]
+# Road width, white line to white line. Sources:
+#   * FIA Central European Zone circuit sheet (fia-cez.com, "Season start will take place on
+#     Hungaroring"): track width 11 to 15 m, start / finish straight 788.9 m, maximum
+#     gradients 6.2 % down and 7 % up.
+#   * OpenStreetMap tags the first way of the straight width = 15.
+#   * Measured for every 50 m of the lap on Esri World Imagery (2025, 0.2 m per pixel), the
+#     tarmac between the edge lines, to about +/- 0.7 m: 14 to 15.5 m on the straight, 13 m
+#     through Turn 1 (widened when the corner was moved in 2003), 11 to 12 m through Turn 2,
+#     10.5 to 11 m from Turn 3 down the valley and up to Turn 4, 9 to 10 m from Turn 5 to
+#     Turn 11 and between Turns 12 and 14, 10 to 11 m on the back straight, 11 m in Turn 12,
+#     12 to 13 m through Turn 14.
+# The table follows the measurement, rounded to 0.5 m and never below 10 m: the narrow middle
+# sector measures under the 11 m of the FIA sheet (which may count the kerbs), so 10 m is an
+# estimate between the two.
+# Banking: no published figures. The lap has no banked corner; it keeps the automatic camber
+# (at most 0.03 rad).
+width_keys = [
+  [0.0, 15.0, "start / finish straight (OSM width tag, FIA sheet, aerial)"],
+  [520.0, 15.0, "braking zone of T1"],
+  [565.0, 13.5, "T1 Piquet (aerial)"],
+  [690.0, 13.5, ""],
+  [760.0, 10.0, "T1 to T2, downhill (aerial 9.5 to 10.5)"],
+  [1010.0, 10.0, ""],
+  [1045.0, 12.0, "T2 Hamilton (aerial 11 to 12)"],
+  [1150.0, 12.0, ""],
+  [1190.0, 11.0, "T3 and the valley straight (aerial 10.5 to 11)"],
+  [1830.0, 11.0, "T4 Mansell"],
+  [1870.0, 10.0, "T5 to T11: the narrow middle sector (aerial 9 to 10; estimate)"],
+  [3160.0, 10.0, ""],
+  [3200.0, 10.5, "back straight (aerial 10 to 11)"],
+  [3440.0, 10.5, ""],
+  [3465.0, 11.5, "T12 Schumacher (aerial 11)"],
+  [3590.0, 11.5, ""],
+  [3630.0, 10.0, "T13 Senna (aerial 9 to 10)"],
+  [3930.0, 10.0, ""],
+  [3975.0, 12.5, "T14 Szisz (aerial 12 to 13)"],
+  [4110.0, 12.5, ""],
+  [4160.0, 15.0, "onto the start / finish straight"],
+]
+
+[terrain]
+# The detailed terrain keeps the rectangle it had before the finish line was moved 20 m: the
+# automatic one would grow 200 m to the south, over farmland no driver sees.
+near = [-1000.0, 1200.0, -1600.0, 600.0]
+
 # The official 14 turns, pinned. Automatic detection finds 16: it also numbers the gentle
-# right-hand curve between T1 and T2 (s = 804, radius 153 m) and the right kink at the bottom
-# of the valley before T4 (s = 1705, radius 170 m), which the official map does not count.
+# right-hand curve between T1 and T2 (s = 784, radius 153 m) and the right kink at the bottom
+# of the valley before T4 (s = 1685, radius 170 m), which the official map does not count.
 # The names are those of the name nodes on the OSM centreline (Piquet, Hamilton, Forrás,
 # Mansell, Buda, Pest, Duna, Alesi, Schumacher, Senna, Szisz); T5 and the T6 / T7 chicane
 # have none there.
@@ -30,82 +109,216 @@ dataset = "terrarium"
 id = "T1"
 name = "Piquet"
 direction = "right"
-s = 613.8
+s = 593.7
 
 [[turn]]
 id = "T2"
 name = "Hamilton"
 direction = "left"
-s = 1077.2
+s = 1057.1
 
 [[turn]]
 id = "T3"
 name = "Forrás"
 direction = "right"
-s = 1305.9
+s = 1285.8
 
 [[turn]]
 id = "T4"
 name = "Mansell"
 direction = "left"
-s = 1779.3
+s = 1759.2
 
 [[turn]]
 id = "T5"
 name = "Turn 5"
 direction = "right"
-s = 1983.9
+s = 1963.8
 
 [[turn]]
 id = "T6"
 name = "Chicane (entry)"
 direction = "right"
-s = 2355.0
+s = 2334.9
 
 [[turn]]
 id = "T7"
 name = "Chicane (exit)"
 direction = "left"
-s = 2393.1
+s = 2373.0
 
 [[turn]]
 id = "T8"
 name = "Buda"
 direction = "left"
-s = 2577.6
+s = 2557.5
 
 [[turn]]
 id = "T9"
 name = "Pest"
 direction = "right"
-s = 2710.0
+s = 2689.9
 
 [[turn]]
 id = "T10"
 name = "Duna"
 direction = "left"
-s = 2906.6
+s = 2886.5
 
 [[turn]]
 id = "T11"
 name = "Alesi"
 direction = "right"
-s = 3065.1
+s = 3045.0
 
 [[turn]]
 id = "T12"
 name = "Schumacher"
 direction = "right"
-s = 3504.4
+s = 3484.3
 
 [[turn]]
 id = "T13"
 name = "Senna"
 direction = "left"
-s = 3771.2
+s = 3751.1
 
 [[turn]]
 id = "T14"
 name = "Szisz"
 direction = "right"
-s = 3981.8
+s = 3961.7
+
+# ---------------------------------------------------------------------------- surroundings
+# The state of the 2025 Grand Prix: the new main building and the new main grandstand stand
+# (opened for that race, handed over in 2026). Reference: Esri World Imagery of 2025.
+[surroundings]
+# The woods of the valley are black locust, oak and pine, nearly all broadleaved.
+tree_species = "broadleaved"
+
+# The old pit building and the old main grandstand, demolished in 2024: both are replaced by
+# landmark models with the dimensions of the new ones (landmarks.json), which the map does
+# not have yet. The footbridge over the straight at the old paddock went with them (the
+# circuit now has two tunnels under the straight).
+[[surroundings.exclude]]
+osm = "way/123905481"
+[[surroundings.exclude]]
+osm = "way/230979479"
+[[surroundings.exclude]]
+osm = "way/493519980"
+[[surroundings.exclude]]
+osm = "way/493519982"
+
+# Grandstands the map draws as plain buildings (blue seats on the aerial).
+[[surroundings.building]]   # behind the back straight, the first of the two
+osm = "way/230979500"
+type = "grandstand"
+[[surroundings.building]]   # "Silver 5", behind the back straight
+osm = "way/230979485"
+type = "grandstand"
+[[surroundings.building]]   # outside Turn 14
+osm = "way/1085151666"
+type = "grandstand"
+
+# Heights the map does not have (estimates from the storeys seen on the aerial's shadows).
+[[surroundings.building]]   # the circuit's office building behind Turn 1, three storeys
+osm = "way/294740484"
+height = 10.0
+[[surroundings.building]]   # the driving centre's building beside Turn 7, two storeys
+osm = "way/231414067"
+height = 8.0
+[[surroundings.building]]   # medical centre inside Turn 14, one storey
+osm = "way/231443446"
+height = 4.5
+
+# The other grandstands: the map has them as leisure = bleachers without a building tag, which
+# the surroundings step does not build, so their outlines are repeated here (c) OpenStreetMap
+# contributors. Heights follow from the depth of each stand.
+[[surroundings.add]]   # way/230979476 "Apex 2"
+kind = "grandstand"
+polygon = [[47.577284, 19.251692], [47.577538, 19.252229], [47.577371, 19.252373], [47.577118, 19.251848]]
+
+[[surroundings.add]]   # way/230979482 "Grand Prix 2"
+kind = "grandstand"
+polygon = [[47.576941, 19.251062], [47.576836, 19.251009], [47.576984, 19.250463], [47.577081, 19.250521]]
+
+[[surroundings.add]]   # way/230979487 "T1"
+kind = "grandstand"
+polygon = [[47.581355, 19.243257], [47.581225, 19.243095], [47.581787, 19.242105], [47.581917, 19.242267]]
+
+[[surroundings.add]]   # way/230979489 "Grand Prix 1"
+kind = "grandstand"
+polygon = [[47.577378, 19.250297], [47.577146, 19.250840], [47.577306, 19.250989], [47.577537, 19.250447]]
+
+[[surroundings.add]]   # way/230979493 "Apex 1"
+kind = "grandstand"
+polygon = [[47.577140, 19.250996], [47.577096, 19.251281], [47.577073, 19.251572], [47.577250, 19.251587], [47.577257, 19.251298], [47.577275, 19.251028]]
+
+[[surroundings.add]]   # way/230979498 "Grid 3"
+kind = "grandstand"
+polygon = [[47.577629, 19.249755], [47.577386, 19.250232], [47.577539, 19.250404], [47.577782, 19.249926]]
+
+[[surroundings.add]]   # way/231059800 "Chicane 1"
+kind = "grandstand"
+polygon = [[47.587606, 19.252920], [47.586545, 19.254382], [47.586637, 19.254506], [47.587676, 19.253064]]
+
+[[surroundings.add]]   # way/231059801 "Chicane 2"
+kind = "grandstand"
+polygon = [[47.588177, 19.252139], [47.587629, 19.252856], [47.587721, 19.253021], [47.588269, 19.252284]]
+
+[[surroundings.add]]   # way/231059802 "Chicane 3"
+kind = "grandstand"
+polygon = [[47.587690, 19.253377], [47.587029, 19.254251], [47.587097, 19.254347], [47.587753, 19.253500]]
+
+[[surroundings.add]]   # way/658606806 "Pit Exit 1"
+kind = "grandstand"
+polygon = [[47.581105, 19.243342], [47.581180, 19.243435], [47.580774, 19.244160], [47.580699, 19.244068]]
+
+[[surroundings.add]]   # way/1085151660 "Club"
+kind = "grandstand"
+polygon = [[47.577079, 19.250505], [47.576998, 19.250426], [47.577151, 19.250080], [47.577236, 19.250164]]
+
+[[surroundings.add]]   # way/1085151661 "Podium"
+kind = "grandstand"
+polygon = [[47.577236, 19.250164], [47.577151, 19.250080], [47.577397, 19.249542], [47.577482, 19.249627]]
+
+[[surroundings.add]]   # way/1085151668 "Grid 1"
+kind = "grandstand"
+polygon = [[47.578152, 19.248763], [47.577978, 19.249097], [47.578124, 19.249268], [47.578301, 19.248934]]
+
+[[surroundings.add]]   # way/1085151669 "Grid 2"
+kind = "grandstand"
+polygon = [[47.577949, 19.249143], [47.577703, 19.249626], [47.577850, 19.249800], [47.578100, 19.249314]]
+
+[[surroundings.add]]   # way/1085151671 "unnamed"
+kind = "grandstand"
+polygon = [[47.582272, 19.256298], [47.581880, 19.256687], [47.581968, 19.256891], [47.582363, 19.256506]]
+
+[[surroundings.add]]   # way/1412550387 "Pit Exit 2"
+kind = "grandstand"
+polygon = [[47.580614, 19.244197], [47.580209, 19.244968], [47.580291, 19.245063], [47.580696, 19.244291]]
+
+# Ground the map leaves as grass (read off the 2025 aerial, to about +/- 5 m).
+[[surroundings.add]]   # the paddock: pit lane apron, the main building's yard and the paddock behind it
+kind = "paved"
+polygon = [[47.580798, 19.245652], [47.581103, 19.246594], [47.579187, 19.250019], [47.578784, 19.249435]]
+
+[[surroundings.add]]   # the concourse behind the main grandstand
+kind = "paved"
+polygon = [[47.579948, 19.245493], [47.579581, 19.245147], [47.577996, 19.248094], [47.578461, 19.248572]]
+
+[[surroundings.add]]   # the support paddock inside Turns 4 and 5 (light concrete on the aerial)
+kind = "paved"
+polygon = [[47.587667, 19.250218], [47.587667, 19.250683], [47.586726, 19.251373], [47.586431, 19.250630]]
+
+[[surroundings.add]]   # the unpaved lot inside the Turn 1 loop
+kind = "gravel"
+polygon = [[47.582249, 19.243448], [47.582142, 19.244417], [47.581739, 19.245108], [47.581380, 19.244736], [47.581774, 19.243926]]
+
+[[surroundings.add]]   # the unpaved car park north of the run from Turn 1 to Turn 2
+kind = "gravel"
+polygon = [[47.583082, 19.243767], [47.583547, 19.244523], [47.584058, 19.246329], [47.582249, 19.246329], [47.582679, 19.245054]]
+
+[[surroundings.add]]   # the yard between Turn 2 and Turn 13
+kind = "gravel"
+polygon = [[47.581085, 19.249103], [47.581201, 19.249634], [47.580655, 19.250709], [47.579930, 19.249422], [47.580476, 19.248665]]

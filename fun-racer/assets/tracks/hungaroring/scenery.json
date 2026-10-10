@@ -33,15 +33,15 @@
    "nz": 240
   },
   "near_share": {
-   "grass": 0.2288,
-   "forest": 0.2302,
-   "water": 0.0018,
+   "grass": 0.221,
+   "forest": 0.2336,
+   "water": 0.0019,
    "sand": 0.0,
-   "paved": 0.1075,
-   "farmland": 0.4049,
+   "paved": 0.1066,
+   "farmland": 0.4017,
    "rock": 0.0,
-   "gravel": 0.0089,
-   "scrub": 0.0179,
+   "gravel": 0.0168,
+   "scrub": 0.0185,
    "beach": 0.0
   }
  },
@@ -63,18 +63,18 @@
    "emissive_light"
   ],
   "triangles": {
-   "building_wall": 2156,
-   "building_roof": 745,
+   "building_wall": 2032,
+   "building_roof": 697,
    "building_glass": 0,
-   "stand_seats": 161,
-   "stand_structure": 170,
-   "concrete": 263,
-   "metal": 872,
+   "stand_seats": 1330,
+   "stand_structure": 1448,
+   "concrete": 251,
+   "metal": 792,
    "emissive_window": 0,
    "emissive_light": 0
   },
-  "vertices": 8657,
-  "chunks": 23
+  "vertices": 13016,
+  "chunks": 24
  },
  "trees": {
   "file": "scenery_points.bin",
@@ -87,7 +87,7 @@
    "species"
   ],
   "record_bytes": 20,
-  "count": 6151,
+  "count": 6154,
   "species": [
    "broadleaved",
    "needleleaved",
@@ -95,24 +95,24 @@
    "bush"
   ],
   "species_counts": {
-   "broadleaved": 4067,
-   "needleleaved": 1932,
+   "broadleaved": 5998,
+   "needleleaved": 5,
    "palm": 0,
-   "bush": 152
+   "bush": 151
   },
   "chunk_m": 400.0,
-  "chunks": [[12,12,0,100],[12,13,100,304],[12,14,404,279],[12,15,683,21],[12,17,704,1],[13,12,705,132],[13,13,837,629],[13,14,1466,383],[13,15,1849,491],[13,16,2340,137],[13,17,2477,15],[14,12,2492,41],[14,13,2533,283],[14,14,2816,389],[14,15,3205,209],[14,16,3414,73],[14,17,3487,2],[15,12,3489,189],[15,13,3678,270],[15,14,3948,529],[15,15,4477,346],[15,16,4823,13],[16,12,4836,85],[16,13,4921,220],[16,14,5141,270],[16,15,5411,87],[16,16,5498,59],[16,17,5557,25],[17,12,5582,348],[17,13,5930,76],[17,14,6006,69],[17,15,6075,40],[17,16,6115,9],[17,17,6124,27]]
+  "chunks": [[12,12,0,90],[12,13,90,294],[12,14,384,289],[12,15,673,17],[13,12,690,153],[13,13,843,612],[13,14,1455,392],[13,15,1847,482],[13,16,2329,140],[13,17,2469,15],[14,12,2484,33],[14,13,2517,281],[14,14,2798,374],[14,15,3172,221],[14,16,3393,96],[14,17,3489,1],[15,12,3490,204],[15,13,3694,285],[15,14,3979,507],[15,15,4486,353],[15,16,4839,6],[16,12,4845,69],[16,13,4914,207],[16,14,5121,281],[16,15,5402,96],[16,16,5498,65],[16,17,5563,25],[17,12,5588,347],[17,13,5935,95],[17,14,6030,67],[17,15,6097,46],[17,16,6143,6],[17,17,6149,5]]
  },
  "water": [
-  {"level":-37.6,"kind":"lake","polygon":[[122.26,-626.72],[117.67,-625.49],[112.77,-625.26],[108.33,-627.5],[103.51,-631.18],[100.64,-634.76],[99.29,-638.44],[99.89,-641.01],[105.92,-650.95],[107.95,-652.62],[110.36,-652.96],[111.57,-652.62],[113.38,-650.61],[123.32,-634.2],[123.32,-632.19],[121.66,-630.62]],"triangles":[15,0,1,15,1,2,14,15,2,13,14,2,12,13,2,11,12,2,10,11,2,9,10,2,8,9,2,7,8,2,6,7,2,5,6,2,4,5,2,3,4,2]},
-  {"level":-60.47,"kind":"lake","polygon":[[-490.57,-1223.95],[-490.34,-1214.01],[-493.96,-1205.75],[-503.07,-1196.26],[-512.79,-1193.58],[-519.42,-1194.25],[-524.32,-1198.04],[-527.71,-1203.51],[-529.59,-1209.99],[-529.74,-1216.25],[-527.71,-1223.73],[-524.09,-1228.98],[-518.67,-1233.55],[-510.76,-1236.46],[-504.73,-1237.24],[-498.25,-1234.78],[-493.35,-1229.76]],"triangles":[16,0,1,15,16,1,14,15,1,13,14,1,12,13,1,11,12,1,10,11,1,9,10,1,8,9,1,7,8,1,6,7,1,5,6,1,4,5,1,3,4,1,2,3,1]}
+  {"level":-35.59,"kind":"lake","polygon":[[136.58,-613.32],[131.98,-612.09],[127.09,-611.86],[122.64,-614.1],[117.82,-617.78],[114.96,-621.36],[113.6,-625.04],[114.2,-627.61],[120.23,-637.55],[122.26,-639.22],[124.68,-639.56],[125.88,-639.22],[127.69,-637.21],[137.63,-620.8],[137.63,-618.79],[135.98,-617.22]],"triangles":[15,0,1,15,1,2,14,15,2,13,14,2,12,13,2,11,12,2,10,11,2,9,10,2,8,9,2,7,8,2,6,7,2,5,6,2,4,5,2,3,4,2]},
+  {"level":-59.03,"kind":"lake","polygon":[[-476.25,-1210.55],[-476.03,-1200.61],[-479.64,-1192.35],[-488.76,-1182.85],[-498.47,-1180.17],[-505.1,-1180.84],[-510.0,-1184.64],[-513.39,-1190.11],[-515.27,-1196.59],[-515.42,-1202.84],[-513.39,-1210.33],[-509.77,-1215.57],[-504.35,-1220.15],[-496.44,-1223.06],[-490.41,-1223.84],[-483.94,-1221.38],[-479.04,-1216.36]],"triangles":[16,0,1,15,16,1,14,15,1,13,14,1,12,13,1,11,12,1,10,11,1,9,10,1,8,9,1,7,8,1,6,7,1,5,6,1,4,5,1,3,4,1,2,3,1]}
  ],
  "roofs": [],
  "counts": {
-  "buildings": 203,
-  "grandstands": 1,
+  "buildings": 192,
+  "grandstands": 19,
   "canopies": 6,
-  "bridges": 9,
+  "bridges": 7,
   "masts": 30,
   "lamps": 0,
   "skyline": 2,
@@ -120,13 +120,7 @@
  },
  "default_heights": [
   {"osm":"way/481768610","type":"yes","height":6.0,"from":"type default","dist":37},
-  {"osm":"way/123905481","type":"yes","height":6.0,"from":"type default","dist":38},
   {"osm":"way/294740481","type":"yes","height":6.0,"from":"type default","dist":41},
-  {"osm":"way/230979500","type":"yes","height":6.0,"from":"type default","dist":42},
-  {"osm":"way/231414067","type":"yes","height":6.0,"from":"type default","dist":42,"name":"Groupama Tanpálya"},
-  {"osm":"way/231443446","type":"yes","height":6.0,"from":"type default","dist":43},
-  {"osm":"way/230979485","type":"yes","height":6.0,"from":"type default","dist":45,"name":"Silver 5"},
-  {"osm":"way/1085151666","type":"yes","height":6.0,"from":"type default","dist":52},
   {"osm":"way/294740472","type":"yes","height":6.0,"from":"type default","dist":53},
   {"osm":"way/294740471","type":"yes","height":6.0,"from":"type default","dist":60},
   {"osm":"way/481768938","type":"yes","height":6.0,"from":"type default","dist":70},
@@ -135,7 +129,6 @@
   {"osm":"way/294740480","type":"yes","height":6.0,"from":"type default","dist":79},
   {"osm":"way/294740483","type":"yes","height":2.8,"from":"type default","dist":79},
   {"osm":"way/481768937","type":"yes","height":6.0,"from":"type default","dist":83},
-  {"osm":"way/294740484","type":"yes","height":6.0,"from":"type default","dist":86},
   {"osm":"way/611998431","type":"yes","height":6.0,"from":"type default","dist":96},
   {"osm":"way/294740473","type":"yes","height":2.8,"from":"type default","dist":98},
   {"osm":"way/294740476","type":"yes","height":6.0,"from":"type default","dist":110},
@@ -221,7 +214,6 @@
   {"osm":"way/1350679528","type":"house","height":6.0,"from":"type default","dist":604},
   {"osm":"way/1350612042","type":"house","height":6.0,"from":"type default","dist":606},
   {"osm":"way/1350615869","type":"house","height":6.0,"from":"type default","dist":610},
-  {"osm":"way/1350621758","type":"house","height":6.0,"from":"type default","dist":610},
   {"osm":"way/1350679545","type":"yes","height":6.0,"from":"type default","dist":610},
   {"osm":"way/1350679543","type":"yes","height":6.0,"from":"type default","dist":611},
   {"osm":"way/1350624774","type":"house","height":6.0,"from":"type default","dist":614},
@@ -229,7 +221,6 @@
   {"osm":"way/1454735156","type":"house","height":6.0,"from":"type default","dist":618},
   {"osm":"way/1350637967","type":"house","height":6.0,"from":"type default","dist":620},
   {"osm":"way/1350637958","type":"house","height":6.0,"from":"type default","dist":621},
-  {"osm":"way/1350612041","type":"house","height":6.0,"from":"type default","dist":622},
   {"osm":"way/1350679527","type":"house","height":6.0,"from":"type default","dist":622},
   {"osm":"way/1350615868","type":"house","height":6.0,"from":"type default","dist":628},
   {"osm":"way/1350637957","type":"house","height":6.0,"from":"type default","dist":630},
@@ -240,7 +231,6 @@
   {"osm":"way/1350637968","type":"house","height":6.0,"from":"type default","dist":640},
   {"osm":"way/1352926223","type":"house","height":6.0,"from":"type default","dist":640},
   {"osm":"way/1350679526","type":"house","height":6.0,"from":"type default","dist":644},
-  {"osm":"way/1350615867","type":"house","height":6.0,"from":"type default","dist":647},
   {"osm":"way/1350637956","type":"house","height":6.0,"from":"type default","dist":651},
   {"osm":"way/1350624772","type":"house","height":6.0,"from":"type default","dist":652},
   {"osm":"way/1454735157","type":"house","height":6.0,"from":"type default","dist":653},
@@ -258,14 +248,11 @@
   {"osm":"way/1352926225","type":"house","height":6.0,"from":"type default","dist":677},
   {"osm":"way/481669639","type":"industrial","height":9.0,"from":"type default","dist":680,"name":"Gnat Kft."},
   {"osm":"way/1350679524","type":"house","height":6.0,"from":"type default","dist":680},
-  {"osm":"way/1350637954","type":"house","height":6.0,"from":"type default","dist":683},
   {"osm":"way/1350624770","type":"house","height":6.0,"from":"type default","dist":686},
   {"osm":"way/1352926227","type":"house","height":6.0,"from":"type default","dist":693},
-  {"osm":"way/1350637971","type":"house","height":6.0,"from":"type default","dist":694},
   {"osm":"way/1352926229","type":"house","height":6.0,"from":"type default","dist":696},
   {"osm":"way/1350679523","type":"house","height":6.0,"from":"type default","dist":702},
   {"osm":"way/1350624769","type":"house","height":6.0,"from":"type default","dist":707},
-  {"osm":"way/1350637972","type":"house","height":6.0,"from":"type default","dist":710},
   {"osm":"way/1352926228","type":"house","height":6.0,"from":"type default","dist":711},
   {"osm":"way/1350679540","type":"yes","height":6.0,"from":"type default","dist":713},
   {"osm":"way/1352926230","type":"house","height":6.0,"from":"type default","dist":714},
@@ -277,7 +264,6 @@
   {"osm":"way/1350679521","type":"house","height":6.0,"from":"type default","dist":736},
   {"osm":"way/1352926232","type":"house","height":6.0,"from":"type default","dist":736},
   {"osm":"way/481669598","type":"yes","height":6.0,"from":"type default","dist":742},
-  {"osm":"way/1350624767","type":"house","height":6.0,"from":"type default","dist":743},
   {"osm":"way/1352926234","type":"house","height":6.0,"from":"type default","dist":747},
   {"osm":"way/1352926233","type":"house","height":6.0,"from":"type default","dist":752},
   {"osm":"way/1350679520","type":"house","height":6.0,"from":"type default","dist":756},
@@ -285,13 +271,12 @@
   {"osm":"way/1352926235","type":"house","height":6.0,"from":"type default","dist":769},
   {"osm":"way/1352926237","type":"house","height":6.0,"from":"type default","dist":772},
   {"osm":"way/1350679519","type":"house","height":6.0,"from":"type default","dist":775},
-  {"osm":"way/1198916349","type":"yes","height":6.0,"from":"type default","dist":780},
+  {"osm":"way/1198916349","type":"yes","height":6.0,"from":"type default","dist":779},
   {"osm":"way/481669637","type":"yes","height":6.0,"from":"type default","dist":781},
   {"osm":"way/1352926239","type":"house","height":6.0,"from":"type default","dist":788},
   {"osm":"way/481669599","type":"yes","height":6.0,"from":"type default","dist":790},
   {"osm":"way/1352926236","type":"house","height":6.0,"from":"type default","dist":790},
   {"osm":"way/1352926240","type":"yes","height":6.0,"from":"type default","dist":791},
-  {"osm":"way/1350679518","type":"house","height":6.0,"from":"type default","dist":795},
   {"osm":"way/481669600","type":"industrial","height":9.0,"from":"type default","dist":803},
   {"osm":"way/1352926260","type":"house","height":6.0,"from":"type default","dist":806},
   {"osm":"way/1352926238","type":"house","height":6.0,"from":"type default","dist":808},
@@ -303,10 +288,8 @@
   {"osm":"way/1352926244","type":"house","height":6.0,"from":"type default","dist":845},
   {"osm":"way/1352926245","type":"house","height":6.0,"from":"type default","dist":845},
   {"osm":"way/481669634","type":"yes","height":6.0,"from":"type default","dist":855},
-  {"osm":"way/1352926247","type":"house","height":6.0,"from":"type default","dist":863},
   {"osm":"way/1352926246","type":"house","height":6.0,"from":"type default","dist":867},
   {"osm":"way/481669607","type":"industrial","height":9.0,"from":"type default","dist":872},
-  {"osm":"way/1454735155","type":"house","height":6.0,"from":"type default","dist":880},
   {"osm":"way/481669633","type":"yes","height":6.0,"from":"type default","dist":917,"name":"Ravatalozó"},
   {"osm":"way/481669606","type":"yes","height":6.0,"from":"type default","dist":925},
   {"osm":"way/481669605","type":"yes","height":6.0,"from":"type default","dist":949},
@@ -316,7 +299,10 @@
   {"osm":"way/481669602","type":"yes","height":6.0,"from":"type default","dist":1015},
   {"osm":"way/481669604","type":"industrial","height":9.0,"from":"type default","dist":1025},
   {"osm":"way/481669610","type":"industrial","height":9.0,"from":"type default","dist":1103},
+  {"osm":"way/810518023","type":"yes","height":6.0,"from":"type default","dist":1209},
   {"osm":"way/810518022","type":"yes","height":6.0,"from":"type default","dist":1229},
-  {"osm":"way/810518021","type":"yes","height":6.0,"from":"type default","dist":1252}
+  {"osm":"way/810518021","type":"yes","height":6.0,"from":"type default","dist":1252},
+  {"osm":"way/810518027","type":"yes","height":6.0,"from":"type default","dist":1261},
+  {"osm":"way/810518028","type":"yes","height":6.0,"from":"type default","dist":1276}
  ]
 }

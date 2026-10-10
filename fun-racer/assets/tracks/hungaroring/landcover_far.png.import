@@ -2,10 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
+uid="uid://drhwei3k2r7nn"
+path="res://.godot/imported/landcover_far.png-19fd7854dcbc1a0198559843346a2e49.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/tracks/hungaroring/landcover_far.png"
+dest_files=["res://.godot/imported/landcover_far.png-19fd7854dcbc1a0198559843346a2e49.ctex"]
 
 [params]
 
