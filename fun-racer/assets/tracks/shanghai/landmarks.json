@@ -1,0 +1,38 @@
+[
+ {
+  "model": "main_complex",
+  "at": {
+   "xz": [
+    0.22,
+    -0.01
+   ]
+  },
+  "y_offset": 0.3,
+  "yaw_deg": 0.0,
+  "scale": 1.0
+ },
+ {
+  "model": "lotus_h",
+  "at": {
+   "xz": [
+    453.1,
+    63.1
+   ]
+  },
+  "y_offset": 0.3,
+  "yaw_deg": 0.0,
+  "scale": 1.0
+ },
+ {
+  "model": "lotus_k",
+  "at": {
+   "xz": [
+    350.0,
+    136.5
+   ]
+  },
+  "y_offset": 0.3,
+  "yaw_deg": 0.0,
+  "scale": 1.0
+ }
+]
