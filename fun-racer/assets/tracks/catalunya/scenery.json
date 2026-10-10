@@ -33,11 +33,11 @@
    "nz": 240
   },
   "near_share": {
-   "grass": 0.1649,
+   "grass": 0.1664,
    "forest": 0.0733,
    "water": 0.0051,
    "sand": 0.0,
-   "paved": 0.4388,
+   "paved": 0.4372,
    "farmland": 0.1457,
    "rock": 0.0,
    "gravel": 0.0392,
@@ -63,17 +63,17 @@
    "emissive_light"
   ],
   "triangles": {
-   "building_wall": 4338,
+   "building_wall": 4343,
    "building_roof": 1452,
    "building_glass": 0,
-   "stand_seats": 1846,
-   "stand_structure": 2016,
+   "stand_seats": 2220,
+   "stand_structure": 2392,
    "concrete": 1240,
-   "metal": 1062,
+   "metal": 1074,
    "emissive_window": 0,
    "emissive_light": 0
   },
-  "vertices": 23102,
+  "vertices": 24655,
   "chunks": 50
  },
  "trees": {
@@ -95,8 +95,8 @@
    "bush"
   ],
   "species_counts": {
-   "broadleaved": 1366,
-   "needleleaved": 677,
+   "broadleaved": 10,
+   "needleleaved": 2033,
    "palm": 0,
    "bush": 1244
   },
@@ -134,7 +134,7 @@
  "roofs": [],
  "counts": {
   "buildings": 358,
-  "grandstands": 18,
+  "grandstands": 22,
   "canopies": 1,
   "bridges": 29,
   "masts": 2,
@@ -143,10 +143,8 @@
   "cut_by_road": 0
  },
  "default_heights": [
-  {"osm":"way/1372681544","type":"yes","height":6.0,"from":"type default","dist":6,"name":"VIP Rooftop"},
   {"osm":"way/152008769","type":"yes","height":2.8,"from":"type default","dist":29},
   {"osm":"way/152007401","type":"yes","height":2.8,"from":"type default","dist":31},
-  {"osm":"way/151609932","type":"yes","height":6.0,"from":"type default","dist":36},
   {"osm":"way/151594580","type":"yes","height":6.0,"from":"type default","dist":37},
   {"osm":"way/152008768","type":"yes","height":2.8,"from":"type default","dist":37},
   {"osm":"way/152034063","type":"yes","height":6.0,"from":"type default","dist":39,"name":"Panorama Village"},
@@ -155,7 +153,6 @@
   {"osm":"way/152008771","type":"yes","height":6.0,"from":"type default","dist":51},
   {"osm":"way/152008770","type":"yes","height":2.8,"from":"type default","dist":52},
   {"osm":"way/1427281567","type":"yes","height":6.0,"from":"type default","dist":53,"name":"Garden Club"},
-  {"osm":"way/33742578","type":"yes","height":6.0,"from":"type default","dist":54,"name":"Boxes"},
   {"osm":"way/151609934","type":"yes","height":6.0,"from":"type default","dist":54},
   {"osm":"way/1167920784","type":"yes","height":6.0,"from":"type default","dist":54,"name":"A"},
   {"osm":"way/1167920785","type":"yes","height":6.0,"from":"type default","dist":54,"name":"B"},
@@ -164,7 +161,6 @@
   {"osm":"way/1427308284","type":"yes","height":6.0,"from":"type default","dist":54},
   {"osm":"way/1167920786","type":"yes","height":6.0,"from":"type default","dist":55,"name":"C"},
   {"osm":"way/1427309741","type":"yes","height":6.0,"from":"type default","dist":55},
-  {"osm":"way/151609926","type":"yes","height":6.0,"from":"type default","dist":56,"name":"Centre mèdic"},
   {"osm":"way/151597857","type":"yes","height":6.0,"from":"type default","dist":59},
   {"osm":"way/152007400","type":"yes","height":6.0,"from":"type default","dist":61},
   {"osm":"way/1427308689","type":"yes","height":6.0,"from":"type default","dist":62},

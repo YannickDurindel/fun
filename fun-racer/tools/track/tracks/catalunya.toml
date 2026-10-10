@@ -317,3 +317,85 @@ bank_keys = [
   [4470.0, 0.025, "onto the main straight: +2 to +3 %"],
   [4640.0, 0.02, ""],
 ]
+
+# ---- surroundings (race weekend). References: ICGC orthophoto (25 cm, CC BY 4.0) for the
+# footprints and positions; 2024/2025 race photos (Wikimedia Commons "2024 Spanish Grand
+# Prix", circuitcat.com / barcelonacircuithospitality.com galleries) for heights and shapes;
+# circuitcat.com news "The Rooftop stands as an iconic new emblem" (June 2024) for the
+# Rooftop. Heights without a published figure are estimates from photos (storeys of about
+# 4 m, people and cars for scale) and say so.
+#
+# environment.json (same references): Spanish GP in June at 15:00 CEST; sun computed for
+# 41.57 N, 1 June, 13:00 UTC: elevation 65 deg, bearing 223 deg. Dry yellow-olive slopes,
+# harvested cereal fields, dark Aleppo / stone pine woods, pale beige gravel traps, hazy sky;
+# red / white seats in the main grandstand, blue and grey in the others, sold out.
+[surroundings]
+tree_species = "needleleaved"   # untagged woods round the circuit are Aleppo / stone pine
+
+[[surroundings.building]]       # pit building: garages, a hospitality floor and the roof
+osm = "way/33742578"            # canopy (photo of the main straight, 2025): estimate 13 m
+height = 13.0
+
+[[surroundings.building]]       # control tower at the end of the pit building, beside the
+osm = "way/151609932"           # finish line: about 7 storeys and the red top box in the
+height = 28.0                   # 2025 photo, estimate 28 m
+
+[[surroundings.building]]       # Graderia principal: two tiers, top row about 21 m above
+osm = "way/33742643"            # the ground (photos), estimate
+height = 21.0
+
+[[surroundings.building]]       # medical centre behind the paddock: two storeys, estimate
+osm = "way/151609926"
+height = 8.0
+
+[[surroundings.building]]       # "VIP Rooftop" (the Rooftop, opened June 2024) is a bridge
+osm = "way/1372681544"          # over the back straight: built by hand below, off the ground
+remove = true
+
+[[surroundings.add]]            # the Rooftop: the bridge over the back straight. Underside
+polygon = [[41.572487, 2.260407], [41.572562, 2.260598], [41.572164, 2.260877],
+           [41.572125, 2.260986], [41.57196, 2.260886], [41.572033, 2.260673],
+           [41.5721, 2.260714]]
+kind = "building"               # about 7.5 m above the road, top floor and roof canopy
+min_height = 7.5                # about 17 m (race photo 2025, cars for scale): estimates
+height = 17.0
+
+[[surroundings.add]]            # the Rooftop's south tower, 30 m (circuitcat.com), at the
+polygon = [[41.57196, 2.260886], [41.572035, 2.260932], [41.57201, 2.261005],
+           [41.571935, 2.26096]]
+kind = "building"               # south-east end of the bridge
+height = 30.0
+
+# Tribuna G wraps round the outside of Banc Sabadell in one curved outline. A grandstand
+# rises along one axis of its footprint, and for this banana shape the axis came out pointing
+# at the track: the stand showed its 14 m back wall to the cars. It is rebuilt as five
+# straight pieces on the same outline (corner points of the OSM way), each facing the track.
+[[surroundings.exclude]]
+osm = "way/152007381"
+
+[[surroundings.add]]
+polygon = [[41.573384, 2.258071], [41.573753, 2.258175], [41.573846, 2.258532], [41.573272, 2.258344]]
+kind = "grandstand"
+
+[[surroundings.add]]
+polygon = [[41.573753, 2.258175], [41.574301, 2.258654], [41.57416, 2.258864], [41.573846, 2.258532]]
+kind = "grandstand"
+
+[[surroundings.add]]
+polygon = [[41.574301, 2.258654], [41.574452, 2.258949], [41.574276, 2.259082], [41.57416, 2.258864]]
+kind = "grandstand"
+
+[[surroundings.add]]
+polygon = [[41.574452, 2.258949], [41.574744, 2.259662], [41.574562, 2.259818], [41.574276, 2.259082]]
+kind = "grandstand"
+
+[[surroundings.add]]
+polygon = [[41.574744, 2.259662], [41.575061, 2.260183], [41.574897, 2.260366], [41.574562, 2.259818]]
+kind = "grandstand"
+
+[[surroundings.add]]            # the roof over the Graderia principal (2002, Tilke): one
+polygon = [[41.570999, 2.26265], [41.568801, 2.260799], [41.568919, 2.260548],
+           [41.571117, 2.262399]]
+kind = "metal"                  # cantilevered steel roof over the whole stand, its edge
+min_height = 25.0               # about 25 m up (photos; estimate)
+height = 26.2
