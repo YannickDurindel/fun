@@ -165,12 +165,12 @@ func test_race_scene_spawns_car_on_track() -> void:
 		# The wings span the road 30 m up: nothing of them may stand on it.
 		var complex := track.scenery.get_node("Landmarks").get_child(0) as Node3D
 		assert_true(absf(track.data.lateral_offset(complex.global_position)) < 1.0, "main complex anchored on the finish line")
-		var road_y := track.data.position_at(0.0).y
+		var line_y := track.data.position_at(0.0).y
 		var nearest_low := INF
 		for mi in Scenery.mesh_instances(complex):
 			for v: Vector3 in mi.mesh.get_faces():
 				var w := mi.global_transform * v
-				if w.y - road_y < 7.0:   # everything a car could reach: towers, columns, gantry posts
+				if w.y - line_y < 7.0:   # everything a car could reach: towers, columns, gantry posts
 					nearest_low = minf(nearest_low, absf(track.data.lateral_offset(w)))
 		# The gantry posts stand 12.5 m from the centreline of a road 15 m wide.
 		assert_true(nearest_low > 11.0, "nearest low landmark face: %.1f m from the centreline" % nearest_low)
