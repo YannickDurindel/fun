@@ -5,7 +5,7 @@
   "country": "Singapore",
   "country_code": "SG",
   "city": "Singapore",
-  "length_m": 4940,
+  "length_m": 4927,
   "turns": 19,
   "scene": "res://scenes/tracks/marina_bay.tscn",
   "track_json": "res://assets/tracks/marina_bay/track.json",

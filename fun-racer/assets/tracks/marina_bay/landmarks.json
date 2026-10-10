@@ -1,0 +1,7 @@
+[
+ {"model": "pit_building", "at": {"s": 68.5, "side": -1, "dist": 34.0}},
+ {"model": "flyer", "at": {"latlon": [1.289408, 103.863133]}, "yaw_deg": -141.8, "y_offset": 0.3},
+ {"model": "anderson_bridge", "at": {"s": 2960.7, "side": 1, "dist": 0.0}},
+ {"model": "esplanade_concert_hall", "at": {"latlon": [1.289372, 103.855184]}, "yaw_deg": 25.3},
+ {"model": "esplanade_theatre", "at": {"latlon": [1.290207, 103.855538]}, "yaw_deg": -67.3}
+]
