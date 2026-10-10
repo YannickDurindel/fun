@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b7ib6t8wif6nx"
-path="res://.godot/imported/scenery.glb-d7814b121abbaee3a5ca98d318aa62e1.scn"
+uid="uid://dfc8iebqytelq"
+path="res://.godot/imported/circuit.glb-e7e387d98dedc35fddd3ad4d832c0720.scn"
 
 [deps]
 
-source_file="res://assets/tracks/las_vegas/scenery.glb"
-dest_files=["res://.godot/imported/scenery.glb-d7814b121abbaee3a5ca98d318aa62e1.scn"]
+source_file="res://assets/tracks/las_vegas/landmarks/circuit.glb"
+dest_files=["res://.godot/imported/circuit.glb-e7e387d98dedc35fddd3ad4d832c0720.scn"]
 
 [params]
 
@@ -23,14 +23,14 @@ nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
 nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true
-meshes/ensure_tangents=false
-meshes/generate_lods=false
-meshes/create_shadow_meshes=false
-meshes/light_baking=0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
-meshes/force_disable_compression=true
+meshes/force_disable_compression=false
 skins/use_named_skins=true
-animation/import=false
+animation/import=true
 animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
