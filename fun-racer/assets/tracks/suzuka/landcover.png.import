@@ -2,10 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
+uid="uid://cr2kgqsj46do6"
+path="res://.godot/imported/landcover.png-34147a4481f7c802abe536123f05683d.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/tracks/suzuka/landcover.png"
+dest_files=["res://.godot/imported/landcover.png-34147a4481f7c802abe536123f05683d.ctex"]
 
 [params]
 

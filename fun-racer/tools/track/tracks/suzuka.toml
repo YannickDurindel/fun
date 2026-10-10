@@ -15,28 +15,510 @@ relation = 284570
 finish = [34.844698, 136.538928]
 start_offset_m = 300.0
 
+# The map draws the run from Dunlop down to Degner 1 about 3 m to the right of the road
+# (measured on the GSI seamless orthophoto, 0.49 m per pixel: tarmac from 7.3 m left to 1.0 m
+# right of the mapped line all the way from s = 2100 to 2250; everywhere else the line is
+# within 1.5 m of the middle of the road).
+[[layout.shift]]
+s = [2095.0, 2255.0]
+lateral_m = -3.0
+blend = 40.0
+
 [elevation]
 dataset = "terrarium"
 
-# The crossover. The DEM gives both roads nearly the same height there (10.5 m and 12.1 m
-# above the finish line): the back straight shows the cutting under its bridge as a 5 m dip,
-# and the road under the bridge shows the embankment as a 2 m hump.
-# Lower road, Degner 2 to the climb towards the hairpin: a steady 0.6 % climb, no hump.
-[[elevation.override]]
-s = [2430.0, 2630.0]
-straighten = true
+# The road's heights are pinned every 50 m to the Geospatial Information Authority of Japan's
+# 5 m airborne-laser ground model (GSI elevation API, cyberjapandata2.gsi.go.jp, source
+# "5m (laser)", read at the centreline in October 2026; heights are metres above the timing
+# line, which the model has at 37.3 m above sea level). Terrain Tiles are a 30 m surface model
+# here and put the lap up to 6 m off: First and Second Curve too high (the lowest point of the
+# lap is the Second Curve, not the exit of it), the hairpin, Spoon and the back straight 3 to
+# 6 m too high (tree tops). What the laser model gives:
+#   * elevation range 40.6 m (Suzuka's published figure is 40.4 m; the Japanese Wikipedia's
+#     52 m does not fit any ground model);
+#   * main straight a steady 2.8 % down to First Curve (Takenaka, builder of the 2009
+#     grandstand: "2.8 percent downward pitch toward the first corner");
+#   * Dunlop 7.3 % average over 100 m (ja.wikipedia: 7.8 %, the steepest climb of the lap);
+#   * 6.2 m between the two road surfaces at the crossover, which replaces the 6.8 m this
+#     recipe used to set by hand with [[elevation.override]] entries.
+# Keys this close together (under key_join_m) are joined into one curve, so the profile
+# between them is the laser model's and nothing of the tile profile is left.
+[[elevation.key]]
+s = 0.0
+y = 0.0
+note = "timing line"
 
-# Back straight from 200 m before the bridge to the exit of 130R: a steady gentle descent,
-# no dip, ...
-[[elevation.override]]
-s = [4690.0, 4990.0]
-straighten = true
+[[elevation.key]]
+s = 50.0
+y = -1.4
 
-# ... lifted a little at the bridge: 6.8 m between the two road surfaces.
-[[elevation.override]]
-s = [4850.0, 4930.0]
-offset = 0.8
-blend = 120.0
+[[elevation.key]]
+s = 100.0
+y = -2.8
+
+[[elevation.key]]
+s = 150.0
+y = -4.2
+
+[[elevation.key]]
+s = 200.0
+y = -5.6
+
+[[elevation.key]]
+s = 250.0
+y = -7.1
+
+[[elevation.key]]
+s = 300.0
+y = -8.5
+
+[[elevation.key]]
+s = 350.0
+y = -9.8
+
+[[elevation.key]]
+s = 400.0
+y = -11.2
+
+[[elevation.key]]
+s = 450.0
+y = -12.5
+
+[[elevation.key]]
+s = 500.0
+y = -14.0
+
+[[elevation.key]]
+s = 550.0
+y = -15.3
+
+[[elevation.key]]
+s = 600.0
+y = -16.7
+
+[[elevation.key]]
+s = 650.0
+y = -18.1
+
+[[elevation.key]]
+s = 700.0
+y = -19.7
+
+[[elevation.key]]
+s = 750.0
+y = -20.1
+note = "lowest point of the lap, Second Curve"
+
+[[elevation.key]]
+s = 800.0
+y = -18.9
+
+[[elevation.key]]
+s = 850.0
+y = -17.6
+
+[[elevation.key]]
+s = 900.0
+y = -16.9
+
+[[elevation.key]]
+s = 950.0
+y = -16.1
+
+[[elevation.key]]
+s = 999.0
+y = -15.2
+
+[[elevation.key]]
+s = 1049.0
+y = -14.4
+
+[[elevation.key]]
+s = 1099.0
+y = -13.3
+
+[[elevation.key]]
+s = 1149.0
+y = -11.6
+
+[[elevation.key]]
+s = 1199.0
+y = -9.3
+
+[[elevation.key]]
+s = 1249.0
+y = -7.3
+
+[[elevation.key]]
+s = 1299.0
+y = -5.0
+
+[[elevation.key]]
+s = 1349.0
+y = -2.7
+
+[[elevation.key]]
+s = 1399.0
+y = -0.3
+
+[[elevation.key]]
+s = 1449.0
+y = 1.5
+
+[[elevation.key]]
+s = 1499.0
+y = 2.0
+
+[[elevation.key]]
+s = 1549.0
+y = 1.4
+
+[[elevation.key]]
+s = 1599.0
+y = 0.2
+
+[[elevation.key]]
+s = 1649.0
+y = 0.0
+
+[[elevation.key]]
+s = 1699.0
+y = 2.8
+
+[[elevation.key]]
+s = 1749.0
+y = 6.1
+
+[[elevation.key]]
+s = 1799.0
+y = 10.1
+
+[[elevation.key]]
+s = 1849.0
+y = 12.9
+
+[[elevation.key]]
+s = 1899.0
+y = 14.2
+note = "crest after Dunlop"
+
+[[elevation.key]]
+s = 1949.0
+y = 14.1
+
+[[elevation.key]]
+s = 1999.0
+y = 13.5
+
+[[elevation.key]]
+s = 2049.0
+y = 13.0
+
+[[elevation.key]]
+s = 2099.0
+y = 12.2
+
+[[elevation.key]]
+s = 2149.0
+y = 11.5
+
+[[elevation.key]]
+s = 2199.0
+y = 11.0
+
+[[elevation.key]]
+s = 2249.0
+y = 10.3
+
+[[elevation.key]]
+s = 2299.0
+y = 9.3
+
+[[elevation.key]]
+s = 2349.0
+y = 8.0
+
+[[elevation.key]]
+s = 2399.0
+y = 6.6
+
+[[elevation.key]]
+s = 2449.0
+y = 6.4
+
+[[elevation.key]]
+s = 2499.0
+y = 6.1
+note = "under the bridge"
+
+[[elevation.key]]
+s = 2549.0
+y = 6.2
+
+[[elevation.key]]
+s = 2599.0
+y = 6.5
+
+[[elevation.key]]
+s = 2649.0
+y = 7.8
+
+[[elevation.key]]
+s = 2699.0
+y = 10.1
+
+[[elevation.key]]
+s = 2749.0
+y = 12.6
+
+[[elevation.key]]
+s = 2799.0
+y = 14.9
+
+[[elevation.key]]
+s = 2849.0
+y = 17.3
+
+[[elevation.key]]
+s = 2899.0
+y = 18.2
+note = "hairpin"
+
+[[elevation.key]]
+s = 2948.0
+y = 18.4
+
+[[elevation.key]]
+s = 2998.0
+y = 18.7
+
+[[elevation.key]]
+s = 3048.0
+y = 19.1
+
+[[elevation.key]]
+s = 3098.0
+y = 19.5
+
+[[elevation.key]]
+s = 3148.0
+y = 19.8
+
+[[elevation.key]]
+s = 3198.0
+y = 20.2
+
+[[elevation.key]]
+s = 3248.0
+y = 19.6
+
+[[elevation.key]]
+s = 3298.0
+y = 17.6
+
+[[elevation.key]]
+s = 3348.0
+y = 15.6
+
+[[elevation.key]]
+s = 3398.0
+y = 14.8
+
+[[elevation.key]]
+s = 3448.0
+y = 15.3
+
+[[elevation.key]]
+s = 3498.0
+y = 17.0
+
+[[elevation.key]]
+s = 3548.0
+y = 18.3
+
+[[elevation.key]]
+s = 3598.0
+y = 19.2
+
+[[elevation.key]]
+s = 3648.0
+y = 20.0
+
+[[elevation.key]]
+s = 3698.0
+y = 20.2
+
+[[elevation.key]]
+s = 3748.0
+y = 20.3
+
+[[elevation.key]]
+s = 3798.0
+y = 20.3
+
+[[elevation.key]]
+s = 3848.0
+y = 20.5
+note = "highest point, Spoon"
+
+[[elevation.key]]
+s = 3898.0
+y = 20.4
+
+[[elevation.key]]
+s = 3948.0
+y = 20.4
+
+[[elevation.key]]
+s = 3998.0
+y = 19.0
+
+[[elevation.key]]
+s = 4048.0
+y = 16.3
+
+[[elevation.key]]
+s = 4098.0
+y = 12.4
+
+[[elevation.key]]
+s = 4148.0
+y = 9.0
+
+[[elevation.key]]
+s = 4198.0
+y = 7.1
+
+[[elevation.key]]
+s = 4248.0
+y = 6.9
+note = "dip of the back straight"
+
+[[elevation.key]]
+s = 4298.0
+y = 7.5
+
+[[elevation.key]]
+s = 4348.0
+y = 8.7
+
+[[elevation.key]]
+s = 4398.0
+y = 9.8
+
+[[elevation.key]]
+s = 4448.0
+y = 11.1
+
+[[elevation.key]]
+s = 4498.0
+y = 12.0
+
+[[elevation.key]]
+s = 4548.0
+y = 12.4
+
+[[elevation.key]]
+s = 4598.0
+y = 12.3
+
+[[elevation.key]]
+s = 4648.0
+y = 12.4
+
+[[elevation.key]]
+s = 4698.0
+y = 12.3
+
+[[elevation.key]]
+s = 4748.0
+y = 12.3
+
+[[elevation.key]]
+s = 4798.0
+y = 12.3
+
+[[elevation.key]]
+s = 4847.0
+y = 12.3
+
+[[elevation.key]]
+s = 4889.0
+y = 12.3
+note = "bridge deck: level between the samples either side (the ground model shows the road under it, +6.0 m)"
+
+[[elevation.key]]
+s = 4947.0
+y = 12.4
+
+[[elevation.key]]
+s = 4997.0
+y = 12.6
+
+[[elevation.key]]
+s = 5047.0
+y = 13.2
+
+[[elevation.key]]
+s = 5097.0
+y = 14.0
+
+[[elevation.key]]
+s = 5147.0
+y = 14.7
+
+[[elevation.key]]
+s = 5197.0
+y = 15.5
+
+[[elevation.key]]
+s = 5247.0
+y = 16.3
+
+[[elevation.key]]
+s = 5297.0
+y = 17.3
+
+[[elevation.key]]
+s = 5347.0
+y = 17.8
+note = "chicane"
+
+[[elevation.key]]
+s = 5397.0
+y = 16.9
+
+[[elevation.key]]
+s = 5447.0
+y = 16.0
+
+[[elevation.key]]
+s = 5497.0
+y = 14.2
+
+[[elevation.key]]
+s = 5547.0
+y = 10.7
+
+[[elevation.key]]
+s = 5597.0
+y = 7.7
+
+[[elevation.key]]
+s = 5647.0
+y = 5.1
+
+[[elevation.key]]
+s = 5697.0
+y = 3.2
+
+[[elevation.key]]
+s = 5747.0
+y = 1.7
+
+[[elevation.key]]
+s = 5797.0
+y = 0.3
 
 # The 18 official turns. Automatic detection finds 22 corners: it splits the long Dunlop
 # left-hander in three and the 200R right-hander after the hairpin in three, so the table is
@@ -148,3 +630,264 @@ id = "T18"
 name = "Last Curve"
 direction = "right"
 s = 5501.2
+
+[road]
+# Full paved width between the outer edges of the white lines. Suzuka publishes only the range
+# (10 to 16 m in the 2019 Super Formula data sheet, 10 to 14 m on Honda's older circuit page);
+# the table is measured on the GSI seamless orthophoto (0.49 m per pixel), dark tarmac between
+# the edge lines every 10 m of the lap, checked by hand at s = 330 (14.0 m), 1160 (10.1 m),
+# 2700 (8.9 m) and 4600 (9.6 m). Good to about half a metre: estimates, not survey figures.
+# The grid and the pit straight could not be measured between s = 0 and 270 (the shadow of the
+# pit building lies on them) and take the width of the straight either side.
+width_keys = [
+  [0.0, 15.0, "pit straight and grid (14.2 to 15.6 m measured at s = 280 to 370)"],
+  [380.0, 15.0, ""],
+  [450.0, 12.5, "past the pit exit: the straight narrows towards First Curve"],
+  [590.0, 12.5, ""],
+  [630.0, 11.0, "T1 First Curve"],
+  [900.0, 11.0, "T2 Second Curve"],
+  [930.0, 10.5, "S Curves, Gyaku Bank and Dunlop: 10.0 to 10.5 m all the way"],
+  [1830.0, 10.5, ""],
+  [1870.0, 10.0, "over the crest and down to Degner"],
+  [2250.0, 10.0, ""],
+  [2275.0, 11.5, "T8 Degner 1 to T9 Degner 2"],
+  [2435.0, 11.5, ""],
+  [2460.0, 10.5, "under the bridge"],
+  [2530.0, 10.5, ""],
+  [2600.0, 9.5, "110R climb: the narrowest part of the lap"],
+  [2840.0, 9.5, ""],
+  [2860.0, 12.0, "T11 hairpin: opens to 15 m just after the apex (13.8 m measured at s = 2890 to 2910)"],
+  [2895.0, 15.0, ""],
+  [2915.0, 15.0, ""],
+  [2950.0, 12.0, ""],
+  [2985.0, 10.0, "200R"],
+  [3130.0, 10.0, ""],
+  [3160.0, 11.0, ""],
+  [3370.0, 11.0, ""],
+  [3410.0, 9.5, "dip before Spoon"],
+  [3470.0, 9.5, ""],
+  [3500.0, 10.5, "approach and T13 Spoon"],
+  [3920.0, 10.5, ""],
+  [3945.0, 11.5, "T14 Spoon exit"],
+  [4000.0, 11.5, ""],
+  [4050.0, 10.0, "back straight: 9.6 m to the West Course pit line, 10 m with the line"],
+  [4930.0, 10.0, ""],
+  [4960.0, 10.5, "T15 130R and the run to the chicane"],
+  [5330.0, 10.5, ""],
+  [5350.0, 10.0, "T16 / T17 chicane"],
+  [5440.0, 10.0, ""],
+  [5470.0, 10.5, "T18 Last Curve"],
+  [5600.0, 11.0, ""],
+  [5650.0, 14.5, "onto the pit straight"],
+  [5700.0, 15.0, ""],
+]
+# Banking: Suzuka has no banked corner and publishes no camber figures, so the automatic
+# camber (2.5 % at a 100 m radius, capped at 3 %) is kept, except at Gyaku Bank ("reverse
+# bank"): ja.wikipedia (鈴鹿サーキット) says it has no cant at all, which is what makes it feel
+# reversed after the cambered S Curves.
+[[road.override]]
+s = [1450.0, 1600.0]
+bank = 0.0
+blend = 40.0
+
+[surroundings]
+# Reference for everything below: the GSI seamless orthophoto (Geospatial Information
+# Authority of Japan, cyberjapandata.gsi.go.jp/xyz/seamlessphoto, 0.49 m per pixel at zoom 18)
+# laid over the centreline, and the map's own footprints. Suzuka is well mapped: every
+# grandstand, the pit building and the amusement park are in OpenStreetMap, but without a
+# single height, and eleven stands are leisure=bleachers without a building tag, which the
+# bake does not build.
+tree_species = "broadleaved"   # evergreen oak and bamboo hills with a few cedar stands
+
+# ---- heights (the map has none; all estimates from the number of floors or rows) ----------
+[[surroundings.building]]
+osm = 184422099    # pit building of 2009: garages and two floors of suites and offices
+height = 12.0
+[[surroundings.building]]
+osm = 184107052    # V1, the lower tier of the main grandstand: 15 m deep
+height = 7.0
+[[surroundings.building]]
+osm = 183394522    # V2, the upper tier: 22 m deep and steep, under the roof
+height = 20.0
+[[surroundings.building]]
+osm = 183394524    # VIP suite block behind the main grandstand
+height = 14.0
+[[surroundings.building]]
+osm = 184430907    # Centre House, the paddock restaurant: two high floors
+height = 9.0
+[[surroundings.building]]
+osm = 184415318    # West Course control tower: three floors
+height = 10.0
+[[surroundings.building]]
+osm = 183394069    # S stand at the exit of Last Curve
+height = 9.0
+# The other stands are open terraces of 10 to 20 rows laid on the hillside (the map draws the
+# whole slope they sit on, up to 240 m deep, so the depth rule would make 30 m walls of them):
+# heights from the row counts on the orthophoto and trackside photos, estimates.
+[[surroundings.building]]
+osm = 184120096    # A1, end of the pit straight
+height = 7.0
+[[surroundings.building]]
+osm = 184143131    # B1, First Curve
+height = 8.0
+[[surroundings.building]]
+osm = 184143132    # B2, First Curve
+height = 9.0
+[[surroundings.building]]
+osm = 184143133    # C, Second Curve and the S Curves
+height = 10.0
+[[surroundings.building]]
+osm = 469395390    # D5, S Curves
+height = 6.0
+[[surroundings.building]]
+osm = 469368057    # D1 to D4, S Curves
+height = 9.0
+[[surroundings.building]]
+osm = 467982372    # E, Dunlop
+height = 8.0
+[[surroundings.building]]
+osm = 184102012    # G, after Degner 2
+height = 7.0
+[[surroundings.building]]
+osm = 184102361    # G, 130R
+height = 7.0
+[[surroundings.building]]
+osm = 183999779    # hairpin exit
+height = 6.0
+[[surroundings.building]]
+osm = 183393102    # Q2, chicane
+height = 6.0
+[[surroundings.building]]
+osm = 183393101    # Q2, chicane
+height = 6.0
+[[surroundings.building]]
+osm = 183393103    # Q2, chicane
+height = 6.0
+[[surroundings.building]]
+osm = 183393132    # Q1, chicane
+height = 5.0
+
+# ---- map errors and huts in the way ------------------------------------------------------
+# way 469591633 is tagged building=yes but is the paved strip along the left of the pit
+# straight (6 to 14 m from the centreline, s = 300 to 560): it would be a 260 m long wall on
+# the road edge.
+[[surroundings.exclude]]
+osm = "way/469591633"
+# Marshal posts and signal huts of 3 to 7 m that the map puts between the road edge and the
+# barrier line, or in a gravel trap.
+[[surroundings.exclude]]
+osm = "way/184419749"
+[[surroundings.exclude]]
+osm = "way/184419751"
+[[surroundings.exclude]]
+osm = "way/184419746"
+[[surroundings.exclude]]
+osm = "way/184430908"
+[[surroundings.exclude]]
+osm = "way/184430910"
+[[surroundings.exclude]]
+osm = "way/184432634"
+
+# ---- the main grandstand's roof and the pit complex ---------------------------------------
+# One white roof covers both tiers from the exit of Last Curve to 250 m past the timing line
+# (orthophoto: 22 to 58 m left of the centreline), carried by the building behind the upper
+# tier. 25 m is an estimate: five metres above the last row.
+[[surroundings.add]]
+polygon = [[34.845153, 136.538784], [34.844737, 136.539204], [34.844321, 136.539622], [34.843919, 136.540026], [34.843504, 136.540444], [34.843101, 136.540848], [34.843318, 136.541169], [34.843721, 136.540765], [34.844137, 136.540347], [34.844539, 136.539943], [34.844954, 136.539525], [34.845373, 136.539103]]
+kind = "metal"
+height = 25.6
+min_height = 25.0
+
+[[surroundings.add]]
+polygon = [[34.845364, 136.539090], [34.844946, 136.539512], [34.844530, 136.539930], [34.844128, 136.540334], [34.843712, 136.540752], [34.843310, 136.541157], [34.843336, 136.541195], [34.843738, 136.540790], [34.844154, 136.540372], [34.844556, 136.539968], [34.844972, 136.539550], [34.845390, 136.539128]]
+kind = "building"
+height = 25.0
+
+# Pit wall: the map has none, and the trackside barrier on that side stands behind the pit
+# lane (see scripts/track/trackside_layouts/suzuka.gd). 1.8 to 2.4 m from the road edge, from the
+# pit entry to the pit exit (s = 415).
+[[surroundings.add]]
+polygon = [[34.845389, 136.538081], [34.845000, 136.538493], [34.844585, 136.538911], [34.844184, 136.539316], [34.843782, 136.539720], [34.843380, 136.540124], [34.842978, 136.540527], [34.842576, 136.540931], [34.842173, 136.541333], [34.841769, 136.541735], [34.841766, 136.541730], [34.842169, 136.541328], [34.842572, 136.540926], [34.842974, 136.540522], [34.843376, 136.540119], [34.843778, 136.539715], [34.844180, 136.539310], [34.844582, 136.538906], [34.844997, 136.538488], [34.845386, 136.538076]]
+kind = "concrete"
+height = 1.1
+
+# Race control: the rounded four-floor end of the pit building towards First Curve.
+[[surroundings.add]]
+polygon = [[34.842669, 136.540586], [34.842488, 136.540767], [34.842334, 136.540538], [34.842515, 136.540358]]
+kind = "glass"
+height = 17.0
+
+# ---- ground ----------------------------------------------------------------------------
+# The inside of Spoon is the West Course paddock, one sheet of tarmac (the map has it as
+# grass).
+[[surroundings.add]]
+polygon = [[34.846788, 136.524198], [34.847453, 136.523847], [34.848037, 136.523516], [34.848166, 136.523121], [34.848098, 136.522550], [34.847903, 136.522218], [34.847560, 136.522245], [34.847213, 136.522594], [34.846933, 136.523008]]
+kind = "paved"
+
+# ---- grandstands the map has as leisure=bleachers only -----------------------------------
+# Footprints copied from the map (way ids given); the height follows from the depth.
+# way 184102013: G, along the climb from Degner 2 (right)
+[[surroundings.add]]
+polygon = [[34.844434, 136.531042], [34.844415, 136.530923], [34.845160, 136.530696], [34.845157, 136.530799]]
+kind = "grandstand"
+height = 7.0
+
+# way 184004012: unnamed, inside of 110R (right)
+[[surroundings.add]]
+polygon = [[34.845874, 136.530340], [34.845983, 136.530348], [34.846105, 136.530379], [34.846257, 136.530448], [34.846495, 136.530572], [34.846507, 136.530624], [34.846449, 136.530747], [34.846342, 136.530781], [34.846179, 136.530718], [34.846061, 136.530690], [34.845901, 136.530705], [34.845868, 136.530690], [34.845585, 136.530394], [34.845743, 136.530355]]
+kind = "grandstand"
+height = 7.0
+
+# way 184105033: I, outside of the hairpin
+[[surroundings.add]]
+polygon = [[34.847192, 136.529810], [34.847376, 136.529979], [34.847424, 136.530032], [34.847488, 136.530127], [34.847567, 136.530281], [34.847589, 136.530355], [34.847602, 136.530446], [34.847605, 136.530540], [34.847600, 136.530627], [34.847588, 136.530686], [34.847557, 136.530769], [34.847483, 136.530725], [34.847507, 136.530646], [34.847522, 136.530569], [34.847526, 136.530487], [34.847523, 136.530398], [34.847504, 136.530314], [34.847469, 136.530231], [34.847374, 136.530076], [34.847323, 136.530022], [34.847268, 136.529974], [34.847158, 136.529900], [34.847156, 136.529812]]
+kind = "grandstand"
+height = 7.0
+
+# way 183999763: unnamed, exit of the hairpin
+[[surroundings.add]]
+polygon = [[34.846048, 136.528875], [34.846160, 136.528954], [34.846259, 136.529151], [34.846351, 136.529256], [34.846444, 136.529338], [34.846539, 136.529395], [34.846443, 136.529414], [34.846368, 136.529410], [34.846192, 136.529282], [34.846104, 136.529205], [34.846084, 136.529130]]
+kind = "grandstand"
+height = 7.0
+
+# way 184104828: L, entry of Spoon
+[[surroundings.add]]
+polygon = [[34.847492, 136.524635], [34.847666, 136.524489], [34.848310, 136.524131], [34.848409, 136.524060], [34.848723, 136.523740], [34.848729, 136.523790], [34.848689, 136.523860], [34.848614, 136.524055], [34.848543, 136.524140], [34.848452, 136.524217], [34.848198, 136.524360], [34.848067, 136.524415], [34.847975, 136.524436], [34.847524, 136.524640]]
+kind = "grandstand"
+height = 7.0
+
+# way 183953761: M, Spoon
+[[surroundings.add]]
+polygon = [[34.848037, 136.521233], [34.848204, 136.521322], [34.848270, 136.521344], [34.848384, 136.521447], [34.848517, 136.521595], [34.848616, 136.521720], [34.848538, 136.521719], [34.848500, 136.521642], [34.848374, 136.521524], [34.848247, 136.521429], [34.848118, 136.521366], [34.848002, 136.521347], [34.847857, 136.521346], [34.847747, 136.521359], [34.847733, 136.521302], [34.847946, 136.521241]]
+kind = "grandstand"
+height = 7.0
+
+# way 183953758: N, exit of Spoon
+[[surroundings.add]]
+polygon = [[34.847485, 136.521441], [34.847381, 136.521441], [34.847310, 136.521454], [34.847258, 136.521493], [34.846927, 136.521995], [34.846916, 136.522057], [34.847132, 136.521809], [34.847229, 136.521731], [34.847318, 136.521674], [34.847384, 136.521612]]
+kind = "grandstand"
+height = 7.0
+
+# way 184415310: O, back straight
+[[surroundings.add]]
+polygon = [[34.844786, 136.526824], [34.844707, 136.527222], [34.844630, 136.527504], [34.844300, 136.528594], [34.844216, 136.528549], [34.844239, 136.528469], [34.844144, 136.528424], [34.844526, 136.526938], [34.844649, 136.526948], [34.844673, 136.526846]]
+kind = "grandstand"
+height = 7.0
+
+# way 184102368: G, inside of 130R
+[[surroundings.add]]
+polygon = [[34.844367, 136.531135], [34.844737, 136.532368], [34.844663, 136.532412], [34.844270, 136.531184]]
+kind = "grandstand"
+height = 7.0
+
+# way 184419745: P, before the chicane
+[[surroundings.add]]
+polygon = [[34.845496, 136.533852], [34.844907, 136.533078], [34.844671, 136.532695], [34.844594, 136.532531], [34.844743, 136.532421], [34.844884, 136.532749], [34.844910, 136.532732], [34.845004, 136.532894], [34.845182, 136.533235], [34.845560, 136.533770]]
+kind = "grandstand"
+height = 7.0
+
+# way 183393129: R, Last Curve
+[[surroundings.add]]
+polygon = [[34.846411, 136.536688], [34.846441, 136.536788], [34.846535, 136.536780], [34.846525, 136.536966], [34.846516, 136.536967], [34.846512, 136.537068], [34.846501, 136.537103], [34.846463, 136.537486], [34.846433, 136.537592], [34.846379, 136.537725], [34.846307, 136.537874], [34.846167, 136.537770], [34.846244, 136.537616], [34.846270, 136.537537], [34.846289, 136.537438], [34.846318, 136.536728]]
+kind = "grandstand"
+height = 7.0

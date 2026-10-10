@@ -1,0 +1,5 @@
+[
+ {"model": "ferris_wheel", "at": {"latlon": [34.845998, 136.538845]}, "yaw_deg": -67.0},
+ {"model": "sign_bridge", "at": {"s": 5803.0, "side": 1, "dist": 0.0}},
+ {"model": "start_gantry", "at": {"s": 306.0, "side": 1, "dist": 0.0}}
+]

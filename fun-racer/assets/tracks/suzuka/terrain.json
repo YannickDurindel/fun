@@ -4,8 +4,8 @@
   34.844698,
   136.538928
  ],
- "origin_elevation_m": 34.23,
- "plan_scale": 0.9993804426393142,
+ "origin_elevation_m": 34.22,
+ "plan_scale": 0.9991053301675785,
  "near": {
   "file": "terrain_height.bin",
   "dist_file": "terrain_dist.bin",

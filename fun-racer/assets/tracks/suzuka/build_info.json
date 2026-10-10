@@ -46,9 +46,9 @@
    411295348
   ],
   "raw_length_m": 5813.0,
-  "length_m": 5810.6,
+  "length_m": 5812.2,
   "official_length_m": 5807.0,
-  "length_error": 0.00061,
+  "length_error": 0.00089,
   "candidates": [
    {
     "length_m": 5813.0,
@@ -100,10 +100,10 @@
  "start_finish_source": "recipe",
  "dem_dataset": "terrarium",
  "elevation": {
-  "range_m": 42.49,
-  "max_grade": 0.0962,
-  "min_grade": -0.1006,
-  "origin_m": 34.23
+  "range_m": 40.6,
+  "max_grade": 0.0855,
+  "min_grade": -0.0832,
+  "origin_m": 34.22
  },
  "turns": {
   "official": 18,
@@ -113,160 +113,160 @@
     "id": "T1",
     "name": "1コーナー",
     "direction": "right",
-    "s_apex": 673.7,
+    "s_apex": 673.4,
     "min_radius": 80.4
    },
    {
     "id": "T2",
     "name": "2コーナー",
     "direction": "right",
-    "s_apex": 775.6,
+    "s_apex": 775.3,
     "min_radius": 46.6
    },
    {
     "id": "T3",
     "name": "S字",
     "direction": "left",
-    "s_apex": 1075.4,
-    "min_radius": 73.0
+    "s_apex": 1075.1,
+    "min_radius": 72.9
    },
    {
     "id": "T4",
     "name": "S字",
     "direction": "right",
-    "s_apex": 1203.4,
+    "s_apex": 1203.0,
     "min_radius": 72.6
    },
    {
     "id": "T5",
     "name": "S字",
     "direction": "left",
-    "s_apex": 1377.3,
+    "s_apex": 1376.8,
     "min_radius": 78.7
    },
    {
     "id": "T6",
     "name": "逆バンク",
     "direction": "right",
-    "s_apex": 1457.2,
-    "min_radius": 70.4
+    "s_apex": 1456.7,
+    "min_radius": 70.5
    },
    {
     "id": "T7",
     "name": "NIPPO コーナー",
     "direction": "left",
-    "s_apex": 1761.1,
+    "s_apex": 1760.5,
     "min_radius": 80.9
    },
    {
     "id": "T8",
     "name": "NIPPO コーナー",
     "direction": "left",
-    "s_apex": 1851.0,
-    "min_radius": 135.5
+    "s_apex": 1850.4,
+    "min_radius": 135.6
    },
    {
     "id": "T9",
     "name": "NIPPO コーナー",
     "direction": "left",
-    "s_apex": 1957.0,
-    "min_radius": 101.7
+    "s_apex": 1956.3,
+    "min_radius": 101.6
    },
    {
     "id": "T10",
     "name": "デグナー1",
     "direction": "right",
-    "s_apex": 2260.8,
-    "min_radius": 29.1
+    "s_apex": 2262.1,
+    "min_radius": 30.7
    },
    {
     "id": "T11",
     "name": "デグナー2",
     "direction": "right",
-    "s_apex": 2414.8,
+    "s_apex": 2415.9,
     "min_radius": 23.4
    },
    {
     "id": "T12",
     "name": "Turn 12",
     "direction": "right",
-    "s_apex": 2736.6,
+    "s_apex": 2737.6,
     "min_radius": 88.2
    },
    {
     "id": "T13",
     "name": "NISSINブレーキヘアピン",
     "direction": "left",
-    "s_apex": 2882.5,
-    "min_radius": 20.8
+    "s_apex": 2883.5,
+    "min_radius": 20.7
    },
    {
     "id": "T14",
     "name": "Turn 14",
     "direction": "right",
-    "s_apex": 3156.4,
+    "s_apex": 3157.3,
     "min_radius": 96.2
    },
    {
     "id": "T15",
     "name": "Turn 15",
     "direction": "right",
-    "s_apex": 3256.3,
-    "min_radius": 201.0
+    "s_apex": 3255.2,
+    "min_radius": 201.1
    },
    {
     "id": "T16",
     "name": "Turn 16",
     "direction": "right",
-    "s_apex": 3500.2,
-    "min_radius": 179.5
+    "s_apex": 3501.0,
+    "min_radius": 179.6
    },
    {
     "id": "T17",
     "name": "スプーンカーブ",
     "direction": "left",
-    "s_apex": 3780.0,
+    "s_apex": 3780.7,
     "min_radius": 60.3
    },
    {
     "id": "T18",
     "name": "スプーンカーブ",
     "direction": "left",
-    "s_apex": 3916.0,
+    "s_apex": 3916.6,
     "min_radius": 44.6
    },
    {
     "id": "T19",
     "name": "130R",
     "direction": "left",
-    "s_apex": 4937.4,
+    "s_apex": 4937.7,
     "min_radius": 78.1
    },
    {
     "id": "T20",
     "name": "日立オートモティブシステムズシケイン",
     "direction": "right",
-    "s_apex": 5359.2,
+    "s_apex": 5359.4,
     "min_radius": 19.4
    },
    {
     "id": "T21",
     "name": "日立Astemoシケイン",
     "direction": "left",
-    "s_apex": 5411.2,
+    "s_apex": 5411.3,
     "min_radius": 22.0
    },
    {
     "id": "T22",
     "name": "Turn 22",
     "direction": "right",
-    "s_apex": 5501.2,
+    "s_apex": 5501.3,
     "min_radius": 77.6
    }
   ],
   "auto_candidates": [
    {
-    "s_apex": 673.7,
+    "s_apex": 673.4,
     "direction": "right",
     "angle_deg": 55.9,
     "kind": "corner",
@@ -274,7 +274,7 @@
     "used": true
    },
    {
-    "s_apex": 775.6,
+    "s_apex": 775.3,
     "direction": "right",
     "angle_deg": 131.4,
     "kind": "corner",
@@ -282,15 +282,15 @@
     "used": true
    },
    {
-    "s_apex": 1075.4,
+    "s_apex": 1075.1,
     "direction": "left",
     "angle_deg": 54.7,
     "kind": "corner",
-    "min_radius": 73.0,
+    "min_radius": 72.9,
     "used": true
    },
    {
-    "s_apex": 1203.4,
+    "s_apex": 1203.0,
     "direction": "right",
     "angle_deg": 73.6,
     "kind": "corner",
@@ -298,7 +298,7 @@
     "used": true
    },
    {
-    "s_apex": 1377.3,
+    "s_apex": 1376.8,
     "direction": "left",
     "angle_deg": 73.0,
     "kind": "corner",
@@ -306,15 +306,15 @@
     "used": true
    },
    {
-    "s_apex": 1457.2,
+    "s_apex": 1456.7,
     "direction": "right",
     "angle_deg": 109.1,
     "kind": "corner",
-    "min_radius": 70.4,
+    "min_radius": 70.5,
     "used": true
    },
    {
-    "s_apex": 1761.1,
+    "s_apex": 1760.5,
     "direction": "left",
     "angle_deg": 84.3,
     "kind": "corner",
@@ -322,31 +322,39 @@
     "used": true
    },
    {
-    "s_apex": 1851.0,
+    "s_apex": 1850.4,
     "direction": "left",
     "angle_deg": 28.9,
     "kind": "corner",
-    "min_radius": 135.5,
+    "min_radius": 135.6,
     "used": true
    },
    {
-    "s_apex": 1957.0,
+    "s_apex": 1956.3,
     "direction": "left",
-    "angle_deg": 46.2,
+    "angle_deg": 41.5,
     "kind": "corner",
-    "min_radius": 101.7,
+    "min_radius": 101.6,
     "used": true
    },
    {
-    "s_apex": 2260.8,
+    "s_apex": 2100.2,
+    "direction": "left",
+    "angle_deg": 4.3,
+    "kind": "kink",
+    "min_radius": 291.1,
+    "used": false
+   },
+   {
+    "s_apex": 2262.1,
     "direction": "right",
-    "angle_deg": 44.4,
+    "angle_deg": 49.4,
     "kind": "corner",
-    "min_radius": 29.1,
+    "min_radius": 30.7,
     "used": true
    },
    {
-    "s_apex": 2414.8,
+    "s_apex": 2415.9,
     "direction": "right",
     "angle_deg": 81.9,
     "kind": "corner",
@@ -354,7 +362,7 @@
     "used": true
    },
    {
-    "s_apex": 2736.6,
+    "s_apex": 2737.6,
     "direction": "right",
     "angle_deg": 36.3,
     "kind": "corner",
@@ -362,15 +370,15 @@
     "used": true
    },
    {
-    "s_apex": 2882.5,
+    "s_apex": 2883.5,
     "direction": "left",
     "angle_deg": 172.7,
     "kind": "corner",
-    "min_radius": 20.8,
+    "min_radius": 20.7,
     "used": true
    },
    {
-    "s_apex": 3156.4,
+    "s_apex": 3157.3,
     "direction": "right",
     "angle_deg": 52.6,
     "kind": "corner",
@@ -378,23 +386,23 @@
     "used": true
    },
    {
-    "s_apex": 3256.3,
+    "s_apex": 3255.2,
     "direction": "right",
-    "angle_deg": 24.0,
+    "angle_deg": 24.1,
     "kind": "corner",
-    "min_radius": 201.0,
+    "min_radius": 201.1,
     "used": true
    },
    {
-    "s_apex": 3500.2,
+    "s_apex": 3501.0,
     "direction": "right",
     "angle_deg": 46.0,
     "kind": "corner",
-    "min_radius": 179.5,
+    "min_radius": 179.6,
     "used": true
    },
    {
-    "s_apex": 3780.0,
+    "s_apex": 3780.7,
     "direction": "left",
     "angle_deg": 70.0,
     "kind": "corner",
@@ -402,7 +410,7 @@
     "used": true
    },
    {
-    "s_apex": 3916.0,
+    "s_apex": 3916.6,
     "direction": "left",
     "angle_deg": 135.3,
     "kind": "corner",
@@ -410,7 +418,7 @@
     "used": true
    },
    {
-    "s_apex": 4937.4,
+    "s_apex": 4937.7,
     "direction": "left",
     "angle_deg": 36.9,
     "kind": "corner",
@@ -418,7 +426,7 @@
     "used": true
    },
    {
-    "s_apex": 5025.4,
+    "s_apex": 5025.7,
     "direction": "left",
     "angle_deg": 14.4,
     "kind": "kink",
@@ -426,7 +434,7 @@
     "used": false
    },
    {
-    "s_apex": 5097.4,
+    "s_apex": 5097.6,
     "direction": "left",
     "angle_deg": 9.3,
     "kind": "kink",
@@ -434,7 +442,7 @@
     "used": false
    },
    {
-    "s_apex": 5359.2,
+    "s_apex": 5359.4,
     "direction": "right",
     "angle_deg": 83.6,
     "kind": "corner",
@@ -442,7 +450,7 @@
     "used": true
    },
    {
-    "s_apex": 5411.2,
+    "s_apex": 5411.3,
     "direction": "left",
     "angle_deg": 83.0,
     "kind": "corner",
@@ -450,7 +458,7 @@
     "used": true
    },
    {
-    "s_apex": 5501.2,
+    "s_apex": 5501.3,
     "direction": "right",
     "angle_deg": 90.3,
     "kind": "corner",
