@@ -37,10 +37,11 @@ func test_dimensions_match_real_circuit() -> void:
 		if i < DIRECTIONS.size():
 			assert_true(String(t["direction"]) == DIRECTIONS[i], "%s must turn %s" % [t["id"], DIRECTIONS[i]])
 	assert_true(d.turns[0]["name"] == "Michael Schumacher", "T1 must be the Michael Schumacher turn")
-	# The grid is 246 m before the finish line (race distance = 57 laps - 0.246 km).
-	assert_between(d.delta_s(d.start_s, 0.0), 236.0, 256.0, "start line to finish line (m)")
-	# The first corner follows shortly after the finish line; the pit straight is over 1 km.
-	assert_between(float(d.turns[0]["s_apex"]), 150.0, 320.0, "finish line to the T1 apex (m)")
+	# The race distance (57 laps - 0.246 km) makes the first lap 246 m short: the grid is
+	# 246 m AFTER the finish line, which lies level with the south end of the pit building.
+	assert_between(d.start_s, 236.0, 256.0, "finish line to start line (m)")
+	# Pole position is about 475 m before the Turn 1 apex (353 m to the braking point).
+	assert_between(float(d.turns[0]["s_apex"]) - d.start_s, 430.0, 520.0, "start line to the T1 apex (m)")
 	assert_between(d.length - float(d.turns[14]["s_apex"]) + float(d.turns[0]["s_apex"]), 1000.0, 1200.0,
 			"T15 apex to T1 apex along the pit straight (m)")
 	# The circuit climbs from the pit straight to Turn 4 and to Turn 13.
@@ -63,8 +64,10 @@ func test_widths_follow_the_real_circuit() -> void:
 	assert_between(d.width_at(float(d.turns[3]["s_apex"])), 20.5, 21.5, "Turn 4 (m)")
 	assert_between(d.width_at(float(d.turns[7]["s_apex"])), 17.5, 18.5, "Turn 8 (m)")
 	assert_between(d.width_at(float(d.turns[9]["s_apex"])), 13.9, 14.1, "Turn 10 (m)")
-	assert_between(d.width_at(2600.0), 13.9, 14.1, "Turn 10 to Turn 11 straight (m)")
-	assert_between(d.width_at(4000.0), 13.9, 14.1, "back straight (m)")
+	var t11 := float(d.turns[10]["s_apex"])
+	var t13 := float(d.turns[12]["s_apex"])
+	assert_between(d.width_at(t11 - 370.0), 13.9, 14.1, "Turn 10 to Turn 11 straight (m)")
+	assert_between(d.width_at(t13 + 370.0), 13.9, 14.1, "back straight (m)")
 
 ## The race is run at night under floodlights, in a desert: no green ground except the lawns.
 func test_environment_is_a_floodlit_desert_night() -> void:
@@ -91,7 +94,9 @@ func test_trackside_table_has_no_gravel() -> void:
 	for k: Dictionary in layout.kerbs:
 		seen[k["turn"]] = true
 	assert_true(seen.size() == 15, "every turn has a kerb (%d of 15)" % seen.size())
-	assert_true(layout.is_concrete(d.start_s) and layout.is_concrete(2600.0) and not layout.is_concrete(700.0),
+	var drag := float(d.turns[10]["s_apex"]) - 370.0
+	var climb := float(d.turns[3]["s_apex"]) - 300.0
+	assert_true(layout.is_concrete(d.start_s) and layout.is_concrete(drag) and not layout.is_concrete(climb),
 			"concrete walls on the pit straight and along the drag strip")
 
 ## The landmark models exist and stand where the real structures do.
@@ -112,14 +117,24 @@ func test_landmarks() -> void:
 	# The grandstand and the pit building face each other across the grid; the tower stands
 	# inside Turn 1, right of the road.
 	var grid := d.position_at(d.start_s)
-	var stand: Array = models["main_grandstand"]["at"]["xz"]
-	var pits: Array = models["pit_building"]["at"]["xz"]
-	assert_between(d.lateral_offset(Vector3(stand[0], grid.y, stand[1])), -60.0, -25.0, "main grandstand, left of the straight (m)")
-	assert_between(d.lateral_offset(Vector3(pits[0], grid.y, pits[1])), 20.0, 55.0, "pit building, right of the straight (m)")
-	var tower: Array = models["sakhir_tower"]["at"]["xz"]
+	var stand := _xz(models["main_grandstand"])
+	var pits := _xz(models["pit_building"])
+	# Footprint centres (OSM): the grandstand 30 m deep behind its wall, the pit building 25 m
+	# deep behind the pit lane.
+	assert_between(d.lateral_offset(Vector3(stand.x, grid.y, stand.y)), -60.0, -25.0, "main grandstand, left of the straight (m)")
+	assert_between(d.lateral_offset(Vector3(pits.x, grid.y, pits.y)), 30.0, 45.0, "pit building, right of the straight (m)")
+	var tower := _xz(models["sakhir_tower"])
 	var apex := d.position_at(float(d.turns[0]["s_apex"]))
-	assert_between(Vector2(tower[0] - apex.x, tower[1] - apex.z).length(), 120.0, 220.0, "tower to the Turn 1 apex (m)")
+	assert_between(Vector2(tower.x - apex.x, tower.y - apex.z).length(), 120.0, 220.0, "tower to the Turn 1 apex (m)")
 	assert_between(float(models["start_gantry"]["at"]["s"]) - d.start_s, 0.0, 30.0, "start lights ahead of the grid (m)")
+
+## Plan position of a landmarks.json entry placed by "latlon" (as Terrain.latlon_to_xz).
+func _xz(e: Dictionary) -> Vector2:
+	var t: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/tracks/bahrain/terrain.json"))
+	var o: Array = t["origin_latlon"]
+	var ll: Array = e["at"]["latlon"]
+	var m := 111320.0 * float(t["plan_scale"])
+	return Vector2((float(ll[1]) - float(o[1])) * m * cos(deg_to_rad(float(o[0]))), -(float(ll[0]) - float(o[0])) * m)
 
 func test_sampling_round_trip() -> void:
 	var d := TrackData.load_track(PATH)

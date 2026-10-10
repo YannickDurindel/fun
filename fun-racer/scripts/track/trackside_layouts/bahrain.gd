@@ -53,7 +53,10 @@ const KERBS: Array = [
 ## [turn id, side, from, to, kind, u_from, u_to]   kind: tarmac | gravel
 ## u is metres outward measured from the outer edge of any kerb there (0 = right behind it).
 const RUNOFF: Array = [
-	["T1", "out", -150.0, 85.0, "tarmac", 0.0, 27.0],
+	# Beside the First Turn grandstand (its front is 19 m from the road edge, up to 10 m
+	# before the apex) the tarmac is a strip; the deep run-off opens beyond its north end (the barrier ramps out over the 30 m before it).
+	["T1", "out", -150.0, 20.0, "tarmac", 0.0, 13.0],
+	["T1", "out", 20.0, 85.0, "tarmac", 0.0, 27.0],
 	["T2", "out", 5.0, 95.0, "tarmac", 2.0, 18.0],
 	["T4", "out", -160.0, 60.0, "tarmac", 5.0, 27.0],
 	["T4", "out", 60.0, 140.0, "tarmac", 5.0, 16.0],
@@ -77,4 +80,4 @@ const BARRIER_BEHIND_RUNOFF: float = 1.0
 ## Concrete wall + debris fence: [from_s, to_s] absolute, wrapping through the finish line.
 ## The pit straight (pit wall and the wall below the main grandstand) and the Turn 10 to
 ## Turn 11 straight, which runs along the drag strip. Armco everywhere else.
-const CONCRETE_RANGES: Array = [[4545.0, 170.0], [2270.0, 2900.0]]
+const CONCRETE_RANGES: Array = [[5038.0, 663.0], [2763.0, 3393.0]]

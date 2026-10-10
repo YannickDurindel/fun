@@ -1,24 +1,24 @@
 {
  "frame": "Godot metres: x=east, y=up (relative to finish line), z=-north; origin at finish line",
  "origin_latlon": [
-  26.03486,
-  50.510588
+  26.030439,
+  50.510406
  ],
- "origin_elevation_m": 8.57,
- "plan_scale": 0.9984871406959153,
+ "origin_elevation_m": 7.27,
+ "plan_scale": 0.9984687194435732,
  "near": {
   "file": "terrain_height.bin",
   "dist_file": "terrain_dist.bin",
   "x0": -600.0,
-  "z0": -800.0,
+  "z0": -1200.0,
   "step": 10.0,
   "nx": 201,
-  "nz": 241
+  "nz": 221
  },
  "far": {
   "file": "terrain_far.bin",
   "x0": -5600.0,
-  "z0": -5600.0,
+  "z0": -6000.0,
   "step": 200.0,
   "nx": 61,
   "nz": 61

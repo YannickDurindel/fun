@@ -25,7 +25,7 @@ Circuit back straight"), counted in storeys and in seat rows; none is a surveyed
                     with arches) behind each tent. Roof edge about 22 m, tower tops about 38 m.
   batelco_stand     The same construction, 244 x 28 m and six bays (way 187123414), facing the
                     drag strip and the Turn 10 to Turn 11 straight.
-  pit_building      320 x 30 m, two floors (garages, glazed hospitality with a terrace) under
+  pit_building      320 x 25 m, two floors (garages, glazed hospitality with a terrace) under
                     eight white tents, and the three-storey race control block at its south end
                     (way 187123416, which the map tags as a grandstand).
   paddock           The six two-storey team buildings behind the pit building, each with a tent
@@ -36,13 +36,15 @@ Circuit back straight"), counted in storeys and in seat rows; none is a surveyed
                     The seating under them is baked by the surroundings step.
   dome_29, dome_15  The two white dome halls west of Turn 15 (relation 20311525): 58 m and
                     30 m across in the aerial imagery; 20 m and 12 m high are estimates.
-  gantry            The truss bridges over the track: the start lights gantry and the three
+  gantry_*          The truss bridges over the track: the start lights gantry and the three
                     sponsor gantries (after Turn 4, after Turn 8, on the Turn 10 to Turn 11
-                    straight), found in the aerial imagery.
+                    straight), found in the aerial imagery. Their places are given relative to
+                    the turn table of track.json and each span is the road width there plus
+                    the room to stand behind the barriers (landmarks have no collision).
 
 Surfaces are named like the scenery materials, so the game gives them its own; the colour is
-the vertex colour. The membranes use a material of their own ("membrane": double sided, warm
-glow) because they are lit from below at night and seen from both sides.
+the vertex colour. The membranes use a material of their own ("membrane", double sided)
+because they are seen from both sides; the game keeps it as the file has it.
 """
 
 from __future__ import annotations
@@ -64,8 +66,6 @@ from road_glb import Material  # noqa: E402
 TRACK_DIR = ROOT / "assets" / "tracks" / "bahrain"
 OUT_DIR = TRACK_DIR / "landmarks"
 MEMBRANE = "membrane"
-# Membrane glow as glTF emissive factor: the roofs are up-lit in amber during the night race.
-MEMBRANE_EMISSIVE = [0.30, 0.20, 0.08]
 
 # Linear vertex colours (r, g, b, windows): a = 1 draws windows on building_wall.
 CREAM = (0.78, 0.69, 0.52, 0.0)        # the sand-coloured render of every building here
@@ -212,7 +212,8 @@ def pit_building(length, depth, bays, control_len):
     # Ground floor: garages, dark and open to the pit lane; a plain wall to the paddock.
     quad(mesh, "concrete", [-hl, base, zf - 1.0], [hl, base, zf - 1.0], [hl, y1, zf - 1.0], [-hl, y1, zf - 1.0], DARK,
          facing=np.array([0.0, 0.0, 1.0]))
-    ring = np.array([[-hl, zb], [hl, zb], [hl, zf - 1.0], [-hl, zf - 1.0]])
+    # (the body stops 0.3 m behind the garage face, so the two never share a plane)
+    ring = np.array([[-hl, zb], [hl, zb], [hl, zf - 1.3], [-hl, zf - 1.3]])
     sg.prism(mesh, ring, [], base, y1, "building_wall", "building_roof", CREAM, CREAM, 0.0)
     w = length / bays
     # Garage piers every half bay and the terrace slab above them.
@@ -254,7 +255,7 @@ def paddock():
         for sx in (-14.0, 14.0):
             for sz in (-6.0, 6.0):
                 post(mesh, "concrete", x + sx, sz, 7.4, 9.0, 0.15, WHITE)
-    ring = np.array([[168.0, 4.0], [226.4, 4.0], [226.4, 33.8], [168.0, 33.8]])
+    ring = np.array([[168.0, -4.0], [226.4, -4.0], [226.4, 28.3], [168.0, 28.3]])
     sg.prism(mesh, ring, [], base, 12.0, "building_wall", "building_roof", CREAM_WINDOWS, CREAM, 0.0)
     return mesh
 
@@ -275,7 +276,11 @@ def stand_roof(length, depth, y_back, y_front):
             pts = [[xa, y_back + ya, zb], [xb, y_back + yb, zb], [xb, y_front + yb, zf], [xa, y_front + ya, zf]]
             mesh.face(MEMBRANE, pts, UP, WHITE)
         # Truss beam under each valley and the mast behind it with its stay.
-        sg.box(mesh, "metal", (a - 0.15, y_back - 0.9, zb), (a + 0.15, y_back, zb + 1.0), STEEL)
+        mesh.face("metal", [[a - 0.15, y_back - 0.9, zb], [a + 0.15, y_back - 0.9, zb],
+                            [a + 0.15, y_front - 0.9, zf], [a - 0.15, y_front - 0.9, zf]], -UP, STEEL)
+        for f in (1.0, -1.0):
+            mesh.face("metal", [[a, y_back - 0.9, zb], [a, y_back, zb], [a, y_front, zf], [a, y_front - 0.9, zf]],
+                      np.array([f, 0.0, 0.0]), STEEL)
         post(mesh, "metal", a, zb, -1.5, y_back + 5.0, 0.22, STEEL)
         mesh.face("metal", [[a - 0.1, y_back + 5.0, zb], [a + 0.1, y_back + 5.0, zb], [a + 0.1, y_front + 0.2, zf - 2.0],
                             [a - 0.1, y_front + 0.2, zf - 2.0]], UP, STEEL)
@@ -395,7 +400,8 @@ def gantry(span, clear, lights):
 # ----------------------------------------------------------------------------- output
 def write(mesh: sg.SceneryMesh, name: str) -> dict:
     """Writes OUT_DIR/<name>.glb. The membrane material is not one of the game's: it is made
-    double sided and emissive in the file, and the game keeps it as it is."""
+    double sided in the file (write_glb has no such option), and the game keeps it as it is.
+    No glow: a baked emissive would stay on by day, and the floodlights light it at night."""
     path = OUT_DIR / f"{name}.glb"
     stats = sg.write_glb(path, mesh, name, "tools/track/landmarks/bahrain.py")
     raw = path.read_bytes()
@@ -405,7 +411,6 @@ def write(mesh: sg.SceneryMesh, name: str) -> dict:
     for m in doc.get("materials", []):
         if m["name"] == MEMBRANE:
             m["doubleSided"] = True
-            m["emissiveFactor"] = MEMBRANE_EMISSIVE
     js = json.dumps(doc, separators=(",", ":")).encode()
     js += b" " * ((4 - len(js) % 4) % 4)
     out = struct.pack("<III", 0x46546C67, 2, 12 + 8 + len(js) + len(rest))
@@ -421,41 +426,60 @@ def yaw_facing(fx: float, fz: float) -> float:
     return round(math.degrees(math.atan2(fx, fz)), 1)
 
 
-# Footprints from OpenStreetMap (oriented boxes of the ways, game metres x east / z south of
-# the finish line): centre, and the direction the front looks in.
+# Footprints from OpenStreetMap (oriented boxes of the ways): centre as lat / lon, and the
+# direction the front looks in (plan x east, z south).
 PLACES = [
     # way 187123419 "Main Grandstand": 348.9 x 29.4 m, west of the pit straight, facing it.
-    {"model": "main_grandstand", "at": {"xz": [-44.8, 310.2]}, "yaw_deg": yaw_facing(0.999, 0.036)},
+    {"model": "main_grandstand", "at": {"latlon": [26.032069, 50.510139]}, "yaw_deg": yaw_facing(0.999, 0.036)},
     # way 187123414 "Batelco": 243.9 x 27.9 m, facing east over the drag strip.
-    {"model": "batelco_stand", "at": {"xz": [125.0, 258.6]}, "yaw_deg": yaw_facing(0.999, 0.036)},
-    # way 187123416: the pit building, facing west to the pit lane. Its tents cover z 150 to
-    # 470 (aerial imagery); the footprint's last 60 m are race control.
-    {"model": "pit_building", "at": {"xz": [21.5, 310.0]}, "yaw_deg": yaw_facing(-0.999, -0.032)},
-    # The team buildings and the building south of them; the row is centred on (82, 305).
-    {"model": "paddock", "at": {"xz": [82.0, 305.0]}, "yaw_deg": yaw_facing(-0.999, -0.035)},
+    {"model": "batelco_stand", "at": {"latlon": [26.032533, 50.511840]}, "yaw_deg": yaw_facing(0.999, 0.036)},
+    # way 187123416: the pit building, facing west to the pit lane: 25 m deep, its tents over
+    # the 320 m north of race control (aerial imagery).
+    {"model": "pit_building", "at": {"latlon": [26.032071, 50.510865]}, "yaw_deg": yaw_facing(-0.999, -0.032)},
+    # The team buildings (ways 187123411 ...) and way 187123421 south of them.
+    {"model": "paddock", "at": {"latlon": [26.032116, 50.511409]}, "yaw_deg": yaw_facing(-0.999, -0.035)},
     # way 187123438 "Sakhir Tower".
-    {"model": "sakhir_tower", "at": {"xz": [95.5, -67.1]}, "yaw_deg": 0.0},
+    {"model": "sakhir_tower", "at": {"latlon": [26.035464, 50.511544]}, "yaw_deg": 0.0},
     # way 271535967 "First Turn Grandstand": 204.5 x 17.9 m, facing east.
-    {"model": "stand_roof_205", "at": {"xz": [-29.9, -130.5]}, "yaw_deg": yaw_facing(0.999, 0.038)},
+    {"model": "stand_roof_205", "at": {"latlon": [26.036034, 50.510289]}, "yaw_deg": yaw_facing(0.999, 0.038)},
     # ways 271535984, 271535959, 271535961 "University Grandstand 1-3": 70 x 18 m, facing the
     # Turn 2 to Turn 3 stretch to their south.
-    {"model": "stand_roof_70", "at": {"xz": [146.3, -255.6]}, "yaw_deg": yaw_facing(-0.156, 0.988)},
-    {"model": "stand_roof_70", "at": {"xz": [228.5, -252.1]}, "yaw_deg": yaw_facing(-0.151, 0.988)},
-    {"model": "stand_roof_70", "at": {"xz": [309.3, -247.9]}, "yaw_deg": yaw_facing(-0.153, 0.988)},
+    {"model": "stand_roof_70", "at": {"latlon": [26.037160, 50.512053]}, "yaw_deg": yaw_facing(-0.156, 0.988)},
+    {"model": "stand_roof_70", "at": {"latlon": [26.037128, 50.512876]}, "yaw_deg": yaw_facing(-0.151, 0.988)},
+    {"model": "stand_roof_70", "at": {"latlon": [26.037090, 50.513685]}, "yaw_deg": yaw_facing(-0.153, 0.988)},
     # ways 271535964, 271535981 "Victory Grandstand 1-2": facing the back straight to their
     # north-west.
-    {"model": "stand_roof_70", "at": {"xz": [200.5, 933.3]}, "yaw_deg": yaw_facing(-0.492, -0.871)},
-    {"model": "stand_roof_70", "at": {"xz": [58.6, 1008.9]}, "yaw_deg": yaw_facing(-0.482, -0.876)},
+    {"model": "stand_roof_70", "at": {"latlon": [26.026463, 50.512596]}, "yaw_deg": yaw_facing(-0.492, -0.871)},
+    {"model": "stand_roof_70", "at": {"latlon": [26.025783, 50.511175]}, "yaw_deg": yaw_facing(-0.482, -0.876)},
     # relation 20311525: the dome halls beside the run from Turn 15 onto the pit straight.
-    {"model": "dome_29", "at": {"xz": [-100.0, 722.0]}, "yaw_deg": 0.0},
-    {"model": "dome_15", "at": {"xz": [-73.0, 683.0]}, "yaw_deg": 0.0},
-    # Gantries (aerial imagery): the start lights 10 m before the start line, and the sponsor
-    # bridges after Turn 4, after Turn 8 and on the Turn 10 to Turn 11 straight.
-    {"model": "start_gantry", "at": {"s": 5176.0, "side": 1, "dist": 0.0}, "yaw_deg": 0.0},
-    {"model": "gantry", "at": {"s": 1160.0, "side": 1, "dist": 0.0}, "yaw_deg": 0.0},
-    {"model": "gantry", "at": {"s": 1855.0, "side": 1, "dist": 0.0}, "yaw_deg": 0.0},
-    {"model": "gantry", "at": {"s": 2596.0, "side": 1, "dist": 0.0}, "yaw_deg": 0.0},
+    {"model": "dome_29", "at": {"latlon": [26.028364, 50.509587]}, "yaw_deg": 0.0},
+    {"model": "dome_15", "at": {"latlon": [26.028715, 50.509857]}, "yaw_deg": 0.0},
 ]
+
+# Gantries (aerial imagery): (model, turn id or "start", metres after it, lights, post
+# setback behind the road edge). The start lights stand 12 m after the start line with their
+# posts just behind the pit wall and the grandstand wall (9 m); the sponsor bridges stand
+# where no run-off widens the barrier line, posts 17 m out (behind any barrier there).
+GANTRIES = [
+    ("start_gantry", "start", 12.0, True, 10.0),
+    ("gantry_t4", "T4", 180.0, False, 17.0),      # after Turn 4, before the Turn 5 kink
+    ("gantry_t8", "T8", 137.0, False, 17.0),      # after Turn 8
+    ("gantry_t11", "T11", -370.0, False, 17.0),   # on the Turn 10 to Turn 11 straight
+]
+
+
+def gantry_places() -> list[tuple[str, float, float, bool]]:
+    """(model, s, span, lights) of the gantries on the built track."""
+    track = json.loads((TRACK_DIR / "track.json").read_text())
+    apex = {t["id"]: float(t["s_apex"]) for t in track["turns"]}
+    apex["start"] = float(track["start_s"])
+    pts, step, length = track["points"], float(track["step"]), float(track["length"])
+    out = []
+    for name, ref, after, lights, setback in GANTRIES:
+        s = (apex[ref] + after) % length
+        width = float(pts[int(round(s / step)) % len(pts)]["width"])
+        out.append((name, round(s, 1), round(width + 2.0 * setback, 1), lights))
+    return out
 
 
 def build() -> None:
@@ -474,12 +498,14 @@ def build() -> None:
         ("stand_roof_70", stand_roof(69.8, 17.8, 13.5, 15.5)),
         ("dome_29", dome(29.0, 20.0)),
         ("dome_15", dome(15.0, 12.0)),
-        ("start_gantry", gantry(36.0, 6.5, True)),
-        ("gantry", gantry(36.0, 6.5, False)),
     ):
         total += write(mesh, name)["triangles"]
-    (TRACK_DIR / "landmarks.json").write_text(json.dumps(PLACES, indent=1) + "\n")
-    print(f"  landmarks.json: {len(PLACES)} placements, {total} triangles in the models")
+    places = list(PLACES)
+    for name, s, span, lights in gantry_places():
+        total += write(gantry(span, 6.5, lights), name)["triangles"]
+        places.append({"model": name, "at": {"s": s, "side": 1, "dist": 0.0}, "yaw_deg": 0.0})
+    (TRACK_DIR / "landmarks.json").write_text(json.dumps(places, indent=1) + "\n")
+    print(f"  landmarks.json: {len(places)} placements, {total} triangles in the models")
 
 
 # ----------------------------------------------------------------------------- lawns
@@ -487,52 +513,41 @@ def lawns(min_area: float = 250.0, tol: float = 1.2) -> None:
     """Prints `[[surroundings.add]]` entries (kind "farmland", which this track's palette
     paints as irrigated lawn) for the landuse=grass and leisure=garden areas of the cached
     map data. The recipe carries the result: in the desert palette the map's own grass class
-    is the bare ground, so the few real lawns have to be named."""
-    raw = next((TRACK_DIR / "raw").glob("surroundings_near_*.json"))
-    data = json.loads(raw.read_text())
+    is the bare ground, so the few real lawns have to be named. A courtyard (inner ring)
+    follows its lawn as kind "grass", the bare ground: the additions are painted in order
+    over the map's own land cover."""
+    sys.path.insert(0, str(ROOT / "tools" / "track"))
+    from lib import geom, surroundings as su
 
-    def simplify(pts):
-        if len(pts) < 3:
-            return pts
-        a, b = np.array(pts[0]), np.array(pts[-1])
-        d = b - a
-        length = float(np.hypot(*d)) or 1e-9
-        dist = [abs(float(d[0] * (p[1] - a[1]) - d[1] * (p[0] - a[0]))) / length for p in pts]
-        k = int(np.argmax(dist))
-        if dist[k] <= tol:
-            return [pts[0], pts[-1]]
-        return simplify(pts[:k + 1])[:-1] + simplify(pts[k:])
+    terrain = json.loads((TRACK_DIR / "terrain.json").read_text())
+    lat0, lon0 = terrain["origin_latlon"]
+    proj = geom.Projection(lat0, lon0, float(terrain["plan_scale"]))
+    caches = sorted((TRACK_DIR / "raw").glob("surroundings_near_*.json"))
+    if not caches:
+        sys.exit("no surroundings_near_*.json in raw/: run the surroundings step first")
+    feats, _ = su.load_features(caches[0].read_text(), proj)
 
-    lat0 = 26.03486
-    kx = 111320.0 * math.cos(math.radians(lat0))
+    def ll(ring):
+        ring = su.simplify(ring, tol, closed=True)
+        lat, lon = proj.to_latlon(ring[:, 0], ring[:, 1])
+        return ", ".join(f"[{a:.6f}, {b:.6f}]" for a, b in zip(lat, lon))
+
     rows = []
-    for e in data["elements"]:
-        tags = e.get("tags", {})
-        if not (tags.get("landuse") == "grass" or tags.get("leisure") == "garden"):
+    for f in feats:
+        if not (f.tags.get("landuse") == "grass" or f.tags.get("leisure") == "garden"):
             continue
-        g = e.get("g") if e["t"] == "w" else (e.get("o") or [None])[0]
-        if not g:
-            continue
-        ll = [(g[i], g[i + 1]) for i in range(0, len(g), 2)]
-        xy = [((lon - 50.510588) * kx, (lat - lat0) * 111320.0) for lat, lon in ll]
-        area = 0.5 * abs(sum(xy[i][0] * xy[(i + 1) % len(xy)][1] - xy[(i + 1) % len(xy)][0] * xy[i][1]
-                             for i in range(len(xy))))
-        if area < min_area:
-            continue
-        half = len(xy) // 2
-        keep = simplify(xy[:half + 1])[:-1] + simplify(xy[half:])
-        if keep[0] == keep[-1]:
-            keep = keep[:-1]
-        idx = [xy.index(p) for p in keep]
-        rows.append((area, e["t"], e["id"], [ll[i] for i in idx]))
+        for k, outer in enumerate(f.outers):
+            holes = f.inners if k == 0 else []
+            area = abs(sg.signed_area(outer)) - sum(abs(sg.signed_area(h)) for h in holes)
+            if area >= min_area:
+                rows.append((area, f.ref, outer, holes))
     rows.sort(key=lambda r: -r[0])
-    for area, kind, ref, ll in rows:
-        pts = ", ".join(f"[{lat:.6f}, {lon:.6f}]" for lat, lon in ll)
-        print("[[surroundings.add]]")
-        print('kind = "farmland"')
-        print(f'note = "lawn, {"way" if kind == "w" else "relation"} {ref} ({area:.0f} m2)"')
-        print(f"polygon = [{pts}]")
-        print()
+    for area, ref, outer, holes in rows:
+        print(f'[[surroundings.add]]\nkind = "farmland"\nnote = "lawn, {ref} ({area:.0f} m2)"')
+        print(f"polygon = [{ll(outer)}]\n")
+        for h in holes:
+            print(f'[[surroundings.add]]\nkind = "grass"\nnote = "courtyard of {ref}"')
+            print(f"polygon = [{ll(h)}]\n")
 
 
 if __name__ == "__main__":

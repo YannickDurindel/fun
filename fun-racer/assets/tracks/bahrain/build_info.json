@@ -8,10 +8,10 @@
    4818385,
    881756729
   ],
-  "raw_length_m": 5425.7,
-  "length_m": 5420.2,
+  "raw_length_m": 5425.8,
+  "length_m": 5420.3,
   "official_length_m": 5412.0,
-  "length_error": 0.00151,
+  "length_error": 0.00153,
   "candidates": [
    {
     "length_m": 5425.7,
@@ -26,10 +26,10 @@
  "start_finish_source": "recipe",
  "dem_dataset": "terrarium",
  "elevation": {
-  "range_m": 18.08,
-  "max_grade": 0.0365,
+  "range_m": 18.1,
+  "max_grade": 0.0364,
   "min_grade": -0.0348,
-  "origin_m": 8.57
+  "origin_m": 7.27
  },
  "turns": {
   "official": 15,
@@ -39,111 +39,111 @@
     "id": "T1",
     "name": "Grand Prix Circuit",
     "direction": "right",
-    "s_apex": 227.7,
+    "s_apex": 720.9,
     "min_radius": 13.0
    },
    {
     "id": "T2",
     "name": "Grand Prix Circuit",
     "direction": "left",
-    "s_apex": 329.5,
-    "min_radius": 25.0
+    "s_apex": 824.8,
+    "min_radius": 25.1
    },
    {
     "id": "T3",
     "name": "Grand Prix Circuit",
     "direction": "right",
-    "s_apex": 455.3,
+    "s_apex": 950.6,
     "min_radius": 110.8
    },
    {
     "id": "T4",
     "name": "Grand Prix Circuit",
     "direction": "right",
-    "s_apex": 1020.5,
+    "s_apex": 1513.8,
     "min_radius": 18.8
    },
    {
     "id": "T5",
     "name": "Grand Prix Circuit",
     "direction": "left",
-    "s_apex": 1290.1,
+    "s_apex": 1783.4,
     "min_radius": 148.7
    },
    {
     "id": "T6",
     "name": "Grand Prix Circuit",
     "direction": "right",
-    "s_apex": 1372.0,
+    "s_apex": 1865.2,
     "min_radius": 56.5
    },
    {
     "id": "T7",
     "name": "Grand Prix Circuit",
     "direction": "left",
-    "s_apex": 1507.8,
+    "s_apex": 2001.0,
     "min_radius": 63.7
    },
    {
     "id": "T8",
     "name": "Grand Prix Circuit",
     "direction": "right",
-    "s_apex": 1763.4,
+    "s_apex": 2256.7,
     "min_radius": 19.7
    },
    {
     "id": "T9",
     "name": "Grand Prix Circuit",
     "direction": "left",
-    "s_apex": 2148.8,
-    "min_radius": 69.5
+    "s_apex": 2642.1,
+    "min_radius": 69.3
    },
    {
     "id": "T10",
     "name": "Grand Prix Circuit",
     "direction": "left",
-    "s_apex": 2232.7,
+    "s_apex": 2728.0,
     "min_radius": 10.7
    },
    {
     "id": "T11",
     "name": "Grand Prix Circuit",
     "direction": "left",
-    "s_apex": 2965.6,
+    "s_apex": 3460.9,
     "min_radius": 34.2
    },
    {
     "id": "T12",
     "name": "Grand Prix Circuit",
     "direction": "right",
-    "s_apex": 3249.2,
+    "s_apex": 3898.2,
     "min_radius": 115.2
    },
    {
     "id": "T13",
     "name": "Grand Prix Circuit",
     "direction": "right",
-    "s_apex": 3628.6,
+    "s_apex": 4123.9,
     "min_radius": 33.6
    },
    {
     "id": "T14",
     "name": "Grand Prix Circuit",
     "direction": "right",
-    "s_apex": 4423.5,
+    "s_apex": 4916.7,
     "min_radius": 23.1
    },
    {
     "id": "T15",
     "name": "Grand Prix Circuit",
     "direction": "right",
-    "s_apex": 4525.3,
-    "min_radius": 119.7
+    "s_apex": 5020.6,
+    "min_radius": 119.6
    }
   ],
   "auto_candidates": [
    {
-    "s_apex": 227.7,
+    "s_apex": 720.9,
     "direction": "right",
     "angle_deg": 131.3,
     "kind": "corner",
@@ -151,15 +151,15 @@
     "used": true
    },
    {
-    "s_apex": 329.5,
+    "s_apex": 824.8,
     "direction": "left",
-    "angle_deg": 63.0,
+    "angle_deg": 63.1,
     "kind": "corner",
-    "min_radius": 25.0,
+    "min_radius": 25.1,
     "used": true
    },
    {
-    "s_apex": 455.3,
+    "s_apex": 950.6,
     "direction": "right",
     "angle_deg": 29.0,
     "kind": "corner",
@@ -167,7 +167,7 @@
     "used": true
    },
    {
-    "s_apex": 1020.5,
+    "s_apex": 1513.8,
     "direction": "right",
     "angle_deg": 137.8,
     "kind": "corner",
@@ -175,15 +175,15 @@
     "used": true
    },
    {
-    "s_apex": 1112.4,
+    "s_apex": 1607.6,
     "direction": "left",
-    "angle_deg": 9.4,
+    "angle_deg": 9.5,
     "kind": "kink",
-    "min_radius": 233.3,
+    "min_radius": 233.1,
     "used": false
    },
    {
-    "s_apex": 1290.1,
+    "s_apex": 1783.4,
     "direction": "left",
     "angle_deg": 19.9,
     "kind": "corner",
@@ -191,7 +191,7 @@
     "used": true
    },
    {
-    "s_apex": 1372.0,
+    "s_apex": 1865.2,
     "direction": "right",
     "angle_deg": 76.7,
     "kind": "corner",
@@ -199,15 +199,15 @@
     "used": true
    },
    {
-    "s_apex": 1507.8,
+    "s_apex": 2001.0,
     "direction": "left",
-    "angle_deg": 62.1,
+    "angle_deg": 62.0,
     "kind": "corner",
     "min_radius": 63.7,
     "used": true
    },
    {
-    "s_apex": 1763.4,
+    "s_apex": 2256.7,
     "direction": "right",
     "angle_deg": 150.6,
     "kind": "corner",
@@ -215,15 +215,15 @@
     "used": true
    },
    {
-    "s_apex": 2148.8,
+    "s_apex": 2642.1,
     "direction": "left",
-    "angle_deg": 61.2,
+    "angle_deg": 61.4,
     "kind": "corner",
-    "min_radius": 69.5,
+    "min_radius": 69.3,
     "used": true
    },
    {
-    "s_apex": 2232.7,
+    "s_apex": 2728.0,
     "direction": "left",
     "angle_deg": 119.3,
     "kind": "corner",
@@ -231,15 +231,15 @@
     "used": true
    },
    {
-    "s_apex": 2965.6,
+    "s_apex": 3460.9,
     "direction": "left",
-    "angle_deg": 162.5,
+    "angle_deg": 162.6,
     "kind": "corner",
     "min_radius": 34.2,
     "used": true
    },
    {
-    "s_apex": 3249.2,
+    "s_apex": 3898.2,
     "direction": "right",
     "angle_deg": 97.4,
     "kind": "corner",
@@ -247,7 +247,7 @@
     "used": true
    },
    {
-    "s_apex": 3628.6,
+    "s_apex": 4123.9,
     "direction": "right",
     "angle_deg": 124.7,
     "kind": "corner",
@@ -255,19 +255,19 @@
     "used": true
    },
    {
-    "s_apex": 4423.5,
+    "s_apex": 4916.7,
     "direction": "right",
-    "angle_deg": 95.0,
+    "angle_deg": 94.9,
     "kind": "corner",
     "min_radius": 23.1,
     "used": true
    },
    {
-    "s_apex": 4525.3,
+    "s_apex": 5020.6,
     "direction": "right",
     "angle_deg": 26.8,
     "kind": "corner",
-    "min_radius": 119.7,
+    "min_radius": 119.6,
     "used": true
    }
   ]
