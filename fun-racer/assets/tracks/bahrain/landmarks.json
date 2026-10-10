@@ -1,0 +1,168 @@
+[
+ {
+  "model": "main_grandstand",
+  "at": {
+   "xz": [
+    -44.8,
+    310.2
+   ]
+  },
+  "yaw_deg": 87.9
+ },
+ {
+  "model": "batelco_stand",
+  "at": {
+   "xz": [
+    125.0,
+    258.6
+   ]
+  },
+  "yaw_deg": 87.9
+ },
+ {
+  "model": "pit_building",
+  "at": {
+   "xz": [
+    21.5,
+    310.0
+   ]
+  },
+  "yaw_deg": -91.8
+ },
+ {
+  "model": "paddock",
+  "at": {
+   "xz": [
+    82.0,
+    305.0
+   ]
+  },
+  "yaw_deg": -92.0
+ },
+ {
+  "model": "sakhir_tower",
+  "at": {
+   "xz": [
+    95.5,
+    -67.1
+   ]
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "stand_roof_205",
+  "at": {
+   "xz": [
+    -29.9,
+    -130.5
+   ]
+  },
+  "yaw_deg": 87.8
+ },
+ {
+  "model": "stand_roof_70",
+  "at": {
+   "xz": [
+    146.3,
+    -255.6
+   ]
+  },
+  "yaw_deg": -9.0
+ },
+ {
+  "model": "stand_roof_70",
+  "at": {
+   "xz": [
+    228.5,
+    -252.1
+   ]
+  },
+  "yaw_deg": -8.7
+ },
+ {
+  "model": "stand_roof_70",
+  "at": {
+   "xz": [
+    309.3,
+    -247.9
+   ]
+  },
+  "yaw_deg": -8.8
+ },
+ {
+  "model": "stand_roof_70",
+  "at": {
+   "xz": [
+    200.5,
+    933.3
+   ]
+  },
+  "yaw_deg": -150.5
+ },
+ {
+  "model": "stand_roof_70",
+  "at": {
+   "xz": [
+    58.6,
+    1008.9
+   ]
+  },
+  "yaw_deg": -151.2
+ },
+ {
+  "model": "dome_29",
+  "at": {
+   "xz": [
+    -100.0,
+    722.0
+   ]
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "dome_15",
+  "at": {
+   "xz": [
+    -73.0,
+    683.0
+   ]
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "start_gantry",
+  "at": {
+   "s": 5176.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "gantry",
+  "at": {
+   "s": 1160.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "gantry",
+  "at": {
+   "s": 1855.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "gantry",
+  "at": {
+   "s": 2596.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ }
+]

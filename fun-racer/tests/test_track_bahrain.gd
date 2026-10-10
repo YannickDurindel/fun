@@ -25,8 +25,9 @@ func test_dimensions_match_real_circuit() -> void:
 	for p in d.points:
 		lo = minf(lo, p.y)
 		hi = maxf(hi, p.y)
-	# Published: about 17 m. The DEM is a 30 m surface model, so allow a few metres more.
-	assert_between(hi - lo, 12.0, 24.0, "elevation range (m)")
+	# Published: 17 to 18 m ("relief from 0 to 18 m", the circuit's data sheet). The recipe pins
+	# the two hilltops of the DEM profile so that the lap has that range (18.1 m built).
+	assert_between(hi - lo, 16.5, 19.5, "elevation range (m)")
 	assert_true(d.turns.size() == 15, "expected 15 turns, got %d" % d.turns.size())
 	var last := -1.0
 	for i in d.turns.size():
@@ -46,6 +47,79 @@ func test_dimensions_match_real_circuit() -> void:
 	var grid_y := d.position_at(d.start_s).y
 	assert_true(d.position_at(float(d.turns[3]["s_apex"])).y > grid_y + 8.0, "Turn 4 is well above the grid")
 	assert_true(d.position_at(float(d.turns[12]["s_apex"])).y > grid_y + 8.0, "Turn 13 is well above the grid")
+
+## Widths measured on aerial imagery, inside the published 14 to 22 m (see the recipe).
+func test_widths_follow_the_real_circuit() -> void:
+	var d := TrackData.load_track(PATH)
+	var lo := INF
+	var hi := -INF
+	for s: float in range(0, int(d.length), 10):
+		lo = minf(lo, d.width_at(s))
+		hi = maxf(hi, d.width_at(s))
+	assert_between(lo, 13.9, 14.1, "narrowest road (m)")
+	assert_between(hi, 20.5, 22.0, "widest road (m)")
+	assert_between(d.width_at(d.start_s), 14.9, 15.1, "grid (m)")
+	assert_between(d.width_at(float(d.turns[0]["s_apex"])), 20.5, 21.5, "Turn 1 (m)")
+	assert_between(d.width_at(float(d.turns[3]["s_apex"])), 20.5, 21.5, "Turn 4 (m)")
+	assert_between(d.width_at(float(d.turns[7]["s_apex"])), 17.5, 18.5, "Turn 8 (m)")
+	assert_between(d.width_at(float(d.turns[9]["s_apex"])), 13.9, 14.1, "Turn 10 (m)")
+	assert_between(d.width_at(2600.0), 13.9, 14.1, "Turn 10 to Turn 11 straight (m)")
+	assert_between(d.width_at(4000.0), 13.9, 14.1, "back straight (m)")
+
+## The race is run at night under floodlights, in a desert: no green ground except the lawns.
+func test_environment_is_a_floodlit_desert_night() -> void:
+	var env := TrackEnvironment.load_file("res://assets/tracks/bahrain/environment.json")
+	assert_true(env.is_night() and env.floodlit(), "night race under floodlights")
+	var names := TrackEnvironment.CLASSES
+	for cls: String in ["grass", "sand", "rock", "gravel", "scrub"]:
+		var a: Color = env.palette(0)[names.find(cls)]
+		assert_true(a.r > a.g and a.g > a.b, "%s is sand-coloured, not green (%s)" % [cls, a])
+	var lawn: Color = env.palette(0)[names.find("farmland")]
+	assert_true(lawn.g > lawn.r and lawn.g > lawn.b, "the irrigated lawns are green")
+	var verge := env.color("verge", "grass_color")
+	assert_true(verge.r > verge.g and verge.g > verge.b, "the verge is sand-coloured paint, not grass")
+
+## Every run-off of the Grand Prix lap is tarmac, and the lap has its hand-made table.
+func test_trackside_table_has_no_gravel() -> void:
+	var d := TrackData.load_track(PATH)
+	var layout := TracksideLayout.for_track(ID, d)
+	assert_true(not layout.is_auto, "bahrain uses its hand-made trackside table")
+	assert_true(layout.runoff.size() >= 10, "run-off areas: %d" % layout.runoff.size())
+	for r: Dictionary in layout.runoff:
+		assert_true(String(r["kind"]) == "tarmac", "run-off at %s is tarmac" % r["turn"])
+	var seen := {}
+	for k: Dictionary in layout.kerbs:
+		seen[k["turn"]] = true
+	assert_true(seen.size() == 15, "every turn has a kerb (%d of 15)" % seen.size())
+	assert_true(layout.is_concrete(d.start_s) and layout.is_concrete(2600.0) and not layout.is_concrete(700.0),
+			"concrete walls on the pit straight and along the drag strip")
+
+## The landmark models exist and stand where the real structures do.
+func test_landmarks() -> void:
+	var path := "res://assets/tracks/bahrain/landmarks.json"
+	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+	assert_true(parsed is Array and (parsed as Array).size() >= 14, "landmarks.json lists the landmarks")
+	if not parsed is Array:
+		return
+	var models := {}
+	for e: Dictionary in parsed:
+		models[e["model"]] = e
+		assert_true(ResourceLoader.exists("res://assets/tracks/bahrain/landmarks/%s.glb" % e["model"]),
+				"model %s exists" % e["model"])
+	for name: String in ["sakhir_tower", "main_grandstand", "batelco_stand", "pit_building", "start_gantry"]:
+		assert_true(models.has(name), "%s is placed" % name)
+	var d := TrackData.load_track(PATH)
+	# The grandstand and the pit building face each other across the grid; the tower stands
+	# inside Turn 1, right of the road.
+	var grid := d.position_at(d.start_s)
+	var stand: Array = models["main_grandstand"]["at"]["xz"]
+	var pits: Array = models["pit_building"]["at"]["xz"]
+	assert_between(d.lateral_offset(Vector3(stand[0], grid.y, stand[1])), -60.0, -25.0, "main grandstand, left of the straight (m)")
+	assert_between(d.lateral_offset(Vector3(pits[0], grid.y, pits[1])), 20.0, 55.0, "pit building, right of the straight (m)")
+	var tower: Array = models["sakhir_tower"]["at"]["xz"]
+	var apex := d.position_at(float(d.turns[0]["s_apex"]))
+	assert_between(Vector2(tower[0] - apex.x, tower[1] - apex.z).length(), 120.0, 220.0, "tower to the Turn 1 apex (m)")
+	assert_between(float(models["start_gantry"]["at"]["s"]) - d.start_s, 0.0, 30.0, "start lights ahead of the grid (m)")
 
 func test_sampling_round_trip() -> void:
 	var d := TrackData.load_track(PATH)
