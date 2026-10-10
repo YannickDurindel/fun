@@ -72,6 +72,45 @@ func test_dimensions_match_real_circuit() -> void:
 	# The start line is 92 m after the finish line (50 laps = 309.958 km).
 	assert_between(d.start_s, 85.0, 100.0, "start line s (m)")
 
+## Widths per section, as the recipe states them (estimates inside the published 12 to 15 m:
+## formula1.com, "the track is around 12-15 m wide"). Before, the whole lap was the default
+## 13 m with a 15 m grid.
+func test_widths_follow_the_real_sections() -> void:
+	var d := TrackData.load_track(PATH)
+	assert_true(d != null, "track.json failed to load")
+	if d == null:
+		return
+	for w in d.widths:
+		if w < 11.99 or w > 15.01:
+			assert_true(false, "width %.2f m outside 12 to 15 m" % w)
+			break
+	assert_between(d.width_at(d.start_s), 14.9, 15.1, "grid width (m)")
+	assert_between(d.width_at(320.0), 14.9, 15.1, "Turn 1 hairpin width (m)")
+	assert_between(d.width_at(1200.0), 13.9, 14.1, "Koval Lane width (m)")
+	assert_between(d.width_at(2000.0), 11.9, 12.1, "Sphere road width (m)")
+	assert_between(d.width_at(2800.0), 11.9, 12.1, "Sands Avenue width (m)")
+	assert_between(d.width_at(4300.0), 13.9, 14.1, "the Strip width (m)")
+	assert_between(d.width_at(5650.0), 12.9, 13.1, "Harmon Avenue width (m)")
+
+## Turns 14 to 16 are left, right, left (official circuit map). OSM draws one straight
+## diagonal there; the recipe's [[layout.shift]] gives the lap its right-hand kink.
+func test_turn_15_is_a_right_hand_kink() -> void:
+	var d := TrackData.load_track(PATH)
+	assert_true(d != null and d.turns.size() == 17, "track.json with 17 turns")
+	if d == null or d.turns.size() != 17:
+		return
+	var bends: Array[float] = []
+	for i: int in [13, 14, 15]:
+		var s := float(d.turns[i]["s_apex"])
+		var a := d.tangent_at(s - 8.0)
+		var b := d.tangent_at(s + 8.0)
+		# Positive = the heading turns right (x east, z south, seen from above).
+		bends.append(a.x * b.z - a.z * b.x)
+	assert_true(bends[0] < -0.2, "Turn 14 turns left (%.3f)" % bends[0])
+	assert_true(bends[1] > 0.08, "Turn 15 turns right (%.3f)" % bends[1])
+	assert_true(bends[2] < -0.2, "Turn 16 turns left (%.3f)" % bends[2])
+	assert_between(float(d.turns[14]["min_radius"]), 60.0, 140.0, "Turn 15 radius (m)")
+
 ## The Strip: 1.9 km flat out between Turn 12 and Turn 14, heading south, with nothing
 ## tighter than the Turn 13 kink.
 func test_the_strip_is_one_long_straight() -> void:
@@ -147,6 +186,63 @@ func test_walls_stand_close_to_the_road() -> void:
 				close += 1
 		s += 10.0
 	assert_true(close > total * 0.8, "only %d of %d wall samples within 3.5 m of the road" % [close, total])
+	scene.queue_free()
+
+## A night race under floodlights, with the landmarks of the lap standing round it.
+func test_surroundings_are_the_strip_at_night() -> void:
+	var env := TrackEnvironment.load_file("res://assets/tracks/las_vegas/environment.json")
+	assert_true(env.active and env.is_night() and env.floodlit(), "a floodlit night race")
+	assert_true(not env.mowing_stripes(), "no mowed grass beside a street circuit")
+	# The verges are pavement: grey, not green.
+	var verge := env.color("verge", "grass_color")
+	assert_true(absf(verge.r - verge.g) < 0.03 and absf(verge.g - verge.b) < 0.03, "paved verges (%s)" % verge)
+	var scene := _race()
+	await physics_frames(10)
+	var scenery := scene.get_node("Track").find_child("Scenery", true, false) as Scenery
+	assert_true(scenery != null and scenery.is_built, "the track has scenery")
+	if scenery == null:
+		scene.queue_free()
+		return
+	# Sphere, Eiffel Tower, High Roller, the Strip (palms, signs, fountains) and the circuit's
+	# own structures (gantries, Flamingo Road bridge, monorail).
+	assert_true(scenery.landmark_count == 5, "landmarks: %d" % scenery.landmark_count)
+	assert_true(scenery.lamp_count > 100, "floodlight masts: %d" % scenery.lamp_count)
+	assert_true(scenery.building_chunks > 20, "building chunks: %d" % scenery.building_chunks)
+	# The landmark models are baked in world heights by tools/track/landmarks/las_vegas.py, which
+	# cancels the terrain height at each anchor: a mismatch means the track was rebuilt without
+	# running that script again.
+	var terrain := scene.get_node("Track").find_child("Terrain", true, false) as Terrain
+	var placed: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/tracks/las_vegas/landmarks.json"))
+	assert_true(terrain != null and placed.size() == 5, "terrain and 5 landmark entries")
+	if terrain != null:
+		for e: Dictionary in placed:
+			var xz: Array = e["at"]["xz"]
+			var ground := terrain.height_at(float(xz[0]), float(xz[1]))
+			if is_nan(ground):
+				ground = 0.0
+			assert_true(absf(ground + float(e["y_offset"])) < 0.05,
+					"landmark %s is baked on another terrain (%.2f m off): run tools/track/landmarks/las_vegas.py" % [
+					e["model"], ground + float(e["y_offset"])])
+	var meta: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/tracks/las_vegas/scenery.json"))
+	var counts: Dictionary = meta.get("counts", {})
+	# Main grandstand, East and West Harmon zones, the Sphere zone, the Bellagio Fountain Club.
+	assert_true(int(counts.get("grandstands", 0)) >= 10, "grandstands: %s" % counts.get("grandstands", 0))
+	# The Sphere stands inside Turns 5 to 9: 157 m wide, 112 m high, lit.
+	var sphere := scenery.find_child("sphere_*", true, false) as Node3D
+	assert_true(sphere != null, "the Sphere is a landmark")
+	if sphere != null:
+		var box := AABB()
+		var first := true
+		for mi in Scenery.mesh_instances(sphere):
+			var b := mi.global_transform * mi.get_aabb()
+			box = b if first else box.merge(b)
+			first = false
+		assert_between(box.size.x, 150.0, 175.0, "Sphere width (m)")
+		assert_between(box.end.y, 100.0, 116.0, "Sphere top above the finish line (m)")
+		var d := TrackData.load_track(PATH)
+		var c := box.get_center()
+		var s := d.closest_s(Vector3(c.x, 0.0, c.z))
+		assert_between(s, float(d.turns[4]["s_apex"]), float(d.turns[9]["s_apex"]), "the Sphere is beside Turns 5 to 10")
 	scene.queue_free()
 
 func test_race_scene_spawns_car_on_track() -> void:

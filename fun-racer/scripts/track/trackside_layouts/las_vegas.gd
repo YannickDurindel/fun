@@ -7,7 +7,9 @@ extends RefCounted
 ## with armco and gravel). Low flat kerbs on the corners, no gravel anywhere. Tarmac escape
 ## areas where the real street carries straight on behind the big braking zones: Turn 1 (the
 ## paved lot behind the hairpin), Turn 5 (Koval Lane), Turn 12 (Spring Mountain Road) and
-## Turn 14 (the Strip).
+## Turn 14 (the Strip); and the two painted tarmac aprons the purpose-built parts have: outside
+## Turn 3 (aerial imagery of the pit lot) and outside Turns 7 and 8 at the Sphere (photographs
+## of the 2024 race). Their depths are estimates from the imagery.
 ##
 ## Everything is relative to the turn table in track.json. Sides: "in" = inside of the
 ## corner, "out" = outside. Offsets are metres along the lap from the apex.
@@ -27,6 +29,7 @@ const KERBS: Array = [
 	["T12", "in", -22.0, 22.0, "flat"],
 	["T12", "out", 10.0, 55.0, "flat"],
 	["T14", "in", -22.0, 22.0, "flat"],
+	["T15", "in", -14.0, 14.0, "flat"],
 	["T16", "in", -22.0, 22.0, "flat"],
 	["T16", "out", 10.0, 55.0, "flat"],
 	["T17", "in", -25.0, 25.0, "flat"],
@@ -36,7 +39,10 @@ const KERBS: Array = [
 ## u is metres outward measured from the outer edge of any kerb there (0 = right behind it).
 const RUNOFF: Array = [
 	["T1", "out", -70.0, 5.0, "tarmac", 0.0, 16.0],
+	["T3", "out", -45.0, 30.0, "tarmac", 0.0, 14.0],
 	["T5", "out", -60.0, 5.0, "tarmac", 0.0, 12.0],
+	["T7", "out", -35.0, 5.0, "tarmac", 0.0, 10.0],
+	["T8", "out", -25.0, 10.0, "tarmac", 0.0, 8.0],
 	["T12", "out", -60.0, 5.0, "tarmac", 0.0, 12.0],
 	["T14", "out", -80.0, 5.0, "tarmac", 0.0, 14.0],
 ]

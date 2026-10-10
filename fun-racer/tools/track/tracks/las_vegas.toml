@@ -2,6 +2,12 @@
 # (6201 m, 17 turns, anticlockwise).
 #
 #   .venv/bin/python tools/track/build_track.py las_vegas --offline
+#   .venv/bin/python tools/track/landmarks/las_vegas.py
+#
+# The second command bakes the landmark models (Sphere, Eiffel Tower, High Roller, the palms,
+# signs and fountains of the Strip, gantries, the Flamingo Road bridge, the monorail) on the
+# centreline and the terrain the first one wrote: run it after every build that moves either.
+# tests/test_track_las_vegas.gd fails when the two are out of step.
 
 id = "las_vegas"
 
@@ -104,6 +110,28 @@ note = "the Strip"
 [layout]
 direction = "anticlockwise"
 
+# Koval Lane is one road of five lanes, 22 m between the kerbs (measured on Esri World Imagery,
+# 0.24 m a pixel). OSM draws it as two carriageways north of the Turn 4 junction and the
+# relation picks the northbound one, 4 m from the east kerb: a 14 m road on that line would
+# stand in the trees of the Meridian apartments. Moved 4 m west, the race surface lies against
+# the east kerb and leaves a service lane on the west side (estimate: where the walls stand on
+# Koval Lane is not published).
+[[layout.shift]]
+s = [860.0, 1540.0]
+lateral_m = -4.0
+blend = 80.0
+
+# Turns 14 to 16. The official map (formula1.com circuit map) has a square left off the Strip
+# (14), a right-hand kink (15) and a second left onto Harmon Avenue (16). OSM draws a straight
+# diagonal between two 47 degree vertices and puts the Turn 15 node on it, so the built lap had
+# no right-hander. Pushed outwards after the first vertex, the lap carries on down the Strip a
+# little longer, turns in harder and then comes back to the diagonal through a right-hand
+# kink. The size of the push is an estimate from the intersection's width on aerial imagery.
+[[layout.shift]]
+s = [5182.0, 5197.0]
+lateral_m = 7.0
+blend = 1.0       # the shift is rounded off over some 25 m by the build itself
+
 [elevation]
 dataset = "terrarium"
 # The valley floor slopes down to the east: the Strip at Harmon Avenue is the high point, the
@@ -114,6 +142,44 @@ smooth_sigma_m = 150.0
 
 [terrain]
 smooth_sigma_m = 120.0
+
+# Widths. The only published figure is a range: "the track is around 12-15 m wide", racing
+# "down one side of the Strip to keep clear of the central reservation" (formula1.com, "Las
+# Vegas Grand Prix: everything you need to know"). No FIA document gives a width per section,
+# so every figure below is an ESTIMATE inside that range, from the carriageway the lap uses
+# measured kerb to kerb on Esri World Imagery (0.24 m a pixel, partly taken during the build
+# of the 2024 race with the walls in place) less the walls that stand on the road surface.
+# Banking: none anywhere; these are public roads with a drainage crossfall, which the default
+# 1.5 % crossfall and the 3 % cap already describe.
+[road]
+base_width = 14.0     # the Strip: the four southbound lanes, 14.5 to 17 m kerb to median
+grid_width = 15.0     # the permanent pit straight: 14 to 15 m wall to wall on the imagery;
+                      # 15 m is also the FIA minimum for a new grid (Appendix O)
+
+[[road.override]]     # the purpose-built hairpin: 15 to 16 m of tarmac on the imagery
+s = [250.0, 470.0]
+width = 15.0
+blend = 40.0
+
+[[road.override]]     # Turn 3 and Turn 4, the permanent link to Koval Lane: 13 m
+s = [520.0, 800.0]
+width = 13.0
+blend = 40.0
+
+[[road.override]]     # Turn 5 to Turn 9: the 9 m access road off Koval Lane, widened for the
+s = [1600.0, 2310.0]  # race, and the 12 to 13 m road laid round the east side of the Sphere
+width = 12.0
+blend = 50.0
+
+[[road.override]]     # Sands Avenue: one carriageway of three lanes and a turn lane, 11 to 13 m
+s = [2311.0, 3200.0]
+width = 12.0
+blend = 40.0
+
+[[road.override]]     # Harmon Avenue: the eastbound lanes, 14 m from the centre line to the kerb
+s = [5300.0, 6000.0]
+width = 13.0
+blend = 50.0
 
 # The official 17 turns, at the relation's numbered turn nodes. Automatic detection finds 18
 # corners: it numbers the crossover on Sands Avenue and both curvature peaks of Turn 10, and
@@ -201,16 +267,17 @@ s = 3920.0
 id = "T14"
 name = "Harmon Avenue (entry)"
 direction = "left"
-s = 5183.0
+s = 5175.0
 
 # Officially a right-hander between two lefts. OSM draws Turn 14 to Turn 16 as a 120 m
-# diagonal between two left-hand vertices, with the Turn 15 node on the straight part: the
-# built lap has no right-hand bend here, and the entry only keeps the numbering.
+# diagonal between two left-hand vertices, with the Turn 15 node on the straight part; the
+# [[layout.shift]] above gives the lap its right-hand kink (about 90 m radius, 12 degrees)
+# where the push ends.
 [[turn]]
 id = "T15"
 name = "Harmon Avenue (chicane)"
 direction = "right"
-s = 5227.5
+s = 5237.0
 
 [[turn]]
 id = "T16"
@@ -223,3 +290,528 @@ id = "T17"
 name = "Turn 17"
 direction = "left"
 s = 6050.0
+
+# ---- surroundings (begin) ----
+# What stands round the lap, where OpenStreetMap is wrong or silent. Written by a scratch tool from
+# tables of (place, size, source); positions given along the lap were turned into lat / lon with
+# the centreline of this recipe. 'Imagery' is Esri World Imagery (0.24 m a pixel), which for the
+# pit lot shows the build of a race week with stands and walls in place. Heights marked 'estimate'
+# come from floor counts or from photographs, not from a survey.
+# Fronts keep 6.5 m or more from the road edge: the wall stands at 2.5 m and the floodlight masts
+# at 5 m, and behind a tarmac run-off the wall is further out still.
+[surroundings]
+tree_species = "palm"     # Mexican fan palms and date palms line the Strip and the resort drives
+tree_density = 60
+
+[[surroundings.exclude]]
+osm = "way/976405284"
+note = "the Sphere: a 112 m cylinder as a footprint; replaced by landmarks/sphere.glb"
+
+[[surroundings.exclude]]
+osm = "way/27831699"
+note = "the Eiffel Tower of Paris Las Vegas: replaced by landmarks/eiffel.glb"
+
+[[surroundings.building]]
+osm = "relation/19376341"
+height = 19.5
+note = "pit building (Grand Prix Plaza): OSM gives the outline 19.5 m and four levels, and the parts only the levels; 54 to 74 ft in the plans filed with Clark County (Las Vegas Review-Journal, 2022)"
+
+[[surroundings.building]]
+osm = "relation/19376342"
+height = 19.5
+note = "pit building"
+
+[[surroundings.building]]
+osm = "relation/19376343"
+height = 19.5
+note = "pit building"
+
+[[surroundings.building]]
+osm = "relation/19376344"
+height = 19.5
+note = "pit building"
+
+[[surroundings.building]]
+osm = "relation/19376345"
+height = 19.5
+note = "pit building"
+
+[[surroundings.building]]
+osm = "way/1416395732"
+height = 19.5
+note = "pit building: roof screen of the F1 logo"
+
+[[surroundings.building]]
+osm = "way/1416395733"
+height = 19.5
+note = "pit building: roof screen of the F1 logo"
+
+[[surroundings.building]]
+osm = "way/1416395734"
+height = 19.5
+note = "pit building: roof screen of the F1 logo"
+
+[[surroundings.building]]
+osm = "way/238675785"
+height = 16.0
+note = "Ellis Island Hotel: five storeys (hotel's own description of its 2023 wing); estimate"
+
+[[surroundings.building]]
+osm = "way/100519310"
+height = 7.0
+note = "Ellis Island Casino: one tall storey; estimate from street photos"
+
+[[surroundings.building]]
+osm = "way/442766028"
+height = 12.0
+note = "Ellis Island parking garage: four decks; estimate"
+
+[[surroundings.building]]
+osm = "way/1001560971"
+height = 14.0
+type = "industrial"
+note = "Caesars Entertainment Studios: a sound stage shed; estimate"
+
+[[surroundings.building]]
+osm = "way/543423254"
+height = 62.0
+note = "Platinum Hotel: 17 floors, 62 m (Emporis / Wikipedia list of tallest buildings in Las Vegas)"
+
+[[surroundings.building]]
+osm = "way/135298867"
+height = 12.0
+note = "Platinum Hotel podium; estimate"
+
+[[surroundings.building]]
+osm = "way/543423252"
+height = 60.0
+note = "The Westin Las Vegas (ex Maxim): 17 floors; 3.5 m a floor, estimate"
+
+[[surroundings.building]]
+osm = "way/135020970"
+height = 10.0
+note = "Westin casino podium; estimate"
+
+[[surroundings.building]]
+osm = "way/135020971"
+height = 12.0
+note = "Westin parking garage; estimate"
+
+[[surroundings.building]]
+osm = "way/176411337"
+height = 11.0
+note = "Meridian apartments: three storeys under a tiled roof (aerial imagery)"
+
+[[surroundings.building]]
+osm = "way/176411328"
+height = 11.0
+note = "Meridian apartments"
+
+[[surroundings.building]]
+osm = "way/176411338"
+height = 11.0
+note = "Meridian apartments"
+
+[[surroundings.building]]
+osm = "way/762169780"
+height = 24.0
+type = "industrial"
+note = "Caesars Forum conference centre: two 8 to 10 m halls behind blank walls; height estimate"
+
+[[surroundings.building]]
+osm = "way/1001560970"
+height = 9.0
+note = "service building west of Koval Lane; estimate"
+
+[[surroundings.building]]
+osm = "way/182464622"
+height = 13.0
+note = "Hughes Center parking garage: four decks; estimate"
+
+[[surroundings.building]]
+osm = "way/1085922690"
+height = 24.0
+note = "Wynn meeting and convention expansion (2020): two tall storeys; estimate"
+
+[[surroundings.building]]
+osm = "way/1255472581"
+height = 5.0
+note = "pump house at Sands Avenue / Koval Lane; estimate"
+
+[[surroundings.building]]
+osm = "way/111413431"
+height = 24.0
+note = "Wynn convention wing along Sands Avenue; estimate"
+
+[[surroundings.building]]
+osm = "way/111367819"
+height = 27.0
+type = "industrial"
+note = "Venetian Expo (Sands Expo): two exhibition levels behind blank walls (type industrial = no windows); height estimate"
+
+[[surroundings.building]]
+osm = "way/180584269"
+height = 26.0
+note = "The Palazzo podium (casino and Grand Canal Shoppes); estimate"
+
+[[surroundings.building]]
+osm = "way/111322055"
+height = 20.0
+note = "Wynn Plaza and casino podium; estimate"
+
+[[surroundings.building]]
+osm = "way/135291730"
+height = 18.0
+note = "Encore podium; estimate"
+
+[[surroundings.building]]
+osm = "way/180584255"
+height = 24.0
+note = "Fashion Show Mall: three retail levels behind a 24 m front; estimate"
+
+[[surroundings.building]]
+osm = "way/543638190"
+height = 8.0
+note = "shops in front of Treasure Island; estimate"
+
+[[surroundings.building]]
+osm = "way/180771078"
+height = 8.0
+note = "shops in front of Treasure Island; estimate"
+
+[[surroundings.building]]
+osm = "way/33959894"
+height = 16.0
+note = "Treasure Island casino podium; estimate"
+
+[[surroundings.building]]
+osm = "way/1468774558"
+height = 95.0
+type = "industrial"
+note = "Hard Rock guitar hotel under construction on the Mirage volcano site: bare concrete, about half of its 201 m (660 ft, Hard Rock International) at the time of the 2025 race; estimate"
+
+[[surroundings.building]]
+osm = "way/33957359"
+height = 14.0
+note = "the closed Mirage casino podium, being rebuilt as the Hard Rock; estimate"
+
+[[surroundings.building]]
+osm = "way/34068416"
+height = 24.0
+note = "The Forum Shops at Caesars: three levels behind a 24 m colonnade; estimate"
+
+[[surroundings.building]]
+osm = "way/115672893"
+height = 20.0
+note = "Caesars Palace casino podium and Colosseum base; estimate"
+
+[[surroundings.building]]
+osm = "way/1176928048"
+height = 170.0
+note = "Caesars Palace Augustus Tower: 46 floors (Caesars Entertainment); 3.7 m a floor, estimate"
+
+[[surroundings.building]]
+osm = "relation/1599958"
+height = 16.0
+note = "Bellagio casino podium and Via Bellagio shops; estimate"
+
+[[surroundings.building]]
+osm = "way/25723909"
+height = 151.0
+note = "Bellagio main tower: 151 m, 36 floors (Wikipedia, 'Bellagio (resort)')"
+
+[[surroundings.building]]
+osm = "way/1212809711"
+height = 28.0
+note = "The Cosmopolitan podium: casino under the pool deck; estimate"
+
+[[surroundings.building]]
+osm = "way/1421481100"
+height = 16.0
+note = "Arte Museum at the Crystals corner; estimate"
+
+[[surroundings.building]]
+osm = "way/52194829"
+height = 179.0
+note = "Waldorf Astoria Las Vegas: 47 floors, 179 m (Wikipedia)"
+
+[[surroundings.building]]
+osm = "relation/7770314"
+height = 25.0
+note = "The Venetian podium (Doge's Palace front and casino); estimate"
+
+[[surroundings.building]]
+osm = "way/33996627"
+height = 12.0
+note = "Venetian frontage building; estimate"
+
+[[surroundings.building]]
+osm = "way/181282568"
+height = 15.0
+note = "Casino Royale: a four-storey hotel over the casino"
+
+[[surroundings.building]]
+osm = "way/345534561"
+height = 8.0
+note = "shops north of Harrah's; estimate"
+
+[[surroundings.building]]
+osm = "way/128622185"
+height = 16.0
+note = "Harrah's casino podium; estimate"
+
+[[surroundings.building]]
+osm = "way/402543936"
+height = 13.0
+note = "LINQ Promenade front; estimate"
+
+[[surroundings.building]]
+osm = "way/116761428"
+height = 16.0
+note = "Flamingo casino podium; estimate"
+
+[[surroundings.building]]
+osm = "way/61239326"
+height = 45.0
+note = "The Cromwell: 11 floors, 188 rooms (Caesars Entertainment); 4 m a floor, estimate"
+
+[[surroundings.building]]
+osm = "way/543422869"
+height = 14.0
+note = "Horseshoe (ex Bally's) Grand Bazaar front; estimate"
+
+[[surroundings.building]]
+osm = "way/33974140"
+height = 18.0
+note = "Paris Las Vegas casino podium; estimate"
+
+[[surroundings.building]]
+osm = "way/1255028419"
+height = 20.0
+note = "Harmon Corner: three retail levels behind a 20 m LED front"
+
+[[surroundings.building]]
+osm = "way/896655233"
+height = 6.0
+note = "single-storey building on Harmon Avenue; estimate"
+
+[[surroundings.building]]
+osm = "way/95223226"
+height = 9.0
+note = "Elite Medical Center: two storeys"
+
+# Two- and three-storey timeshare blocks east of Koval Lane and round the pit lot, mapped as
+# building=hotel without a height (the type default would make them 18 m): three storeys.
+[[surroundings.building]]
+osm = 385356644
+levels = 3
+
+[[surroundings.building]]
+osm = 385356645
+levels = 3
+
+[[surroundings.building]]
+osm = 385356646
+levels = 3
+
+[[surroundings.building]]
+osm = 385356647
+levels = 3
+
+[[surroundings.building]]
+osm = 385356652
+levels = 3
+
+[[surroundings.building]]
+osm = 385356653
+levels = 3
+
+[[surroundings.building]]
+osm = 385356654
+levels = 3
+
+[[surroundings.building]]
+osm = 385356655
+levels = 3
+
+[[surroundings.building]]
+osm = 385356656
+levels = 3
+
+[[surroundings.building]]
+osm = 385356659
+levels = 3
+
+[[surroundings.building]]
+osm = 385356660
+levels = 3
+
+[[surroundings.building]]
+osm = 385356661
+levels = 3
+
+[[surroundings.building]]
+osm = 397861144
+levels = 3
+
+[[surroundings.building]]
+osm = 397861145
+levels = 3
+
+[[surroundings.building]]
+osm = 397861146
+levels = 3
+
+[[surroundings.building]]
+osm = 397861147
+levels = 3
+
+[[surroundings.building]]
+osm = 397861150
+levels = 3
+
+[[surroundings.building]]
+osm = 397861151
+levels = 3
+
+[[surroundings.building]]
+osm = 397861152
+levels = 3
+
+[[surroundings.building]]
+osm = 397861158
+levels = 3
+
+[[surroundings.building]]
+osm = 397861159
+levels = 3
+
+[[surroundings.building]]
+osm = 543728939
+levels = 3
+
+[[surroundings.add]]
+kind = "farmland"
+polygon = [[36.122976, -115.162339], [36.122976, -115.154921], [36.129505, -115.154921], [36.129505, -115.161232], [36.127001, -115.162339]]
+note = "Wynn Golf Club: the one large lawn beside the lap (class 'farmland' is this track's irrigated turf)"
+
+[[surroundings.add]]
+kind = "farmland"
+polygon = [[36.107757, -115.165839], [36.107756, -115.165687], [36.107754, -115.165510], [36.107751, -115.165353], [36.107751, -115.165193], [36.107752, -115.165035], [36.107753, -115.164879], [36.107755, -115.164704], [36.107755, -115.164549], [36.107755, -115.164393], [36.106834, -115.164393], [36.106834, -115.164547], [36.106833, -115.164698], [36.106832, -115.164865], [36.106830, -115.165020], [36.106829, -115.165190], [36.106830, -115.165367], [36.106833, -115.165533], [36.106835, -115.165703], [36.106836, -115.165840]]
+note = "Topgolf's outfield, south of Harmon Avenue"
+
+[[surroundings.add]]
+kind = "sand"
+polygon = [[36.121959, -115.172055], [36.121823, -115.172125], [36.121704, -115.172185], [36.121566, -115.172250], [36.121446, -115.172306], [36.121307, -115.172366], [36.121185, -115.172418], [36.121045, -115.172474], [36.120925, -115.172520], [36.120783, -115.172574], [36.120662, -115.172617], [36.120525, -115.172667], [36.120404, -115.172711], [36.120266, -115.172761], [36.120139, -115.172805], [36.120015, -115.172845], [36.119874, -115.172889], [36.119750, -115.172927], [36.119602, -115.172968], [36.119480, -115.172999], [36.119703, -115.174344], [36.119821, -115.174314], [36.120009, -115.174262], [36.120141, -115.174222], [36.120290, -115.174175], [36.120422, -115.174133], [36.120578, -115.174079], [36.120717, -115.174028], [36.120837, -115.173985], [36.120973, -115.173935], [36.121095, -115.173891], [36.121255, -115.173831], [36.121379, -115.173783], [36.121533, -115.173721], [36.121668, -115.173664], [36.121822, -115.173597], [36.121957, -115.173535], [36.122109, -115.173463], [36.122242, -115.173397], [36.122393, -115.173319]]
+note = "the Hard Rock building site where the Mirage volcano stood: bare graded earth (aerial imagery)"
+
+[[surroundings.add]]
+kind = "grandstand"
+height = 19.0
+polygon = [[36.108950, -115.161996], [36.109044, -115.161893], [36.109139, -115.161789], [36.109246, -115.161672], [36.109339, -115.161568], [36.109432, -115.161464], [36.109526, -115.161360], [36.109632, -115.161241], [36.109726, -115.161137], [36.109819, -115.161032], [36.109926, -115.160913], [36.109771, -115.160699], [36.109664, -115.160818], [36.109570, -115.160923], [36.109476, -115.161027], [36.109370, -115.161146], [36.109277, -115.161251], [36.109183, -115.161354], [36.109091, -115.161457], [36.108984, -115.161574], [36.108890, -115.161677], [36.108796, -115.161780]]
+note = "Heineken Silver Main Grandstand opposite the pits: 146 m long, 26 m deep (measured on aerial imagery of the build); 19 m high is an estimate from its 30 or so rows"
+
+[[surroundings.add]]
+kind = "building"
+height = 14.0
+polygon = [[36.108796, -115.161780], [36.108890, -115.161677], [36.108984, -115.161574], [36.109091, -115.161457], [36.109183, -115.161354], [36.109277, -115.161251], [36.109370, -115.161146], [36.109476, -115.161027], [36.109570, -115.160923], [36.109664, -115.160818], [36.109771, -115.160699], [36.109646, -115.160526], [36.109538, -115.160646], [36.109444, -115.160750], [36.109351, -115.160855], [36.109244, -115.160974], [36.109151, -115.161078], [36.109058, -115.161181], [36.108966, -115.161284], [36.108860, -115.161400], [36.108766, -115.161503], [36.108672, -115.161606]]
+note = "hospitality deck behind the main grandstand (the timber-coloured roof on the imagery); height estimate"
+
+[[surroundings.add]]
+kind = "grandstand"
+height = 10.0
+polygon = [[36.111191, -115.160347], [36.111281, -115.160533], [36.111331, -115.160718], [36.111357, -115.160900], [36.111364, -115.161061], [36.111350, -115.161255], [36.111464, -115.161282], [36.111480, -115.161064], [36.111472, -115.160884], [36.111444, -115.160686], [36.111389, -115.160478], [36.111282, -115.160257]]
+note = "East Harmon Zone grandstand round the outside of Turn 2 (red seats on the imagery)"
+
+[[surroundings.add]]
+kind = "grandstand"
+height = 9.0
+polygon = [[36.110501, -115.160123], [36.110720, -115.160018], [36.110970, -115.160039], [36.111144, -115.160152], [36.111210, -115.160047], [36.111004, -115.159913], [36.110704, -115.159887], [36.110444, -115.160010]]
+note = "East Harmon Zone grandstand outside Turn 1"
+
+[[surroundings.add]]
+kind = "building"
+height = 8.0
+polygon = [[36.110051, -115.160582], [36.110146, -115.160478], [36.110229, -115.160389], [36.110329, -115.160284], [36.110424, -115.160190], [36.110370, -115.160102], [36.110272, -115.160199], [36.110171, -115.160305], [36.110087, -115.160395], [36.109992, -115.160499]]
+note = "hospitality row at the end of the pit straight (white roof on the imagery)"
+
+[[surroundings.add]]
+kind = "building"
+height = 12.0
+polygon = [[36.111044, -115.161856], [36.110958, -115.161990], [36.110867, -115.162107], [36.110777, -115.162217], [36.110686, -115.162336], [36.110626, -115.162436], [36.110591, -115.162549], [36.110854, -115.162635], [36.110868, -115.162594], [36.110895, -115.162552], [36.110970, -115.162456], [36.111059, -115.162346], [36.111160, -115.162217], [36.111264, -115.162055]]
+note = "two-storey hospitality building inside Turn 3 (timber-coloured roof, 85 x 33 m on the imagery)"
+
+[[surroundings.add]]
+kind = "building"
+height = 8.0
+polygon = [[36.110571, -115.162663], [36.110560, -115.162800], [36.110564, -115.162899], [36.110595, -115.163028], [36.110637, -115.163165], [36.110685, -115.163288], [36.110746, -115.163397], [36.110820, -115.163497], [36.110906, -115.163586], [36.110979, -115.163645], [36.111001, -115.163591], [36.110935, -115.163537], [36.110853, -115.163452], [36.110784, -115.163358], [36.110728, -115.163257], [36.110682, -115.163141], [36.110642, -115.163007], [36.110612, -115.162887], [36.110609, -115.162801], [36.110620, -115.162672]]
+note = "row of hospitality suites round the inside of Turns 3 and 4"
+
+[[surroundings.add]]
+kind = "grandstand"
+height = 9.0
+polygon = [[36.110203, -115.163093], [36.110248, -115.163256], [36.110307, -115.163431], [36.110389, -115.163609], [36.110490, -115.163767], [36.110623, -115.163923], [36.110556, -115.164027], [36.110411, -115.163857], [36.110300, -115.163684], [36.110211, -115.163489], [36.110148, -115.163302], [36.110100, -115.163133]]
+note = "grandstand facing Turns 3 and 4 across the run-off (red seats on the imagery); placed along the lap, the real one stands on a chord"
+
+[[surroundings.add]]
+kind = "grandstand"
+height = 13.0
+polygon = [[36.110951, -115.164060], [36.111071, -115.164112], [36.111195, -115.164148], [36.111320, -115.164169], [36.111438, -115.164177], [36.111432, -115.164464], [36.111300, -115.164456], [36.111154, -115.164431], [36.111008, -115.164389], [36.110866, -115.164328]]
+note = "scaffold grandstand on the west side of Koval Lane after Turn 4"
+
+[[surroundings.add]]
+kind = "grandstand"
+height = 11.0
+polygon = [[36.119345, -115.160658], [36.119436, -115.160543], [36.119551, -115.160413], [36.119663, -115.160311], [36.119805, -115.160214], [36.119745, -115.160053], [36.119586, -115.160162], [36.119461, -115.160276], [36.119336, -115.160416], [36.119242, -115.160536]]
+note = "T-Mobile Zone at Sphere: grandstand on the car park east of the Sphere road. Position approximate: the imagery there is not from a race week"
+
+[[surroundings.add]]
+kind = "grandstand"
+height = 11.0
+polygon = [[36.119840, -115.160195], [36.119937, -115.160142], [36.120058, -115.160076], [36.120177, -115.160029], [36.120310, -115.159996], [36.120287, -115.159821], [36.120144, -115.159856], [36.120006, -115.159911], [36.119878, -115.159981], [36.119782, -115.160032]]
+note = "T-Mobile Zone at Sphere: second grandstand (approximate)"
+
+[[surroundings.add]]
+kind = "grandstand"
+height = 10.0
+polygon = [[36.121204, -115.160910], [36.121378, -115.160868], [36.121508, -115.160802], [36.121626, -115.160731], [36.121754, -115.160649], [36.121843, -115.160596], [36.121878, -115.160745], [36.121811, -115.160786], [36.121684, -115.160869], [36.121561, -115.160943], [36.121418, -115.161014], [36.121214, -115.161064]]
+note = "T-Mobile Zone at Sphere: grandstand between the lap and the Sphere, Turns 8 to 9 (approximate)"
+
+[[surroundings.add]]
+kind = "metal"
+height = 39.0
+min_height = 35.5
+polygon = [[36.124449, -115.171047], [36.124510, -115.171109], [36.124621, -115.171128], [36.124772, -115.171104], [36.124946, -115.171039], [36.125129, -115.170939], [36.125300, -115.170814], [36.125445, -115.170676], [36.125548, -115.170539], [36.125600, -115.170416], [36.125595, -115.170319], [36.125534, -115.170257], [36.125423, -115.170238], [36.125273, -115.170262], [36.125098, -115.170327], [36.124916, -115.170427], [36.124744, -115.170552], [36.124600, -115.170690], [36.124496, -115.170827], [36.124445, -115.170950]]
+note = "The Cloud of Fashion Show Mall: a 146 m steel disc about 39 m above the plaza (39 m: Fashion Show / Brookfield fact sheet as quoted by Wikipedia; plan size from aerial imagery)"
+
+[[surroundings.add]]
+kind = "grandstand"
+height = 10.0
+polygon = [[36.113754, -115.173187], [36.113645, -115.173188], [36.113520, -115.173190], [36.113412, -115.173191], [36.113414, -115.173407], [36.113521, -115.173406], [36.113647, -115.173404], [36.113756, -115.173402]]
+note = "Bellagio Fountain Club: the grandstand at its north end, on the pavement in front of the lake (photograph of the 2023 build, Wikimedia Commons 'Bellagio Fountain Club (2023).jpg')"
+
+[[surroundings.add]]
+kind = "glass"
+height = 10.0
+polygon = [[36.113376, -115.173192], [36.113250, -115.173193], [36.113125, -115.173195], [36.113001, -115.173199], [36.112876, -115.173203], [36.112751, -115.173209], [36.112607, -115.173215], [36.112481, -115.173221], [36.112355, -115.173226], [36.112230, -115.173232], [36.112104, -115.173238], [36.111978, -115.173243], [36.111851, -115.173247], [36.111727, -115.173252], [36.111601, -115.173257], [36.111608, -115.173473], [36.111733, -115.173468], [36.111856, -115.173463], [36.111983, -115.173459], [36.112110, -115.173453], [36.112236, -115.173448], [36.112362, -115.173442], [36.112487, -115.173437], [36.112613, -115.173431], [36.112757, -115.173424], [36.112882, -115.173419], [36.113005, -115.173414], [36.113128, -115.173411], [36.113252, -115.173409], [36.113378, -115.173407]]
+note = "Bellagio Fountain Club: the two-level glazed hospitality building over the lake edge, about 200 m long (same photograph; 10 m high is an estimate from its two storeys and roof terrace)"
+
+[[surroundings.add]]
+kind = "grandstand"
+height = 10.0
+polygon = [[36.108079, -115.165928], [36.108079, -115.165771], [36.108078, -115.165636], [36.108075, -115.165480], [36.108073, -115.165326], [36.108073, -115.165194], [36.108216, -115.165195], [36.108216, -115.165324], [36.108218, -115.165476], [36.108221, -115.165633], [36.108222, -115.165770], [36.108222, -115.165929]]
+note = "West Harmon Zone grandstand on the lot north of Harmon Avenue (approximate position)"
+
+[[surroundings.add]]
+kind = "grandstand"
+height = 10.0
+polygon = [[36.108073, -115.165062], [36.108075, -115.164929], [36.108076, -115.164772], [36.108077, -115.164638], [36.108077, -115.164482], [36.108077, -115.164349], [36.108220, -115.164349], [36.108220, -115.164483], [36.108220, -115.164639], [36.108219, -115.164774], [36.108218, -115.164932], [36.108216, -115.165065]]
+note = "West Harmon Zone, second grandstand (approximate position)"
+
+[[surroundings.roof]]
+s = [757.0, 764.0]
+clear_height = 6.0
+kind = "overpass"
+note = "temporary pedestrian bridge over Koval Lane after Turn 4 (truss bridge with stair towers on the imagery)"
+
+# ---- surroundings (end) ----
