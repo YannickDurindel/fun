@@ -6,8 +6,8 @@ const ID := "suzuka"
 const PATH := "res://assets/tracks/suzuka/track.json"
 const RACE := "res://scenes/race.tscn"
 const OFFICIAL_LENGTH := 5807.0
-const S_LOWER := 2509.7   ## the road under the bridge, metres from the finish line
-const S_UPPER := 4888.7   ## the bridge deck
+const S_LOWER := 2510.8   ## the road under the bridge, metres from the finish line
+const S_UPPER := 4889.0   ## the bridge deck
 
 func _race() -> Node:
 	var scene := (load(RACE) as PackedScene).instantiate()
@@ -35,7 +35,9 @@ func test_dimensions_match_real_circuit() -> void:
 	for p in d.points:
 		lo = minf(lo, p.y)
 		hi = maxf(hi, p.y)
-	assert_between(hi - lo, 32.0, 50.0, "elevation range (m), about 40 m published")
+	# 40.4 m published; the road is pinned to the GSI 5 m laser ground model, which gives 40.6 m
+	# (the 30 m tile model the track was first built from gave 42.5 m).
+	assert_between(hi - lo, 39.0, 42.0, "elevation range (m)")
 	assert_true(d.turns.size() == 18, "expected 18 turns, got %d" % d.turns.size())
 	var last := -1.0
 	for t in d.turns:
@@ -53,7 +55,40 @@ func test_dimensions_match_real_circuit() -> void:
 	# The grid is 300 m after the timing line, on the main straight, which runs downhill to T1.
 	assert_between(d.start_s, 295.0, 305.0, "start line (m after the finish line)")
 	assert_true(d.position_at(float(d.turns[0]["s_apex"])).y < d.position_at(0.0).y - 8.0, "T1 is below the finish line")
-	assert_true(d.position_at(float(d.turns[13]["s_apex"])).y > hi - 8.0, "Spoon is near the top of the circuit")
+	assert_true(d.position_at(float(d.turns[13]["s_apex"])).y > hi - 1.0, "Spoon is the top of the circuit")
+	assert_true(d.position_at(float(d.turns[1]["s_apex"])).y < lo + 1.5, "Second Curve is the lowest point of the lap")
+
+## Widths measured on the GSI orthophoto and gradients of the laser ground model (the sources
+## are in tools/track/tracks/suzuka.toml). The track was first built 13 m wide all round.
+func test_real_widths_and_gradients() -> void:
+	var d := TrackData.load_track(PATH)
+	assert_between(d.width_at(0.0), 14.5, 15.5, "pit straight (m)")
+	assert_between(d.width_at(d.start_s), 14.5, 15.5, "grid (m)")
+	assert_between(d.width_at(520.0), 12.0, 13.0, "braking zone of First Curve (m)")
+	for s: float in [1000.0, 1200.0, 1400.0, 1600.0, 1800.0]:
+		assert_between(d.width_at(s), 10.0, 11.0, "S Curves to Dunlop at s=%.0f (m)" % s)
+	assert_between(d.width_at(2700.0), 9.0, 10.0, "110R climb, the narrowest part (m)")
+	assert_between(d.width_at(2905.0), 14.5, 15.5, "hairpin apex (m)")
+	assert_between(d.width_at(4500.0), 9.5, 10.5, "back straight (m)")
+	var lo := INF
+	var hi := -INF
+	for w in d.widths:
+		lo = minf(lo, w)
+		hi = maxf(hi, w)
+	assert_between(lo, 9.0, 10.0, "narrowest (m): 10 m published, 8.9 m measured between the lines")
+	assert_between(hi, 14.5, 16.0, "widest (m): 14 to 16 m published")
+	# The pit straight falls 2.8 % all the way to First Curve (Takenaka, 2009 grandstand).
+	for s: float in [100.0, 250.0, 400.0, 550.0]:
+		assert_between(d.grade_at(s), -0.034, -0.022, "pit straight gradient at s=%.0f" % s)
+	# Dunlop is the steepest climb of the lap: 7.8 % published.
+	var steepest := 0.0
+	var where := 0.0
+	for i in d.grades.size():
+		if d.grades[i] > steepest:
+			steepest = d.grades[i]
+			where = i * d.step
+	assert_between(steepest, 0.07, 0.09, "steepest climb")
+	assert_between(where, 1700.0, 1820.0, "the steepest climb is Dunlop (s)")
 
 func test_sampling_round_trip() -> void:
 	var d := TrackData.load_track(PATH)
@@ -71,7 +106,8 @@ func test_crossover_geometry() -> void:
 	var high := d.position_at(S_UPPER)
 	assert_true(Vector2(low.x - high.x, low.z - high.z).length() < 2.5,
 			"the two roads cross in plan view (%.1f m apart)" % Vector2(low.x - high.x, low.z - high.z).length())
-	assert_between(high.y - low.y, 6.0, 8.0, "height of the bridge over the lower road (m)")
+	# 6.2 m in the laser ground model (deck against the road under it).
+	assert_between(high.y - low.y, 5.6, 6.8, "height of the bridge over the lower road (m)")
 	for off: float in [-150.0, -75.0, 0.0, 75.0, 150.0]:
 		assert_true(absf(d.grade_at(S_UPPER + off)) < 0.04, "no steep ramp on the back straight at %+.0f m" % off)
 		assert_true(absf(d.grade_at(S_LOWER + off)) < 0.06, "no steep ramp under the bridge at %+.0f m" % off)
@@ -159,3 +195,53 @@ func test_crossover_is_drivable_on_both_levels() -> void:
 			if not hit.is_empty():
 				assert_true(from.distance_to(hit["position"]) < 12.0, "barrier %.1f m away at s=%.0f (side %d)" % [
 						from.distance_to(hit["position"]), s, side])
+
+## The hand-made trackside table, the per-track look and the landmarks are in use.
+func test_surroundings_are_suzuka() -> void:
+	var scene := _race()
+	var track := scene.get_node("Track") as Track
+	var ts := track.get_node("Trackside") as Trackside
+	await _built(ts)
+	assert_true(not ts.layout.is_auto, "Suzuka has its own trackside table")
+	var kinds := {}
+	for r in ts.layout.runoff:
+		kinds["%s %s" % [r["turn"], r["kind"]]] = true
+	for want: String in ["T1 gravel", "T2 tarmac", "T7 gravel", "T8 gravel", "T11 gravel", "T14 tarmac", "T15 gravel"]:
+		assert_true(kinds.has(want), "run-off: %s" % want)
+	# The wall of the pit straight is 4 m from the road on the left; on the right it stands
+	# behind the pit lane.
+	assert_between(ts.barrier_offset(100.0, -1.0) - ts.edge_at(100.0), 3.0, 5.0, "left wall on the pit straight (m)")
+	assert_true(ts.barrier_offset(100.0, 1.0) - ts.edge_at(100.0) > 14.0, "the pit lane is inside the barrier line")
+	assert_true(ts.layout.is_concrete(100.0) and not ts.layout.is_concrete(4500.0), "concrete wall on the pit straight, armco on the back straight")
+	var env := track.environment
+	assert_true(env.active and env.time == "day", "a day race")
+	assert_between(env.number("sun", "azimuth_deg"), 200.0, 260.0, "afternoon sun in the south-west")
+	var scenery := track.scenery
+	var frames := 0
+	while scenery != null and not scenery.is_built and frames < 900:
+		await get_tree().physics_frame
+		frames += 1
+	assert_true(scenery != null and scenery.is_built, "Scenery finished building")
+	if scenery == null:
+		return
+	assert_true(scenery.landmark_count == 3, "Ferris wheel and two gantries, got %d" % scenery.landmark_count)
+	# The Ferris wheel stands behind the grandstands of Last Curve, 51 m tall.
+	var landmarks := scenery.get_node_or_null("Landmarks")
+	var wheel: Node3D = null
+	if landmarks != null:
+		for c in landmarks.get_children():
+			if String(c.name).begins_with("ferris_wheel"):
+				wheel = c as Node3D
+	assert_true(wheel != null, "the Ferris wheel landmark is there")
+	if wheel == null:
+		return
+	var box := AABB()
+	var first := true
+	for mi in Scenery.mesh_instances(wheel):
+		var b := mi.global_transform * mi.get_aabb()
+		box = b if first else box.merge(b)
+		first = false
+	assert_between(box.size.y, 49.0, 54.0, "height of the Ferris wheel (m)")
+	var s_wheel := track.data.closest_s(wheel.global_position)
+	assert_true(s_wheel > 5600.0 and s_wheel < 5780.0, "the wheel is beside Last Curve (s=%.0f)" % s_wheel)
+	assert_between(track.data.lateral_offset(wheel.global_position, s_wheel), -110.0, -60.0, "the wheel is on the left, behind the stands")
