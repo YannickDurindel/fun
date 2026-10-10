@@ -1,0 +1,47 @@
+[
+ {
+  "model": "pit_building",
+  "at": {
+   "s": 150.0,
+   "side": -1,
+   "dist": 23.1
+  }
+ },
+ {
+  "model": "start_gantry",
+  "at": {
+   "s": 98.0,
+   "side": 1,
+   "dist": 0.0
+  }
+ },
+ {
+  "model": "flame_towers",
+  "at": {
+   "xz": [
+    -2158.47,
+    1376.53
+   ]
+  }
+ },
+ {
+  "model": "tv_tower",
+  "at": {
+   "latlon": [
+    40.35153,
+    49.81362
+   ]
+  },
+  "y_offset": 159.0
+ },
+ {
+  "model": "trackside",
+  "at": {
+   "xz": [
+    0.0,
+    0.0
+   ]
+  },
+  "y_offset": 0.304
+ }
+]

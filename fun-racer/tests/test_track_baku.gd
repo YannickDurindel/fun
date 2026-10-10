@@ -98,14 +98,28 @@ func test_dimensions_match_real_circuit() -> void:
 		s += 50.0
 
 ## track.json carries the real widths (recipe key track_json_widths), so the drivers know how
-## narrow the castle section is.
+## narrow the castle section is. Two figures are published, 13 m at the widest (the pit
+## straight) and 7.6 m at the narrowest (Turn 8); the streets between them follow the lane
+## counts of OpenStreetMap at 3.5 m a lane (estimates, see tools/track/tracks/baku.toml).
 func test_widths() -> void:
 	var d := TrackData.load_track(PATH)
 	assert_true(d != null and d.turns.size() == 20, "track.json loads with its 20 turns")
 	if d == null or d.turns.size() != 20:
 		return
 	assert_between(d.width_at(d.start_s), 12.9, 13.1, "width on the grid (m)")
+	assert_between(d.width_at(5600.0), 12.9, 13.1, "width of the four-lane main straight (m)")
+	assert_between(d.width_at(4400.0), 11.9, 12.1, "width of the run from Turn 16 (m)")
+	assert_between(d.width_at(500.0), 11.9, 12.1, "width of Pushkin Street, Turn 1 to Turn 2 (m)")
+	assert_between(d.width_at(1100.0), 9.9, 10.1, "width of Khagani Street, Turn 2 to Turn 3 (m)")
+	assert_between(d.width_at(1650.0), 10.4, 10.6, "width of Bulbul Avenue, Turn 3 to Turn 4 (m)")
+	assert_between(d.width_at(1900.0), 10.4, 10.6, "width of Zarifa Aliyeva Street, Turn 4 to Turn 5 (m)")
+	assert_between(d.width_at(3150.0), 11.9, 12.1, "width of Istiglaliyyat Street (m)")
+	assert_between(d.width_at(3950.0), 9.9, 10.1, "width of Niyazi Street, Turn 15 to Turn 16 (m)")
 	assert_between(d.width_at(float(d.turns[7]["s_apex"]) + 10.0), 7.5, 7.8, "width in the castle section (m)")
+	var widest := 0.0
+	for w in d.widths:
+		widest = maxf(widest, w)
+	assert_between(widest, 12.9, 13.1, "widest point of the lap (m)")
 	var narrowest := INF
 	for w in d.widths:
 		narrowest = minf(narrowest, w)
@@ -212,8 +226,10 @@ func test_race_scene_spawns_car_on_track() -> void:
 	assert_true(not (track.get_node("Terrain") as Terrain).is_fallback, "the terrain comes from terrain.json")
 	scene.queue_free()
 
-## Street circuit: concrete walls close to the road all the way round, never on it, and no
-## run-off. Between the carriageways the wall is nearer still, but beside the tarmac.
+## Street circuit: concrete walls close to the road all the way round, never on it. Between
+## the carriageways the wall is nearer still, but beside the tarmac. The only run-off is the
+## tarmac of the three escape areas that are open ground (Turns 1, 3 and 16), where the wall
+## stands back by the depth of the escape area.
 func test_walls_stand_close_to_the_road() -> void:
 	var scene := _race()
 	var track := scene.get_node("Track") as Track
@@ -222,7 +238,11 @@ func test_walls_stand_close_to_the_road() -> void:
 	await _built(ts)
 	var d := track.data
 	assert_true(ts.layout != null and not ts.layout.is_auto, "Baku uses its hand-made trackside table")
-	assert_true(ts.layout.runoff.is_empty(), "no run-off areas on a street circuit")
+	assert_true(ts.layout.runoff.size() == 3, "three escape areas, got %d" % ts.layout.runoff.size())
+	var escapes: Array = []
+	for r in ts.layout.runoff:
+		assert_true(String(r["kind"]) == "tarmac", "no gravel on a street circuit (%s)" % r["turn"])
+		escapes.append([float(r["s0"]) - 45.0, float(r["s0"]) + float(r["len"]) + 45.0])
 	var widest := 0.0
 	var tightest := INF
 	var n := d.points.size()
@@ -232,14 +252,20 @@ func test_walls_stand_close_to_the_road() -> void:
 		assert_true(ts.layout.is_concrete(s), "concrete wall at s=%.0f" % s)
 		for side: float in [-1.0, 1.0]:
 			var gap := ts.barrier_offset(s, side) - ts.edge_at(s)
-			widest = maxf(widest, gap)
 			tightest = minf(tightest, gap)
-			assert_true(gap <= 4.0, "wall %.2f m from the road edge at s=%.0f (side %d)" % [gap, s, side])
+			var escape := false
+			for e: Array in escapes:
+				escape = escape or road.s_in_range(s, e)
+			if escape:
+				assert_true(gap <= 13.0, "wall %.2f m behind the escape area at s=%.0f (side %d)" % [gap, s, side])
+				continue
+			widest = maxf(widest, gap)
+			assert_true(gap <= 3.0, "wall %.2f m from the road edge at s=%.0f (side %d)" % [gap, s, side])
 			assert_true(gap >= 0.7, "wall %.2f m from the road edge at s=%.0f (side %d)" % [gap, s, side])
 			var between := side < 0.0 and (road.s_in_range(s, [2150.0, 2550.0]) or road.s_in_range(s, MAIN_BESIDE_IT))
 			if not between:
 				assert_true(gap >= 1.9, "wall %.2f m from the road edge at s=%.0f (side %d)" % [gap, s, side])
-	assert_between(widest, 2.4, 4.0, "widest gap between road edge and wall (m)")
+	assert_between(widest, 2.0, 3.0, "widest gap between road edge and wall away from the escape areas (m)")
 	# The shared wall is 0.58 m thick and stands on the middle of a median of 2.5 m or more.
 	assert_between(tightest, 0.7, 1.5, "tightest gap, between the carriageways (m)")
 	# A wall really is there: beside the grid, in the castle section, behind the old city, and
@@ -258,8 +284,39 @@ func test_walls_stand_close_to_the_road() -> void:
 			var dist := from.distance_to(hit["position"])
 			assert_true(dist > road.half_width_at(s), "barrier on the road at s=%.0f (side %d): %.1f m from the centre" % [
 					s, side, dist])
-			assert_true(dist < road.half_width_at(s) + 4.5, "barrier %.1f m from the centre at s=%.0f (side %d)" % [
+			assert_true(dist < road.half_width_at(s) + 4.0, "barrier %.1f m from the centre at s=%.0f (side %d)" % [
 					dist, s, side])
+	scene.queue_free()
+
+## The surroundings: day race, paved ground instead of grass verges, the race-weekend
+## grandstands, and the hand-made models (pit building, start gantry, Flame Towers, TV tower,
+## fortress wall / Maiden Tower / street trees).
+func test_surroundings() -> void:
+	var scene := _race()
+	var track := scene.get_node("Track") as Track
+	var ts := track.get_node("Trackside") as Trackside
+	await _built(ts)
+	var scenery := track.scenery
+	assert_true(scenery != null, "the track has a Scenery node")
+	if scenery == null:
+		scene.queue_free()
+		return
+	var frames := 0
+	while not scenery.is_built and frames < 900:
+		await get_tree().physics_frame
+		frames += 1
+	assert_true(scenery.is_built, "Scenery finished building")
+	assert_true(scenery.landmark_count == 5, "five landmark models, got %d" % scenery.landmark_count)
+	assert_true(scenery.building_chunks > 100, "the city is there (%d chunks)" % scenery.building_chunks)
+	var env := track.environment
+	assert_true(env.active, "baku has an environment.json")
+	assert_true(env.time == "day", "the Grand Prix is an afternoon race")
+	assert_true(not env.mowing_stripes(), "no mowing stripes in a city")
+	# Pavement, not lawn, beside the road: grey, with no more green than red.
+	var verge := env.color("verge", "grass_color")
+	assert_true(absf(verge.g - verge.r) < 0.03, "the verge is paving, not grass (%s)" % verge)
+	var meta: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/tracks/baku/scenery.json"))
+	assert_true(int(meta["counts"]["grandstands"]) == 12, "12 grandstands, got %d" % int(meta["counts"]["grandstands"]))
 	scene.queue_free()
 
 ## One autopilot lap from the grid: never off the road (so never in a wall), no respawn.
