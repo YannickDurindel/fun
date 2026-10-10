@@ -5,8 +5,11 @@ extends RefCounted
 ## A street circuit: no run-off anywhere, and the barrier stands beside the road for the whole
 ## lap. The automatic layout cannot do that (its walls stand 10 to 20 m out, behind gravel
 ## and tarmac run-off areas), which is why Monaco has a table. Trackside keeps every barrier
-## at least 2 m from the road edge, so the walls are not ON the white line as the real ones
-## are, and the escape roads of Sainte Devote, Mirabeau and the chicane are not modelled.
+## at least 2 m from the road edge, and the table asks for exactly that everywhere: the real
+## armco stands ON the kerb line, so 2 m is as close as the game gets. The strip between the
+## white line and the wall LOOKS paved (environment.json "verge" colours it like the pavement
+## the real barriers stand on), but it is still the road mesh's grass surface and grips like
+## grass. The escape roads of Sainte Devote, Mirabeau and the chicane are not modelled.
 ##
 ## Everything is RELATIVE to the turn table in track.json (turns[i].s_apex, direction).
 ## Sides: "in" = inside of the corner, "out" = outside. Offsets are metres along the lap from
@@ -44,11 +47,12 @@ const KERBS: Array = [
 const RUNOFF: Array = []
 
 ## Barrier distance from the road edge (m) before clamping to the local geometry.
-const BARRIER_STRAIGHT: float = 2.5
-const BARRIER_CORNER_OUTSIDE: float = 3.0
+const BARRIER_STRAIGHT: float = 2.0
+const BARRIER_CORNER_OUTSIDE: float = 2.0
 const BARRIER_BEHIND_RUNOFF: float = 5.0
 
 ## Concrete wall + debris fence: [from_s, to_s] absolute, wrapping through the finish line.
-## The pit straight (Anthony Noghes to Sainte Devote), the tunnel and the harbour front from
-## Tabac to the Swimming Pool, where the grandstands are. Armco everywhere else.
-const CONCRETE_RANGES: Array = [[3050.0, 190.0], [1500.0, 1915.0], [2330.0, 2780.0]]
+## The pit straight (Anthony Noghes to Sainte Devote), the tunnel (s = 1522 to 1885, with its
+## approach and exit) and the harbour front from Tabac to La Rascasse, where the grandstands
+## and the pit lane are. Armco everywhere else.
+const CONCRETE_RANGES: Array = [[3050.0, 190.0], [1500.0, 1915.0], [2330.0, 2900.0]]

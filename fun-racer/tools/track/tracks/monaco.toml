@@ -45,6 +45,14 @@ dataset = "ign"
 # would flatten the crest in Casino Square and the drop from Mirabeau to Portier.
 smooth_sigma_m = 12.0
 
+# Beau Rivage: "the maximum gradient in this part of the circuit is around 12 %" (Wikipedia,
+# Circuit de Monaco). The lap-wide 12 m smoothing leaves 10.3 %; the ground model itself is
+# kept here, with only its 1 m steps taken out.
+[[elevation.smooth]]
+s = [250.0, 640.0]
+sigma_m = 7.0
+blend = 40.0
+
 # The tunnel under the Fairmont hotel and its terraces: the terrain model has the platform
 # above (up to 24 m), the road stays at quay level from Portier to the tunnel exit.
 [[elevation.override]]
@@ -173,20 +181,59 @@ direction = "right"
 s = 3024.5
 
 [road]
-# Public streets between walls: about 9 to 11 m, and the wider Boulevard Albert 1er with the
-# grid. Estimates; OSM has no widths here.
+# Widths: nobody publishes them per section (the FIA circuit map gives none, and guides only
+# say "8 m at the narrowest, 11 m at the widest"). These are ESTIMATES measured kerb to kerb
+# on the IGN aerial photograph (BD ORTHO, 20 cm per pixel, good to about half a metre), which
+# is the room the armco leaves the cars: the barriers stand on the kerb line. Where the lap
+# crosses open ground (Sainte Devote, the chicane, the quay, the esplanade after the Swimming
+# Pool) the barriers alone make the road; there the neighbouring street width is carried on.
 base_width = 10.0
 grid_width = 12.0
-# track.json keeps one nominal width (the 10 m base) as it did before recipes that set a width
-# got the built widths by default. Remove this line when the widths are corrected, so that the
-# drivers see the 12 m grid and the widened hairpin.
-track_json_widths = false
+width_keys = [
+  [0.0, 12.0, "Boulevard Albert 1er, grid: 12 to 13 m with the parking lanes"],
+  [150.0, 12.0, ""],
+  [200.0, 10.0, "Sainte Devote: the barriers close the junction down to the width of Avenue d'Ostende"],
+  [640.0, 10.0, "Beau Rivage: Avenue d'Ostende, three lanes, 10 to 10.5 m"],
+  [700.0, 9.0, "Massenet: Avenue de Monte-Carlo round the Hotel de Paris, 8.5 to 9 m"],
+  [840.0, 9.0, ""],
+  [870.0, 10.0, "Casino square"],
+  [930.0, 10.0, ""],
+  [970.0, 8.5, "Avenue des Spelugues down to Mirabeau: two lanes and a parking lane, 8 to 8.5 m"],
+  [1100.0, 8.5, ""],
+  [1125.0, 8.0, "Mirabeau Haute and the drop to the hairpin: 7.5 to 8 m, the narrowest stretch"],
+  [1215.0, 8.0, ""],
+  [1300.0, 9.0, "after the hairpin (see the override): 8.5 to 9 m"],
+  [1380.0, 9.0, "Mirabeau Bas"],
+  [1420.0, 9.0, "Portier"],
+  [1455.0, 9.0, ""],
+  [1480.0, 11.0, "Boulevard Louis II into the tunnel: four lanes, 12 m between the kerbs; 11 m built, the barriers funnel it into the 10 m tunnel"],
+  [1520.0, 11.0, ""],
+  [1560.0, 10.0, "tunnel: not visible from above; the road that leaves it is 10 to 10.5 m"],
+  [2360.0, 10.0, "chicane and Quai des Etats-Unis"],
+  [2380.0, 9.0, "Tabac: 9 m between the quay wall and the kerb"],
+  [2405.0, 9.0, ""],
+  [2440.0, 10.0, "Quai Albert 1er to the Swimming Pool"],
+  [2590.0, 10.0, ""],
+  [2615.0, 9.0, "beside the pool: 9 m"],
+  [2700.0, 9.0, ""],
+  [2740.0, 9.5, "esplanade to La Rascasse"],
+  [2900.0, 9.5, ""],
+  [2915.0, 10.0, "La Rascasse: really 9 m; built 10 m, see below"],
+  [2985.0, 10.0, ""],
+  [3005.0, 9.0, "Anthony Noghes: 9 m"],
+  [3030.0, 9.0, ""],
+  [3090.0, 10.0, "Boulevard Albert 1er after Noghes: 10 m"],
+  [3150.0, 12.0, "grid"],
+]
 # The lap is cut into a hillside: Beau Rivage runs 30 m above the harbour front, and the legs
 # of Mirabeau, the hairpin and Portier are 5 to 8 m above each other, 25 m apart.
 retaining_walls = true
 
-# The Grand Hotel hairpin has a 10 m centreline radius. The real corner is taken on full lock
-# from kerb to kerb; the game's car needs more room than a 10 m road gives it.
+# Two corners are built wider than they are, because the game's car does not turn as tightly
+# as a Formula 1 car on full lock:
+#   * the Grand Hotel hairpin (10 m centreline radius), really 9 to 9.5 m wide, is 14 m;
+#   * La Rascasse (14 m radius), really 9 m, is 10 m: at 9 m the autopilot runs 0.6 m over
+#     the outside line on the exit (lap check, arcade handling).
 [[road.override]]
 s = [1252.0, 1284.0]
 width = 14.0
@@ -196,3 +243,329 @@ blend = 25.0
 # Ground model too. A light blur takes out the steps of retaining walls and quays, which a
 # 10 m mesh cannot show anyway.
 smooth_sigma_m = 20.0
+
+# ---------------------------------------------------------------------------------------------
+# Surroundings: the town as it stands on a Grand Prix Sunday. The map (OpenStreetMap) gives
+# the buildings, the harbour and the gardens; what it lacks is added here. Reference for every
+# position: the IGN aerial photograph (BD ORTHO, 20 cm), compared stretch by stretch with the
+# built lap; for what the race adds (grandstands, pits), the ACM grandstand plan as described
+# by the ticket guides (f1destinations.com, gpdestinations.com, oversteer48.com).
+[surroundings]
+# Stone pines, palms, plane trees and garden trees: no forest anywhere near the lap.
+tree_species = "broadleaved"
+
+# The tunnel runs from the Portier end of the Fairmont hotel (s = 1522) to the portal under
+# the Monte Carlo Star gardens (s = 1885): 363 m, read off the aerial photograph (the roofs of
+# the hotel and of the Rainier III auditorium cover the road in between). Photographs taken
+# inside it in race trim (Wikimedia Commons, "Circuit de Monaco - Tunnel", May 2022) show a
+# closed, tiled wall on the outside of the bend (the driver's left, the sea side: the hotel's
+# service floors are behind it), a concrete barrier with a walkway on the inside, a flat slab
+# and a row of lamps: a closed tube. Only the last stretch before the exit is open towards
+# the harbour between columns; its length (55 m) is an ESTIMATE from broadcast pictures of the
+# exit, not a surveyed figure. Clear height about 5 m (the same photographs; no published
+# figure).
+[[surroundings.roof]]
+s = [1522.0, 1830.0]
+kind = "tunnel"
+clear_height = 5.0
+note = "tunnel under the Fairmont and the Rainier III auditorium: closed"
+
+[[surroundings.roof]]
+s = [1830.0, 1885.0]
+kind = "gallery_left"
+clear_height = 5.0
+note = "tunnel exit: open to the harbour side between columns"
+
+# ---- map features that are not there on race day, or not as mapped
+[[surroundings.building]]
+osm = "way/1470365896"
+remove = true
+note = "'Neuehouse' at Portier: an underground level, drawn across the road"
+
+[[surroundings.building]]
+osm = "way/432751363"
+remove = true
+note = "kiosk on the quay, 1.5 m from the centreline at the chicane exit: not there in race trim"
+
+# ---- building heights. OpenStreetMap has a height or a storey count for one building in
+# five here; the rest were guesses (12 m "like the neighbours"). The ones a driver sees are
+# set below. All are ESTIMATES: storeys counted on photographs and on the shadows of the IGN
+# aerial photograph, 3 to 3.3 m each. `height` is measured from the lowest ground corner of
+# the footprint, which on this hillside is often the quay 20 to 35 m below the road: the note
+# says what stands above the ROAD.
+# Boulevard Albert 1er, left of the start straight
+[[surroundings.building]]
+osm = "relation/11546879"
+height = 19.0
+note = "six storeys"
+
+[[surroundings.building]]
+osm = "way/94400205"
+height = 26.0
+note = "Le Bristol: eight storeys"
+
+[[surroundings.building]]
+osm = "way/850169345"
+height = 16.0
+note = "Albatros: five storeys"
+
+[[surroundings.building]]
+osm = "way/438472014"
+height = 16.0
+note = "five storeys"
+
+[[surroundings.building]]
+osm = "way/1081601379"
+height = 19.0
+note = "six storeys"
+
+[[surroundings.building]]
+osm = "way/262421148"
+height = 17.0
+note = "Surete Publique: five storeys"
+
+[[surroundings.building]]
+osm = "way/390066684"
+height = 15.0
+note = "Ecole de la Condamine: four tall storeys"
+
+[[surroundings.building]]
+osm = "way/390066683"
+height = 16.0
+note = "fire brigade headquarters, outside Anthony Noghes"
+
+# Avenue d'Ostende (Beau Rivage), right: the buildings stand on the quay below and show one
+# to three storeys above the road
+[[surroundings.building]]
+osm = "way/508221117"
+height = 11.0
+note = "one storey above the road (road +5 m, quay -1.7 m)"
+
+[[surroundings.building]]
+osm = "way/507048725"
+height = 20.0
+note = "hotel: two storeys above the road (road +11 m)"
+
+[[surroundings.building]]
+osm = "way/447008630"
+height = 27.0
+note = "one storey above the road at its upper end (road +21 m)"
+
+[[surroundings.building]]
+osm = "way/447008628"
+height = 31.0
+note = "Le Castellara: two storeys above the road (road +23 m)"
+
+[[surroundings.building]]
+osm = "way/447008629"
+height = 34.0
+note = "Le Portobello: two storeys above the road (road +26 m)"
+
+[[surroundings.building]]
+osm = "way/176722820"
+height = 35.0
+note = "Centre de Rencontre International: its roof is a car park level with the road"
+
+# Avenue d'Ostende, left
+[[surroundings.building]]
+osm = "way/1086898677"
+height = 9.5
+note = "terrace under the Hermitage gardens: one storey above the road"
+
+[[surroundings.building]]
+osm = "way/94252425"
+height = 23.0
+note = "Hotel Hermitage, harbour wing: six storeys"
+
+[[surroundings.building]]
+osm = "way/94252402"
+height = 34.0
+note = "Hotel Hermitage: five storeys above its upper street"
+
+[[surroundings.building]]
+osm = "way/94252399"
+height = 20.0
+note = "Centre Cardio-Thoracique: six storeys"
+
+[[surroundings.building]]
+osm = "way/842194005"
+height = 23.0
+note = "Belle Epoque: seven storeys"
+
+[[surroundings.building]]
+osm = "way/842194004"
+height = 20.0
+note = "six storeys"
+
+# Casino square
+[[surroundings.building]]
+osm = "relation/8280869"
+height = 30.0
+note = "Hotel de Paris: eight storeys since the 2019 rebuilding (mapped with 2 levels)"
+
+[[surroundings.building]]
+osm = "way/161769674"
+height = 40.0
+note = "Casino and Opera: an 18 m facade on the square (its lowest corner is 22 m down, on the sea side); the towers are a landmark model"
+
+[[surroundings.building]]
+osm = "way/157719654"
+height = 15.5
+note = "Cafe de Paris: two storeys and a roof terrace above the square"
+
+# The tunnel and its exit
+[[surroundings.building]]
+osm = "relation/2093796"
+height = 30.0
+note = "Fairmont Monte Carlo (ex Loews, 1975), over the tunnel: five floors above the hairpin, which is 12 m above the tunnel road (mapped with 3 levels)"
+
+[[surroundings.building]]
+osm = "way/176722821"
+height = 36.0
+note = "Monte Carlo Star: ten storeys above the quay"
+
+[[surroundings.building]]
+osm = "relation/8269572"
+height = 22.0
+note = "Yacht Club de Monaco (Foster + Partners, 2014): five decks, about 22 m"
+
+# Tabac to La Rascasse
+[[surroundings.building]]
+osm = "way/161883155"
+height = 4.0
+note = "kiosk inside Tabac"
+
+[[surroundings.building]]
+osm = "way/112681614"
+height = 9.0
+note = "La Rascasse (the restaurant inside the corner): two storeys"
+
+# ---- what the map lacks. Footprints follow the lap: `s` and the side are in each note.
+# Grandstands are the temporary ones of the Grand Prix. Their places are those of the ACM plan
+# and of photographs of the built-up circuit (Wikimedia Commons, "Circuit de Monaco - ...",
+# 23 May 2022); depths and heights are ESTIMATES from those photographs (K and T: about 20
+# rows over 17 m, 12 to 13 m high at the back; the X stands have five rows).
+# Ground first (later shapes are painted over earlier ones): OpenStreetMap has no land use
+# for La Condamine and the port, so the build would leave lawns between its streets, on the
+# quays and in the paddock.
+[[surroundings.add]]
+note = "Pits and paddock: everything between the start straight and the harbour front, from Sainte Devote to Anthony Noghes, is tarmac and paving"
+kind = "paved"
+polygon = [[43.732548, 7.422407], [43.732717, 7.422324], [43.732860, 7.422174], [43.733010, 7.422038], [43.733163, 7.421908], [43.733325, 7.421802], [43.733498, 7.421732], [43.733670, 7.421663], [43.733843, 7.421592], [43.734015, 7.421524], [43.734189, 7.421458], [43.734364, 7.421401], [43.734541, 7.421359], [43.734736, 7.421316], [43.734914, 7.421284], [43.735093, 7.421258], [43.735272, 7.421239], [43.735451, 7.421220], [43.735630, 7.421209], [43.735810, 7.421215], [43.735989, 7.421233], [43.736167, 7.421267], [43.736342, 7.421323], [43.736513, 7.421397], [43.736689, 7.421450], [43.736707, 7.422251], [43.736604, 7.422159], [43.736494, 7.422083], [43.736366, 7.422007], [43.736252, 7.421954], [43.736117, 7.421905], [43.735998, 7.421875], [43.735878, 7.421857], [43.735739, 7.421855], [43.735619, 7.421860], [43.735492, 7.421904], [43.735413, 7.421971], [43.735329, 7.422122], [43.735218, 7.422262], [43.735072, 7.422309], [43.734935, 7.422337], [43.734812, 7.422369], [43.734670, 7.422407], [43.734547, 7.422438], [43.734405, 7.422473], [43.734285, 7.422507], [43.734137, 7.422552], [43.733973, 7.422464], [43.733901, 7.422316], [43.733829, 7.422301], [43.733715, 7.422343], [43.733582, 7.422407], [43.733470, 7.422471], [43.733342, 7.422555], [43.733235, 7.422634], [43.733123, 7.422740], [43.733032, 7.422847], [43.732951, 7.422966], [43.732878, 7.423117], [43.732825, 7.423269], [43.732748, 7.423459], [43.732600, 7.423575], [43.732420, 7.423443], [43.732374, 7.423260], [43.732340, 7.423092], [43.732310, 7.422886]]
+
+[[surroundings.add]]
+note = "Esplanade between the Swimming Pool and La Rascasse (reclaimed in 2003), where grandstand T stands"
+kind = "paved"
+polygon = [[43.734184, 7.422452], [43.734045, 7.422438], [43.733960, 7.422281], [43.733835, 7.422212], [43.733714, 7.422254], [43.733577, 7.422318], [43.733444, 7.422392], [43.733314, 7.422477], [43.733188, 7.422573], [43.733085, 7.422672], [43.732976, 7.422801], [43.732881, 7.422950], [43.732806, 7.423120], [43.732745, 7.423300], [43.733079, 7.423533], [43.733142, 7.423349], [43.733179, 7.423263], [43.733238, 7.423170], [43.733314, 7.423081], [43.733395, 7.423005], [43.733496, 7.422931], [43.733610, 7.422857], [43.733721, 7.422797], [43.733839, 7.422742], [43.733782, 7.422483], [43.733866, 7.422455], [43.733816, 7.422429], [43.733943, 7.422640], [43.734225, 7.422692]]
+
+[[surroundings.add]]
+note = "Quai des Etats-Unis, from the chicane to Tabac: quay on the left, promenade on the right"
+kind = "paved"
+polygon = [[43.737298, 7.426591], [43.737273, 7.426416], [43.737250, 7.426219], [43.737228, 7.426049], [43.737202, 7.425852], [43.737182, 7.425652], [43.737170, 7.425553], [43.737063, 7.425540], [43.736936, 7.425332], [43.736953, 7.425078], [43.736991, 7.424953], [43.736974, 7.424779], [43.736955, 7.424604], [43.736936, 7.424407], [43.736919, 7.424234], [43.736899, 7.424037], [43.736882, 7.423865], [43.736863, 7.423668], [43.736843, 7.423471], [43.736826, 7.423301], [43.736800, 7.423106], [43.736781, 7.422930], [43.736764, 7.422731], [43.736749, 7.422558], [43.736731, 7.422365], [43.736700, 7.422259], [43.737027, 7.421840], [43.737171, 7.422268], [43.737191, 7.422485], [43.737206, 7.422660], [43.737223, 7.422851], [43.737239, 7.423000], [43.737265, 7.423202], [43.737285, 7.423387], [43.737304, 7.423584], [43.737324, 7.423781], [43.737341, 7.423954], [43.737360, 7.424151], [43.737377, 7.424324], [43.737397, 7.424521], [43.737414, 7.424679], [43.737435, 7.424995], [43.737355, 7.425345], [43.737374, 7.425223], [43.737145, 7.424933], [43.737454, 7.425078], [43.737624, 7.425570], [43.737642, 7.425751], [43.737666, 7.425938], [43.737689, 7.426116], [43.737712, 7.426311], [43.737733, 7.426456]]
+
+[[surroundings.add]]
+note = "La Condamine, west of the start straight: streets and courtyards, no lawns"
+kind = "paved"
+polygon = [[43.737165, 7.418059], [43.737165, 7.421327], [43.735918, 7.421204], [43.735027, 7.421265], [43.733958, 7.421635], [43.732977, 7.422128], [43.732354, 7.422622], [43.732354, 7.418059]]
+
+[[surroundings.add]]
+note = "Harbour's edge from Tabac to the Swimming Pool exit: quay wall, the rock mole and the platform the grandstands N, O and P stand on"
+kind = "paved"
+polygon = [[43.736736, 7.422264], [43.736643, 7.422160], [43.736534, 7.422082], [43.736405, 7.422002], [43.736274, 7.421938], [43.736155, 7.421892], [43.736018, 7.421854], [43.735879, 7.421832], [43.735757, 7.421830], [43.735617, 7.421836], [43.735503, 7.421873], [43.735400, 7.421954], [43.735315, 7.422107], [43.735209, 7.422241], [43.735053, 7.422287], [43.734914, 7.422317], [43.734791, 7.422350], [43.734650, 7.422387], [43.734508, 7.422422], [43.734385, 7.422453], [43.734246, 7.422495], [43.734088, 7.422527], [43.733960, 7.422400], [43.733760, 7.422586], [43.734053, 7.422857], [43.734286, 7.422824], [43.734413, 7.422785], [43.734533, 7.422754], [43.734675, 7.422719], [43.734801, 7.422686], [43.734942, 7.422649], [43.735050, 7.422623], [43.735194, 7.422598], [43.735469, 7.422372], [43.735561, 7.422207], [43.735557, 7.422199], [43.735625, 7.422171], [43.735707, 7.422164], [43.735824, 7.422163], [43.735827, 7.421904], [43.735959, 7.421917], [43.736092, 7.421948], [43.736242, 7.422002], [43.736369, 7.422061], [43.736494, 7.422138], [43.736617, 7.422225], [43.736690, 7.422302]]
+
+[[surroundings.add]]
+note = "Quay and pier east of the pool"
+kind = "paved"
+polygon = [[43.734777, 7.422437], [43.734804, 7.423362], [43.734492, 7.423386], [43.734474, 7.422437]]
+
+[[surroundings.add]]
+note = "Pier at x = 150 to 180"
+kind = "paved"
+polygon = [[43.735428, 7.423090], [43.735428, 7.423312], [43.734047, 7.423510], [43.734029, 7.423238]]
+
+[[surroundings.add]]
+note = "Quai Antoine 1er, under the Rock"
+kind = "paved"
+polygon = [[43.732933, 7.423115], [43.733049, 7.424965], [43.733289, 7.427678], [43.733022, 7.427678], [43.732781, 7.424965], [43.732666, 7.423115]]
+
+[[surroundings.add]]
+note = "Jetty of the Yacht Club"
+kind = "paved"
+polygon = [[43.737032, 7.426876], [43.737032, 7.427123], [43.735829, 7.427431], [43.735740, 7.427061]]
+
+[[surroundings.add]]
+note = "Quai Louis II jetty"
+kind = "paved"
+polygon = [[43.737522, 7.429096], [43.737566, 7.429343], [43.736364, 7.429898], [43.736274, 7.429651]]
+
+[[surroundings.add]]
+note = "Grandstand K: Tabac to the Swimming Pool, on the town side with its back to the trees of the start straight; the spectators look across the track at the yachts (s = 2414 to 2528, right)"
+kind = "grandstand"
+height = 13.0
+polygon = [[43.736603, 7.421944], [43.736485, 7.421867], [43.736362, 7.421802], [43.736238, 7.421750], [43.736092, 7.421703], [43.735962, 7.421676], [43.735829, 7.421663], [43.735701, 7.421665], [43.735563, 7.421679], [43.735532, 7.421454], [43.735698, 7.421436], [43.735832, 7.421435], [43.735982, 7.421449], [43.736123, 7.421479], [43.736281, 7.421530], [43.736414, 7.421585], [43.736551, 7.421658], [43.736676, 7.421739]]
+
+[[surroundings.add]]
+note = "Grandstand T: Swimming Pool exit to La Rascasse, opposite the pits (s = 2756 to 2884, left)"
+kind = "grandstand"
+height = 12.0
+polygon = [[43.733785, 7.422334], [43.733670, 7.422384], [43.733554, 7.422442], [43.733443, 7.422508], [43.733332, 7.422582], [43.733228, 7.422662], [43.733131, 7.422755], [43.733041, 7.422860], [43.732962, 7.422978], [43.732897, 7.423106], [43.733025, 7.423206], [43.733075, 7.423108], [43.733142, 7.423008], [43.733221, 7.422916], [43.733305, 7.422835], [43.733399, 7.422764], [43.733505, 7.422692], [43.733608, 7.422631], [43.733717, 7.422576], [43.733823, 7.422530]]
+
+[[surroundings.add]]
+note = "Grandstand N: over the water beside the pool (s = 2598 to 2630, left)"
+kind = "grandstand"
+height = 7.0
+polygon = [[43.735092, 7.422325], [43.734955, 7.422351], [43.734815, 7.422388], [43.734833, 7.422515], [43.734971, 7.422478], [43.735101, 7.422454]]
+
+[[surroundings.add]]
+note = "Grandstand O: the tall one between N and P (s = 2633 to 2672, left)"
+kind = "grandstand"
+height = 11.0
+polygon = [[43.734780, 7.422397], [43.734602, 7.422443], [43.734443, 7.422482], [43.734467, 7.422670], [43.734627, 7.422631], [43.734806, 7.422585]]
+
+[[surroundings.add]]
+note = "Grandstand P (s = 2675 to 2703, left)"
+kind = "grandstand"
+height = 7.0
+polygon = [[43.734408, 7.422491], [43.734288, 7.422525], [43.734161, 7.422566], [43.734178, 7.422694], [43.734309, 7.422651], [43.734425, 7.422618]]
+
+[[surroundings.add]]
+note = "Grandstand L: beside the pool, inside Louis Chiron (s = 2548 to 2596, right)"
+kind = "grandstand"
+height = 8.0
+polygon = [[43.735363, 7.421771], [43.735247, 7.421944], [43.735168, 7.422072], [43.735093, 7.422108], [43.735081, 7.421961], [43.735102, 7.421955], [43.735161, 7.421857], [43.735304, 7.421648]]
+
+[[surroundings.add]]
+note = "Grandstand V: outside Anthony Noghes (s = 3006 to 3046, left)"
+kind = "grandstand"
+height = 7.0
+polygon = [[43.732287, 7.422672], [43.732384, 7.422371], [43.732581, 7.422290], [43.732556, 7.422165], [43.732328, 7.422267], [43.732194, 7.422667]]
+
+[[surroundings.add]]
+note = "Grandstand A1: inside Sainte Devote (s = 196 to 236, right)"
+kind = "grandstand"
+height = 9.0
+polygon = [[43.736730, 7.421577], [43.736870, 7.421620], [43.736903, 7.421754], [43.736784, 7.421776], [43.736807, 7.421762], [43.736713, 7.421741]]
+
+[[surroundings.add]]
+note = "Grandstand B: Casino square, outside the Casino corner, on the edge of the gardens (s = 896 to 934, left)"
+kind = "grandstand"
+height = 8.0
+polygon = [[43.739329, 7.427120], [43.739553, 7.427087], [43.739722, 7.427184], [43.739777, 7.427051], [43.739578, 7.426937], [43.739282, 7.426980]]
+
+[[surroundings.add]]
+note = "Grandstand X1: start straight, five rows (s = 3226 to 3262, left)"
+kind = "grandstand"
+height = 3.2
+polygon = [[43.734030, 7.421412], [43.734187, 7.421353], [43.734349, 7.421301], [43.734343, 7.421261], [43.734180, 7.421313], [43.734022, 7.421373]]
+
+[[surroundings.add]]
+note = "Grandstand X2: start straight, five rows (s = 3296 to 3330, left)"
+kind = "grandstand"
+height = 3.2
+polygon = [[43.734653, 7.421230], [43.734797, 7.421200], [43.734959, 7.421173], [43.734955, 7.421133], [43.734794, 7.421160], [43.734648, 7.421190]]
+
+[[surroundings.add]]
+note = "Swimming pool: 50 x 25 m Olympic basin (s = 2626 to 2678, right)"
+kind = "water"
+polygon = [[43.734812, 7.422106], [43.734654, 7.422147], [43.734496, 7.422187], [43.734353, 7.422223], [43.734313, 7.421932], [43.734458, 7.421896], [43.734616, 7.421856], [43.734771, 7.421815]]
+

@@ -53,7 +53,8 @@ func test_dimensions_match_real_circuit() -> void:
 		hi = maxf(hi, p.y)
 	# Published: 42 m between the harbour front and Casino Square.
 	assert_between(hi - lo, 38.0, 46.0, "elevation range (m)")
-	# A street, not a rooftop profile: nothing steeper than the real climbs (about 10 %).
+	# A street, not a rooftop profile: nothing steeper than the real climbs. Beau Rivage is the
+	# steepest, "around 12 %" (Wikipedia, Circuit de Monaco); the build gives 11.3 %.
 	var n := d.points.size()
 	for i in n:
 		var a := d.points[i]
@@ -122,7 +123,21 @@ func test_road_is_street_width() -> void:
 		narrowest = minf(narrowest, float(widths[i]))
 		assert_true(d.width_at(i * d.step) <= float(widths[i]) + 0.01,
 				"track.json is wider than the road at s=%.0f" % (i * d.step))
-	assert_between(narrowest, 9.0, 11.0, "narrowest road (m)")
+	# Measured kerb to kerb on the IGN aerial photograph (see the recipe): 7.5 to 8 m from
+	# Mirabeau Haute down to the hairpin, 12 m and more on the grid. The hairpin itself is
+	# built 14 m wide so that the game's car gets round it (really 9 to 9.5 m).
+	var widest := 0.0
+	for w: float in widths:
+		widest = maxf(widest, w)
+	assert_between(narrowest, 7.5, 8.5, "narrowest road (m)")
+	assert_between(widest, 12.0, 14.0, "widest road (m)")
+	assert_between(float(widths[int(1160.0 / d.step)]), 7.5, 8.5, "Mirabeau Haute (m)")
+	assert_between(float(widths[int(770.0 / d.step)]), 8.5, 9.5, "Massenet (m)")
+	assert_between(float(widths[int(400.0 / d.step)]), 9.5, 10.5, "Beau Rivage (m)")
+	assert_between(float(widths[int(3300.0 / d.step)]), 11.5, 12.5, "grid (m)")
+	# The drivers plan on the same widths (no nominal 10 m any more).
+	assert_true(absf(d.width_at(1160.0) - float(widths[int(1160.0 / d.step)])) < 0.3,
+			"track.json has the built width at Mirabeau (%.1f m)" % d.width_at(1160.0))
 
 ## A street circuit: its own trackside table, no run-off, and the barrier beside the road for
 ## the whole lap without ever standing on it.
@@ -150,9 +165,63 @@ func test_walls_stand_beside_the_road() -> void:
 			var gap := side.barrier_offset(s, sgn) - edge
 			worst_far = maxf(worst_far, gap)
 			worst_near = minf(worst_near, gap)
-	assert_true(worst_far <= 4.0, "a barrier stands %.1f m from the road edge (street circuit: at most 4 m)" % worst_far)
+	# The real armco stands on the kerb line; the game keeps 2 m, and the table asks for no more.
+	assert_true(worst_far <= 3.0, "a barrier stands %.1f m from the road edge (street circuit: at most 3 m)" % worst_far)
 	# Between two legs of the lap the wall takes what room there is, but never the road.
 	assert_true(worst_near >= 0.0, "a barrier stands on the road (%.2f m inside the edge)" % -worst_near)
+	_free_race(scene)
+
+## What stands round the lap on race day: the tunnel under the Fairmont (a closed tube, open
+## towards the harbour only before its exit), the temporary grandstands, the swimming pool, a daytime
+## Riviera sky, paved ground beside the road instead of grass, and the landmark models.
+func test_surroundings_are_monaco() -> void:
+	var meta: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/tracks/monaco/scenery.json"))
+	var roofs: Array = meta.get("roofs", [])
+	assert_true(roofs.size() == 2, "two roof shells make the tunnel, got %d" % roofs.size())
+	if roofs.size() == 2:
+		assert_true(String(roofs[0]["kind"]) == "tunnel", "closed under the hotel and the auditorium")
+		assert_true(String(roofs[1]["kind"]) == "gallery_left", "the exit is open towards the harbour (left)")
+		assert_between(float(roofs[0]["s"][0]), 1500.0, 1540.0, "tunnel entry after Portier (s)")
+		assert_between(float(roofs[1]["s"][1]), 1870.0, 1900.0, "tunnel exit (s)")
+		assert_true(absf(float(roofs[0]["s"][1]) - float(roofs[1]["s"][0])) < 0.5, "the two shells join")
+		assert_between(float(roofs[0]["length"]) + float(roofs[1]["length"]), 340.0, 380.0, "tunnel length (m)")
+	# The Olympic basin of the Stade Nautique, right of the track between Louis Chiron and
+	# Piscine: a water body of about 50 x 25 m whose middle is 26 m from the centreline.
+	var d := TrackData.load_track(PATH)
+	var pool := false
+	for body: Dictionary in meta.get("water", []):
+		var poly: Array = body["polygon"]
+		if poly.size() > 40:
+			continue
+		var c := Vector2.ZERO
+		for q: Array in poly:
+			c += Vector2(float(q[0]), float(q[1]))
+		c /= float(poly.size())
+		var at := Vector3(c.x, 0.0, c.y)
+		var s := d.closest_s(at)
+		if s > 2600.0 and s < 2700.0 and d.lateral_offset(at, s) > 15.0 and d.lateral_offset(at, s) < 40.0:
+			pool = true
+	assert_true(pool, "the swimming pool is a water body beside T13 to T16")
+	var counts: Dictionary = meta.get("counts", {})
+	assert_true(int(counts.get("grandstands", 0)) >= 11, "temporary grandstands (%d)" % int(counts.get("grandstands", 0)))
+	var env := TrackEnvironment.load_file("res://assets/tracks/monaco/environment.json")
+	assert_true(env.active, "monaco has an environment.json")
+	assert_true(String(env.values["time"]) == "day", "the race is run by day")
+	assert_true(not env.mowing_stripes(), "no mowed grass beside a street")
+	var verge := env.color("verge", "grass_color")
+	assert_true(absf(verge.g - verge.r) < 0.06 and absf(verge.g - verge.b) < 0.06,
+			"the ground beside the road is paving grey, not green (%s)" % verge)
+	var scene := _spawn_race()
+	await physics_frames(10)
+	var track := scene.get_node_or_null("Track") as Track
+	var scenery: Scenery = null
+	if track != null:
+		for c in track.get_children():
+			if c is Scenery:
+				scenery = c
+	assert_true(scenery != null and scenery.is_built, "the track has built scenery")
+	if scenery != null:
+		assert_true(scenery.landmark_count == 4, "harbour, pits, gantries, casino: %d landmarks" % scenery.landmark_count)
 	_free_race(scene)
 
 func test_race_scene_spawns_car_on_track() -> void:

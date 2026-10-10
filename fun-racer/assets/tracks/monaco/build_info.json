@@ -103,7 +103,7 @@
  "dem_dataset": "ign",
  "elevation": {
   "range_m": 41.64,
-  "max_grade": 0.1029,
+  "max_grade": 0.1128,
   "min_grade": -0.0846,
   "origin_m": 3.68
  },
