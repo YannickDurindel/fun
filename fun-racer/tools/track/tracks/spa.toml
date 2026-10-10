@@ -11,8 +11,382 @@ id = "spa"
 relation = 284560
 
 [elevation]
+# The terrain around the lap comes from Terrain Tiles, a surface model at 25-30 m: in the
+# Ardennes spruce it reads the tree tops, so the road came out up to 11 m too high in the forest
+# (a -17.4 % drop at Speaker's Corner that does not exist) and, smoothed over 45 m, 12.8 % up
+# Raidillon. The road itself is therefore pinned, every 20 m, to the ground model of the
+# Walloon LiDAR survey:
+#   Service public de Wallonie, "Relief de la Wallonie - Modele Numerique de Terrain (MNT)
+#   2021-2022", 0.5 m grid, read at the centreline through the identify operation of
+#   https://geoservices.wallonie.be/arcgis/rest/services/RELIEF/WALLONIE_MNT_2021_2022/MapServer
+#   (catalogue: https://geoportail.wallonie.be/catalogue/e257f5df-6c96-4118-b4d2-1e63e955df53.html)
+# The road is bare ground in that model, so these are the heights of the asphalt (centre sample
+# and the mean of the samples 4 m left and right agree within 0.08 m all round the lap).
+# What they give, against the published figures:
+#   finish line 416.56 m; La Source 423.9 m; foot of Eau Rouge 389.66 m (s = 945);
+#   top of the Raidillon ramp 414.7 m (s = 1200); Les Combes / Malmedy 468.85 m, the highest
+#   point (s = 2512); Bruxelles 452 m; Pouhon 395-380 m; Fagnes 377 m; Stavelot (Paul Frere)
+#   366.61 m, the lowest point (s = 5034); Blanchimont 384-394 m; Bus Stop 407 m.
+#   Range 102.2 m (published: 102 m / 335 ft, e.g. the lap guide at
+#   oversteer48.com/spa-francorchamps-track-layout); total climb 139 m per lap.
+#   Raidillon: 15.4 % at its steepest along the centreline (s = 1040-1070, 30 m chords 15.3 %),
+#   25 m of climb in 240 m. The 17-18 % often quoted is not on the centreline of this survey.
+#   Steepest descent 7.4 % on the run to Pouhon (8.2 % over 10 m at s = 3860 in the survey);
+#   Speaker's Corner is a steady 7 %.
 dataset = "terrarium"
 smooth_sigma_m = 45.0
+key = [
+  {s = 0.0, abs = 416.56},
+  {s = 20.0, abs = 416.92},
+  {s = 40.0, abs = 417.34},
+  {s = 60.1, abs = 417.69},
+  {s = 80.1, abs = 418.09},
+  {s = 100.1, abs = 418.46},
+  {s = 120.1, abs = 418.83},
+  {s = 140.1, abs = 419.24},
+  {s = 160.1, abs = 419.88},
+  {s = 180.2, abs = 420.63},
+  {s = 200.2, abs = 421.52},
+  {s = 220.2, abs = 422.34},
+  {s = 240.2, abs = 423.04},
+  {s = 260.2, abs = 423.75},
+  {s = 280.2, abs = 423.83},
+  {s = 300.3, abs = 422.92},
+  {s = 320.3, abs = 421.79},
+  {s = 340.3, abs = 420.68},
+  {s = 360.3, abs = 419.44},
+  {s = 380.3, abs = 418.25},
+  {s = 400.3, abs = 416.97},
+  {s = 420.4, abs = 415.62},
+  {s = 440.4, abs = 414.30},
+  {s = 460.4, abs = 413.01},
+  {s = 480.4, abs = 411.75},
+  {s = 500.4, abs = 410.49},
+  {s = 520.4, abs = 409.28},
+  {s = 540.5, abs = 408.03},
+  {s = 560.5, abs = 406.86},
+  {s = 580.5, abs = 405.86},
+  {s = 600.5, abs = 404.83},
+  {s = 620.5, abs = 403.91},
+  {s = 640.5, abs = 402.90},
+  {s = 660.6, abs = 401.94},
+  {s = 680.6, abs = 400.95},
+  {s = 700.6, abs = 399.88},
+  {s = 720.6, abs = 398.86},
+  {s = 740.6, abs = 397.81},
+  {s = 760.7, abs = 396.77},
+  {s = 780.7, abs = 395.75},
+  {s = 800.7, abs = 394.77},
+  {s = 820.7, abs = 393.86},
+  {s = 840.7, abs = 393.00},
+  {s = 860.7, abs = 392.20},
+  {s = 880.8, abs = 391.37},
+  {s = 900.8, abs = 390.55},
+  {s = 920.8, abs = 389.95},
+  {s = 940.8, abs = 389.66},
+  {s = 960.8, abs = 389.81},
+  {s = 980.8, abs = 390.51},
+  {s = 1000.9, abs = 392.15},
+  {s = 1020.9, abs = 394.64},
+  {s = 1040.9, abs = 397.50},
+  {s = 1060.9, abs = 400.54},
+  {s = 1080.9, abs = 403.59},
+  {s = 1100.9, abs = 406.36},
+  {s = 1121.0, abs = 408.72},
+  {s = 1141.0, abs = 410.70},
+  {s = 1161.0, abs = 412.49},
+  {s = 1181.0, abs = 413.75},
+  {s = 1201.0, abs = 414.74},
+  {s = 1221.0, abs = 415.59},
+  {s = 1241.1, abs = 416.56},
+  {s = 1261.1, abs = 417.45},
+  {s = 1281.1, abs = 418.33},
+  {s = 1301.1, abs = 419.22},
+  {s = 1321.1, abs = 420.15},
+  {s = 1341.1, abs = 421.10},
+  {s = 1361.2, abs = 422.04},
+  {s = 1381.2, abs = 422.95},
+  {s = 1401.2, abs = 423.89},
+  {s = 1421.2, abs = 424.82},
+  {s = 1441.2, abs = 425.75},
+  {s = 1461.3, abs = 426.70},
+  {s = 1481.3, abs = 427.60},
+  {s = 1501.3, abs = 428.51},
+  {s = 1521.3, abs = 429.45},
+  {s = 1541.3, abs = 430.24},
+  {s = 1561.3, abs = 431.17},
+  {s = 1581.4, abs = 432.10},
+  {s = 1601.4, abs = 432.97},
+  {s = 1621.4, abs = 433.84},
+  {s = 1641.4, abs = 434.73},
+  {s = 1661.4, abs = 435.65},
+  {s = 1681.4, abs = 436.52},
+  {s = 1701.5, abs = 437.45},
+  {s = 1721.5, abs = 438.37},
+  {s = 1741.5, abs = 439.26},
+  {s = 1761.5, abs = 440.14},
+  {s = 1781.5, abs = 441.04},
+  {s = 1801.5, abs = 441.93},
+  {s = 1821.6, abs = 442.82},
+  {s = 1841.6, abs = 443.79},
+  {s = 1861.6, abs = 444.70},
+  {s = 1881.6, abs = 445.62},
+  {s = 1901.6, abs = 446.57},
+  {s = 1921.6, abs = 447.45},
+  {s = 1941.7, abs = 448.35},
+  {s = 1961.7, abs = 449.30},
+  {s = 1981.7, abs = 450.19},
+  {s = 2001.7, abs = 451.10},
+  {s = 2021.7, abs = 451.98},
+  {s = 2041.7, abs = 452.92},
+  {s = 2061.8, abs = 453.81},
+  {s = 2081.8, abs = 454.73},
+  {s = 2101.8, abs = 455.65},
+  {s = 2121.8, abs = 456.60},
+  {s = 2141.8, abs = 457.50},
+  {s = 2161.9, abs = 458.43},
+  {s = 2181.9, abs = 459.30},
+  {s = 2201.9, abs = 460.22},
+  {s = 2221.9, abs = 461.13},
+  {s = 2241.9, abs = 462.04},
+  {s = 2261.9, abs = 462.90},
+  {s = 2282.0, abs = 463.88},
+  {s = 2302.0, abs = 464.68},
+  {s = 2322.0, abs = 465.35},
+  {s = 2342.0, abs = 465.99},
+  {s = 2362.0, abs = 466.60},
+  {s = 2382.0, abs = 467.11},
+  {s = 2402.1, abs = 467.61},
+  {s = 2422.1, abs = 468.00},
+  {s = 2442.1, abs = 468.29},
+  {s = 2462.1, abs = 468.51},
+  {s = 2482.1, abs = 468.67},
+  {s = 2502.1, abs = 468.80},
+  {s = 2522.2, abs = 468.82},
+  {s = 2542.2, abs = 468.77},
+  {s = 2562.2, abs = 468.59},
+  {s = 2582.2, abs = 468.29},
+  {s = 2602.2, abs = 467.95},
+  {s = 2622.2, abs = 467.59},
+  {s = 2642.3, abs = 467.13},
+  {s = 2662.3, abs = 466.60},
+  {s = 2682.3, abs = 465.97},
+  {s = 2702.3, abs = 465.28},
+  {s = 2722.3, abs = 464.51},
+  {s = 2742.3, abs = 463.67},
+  {s = 2762.4, abs = 462.77},
+  {s = 2782.4, abs = 461.80},
+  {s = 2802.4, abs = 460.73},
+  {s = 2822.4, abs = 459.59},
+  {s = 2842.4, abs = 458.41},
+  {s = 2862.5, abs = 457.08},
+  {s = 2882.5, abs = 455.74},
+  {s = 2902.5, abs = 454.32},
+  {s = 2922.5, abs = 452.90},
+  {s = 2942.5, abs = 451.45},
+  {s = 2962.5, abs = 449.99},
+  {s = 2982.6, abs = 448.55},
+  {s = 3002.6, abs = 447.14},
+  {s = 3022.6, abs = 445.77},
+  {s = 3042.6, abs = 444.36},
+  {s = 3062.6, abs = 442.95},
+  {s = 3082.6, abs = 441.57},
+  {s = 3102.7, abs = 440.17},
+  {s = 3122.7, abs = 438.72},
+  {s = 3142.7, abs = 437.31},
+  {s = 3162.7, abs = 435.94},
+  {s = 3182.7, abs = 434.57},
+  {s = 3202.7, abs = 433.23},
+  {s = 3222.8, abs = 431.84},
+  {s = 3242.8, abs = 430.43},
+  {s = 3262.8, abs = 429.02},
+  {s = 3282.8, abs = 427.58},
+  {s = 3302.8, abs = 426.19},
+  {s = 3322.8, abs = 424.75},
+  {s = 3342.9, abs = 423.36},
+  {s = 3362.9, abs = 421.96},
+  {s = 3382.9, abs = 420.58},
+  {s = 3402.9, abs = 419.21},
+  {s = 3422.9, abs = 417.78},
+  {s = 3442.9, abs = 416.31},
+  {s = 3463.0, abs = 414.92},
+  {s = 3483.0, abs = 413.58},
+  {s = 3503.0, abs = 412.21},
+  {s = 3523.0, abs = 410.79},
+  {s = 3543.0, abs = 409.40},
+  {s = 3563.1, abs = 408.00},
+  {s = 3583.1, abs = 406.58},
+  {s = 3603.1, abs = 405.22},
+  {s = 3623.1, abs = 403.86},
+  {s = 3643.1, abs = 402.45},
+  {s = 3663.1, abs = 401.04},
+  {s = 3683.2, abs = 399.67},
+  {s = 3703.2, abs = 398.29},
+  {s = 3723.2, abs = 396.86},
+  {s = 3743.2, abs = 395.50},
+  {s = 3763.2, abs = 394.07},
+  {s = 3783.2, abs = 392.67},
+  {s = 3803.3, abs = 391.23},
+  {s = 3823.3, abs = 389.80},
+  {s = 3843.3, abs = 388.41},
+  {s = 3863.3, abs = 387.05},
+  {s = 3883.3, abs = 385.70},
+  {s = 3903.3, abs = 384.42},
+  {s = 3923.4, abs = 383.31},
+  {s = 3943.4, abs = 382.22},
+  {s = 3963.4, abs = 381.19},
+  {s = 3983.4, abs = 380.30},
+  {s = 4003.4, abs = 379.43},
+  {s = 4023.4, abs = 378.67},
+  {s = 4043.5, abs = 378.02},
+  {s = 4063.5, abs = 377.41},
+  {s = 4083.5, abs = 376.88},
+  {s = 4103.5, abs = 376.43},
+  {s = 4123.5, abs = 376.07},
+  {s = 4143.6, abs = 375.83},
+  {s = 4163.6, abs = 375.66},
+  {s = 4183.6, abs = 375.55},
+  {s = 4203.6, abs = 375.49},
+  {s = 4223.6, abs = 375.53},
+  {s = 4243.6, abs = 375.65},
+  {s = 4263.7, abs = 375.82},
+  {s = 4283.7, abs = 376.03},
+  {s = 4303.7, abs = 376.22},
+  {s = 4323.7, abs = 376.40},
+  {s = 4343.7, abs = 376.61},
+  {s = 4363.7, abs = 376.78},
+  {s = 4383.8, abs = 376.93},
+  {s = 4403.8, abs = 377.16},
+  {s = 4423.8, abs = 377.29},
+  {s = 4443.8, abs = 377.40},
+  {s = 4463.8, abs = 377.55},
+  {s = 4483.8, abs = 377.61},
+  {s = 4503.9, abs = 377.62},
+  {s = 4523.9, abs = 377.55},
+  {s = 4543.9, abs = 377.44},
+  {s = 4563.9, abs = 377.29},
+  {s = 4583.9, abs = 377.04},
+  {s = 4603.9, abs = 376.85},
+  {s = 4624.0, abs = 376.67},
+  {s = 4644.0, abs = 376.40},
+  {s = 4664.0, abs = 376.04},
+  {s = 4684.0, abs = 375.70},
+  {s = 4704.0, abs = 375.30},
+  {s = 4724.0, abs = 374.84},
+  {s = 4744.1, abs = 374.37},
+  {s = 4764.1, abs = 373.85},
+  {s = 4784.1, abs = 373.29},
+  {s = 4804.1, abs = 372.66},
+  {s = 4824.1, abs = 371.96},
+  {s = 4844.1, abs = 371.22},
+  {s = 4864.2, abs = 370.45},
+  {s = 4884.2, abs = 369.67},
+  {s = 4904.2, abs = 368.94},
+  {s = 4924.2, abs = 368.28},
+  {s = 4944.2, abs = 367.75},
+  {s = 4964.3, abs = 367.34},
+  {s = 4984.3, abs = 366.99},
+  {s = 5004.3, abs = 366.73},
+  {s = 5024.3, abs = 366.61},
+  {s = 5044.3, abs = 366.65},
+  {s = 5064.3, abs = 366.76},
+  {s = 5084.4, abs = 367.00},
+  {s = 5104.4, abs = 367.36},
+  {s = 5124.4, abs = 367.78},
+  {s = 5144.4, abs = 368.31},
+  {s = 5164.4, abs = 368.89},
+  {s = 5184.4, abs = 369.53},
+  {s = 5204.5, abs = 370.15},
+  {s = 5224.5, abs = 370.78},
+  {s = 5244.5, abs = 371.40},
+  {s = 5264.5, abs = 372.02},
+  {s = 5284.5, abs = 372.63},
+  {s = 5304.5, abs = 373.32},
+  {s = 5324.6, abs = 373.99},
+  {s = 5344.6, abs = 374.62},
+  {s = 5364.6, abs = 375.23},
+  {s = 5384.6, abs = 375.90},
+  {s = 5404.6, abs = 376.47},
+  {s = 5424.6, abs = 377.13},
+  {s = 5444.7, abs = 377.71},
+  {s = 5464.7, abs = 378.27},
+  {s = 5484.7, abs = 378.81},
+  {s = 5504.7, abs = 379.26},
+  {s = 5524.7, abs = 379.70},
+  {s = 5544.8, abs = 380.15},
+  {s = 5564.8, abs = 380.57},
+  {s = 5584.8, abs = 381.00},
+  {s = 5604.8, abs = 381.39},
+  {s = 5624.8, abs = 381.80},
+  {s = 5644.8, abs = 382.13},
+  {s = 5664.9, abs = 382.63},
+  {s = 5684.9, abs = 383.07},
+  {s = 5704.9, abs = 383.52},
+  {s = 5724.9, abs = 383.92},
+  {s = 5744.9, abs = 384.37},
+  {s = 5764.9, abs = 384.77},
+  {s = 5785.0, abs = 385.21},
+  {s = 5805.0, abs = 385.68},
+  {s = 5825.0, abs = 386.15},
+  {s = 5845.0, abs = 386.64},
+  {s = 5865.0, abs = 387.15},
+  {s = 5885.0, abs = 387.73},
+  {s = 5905.1, abs = 388.28},
+  {s = 5925.1, abs = 388.85},
+  {s = 5945.1, abs = 389.38},
+  {s = 5965.1, abs = 389.92},
+  {s = 5985.1, abs = 390.41},
+  {s = 6005.1, abs = 390.97},
+  {s = 6025.2, abs = 391.51},
+  {s = 6045.2, abs = 392.14},
+  {s = 6065.2, abs = 392.70},
+  {s = 6085.2, abs = 393.18},
+  {s = 6105.2, abs = 393.66},
+  {s = 6125.2, abs = 394.07},
+  {s = 6145.3, abs = 394.39},
+  {s = 6165.3, abs = 394.73},
+  {s = 6185.3, abs = 395.01},
+  {s = 6205.3, abs = 395.26},
+  {s = 6225.3, abs = 395.45},
+  {s = 6245.4, abs = 395.70},
+  {s = 6265.4, abs = 395.98},
+  {s = 6285.4, abs = 396.32},
+  {s = 6305.4, abs = 396.71},
+  {s = 6325.4, abs = 397.18},
+  {s = 6345.4, abs = 397.71},
+  {s = 6365.5, abs = 398.25},
+  {s = 6385.5, abs = 398.83},
+  {s = 6405.5, abs = 399.48},
+  {s = 6425.5, abs = 400.11},
+  {s = 6445.5, abs = 400.85},
+  {s = 6465.5, abs = 401.56},
+  {s = 6485.6, abs = 402.26},
+  {s = 6505.6, abs = 402.99},
+  {s = 6525.6, abs = 403.69},
+  {s = 6545.6, abs = 404.41},
+  {s = 6565.6, abs = 405.11},
+  {s = 6585.6, abs = 405.86},
+  {s = 6605.7, abs = 406.55},
+  {s = 6625.7, abs = 407.25},
+  {s = 6645.7, abs = 407.94},
+  {s = 6665.7, abs = 408.52},
+  {s = 6685.7, abs = 409.32},
+  {s = 6705.7, abs = 410.01},
+  {s = 6725.8, abs = 410.59},
+  {s = 6745.8, abs = 411.17},
+  {s = 6765.8, abs = 411.72},
+  {s = 6785.8, abs = 412.24},
+  {s = 6805.8, abs = 412.67},
+  {s = 6825.8, abs = 413.12},
+  {s = 6845.9, abs = 413.55},
+  {s = 6865.9, abs = 413.94},
+  {s = 6885.9, abs = 414.32},
+  {s = 6905.9, abs = 414.68},
+  {s = 6925.9, abs = 415.06},
+  {s = 6945.9, abs = 415.44},
+  {s = 6966.0, abs = 415.83},
+  {s = 6986.0, abs = 416.20},
+]
 
 # The official numbering. The detector finds these 19 plus three flat-out bends that carry no
 # number: the right kink on the descent to Eau Rouge (s = 540), the Kemmel kink (s = 1519)
@@ -130,3 +504,209 @@ id = "T19"
 name = "Bus Stop"
 direction = "left"
 s = 6687.7
+
+[road]
+# Full road width in metres, [s, width, note], smoothstep-interpolated, cyclic.
+# No per-section widths are published for Spa (the FIA circuit file is not public, OSM has no
+# width tag on the lap), so they were measured: the asphalt between the two white edge lines
+# on the orthophoto of the Service public de Wallonie, summer 2023, 25 cm
+# (https://geoservices.wallonie.be/arcgis/rest/services/IMAGERIE/ORTHO_2023_ETE/MapServer, i.e.
+# after the 2022 rebuild), read on a profile across the centreline every 2 m, 50 m median,
+# plus 0.5 m for the two lines and the blur of the photo. Good to about 0.3 m.
+# The lap is far narrower than the 13 m default: 9.3 to 10 m nearly everywhere, 10.5 m on the
+# Kemmel straight, 11.5 m on the approach to the chicane, and 14.7 m only on the Formula 1
+# start straight. Estimates (the automatic reading fails there): La Source, where the pit
+# exit joins the hairpin (measured by hand on the same photo: 18 m across at the apex), the
+# stretch after Raidillon in the shadow of the trees (s = 1330-1545, interpolated) and the
+# chicane itself (s = 6600-6760, by hand).
+width_keys = [
+  [0.0, 14.7, "Formula 1 start straight and grid"],
+  [224.0, 14.7, "braking for La Source"],
+  [262.0, 18.0, "T1 La Source: the hairpin opens up (estimate, by hand)"],
+  [300.0, 17.0, "La Source exit, the F1 pit exit joins on the right (estimate)"],
+  [335.0, 15.0, ""],
+  [408.0, 12.3, ""],
+  [522.0, 10.2, "end of the pit exit lane"],
+  [646.0, 9.5, "descent past the endurance pits"],
+  [946.0, 9.4, "T2 Eau Rouge"],
+  [965.0, 10.0, "foot of Eau Rouge"],
+  [987.0, 10.0, "T3 Raidillon"],
+  [1187.0, 9.0, "T4 Raidillon crest: the narrowest fast part"],
+  [1330.0, 9.2, "(interpolated to s = 1545: tree shadows)"],
+  [1545.0, 10.1, "Kemmel kink"],
+  [1818.0, 10.6, "Kemmel straight"],
+  [2194.0, 10.4, "braking for Les Combes"],
+  [2278.0, 9.9, ""],
+  [2292.0, 10.7, "T5 Les Combes"],
+  [2322.0, 10.7, ""],
+  [2342.0, 9.7, ""],
+  [2402.0, 9.8, "T6 Les Combes"],
+  [2432.0, 9.3, ""],
+  [2526.0, 9.6, "T7 Malmedy"],
+  [2842.0, 9.3, "descent to Bruxelles"],
+  [2892.0, 9.8, "T8 Bruxelles"],
+  [3207.0, 9.5, "T9 Speaker's Corner"],
+  [3423.0, 10.1, "the link from the motorcycle chicane joins on the left"],
+  [3479.0, 9.6, ""],
+  [3593.0, 9.6, ""],
+  [3645.0, 9.2, "turn-in for Pouhon"],
+  [3697.0, 9.6, "T10 Pouhon"],
+  [3883.0, 9.2, ""],
+  [3939.0, 9.7, "T11 Pouhon (Double Gauche)"],
+  [4094.0, 9.8, ""],
+  [4304.0, 9.5, ""],
+  [4342.0, 8.7, "T12 Fagnes entry: the narrowest point of the lap"],
+  [4450.0, 8.8, "T12 Fagnes"],
+  [4462.0, 9.4, ""],
+  [4488.0, 9.6, "T13 Fagnes"],
+  [4794.0, 9.4, ""],
+  [4868.0, 9.8, "T14 Campus"],
+  [5082.0, 9.7, "T15 Stavelot (Courbe Paul Frere)"],
+  [5104.0, 9.3, ""],
+  [5146.0, 9.3, ""],
+  [5212.0, 9.7, ""],
+  [5276.0, 9.1, ""],
+  [5335.0, 9.1, ""],
+  [5441.0, 9.8, ""],
+  [5727.0, 10.2, "T16 Blanchimont"],
+  [6011.0, 10.0, ""],
+  [6027.0, 9.7, "T17 Blanchimont"],
+  [6353.0, 10.1, ""],
+  [6400.0, 11.5, "the road widens for the braking zone of the chicane"],
+  [6600.0, 11.6, ""],
+  [6640.0, 12.0, "T18 Bus Stop (estimate, by hand)"],
+  [6700.0, 12.5, "T19 Bus Stop (estimate, by hand)"],
+  [6760.0, 14.7, "onto the Formula 1 start straight"],
+]
+# Bank in radians, + = left edge higher, [s, bank, note], smoothstep-interpolated, cyclic.
+# Measured: the height difference between 4 m left and 4 m right of the centreline in the same
+# LiDAR ground model as the heights ([elevation]), 15 m Gaussian. The pipeline limits bank to
+# 0.03 rad (3 %), so every corner is cut off there; the notes give what was measured.
+# The real figures, to apply when the limit goes (per cent, + = left edge higher):
+#   La Source +6.6; the descent to Eau Rouge +4.8; Eau Rouge -4.8; Raidillon +6.2, its crest
+#   -4.4; Kemmel kink +7.8, Kemmel straight +1.2; Les Combes +5.1 / -4.3; Malmedy +5.3;
+#   Bruxelles +5.1; Speaker's Corner -5.5; Pouhon -4.7; Fagnes +4.7 / -3.8; Campus +4.9;
+#   Stavelot +4.3; Blanchimont -4.6 (first part) and -7.5 (second part, s = 6005);
+#   the approach to the chicane +5.9; Bus Stop -4.2 at its exit; the grid -0.7 to -1.8.
+bank_keys = [
+  [0.0, 0.0033, ""],
+  [120.1, 0.0300, "(measured +3.1 %)"],
+  [680.6, 0.0300, "(measured +3.3 %)"],
+  [870.7, -0.0300, "(measured -3.1 %)"],
+  [950.8, -0.0300, "T2 Eau Rouge (measured -3.0 %)"],
+  [990.8, 0.0162, "T3 Raidillon"],
+  [1010.9, 0.0300, "T3 Raidillon (measured +3.5 %)"],
+  [1111.0, 0.0300, "T4 Raidillon (crest) (measured +3.0 %)"],
+  [1141.0, -0.0233, "T4 Raidillon (crest)"],
+  [1151.0, -0.0300, "T4 Raidillon (crest) (measured -3.4 %)"],
+  [1231.1, -0.0300, "(measured -3.1 %)"],
+  [1351.2, 0.0113, ""],
+  [1391.2, 0.0299, ""],
+  [1401.2, 0.0300, "(measured +3.4 %)"],
+  [1601.4, 0.0299, ""],
+  [1641.4, 0.0187, ""],
+  [1701.5, 0.0104, ""],
+  [1871.6, 0.0158, ""],
+  [2101.8, 0.0148, ""],
+  [2171.9, 0.0300, "(measured +3.0 %)"],
+  [2322.0, 0.0300, "T5 Les Combes (measured +3.0 %)"],
+  [2362.0, -0.0142, "T6 Les Combes"],
+  [2382.0, -0.0300, "T6 Les Combes (measured -3.3 %)"],
+  [2442.1, -0.0268, "T6 Les Combes"],
+  [2482.1, 0.0218, "T7 Malmedy"],
+  [2492.1, 0.0300, "T7 Malmedy (measured +3.2 %)"],
+  [2682.3, 0.0300, "(measured +3.1 %)"],
+  [2712.3, 0.0230, ""],
+  [2772.4, 0.0300, "(measured +3.1 %)"],
+  [3052.6, 0.0300, "(measured +3.2 %)"],
+  [3122.7, -0.0300, "T9 Speaker's Corner (measured -3.1 %)"],
+  [3252.8, -0.0297, ""],
+  [3312.8, 0.0188, ""],
+  [3342.9, 0.0274, ""],
+  [3442.9, 0.0262, ""],
+  [3503.0, -0.0143, ""],
+  [3573.1, -0.0300, "(measured -3.0 %)"],
+  [4063.5, -0.0300, "(measured -3.1 %)"],
+  [4193.6, 0.0178, ""],
+  [4283.7, 0.0300, "(measured +3.4 %)"],
+  [4443.8, 0.0300, "T12 Fagnes (measured +3.1 %)"],
+  [4503.9, -0.0186, ""],
+  [4523.9, -0.0300, "T13 Fagnes (measured -3.1 %)"],
+  [4624.0, -0.0264, "T13 Fagnes"],
+  [4754.1, 0.0300, "(measured +3.1 %)"],
+  [4904.2, 0.0300, "T14 Campus (measured +3.2 %)"],
+  [4934.2, 0.0228, ""],
+  [4974.3, 0.0299, ""],
+  [5334.6, 0.0300, "(measured +3.1 %)"],
+  [5404.6, 0.0204, ""],
+  [5504.7, 0.0300, "(measured +3.0 %)"],
+  [5554.8, 0.0113, ""],
+  [5624.8, -0.0258, ""],
+  [5644.8, -0.0300, "(measured -3.3 %)"],
+  [6195.3, -0.0300, "(measured -3.1 %)"],
+  [6285.4, 0.0297, ""],
+  [6295.4, 0.0300, "(measured +3.5 %)"],
+  [6625.7, 0.0300, "T18 Bus Stop (measured +3.2 %)"],
+  [6665.7, -0.0300, "T19 Bus Stop"],
+  [6775.8, -0.0300, "(measured -3.2 %)"],
+  [6845.9, -0.0245, ""],
+]
+
+[surroundings]
+# The Ardennes spruce plantations are far denser than the default open woodland (several
+# hundred stems per hectare; from the road they are a closed wall).
+tree_density = 220
+
+# Grandstands the map has as bare outlines without a roof: they are built as landmarks instead
+# (tools/track/landmarks/spa.py), with their roofs and on the ground beside the road.
+[[surroundings.exclude]]
+osm = "way/174882363"
+note = "Tribune F1, the red-roofed grandstand opposite the Formula 1 pits"
+[[surroundings.exclude]]
+osm = "way/1353159436"
+note = "Tribune Endurance (solar roof)"
+[[surroundings.exclude]]
+osm = "way/1353159437"
+note = "Grandstand Silver 1, the open terraces above the endurance straight"
+[[surroundings.exclude]]
+osm = "way/1134053908"
+note = "Tribune Raidillon (2022, solar roof)"
+
+# Heights the map does not have, for the buildings a driver sees. All estimates from the number
+# of storeys on trackside photographs (3.5 m per storey for the pit buildings, 3 m for houses).
+[[surroundings.building]]
+osm = "way/77352246"
+height = 13.0
+note = "Formula 1 pit building: garages, two floors of hospitality and the roof terrace"
+[[surroundings.building]]
+osm = "way/77352249"
+height = 9.0
+note = "endurance pit building: garages and one floor above"
+[[surroundings.building]]
+osm = "way/176136366"
+height = 8.0
+note = "Salons de l'Eau Rouge, inside Eau Rouge"
+[[surroundings.building]]
+osm = "way/1509741652"
+height = 9.0
+note = "Hotel de l'Eau Rouge"
+[[surroundings.building]]
+osm = "way/77352259"
+height = 9.0
+note = "house on the outside of La Source"
+[[surroundings.building]]
+osm = "way/174899901"
+height = 8.0
+note = "house on the outside of La Source"
+[[surroundings.building]]
+osm = "way/175535503"
+height = 9.0
+note = "Campus Automobile, inside Campus"
+[[surroundings.building]]
+osm = "way/1509741669"
+height = 7.0
+note = "workshop of the Campus"
+[[surroundings.building]]
+osm = "way/173937052"
+height = 7.0
+note = "karting building, inside the Paul Frere curve"

@@ -1,0 +1,362 @@
+[
+ {
+  "model": "signal_gantry_1",
+  "at": {
+   "s": 3462.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "signal_gantry_2",
+  "at": {
+   "s": 4275.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "signal_gantry_3",
+  "at": {
+   "s": 4705.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "signal_gantry_4",
+  "at": {
+   "s": 5660.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "signal_gantry_5",
+  "at": {
+   "s": 6432.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "start_gantry",
+  "at": {
+   "s": 22.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "footbridge",
+  "at": {
+   "s": 720.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "pit_lane_f1",
+  "at": {
+   "s": 0.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "pit_lane_endurance",
+  "at": {
+   "s": 720.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "stand_f1",
+  "at": {
+   "s": 6933.9,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": -1.793
+ },
+ {
+  "model": "stand_endurance",
+  "at": {
+   "s": 638.5,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 186.629
+ },
+ {
+  "model": "stand_raidillon",
+  "at": {
+   "s": 1147.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 184.056
+ },
+ {
+  "model": "stand_eau_rouge",
+  "at": {
+   "s": 1056.9,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 169.417
+ },
+ {
+  "model": "stand_speakers",
+  "at": {
+   "s": 3274.8,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": -8.888
+ },
+ {
+  "model": "stand_silver_1",
+  "at": {
+   "s": 530.5,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 180.297
+ },
+ {
+  "model": "stand_pouhon_1",
+  "at": {
+   "s": 3765.2,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": -180.06
+ },
+ {
+  "model": "stand_pouhon_2",
+  "at": {
+   "s": 3901.3,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": -180.177
+ },
+ {
+  "model": "forest_edge_01",
+  "at": {
+   "s": 1395.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_02",
+  "at": {
+   "s": 1505.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_03",
+  "at": {
+   "s": 3430.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_04",
+  "at": {
+   "s": 3590.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_05",
+  "at": {
+   "s": 3750.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_06",
+  "at": {
+   "s": 4152.5,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_07",
+  "at": {
+   "s": 4277.5,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_08",
+  "at": {
+   "s": 5715.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_09",
+  "at": {
+   "s": 5905.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_10",
+  "at": {
+   "s": 6100.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_11",
+  "at": {
+   "s": 6300.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_12",
+  "at": {
+   "s": 6470.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_13",
+  "at": {
+   "s": 1525.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_14",
+  "at": {
+   "s": 1675.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_15",
+  "at": {
+   "s": 2025.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_16",
+  "at": {
+   "s": 2175.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_17",
+  "at": {
+   "s": 2325.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_18",
+  "at": {
+   "s": 2540.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_19",
+  "at": {
+   "s": 2875.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_20",
+  "at": {
+   "s": 3025.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_21",
+  "at": {
+   "s": 3291.7,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_22",
+  "at": {
+   "s": 3435.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "forest_edge_23",
+  "at": {
+   "s": 3578.3,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ }
+]

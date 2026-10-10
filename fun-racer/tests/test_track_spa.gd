@@ -31,8 +31,9 @@ func test_dimensions_match_real_circuit() -> void:
 		hi = maxf(hi, p.y)
 		area += p.x * -q.z - q.x * -p.z
 	assert_true(area < 0.0, "Spa runs clockwise")
-	# Published: about 100-104 m between Stavelot and Les Combes.
-	assert_between(hi - lo, 90.0, 115.0, "elevation range (m)")
+	# Published: 102 m between Stavelot and Les Combes. The road is pinned to the Walloon
+	# LiDAR ground model (see the recipe), which gives 102.2 m.
+	assert_between(hi - lo, 100.0, 104.5, "elevation range (m)")
 	assert_true(d.turns.size() == 19, "expected 19 turns, got %d" % d.turns.size())
 	var last := -1.0
 	for t in d.turns:
@@ -57,17 +58,72 @@ func test_dimensions_match_real_circuit() -> void:
 	var bottom := d.position_at(float(_turn(d, "T15")["s_apex"])).y
 	assert_true(top > hi - 6.0, "Malmedy near the top of the lap (y=%.1f, max %.1f)" % [top, hi])
 	assert_true(bottom < lo + 6.0, "Stavelot near the bottom of the lap (y=%.1f, min %.1f)" % [bottom, lo])
-	# Eau Rouge is a dip; Raidillon climbs out of it (really 35-40 m; the 25 m DEM gives ~27 m).
+	# Eau Rouge is a dip; Raidillon climbs out of it: 28 m in 330 m and 15.4 % at its steepest
+	# on the centreline of the LiDAR model (the terrain tiles, smoothed over 45 m, gave 12.8 %).
 	var eau_rouge := float(_turn(d, "T2")["s_apex"])
 	var dip := d.position_at(eau_rouge).y
 	assert_true(dip < d.position_at(eau_rouge - 200.0).y - 8.0, "the run down to Eau Rouge descends")
-	assert_between(d.position_at(eau_rouge + 330.0).y - dip, 22.0, 45.0, "Raidillon climb over 330 m (m)")
+	assert_between(d.position_at(eau_rouge + 330.0).y - dip, 26.0, 30.0, "Raidillon climb over 330 m (m)")
 	var steepest := 0.0
 	var s := eau_rouge
 	while s < eau_rouge + 330.0:
 		steepest = maxf(steepest, d.grade_at(s))
 		s += d.step
-	assert_between(steepest, 0.10, 0.20, "steepest gradient on Raidillon")
+	assert_between(steepest, 0.145, 0.165, "steepest gradient on Raidillon")
+	# Nowhere else is the lap steeper than 9 %: the terrain tiles read the tree tops and put a
+	# 17 % drop at Speaker's Corner, which is a steady 7 % in reality.
+	var drop := 0.0
+	var climb := 0.0
+	for i in d.points.size():
+		var at := i * d.step
+		drop = minf(drop, d.grade_at(at))
+		if at < eau_rouge or at > eau_rouge + 330.0:
+			climb = maxf(climb, d.grade_at(at))
+	assert_between(drop, -0.09, -0.07, "steepest descent of the lap (Pouhon)")
+	assert_true(climb < 0.09, "no climb but Raidillon above 9 %% (%.3f)" % climb)
+	# La Source is 7 m above the line and the foot of Eau Rouge 27 m below it.
+	assert_between(d.position_at(float(source["s_apex"])).y, 6.0, 8.5, "La Source above the line (m)")
+	assert_between(dip, -28.0, -26.0, "Eau Rouge below the line (m)")
+
+func test_widths_match_real_circuit() -> void:
+	# Measured on the 2023 orthophoto of the Service public de Wallonie (see the recipe): Spa is
+	# 9.3 to 10 m wide for most of the lap, not the 13 m default.
+	var d := TrackData.load_track(PATH)
+	assert_true(d != null, "track.json failed to load")
+	if d == null:
+		return
+	assert_between(d.width_at(0.0), 14.2, 15.2, "Formula 1 start straight (m)")
+	assert_between(d.width_at(6900.0), 14.2, 15.2, "grid (m)")
+	assert_between(d.width_at(float(_turn(d, "T1")["s_apex"])), 16.0, 18.5, "La Source (m)")
+	assert_between(d.width_at(800.0), 9.0, 10.0, "descent to Eau Rouge (m)")
+	assert_between(d.width_at(1187.0), 8.7, 9.4, "Raidillon crest (m)")
+	assert_between(d.width_at(1850.0), 10.2, 11.0, "Kemmel straight (m)")
+	assert_between(d.width_at(float(_turn(d, "T10")["s_apex"])), 9.0, 10.0, "Pouhon (m)")
+	assert_between(d.width_at(float(_turn(d, "T16")["s_apex"])), 9.7, 10.6, "Blanchimont (m)")
+	assert_between(d.width_at(6500.0), 11.0, 12.0, "approach to the chicane (m)")
+	var narrowest := INF
+	var total := 0.0
+	for w in d.widths:
+		narrowest = minf(narrowest, w)
+		total += w
+	assert_between(narrowest, 8.4, 9.0, "narrowest point, Fagnes (m)")
+	assert_between(total / d.widths.size(), 9.8, 10.8, "mean width (m)")
+
+func test_landmarks_exist() -> void:
+	# Every model landmarks.json places is in the folder (tools/track/landmarks/spa.py).
+	var dir := PATH.get_base_dir()
+	var parsed: Variant = JSON.parse_string(FileAccess.get_file_as_string(dir.path_join("landmarks.json")))
+	assert_true(parsed is Array and (parsed as Array).size() >= 17, "landmarks.json lists the landmarks")
+	if not parsed is Array:
+		return
+	var models := {}
+	for e: Dictionary in parsed:
+		models[str(e["model"])] = true
+		assert_true(ResourceLoader.exists(dir.path_join("landmarks/%s.glb" % e["model"])), "landmark model %s" % e["model"])
+		assert_between(float(e["at"]["s"]), 0.0, 7004.0, "landmark %s is placed on the lap" % e["model"])
+	for want: String in ["start_gantry", "pit_lane_f1", "stand_f1", "stand_raidillon", "stand_speakers", "signal_gantry_1"]:
+		assert_true(models.has(want), "landmark %s is placed" % want)
+	assert_true(TracksideLayout.has_table(ID), "Spa has a hand-made trackside table")
 
 func test_listed_as_playable() -> void:
 	TrackCatalog.reload()
