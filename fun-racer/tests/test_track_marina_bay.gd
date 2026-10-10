@@ -1,6 +1,7 @@
 extends TestCase
-## Marina Bay Street Circuit (Singapore): track data, the street-circuit walls, the race scene
-## on the generic track runtime, and (with --full-lap) an autopilot lap.
+## Marina Bay Street Circuit (Singapore): track data (length, widths per street, the two
+## bridges), the street-circuit walls, the night scenery, the race scene on the generic track
+## runtime, and (with --full-lap) an autopilot lap.
 ##
 ##   tests/run_tests.sh --filter=track_marina_bay
 ##   tools/bin/godot --headless --path . --fixed-fps 240 --disable-vsync \
@@ -9,7 +10,8 @@ extends TestCase
 const ID := "marina_bay"
 const PATH := "res://assets/tracks/marina_bay/track.json"
 const RACE := "res://scenes/race.tscn"
-const OFFICIAL_LENGTH := 4940.0
+## Official lap length since 2025 (formula1.com; 4.940 km in 2023 and 2024).
+const OFFICIAL_LENGTH := 4927.0
 const TICK := 1.0 / 240.0
 
 func _race() -> Node:
@@ -46,8 +48,8 @@ func test_dimensions_match_real_circuit() -> void:
 	for p in d.points:
 		lo = minf(lo, p.y)
 		hi = maxf(hi, p.y)
-	# Flat reclaimed land beside the bay: a few metres at most.
-	assert_true(hi - lo < 8.0, "elevation range %.1f m" % (hi - lo))
+	# Published: 5.3 m of elevation change (formula1.com). Level streets and two bridges.
+	assert_between(hi - lo, 5.0, 5.6, "elevation range (m)")
 	assert_true(d.turns.size() == 19, "expected 19 turns, got %d" % d.turns.size())
 	var last := -1.0
 	for t in d.turns:
@@ -67,7 +69,7 @@ func test_dimensions_match_real_circuit() -> void:
 		var b := d.points[(i + 1) % d.points.size()]
 		area += a.x * b.z - b.x * a.z
 	assert_true(area < 0.0, "the lap must run anticlockwise")
-	# The start line is 137 m after the finish line (306.143 km for 62 laps of 4.940 km).
+	# The start line is 137 m after the finish line (305.337 km for 62 laps of 4.927 km).
 	assert_between(d.start_s, 130.0, 145.0, "start line after the finish line (m)")
 	# Since 2023 the run from Turn 15 to Turn 16 is one straight: the four corners under the
 	# Float grandstand are gone.
@@ -87,9 +89,48 @@ func test_dimensions_match_real_circuit() -> void:
 	var gap := d.position_at(float(d.turns[7]["s_apex"])).distance_to(d.position_at(float(d.turns[13]["s_apex"])))
 	assert_between(gap, 30.0, 60.0, "distance between the Turn 8 and Turn 14 apexes (m)")
 
+## Widths follow the streets (lane counts, see the recipe): the wide boulevards, the two-lane
+## bay of the Anderson Bridge, the four-lane carriageway of the Esplanade Bridge.
+func test_widths_and_bridges_follow_the_streets() -> void:
+	var d := TrackData.load_track(PATH)
+	assert_true(d != null, "track.json failed to load")
+	if d == null:
+		return
+	for row: Array in [[150.0, 14.0, "pit straight"], [800.0, 11.0, "Republic Boulevard"],
+			[1400.0, 15.0, "Raffles Boulevard"], [2400.0, 13.0, "St Andrew's Road"],
+			[2750.0, 9.5, "Connaught Drive"], [2940.0, 8.0, "Anderson Bridge"],
+			[3300.0, 14.0, "Esplanade Bridge"], [4000.0, 15.0, "Raffles Avenue"],
+			[4550.0, 12.0, "past the Singapore Flyer"]]:
+		assert_between(d.width_at(row[0]), float(row[1]) - 0.3, float(row[1]) + 0.3, "width on %s (m)" % row[2])
+	var narrowest := INF
+	var narrowest_s := 0.0
+	var highest := -INF
+	var highest_s := 0.0
+	var lowest := INF
+	var lowest_s := 0.0
+	var s := 0.0
+	while s < d.length:
+		if d.width_at(s) < narrowest:
+			narrowest = d.width_at(s)
+			narrowest_s = s
+		var y := d.position_at(s).y
+		if y > highest:
+			highest = y
+			highest_s = s
+		if y < lowest:
+			lowest = y
+			lowest_s = s
+		s += 5.0
+	assert_between(narrowest_s, 2890.0, 3000.0, "the narrowest point is the Anderson Bridge (s)")
+	assert_between(highest_s, 3150.0, 3290.0, "the highest point is the crown of the Esplanade Bridge (s)")
+	assert_between(lowest_s, 3850.0, 4350.0, "the lowest point is Raffles Avenue beside the bay (s)")
+	# The Anderson Bridge is a hump of about a metre between two level streets.
+	var hump := d.position_at(2960.0).y - maxf(d.position_at(2880.0).y, d.position_at(3030.0).y)
+	assert_between(hump, 0.8, 1.4, "hump of the Anderson Bridge (m)")
+
 func test_sampling_round_trip() -> void:
 	var d := TrackData.load_track(PATH)
-	for s: float in [0.0, 438.0, 975.0, 1830.0, 2690.0, 3071.0, 3608.0, 4100.0, 4823.0]:
+	for s: float in [0.0, 437.0, 972.0, 1826.0, 2683.0, 3063.0, 3599.0, 4100.0, 4810.0]:
 		var xf := d.sample(s)
 		assert_true(absf(xf.basis.y.dot(Vector3.UP)) > 0.95, "road normal mostly up at s=%.0f" % s)
 		var back := d.closest_s(xf.origin + xf.basis.x * 3.0)
@@ -113,7 +154,8 @@ func test_race_scene_spawns_car_on_track() -> void:
 	scene.queue_free()
 
 ## A street circuit: concrete walls close to the road on both sides all the way round, never
-## on the road, and the terrain never above the tarmac.
+## on the road, and the terrain never above the tarmac. The only room is the asphalt run-off
+## at Turn 1, at Turn 7 and outside the last two corners.
 func test_walls_stand_beside_the_road_all_round() -> void:
 	var scene := _race()
 	var track := scene.get_node("Track") as Track
@@ -122,9 +164,13 @@ func test_walls_stand_beside_the_road_all_round() -> void:
 	await _built(ts)
 	var d := track.data
 	assert_true(not ts.layout.is_auto, "marina_bay uses its own trackside table")
-	assert_true(ts.layout.runoff.is_empty(), "no run-off areas on a street circuit")
+	assert_true(ts.layout.runoff.size() == 4, "run-off at Turns 1, 7, 18 and 19 only (%d)" % ts.layout.runoff.size())
+	for r: Dictionary in ts.layout.runoff:
+		assert_true(r["kind"] == "tarmac", "no gravel on a street circuit (%s)" % r["turn"])
 	var s := 0.0
 	var widest := 0.0
+	var close := 0
+	var samples := 0
 	while s < d.length:
 		assert_true(ts.layout.is_concrete(s), "concrete wall at s=%.0f" % s)
 		for side: float in [-1.0, 1.0]:
@@ -132,13 +178,17 @@ func test_walls_stand_beside_the_road_all_round() -> void:
 			assert_true(gap >= 1.9, "wall %.2f m from the road edge at s=%.0f (side %d)" % [gap, s, side])
 			assert_true(gap >= ts.kerb_extent(s, side), "wall inside the kerb at s=%.0f (side %d)" % [s, side])
 			widest = maxf(widest, gap)
+			samples += 1
+			if gap <= 2.6:
+				close += 1
 		var p := d.position_at(s)
 		assert_true(terrain.height_at(p.x, p.z) < p.y, "terrain above the road at s=%.0f" % s)
 		s += 10.0
-	assert_true(widest <= 3.5, "walls up to %.1f m from the road edge" % widest)
+	assert_true(widest <= 13.0, "walls up to %.1f m from the road edge" % widest)
+	assert_true(close > samples * 0.9, "walls within 2.6 m of the road edge on %d of %d samples" % [close, samples])
 	# A wall really is in the way of a car leaving the road sideways.
 	var space := scene.get_viewport().world_3d.direct_space_state
-	for at: float in [100.0, 1200.0, 2040.0, 2450.0, 3071.0, 3608.0, 4100.0]:
+	for at: float in [100.0, 1200.0, 2035.0, 2450.0, 2960.0, 3063.0, 3300.0, 4100.0]:
 		var xf := ts.frame_at(at)
 		for side: float in [-1.0, 1.0]:
 			var from := xf.origin + Vector3.UP * 0.5
@@ -148,7 +198,37 @@ func test_walls_stand_beside_the_road_all_round() -> void:
 			assert_true(not hit.is_empty(), "no wall beside the road at s=%.0f (side %d)" % [at, side])
 			if not hit.is_empty():
 				var dist := from.distance_to(hit["position"])
-				assert_between(dist, ts.edge_at(at) + 1.0, ts.edge_at(at) + 5.0, "wall distance from the centreline at s=%.0f (side %d)" % [at, side])
+				assert_between(dist, ts.edge_at(at) + 1.0, ts.edge_at(at) + 4.5, "wall distance from the centreline at s=%.0f (side %d)" % [at, side])
+	scene.queue_free()
+
+## The race is run at night under floodlights, on paved city ground, with the structures that
+## have a shape of their own as models.
+func test_night_scenery() -> void:
+	var scene := _race()
+	var track := scene.get_node("Track") as Track
+	var ts := track.get_node("Trackside") as Trackside
+	await _built(ts)
+	var env := track.environment
+	assert_true(env != null and env.active, "marina_bay has an environment.json")
+	if env != null:
+		assert_true(str(env.values["time"]) == "night", "night race (%s)" % env.values["time"])
+		assert_true(env.floodlit(), "floodlit")
+		# 10 m trusses on pylons 32 m apart (grandprix.com, "How to light up F1", 2008).
+		assert_between(env.number("floodlights", "spacing_m"), 30.0, 34.0, "pylon spacing (m)")
+		assert_between(env.number("floodlights", "height_m"), 9.0, 12.0, "truss height (m)")
+		assert_true(not env.mowing_stripes(), "no mown verges")
+		var verge := env.color("verge", "grass_color")
+		assert_true(absf(verge.r - verge.g) < 0.03 and absf(verge.g - verge.b) < 0.03, "verges are paved, not green (%s)" % verge)
+	var scenery := track.get_node_or_null("Scenery") as Scenery
+	assert_true(scenery != null and scenery.is_built, "scenery built")
+	if scenery != null:
+		assert_true(scenery.landmark_count == 5, "pit building, Flyer, Anderson Bridge and the two Esplanade shells (%d)" % scenery.landmark_count)
+		assert_true(scenery.building_chunks > 20, "city blocks baked (%d chunks)" % scenery.building_chunks)
+		assert_true(scenery.water_bodies >= 2, "the bay and the river (%d)" % scenery.water_bodies)
+		assert_true(scenery.lamp_count > 100, "floodlight pylons round the lap (%d)" % scenery.lamp_count)
+	# The bake stays small enough for the integrated-graphics budget (it was 16 MB).
+	var glb := FileAccess.open("res://assets/tracks/marina_bay/scenery.glb", FileAccess.READ)
+	assert_true(glb != null and glb.get_length() < 8 * 1024 * 1024, "scenery.glb under 8 MB")
 	scene.queue_free()
 
 ## One autopilot lap from the grid: never off the road (so never in a wall), no respawn.

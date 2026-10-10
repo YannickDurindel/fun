@@ -106,8 +106,8 @@
   ],
   "raw_length_m": 4901.5,
   "length_m": 4895.9,
-  "official_length_m": 4940.0,
-  "length_error": -0.00892,
+  "official_length_m": 4927.0,
+  "length_error": -0.0063,
   "candidates": [
    {
     "length_m": 4972.1,
@@ -218,10 +218,10 @@
  "start_finish_source": "finish: relation member role, start: relation member role",
  "dem_dataset": "terrarium",
  "elevation": {
-  "range_m": 5.38,
-  "max_grade": 0.0034,
-  "min_grade": -0.0036,
-  "origin_m": 13.84
+  "range_m": 5.3,
+  "max_grade": 0.0466,
+  "min_grade": -0.044,
+  "origin_m": 13.5
  },
  "turns": {
   "official": 19,
@@ -231,153 +231,153 @@
     "id": "T1",
     "name": "Marina Bay Street Circuit",
     "direction": "left",
-    "s_apex": 437.9,
+    "s_apex": 436.7,
     "min_radius": 18.7
    },
    {
     "id": "T2",
     "name": "Marina Bay Street Circuit",
     "direction": "right",
-    "s_apex": 526.7,
+    "s_apex": 525.3,
     "min_radius": 32.7
    },
    {
     "id": "T3",
     "name": "Marina Bay Street Circuit",
     "direction": "left",
-    "s_apex": 593.3,
-    "min_radius": 26.6
+    "s_apex": 591.7,
+    "min_radius": 26.5
    },
    {
     "id": "T4",
     "name": "Republic Boulevard",
     "direction": "left",
-    "s_apex": 730.5,
-    "min_radius": 99.1
+    "s_apex": 728.6,
+    "min_radius": 99.0
    },
    {
     "id": "T5",
     "name": "Republic Boulevard",
     "direction": "right",
-    "s_apex": 847.5,
-    "min_radius": 188.0
+    "s_apex": 845.3,
+    "min_radius": 187.6
    },
    {
     "id": "T6",
     "name": "Republic Boulevard",
     "direction": "right",
-    "s_apex": 974.7,
-    "min_radius": 44.4
+    "s_apex": 972.1,
+    "min_radius": 44.3
    },
    {
     "id": "T7",
     "name": "Raffles Boulevard",
     "direction": "right",
-    "s_apex": 1446.9,
-    "min_radius": 108.8
+    "s_apex": 1443.1,
+    "min_radius": 108.6
    },
    {
     "id": "T8",
     "name": "Nicoll Highway",
     "direction": "left",
-    "s_apex": 1830.3,
-    "min_radius": 19.0
+    "s_apex": 1825.5,
+    "min_radius": 18.9
    },
    {
     "id": "T9",
     "name": "Stamford Road",
     "direction": "right",
-    "s_apex": 2040.2,
+    "s_apex": 2034.8,
     "min_radius": 14.8
    },
    {
     "id": "T10",
     "name": "Saint Andrew's Road",
     "direction": "left",
-    "s_apex": 2223.8,
+    "s_apex": 2218.0,
     "min_radius": 20.5
    },
    {
     "id": "T11",
     "name": "Connaught Drive",
     "direction": "left",
-    "s_apex": 2690.0,
+    "s_apex": 2682.9,
     "min_radius": 25.3
    },
    {
     "id": "T12",
     "name": "Fullerton Road",
     "direction": "right",
-    "s_apex": 2823.1,
-    "min_radius": 29.8
+    "s_apex": 2815.7,
+    "min_radius": 29.7
    },
    {
     "id": "T13",
     "name": "Fullerton Road",
     "direction": "left",
-    "s_apex": 2881.7,
-    "min_radius": 47.6
+    "s_apex": 2874.1,
+    "min_radius": 47.5
    },
    {
     "id": "T14",
     "name": "Fullerton Road",
     "direction": "right",
-    "s_apex": 3006.8,
-    "min_radius": 60.3
+    "s_apex": 2998.9,
+    "min_radius": 60.2
    },
    {
     "id": "T15",
     "name": "Fullerton Road",
     "direction": "left",
-    "s_apex": 3071.4,
+    "s_apex": 3063.3,
     "min_radius": 15.3
    },
    {
     "id": "T16",
     "name": "Raffles Avenue",
     "direction": "right",
-    "s_apex": 3608.1,
+    "s_apex": 3598.6,
     "min_radius": 14.6
    },
    {
     "id": "T17",
     "name": "Raffles Avenue",
     "direction": "left",
-    "s_apex": 3830.1,
-    "min_radius": 99.4
+    "s_apex": 3820.0,
+    "min_radius": 99.2
    },
    {
     "id": "T18",
     "name": "Marina Bay Street Circuit",
     "direction": "right",
-    "s_apex": 4364.9,
-    "min_radius": 22.1
+    "s_apex": 4353.4,
+    "min_radius": 22.0
    },
    {
     "id": "T19",
     "name": "Marina Bay Street Circuit",
     "direction": "left",
-    "s_apex": 4429.5,
-    "min_radius": 31.7
+    "s_apex": 4417.8,
+    "min_radius": 31.6
    },
    {
     "id": "T20",
     "name": "Marina Bay Street Circuit",
     "direction": "left",
-    "s_apex": 4722.1,
+    "s_apex": 4709.6,
     "min_radius": 22.5
    },
    {
     "id": "T21",
     "name": "Marina Bay Street Circuit",
     "direction": "left",
-    "s_apex": 4823.0,
-    "min_radius": 44.5
+    "s_apex": 4810.3,
+    "min_radius": 44.4
    }
   ],
   "auto_candidates": [
    {
-    "s_apex": 437.9,
+    "s_apex": 436.7,
     "direction": "left",
     "angle_deg": 86.2,
     "kind": "corner",
@@ -385,79 +385,79 @@
     "used": true
    },
    {
-    "s_apex": 526.7,
+    "s_apex": 525.3,
     "direction": "right",
-    "angle_deg": 62.5,
+    "angle_deg": 62.4,
     "kind": "corner",
     "min_radius": 32.7,
     "used": true
    },
    {
-    "s_apex": 593.3,
+    "s_apex": 591.7,
     "direction": "left",
     "angle_deg": 146.1,
     "kind": "corner",
-    "min_radius": 26.6,
+    "min_radius": 26.5,
     "used": true
    },
    {
-    "s_apex": 730.5,
+    "s_apex": 728.6,
     "direction": "left",
     "angle_deg": 29.1,
     "kind": "corner",
-    "min_radius": 99.1,
+    "min_radius": 99.0,
     "used": true
    },
    {
-    "s_apex": 847.5,
+    "s_apex": 845.3,
     "direction": "right",
     "angle_deg": 15.6,
     "kind": "corner",
-    "min_radius": 188.0,
+    "min_radius": 187.6,
     "used": true
    },
    {
-    "s_apex": 974.7,
+    "s_apex": 972.1,
     "direction": "right",
     "angle_deg": 102.3,
     "kind": "corner",
-    "min_radius": 44.4,
+    "min_radius": 44.3,
     "used": true
    },
    {
-    "s_apex": 1132.1,
+    "s_apex": 1129.1,
     "direction": "left",
     "angle_deg": 7.7,
     "kind": "kink",
-    "min_radius": 139.3,
+    "min_radius": 139.2,
     "used": false
    },
    {
-    "s_apex": 1220.9,
+    "s_apex": 1217.7,
     "direction": "right",
     "angle_deg": 8.3,
     "kind": "kink",
-    "min_radius": 119.7,
+    "min_radius": 119.6,
     "used": false
    },
    {
-    "s_apex": 1446.9,
+    "s_apex": 1443.1,
     "direction": "right",
     "angle_deg": 24.9,
     "kind": "corner",
-    "min_radius": 108.8,
+    "min_radius": 108.6,
     "used": true
    },
    {
-    "s_apex": 1830.3,
+    "s_apex": 1825.5,
     "direction": "left",
     "angle_deg": 87.9,
     "kind": "corner",
-    "min_radius": 19.0,
+    "min_radius": 18.9,
     "used": true
    },
    {
-    "s_apex": 2040.2,
+    "s_apex": 2034.8,
     "direction": "right",
     "angle_deg": 106.2,
     "kind": "corner",
@@ -465,15 +465,15 @@
     "used": true
    },
    {
-    "s_apex": 2153.2,
+    "s_apex": 2147.5,
     "direction": "left",
-    "angle_deg": 11.3,
+    "angle_deg": 11.2,
     "kind": "kink",
-    "min_radius": 83.3,
+    "min_radius": 83.2,
     "used": false
    },
    {
-    "s_apex": 2223.8,
+    "s_apex": 2218.0,
     "direction": "left",
     "angle_deg": 98.0,
     "kind": "corner",
@@ -481,7 +481,7 @@
     "used": true
    },
    {
-    "s_apex": 2690.0,
+    "s_apex": 2682.9,
     "direction": "left",
     "angle_deg": 81.7,
     "kind": "corner",
@@ -489,47 +489,47 @@
     "used": true
    },
    {
-    "s_apex": 2776.7,
+    "s_apex": 2769.4,
     "direction": "right",
     "angle_deg": 5.4,
     "kind": "kink",
-    "min_radius": 160.9,
+    "min_radius": 160.8,
     "used": false
    },
    {
-    "s_apex": 2823.1,
+    "s_apex": 2815.7,
     "direction": "right",
     "angle_deg": 51.3,
     "kind": "corner",
-    "min_radius": 29.8,
+    "min_radius": 29.7,
     "used": true
    },
    {
-    "s_apex": 2881.7,
+    "s_apex": 2874.1,
     "direction": "left",
     "angle_deg": 47.7,
     "kind": "corner",
-    "min_radius": 47.6,
+    "min_radius": 47.5,
     "used": true
    },
    {
-    "s_apex": 2932.1,
+    "s_apex": 2924.4,
     "direction": "left",
     "angle_deg": 6.1,
     "kind": "kink",
-    "min_radius": 220.8,
+    "min_radius": 220.4,
     "used": false
    },
    {
-    "s_apex": 3006.8,
+    "s_apex": 2998.9,
     "direction": "right",
-    "angle_deg": 17.0,
+    "angle_deg": 16.9,
     "kind": "corner",
-    "min_radius": 60.3,
+    "min_radius": 60.2,
     "used": true
    },
    {
-    "s_apex": 3071.4,
+    "s_apex": 3063.3,
     "direction": "left",
     "angle_deg": 131.8,
     "kind": "corner",
@@ -537,15 +537,15 @@
     "used": true
    },
    {
-    "s_apex": 3368.0,
+    "s_apex": 3359.1,
     "direction": "right",
     "angle_deg": 4.8,
     "kind": "kink",
-    "min_radius": 482.6,
+    "min_radius": 481.5,
     "used": false
    },
    {
-    "s_apex": 3608.1,
+    "s_apex": 3598.6,
     "direction": "right",
     "angle_deg": 110.8,
     "kind": "corner",
@@ -553,31 +553,31 @@
     "used": true
    },
    {
-    "s_apex": 3830.1,
+    "s_apex": 3820.0,
     "direction": "left",
     "angle_deg": 39.7,
     "kind": "corner",
-    "min_radius": 99.4,
+    "min_radius": 99.2,
     "used": true
    },
    {
-    "s_apex": 4364.9,
+    "s_apex": 4353.4,
     "direction": "right",
     "angle_deg": 85.5,
     "kind": "corner",
-    "min_radius": 22.1,
+    "min_radius": 22.0,
     "used": true
    },
    {
-    "s_apex": 4429.5,
+    "s_apex": 4417.8,
     "direction": "left",
     "angle_deg": 82.8,
     "kind": "corner",
-    "min_radius": 31.7,
+    "min_radius": 31.6,
     "used": true
    },
    {
-    "s_apex": 4722.1,
+    "s_apex": 4709.6,
     "direction": "left",
     "angle_deg": 59.5,
     "kind": "corner",
@@ -585,11 +585,11 @@
     "used": true
    },
    {
-    "s_apex": 4823.0,
+    "s_apex": 4810.3,
     "direction": "left",
     "angle_deg": 37.3,
     "kind": "corner",
-    "min_radius": 44.5,
+    "min_radius": 44.4,
     "used": true
    }
   ]
