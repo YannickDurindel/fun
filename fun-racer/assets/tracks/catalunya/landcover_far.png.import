@@ -2,10 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
+uid="uid://cgby1ta21rwum"
+path="res://.godot/imported/landcover_far.png-6e904f3fde61aa0cdadabf9b81484654.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/tracks/catalunya/landcover_far.png"
+dest_files=["res://.godot/imported/landcover_far.png-6e904f3fde61aa0cdadabf9b81484654.ctex"]
 
 [params]
 
