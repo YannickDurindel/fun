@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://da4lkd52qt5ns"
-path="res://.godot/imported/scenery.glb-1104276b07cbec5ad314eeca11cd44b0.scn"
+uid="uid://dgrbfpx4nxtd"
+path="res://.godot/imported/palacio_deportes.glb-6e580dea9e12d42a896e2a6379b2f0f5.scn"
 
 [deps]
 
-source_file="res://assets/tracks/hermanos_rodriguez/scenery.glb"
-dest_files=["res://.godot/imported/scenery.glb-1104276b07cbec5ad314eeca11cd44b0.scn"]
+source_file="res://assets/tracks/hermanos_rodriguez/landmarks/palacio_deportes.glb"
+dest_files=["res://.godot/imported/palacio_deportes.glb-6e580dea9e12d42a896e2a6379b2f0f5.scn"]
 
 [params]
 
@@ -23,14 +23,14 @@ nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
 nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true
-meshes/ensure_tangents=false
-meshes/generate_lods=false
-meshes/create_shadow_meshes=false
-meshes/light_baking=0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
-meshes/force_disable_compression=true
+meshes/force_disable_compression=false
 skins/use_named_skins=true
-animation/import=false
+animation/import=true
 animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true

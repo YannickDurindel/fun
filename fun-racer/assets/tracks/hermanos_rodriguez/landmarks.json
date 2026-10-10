@@ -1,0 +1,56 @@
+[
+ {
+  "model": "foro_sol",
+  "at": {
+   "xz": [
+    -135.97,
+    124.76
+   ]
+  }
+ },
+ {
+  "model": "pit_straight",
+  "at": {
+   "xz": [
+    148.18,
+    20.73
+   ]
+  }
+ },
+ {
+  "model": "straight_stands",
+  "at": {
+   "xz": [
+    750.76,
+    76.93
+   ]
+  }
+ },
+ {
+  "model": "horquilla_stand",
+  "at": {
+   "xz": [
+    966.29,
+    1008.0
+   ]
+  }
+ },
+ {
+  "model": "palacio_deportes",
+  "at": {
+   "xz": [
+    -512.11,
+    114.31
+   ]
+  }
+ },
+ {
+  "model": "velodromo",
+  "at": {
+   "xz": [
+    326.28,
+    396.04
+   ]
+  }
+ }
+]

@@ -2,10 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
+uid="uid://jcf2j47p7vo7"
+path="res://.godot/imported/landcover.png-1e65144ea9a301af2885f59901955c38.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/tracks/hermanos_rodriguez/landcover.png"
+dest_files=["res://.godot/imported/landcover.png-1e65144ea9a301af2885f59901955c38.ctex"]
 
 [params]
 

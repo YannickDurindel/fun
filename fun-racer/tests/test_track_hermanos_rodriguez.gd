@@ -62,6 +62,12 @@ func test_dimensions_match_real_circuit() -> void:
 	var straight := d.delta_s(float(d.turns[16]["s_apex"]), float(d.turns[0]["s_apex"]))
 	assert_between(straight, 1150.0, 1400.0, "Peraltada apex -> T1 apex (m)")
 	assert_between(d.start_s, 100.0, 400.0, "start line on the main straight (s)")
+	# Widths measured on aerial imagery (tools/track/tracks/hermanos_rodriguez.toml): 15 m
+	# on the pit straight, 12 m on the 1959 road (back straight, Eses), 14 m in the stadium.
+	assert_between(d.width_at(100.0), 14.5, 15.5, "pit straight width (m)")
+	assert_between(d.width_at(1700.0), 11.5, 12.5, "back straight width (m)")
+	assert_between(d.width_at(2800.0), 11.5, 12.5, "Las Eses width (m)")
+	assert_between(d.width_at(3870.0), 13.5, 14.5, "Foro Sol width (m)")
 	# Clockwise: the signed plan area (x east, z south) is positive.
 	var area := 0.0
 	for i in d.points.size():
@@ -93,6 +99,12 @@ func test_race_scene_spawns_car_on_track() -> void:
 		assert_true(absf(track.data.delta_s(track.data.start_s, s)) < 30.0, "car spawns near the start line (s=%.1f)" % s)
 		var road_y := track.data.position_at(s).y
 		assert_between(car.global_position.y - road_y, 0.2, 0.6, "car resting on road surface")
+	# The surroundings: the Foro Sol, the pit straight and the other hand-built landmarks,
+	# and the hand-made walled-in trackside table instead of the automatic one.
+	var scenery := scene.find_child("Scenery", true, false) as Scenery
+	assert_true(scenery != null and scenery.landmark_count == 6, "6 landmarks built (%d)" % (
+			scenery.landmark_count if scenery != null else -1))
+	assert_true(TracksideLayout.has_table(ID), "hand-made trackside table")
 	_free_race(scene)
 
 func test_full_lap() -> void:

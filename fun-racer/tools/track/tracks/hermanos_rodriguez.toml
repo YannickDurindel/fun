@@ -16,6 +16,21 @@ relation = 16251935
 # line 230 m after the finish line, so the grid goes there.
 start_offset_m = 230.0
 
+# OSM draws the main straight along the pit wall side of the tarmac. Measured on aerial
+# imagery (Esri World Imagery, 0.25 m per pixel, tarmac edge to tarmac edge across the
+# OSM line): the middle of the road is 2.4 to 3.2 m left of it beside the pit building and
+# 0.9 to 2.1 m left from the pit exit to Turn 1. Everywhere else the line is within a
+# metre of the middle. Two shifts that add up: 1.3 m all along, 1.6 m more beside the pits.
+[[layout.shift]]
+s = [4240.0, 1150.0]
+lateral_m = -1.3
+blend = 60.0
+
+[[layout.shift]]
+s = [4250.0, 340.0]
+lateral_m = -1.6
+blend = 60.0
+
 [elevation]
 dataset = "terrarium"
 # The site is flat (a few metres over the lap) and in a city: grandstands, the stadium and
@@ -26,6 +41,45 @@ smooth_sigma_m = 300.0
 # Same reason: unsmoothed, the Palacio de los Deportes is a 27 m grass hill beside the
 # Peraltada and every block of houses a bump.
 smooth_sigma_m = 200.0
+
+[road]
+# No width is published per section (the FIA circuit licence and the promoter's pages only
+# give the length), and the loop's OSM ways carry no width tag. All widths below are
+# estimates measured on aerial imagery (Esri World Imagery, 0.25 m per pixel), tarmac edge
+# to tarmac edge inside the white lines, every 200 m of the lap, good to about half a metre:
+#   12 m      the 1959 road, which is most of the lap: 11.6 to 12.5 m from the pit exit to
+#             Turn 1, through the Ese Moisés Solana, down the back straight, the Ese del
+#             Lago, the Horquilla and the Eses (the FIA minimum for a permanent circuit);
+#   15 m      the Peraltada half that is still used and the pit straight (14.4 to 15.9 m,
+#             the 15 m the FIA asks of a starting grid), back to 12 m by the pit exit;
+#   14 m      the run to the stadium on the old oval's front straight (14.4 m at s = 3500);
+#   14 m      inside the Foro Sol, between the painted lines on the stadium floor.
+base_width = 12.0
+grid_width = 15.0
+
+[[road.override]]
+s = [4035.0, 345.0]
+width = 15.0
+blend = 50.0
+
+[[road.override]]
+s = [3440.0, 3640.0]
+width = 14.0
+blend = 30.0
+
+[[road.override]]
+s = [3765.0, 3985.0]
+width = 14.0
+blend = 20.0
+
+# The Peraltada was banked at 10 degrees until it was eased in 1992 (Ferrari's 2021 race
+# preview; RaceFans circuit guide); no figure is published for what is left, which on board
+# still shows clearly more than a crossfall. The pipeline caps banking at 0.03 rad
+# (1.7 degrees), so the half of it the lap uses gets the cap all the way round.
+[[road.override]]
+s = [4085.0, 4235.0]
+bank = 0.03
+blend = 40.0
 
 # Official numbering. The automatic detection finds these 17 plus two flat-out bends
 # (R 256 m after turn 3, R 199 m on the run to the stadium) that have no number.
@@ -131,3 +185,236 @@ id = "T17"
 name = "Nigel Mansell (Peraltada)"
 direction = "right"
 s = 4188.2
+
+# ---------------------------------------------------------------------------------------
+# Surroundings. The circuit lies in the Magdalena Mixhuca sports city, an island of sports
+# fields, halls and trees in the middle of dense Mexico City. Reference for everything
+# below: aerial imagery (Esri World Imagery, 0.25 m per pixel, taken with a music festival
+# on the infield, so anything temporary in it was ignored), the map itself, the race's
+# seating plan and trackside photographs. Heights are estimates unless a source is named:
+# counted seat rows and storeys, shadow lengths.
+# ---------------------------------------------------------------------------------------
+[surroundings]
+# Untagged woods here are ash, eucalyptus, jacaranda and casuarina: broadleaved.
+tree_species = "broadleaved"
+tree_density = 70
+
+# Built by tools/track/landmarks/hermanos_rodriguez.py instead (see there): the Foro Sol
+# with its roof and the passage the track takes through its west stand, the pit building,
+# the covered grandstands, the Palacio de los Deportes and the velodrome.
+[[surroundings.exclude]]    # Foro Sol, north arm
+osm = "way/377679562"
+[[surroundings.exclude]]    # Foro Sol, south arm and west stand
+osm = "way/1315400018"
+[[surroundings.exclude]]    # Foro Sol, the stand over the track
+osm = "way/1315400019"
+[[surroundings.exclude]]    # pit building ("Paddock")
+osm = "way/377679570"
+[[surroundings.exclude]]    # main grandstand 1
+osm = "way/377679571"
+[[surroundings.exclude]]    # main grandstand 2
+osm = "way/377679572"
+[[surroundings.exclude]]    # main grandstand, the block beside the Peraltada exit
+osm = "way/736211980"
+[[surroundings.exclude]]    # grandstand outside Turns 5 and 6, mapped as a plain building
+osm = "way/1309442839"
+[[surroundings.exclude]]    # Palacio de los Deportes
+osm = "relation/20951534"
+[[surroundings.exclude]]    # ... and its dome
+osm = "way/1527624820"
+[[surroundings.exclude]]    # velodrome
+osm = "way/377679564"
+[[surroundings.exclude]]    # a 10 m shed mapped 5 m from the left edge of the grid: not there
+osm = "way/1351270226"      # on a race weekend (the wall stands where it is drawn)
+
+# A gymnasium tagged as a grandstand, left of the run to the stadium: one tall storey.
+[[surroundings.building]]
+osm = 999253131
+type = "yes"
+height = 9.0
+
+# The halls of the sports city south of the Eses (wide-span sheds; about 14 m to the ridge
+# from their shadows, against 6 m guessed).
+[[surroundings.building]]
+osm = 377555342     # Pabellón Acuático
+height = 14.0
+[[surroundings.building]]
+osm = 377555343     # Pabellón de Pelota
+height = 14.0
+[[surroundings.building]]
+osm = 377555345
+height = 14.0
+[[surroundings.building]]
+osm = 377555346
+height = 12.0
+
+# Estadio Alfredo Harp Helú (2019), right of the main straight before Turn 1: the white
+# trident roof stands far above the track-side trees. Estimates: roof 38 m, upper tiers 24 m.
+[[surroundings.building]]
+osm = 828705077     # "Tridente", the roof
+height = 38.0
+[[surroundings.building]]
+osm = 828705060     # Platea Alta Izquierda
+height = 24.0
+[[surroundings.building]]
+osm = 1313865160    # Platea Alta Derecha
+height = 24.0
+[[surroundings.building]]
+osm = 828705061     # Palco Central
+height = 24.0
+
+# Ground. The map has no land use for most of the city, so it came out as grass: one shape
+# paints everything outside the sports city as built-up ground (the far rectangle with the
+# sports city cut out of it: Viaducto Río de la Piedad to the north, Río Churubusco to the
+# west, Añil and the halls to the south, the houses behind Turn 1 and Eje 4 Oriente to the
+# east).
+[[surroundings.add]]    # the city: everything outside the sports city (see above)
+polygon = [[19.454908, -99.146438], [19.454908, -99.031945], [19.346920, -99.031945], [19.346920, -99.146438], [19.454908, -99.146438], [19.408473, -99.098065], [19.402354, -99.098065], [19.402354, -99.093962], [19.402048, -99.091243], [19.400878, -99.090251], [19.398781, -99.088762], [19.397026, -99.088142], [19.395694, -99.088237], [19.394345, -99.087093], [19.395262, -99.085957], [19.398151, -99.083801], [19.401634, -99.081177], [19.401994, -99.082227], [19.404963, -99.082227], [19.407303, -99.081368], [19.407843, -99.084421], [19.408563, -99.088237], [19.409013, -99.092054], [19.408473, -99.098065]]
+kind = "paved"
+
+
+# Tarmac and bare earth the map does not have.
+[[surroundings.add]]    # bare earth lot inside the old oval
+polygon = [[19.405503, -99.090241], [19.405503, -99.088810], [19.403344, -99.088714], [19.403344, -99.089764], [19.404063, -99.090336]]
+kind = "gravel"
+
+[[surroundings.add]]    # bare earth inside the Horquilla
+polygon = [[19.397974, -99.086073], [19.397843, -99.085824], [19.397731, -99.085751], [19.397588, -99.085943], [19.397427, -99.086172], [19.397268, -99.086401], [19.397132, -99.086616], [19.397202, -99.086777], [19.398283, -99.086611], [19.397484, -99.086719]]
+kind = "gravel"
+
+[[surroundings.add]]    # stadium floor and paddock: tarmac
+polygon = [[19.406088, -99.096681], [19.406088, -99.095107], [19.405683, -99.092054], [19.404198, -99.092149], [19.404063, -99.095298], [19.404288, -99.096681]]
+kind = "paved"
+
+[[surroundings.add]]    # tarmac apron inside Turns 10 and 11
+polygon = [[19.401271, -99.089610], [19.401685, -99.090012], [19.401992, -99.090101], [19.402158, -99.090156], [19.402214, -99.090210], [19.402487, -99.090008], [19.402313, -99.089844], [19.402074, -99.089759], [19.401806, -99.089683], [19.401572, -99.089458]]
+kind = "paved"
+
+# Trees. The map has single trees and two small woods; these strips are the rows and
+# groves that stand beside the track in the aerial view (lateral extents in metres from the
+# centreline, drawn along the lap).
+[[surroundings.add]]    # right of the main straight: rows of trees from the pit exit to Turn 1
+polygon = [[19.405681, -99.090876], [19.405634, -99.090497], [19.405591, -99.090118], [19.405549, -99.089720], [19.405512, -99.089340], [19.405476, -99.088961], [19.405438, -99.088584], [19.405395, -99.088207], [19.405349, -99.087829], [19.405302, -99.087452], [19.405254, -99.087075], [19.405205, -99.086698], [19.405155, -99.086321], [19.405105, -99.085944], [19.405054, -99.085567], [19.405001, -99.085191], [19.404946, -99.084815], [19.404888, -99.084440], [19.404825, -99.084066], [19.404498, -99.084130], [19.404559, -99.084500], [19.404617, -99.084871], [19.404672, -99.085243], [19.404724, -99.085618], [19.404775, -99.085994], [19.404825, -99.086370], [19.404875, -99.086746], [19.404924, -99.087123], [19.404972, -99.087499], [19.405019, -99.087875], [19.405064, -99.088251], [19.405107, -99.088624], [19.405145, -99.088997], [19.405180, -99.089375], [19.405218, -99.089757], [19.405260, -99.090158], [19.405303, -99.090542], [19.405351, -99.090925]]
+kind = "forest"
+
+[[surroundings.add]]    # left of the main straight after the main grandstand
+polygon = [[19.406799, -99.091648], [19.406733, -99.091136], [19.406670, -99.090730], [19.406118, -99.090812], [19.406182, -99.091234], [19.406244, -99.091709]]
+kind = "forest"
+
+[[surroundings.add]]    # left of the main straight, between the sports fields
+polygon = [[19.406533, -99.089511], [19.406488, -99.089046], [19.406441, -99.088562], [19.405743, -99.088643], [19.405789, -99.089119], [19.405835, -99.089591]]
+kind = "forest"
+
+[[surroundings.add]]    # left of the main straight before Turn 1
+polygon = [[19.406308, -99.086729], [19.406261, -99.086368], [19.406216, -99.086027], [19.406167, -99.085666], [19.406118, -99.085305], [19.406067, -99.084942], [19.406016, -99.084594], [19.405958, -99.084226], [19.405896, -99.083859], [19.405073, -99.084018], [19.405133, -99.084376], [19.405189, -99.084735], [19.405239, -99.085075], [19.405290, -99.085434], [19.405339, -99.085793], [19.405387, -99.086151], [19.405432, -99.086491], [19.405479, -99.086850]]
+kind = "forest"
+
+[[surroundings.add]]    # left of the back straight
+polygon = [[19.402216, -99.082821], [19.401852, -99.083029], [19.401537, -99.083228], [19.401213, -99.083436], [19.400906, -99.083632], [19.400598, -99.083829], [19.400849, -99.084270], [19.401157, -99.084073], [19.401464, -99.083877], [19.401787, -99.083670], [19.402097, -99.083474], [19.402425, -99.083287]]
+kind = "forest"
+
+[[surroundings.add]]    # left of the back straight before Turn 4
+polygon = [[19.399253, -99.084794], [19.398929, -99.085009], [19.398583, -99.085244], [19.398251, -99.085488], [19.398477, -99.085833], [19.398803, -99.085593], [19.399139, -99.085364], [19.399461, -99.085152]]
+kind = "forest"
+
+[[surroundings.add]]    # right of the back straight: one row of trees
+polygon = [[19.401845, -99.083956], [19.401553, -99.084143], [19.401260, -99.084330], [19.400968, -99.084517], [19.400676, -99.084704], [19.400398, -99.084880], [19.400104, -99.085065], [19.399811, -99.085249], [19.399522, -99.085437], [19.399621, -99.085607], [19.399909, -99.085421], [19.400200, -99.085238], [19.400495, -99.085052], [19.400773, -99.084875], [19.401066, -99.084688], [19.401358, -99.084501], [19.401650, -99.084315], [19.401943, -99.084128]]
+kind = "forest"
+
+[[surroundings.add]]    # right of the back straight: the park
+polygon = [[19.403236, -99.083479], [19.402927, -99.083581], [19.402632, -99.083711], [19.402355, -99.083867], [19.402065, -99.084049], [19.401774, -99.084236], [19.401466, -99.084433], [19.401174, -99.084619], [19.400881, -99.084806], [19.400588, -99.084993], [19.400293, -99.085180], [19.399985, -99.085372], [19.399697, -99.085558], [19.400056, -99.086175], [19.400335, -99.085995], [19.400640, -99.085804], [19.400940, -99.085615], [19.401235, -99.085427], [19.401527, -99.085240], [19.401818, -99.085054], [19.402127, -99.084857], [19.402418, -99.084671], [19.402697, -99.084495], [19.402921, -99.084368], [19.403170, -99.084258], [19.403405, -99.084182]]
+kind = "forest"
+
+[[surroundings.add]]    # left between Turns 9 and 10
+polygon = [[19.400960, -99.088207], [19.401000, -99.088499], [19.401041, -99.088835], [19.401079, -99.089159], [19.401190, -99.089652], [19.401547, -99.089470], [19.401472, -99.089104], [19.401434, -99.088782], [19.401392, -99.088443], [19.401349, -99.088129]]
+kind = "forest"
+
+[[surroundings.add]]    # left at Turn 8
+polygon = [[19.399738, -99.087006], [19.399916, -99.087319], [19.400305, -99.087797], [19.400763, -99.088030], [19.400853, -99.087760], [19.400461, -99.087564], [19.400148, -99.087173], [19.399966, -99.086853]]
+kind = "forest"
+
+[[surroundings.add]]    # left after Turn 11
+polygon = [[19.402360, -99.090606], [19.402526, -99.090932], [19.402691, -99.091240], [19.402794, -99.091498], [19.402854, -99.091777], [19.402901, -99.092126], [19.403204, -99.092082], [19.403156, -99.091726], [19.403085, -99.091397], [19.402962, -99.091088], [19.402794, -99.090776], [19.402631, -99.090455]]
+kind = "forest"
+
+[[surroundings.add]]    # right after Turn 11: the wood inside the oval
+polygon = [[19.403139, -99.090490], [19.403284, -99.090762], [19.403447, -99.091113], [19.403554, -99.091489], [19.403607, -99.091829], [19.404302, -99.091724], [19.404240, -99.091332], [19.404100, -99.090841], [19.403888, -99.090383], [19.403756, -99.090135]]
+kind = "forest"
+
+[[surroundings.add]]    # right on the run to the stadium
+polygon = [[19.403612, -99.092944], [19.403661, -99.093302], [19.403712, -99.093679], [19.403761, -99.094037], [19.403813, -99.094414], [19.403855, -99.094776], [19.404337, -99.094712], [19.404294, -99.094340], [19.404242, -99.093963], [19.404193, -99.093605], [19.404142, -99.093228], [19.404093, -99.092870]]
+kind = "forest"
+
+[[surroundings.add]]    # outside of the Peraltada
+polygon = [[19.405921, -99.097818], [19.406388, -99.097581], [19.406803, -99.097239], [19.407191, -99.096698], [19.407395, -99.096028], [19.406788, -99.095949], [19.406646, -99.096404], [19.406383, -99.096768], [19.406068, -99.097029], [19.405719, -99.097205]]
+kind = "forest"
+
+# Grandstands. The race's permanent steel stands are mapped as leisure=bleachers, which
+# the surroundings step does not build: their footprints are repeated here (way ids in the
+# comments). The three stands and the suites at the Eses are not in the map at all; they
+# are drawn from the aerial view. Heights: 0.4 to 0.5 m per metre of depth, as counted rows.
+[[surroundings.add]]    # outside of Turn 1, on the left before the corner (way 605366591)
+polygon = [[19.405051, -99.083867], [19.404892, -99.083204], [19.405106, -99.083205], [19.405255, -99.083858]]
+kind = "grandstand"
+height = 12.0
+
+[[surroundings.add]]    # straight on at Turn 1 (way 605366589)
+polygon = [[19.404886, -99.083186], [19.404664, -99.082550], [19.404867, -99.082517], [19.405085, -99.083149]]
+kind = "grandstand"
+height = 14.0
+
+[[surroundings.add]]    # behind the Turn 1 run-off, facing the Ese Moisés Solana (way 605366588)
+polygon = [[19.404613, -99.082337], [19.403965, -99.082417], [19.403967, -99.082646], [19.404614, -99.082556]]
+kind = "grandstand"
+height = 16.0
+
+[[surroundings.add]]    # outside of Turns 2 and 3 (way 605366586)
+polygon = [[19.403772, -99.082458], [19.403068, -99.082761], [19.403141, -99.082953], [19.403846, -99.082650]]
+kind = "grandstand"
+height = 14.0
+
+[[surroundings.add]]    # left of the back straight after Turn 3 (way 999257666)
+polygon = [[19.403063, -99.082855], [19.402657, -99.083039], [19.402705, -99.083139], [19.403101, -99.082957]]
+kind = "grandstand"
+height = 8.0
+
+[[surroundings.add]]    # left of the main straight before Turn 1 (way 1191967004)
+polygon = [[19.405322, -99.083983], [19.405379, -99.084363], [19.405114, -99.084407], [19.405057, -99.084027]]
+kind = "grandstand"
+height = 12.0
+
+[[surroundings.add]]    # inside of Turn 3 and the start of the back straight (right) (way 1162963329)
+polygon = [[19.403096, -99.083428], [19.403804, -99.083739], [19.403775, -99.083916], [19.403072, -99.083604]]
+kind = "grandstand"
+height = 10.0
+
+[[surroundings.add]]    # inside the Ese Moisés Solana (right) (way 1191525031)
+polygon = [[19.404283, -99.083921], [19.403851, -99.083882], [19.403832, -99.083746], [19.404272, -99.083787]]
+kind = "grandstand"
+height = 7.0
+
+[[surroundings.add]]    # small stand left of the back straight (way 1162963331)
+polygon = [[19.402151, -99.082920], [19.402269, -99.082849], [19.402241, -99.082799], [19.402124, -99.082870]]
+kind = "grandstand"
+height = 4.0
+
+[[surroundings.add]]    # outside of Turn 11: red stand, 50 m, 7 rows
+polygon = [[19.403160, -99.090559], [19.403046, -99.090078], [19.402990, -99.090096], [19.403113, -99.090569]]
+kind = "grandstand"
+height = 4.5
+
+[[surroundings.add]]    # outside of Turns 10-11: scaffold stand
+polygon = [[19.403039, -99.090085], [19.402879, -99.089871], [19.402815, -99.089939], [19.402975, -99.090107]]
+kind = "grandstand"
+height = 6.5
+
+[[surroundings.add]]    # outside of Turn 10: red stand, 48 m, 5 rows
+polygon = [[19.402843, -99.089883], [19.402465, -99.089669], [19.402448, -99.089703], [19.402826, -99.089918]]
+kind = "grandstand"
+height = 3.5
+
+[[surroundings.add]]    # inside of Turn 7: row of hospitality suites, 75 m
+polygon = [[19.399301, -99.087164], [19.399833, -99.086720], [19.399808, -99.086687], [19.399276, -99.087131]]
+kind = "building"
+height = 6.0
+
