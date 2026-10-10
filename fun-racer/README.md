@@ -195,8 +195,8 @@ Track ids for `--track=`: `albert_park`, `bahrain`, `baku`, `catalunya`, `cota`,
 `las_vegas`, `lusail`, `marina_bay`, `miami`, `monaco`, `monza`, `red_bull_ring`, `shanghai`,
 `silverstone`, `spa`, `suzuka`, `yas_marina`, `zandvoort`.
 
-Known limits: banking is capped at 1.7 degrees (Zandvoort's and Jeddah's banked corners are
-nearly flat), there are no buildings, tunnels, overpasses or water, desert circuits have grass
+Known limits: real banking has to be declared in a track's recipe and no track does yet
+(Zandvoort's and Jeddah's banked corners are still nearly flat), there are no buildings, tunnels, overpasses or water, desert circuits have grass
 verges, and short steep climbs come out gentler than in reality (Spa's Raidillon peaks at
 12.8 % against about 18 %). Each recipe file records what was checked against a source and
 what is an estimate.

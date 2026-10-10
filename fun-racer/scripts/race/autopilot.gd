@@ -15,7 +15,9 @@ extends Node
 ##      each point towards the midpoint of its neighbours, coarse-to-fine strides). Out-in-out.
 ##   2. Speed profile on that line: v_max(s) = sqrt(a_lat(v) / |k(s)|), then a backward pass with
 ##      the braking limit and a forward pass with the car's acceleration table, both corrected
-##      for the road grade (gravity along the slope).
+##      for the road grade (gravity along the slope). On a banked road (TrackData.banks, a
+##      track with declared banking) a_lat is the banked limit, CarEnvelope.banked_lat(): the
+##      envelope is the flat-road one, and a banked corner takes a good deal more.
 ##   3. Each physics tick: pure pursuit on the racing line (lookahead grows with speed) plus a
 ##      small cross-track PD term, converted to a steering input through the Car's speed-limited
 ##      steering law; throttle/brake from the speed error against the profile.
@@ -361,8 +363,7 @@ func _setup() -> void:
 			_line_pts = PackedVector3Array()
 			_line_pts.resize(_n)
 			for i in _n:
-				var t := _data.tangent_at(i * _data.step)
-				_line_pts[i] = _data.points[i] + t.cross(Vector3.UP).normalized() * _line_off[i]
+				_line_pts[i] = _offset_point(i, _line_off[i])
 			_line_k = _line_curvature()
 			_cache[base_key] = {"off": _line_off, "pts": _line_pts, "k": _line_k}
 		if k_limit < INF:
@@ -388,7 +389,7 @@ func _profile_key() -> String:
 	return var_to_str([lateral_usage, brake_usage, lateral_efficiency, v_cap, steer_gain,
 			drift_guard_kmh, drift_guard_steer, _car.steer_grip_usage, _car.lateral_grip_g,
 			_car.aero_grip_g, _car.brake_decel, _car.coast_decel, _car.drag_decel_coef,
-			_car.gravity_multiplier, _car.accel_curve_kmh, _car.accel_curve_ms2])
+			_car.gravity_multiplier, _car.slope_gravity_multiplier, _car.accel_curve_kmh, _car.accel_curve_ms2])
 
 func _zeros() -> PackedFloat32Array:
 	var a := PackedFloat32Array()
@@ -499,9 +500,16 @@ func _open_tight_corners(k_limit: float) -> void:
 		_line_pts = PackedVector3Array()
 		_line_pts.resize(_n)
 		for i in _n:
-			var t := _data.tangent_at(i * _data.step)
-			_line_pts[i] = _data.points[i] + t.cross(Vector3.UP).normalized() * off[i]
+			_line_pts[i] = _offset_point(i, off[i])
 		_line_k = _line_curvature()
+
+## The point `off` m right of centreline point i, across the road: horizontally on a level
+## road, in the banked plane where TrackData carries a bank (the frame the driving uses).
+func _offset_point(i: int, off: float) -> Vector3:
+	var right := _data.tangent_at(i * _data.step).cross(Vector3.UP).normalized()
+	if absf(_data.banks[i]) > 1e-5:
+		right = _data.sample(i * _data.step).basis.x
+	return _data.points[i] + right * off
 
 func _line_point(i: int) -> Vector3:
 	return _line_pts[posmod(i, _n)]
@@ -531,6 +539,20 @@ func _line_curvature() -> PackedFloat32Array:
 func _a_lat_full(v: float) -> float:
 	return _env.lat_at(v)
 
+## Curvature (1/m) from which a corner counts as one for the banking: below it the bank's help
+## fades in, so a banked straight is neither a help nor adverse camber.
+const BANK_CORNER_CURVATURE := 1.0 / 400.0
+
+## Bank of the road towards the inside of a turn of curvature k (+ = left) at centreline
+## point i (rad; negative = adverse camber). TrackData.banks: + = left edge higher, which is
+## the inside of a right-hander lower.
+func _bank_into(i: int, k: float) -> float:
+	return _data.banks[i] * clampf(-k / BANK_CORNER_CURVATURE, -1.0, 1.0)
+
+## The same at distance s along the lap.
+func _bank_into_at(s: float, k: float) -> float:
+	return _data.bank_at(s) * clampf(-k / BANK_CORNER_CURVATURE, -1.0, 1.0)
+
 func _accel_at(v: float) -> float:
 	return _env.accel_at(v)
 
@@ -552,15 +574,21 @@ func _speed_profile() -> PackedFloat32Array:
 	for i in _n:
 		ds[i] = maxf(0.1, _line_point(i).distance_to(_line_point(i + 1)))
 		grade[i] = _data.grades[i]   # + = uphill
-	# Corner limit: v^2 |k| = u * (a0 + a2 v^2)  ->  v^2 = u a0 / (|k| - u a2).
+	# Corner limit: v^2 |k| = u * (a0 + a2 v^2)  ->  v^2 = u a0 / (|k| - u a2). On a banked
+	# road: v^2 |k| = u * banked(a0 + a2 v^2) = u * (a0 + a2 v^2 + b) / cos, with b the pull of
+	# gravity down the banking (CarEnvelope.banked_lat; b = 0 and cos = 1 on a level road).
 	var a0 := _a_lat_full(0.0) * lateral_usage
 	var a2 := (_a_lat_full(10.0) * lateral_usage - a0) / 100.0
 	for i in _n:
 		var kk := 0.0
-		for o in range(-3, 4):   # conservative: tightest curvature nearby
-			kk = maxf(kk, absf(_line_k[(i + o + _n) % _n]))
-		var den := kk - a2
-		v[i] = v_cap if den <= 1e-6 else minf(v_cap, sqrt(a0 / den))
+		var theta := INF
+		for o in range(-3, 4):   # conservative: tightest curvature and least helpful bank nearby
+			var j := (i + o + _n) % _n
+			kk = maxf(kk, absf(_line_k[j]))
+			theta = minf(theta, _bank_into(j, _line_k[j]))
+		var b := _env.bank_pull(theta) * lateral_usage
+		var den := kk * cos(theta) - a2
+		v[i] = v_cap if den <= 1e-6 else minf(v_cap, sqrt(maxf(a0 + b, 0.2 * a0) / den))
 	# Backward pass (braking), twice round the loop to settle the wrap.
 	# Where the line curves enough that the steering input exceeds the drift guard, the
 	# controller may only lift / feather the brake, so the profile only counts on that decel.
@@ -572,7 +600,8 @@ func _speed_profile() -> PackedFloat32Array:
 			var vn := v[nxt]
 			var a := dec
 			if vn > guard_v:
-				var steer_frac := absf(_line_k[j]) * vn * vn / _a_lat_full(vn) * steer_gain
+				var lat_full := _env.banked_lat(_a_lat_full(vn), _bank_into(j, _line_k[j]))
+				var steer_frac := absf(_line_k[j]) * vn * vn / lat_full * steer_gain
 				if steer_frac > drift_guard_steer * 0.85:
 					a = _env.coast_at(vn) + _env.brake_at(vn) * 0.08
 			a = maxf(1.0, a + g_eff * grade[j])
@@ -645,14 +674,19 @@ func _speed_profile_sim() -> PackedFloat32Array:
 	# Tightest curvature and sharpest crest near each point (conservative, as for the arcade car).
 	var kmax := _zeros()
 	var crest := _zeros()
+	var bank := _zeros()    # towards the inside of the corner (rad), 0 on a level road
 	for i in _n:
 		var kk := 0.0
 		var cc := 0.0
+		var bb := INF
 		for o in range(-3, 4):
-			kk = maxf(kk, absf(_line_k[(i + o + _n) % _n]))
-			cc = minf(cc, line_kv[(i + o + _n) % _n])
+			var j := (i + o + _n) % _n
+			kk = maxf(kk, absf(_line_k[j]))
+			cc = minf(cc, line_kv[j])
+			bb = minf(bb, _bank_into(j, _line_k[j]))
 		kmax[i] = kk
 		crest[i] = cc
+		bank[i] = bb       # the least helpful nearby, like the curvature and the crest
 	# Corner limit: the highest speed up to which k v^2 stays within the usable share of
 	# lat(v), less what a crest takes off the tyres. Scanned upwards: lat(v) is a table.
 	var v_floor := 4.0
@@ -664,7 +698,7 @@ func _speed_profile_sim() -> PackedFloat32Array:
 		var prev_room := 1.0
 		for j in range(int(v_floor), m):
 			var vv := float(j)
-			var room := lu * maxf(0.3 * lat_g[j], lat_g[j] + mu0 * crest[i] * vv * vv) - kk * vv * vv
+			var room := lu * _env.banked_lat(maxf(0.3 * lat_g[j], lat_g[j] + mu0 * crest[i] * vv * vv), bank[i]) - kk * vv * vv
 			if room < 0.0:
 				v[i] = v_floor if j == int(v_floor) else minf(v_cap, vv - 1.0 + prev_room / (prev_room - room))
 				break
@@ -679,7 +713,7 @@ func _speed_profile_sim() -> PackedFloat32Array:
 			var t := clampf(vn - float(g), 0.0, 1.0)
 			var lat := lerpf(grp_g[g], grp_g[g + 1], t)
 			var light := mu0 * crest[j] * vn * vn
-			var share := clampf(absf(_line_k[j]) * vn * vn / maxf(lu * maxf(0.3 * lat, lat + light), 0.1), 0.0, 1.0)
+			var share := clampf(absf(_line_k[j]) * vn * vn / maxf(lu * _env.banked_lat(maxf(0.3 * lat, lat + light), bank[j]), 0.1), 0.0, 1.0)
 			var cst := lerpf(cst_g[g], cst_g[g + 1], t)
 			var a := bu * maxf(1.0, lerpf(brk_g[g], brk_g[g + 1], t) + light) * _long_room(share, sim_trail_power)
 			a = maxf(0.3, maxf(a, 0.7 * cst) + G_TRACK * _data.grades[j])
@@ -693,7 +727,7 @@ func _speed_profile_sim() -> PackedFloat32Array:
 			var t := clampf(vj - float(g), 0.0, 1.0)
 			var lat := lerpf(grp_g[g], grp_g[g + 1], t)
 			var light := mu0 * crest[j] * vj * vj
-			var share := clampf(absf(_line_k[j]) * vj * vj / maxf(lu * maxf(0.3 * lat, lat + light), 0.1), 0.0, 1.0)
+			var share := clampf(absf(_line_k[j]) * vj * vj / maxf(lu * _env.banked_lat(maxf(0.3 * lat, lat + light), bank[j]), 0.1), 0.0, 1.0)
 			var grip := maxf(1.0, lerpf(trc_g[g], trc_g[g + 1], t) + 0.5 * light) * _long_room(share, sim_exit_power)
 			var a := minf(lerpf(acc_g[g], acc_g[g + 1], t), grip) - G_TRACK * _data.grades[j]
 			v[nxt] = minf(v[nxt], sqrt(maxf(v_floor * v_floor, vj * vj + 2.0 * a * ds[j])))
@@ -777,7 +811,7 @@ func _think(delta: float) -> void:
 	_prev_err = err
 	_have_prev_err = true
 	k_cmd += cross_track_gain * err + cross_track_damping * clampf(err_rate, -10.0, 10.0)
-	var steer_max := _steer_max(v)
+	var steer_max := _steer_max(v, k_cmd)
 	var steer := -atan(k_cmd * Car.WHEELBASE) / maxf(steer_max, 1e-3) * steer_gain
 	_steer = clampf(steer, -1.0, 1.0)
 
@@ -835,7 +869,8 @@ func _think_sim(delta: float) -> void:
 		_update_stats(s, v, err, off)
 		return
 	var lu := clampf(lateral_usage * sim_lateral_scale, 0.1, 1.0)
-	var lat := maxf(_env.grip_at(v), 0.5)
+	# What the tyres hold here: on a banked corner more than the flat-road envelope says.
+	var lat := maxf(_env.banked_lat(_env.grip_at(v), _bank_into_at(s, line_curvature_at(s))), 0.5)
 	# Lateral acceleration of the path itself (the yaw rate also counts the body rotating
 	# into the corner, which uses no grip), lightly filtered.
 	if _have_prev_vel and v > 2.0:
@@ -852,20 +887,22 @@ func _think_sim(delta: float) -> void:
 	# ---- steering: curvature feed-forward + look-ahead feedback on lateral and heading error
 	var k_here := line_curvature_at(s)
 	var k_ff := line_curvature_at(s + v * sim_curvature_preview)
+	var bank_here := _bank_into_at(s, k_here)
 	var head := _line_heading(s)
 	var e_psi := Vector3(fwd.x, 0.0, fwd.z).signed_angle_to(head, Vector3.UP)   # + = line is to the left
 	# Body slip the corner itself produces (nose in at speed, out when slow): only the excess
 	# is a slide, and that part of the heading error turns into opposite lock.
-	var share_line := _env.lateral_share(v, k_here)
+	var share_line := _tyre_share(v, k_here, bank_here)
 	var beta_ref := signf(k_here) * (_env.slip_rear_at(v) * share_line - _env.cg_to_rear * absf(k_here))
 	var slide := beta - beta_ref
 	var e_head := e_psi + (1.0 - sim_slide_gain) * beta + sim_slide_gain * beta_ref
 	var ld := clampf(sim_lookahead_base + v * sim_lookahead_time, sim_lookahead_base, sim_lookahead_max)
 	var k_cmd := k_ff + 2.0 / (ld * ld) * clampf(err, -4.0, 4.0) + 2.0 / ld * clampf(e_head, -0.6, 0.6)
 	if v > 10.0:
-		k_cmd -= sim_yaw_gain * clampf(yaw / v - k_here, -0.02, 0.02)
+		# (The yaw rate is about the car's own vertical: on a banked road cos(bank) of the turn.)
+		k_cmd -= sim_yaw_gain * clampf(yaw / v - k_here * cos(bank_here), -0.02, 0.02)
 		k_cmd += sim_path_gain * clampf(k_cmd - _a_lat / (v * v), -0.01, 0.01)
-	var want_steer := -signf(k_cmd) * _env.steer_for(v, k_cmd)
+	var want_steer := -signf(k_cmd) * _sim_steer_for(v, k_cmd, _bank_into_at(s, k_cmd))
 	# Understeer: more lock on front tyres already past their limit only scrubs speed.
 	var front_slip := 0.5 * (absf(_car.wheels[0].slip_angle) + absf(_car.wheels[1].slip_angle))
 	if v > 8.0 and front_slip > 1.3 * maxf(_env.slip_front_at(v), 0.5 * _env.peak_slip_angle) \
@@ -949,10 +986,48 @@ func _think_sim(delta: float) -> void:
 	diag[5] = 1.0 if _slide_hold > 0.0 else 0.0
 	_update_stats(s, v, err, off)
 
-func _steer_max(v: float) -> float:
+## Share (0..1) of their grip the tyres use to hold curvature k at speed v on a road banked
+## `theta` rad towards the inside of the turn. On a level road the envelope's share of the
+## cornering limit; on the banking gravity does g sin of the cornering and the tyres carry
+## a sin more than their flat-road load, all of which counts here (this is where the car is,
+## not what the plan may lean on, see CarEnvelope.BANK_LOAD_USE).
+func _tyre_share(v: float, k: float, theta: float) -> float:
+	if theta == 0.0:
+		return _env.lateral_share(v, k)
+	var a := absf(k) * v * v
+	var lat := maxf(_env.lat_at(v), 0.5)
+	var tyres := maxf(a * cos(theta) - G_TRACK * sin(theta), 0.0)
+	var hold := maxf(lat + _env.grip_mu() * (a * sin(theta) - G_TRACK * (1.0 - cos(theta))), 0.5 * lat)
+	return clampf(tyres / hold, 0.0, 1.0)
+
+## Steering input (0..1) that holds curvature k at speed v on a road banked `theta` rad towards
+## the inside of the turn. The envelope's steering map is a flat-road one: an input for a
+## share of the cornering limit, i.e. for a front wheel angle = wheelbase x curvature + the slip
+## angles that share takes. On the banking the same curvature takes a smaller share (less
+## slip angle) but the same wheelbase x curvature; read flat, the map would turn the car in
+## far too much (2 m inside its line at 18 degrees). So: the input for the share the tyres
+## really have, plus the wheel angle the curvature still needs beyond that share's own,
+## through the steering aid's lock and its centre shaping.
+func _sim_steer_for(v: float, k: float, theta: float) -> float:
+	if theta == 0.0 or _car.sim == null or v < 5.0:
+		return _env.steer_for(v, k)
+	var k_flat := _tyre_share(v, k, theta) * maxf(_env.lat_at(v), 0.5) / (v * v)   # the flat-road turn of that share
+	var u := _env.steer_for(v, k_flat)
+	var aids := _car.sim.aids
+	var c := clampf(_car.sim.spec.aid_steer_center_gain, 0.0, 1.0) if aids.steering_help else 1.0
+	var norm := u * (c + (1.0 - c) * u)
+	norm = clampf(norm + Car.WHEELBASE * (absf(k) * cos(theta) - k_flat) / maxf(aids.steer_lock, 0.01), 0.0, 1.0)
+	if c > 0.999:
+		return norm
+	return (sqrt(c * c + 4.0 * (1.0 - c) * norm) - c) / (2.0 * (1.0 - c))
+
+## The Car's own full lock at speed v for a turn of curvature k (+ = left): on a banked road it
+## is larger towards the low side (Car.bank_pull, + = pulls left), exactly as the Car computes it.
+func _steer_max(v: float, k: float = 0.0) -> float:
 	var a_lat := G_TRACK * (_car.lateral_grip_g + _car.aero_grip_g * v * v)
 	if v <= 1.0:
 		return _car.max_steer_angle
+	a_lat = maxf(a_lat + signf(k) * _car.bank_pull, 0.0)
 	return minf(_car.max_steer_angle, atan(Car.WHEELBASE * _car.steer_grip_usage * a_lat / (v * v)))
 
 # ================================================================ statistics

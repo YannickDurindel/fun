@@ -1,0 +1,11 @@
+{
+  "id": "banked_oval",
+  "name": "Banked Oval",
+  "grand_prix": "Fixture Grand Prix",
+  "country": "Nowhere",
+  "country_code": "",
+  "city": "",
+  "length_m": 1303,
+  "turns": 2,
+  "available": true
+}

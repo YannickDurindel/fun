@@ -21,6 +21,10 @@ extends RigidBody3D
 ##   * Aero: downforce ~ v^2 (capped), heavier-than-earth gravity, angular damping in the air.
 ##   * Terrain: driving forces, grip and downforce work in the road plane (average contact normal),
 ##     so grades, crests and camber behave; hills pull with ~1 g (the extra gravity is for jumps).
+##     On a banked road gravity pulls along the road towards the low side (`bank_pull`): the
+##     tyres hold that out of the same friction budget, so a parked car stays put, and what
+##     they need not hold is there to corner with, so a banked corner carries more speed
+##     (the steering lock and the yaw limit grow by it on the way down, shrink on the way up).
 ##     Each wheel reads the collider's `surface` meta (asphalt / kerb / grass / gravel) for grip and
 ##     rolling drag; a wheel briefly unloaded by a kerb or bump keeps its grip for a few ms.
 
@@ -241,6 +245,10 @@ var _wheel_omega: PackedFloat32Array = PackedFloat32Array([0, 0, 0, 0])
 var _ray: PhysicsRayQueryParameters3D
 var _gravity: float = 9.81
 var _steer_max: float = 0.5
+## Gravity along the road, across the car (m/s^2, + = towards the car's left; 0 in the air and
+## on a level road): what a banked road adds to a left turn and takes from a right one. Read
+## by the Autopilot, whose steering law mirrors the car's.
+var bank_pull: float = 0.0
 # Per-tick scratch buffers (reused to avoid allocations at 240 Hz; arrays are shared by reference).
 var _comp: PackedFloat32Array = PackedFloat32Array([0, 0, 0, 0])
 var _bar_roll: PackedFloat32Array = PackedFloat32Array([0, 0, 0, 0])
@@ -532,12 +540,14 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 	slip_angle = atan2(v_lat, v_long) if planar_speed > 2.0 else 0.0
 
-	# Steering angle shrinks with speed so full lock ~ the grip limit.
+	# Steering angle shrinks with speed so full lock ~ the grip limit. On a banked road that
+	# limit is higher towards the low side and lower towards the high side (steer > 0 = right).
 	var a_lat_max := g / gravity_multiplier * (lateral_grip_g + aero_grip_g * planar_speed * planar_speed)
+	bank_pull = -gravity_vec.dot(right) * slope_gravity_multiplier * gf
 	var steer_max := max_steer_angle
 	if planar_speed > 1.0:
 		steer_max = minf(max_steer_angle,
-				atan(WHEELBASE * steer_grip_usage * a_lat_max / (planar_speed * planar_speed)))
+				atan(WHEELBASE * steer_grip_usage * maxf(a_lat_max - signf(steer) * bank_pull, 0.0) / (planar_speed * planar_speed)))
 	_steer_max = steer_max
 	steer_angle = -steer * steer_max
 
@@ -592,8 +602,9 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			var grip := a_lat_max * _grip_blend * _surf_mu
 			var yaw_des := v_long * tan(steer_angle) / WHEELBASE
 			if planar_speed > 1.0:
-				var lim := grip / planar_speed
-				yaw_des = clampf(yaw_des, -lim, lim)
+				# + = left: gravity along a banked road turns the car with the tyres or against them.
+				yaw_des = clampf(yaw_des, -maxf(grip - bank_pull, 0.0) / planar_speed,
+						maxf(grip + bank_pull, 0.0) / planar_speed)
 			if v_long > 2.0:
 				# Re-align heading with the velocity after a slide or a knock.
 				yaw_des -= (slip_angle - kin_slip) / realign_time
@@ -601,7 +612,10 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			var cap := yaw_accel_max * dt * ggf
 			new_yaw = yaw + clampf(step, -cap, cap)
 			var lat_target := -b_rear * new_yaw
-			var dlat := (lat_target - v_lat) * (1.0 - exp(-dt / lateral_response_time))
+			# The tyres first hold this tick's pull down a banked road (static friction: without
+			# it the lag below lets a parked car creep down the banking), then cancel the slide.
+			var hold := bank_pull * dt
+			var dlat := hold + (lat_target - (v_lat + hold)) * (1.0 - exp(-dt / lateral_response_time))
 			var max_dv := grip * dt * ggf
 			v += right * clampf(dlat, -max_dv, max_dv)
 		w += n_avg * (new_yaw - yaw)
