@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1294 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="2060624705" visible="true" version="3" changeset="147553159" timestamp="2024-02-17T00:13:18Z" user="Smockwette" uid="10505227" lat="47.9215721" lon="0.2154755"/>
+ <node id="2401592241" visible="true" version="3" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9214609" lon="0.2158056"/>
+ <node id="2401592242" visible="true" version="3" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9214508" lon="0.2157529"/>
+ <node id="2401592243" visible="true" version="2" changeset="19839927" timestamp="2014-01-06T09:14:45Z" user="Andrés31" uid="811230" lat="47.9214576" lon="0.2156314"/>
+ <node id="2401592244" visible="true" version="2" changeset="19839927" timestamp="2014-01-06T09:14:46Z" user="Andrés31" uid="811230" lat="47.9214610" lon="0.2156153"/>
+ <node id="2611959395" visible="true" version="1" changeset="19839927" timestamp="2014-01-06T09:14:43Z" user="Andrés31" uid="811230" lat="47.9215168" lon="0.2155138"/>
+ <node id="2611959398" visible="true" version="1" changeset="19839927" timestamp="2014-01-06T09:14:43Z" user="Andrés31" uid="811230" lat="47.9214693" lon="0.2155878"/>
+ <node id="2611959404" visible="true" version="2" changeset="147553159" timestamp="2024-02-17T00:13:18Z" user="Smockwette" uid="10505227" lat="47.9215277" lon="0.2155044"/>
+ <node id="2611959410" visible="true" version="1" changeset="19839927" timestamp="2014-01-06T09:14:43Z" user="Andrés31" uid="811230" lat="47.9214649" lon="0.2156019"/>
+ <node id="2611959411" visible="true" version="2" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9214523" lon="0.2156624"/>
+ <node id="2611959422" visible="true" version="1" changeset="19839927" timestamp="2014-01-06T09:14:44Z" user="Andrés31" uid="811230" lat="47.9214887" lon="0.2155472"/>
+ <node id="2611959431" visible="true" version="2" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9214543" lon="0.2156478"/>
+ <node id="2611959432" visible="true" version="2" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9214483" lon="0.2157055"/>
+ <node id="2611959437" visible="true" version="1" changeset="19839927" timestamp="2014-01-06T09:14:44Z" user="Andrés31" uid="811230" lat="47.9215074" lon="0.2155228"/>
+ <node id="2611959442" visible="true" version="2" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9214502" lon="0.2156806"/>
+ <node id="2611959446" visible="true" version="1" changeset="19839927" timestamp="2014-01-06T09:14:44Z" user="Andrés31" uid="811230" lat="47.9214744" lon="0.2155734"/>
+ <node id="2611959447" visible="true" version="2" changeset="147553159" timestamp="2024-02-17T00:13:18Z" user="Smockwette" uid="10505227" lat="47.9215420" lon="0.2154937"/>
+ <node id="2611959452" visible="true" version="2" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9214482" lon="0.2157277"/>
+ <node id="2611959458" visible="true" version="1" changeset="19839927" timestamp="2014-01-06T09:14:44Z" user="Andrés31" uid="811230" lat="47.9214809" lon="0.2155596"/>
+ <node id="2611959461" visible="true" version="1" changeset="19839927" timestamp="2014-01-06T09:14:44Z" user="Andrés31" uid="811230" lat="47.9214967" lon="0.2155355"/>
+ <node id="9334531448" visible="true" version="1" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9214544" lon="0.2157752"/>
+ <way id="1011729891" visible="true" version="1" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227">
+  <nd ref="2401592241"/>
+  <nd ref="9334531448"/>
+  <nd ref="2401592242"/>
+  <nd ref="2611959452"/>
+  <nd ref="2611959432"/>
+  <nd ref="2611959442"/>
+  <nd ref="2611959411"/>
+  <nd ref="2611959431"/>
+  <nd ref="2401592243"/>
+  <nd ref="2401592244"/>
+  <nd ref="2611959410"/>
+  <nd ref="2611959398"/>
+  <nd ref="2611959446"/>
+  <nd ref="2611959458"/>
+  <nd ref="2611959422"/>
+  <nd ref="2611959461"/>
+  <nd ref="2611959437"/>
+  <nd ref="2611959395"/>
+  <nd ref="2611959404"/>
+  <nd ref="2611959447"/>
+  <nd ref="2060624705"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lanes" v="1"/>
+  <tag k="lit" v="no"/>
+  <tag k="name" v="Virage d'Arnage"/>
+  <tag k="name:en" v="Arnage"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

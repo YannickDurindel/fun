@@ -1,0 +1,2873 @@
+{
+ "attribution": "IGN (Licence Ouverte 2.0)",
+ "crs": "EPSG:2154",
+ "buffer_m": 600.0,
+ "plan_scale": 1.000352391859748,
+ "lidar": [
+  {
+   "id": "LHD_FXX_0490_6765_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    490000,
+    6764000,
+    491000,
+    6765000
+   ],
+   "dist_m": 573.9,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0490_6765_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 162922488,
+   "downloaded": true,
+   "sha256": "9466f8f893102248b88ccdc23eafcff6a2e32c314992b9949617ae304c6bf942"
+  },
+  {
+   "id": "LHD_FXX_0491_6761_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    491000,
+    6760000,
+    492000,
+    6761000
+   ],
+   "dist_m": 567.7,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0491_6761_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 135397947,
+   "downloaded": true,
+   "sha256": "ef1ce9bf448caf889660be58c2155f10a79968f371d103ab95658eeb96e48c43"
+  },
+  {
+   "id": "LHD_FXX_0491_6762_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    491000,
+    6761000,
+    492000,
+    6762000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0491_6762_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 183032537,
+   "downloaded": true,
+   "sha256": "3cc0bbe157022bc0c857e5e82d1fc5f92d120de46504c4cac3daacb68313c85a"
+  },
+  {
+   "id": "LHD_FXX_0491_6763_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    491000,
+    6762000,
+    492000,
+    6763000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0491_6763_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 255748723,
+   "downloaded": true,
+   "sha256": "f868a5145b1fcac198ac1b130a5978cddd8a0624989c6f56181c57d01c7b2e55"
+  },
+  {
+   "id": "LHD_FXX_0491_6764_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    491000,
+    6763000,
+    492000,
+    6764000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0491_6764_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 190887125,
+   "downloaded": true,
+   "sha256": "87372b79198bcc5f8be63fdddf2873a9d31888ffa6bd87e6576afeac311ffd60"
+  },
+  {
+   "id": "LHD_FXX_0491_6765_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    491000,
+    6764000,
+    492000,
+    6765000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0491_6765_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 161605631,
+   "downloaded": true,
+   "sha256": "9fea58959dd19c2946e9bb621fc0856b32d7bc9c2f60a51454c7c64d4d2aa458"
+  },
+  {
+   "id": "LHD_FXX_0491_6766_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    491000,
+    6765000,
+    492000,
+    6766000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0491_6766_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 167535569,
+   "downloaded": true,
+   "sha256": "b783606490d905799122f637e5426af895da7b02d2ccd1364b3d2a79fe36d0d7"
+  },
+  {
+   "id": "LHD_FXX_0491_6767_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    491000,
+    6766000,
+    492000,
+    6767000
+   ],
+   "dist_m": 291.0,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0491_6767_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 181210415,
+   "downloaded": true,
+   "sha256": "2a232146e27408e8cc370367f5cec362614bf5a52287f4243155fec65f2878fb"
+  },
+  {
+   "id": "LHD_FXX_0492_6761_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    492000,
+    6760000,
+    493000,
+    6761000
+   ],
+   "dist_m": 32.2,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0492_6761_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 159329699,
+   "downloaded": true,
+   "sha256": "da5aff691d706ba2c5d73957a83171d9470836506c0bc3b098e118ac5ee596d2"
+  },
+  {
+   "id": "LHD_FXX_0492_6762_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    492000,
+    6761000,
+    493000,
+    6762000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0492_6762_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 225985294,
+   "downloaded": true,
+   "sha256": "18c98a5d83edea9737e4528936e906aee9c8eb79517f0430569beabcfdae0c9b"
+  },
+  {
+   "id": "LHD_FXX_0492_6763_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    492000,
+    6762000,
+    493000,
+    6763000
+   ],
+   "dist_m": 17.3,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0492_6763_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 259912197,
+   "downloaded": true,
+   "sha256": "1a1c74f15c7da0113aef7d538524fbc985464f832306e39f374a9aee0fcb9020"
+  },
+  {
+   "id": "LHD_FXX_0492_6764_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    492000,
+    6763000,
+    493000,
+    6764000
+   ],
+   "dist_m": 221.9,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0492_6764_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 247854322,
+   "downloaded": true,
+   "sha256": "daf78f59ecc2e556438384d2d245e39bda0b1f93d3628aa9223decff91d70207"
+  },
+  {
+   "id": "LHD_FXX_0492_6765_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    492000,
+    6764000,
+    493000,
+    6765000
+   ],
+   "dist_m": 230.8,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0492_6765_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 271393515,
+   "downloaded": true,
+   "sha256": "ec60996ba2c10d98399f8984fbe697620a6e28cfc3e1ee1fe9f18a49e2cc9cfd"
+  },
+  {
+   "id": "LHD_FXX_0492_6766_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    492000,
+    6765000,
+    493000,
+    6766000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0492_6766_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 252583916,
+   "downloaded": true,
+   "sha256": "3553390d006be7f9c76e2a8a902946023be2463d73ca05e65c61dce2d61d831f"
+  },
+  {
+   "id": "LHD_FXX_0492_6767_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    492000,
+    6766000,
+    493000,
+    6767000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0492_6767_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 255043488,
+   "downloaded": true,
+   "sha256": "f7f2bcedc46385d5d4795ab11fd07282c92bf9b86775984afc927fc5aa3d2cd6"
+  },
+  {
+   "id": "LHD_FXX_0493_6761_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    493000,
+    6760000,
+    494000,
+    6761000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0493_6761_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 130621564,
+   "downloaded": true,
+   "sha256": "bb860498952220b74b2b123941994d60b25b86cc5b8b4b9b006f26608b7af967"
+  },
+  {
+   "id": "LHD_FXX_0493_6762_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    493000,
+    6761000,
+    494000,
+    6762000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0493_6762_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 134523624,
+   "downloaded": true,
+   "sha256": "2b09158c1ba45287b02069b21fe564fdde9654ffb9195503cbaa0b78ee0bcbea"
+  },
+  {
+   "id": "LHD_FXX_0493_6763_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    493000,
+    6762000,
+    494000,
+    6763000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0493_6763_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 125393259,
+   "downloaded": true,
+   "sha256": "6bc1a51636fc297704d5b65daaf831cc845af5e64102d06f2ad6b33bf4498f32"
+  },
+  {
+   "id": "LHD_FXX_0493_6764_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    493000,
+    6763000,
+    494000,
+    6764000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0493_6764_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 133668271,
+   "downloaded": true,
+   "sha256": "f4dc7e8c93e80773bd4327ba4c75beba343b5e39dc03850376f6d12755161b81"
+  },
+  {
+   "id": "LHD_FXX_0493_6765_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    493000,
+    6764000,
+    494000,
+    6765000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0493_6765_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 202377344,
+   "downloaded": true,
+   "sha256": "980e168222ba0536a89604de0545fd4ab18283623b9d6e1ebbb11956b0475aa3"
+  },
+  {
+   "id": "LHD_FXX_0493_6766_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    493000,
+    6765000,
+    494000,
+    6766000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0493_6766_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 212859327,
+   "downloaded": true,
+   "sha256": "5cb109673aabf25fca48be080523e1ad91fd6629ababc32b1fdeb76996db8b7d"
+  },
+  {
+   "id": "LHD_FXX_0493_6767_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    493000,
+    6766000,
+    494000,
+    6767000
+   ],
+   "dist_m": 171.8,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0493_6767_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 223324450,
+   "downloaded": true,
+   "sha256": "2f1c0da41c6f5d30db29a2eb49a8a98823d207a8966f74f4b3c6b9e16a99bf31"
+  },
+  {
+   "id": "LHD_FXX_0494_6760_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    494000,
+    6759000,
+    495000,
+    6760000
+   ],
+   "dist_m": 598.9,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0494_6760_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 95268336,
+   "downloaded": true,
+   "sha256": "7e15136e27e37696755a2aca97a0673e91fdf1332a0ed0750459c8f94de79b06"
+  },
+  {
+   "id": "LHD_FXX_0494_6761_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    494000,
+    6760000,
+    495000,
+    6761000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0494_6761_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 94607004,
+   "downloaded": true,
+   "sha256": "c5bb4618d25373208a38ac0e55567f594a65d029ddd39bdafbd7dfd43e70aa9a"
+  },
+  {
+   "id": "LHD_FXX_0494_6762_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    494000,
+    6761000,
+    495000,
+    6762000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0494_6762_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 127728840,
+   "downloaded": true,
+   "sha256": "29275a9873693b272e8839faaeb3db1146834f9ef643667c5ca27063fa78e9cb"
+  },
+  {
+   "id": "LHD_FXX_0494_6763_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    494000,
+    6762000,
+    495000,
+    6763000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0494_6763_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 151993308,
+   "downloaded": true,
+   "sha256": "4e6e45847b3eee6d7ffb25ce9722003b11d9472bdcec8be2efefe53488a4a63d"
+  },
+  {
+   "id": "LHD_FXX_0494_6764_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    494000,
+    6763000,
+    495000,
+    6764000
+   ],
+   "dist_m": 183.0,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0494_6764_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 164944749,
+   "downloaded": true,
+   "sha256": "c1d0a72c9dcfcf3d34e5b2d128c0f17bafc35d19f459d3f62c41924674115e2d"
+  },
+  {
+   "id": "LHD_FXX_0494_6765_PTS_LAMB93_IGN69.copc.laz",
+   "bounds": [
+    494000,
+    6764000,
+    495000,
+    6765000
+   ],
+   "dist_m": 456.8,
+   "url": "https://data.geopf.fr/telechargement/download/LiDARHD-NUALID/NUALHD_1-0__LAZ_LAMB93_HG_2024-12-20/LHD_FXX_0494_6765_PTS_LAMB93_IGN69.copc.laz",
+   "bytes": 255068435,
+   "downloaded": true,
+   "sha256": "d08d99e697e4e7412e077c3decfb4801a6c1f56af929714b81bcaaf33f8f2632"
+  }
+ ],
+ "ortho": [
+  {
+   "id": "ortho_490800_6762000",
+   "bounds": [
+    490800,
+    6762000,
+    491200,
+    6762400
+   ],
+   "dist_m": 557.9,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=490800%2C6762000%2C491200%2C6762400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "81e23fa24369ec8d2c91bceef449050da5fb780f4d4bf097bd574797936346d5"
+  },
+  {
+   "id": "ortho_490800_6762400",
+   "bounds": [
+    490800,
+    6762400,
+    491200,
+    6762800
+   ],
+   "dist_m": 426.5,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=490800%2C6762400%2C491200%2C6762800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "e2380665538f438ea05682f343a7b34ee96dcf5e6beb91ee5231d74de25be322"
+  },
+  {
+   "id": "ortho_490800_6762800",
+   "bounds": [
+    490800,
+    6762800,
+    491200,
+    6763200
+   ],
+   "dist_m": 426.3,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=490800%2C6762800%2C491200%2C6763200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "d7d1ffe788fa7d1b1dfaf3827cad3b05889c7996eb9d7db66c8b6de7cd12617b"
+  },
+  {
+   "id": "ortho_490800_6763200",
+   "bounds": [
+    490800,
+    6763200,
+    491200,
+    6763600
+   ],
+   "dist_m": 447.7,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=490800%2C6763200%2C491200%2C6763600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "71616f1a5a12844edd9d1df1c1bda60c64da595d210d5ba5ae8b6e1065978225"
+  },
+  {
+   "id": "ortho_490800_6763600",
+   "bounds": [
+    490800,
+    6763600,
+    491200,
+    6764000
+   ],
+   "dist_m": 473.2,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=490800%2C6763600%2C491200%2C6764000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "6dd7f5390661950bcc88d079065b99c5985f3b3bf505bc8ac0fd3ee0ff68cb26"
+  },
+  {
+   "id": "ortho_490800_6764000",
+   "bounds": [
+    490800,
+    6764000,
+    491200,
+    6764400
+   ],
+   "dist_m": 407.6,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=490800%2C6764000%2C491200%2C6764400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "a00daba7799ddfa50371bbb9407cded08d081c21fd9ec03953a4a5f90ff8d760"
+  },
+  {
+   "id": "ortho_490800_6764400",
+   "bounds": [
+    490800,
+    6764400,
+    491200,
+    6764800
+   ],
+   "dist_m": 373.9,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=490800%2C6764400%2C491200%2C6764800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "98a5fd020bf7af5ce85fa915f63519d42db3da583b47ad76ef9612215b36a94b"
+  },
+  {
+   "id": "ortho_490800_6764800",
+   "bounds": [
+    490800,
+    6764800,
+    491200,
+    6765200
+   ],
+   "dist_m": 389.1,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=490800%2C6764800%2C491200%2C6765200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "ddee99abaff2bcdee071d01b91cd9fe45f1d62a573e42b293669f8a09246e78a"
+  },
+  {
+   "id": "ortho_490800_6765200",
+   "bounds": [
+    490800,
+    6765200,
+    491200,
+    6765600
+   ],
+   "dist_m": 425.1,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=490800%2C6765200%2C491200%2C6765600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "2e7c8de06822d1b7fe775c0330453dd9328a5fb6f4b12a85650d78b49a41ac9a"
+  },
+  {
+   "id": "ortho_490800_6765600",
+   "bounds": [
+    490800,
+    6765600,
+    491200,
+    6766000
+   ],
+   "dist_m": 555.9,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=490800%2C6765600%2C491200%2C6766000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "12cb1c4687b6ebfe7f27d96fb9cf424fb6fbba9cb9196b5e8e3578c70764ccaa"
+  },
+  {
+   "id": "ortho_491200_6760800",
+   "bounds": [
+    491200,
+    6760800,
+    491600,
+    6761200
+   ],
+   "dist_m": 597.8,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491200%2C6760800%2C491600%2C6761200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "ca9b2f05711ccd5a30d54c8a0eee2c136fd0fab1b62a8cda383f08b6293d17c7"
+  },
+  {
+   "id": "ortho_491200_6761200",
+   "bounds": [
+    491200,
+    6761200,
+    491600,
+    6761600
+   ],
+   "dist_m": 452.9,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491200%2C6761200%2C491600%2C6761600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "715cedf2a80c35da3d0be4c054046779729277a92a6650c8a2f206c46366637b"
+  },
+  {
+   "id": "ortho_491200_6761600",
+   "bounds": [
+    491200,
+    6761600,
+    491600,
+    6762000
+   ],
+   "dist_m": 374.6,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491200%2C6761600%2C491600%2C6762000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "f3f6408613ddadde899e28cd12c23c8d8e9ca06deb679960ecaa0835e022332f"
+  },
+  {
+   "id": "ortho_491200_6762000",
+   "bounds": [
+    491200,
+    6762000,
+    491600,
+    6762400
+   ],
+   "dist_m": 212.7,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491200%2C6762000%2C491600%2C6762400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "3d1b718f5da129a51e4e21b923e943eb1e338c3231e12c5fd3e02065a422a8fa"
+  },
+  {
+   "id": "ortho_491200_6762400",
+   "bounds": [
+    491200,
+    6762400,
+    491600,
+    6762800
+   ],
+   "dist_m": 27.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491200%2C6762400%2C491600%2C6762800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "153f8c899c6b9773a24f5078177b5810cd05dc03a3ea97747e356b719c2aa410"
+  },
+  {
+   "id": "ortho_491200_6762800",
+   "bounds": [
+    491200,
+    6762800,
+    491600,
+    6763200
+   ],
+   "dist_m": 26.3,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491200%2C6762800%2C491600%2C6763200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "d02420db2a94f15f953c6f1810add1e154dda71b98b43b212c908dbc78732498"
+  },
+  {
+   "id": "ortho_491200_6763200",
+   "bounds": [
+    491200,
+    6763200,
+    491600,
+    6763600
+   ],
+   "dist_m": 47.7,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491200%2C6763200%2C491600%2C6763600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "4e64c01a17362a30c6c0039b890b0c51622211da637a8c78c457688e9472e9e1"
+  },
+  {
+   "id": "ortho_491200_6763600",
+   "bounds": [
+    491200,
+    6763600,
+    491600,
+    6764000
+   ],
+   "dist_m": 116.8,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491200%2C6763600%2C491600%2C6764000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "51c90f077415eb1738124b73b1de7e6fdbc8a92306944cbca4e20b25791bd296"
+  },
+  {
+   "id": "ortho_491200_6764000",
+   "bounds": [
+    491200,
+    6764000,
+    491600,
+    6764400
+   ],
+   "dist_m": 45.5,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491200%2C6764000%2C491600%2C6764400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "9ac61ed782ce1b6e56fd0ed1c6659507d7651a97ab2e5b7d35a8df16bbfa3284"
+  },
+  {
+   "id": "ortho_491200_6764400",
+   "bounds": [
+    491200,
+    6764400,
+    491600,
+    6764800
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491200%2C6764400%2C491600%2C6764800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "042f4ef07d26da295167a3253a4be5fdde670509efa5616fbf1fab65347a8bf7"
+  },
+  {
+   "id": "ortho_491200_6764800",
+   "bounds": [
+    491200,
+    6764800,
+    491600,
+    6765200
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491200%2C6764800%2C491600%2C6765200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "f07a192906bf67460a7f6122eef9593a7bec6ce5e90f0a85c39b9ea2876d323e"
+  },
+  {
+   "id": "ortho_491200_6765200",
+   "bounds": [
+    491200,
+    6765200,
+    491600,
+    6765600
+   ],
+   "dist_m": 35.2,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491200%2C6765200%2C491600%2C6765600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "03baca119d70ceb20d462cf398ffc8c8d4307d3509daeba856f5406c10813c8b"
+  },
+  {
+   "id": "ortho_491200_6765600",
+   "bounds": [
+    491200,
+    6765600,
+    491600,
+    6766000
+   ],
+   "dist_m": 252.2,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491200%2C6765600%2C491600%2C6766000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "de314575ea0d0924f2becae7bfed2388f38b0d5354d720f9a0982fe3137cc25e"
+  },
+  {
+   "id": "ortho_491200_6766000",
+   "bounds": [
+    491200,
+    6766000,
+    491600,
+    6766400
+   ],
+   "dist_m": 535.7,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491200%2C6766000%2C491600%2C6766400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "9f5f0c8ac97b2af703091a7d5d4048ff014defad41003f66377ff545ccf613ed"
+  },
+  {
+   "id": "ortho_491600_6760800",
+   "bounds": [
+    491600,
+    6760800,
+    492000,
+    6761200
+   ],
+   "dist_m": 370.9,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491600%2C6760800%2C492000%2C6761200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "f8b35a179e30568ef85486b12538808a8920fd37267109d996c34cedec679399"
+  },
+  {
+   "id": "ortho_491600_6761200",
+   "bounds": [
+    491600,
+    6761200,
+    492000,
+    6761600
+   ],
+   "dist_m": 60.7,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491600%2C6761200%2C492000%2C6761600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "bcc4d2c13318f5fae27429fe4e99099418a3190f7ac27c37d82e702c400b51f8"
+  },
+  {
+   "id": "ortho_491600_6761600",
+   "bounds": [
+    491600,
+    6761600,
+    492000,
+    6762000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491600%2C6761600%2C492000%2C6762000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "1c174e1598340c5e079d57e215618085bb8667f7dedf1a9e20b33e2dfe9627d3"
+  },
+  {
+   "id": "ortho_491600_6762000",
+   "bounds": [
+    491600,
+    6762000,
+    492000,
+    6762400
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491600%2C6762000%2C492000%2C6762400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "2c366ee14d995af5acea093d50b75bd373d62b4f04e88cca668ab016e934e62c"
+  },
+  {
+   "id": "ortho_491600_6762400",
+   "bounds": [
+    491600,
+    6762400,
+    492000,
+    6762800
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491600%2C6762400%2C492000%2C6762800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "0c360c3da02dd75141d3db56aba168f99d17a48936baf505dc47dd8c0f58e5f2"
+  },
+  {
+   "id": "ortho_491600_6762800",
+   "bounds": [
+    491600,
+    6762800,
+    492000,
+    6763200
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491600%2C6762800%2C492000%2C6763200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "19c127df0d39f237a3f61c92cea6ed972cb267dcf95d5289ea7bfeb095eea55e"
+  },
+  {
+   "id": "ortho_491600_6763200",
+   "bounds": [
+    491600,
+    6763200,
+    492000,
+    6763600
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491600%2C6763200%2C492000%2C6763600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "e962e666158e1b2b25ecdb73a279a00f11f9fa60692127acccd32952fd656534"
+  },
+  {
+   "id": "ortho_491600_6763600",
+   "bounds": [
+    491600,
+    6763600,
+    492000,
+    6764000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491600%2C6763600%2C492000%2C6764000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "321a986626b454f96d54cf76ead22fbc3f549063c44f8cea8a1b80d5aba984bc"
+  },
+  {
+   "id": "ortho_491600_6764000",
+   "bounds": [
+    491600,
+    6764000,
+    492000,
+    6764400
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491600%2C6764000%2C492000%2C6764400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "7494e9c905d8b2dbf9f8327e01a591cf51f167fde82dff92ad4cbdbb0f6f1f51"
+  },
+  {
+   "id": "ortho_491600_6764400",
+   "bounds": [
+    491600,
+    6764400,
+    492000,
+    6764800
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491600%2C6764400%2C492000%2C6764800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "da208b730aab7c8c348872ea2310abe5e9a4aab39b246a72da282e3acb983ce8"
+  },
+  {
+   "id": "ortho_491600_6764800",
+   "bounds": [
+    491600,
+    6764800,
+    492000,
+    6765200
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491600%2C6764800%2C492000%2C6765200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "c222d27272e165b628fbda2a839c2e6c53bdadafeabd68d5e0af4154e11d6265"
+  },
+  {
+   "id": "ortho_491600_6765200",
+   "bounds": [
+    491600,
+    6765200,
+    492000,
+    6765600
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491600%2C6765200%2C492000%2C6765600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "51c2854e2a5e76b2a17511ed8b00cfa1326037d8801749b5af76ae4a38173176"
+  },
+  {
+   "id": "ortho_491600_6765600",
+   "bounds": [
+    491600,
+    6765600,
+    492000,
+    6766000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491600%2C6765600%2C492000%2C6766000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "101369f89ef6c797284d584dd30befb9a2316ed630289c918f72fa1976228c57"
+  },
+  {
+   "id": "ortho_491600_6766000",
+   "bounds": [
+    491600,
+    6766000,
+    492000,
+    6766400
+   ],
+   "dist_m": 291.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=491600%2C6766000%2C492000%2C6766400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "2659bbc1225b8c14e504874eeebf6f76017c265423f3678800aac22d0d69487b"
+  },
+  {
+   "id": "ortho_492000_6760400",
+   "bounds": [
+    492000,
+    6760400,
+    492400,
+    6760800
+   ],
+   "dist_m": 541.1,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492000%2C6760400%2C492400%2C6760800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "412d41175f707c81dbbdcf255d5a81d1c192bae421c0768084368bf2a4eb1fab"
+  },
+  {
+   "id": "ortho_492000_6760800",
+   "bounds": [
+    492000,
+    6760800,
+    492400,
+    6761200
+   ],
+   "dist_m": 230.2,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492000%2C6760800%2C492400%2C6761200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "2d57941ac0efcdb740a7fb24a25c7fbfe1b39e8e42f3832b6830ab8f4e2d223d"
+  },
+  {
+   "id": "ortho_492000_6761200",
+   "bounds": [
+    492000,
+    6761200,
+    492400,
+    6761600
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492000%2C6761200%2C492400%2C6761600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "65d3bb3a27c71446914a38656920b3dab18357f4a27c915e2577b5e5b7f31ae2"
+  },
+  {
+   "id": "ortho_492000_6761600",
+   "bounds": [
+    492000,
+    6761600,
+    492400,
+    6762000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492000%2C6761600%2C492400%2C6762000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "c78a98777414f21d3eb0756124e090efd45161a776e196d758a373f73b5be421"
+  },
+  {
+   "id": "ortho_492000_6762000",
+   "bounds": [
+    492000,
+    6762000,
+    492400,
+    6762400
+   ],
+   "dist_m": 17.3,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492000%2C6762000%2C492400%2C6762400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "c5b183f78b7766305f28a40b34d925a491bfe96521cf6d0c70d67a214fe8c852"
+  },
+  {
+   "id": "ortho_492000_6762400",
+   "bounds": [
+    492000,
+    6762400,
+    492400,
+    6762800
+   ],
+   "dist_m": 152.7,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492000%2C6762400%2C492400%2C6762800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "caca77c545bed2648d208955c22d29ccb51c92c3f0578e69a18ae2bdeb0ccf2a"
+  },
+  {
+   "id": "ortho_492000_6762800",
+   "bounds": [
+    492000,
+    6762800,
+    492400,
+    6763200
+   ],
+   "dist_m": 221.9,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492000%2C6762800%2C492400%2C6763200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "0a6c36259b469dff45a66450a53a90299573773a6b46f3d7c6162b294e7ccc0e"
+  },
+  {
+   "id": "ortho_492000_6763200",
+   "bounds": [
+    492000,
+    6763200,
+    492400,
+    6763600
+   ],
+   "dist_m": 227.2,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492000%2C6763200%2C492400%2C6763600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "59681554630177910205d760c161eac5983fc3e44db8d952a2a97498166ed05a"
+  },
+  {
+   "id": "ortho_492000_6763600",
+   "bounds": [
+    492000,
+    6763600,
+    492400,
+    6764000
+   ],
+   "dist_m": 226.1,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492000%2C6763600%2C492400%2C6764000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "01e6181e77fdff4fb42fb08be3deb27d28c7a1f54d020a1169f32249ca56fddf"
+  },
+  {
+   "id": "ortho_492000_6764000",
+   "bounds": [
+    492000,
+    6764000,
+    492400,
+    6764400
+   ],
+   "dist_m": 232.8,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492000%2C6764000%2C492400%2C6764400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "92acbec4577839b40983b724246c2008d07ccad8676bd764b0bfd18601099983"
+  },
+  {
+   "id": "ortho_492000_6764400",
+   "bounds": [
+    492000,
+    6764400,
+    492400,
+    6764800
+   ],
+   "dist_m": 321.7,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492000%2C6764400%2C492400%2C6764800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "cf06d10bdfe59b9a102762f608838469b6eba2b3533e6582f41b32acaaa4a2a5"
+  },
+  {
+   "id": "ortho_492000_6764800",
+   "bounds": [
+    492000,
+    6764800,
+    492400,
+    6765200
+   ],
+   "dist_m": 293.5,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492000%2C6764800%2C492400%2C6765200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "4ee93a4ffd9bb30296709b55ef595cdc265d34d3c91e22dbc44a0bf10c351a90"
+  },
+  {
+   "id": "ortho_492000_6765200",
+   "bounds": [
+    492000,
+    6765200,
+    492400,
+    6765600
+   ],
+   "dist_m": 11.9,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492000%2C6765200%2C492400%2C6765600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "1835486aae79ae26fc95752ad974f67c7f7057d89881a3b9e9094fab52f4859e"
+  },
+  {
+   "id": "ortho_492000_6765600",
+   "bounds": [
+    492000,
+    6765600,
+    492400,
+    6766000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492000%2C6765600%2C492400%2C6766000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "f98d38e2ca581ae4a621a91dd8f903f7d3bb710627cc461881ee731c63efa3c4"
+  },
+  {
+   "id": "ortho_492000_6766000",
+   "bounds": [
+    492000,
+    6766000,
+    492400,
+    6766400
+   ],
+   "dist_m": 71.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492000%2C6766000%2C492400%2C6766400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "0fe5ddbc13f14887f318e0ee6bf54ed79e547c0a7434348de9251bf4ffdfda3a"
+  },
+  {
+   "id": "ortho_492000_6766400",
+   "bounds": [
+    492000,
+    6766400,
+    492400,
+    6766800
+   ],
+   "dist_m": 428.2,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492000%2C6766400%2C492400%2C6766800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "fe78d678777aa02b9a9397405b8130de61f983f5bed33a4357bb8c27939b032c"
+  },
+  {
+   "id": "ortho_492400_6760400",
+   "bounds": [
+    492400,
+    6760400,
+    492800,
+    6760800
+   ],
+   "dist_m": 304.3,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492400%2C6760400%2C492800%2C6760800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "b7680039e0a0c229af3bc4726c030d8d6c95f72786cb258637d5fae43a27d264"
+  },
+  {
+   "id": "ortho_492400_6760800",
+   "bounds": [
+    492400,
+    6760800,
+    492800,
+    6761200
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492400%2C6760800%2C492800%2C6761200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "9c21cf444ae1f3bc1830d59706d51fe4b88a289625e31bb1ce6855c2c0c34b06"
+  },
+  {
+   "id": "ortho_492400_6761200",
+   "bounds": [
+    492400,
+    6761200,
+    492800,
+    6761600
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492400%2C6761200%2C492800%2C6761600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "e25aaa3e596d36bb27f2f257f337f2c27959d7d3de4e46f420e216e2779e26c8"
+  },
+  {
+   "id": "ortho_492400_6761600",
+   "bounds": [
+    492400,
+    6761600,
+    492800,
+    6762000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492400%2C6761600%2C492800%2C6762000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "4282a0045c7036760fb9e1af977ff3493b5a6250d6ea9e37098bf50ab0ef5a48"
+  },
+  {
+   "id": "ortho_492400_6762000",
+   "bounds": [
+    492400,
+    6762000,
+    492800,
+    6762400
+   ],
+   "dist_m": 349.4,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492400%2C6762000%2C492800%2C6762400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "5c01e05ddbc8096fdf93c7c28ec6426033e02b3f4e672380c896e66c303745f3"
+  },
+  {
+   "id": "ortho_492400_6762400",
+   "bounds": [
+    492400,
+    6762400,
+    492800,
+    6762800
+   ],
+   "dist_m": 515.4,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492400%2C6762400%2C492800%2C6762800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "8cf23e7bea8b6ba6b67ac312d363ee52e7f80cf81e40f4045d69494a583326d0"
+  },
+  {
+   "id": "ortho_492400_6764000",
+   "bounds": [
+    492400,
+    6764000,
+    492800,
+    6764400
+   ],
+   "dist_m": 587.3,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492400%2C6764000%2C492800%2C6764400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "0cd2c5ee259e5d100e36c746e4aa611bb9a6a1461065be9cb46d9f82c7f81822"
+  },
+  {
+   "id": "ortho_492400_6764400",
+   "bounds": [
+    492400,
+    6764400,
+    492800,
+    6764800
+   ],
+   "dist_m": 477.9,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492400%2C6764400%2C492800%2C6764800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "57522243f6053484b2ffbf121ebddbbc7d394f3e3a0be3dfc77331a66345453c"
+  },
+  {
+   "id": "ortho_492400_6764800",
+   "bounds": [
+    492400,
+    6764800,
+    492800,
+    6765200
+   ],
+   "dist_m": 369.1,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492400%2C6764800%2C492800%2C6765200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "b418d4679e51c5f3d671d067c7d82c70fd949dc30cd87c2c7f48886062bb9545"
+  },
+  {
+   "id": "ortho_492400_6765200",
+   "bounds": [
+    492400,
+    6765200,
+    492800,
+    6765600
+   ],
+   "dist_m": 183.1,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492400%2C6765200%2C492800%2C6765600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "b0064e3ea55d9dcf4425e8ca3e1198f24312df0154ed3c852352b57702e58e26"
+  },
+  {
+   "id": "ortho_492400_6765600",
+   "bounds": [
+    492400,
+    6765600,
+    492800,
+    6766000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492400%2C6765600%2C492800%2C6766000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "c7224fbc24533cadc438cc1741a8b78d64a4dc2620cc14c0e606a2fbc9e7a24d"
+  },
+  {
+   "id": "ortho_492400_6766000",
+   "bounds": [
+    492400,
+    6766000,
+    492800,
+    6766400
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492400%2C6766000%2C492800%2C6766400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "ebd472345d41c56028b5bed0fa1acc5e2cd4a98833068303a34186d8130bbeee"
+  },
+  {
+   "id": "ortho_492400_6766400",
+   "bounds": [
+    492400,
+    6766400,
+    492800,
+    6766800
+   ],
+   "dist_m": 365.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492400%2C6766400%2C492800%2C6766800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "8e433045674d9ba6b4070914cd9b1d5cd04362d3169b6ab89e778602dac76d47"
+  },
+  {
+   "id": "ortho_492800_6760000",
+   "bounds": [
+    492800,
+    6760000,
+    493200,
+    6760400
+   ],
+   "dist_m": 463.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492800%2C6760000%2C493200%2C6760400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "52e17e879eb08d6670ed2ceb6abf081d33ec61884900a89b2a807f012eebb646"
+  },
+  {
+   "id": "ortho_492800_6760400",
+   "bounds": [
+    492800,
+    6760400,
+    493200,
+    6760800
+   ],
+   "dist_m": 109.9,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492800%2C6760400%2C493200%2C6760800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "ca5a60586abcf88d3903f3652b2af864aed7d06c701d044a4df64b529f0c59ca"
+  },
+  {
+   "id": "ortho_492800_6760800",
+   "bounds": [
+    492800,
+    6760800,
+    493200,
+    6761200
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492800%2C6760800%2C493200%2C6761200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "916dbe0071d9319f2012950f2bbbcc91ed8f6b9875155063723737b4a7b61d9e"
+  },
+  {
+   "id": "ortho_492800_6761200",
+   "bounds": [
+    492800,
+    6761200,
+    493200,
+    6761600
+   ],
+   "dist_m": 20.9,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492800%2C6761200%2C493200%2C6761600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "9c497b48ccd5de6c43d20c2f70e7b9b63c4772342a0b54ac666078b074300656"
+  },
+  {
+   "id": "ortho_492800_6761600",
+   "bounds": [
+    492800,
+    6761600,
+    493200,
+    6762000
+   ],
+   "dist_m": 333.8,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492800%2C6761600%2C493200%2C6762000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "047f81db30ec157255ddb72e9055d56237c1fa510d2b84e353e67c93944e8d3e"
+  },
+  {
+   "id": "ortho_492800_6762000",
+   "bounds": [
+    492800,
+    6762000,
+    493200,
+    6762400
+   ],
+   "dist_m": 546.3,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492800%2C6762000%2C493200%2C6762400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "5baead8961c13cc935ee5f3125238ad556ee0b94773e7a9875440bef1028fdf5"
+  },
+  {
+   "id": "ortho_492800_6762800",
+   "bounds": [
+    492800,
+    6762800,
+    493200,
+    6763200
+   ],
+   "dist_m": 532.3,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492800%2C6762800%2C493200%2C6763200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "b501390a8beabb32bc86e1ff7f636e60cfd5abad553e80f23592f71d0461d5b4"
+  },
+  {
+   "id": "ortho_492800_6763200",
+   "bounds": [
+    492800,
+    6763200,
+    493200,
+    6763600
+   ],
+   "dist_m": 421.6,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492800%2C6763200%2C493200%2C6763600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "a8132d2f5031e8cf77fb7c000db880a406bebea15996572e09ba77069e3b9625"
+  },
+  {
+   "id": "ortho_492800_6763600",
+   "bounds": [
+    492800,
+    6763600,
+    493200,
+    6764000
+   ],
+   "dist_m": 262.6,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492800%2C6763600%2C493200%2C6764000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "82180ab1bb68a41327f7cbf8f298648748e9bd1261a7bbaffdcc0926a0be8096"
+  },
+  {
+   "id": "ortho_492800_6764000",
+   "bounds": [
+    492800,
+    6764000,
+    493200,
+    6764400
+   ],
+   "dist_m": 203.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492800%2C6764000%2C493200%2C6764400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "d69b7ae9cd707adaace01bb78c4b3716cd7d5c6492160dc60793b96c9763d0ec"
+  },
+  {
+   "id": "ortho_492800_6764400",
+   "bounds": [
+    492800,
+    6764400,
+    493200,
+    6764800
+   ],
+   "dist_m": 93.2,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492800%2C6764400%2C493200%2C6764800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "fbfa3fd87ca605a910f35c2adda5b3df9012d7bc6391a5c3133700f2e3551e17"
+  },
+  {
+   "id": "ortho_492800_6764800",
+   "bounds": [
+    492800,
+    6764800,
+    493200,
+    6765200
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492800%2C6764800%2C493200%2C6765200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "cf5e1bb684421b4c3fd7b47db91bfaee14dd37e196e3d9305d02aa68cde4f433"
+  },
+  {
+   "id": "ortho_492800_6765200",
+   "bounds": [
+    492800,
+    6765200,
+    493200,
+    6765600
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492800%2C6765200%2C493200%2C6765600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "e83855714c451bbc0d1c6c773d9a2b01f27d2422a2a602361dd9dac812f66ed1"
+  },
+  {
+   "id": "ortho_492800_6765600",
+   "bounds": [
+    492800,
+    6765600,
+    493200,
+    6766000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492800%2C6765600%2C493200%2C6766000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "3f5244722a388dae6c75f8325b94821f7ba864ebf46507d459a51950338c05c6"
+  },
+  {
+   "id": "ortho_492800_6766000",
+   "bounds": [
+    492800,
+    6766000,
+    493200,
+    6766400
+   ],
+   "dist_m": 36.5,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492800%2C6766000%2C493200%2C6766400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "2f4ad0f4e7738d328057d08532b9ac2cf797da7bf52a624d6fc9c6e95337710c"
+  },
+  {
+   "id": "ortho_492800_6766400",
+   "bounds": [
+    492800,
+    6766400,
+    493200,
+    6766800
+   ],
+   "dist_m": 386.5,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=492800%2C6766400%2C493200%2C6766800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "7a3dbac93398bf965bc5de7a934add41d96a416f896d429c9776fc8c03de15b2"
+  },
+  {
+   "id": "ortho_493200_6760000",
+   "bounds": [
+    493200,
+    6760000,
+    493600,
+    6760400
+   ],
+   "dist_m": 337.5,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493200%2C6760000%2C493600%2C6760400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "7528c5f24b03168800c10cd1edbff862e2994d23d3273ddd9f871811af8688dd"
+  },
+  {
+   "id": "ortho_493200_6760400",
+   "bounds": [
+    493200,
+    6760400,
+    493600,
+    6760800
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493200%2C6760400%2C493600%2C6760800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "74dfb978f9445500e3d2ead0961c4efa6813651712b4375089085880fff06a19"
+  },
+  {
+   "id": "ortho_493200_6760800",
+   "bounds": [
+    493200,
+    6760800,
+    493600,
+    6761200
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493200%2C6760800%2C493600%2C6761200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "4ab0669c470216a9ad01dd5f4c83fa473fe7fbaedeee95f0f6ea174541e3cd24"
+  },
+  {
+   "id": "ortho_493200_6761200",
+   "bounds": [
+    493200,
+    6761200,
+    493600,
+    6761600
+   ],
+   "dist_m": 239.7,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493200%2C6761200%2C493600%2C6761600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "094576ac1b54d018f5f667d18c6fdb61109a1142eef165d5141b9fb46c6fb0ba"
+  },
+  {
+   "id": "ortho_493200_6761600",
+   "bounds": [
+    493200,
+    6761600,
+    493600,
+    6762000
+   ],
+   "dist_m": 478.6,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493200%2C6761600%2C493600%2C6762000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "2549264444e00d550940f1d1d7f0b74230f3236830902ced4b8baae9fd37fc4b"
+  },
+  {
+   "id": "ortho_493200_6762000",
+   "bounds": [
+    493200,
+    6762000,
+    493600,
+    6762400
+   ],
+   "dist_m": 365.9,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493200%2C6762000%2C493600%2C6762400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "abb05716c33b54e6f6dbbf17196a5458213e13d17439342e45ed190c6005461e"
+  },
+  {
+   "id": "ortho_493200_6762400",
+   "bounds": [
+    493200,
+    6762400,
+    493600,
+    6762800
+   ],
+   "dist_m": 256.4,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493200%2C6762400%2C493600%2C6762800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "8c7baac080f77f45b7452f0df9ecbbe99ab979e732fde301fed81f290d7bea2b"
+  },
+  {
+   "id": "ortho_493200_6762800",
+   "bounds": [
+    493200,
+    6762800,
+    493600,
+    6763200
+   ],
+   "dist_m": 147.6,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493200%2C6762800%2C493600%2C6763200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "0db3f14923e0c27cfd52d30cab8e716d6c3ab5195dd53594f676002db5457812"
+  },
+  {
+   "id": "ortho_493200_6763200",
+   "bounds": [
+    493200,
+    6763200,
+    493600,
+    6763600
+   ],
+   "dist_m": 37.9,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493200%2C6763200%2C493600%2C6763600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "dd2fa5898c150a2ea0a551bbd572fb5375439de465a242e340dcaec21c37b87e"
+  },
+  {
+   "id": "ortho_493200_6763600",
+   "bounds": [
+    493200,
+    6763600,
+    493600,
+    6764000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493200%2C6763600%2C493600%2C6764000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "e455a748189b40b0ccc1e0f3394447298cb20d93b7053a0382a2ab897327de73"
+  },
+  {
+   "id": "ortho_493200_6764000",
+   "bounds": [
+    493200,
+    6764000,
+    493600,
+    6764400
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493200%2C6764000%2C493600%2C6764400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "5bd2e980cbacbcea02cfe5ad3fb47676c08fd794f89b35fdb0386760446820ec"
+  },
+  {
+   "id": "ortho_493200_6764400",
+   "bounds": [
+    493200,
+    6764400,
+    493600,
+    6764800
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493200%2C6764400%2C493600%2C6764800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "090941a17b735629000ff8bd8b6c1efb32058fb69c780007698abed347a19a9c"
+  },
+  {
+   "id": "ortho_493200_6764800",
+   "bounds": [
+    493200,
+    6764800,
+    493600,
+    6765200
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493200%2C6764800%2C493600%2C6765200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "f951e8039af06cd86363da1bbeda1a9ed62ba53fdc3bc3c91cb45b16ca25e19e"
+  },
+  {
+   "id": "ortho_493200_6765200",
+   "bounds": [
+    493200,
+    6765200,
+    493600,
+    6765600
+   ],
+   "dist_m": 15.9,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493200%2C6765200%2C493600%2C6765600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "171e2710c139917edf34433ffea1ade310a7f6cff6871b39048137e54d869632"
+  },
+  {
+   "id": "ortho_493200_6765600",
+   "bounds": [
+    493200,
+    6765600,
+    493600,
+    6766000
+   ],
+   "dist_m": 136.8,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493200%2C6765600%2C493600%2C6766000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "9ec8ad8a804e01d4010caa2b69e7f5f7e6cce64ca2868f27b6e4c4a5739f96ef"
+  },
+  {
+   "id": "ortho_493200_6766000",
+   "bounds": [
+    493200,
+    6766000,
+    493600,
+    6766400
+   ],
+   "dist_m": 334.7,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493200%2C6766000%2C493600%2C6766400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "0ef88b864255d5ace55ea882ca25f81ea3801cf8cc676ca8bc93cbb0ba657879"
+  },
+  {
+   "id": "ortho_493200_6766400",
+   "bounds": [
+    493200,
+    6766400,
+    493600,
+    6766800
+   ],
+   "dist_m": 597.8,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493200%2C6766400%2C493600%2C6766800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "ed67c373ba43a46e4b2eacbf9ba4e8a7a207eb554be7991c23d167afa13e660f"
+  },
+  {
+   "id": "ortho_493600_6760000",
+   "bounds": [
+    493600,
+    6760000,
+    494000,
+    6760400
+   ],
+   "dist_m": 219.3,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493600%2C6760000%2C494000%2C6760400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "a0f7288eff0be8a7c5d41fcde5c44496628a034b82bcfb94d8387436ba08d2c5"
+  },
+  {
+   "id": "ortho_493600_6760400",
+   "bounds": [
+    493600,
+    6760400,
+    494000,
+    6760800
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493600%2C6760400%2C494000%2C6760800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "85a72b6b4d82c5ad94ab6cb38c7c56b83c1feb59f8a3422c832164dc4ad917a3"
+  },
+  {
+   "id": "ortho_493600_6760800",
+   "bounds": [
+    493600,
+    6760800,
+    494000,
+    6761200
+   ],
+   "dist_m": 44.7,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493600%2C6760800%2C494000%2C6761200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "ed0f06cb410c84ee298797f3168a42c31d425de4c154c18bfdda3a7c5f6077f2"
+  },
+  {
+   "id": "ortho_493600_6761200",
+   "bounds": [
+    493600,
+    6761200,
+    494000,
+    6761600
+   ],
+   "dist_m": 143.4,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493600%2C6761200%2C494000%2C6761600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "3939d1b3fe0097fd1696a41f532e1d80a7607f0e2123bb97e1ea702062886428"
+  },
+  {
+   "id": "ortho_493600_6761600",
+   "bounds": [
+    493600,
+    6761600,
+    494000,
+    6762000
+   ],
+   "dist_m": 91.1,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493600%2C6761600%2C494000%2C6762000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "2e40917148391ff09dc179ccfa58185555d412d713f52b2c37c79b1a621f18a9"
+  },
+  {
+   "id": "ortho_493600_6762000",
+   "bounds": [
+    493600,
+    6762000,
+    494000,
+    6762400
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493600%2C6762000%2C494000%2C6762400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "98c7280d5271c1c600f254d5917e3da2ae6a8f179e444a950693438e4b33ac09"
+  },
+  {
+   "id": "ortho_493600_6762400",
+   "bounds": [
+    493600,
+    6762400,
+    494000,
+    6762800
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493600%2C6762400%2C494000%2C6762800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "7b5a83323972892b25b6590c8afc4c9ccbe419e3c7fb9a61d8c0ceca33f5aa25"
+  },
+  {
+   "id": "ortho_493600_6762800",
+   "bounds": [
+    493600,
+    6762800,
+    494000,
+    6763200
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493600%2C6762800%2C494000%2C6763200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "056067a723b3707cb11ba64eae25705385d323c4f35cf3769b751303a940a795"
+  },
+  {
+   "id": "ortho_493600_6763200",
+   "bounds": [
+    493600,
+    6763200,
+    494000,
+    6763600
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493600%2C6763200%2C494000%2C6763600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "dc62bc19c23418780cd4f87ee2c5f4ac1f31f6ff9f499a2fce6d055299ec735c"
+  },
+  {
+   "id": "ortho_493600_6763600",
+   "bounds": [
+    493600,
+    6763600,
+    494000,
+    6764000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493600%2C6763600%2C494000%2C6764000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "768e2fc25b256d4e01ed3e3d02bb44345f874f65c5c1586fed23f118ef765917"
+  },
+  {
+   "id": "ortho_493600_6764000",
+   "bounds": [
+    493600,
+    6764000,
+    494000,
+    6764400
+   ],
+   "dist_m": 77.1,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493600%2C6764000%2C494000%2C6764400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "f255132f9e7e579a72cef3151c5908ca3b01d91c97dadab6e5a9e347867c4f48"
+  },
+  {
+   "id": "ortho_493600_6764400",
+   "bounds": [
+    493600,
+    6764400,
+    494000,
+    6764800
+   ],
+   "dist_m": 181.8,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493600%2C6764400%2C494000%2C6764800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "2820df94fa35847654c91e858261bf018fc6303930e63d7d6ec1f8809c68cabd"
+  },
+  {
+   "id": "ortho_493600_6764800",
+   "bounds": [
+    493600,
+    6764800,
+    494000,
+    6765200
+   ],
+   "dist_m": 291.5,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493600%2C6764800%2C494000%2C6765200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "fefc19c4be309a5d38cd71037903dfcfe733c1c0044afb5da76124c5af127ec0"
+  },
+  {
+   "id": "ortho_493600_6765200",
+   "bounds": [
+    493600,
+    6765200,
+    494000,
+    6765600
+   ],
+   "dist_m": 400.9,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493600%2C6765200%2C494000%2C6765600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "61961f6cf9936455b296e95bcae5855b2952dab1b2faeb063f46006cd35d8db7"
+  },
+  {
+   "id": "ortho_493600_6765600",
+   "bounds": [
+    493600,
+    6765600,
+    494000,
+    6766000
+   ],
+   "dist_m": 510.5,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=493600%2C6765600%2C494000%2C6766000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "0c2a8209e36a0d67e514f891c1c4ef91699032b0b2369e0853402c6cb178f475"
+  },
+  {
+   "id": "ortho_494000_6759600",
+   "bounds": [
+    494000,
+    6759600,
+    494400,
+    6760000
+   ],
+   "dist_m": 598.9,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=494000%2C6759600%2C494400%2C6760000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "dfa0d0d1046d68c97bbf6e9c3b00bc4f00464061bb57ec824d717d87328585b6"
+  },
+  {
+   "id": "ortho_494000_6760000",
+   "bounds": [
+    494000,
+    6760000,
+    494400,
+    6760400
+   ],
+   "dist_m": 198.9,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=494000%2C6760000%2C494400%2C6760400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "7e42c60b1b437af40a99434b63909b42d70593bf727e9818204cff5001f31147"
+  },
+  {
+   "id": "ortho_494000_6760400",
+   "bounds": [
+    494000,
+    6760400,
+    494400,
+    6760800
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=494000%2C6760400%2C494400%2C6760800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "6ab8663fb714bc888febd04f7c33f291f30d27b6d8ad68c2fdd92ec8550670e1"
+  },
+  {
+   "id": "ortho_494000_6760800",
+   "bounds": [
+    494000,
+    6760800,
+    494400,
+    6761200
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=494000%2C6760800%2C494400%2C6761200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "64da0da93310e1ae050c540c38b3fe71f86cdf93f05eeb9e00f24c0f026c6030"
+  },
+  {
+   "id": "ortho_494000_6761200",
+   "bounds": [
+    494000,
+    6761200,
+    494400,
+    6761600
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=494000%2C6761200%2C494400%2C6761600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "162e2a9e31321f428c858268ef1bc8f54d01532e620d683860bd8ac5c1392552"
+  },
+  {
+   "id": "ortho_494000_6761600",
+   "bounds": [
+    494000,
+    6761600,
+    494400,
+    6762000
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=494000%2C6761600%2C494400%2C6762000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "63e905cbf87e88f6714171896955e014b0ae31504ff6823965e16976514e80d0"
+  },
+  {
+   "id": "ortho_494000_6762000",
+   "bounds": [
+    494000,
+    6762000,
+    494400,
+    6762400
+   ],
+   "dist_m": 0.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=494000%2C6762000%2C494400%2C6762400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "662912757650cd1d5fa56633f75ce8b9379144b24274372b410d8e7293c8c79c"
+  },
+  {
+   "id": "ortho_494000_6762400",
+   "bounds": [
+    494000,
+    6762400,
+    494400,
+    6762800
+   ],
+   "dist_m": 18.7,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=494000%2C6762400%2C494400%2C6762800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "c1e30060a90687e26009c7d1158da137f4f788113ee2290b41dc1c3a00fcc199"
+  },
+  {
+   "id": "ortho_494000_6762800",
+   "bounds": [
+    494000,
+    6762800,
+    494400,
+    6763200
+   ],
+   "dist_m": 128.4,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=494000%2C6762800%2C494400%2C6763200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "210ae265c2b5d8c8b08a62a6f014e305f69270a11d54d2f4e4cbda4f36acaa6f"
+  },
+  {
+   "id": "ortho_494000_6763200",
+   "bounds": [
+    494000,
+    6763200,
+    494400,
+    6763600
+   ],
+   "dist_m": 237.3,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=494000%2C6763200%2C494400%2C6763600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "72b5b08afe8aecc451afe6f650a8265fea61c23dccc3f7bc72a1d3aa0dd15348"
+  },
+  {
+   "id": "ortho_494000_6763600",
+   "bounds": [
+    494000,
+    6763600,
+    494400,
+    6764000
+   ],
+   "dist_m": 346.7,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=494000%2C6763600%2C494400%2C6764000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "cd058acf668cafb83ae37de7918e0c153a66575fb27825f7adfbc4e395776c69"
+  },
+  {
+   "id": "ortho_494000_6764000",
+   "bounds": [
+    494000,
+    6764000,
+    494400,
+    6764400
+   ],
+   "dist_m": 456.8,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=494000%2C6764000%2C494400%2C6764400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "058ed9dff18d710d848eefed06ac315f8f79b07d59d5cecb5a19c44b1616b696"
+  },
+  {
+   "id": "ortho_494000_6764400",
+   "bounds": [
+    494000,
+    6764400,
+    494400,
+    6764800
+   ],
+   "dist_m": 566.3,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=494000%2C6764400%2C494400%2C6764800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "2d7a0284d80ea77e857f6a5f6de1da5959bb044a5e25137a60a981ab48a19aff"
+  },
+  {
+   "id": "ortho_494400_6760000",
+   "bounds": [
+    494400,
+    6760000,
+    494800,
+    6760400
+   ],
+   "dist_m": 349.3,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=494400%2C6760000%2C494800%2C6760400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "2db45f14b1d738e2da17bfda36cf8ce1988e467bbf6f04864f94d917fd04c3e2"
+  },
+  {
+   "id": "ortho_494400_6760400",
+   "bounds": [
+    494400,
+    6760400,
+    494800,
+    6760800
+   ],
+   "dist_m": 238.6,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=494400%2C6760400%2C494800%2C6760800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "de633a42db4a44d0ecf10ebd963ebe6d412e64e0dba13906d47c6c860413372a"
+  },
+  {
+   "id": "ortho_494400_6760800",
+   "bounds": [
+    494400,
+    6760800,
+    494800,
+    6761200
+   ],
+   "dist_m": 238.7,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=494400%2C6760800%2C494800%2C6761200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "fc9c88a8d231e62d2b58552fc4327305130623b1d8d3b64538b6bca96afb8639"
+  },
+  {
+   "id": "ortho_494400_6761200",
+   "bounds": [
+    494400,
+    6761200,
+    494800,
+    6761600
+   ],
+   "dist_m": 246.7,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=494400%2C6761200%2C494800%2C6761600&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "280e0dc755c9968985bf05870e24ad5292d32a173bf5772f2fdbf7823646ee26"
+  },
+  {
+   "id": "ortho_494400_6761600",
+   "bounds": [
+    494400,
+    6761600,
+    494800,
+    6762000
+   ],
+   "dist_m": 256.5,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=494400%2C6761600%2C494800%2C6762000&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "9399866e7db85fe6b640861f595bc4beec8656db94311da12ca91aef8201fa1d"
+  },
+  {
+   "id": "ortho_494400_6762000",
+   "bounds": [
+    494400,
+    6762000,
+    494800,
+    6762400
+   ],
+   "dist_m": 293.3,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=494400%2C6762000%2C494800%2C6762400&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "993d3092c8e32d02657ec9d3ecb6931527d6e8e028ef96478813799e715e2737"
+  },
+  {
+   "id": "ortho_494400_6762400",
+   "bounds": [
+    494400,
+    6762400,
+    494800,
+    6762800
+   ],
+   "dist_m": 360.0,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=494400%2C6762400%2C494800%2C6762800&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "12738fc9d829677a97f1523f8d04a3accf8b9a9045c2607d3acb4ddbf7f3d08b"
+  },
+  {
+   "id": "ortho_494400_6762800",
+   "bounds": [
+    494400,
+    6762800,
+    494800,
+    6763200
+   ],
+   "dist_m": 513.1,
+   "url": "https://data.geopf.fr/wms-r/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO&STYLES=&CRS=EPSG%3A2154&FORMAT=image%2Fgeotiff&BBOX=494400%2C6762800%2C494800%2C6763200&WIDTH=2000&HEIGHT=2000",
+   "bytes": 12000523,
+   "sha256": "e1ee167f9fb9b7e9c76ed30a4dda8f5021e79c7f4bb1bd86c158f7d07bb9ea1b"
+  }
+ ],
+ "topo": [
+  {
+   "id": "topo_0490_6764",
+   "bounds": [
+    490000,
+    6764000,
+    491000,
+    6765000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 585,
+    "construction_surfacique": 0,
+    "construction_lineaire": 2,
+    "construction_ponctuelle": 0,
+    "equipement_de_transport": 3,
+    "troncon_de_route": 252
+   }
+  },
+  {
+   "id": "topo_0491_6760",
+   "bounds": [
+    491000,
+    6760000,
+    492000,
+    6761000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 63,
+    "construction_surfacique": 0,
+    "construction_lineaire": 0,
+    "construction_ponctuelle": 0,
+    "equipement_de_transport": 0,
+    "troncon_de_route": 28
+   }
+  },
+  {
+   "id": "topo_0491_6761",
+   "bounds": [
+    491000,
+    6761000,
+    492000,
+    6762000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 335,
+    "construction_surfacique": 0,
+    "construction_lineaire": 0,
+    "construction_ponctuelle": 1,
+    "equipement_de_transport": 0,
+    "troncon_de_route": 69
+   }
+  },
+  {
+   "id": "topo_0491_6762",
+   "bounds": [
+    491000,
+    6762000,
+    492000,
+    6763000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 168,
+    "construction_surfacique": 0,
+    "construction_lineaire": 0,
+    "construction_ponctuelle": 0,
+    "equipement_de_transport": 0,
+    "troncon_de_route": 64
+   }
+  },
+  {
+   "id": "topo_0491_6763",
+   "bounds": [
+    491000,
+    6763000,
+    492000,
+    6764000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 98,
+    "construction_surfacique": 1,
+    "construction_lineaire": 4,
+    "construction_ponctuelle": 0,
+    "equipement_de_transport": 1,
+    "troncon_de_route": 110
+   }
+  },
+  {
+   "id": "topo_0491_6764",
+   "bounds": [
+    491000,
+    6764000,
+    492000,
+    6765000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 86,
+    "construction_surfacique": 0,
+    "construction_lineaire": 16,
+    "construction_ponctuelle": 3,
+    "equipement_de_transport": 2,
+    "troncon_de_route": 155
+   }
+  },
+  {
+   "id": "topo_0491_6765",
+   "bounds": [
+    491000,
+    6765000,
+    492000,
+    6766000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 294,
+    "construction_surfacique": 0,
+    "construction_lineaire": 17,
+    "construction_ponctuelle": 6,
+    "equipement_de_transport": 8,
+    "troncon_de_route": 226
+   }
+  },
+  {
+   "id": "topo_0491_6766",
+   "bounds": [
+    491000,
+    6766000,
+    492000,
+    6767000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 3176,
+    "construction_surfacique": 0,
+    "construction_lineaire": 5,
+    "construction_ponctuelle": 2,
+    "equipement_de_transport": 1,
+    "troncon_de_route": 521
+   }
+  },
+  {
+   "id": "topo_0492_6760",
+   "bounds": [
+    492000,
+    6760000,
+    493000,
+    6761000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 75,
+    "construction_surfacique": 0,
+    "construction_lineaire": 2,
+    "construction_ponctuelle": 0,
+    "equipement_de_transport": 0,
+    "troncon_de_route": 78
+   }
+  },
+  {
+   "id": "topo_0492_6761",
+   "bounds": [
+    492000,
+    6761000,
+    493000,
+    6762000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 92,
+    "construction_surfacique": 0,
+    "construction_lineaire": 0,
+    "construction_ponctuelle": 0,
+    "equipement_de_transport": 0,
+    "troncon_de_route": 95
+   }
+  },
+  {
+   "id": "topo_0492_6762",
+   "bounds": [
+    492000,
+    6762000,
+    493000,
+    6763000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 18,
+    "construction_surfacique": 0,
+    "construction_lineaire": 1,
+    "construction_ponctuelle": 0,
+    "equipement_de_transport": 0,
+    "troncon_de_route": 47
+   }
+  },
+  {
+   "id": "topo_0492_6763",
+   "bounds": [
+    492000,
+    6763000,
+    493000,
+    6764000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 97,
+    "construction_surfacique": 0,
+    "construction_lineaire": 4,
+    "construction_ponctuelle": 1,
+    "equipement_de_transport": 1,
+    "troncon_de_route": 153
+   }
+  },
+  {
+   "id": "topo_0492_6764",
+   "bounds": [
+    492000,
+    6764000,
+    493000,
+    6765000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 121,
+    "construction_surfacique": 0,
+    "construction_lineaire": 1,
+    "construction_ponctuelle": 3,
+    "equipement_de_transport": 2,
+    "troncon_de_route": 101
+   }
+  },
+  {
+   "id": "topo_0492_6765",
+   "bounds": [
+    492000,
+    6765000,
+    493000,
+    6766000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 96,
+    "construction_surfacique": 1,
+    "construction_lineaire": 24,
+    "construction_ponctuelle": 5,
+    "equipement_de_transport": 8,
+    "troncon_de_route": 229
+   }
+  },
+  {
+   "id": "topo_0492_6766",
+   "bounds": [
+    492000,
+    6766000,
+    493000,
+    6767000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 1509,
+    "construction_surfacique": 3,
+    "construction_lineaire": 8,
+    "construction_ponctuelle": 1,
+    "equipement_de_transport": 11,
+    "troncon_de_route": 518
+   }
+  },
+  {
+   "id": "topo_0493_6760",
+   "bounds": [
+    493000,
+    6760000,
+    494000,
+    6761000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 120,
+    "construction_surfacique": 0,
+    "construction_lineaire": 1,
+    "construction_ponctuelle": 1,
+    "equipement_de_transport": 0,
+    "troncon_de_route": 111
+   }
+  },
+  {
+   "id": "topo_0493_6761",
+   "bounds": [
+    493000,
+    6761000,
+    494000,
+    6762000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 29,
+    "construction_surfacique": 0,
+    "construction_lineaire": 0,
+    "construction_ponctuelle": 0,
+    "equipement_de_transport": 0,
+    "troncon_de_route": 57
+   }
+  },
+  {
+   "id": "topo_0493_6762",
+   "bounds": [
+    493000,
+    6762000,
+    494000,
+    6763000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 49,
+    "construction_surfacique": 0,
+    "construction_lineaire": 0,
+    "construction_ponctuelle": 0,
+    "equipement_de_transport": 0,
+    "troncon_de_route": 51
+   }
+  },
+  {
+   "id": "topo_0493_6763",
+   "bounds": [
+    493000,
+    6763000,
+    494000,
+    6764000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 130,
+    "construction_surfacique": 0,
+    "construction_lineaire": 0,
+    "construction_ponctuelle": 3,
+    "equipement_de_transport": 23,
+    "troncon_de_route": 218
+   }
+  },
+  {
+   "id": "topo_0493_6764",
+   "bounds": [
+    493000,
+    6764000,
+    494000,
+    6765000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 191,
+    "construction_surfacique": 0,
+    "construction_lineaire": 5,
+    "construction_ponctuelle": 2,
+    "equipement_de_transport": 7,
+    "troncon_de_route": 198
+   }
+  },
+  {
+   "id": "topo_0493_6765",
+   "bounds": [
+    493000,
+    6765000,
+    494000,
+    6766000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 166,
+    "construction_surfacique": 1,
+    "construction_lineaire": 1,
+    "construction_ponctuelle": 0,
+    "equipement_de_transport": 5,
+    "troncon_de_route": 141
+   }
+  },
+  {
+   "id": "topo_0493_6766",
+   "bounds": [
+    493000,
+    6766000,
+    494000,
+    6767000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 400,
+    "construction_surfacique": 0,
+    "construction_lineaire": 1,
+    "construction_ponctuelle": 0,
+    "equipement_de_transport": 1,
+    "troncon_de_route": 126
+   }
+  },
+  {
+   "id": "topo_0494_6759",
+   "bounds": [
+    494000,
+    6759000,
+    495000,
+    6760000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 675,
+    "construction_surfacique": 0,
+    "construction_lineaire": 4,
+    "construction_ponctuelle": 2,
+    "equipement_de_transport": 0,
+    "troncon_de_route": 219
+   }
+  },
+  {
+   "id": "topo_0494_6760",
+   "bounds": [
+    494000,
+    6760000,
+    495000,
+    6761000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 1258,
+    "construction_surfacique": 0,
+    "construction_lineaire": 0,
+    "construction_ponctuelle": 1,
+    "equipement_de_transport": 2,
+    "troncon_de_route": 570
+   }
+  },
+  {
+   "id": "topo_0494_6761",
+   "bounds": [
+    494000,
+    6761000,
+    495000,
+    6762000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 488,
+    "construction_surfacique": 0,
+    "construction_lineaire": 0,
+    "construction_ponctuelle": 1,
+    "equipement_de_transport": 0,
+    "troncon_de_route": 217
+   }
+  },
+  {
+   "id": "topo_0494_6762",
+   "bounds": [
+    494000,
+    6762000,
+    495000,
+    6763000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 41,
+    "construction_surfacique": 0,
+    "construction_lineaire": 1,
+    "construction_ponctuelle": 0,
+    "equipement_de_transport": 0,
+    "troncon_de_route": 48
+   }
+  },
+  {
+   "id": "topo_0494_6763",
+   "bounds": [
+    494000,
+    6763000,
+    495000,
+    6764000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 100,
+    "construction_surfacique": 0,
+    "construction_lineaire": 2,
+    "construction_ponctuelle": 0,
+    "equipement_de_transport": 13,
+    "troncon_de_route": 71
+   }
+  },
+  {
+   "id": "topo_0494_6764",
+   "bounds": [
+    494000,
+    6764000,
+    495000,
+    6765000
+   ],
+   "layers": [
+    "batiment",
+    "construction_surfacique",
+    "construction_lineaire",
+    "construction_ponctuelle",
+    "equipement_de_transport",
+    "troncon_de_route"
+   ],
+   "files": {
+    "batiment": 65,
+    "construction_surfacique": 0,
+    "construction_lineaire": 6,
+    "construction_ponctuelle": 0,
+    "equipement_de_transport": 14,
+    "troncon_de_route": 130
+   }
+  }
+ ],
+ "gaps": []
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1313 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="31928831" visible="true" version="4" changeset="19930597" timestamp="2014-01-11T08:30:59Z" user="Andrés31" uid="811230" lat="47.9242209" lon="0.2430794"/>
+ <node id="745779897" visible="true" version="4" changeset="62213079" timestamp="2018-09-02T08:07:12Z" user="MacDony" uid="3701940" lat="47.9250738" lon="0.2428669"/>
+ <node id="1382944165" visible="true" version="2" changeset="19930597" timestamp="2014-01-11T08:30:59Z" user="Andrés31" uid="811230" lat="47.9243407" lon="0.2430660"/>
+ <node id="1382944167" visible="true" version="2" changeset="19930597" timestamp="2014-01-11T08:30:59Z" user="Andrés31" uid="811230" lat="47.9244656" lon="0.2430454"/>
+ <node id="1382944174" visible="true" version="2" changeset="19930597" timestamp="2014-01-11T08:30:59Z" user="Andrés31" uid="811230" lat="47.9248844" lon="0.2429366"/>
+ <node id="2516342591" visible="true" version="2" changeset="19930597" timestamp="2014-01-11T08:30:59Z" user="Andrés31" uid="811230" lat="47.9232464" lon="0.2431736"/>
+ <node id="2618263233" visible="true" version="1" changeset="19930597" timestamp="2014-01-11T08:30:57Z" user="Andrés31" uid="811230" lat="47.9245815" lon="0.2430201"/>
+ <node id="2618263234" visible="true" version="1" changeset="19930597" timestamp="2014-01-11T08:30:57Z" user="Andrés31" uid="811230" lat="47.9249851" lon="0.2429008"/>
+ <node id="2618263236" visible="true" version="1" changeset="19930597" timestamp="2014-01-11T08:30:57Z" user="Andrés31" uid="811230" lat="47.9246825" lon="0.2429963"/>
+ <node id="2618263276" visible="true" version="1" changeset="19930597" timestamp="2014-01-11T08:30:58Z" user="Andrés31" uid="811230" lat="47.9247898" lon="0.2429688"/>
+ <way id="158840027" visible="true" version="18" changeset="181962891" timestamp="2026-04-28T22:45:24Z" user="14im" uid="10954515">
+  <nd ref="2516342591"/>
+  <nd ref="31928831"/>
+  <nd ref="1382944165"/>
+  <nd ref="1382944167"/>
+  <nd ref="2618263233"/>
+  <nd ref="2618263236"/>
+  <nd ref="2618263276"/>
+  <nd ref="1382944174"/>
+  <nd ref="2618263234"/>
+  <nd ref="745779897"/>
+  <tag k="cycleway:both" v="shoulder"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="no"/>
+  <tag k="maxspeed" v="90"/>
+  <tag k="name" v="Route de Tours"/>
+  <tag k="name:etymology:wikidata" v="Q288"/>
+  <tag k="ref" v="D 338"/>
+  <tag k="sidewalk" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -1,0 +1,15 @@
+{
+  "id": "n24_nurburgring_survey",
+  "name": "Nürburgring Nordschleife",
+  "grand_prix": "Nürburgring 24 Hours (Survey)",
+  "country": "Germany",
+  "country_code": "DE",
+  "city": "Nürburg",
+  "length_m": 25378,
+  "turns": 99,
+  "scene": "res://scenes/tracks/n24_nurburgring_survey.tscn",
+  "track_json": "res://assets/tracks/n24_nurburgring_survey/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "endurance"
+}

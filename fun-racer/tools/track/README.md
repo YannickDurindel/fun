@@ -614,6 +614,12 @@ start line. The open sea has no data and is taken as sea level. Tunnels are not 
 model either: straighten them with `[[elevation.override]]`. Credit: IGN, RGE ALTI, Licence
 Ouverte 2.0.
 
+`dgm1` is for circuits in Rhineland-Palatinate (Nuerburgring, Eifel): LVermGeo RLP's 1 m bare-ground
+model (dl-de/by-2-0, credit "GeoBasis-DE / LVermGeo RP"), read from 1 km GeoTIFF tiles that
+`lib/rlp_data.py` downloads into the shared cache `~/.cache/fun-racer/rlp/` (never into git). Being
+bare ground, it gives the valley floor under a bridge deck: pin every deck with `[[elevation.key]]`
+entries (heights from the laser points, class 20). Points without a tile fall back to terrarium.
+
 `terrarium` is a fourth choice that does not go through OpenTopoData: Terrain Tiles on AWS
 Open Data (Mapzen's global mosaic of SRTM, EU-DEM, 3DEP and others, as PNG tiles at zoom 13).
 It has no daily quota and a circuit needs only a handful of tiles, so use it when building
