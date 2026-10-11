@@ -1,0 +1,326 @@
+{
+ "id": "fuji",
+ "recipe": "tools/track/tracks/fuji.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   148622740
+  ],
+  "raw_length_m": 4558.7,
+  "length_m": 4554.6,
+  "official_length_m": 4563.0,
+  "length_error": -0.00183,
+  "candidates": [
+   {
+    "length_m": 4558.7,
+    "ways": [
+     148622740
+    ]
+   },
+   {
+    "length_m": 4525.0,
+    "ways": [
+     196123181,
+     148622740
+    ]
+   },
+   {
+    "length_m": 4565.6,
+    "ways": [
+     148622740,
+     148621414
+    ]
+   },
+   {
+    "length_m": 4531.9,
+    "ways": [
+     196123181,
+     148622740,
+     148621414,
+     148622740
+    ]
+   },
+   {
+    "length_m": 1220.4,
+    "ways": [
+     148620323,
+     196331216,
+     148620323,
+     196331215,
+     196331214
+    ]
+   },
+   {
+    "length_m": 1186.4,
+    "ways": [
+     148620323,
+     196353740,
+     196353741,
+     196353740,
+     148620323,
+     196331216,
+     148620323,
+     196331215,
+     196331214
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 51.77,
+  "max_grade": 0.1269,
+  "min_grade": -0.0918,
+  "origin_m": 592.27
+ },
+ "turns": {
+  "official": 16,
+  "mode": "auto",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Fuji Speedway",
+    "direction": "right",
+    "s_apex": 659.3,
+    "min_radius": 26.0
+   },
+   {
+    "id": "T2",
+    "name": "Fuji Speedway",
+    "direction": "right",
+    "s_apex": 829.6,
+    "min_radius": 75.3
+   },
+   {
+    "id": "T3",
+    "name": "Fuji Speedway",
+    "direction": "left",
+    "s_apex": 1222.4,
+    "min_radius": 31.8
+   },
+   {
+    "id": "T4",
+    "name": "Fuji Speedway",
+    "direction": "right",
+    "s_apex": 1537.0,
+    "min_radius": 75.7
+   },
+   {
+    "id": "T5",
+    "name": "Fuji Speedway",
+    "direction": "right",
+    "s_apex": 1677.3,
+    "min_radius": 68.3
+   },
+   {
+    "id": "T6",
+    "name": "Fuji Speedway",
+    "direction": "left",
+    "s_apex": 1927.8,
+    "min_radius": 26.4
+   },
+   {
+    "id": "T7",
+    "name": "Fuji Speedway",
+    "direction": "right",
+    "s_apex": 2244.4,
+    "min_radius": 100.9
+   },
+   {
+    "id": "T8",
+    "name": "Fuji Speedway",
+    "direction": "right",
+    "s_apex": 2486.9,
+    "min_radius": 142.6
+   },
+   {
+    "id": "T9",
+    "name": "Fuji Speedway",
+    "direction": "right",
+    "s_apex": 2753.4,
+    "min_radius": 14.0
+   },
+   {
+    "id": "T10",
+    "name": "Fuji Speedway",
+    "direction": "left",
+    "s_apex": 2819.6,
+    "min_radius": 25.8
+   },
+   {
+    "id": "T11",
+    "name": "Fuji Speedway",
+    "direction": "right",
+    "s_apex": 2903.7,
+    "min_radius": 58.5
+   },
+   {
+    "id": "T12",
+    "name": "Fuji Speedway",
+    "direction": "right",
+    "s_apex": 3038.0,
+    "min_radius": 38.0
+   },
+   {
+    "id": "T13",
+    "name": "Fuji Speedway",
+    "direction": "left",
+    "s_apex": 3228.4,
+    "min_radius": 63.0
+   },
+   {
+    "id": "T14",
+    "name": "Fuji Speedway",
+    "direction": "left",
+    "s_apex": 3338.6,
+    "min_radius": 22.8
+   },
+   {
+    "id": "T15",
+    "name": "Fuji Speedway",
+    "direction": "right",
+    "s_apex": 3448.8,
+    "min_radius": 143.0
+   },
+   {
+    "id": "T16",
+    "name": "Fuji Speedway",
+    "direction": "right",
+    "s_apex": 3641.2,
+    "min_radius": 34.6
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 659.3,
+    "direction": "right",
+    "angle_deg": 139.3,
+    "kind": "corner",
+    "min_radius": 26.0,
+    "used": true
+   },
+   {
+    "s_apex": 829.6,
+    "direction": "right",
+    "angle_deg": 29.0,
+    "kind": "corner",
+    "min_radius": 75.3,
+    "used": true
+   },
+   {
+    "s_apex": 1222.4,
+    "direction": "left",
+    "angle_deg": 65.0,
+    "kind": "corner",
+    "min_radius": 31.8,
+    "used": true
+   },
+   {
+    "s_apex": 1537.0,
+    "direction": "right",
+    "angle_deg": 94.4,
+    "kind": "corner",
+    "min_radius": 75.7,
+    "used": true
+   },
+   {
+    "s_apex": 1677.3,
+    "direction": "right",
+    "angle_deg": 75.6,
+    "kind": "corner",
+    "min_radius": 68.3,
+    "used": true
+   },
+   {
+    "s_apex": 1927.8,
+    "direction": "left",
+    "angle_deg": 149.5,
+    "kind": "corner",
+    "min_radius": 26.4,
+    "used": true
+   },
+   {
+    "s_apex": 2244.4,
+    "direction": "right",
+    "angle_deg": 32.1,
+    "kind": "corner",
+    "min_radius": 100.9,
+    "used": true
+   },
+   {
+    "s_apex": 2486.9,
+    "direction": "right",
+    "angle_deg": 26.7,
+    "kind": "corner",
+    "min_radius": 142.6,
+    "used": true
+   },
+   {
+    "s_apex": 2753.4,
+    "direction": "right",
+    "angle_deg": 124.0,
+    "kind": "corner",
+    "min_radius": 14.0,
+    "used": true
+   },
+   {
+    "s_apex": 2819.6,
+    "direction": "left",
+    "angle_deg": 104.0,
+    "kind": "corner",
+    "min_radius": 25.8,
+    "used": true
+   },
+   {
+    "s_apex": 2903.7,
+    "direction": "right",
+    "angle_deg": 43.1,
+    "kind": "corner",
+    "min_radius": 58.5,
+    "used": true
+   },
+   {
+    "s_apex": 3038.0,
+    "direction": "right",
+    "angle_deg": 124.1,
+    "kind": "corner",
+    "min_radius": 38.0,
+    "used": true
+   },
+   {
+    "s_apex": 3228.4,
+    "direction": "left",
+    "angle_deg": 94.6,
+    "kind": "corner",
+    "min_radius": 63.0,
+    "used": true
+   },
+   {
+    "s_apex": 3338.6,
+    "direction": "left",
+    "angle_deg": 106.5,
+    "kind": "corner",
+    "min_radius": 22.8,
+    "used": true
+   },
+   {
+    "s_apex": 3448.8,
+    "direction": "right",
+    "angle_deg": 8.8,
+    "kind": "kink",
+    "min_radius": 143.0,
+    "used": true
+   },
+   {
+    "s_apex": 3641.2,
+    "direction": "right",
+    "angle_deg": 179.4,
+    "kind": "corner",
+    "min_radius": 34.6,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

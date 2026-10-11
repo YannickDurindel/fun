@@ -165,7 +165,7 @@ func request_delete() -> void:
 	var info := TrackCatalog.find(_selected)
 	if info == null or not can_delete(_records.get(_selected, {})):
 		return
-	_confirm_text.text = "%s: the best lap, the sector bests and the ghost will be erased." % info.name.to_upper()
+	_confirm_text.text = "%s: the best lap, the sector bests and the ghost will be erased." % info.display_name().to_upper()
 	_confirm.visible = true
 	_confirm_cancel.grab_focus()
 
@@ -239,7 +239,7 @@ func _show_details() -> void:
 		_times_box.visible = false
 		_empty_box.visible = true
 		return
-	_name_label.text = info.name.to_upper()
+	_name_label.text = info.display_name().to_upper()
 	var bits: Array[String] = []
 	if not info.country.is_empty():
 		bits.append(info.country.to_upper())
@@ -289,7 +289,7 @@ func _build() -> void:
 	scroll.add_child(list)
 	for info in _tracks:
 		var b := Button.new()
-		b.text = info.name.to_upper()
+		b.text = info.display_name().to_upper()
 		b.custom_minimum_size = Vector2(600, 72)
 		b.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		b.toggle_mode = true

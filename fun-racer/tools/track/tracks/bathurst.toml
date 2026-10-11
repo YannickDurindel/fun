@@ -1,0 +1,80 @@
+# Mount Panorama Circuit, Bathurst NSW, Australia: 6213 m, 23 turns, anticlockwise. Endurance
+# series (calendar_endurance.json).
+#
+#   .venv/bin/python tools/track/build_track.py bathurst --plot
+
+id = "bathurst"
+series = "endurance"
+
+[osm]
+# No type=circuit relation found; the lap is a public road (highway=residential / tertiary,
+# no oneway tags) listed by hand in driving order, Chase chicane on Conrod Straight included
+# (current layout). Sum of the ways: about 6185 m against 6213 m official.
+ignore_oneway = true
+ways = [
+  414156373,    # Murrays Corner -> Pit Straight link
+  306192512,    # Pit Straight
+  1115461019,   # Hell Corner (Turn 1)
+  414156370,    # Hell Corner
+  30111085,     # Mountain Straight
+  30111102,     # Griffins Bend
+  306192500,    # The Cutting
+  306192503,    # Reid Park
+  414156376,    # Sulman Park
+  306192504,    # McPhillamy Park
+  414156366,    # Brocks Skyline
+  306192501,    # The Esses
+  306192502,    # Forrest's Elbow
+  30111107,     # Conrod Straight
+  306192513,    # The Chase
+  306192514,    # Conrod Straight (second half)
+  306192511,    # Murrays Corner
+]
+
+[layout]
+direction = "anticlockwise"
+# Estimate: Pit Straight node about 93 m after Murrays Corner; OSM has no start/finish node.
+finish = [-33.4394894, 149.5598428]
+
+[elevation]
+dataset = "terrarium"
+
+[road]
+retaining_walls = true    # hillside circuit
+# Widths: ESTIMATES. OSM has no width tags on these ways; the public-road sections of Mount
+# Panorama are known to be narrow on the mountain (about 8 to 10 m between the white lines,
+# Skyline / the Esses / the Dipper the narrowest), wider on Conrod Straight and the pit
+# straight (Supercars / Bathurst 12 Hour track notes). Not surveyed.
+width_keys = [
+  [0.0, 15.0, "pit straight (grid)"],
+  [250.0, 15.0, ""],
+  [370.0, 12.5, "Hell Corner (T1)"],
+  [450.0, 11.0, "Mountain Straight, start of the climb"],
+  [1450.0, 10.5, "Griffins Bend"],
+  [1800.0, 10.0, "The Cutting"],
+  [2100.0, 10.0, "Reid Park / Sulman Park"],
+  [2800.0, 9.5, "McPhillamy Park, Skyline"],
+  [3280.0, 9.0, "The Esses and the Dipper (narrowest)"],
+  [3800.0, 9.0, ""],
+  [3880.0, 10.5, "Forrest's Elbow"],
+  [4000.0, 12.5, "Conrod Straight"],
+  [5150.0, 12.5, ""],
+  [5230.0, 11.5, "The Chase"],
+  [5700.0, 11.5, ""],
+  [5780.0, 12.5, "Conrod, second half"],
+  [6040.0, 12.5, ""],
+  [6100.0, 12.0, "Murrays Corner (T23)"],
+  [6150.0, 13.5, "onto the pit straight"],
+  [6200.0, 15.0, "pit straight (grid)"],
+]
+
+# A footpath tagged bridge=yes is drawn as a straight deck between its ends: the Skyline /
+# Esses walking paths (265, 102, 51 and 27 m long) hang in the air over the mountainside.
+[[surroundings.exclude]]
+osm = "way/842363811"
+[[surroundings.exclude]]
+osm = "way/842363809"
+[[surroundings.exclude]]
+osm = "way/842363822"
+[[surroundings.exclude]]
+osm = "way/842363801"

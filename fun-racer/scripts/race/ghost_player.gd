@@ -134,7 +134,7 @@ func _on_best_recorded(ghost: GhostData) -> void:
 		_loaded_track = ghost.track_id
 
 func _ensure_loaded() -> void:
-	var id := race.track.track_id if race.track != null else ""
+	var id := race.track.race_id() if race.track != null else ""
 	if id == _loaded_track:
 		return
 	_loaded_track = id
@@ -222,7 +222,7 @@ static func make_demo(track: Track, lateral: float = 2.5, sample_s: PackedFloat3
 	for i in range(1, n):
 		at[i] = at[i - 1] + 2.0 * DS / maxf(v[i - 1] + v[i], 0.5)
 	var g := GhostData.new()
-	g.track_id = track.track_id
+	g.track_id = track.race_id()
 	g.track_length = d.length
 	g.lap_time = at[n - 1]
 	g.sample_interval = maxf(1.0 / 30.0, g.lap_time / (GhostData.MAX_SAMPLES - 2))

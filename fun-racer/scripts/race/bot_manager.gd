@@ -108,6 +108,7 @@ var bots: Array[Car] = []
 var drivers: Array[BotDriver] = []
 var player: Car
 var track: Track
+var _kit: String = CarKit.F1   ## CarKit of the bots: the series of the track
 var race: RaceManager
 ## True between race_started and the next race_restarted.
 var racing: bool = false
@@ -136,6 +137,7 @@ func _ready() -> void:
 		set_physics_process(false)
 		return
 	_data = track.data
+	_kit = CarKit.for_track(track.race_id())
 	player = get_node_or_null(car_path) as Car
 	race = track.get_node_or_null(^"Race") as RaceManager
 	if race == null:
@@ -169,6 +171,7 @@ func _spawn_bot(i: int, level: int) -> void:
 	var car := BOT_CAR.instantiate() as Car
 	car.name = "Bot%d" % (i + 1)
 	add_child(car)
+	CarKit.apply(car, _kit)   # before _dress, which collects the body's meshes
 	# Ghost: on no layer (nothing detects it), masking the world only. The player lives on
 	# the world's layer, so it is excluded from both the body and the wheel rays.
 	car.collision_layer = 0
@@ -229,7 +232,7 @@ func _dress(e: Entry, livery: Dictionary) -> void:
 					e.meshes.append(mi)
 	e.far_wheels = MeshInstance3D.new()
 	e.far_wheels.name = "FarWheels"
-	e.far_wheels.mesh = far_wheel_mesh()
+	e.far_wheels.mesh = far_wheel_mesh(e.car.kit)
 	e.far_wheels.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	e.far_wheels.visible = false
 	e.car.add_child(e.far_wheels)
@@ -496,14 +499,15 @@ func _show_wheels(e: Entry) -> void:
 	if e.far_wheels != null:
 		e.far_wheels.visible = not e.wheel_detail and not e.wheels_faded
 
-## One mesh with the four tyres at their rest positions (shared by every bot).
-static var _far_wheel_mesh: ArrayMesh
-static func far_wheel_mesh() -> ArrayMesh:
-	if _far_wheel_mesh != null:
-		return _far_wheel_mesh
+## One mesh with the four tyres at their rest positions (shared by every bot of a CarKit).
+static var _far_wheel_meshes: Dictionary = {}   # kit -> ArrayMesh
+static func far_wheel_mesh(kit: String = CarKit.F1) -> ArrayMesh:
+	if _far_wheel_meshes.has(kit):
+		return _far_wheel_meshes[kit]
+	var offsets := CarKit.wheel_offsets(kit)
 	var st := SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
-	for i in Car.WHEEL_OFFSETS.size():
+	for i in offsets.size():
 		var front := i < 2
 		var tyre := CylinderMesh.new()
 		tyre.top_radius = Car.FRONT_WHEEL_RADIUS if front else Car.REAR_WHEEL_RADIUS
@@ -512,11 +516,12 @@ static func far_wheel_mesh() -> ArrayMesh:
 		tyre.radial_segments = 12
 		tyre.rings = 0
 		# Cylinder axis (Y) along the axle (X); fronts sit lower by the radius difference.
-		var at := Car.WHEEL_OFFSETS[i] + Vector3(0.0, tyre.top_radius - Car.REAR_WHEEL_RADIUS, 0.0)
+		var at := offsets[i] + Vector3(0.0, tyre.top_radius - Car.REAR_WHEEL_RADIUS, 0.0)
 		st.append_from(tyre, 0, Transform3D(Basis(Vector3.FORWARD, PI * 0.5), at))
 	var mat := StandardMaterial3D.new()
 	mat.albedo_color = Color(0.035, 0.035, 0.04)
 	mat.roughness = 0.85
 	st.set_material(mat)
-	_far_wheel_mesh = st.commit()
-	return _far_wheel_mesh
+	var mesh := st.commit()
+	_far_wheel_meshes[kit] = mesh
+	return mesh

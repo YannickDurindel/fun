@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="PackedScene" path="res://assets/car/endurance/body.glb" id="1_body"]
+
+[sub_resource type="StandardMaterial3D" id="livery"]
+resource_name = "Livery"
+albedo_color = Color(0.02, 0.075, 0.33, 1)
+metallic = 0.45
+metallic_specular = 0.6
+roughness = 0.32
+clearcoat_enabled = true
+clearcoat = 1.0
+clearcoat_roughness = 0.04
+
+[sub_resource type="StandardMaterial3D" id="livery_white"]
+resource_name = "LiveryWhite"
+albedo_color = Color(0.86, 0.87, 0.89, 1)
+metallic = 0.05
+roughness = 0.35
+clearcoat_enabled = true
+clearcoat = 1.0
+clearcoat_roughness = 0.05
+
+[sub_resource type="StandardMaterial3D" id="accent"]
+resource_name = "Accent"
+albedo_color = Color(0.85, 0.05, 0.06, 1)
+metallic = 0.15
+roughness = 0.32
+clearcoat_enabled = true
+clearcoat = 1.0
+clearcoat_roughness = 0.05
+
+[sub_resource type="StandardMaterial3D" id="helmet"]
+resource_name = "Helmet"
+albedo_color = Color(0.95, 0.78, 0.05, 1)
+metallic = 0.05
+roughness = 0.25
+clearcoat_enabled = true
+clearcoat = 1.0
+clearcoat_roughness = 0.03
+
+[sub_resource type="StandardMaterial3D" id="glass"]
+resource_name = "Glass"
+transparency = 1
+albedo_color = Color(0.05, 0.07, 0.1, 0.55)
+metallic = 0.2
+roughness = 0.05
+clearcoat_enabled = true
+clearcoat = 1.0
+clearcoat_roughness = 0.02
+
+[node name="EnduranceBodyVisual" type="Node3D"]
+
+[node name="Body" parent="." instance=ExtResource("1_body")]
+
+[node name="Livery" parent="Body" index="0"]
+surface_material_override/0 = SubResource("livery")
+
+[node name="LiveryWhite" parent="Body" index="1"]
+surface_material_override/0 = SubResource("livery_white")
+
+[node name="Accent" parent="Body" index="2"]
+surface_material_override/0 = SubResource("accent")
+
+[node name="Helmet" parent="Body" index="5"]
+surface_material_override/0 = SubResource("helmet")
+
+[node name="Glass" parent="Body" index="8"]
+surface_material_override/0 = SubResource("glass")
+
+[editable path="Body"]

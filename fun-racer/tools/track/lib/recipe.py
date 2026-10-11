@@ -37,9 +37,12 @@ from .net import BuildError
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 CALENDAR = os.path.join(ROOT, "assets", "tracks", "calendar.json")
+# Other series keep their circuits in a calendar of their own (the entry carries no "series").
+SERIES_CALENDARS = {"endurance": os.path.join(ROOT, "assets", "tracks", "calendar_endurance.json")}
+SERIES = {"f1"} | set(SERIES_CALENDARS)
 RECIPE_DIR = os.path.join(ROOT, "tools", "track", "tracks")
 
-TOP_KEYS = {"id", "name", "full_name", "grand_prix", "country", "country_code", "city", "length_m",
+TOP_KEYS = {"id", "series", "name", "full_name", "grand_prix", "country", "country_code", "city", "length_m",
             "turns", "osm", "layout", "elevation", "turn", "road", "terrain", "surroundings"}
 SECTION_KEYS = {
     "surroundings": {"margin_m", "far_margin_m", "default_levels", "level_height_m", "tree_density",
@@ -70,6 +73,7 @@ BANK_CEILING = 0.40   # rad: cad/track/banking.py BANK_CEILING
 @dataclass
 class Recipe:
     id: str
+    series: str = "f1"
     name: str = ""
     full_name: str = ""
     grand_prix: str = ""
@@ -117,13 +121,26 @@ class Recipe:
         return bool(self.turn_table) and all("s" in t for t in self.turn_table)
 
 
-def calendar_entry(track_id, calendar_path=CALENDAR):
+def _entry_in(calendar_path, track_id):
     try:
         with open(calendar_path, encoding="utf-8") as f:
             cal = json.load(f)
     except OSError:
         return {}
     return next((t for t in cal.get("tracks", []) if t.get("id") == track_id), {})
+
+
+def calendar_entry(track_id, calendar_path=CALENDAR):
+    """The calendar entry of a circuit: from `calendar_path`, else from a series calendar
+    (then with its "series")."""
+    entry = _entry_in(calendar_path, track_id)
+    if entry or calendar_path != CALENDAR:
+        return entry
+    for series, path in SERIES_CALENDARS.items():
+        entry = _entry_in(path, track_id)
+        if entry:
+            return {**entry, "series": series}
+    return {}
 
 
 def _check_keys(where, d, allowed):
@@ -192,7 +209,7 @@ def from_dict(track_id, data, overrides=None, calendar_path=CALENDAR, source="")
         return data.get(key, cal.get(key, default))
 
     r = Recipe(
-        id=track_id, name=meta("name", track_id.replace("_", " ").title()),
+        id=track_id, series=meta("series", "f1"), name=meta("name", track_id.replace("_", " ").title()),
         grand_prix=meta("grand_prix"), country=meta("country"),
         country_code=meta("country_code"), city=meta("city"),
         length_m=float(meta("length_m", 0.0)), turns=meta("turns", None),
@@ -312,9 +329,12 @@ def validate_surroundings(r):
 
 
 def validate(r):
+    if r.series not in SERIES:
+        raise BuildError(f"recipe: series must be one of {', '.join(sorted(SERIES))}, "
+                         f"not '{r.series}'")
     if r.length_m <= 0.0:
         raise BuildError(f"no official lap length for '{r.id}': it is not in assets/tracks/"
-                         "calendar.json, so give length_m in the recipe or --length")
+                         "calendar.json or a series calendar, so give length_m in the recipe or --length")
     if not 500.0 <= r.length_m <= 30000.0:
         raise BuildError(f"length_m = {r.length_m} m is not a plausible lap length")
     validate_surroundings(r)

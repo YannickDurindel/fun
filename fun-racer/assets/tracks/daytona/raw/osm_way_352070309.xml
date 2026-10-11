@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1308 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="2085929308" visible="true" version="2" changeset="154281965" timestamp="2024-07-22T21:45:40Z" user="SavageRainbow" uid="16411985" lat="29.1842510" lon="-81.0654823">
+  <tag k="highway" v="motorway_junction"/>
+ </node>
+ <node id="2085929351" visible="true" version="2" changeset="165639561" timestamp="2025-04-30T15:07:43Z" user="THUNDERBOLT1003" uid="22842442" lat="29.1860515" lon="-81.0639943"/>
+ <way id="352070309" visible="true" version="4" changeset="170173699" timestamp="2025-08-08T19:53:59Z" user="CoryS89" uid="18330996">
+  <nd ref="2085929308"/>
+  <nd ref="2085929351"/>
+  <tag k="embankment" v="yes"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

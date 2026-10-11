@@ -3,12 +3,13 @@ extends Control
 ## Root of scenes/menu/menu.tscn (the main scene). Shows one UIScreen at a time.
 ##   go("tracks")  push a screen;  back()  pop to the previous one;  current_name
 ## Screens are scenes whose root extends UIScreen. To replace a screen, replace its scene file.
-## Dev flag: --screen=NAME opens on that screen. --track=ID skips the menu (see Game).
+## Dev flags: --screen=NAME opens on that screen, --series=ID picks the track list's series. --track=ID skips the menu (see Game).
 
 signal screen_changed(name: String)
 
 const SCREENS: Dictionary = {
 	"main": "res://scenes/menu/main_menu.tscn",
+	"series": "res://scenes/menu/series_select.tscn",
 	"tracks": "res://scenes/menu/track_select.tscn",
 	"race_options": "res://scenes/menu/race_options.tscn",
 	"settings": "res://scenes/menu/settings.tscn",
@@ -31,6 +32,9 @@ func _ready() -> void:
 		Game.skip_menu = false
 		Game.start_race()
 		return
+	if not Bootstrap.start_series.is_empty():
+		TrackSelectScreen.series = Bootstrap.start_series
+		Bootstrap.start_series = ""
 	var start := Bootstrap.start_screen
 	if start.is_empty():
 		start = Game.menu_start_screen
@@ -38,6 +42,8 @@ func _ready() -> void:
 	# Opening on a sub-screen still lets "back" return to the main menu.
 	if not start.is_empty() and start != "main" and SCREENS.has(start):
 		_stack = ["main"]
+		if start == "tracks" or start == "race_options":
+			_stack.append("series")
 		if start == "race_options":
 			_stack.append("tracks")
 		_show(start)

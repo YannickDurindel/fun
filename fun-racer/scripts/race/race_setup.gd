@@ -31,9 +31,11 @@ func _enter_tree() -> void:
 	track = (load(info.scene) as PackedScene).instantiate() as Track
 	if track.track_id.is_empty():
 		# The generic track scene: tell it which folder to build, before it enters the tree.
-		track.track_id = info.id
+		track.track_id = info.circuit_id()
 		track.track_dir = info.dir()
 		track.track_json = info.track_json
+	if info.id != track.track_id:
+		track.event_id = info.id   # an event on another entry's circuit: records stay per event
 	track.name = "Track"
 	add_child(track)
 	move_child(track, 1)
@@ -42,6 +44,14 @@ func _ready() -> void:
 	var car := get_node_or_null(car_path) as Car
 	if car == null or track == null or track.data == null:
 		return
+	var catch_plane := get_node_or_null(^"CatchPlane") as Node3D
+	if catch_plane != null:   # a lap that dips deep (N24 valley, -280 m) must stay above the safety net
+		var low := 0.0
+		for p in track.data.points:
+			low = minf(low, p.y)
+		catch_plane.position.y = minf(catch_plane.position.y, low - 80.0)
+	CarKit.apply(car, CarKit.for_track(track_id))   # the endurance body on an endurance track
+	AutoBrake.attach(car, track)   # the brake assist of Options (does nothing while off)
 	var s := track.data.start_s - 8.0 if Bootstrap.spawn_s < 0.0 else Bootstrap.spawn_s
 	var xf := track.spawn_transform(s, grid_lateral if Bootstrap.spawn_s < 0.0 else 0.0)
 	car.global_transform = xf

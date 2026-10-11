@@ -4,6 +4,7 @@ extends Node
 ##   --screenshot=PATH    save the viewport to PATH after --frames frames, then quit
 ##   --frames=N           frame count for --screenshot (default 120)
 ##   --screen=NAME        open the menu on this screen (see scripts/menu/menu_router.gd)
+##   --series=ID          series whose tracks the track list shows (see SeriesCatalog)
 ##   --track=ID           skip the menu and race this track (see scripts/game.gd for more)
 ##   --handling=MODEL     arcade or simulation car physics for this run
 ##   --no-countdown       race scene starts immediately (no 3-2-1-GO)
@@ -33,8 +34,10 @@ var dev_run: bool = false
 var screenshot_frames: int = 120
 var _frame: int = 0
 var spawn_s: float = -1.0
-## --screen=NAME: menu screen to open directly (main, tracks, race_options, settings, controls, records).
+## --screen=NAME: menu screen to open directly (main, series, tracks, race_options, settings, controls, records).
 var start_screen: String = ""
+## --series=ID: SeriesCatalog id the track list opens on ("" = the last one chosen, F1 at first).
+var start_series: String = ""
 ## When true the race starts immediately (no 3-2-1 countdown). Set by --no-countdown and by
 ## the test runner so race-scene tests can drive straight away.
 var skip_countdown: bool = false
@@ -91,6 +94,8 @@ func _init() -> void:
 			screenshot_frames = int(arg.get_slice("=", 1))
 		elif arg.begins_with("--screen="):
 			start_screen = arg.get_slice("=", 1)
+		elif arg.begins_with("--series="):
+			start_series = arg.get_slice("=", 1)
 		elif arg == "--no-countdown":
 			skip_countdown = true
 		elif arg.begins_with("--handling="):

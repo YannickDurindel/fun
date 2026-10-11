@@ -200,11 +200,18 @@ var wheels: Array[WheelState] = []
 
 var spawn_transform: Transform3D
 
+## Look of the car (CarKit): which body it wears and where its wheels are drawn. Only the
+## visuals use these; the physics always runs on WHEEL_OFFSETS.
+var kit: String = CarKit.F1
+var visual_wheel_offsets: Array[Vector3] = WHEEL_OFFSETS.duplicate()
+
 ## Which model drives this car. Empty = follow the game: the --handling= flag, else the
 ## player's `gameplay/handling` setting. Set it before the car enters the tree to force one.
 @export var handling: StringName = &""
 ## The simulation model when handling == &"simulation", else null.
 var sim: SimHandling
+## Brake assist on the player's car (AutoBrake.attach), null otherwise.
+var auto_brake: AutoBrake
 # ---- simulation extras (arcade leaves the defaults)
 var ers_charge: float = 1.0          ## 0..1 of the lap's electric energy left
 var drs_open: bool = false
@@ -345,6 +352,8 @@ func _physics_process(_delta: float) -> void:
 		_raw_steer = clampf(Bootstrap.get_steer(), -1.0, 1.0)
 		_steer_digital = Bootstrap.is_steer_digital()
 		_steer_overdrive = not _steer_digital and not Bootstrap.autodrive
+		if auto_brake != null and not Bootstrap.autodrive:
+			auto_brake.apply(self)   # brake assist: may cut the throttle and add brake
 		if Input.is_action_just_pressed("respawn"):
 			respawn()
 		if sim != null:

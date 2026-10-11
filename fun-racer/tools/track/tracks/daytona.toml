@@ -1,0 +1,158 @@
+# Daytona International Speedway (Daytona Beach, Florida, USA): the road course of the Rolex 24,
+# 5729 m, 12 turns, anticlockwise. Endurance series (calendar_endurance.json).
+#
+#   .venv/bin/python tools/track/build_track.py daytona --plot
+
+id = "daytona"
+series = "endurance"
+full_name = "Daytona International Speedway (road course)"
+
+[osm]
+# No type=circuit relation. The bounding box holds the oval, the infield roads, the Le Mans
+# chicane, the 2021 NASCAR chicane, motorcycle variants, pit lanes and two kart tracks, so the
+# 24 h lap is listed by hand in driving order (about 5754 m, official 5729 m):
+ways = [
+  352696267,    # from the start / finish area (end of the tri-oval) into the infield, towards T3
+  352104911,    # "International Horseshoe" (the inner duplicate 198465563 is left out)
+  352104914,    # infield diagonal back to the south west
+  1315971773,   # "Dogleg"
+  352070313,    # infield, to the west horseshoe
+  352104912,    # "West Horseshoe" (the duplicate 198465566 is left out)
+  352070310,    # infield link towards the oval
+  352070308,    # infield exit onto the oval, just before the south banking
+  352067004,    # oval turns 1-2: the south banking and the start of the back straight
+  352070311,    # back straight
+  198466856,    # "Le Mans Chicane" = the Bus Stop (352070309 is the straight bypass of it)
+  352070316,    # "Speedway": north banking (turns 3-4) and the tri-oval, to the finish
+]
+
+[layout]
+direction = "anticlockwise"
+# OSM has no start / finish node: the end of the "Speedway" way, where the pit lane joins the
+# tri-oval (estimate; the real line is a little further along the pit wall).
+finish = [29.18508, -81.074]
+
+[elevation]
+dataset = "terrarium"
+
+[road]
+# Real banking: 31 degrees in the oval turns, 18 on the tri-oval. The pipeline's ceiling is
+# 0.40 rad (23 degrees), so the oval turns are CAPPED at 0.40 rad and the tri-oval at ~0.31 rad
+# (18 degrees, as built). All left-handers: the right edge is higher (negative bank).
+# Long blends (100 m) because these are fast corners. s values are read off track.json.
+max_bank = 0.40
+# Widths (estimates, not surveyed): the infield roads are 12-15 m (13 m as built); the oval's
+# banked racing surface is far wider than the "40 ft" quoted for NASCAR's racing groove: about
+# 18 m on the turns and the tri-oval (three to four cars abreast on the banking plus the paved
+# apron and the run to the wall), so those stretches are widened to 18 m.
+base_width = 13.0
+grid_width = 18.0
+
+[[road.override]]           # oval turns 1-2 (south banking), capped at 0.40 rad (real 31 deg)
+s = [2200.0, 2800.0]
+bank = -0.40
+blend = 100.0
+
+[[road.override]]           # oval turns 3-4 (north banking), capped at 0.40 rad (real 31 deg)
+s = [4000.0, 4800.0]
+bank = -0.40
+blend = 100.0
+
+[[road.override]]           # tri-oval before the line, 18 deg
+s = [5260.0, 5700.0]
+bank = -0.31
+blend = 90.0
+
+[[road.override]]           # oval turns 1-2 and the back straight's entry: full oval width
+s = [2150.0, 2850.0]
+width = 18.0
+blend = 60.0
+
+[[road.override]]           # back straight (oval, 3 deg): a little narrower
+s = [2900.0, 3350.0]
+width = 16.0
+blend = 60.0
+
+[[road.override]]           # oval turns 3-4
+s = [3950.0, 4900.0]
+width = 18.0
+blend = 60.0
+
+[[road.override]]           # tri-oval and the start / finish straight
+s = [5200.0, 40.0]
+width = 18.0
+blend = 50.0
+
+# Pinned to the official 12 (hand-picked from the detected corners; the infield kinks are dropped)
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 97.0
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "right"
+s = 294.0
+
+[[turn]]
+id = "T3"
+name = "International Horseshoe"
+direction = "right"
+s = 588.0
+
+[[turn]]
+id = "T4"
+name = "Dogleg"
+direction = "left"
+s = 1083.0
+
+[[turn]]
+id = "T5"
+name = "West Horseshoe"
+direction = "right"
+s = 1377.0
+
+[[turn]]
+id = "T6"
+name = "Turn 7"
+direction = "left"
+s = 1816.0
+
+[[turn]]
+id = "T7"
+name = "Oval turns 1-2"
+direction = "left"
+s = 2210.0
+
+[[turn]]
+id = "T8"
+name = "Bus Stop 1"
+direction = "left"
+s = 3510.0
+
+[[turn]]
+id = "T9"
+name = "Bus Stop 2"
+direction = "right"
+s = 3570.0
+
+[[turn]]
+id = "T10"
+name = "Bus Stop 3"
+direction = "left"
+s = 3705.0
+
+[[turn]]
+id = "T11"
+name = "Oval turns 3-4"
+direction = "left"
+s = 4200.0
+
+[[turn]]
+id = "T12"
+name = "Tri-oval"
+direction = "left"
+s = 5280.0
+

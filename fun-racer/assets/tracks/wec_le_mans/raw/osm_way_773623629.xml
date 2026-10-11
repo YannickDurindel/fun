@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1319 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="368498" visible="true" version="4" changeset="20063607" timestamp="2014-01-18T10:05:28Z" user="Andrés31" uid="811230" lat="47.9488452" lon="0.2074958"/>
+ <node id="368503" visible="true" version="5" changeset="20063607" timestamp="2014-01-18T10:05:28Z" user="Andrés31" uid="811230" lat="47.9526555" lon="0.2076815"/>
+ <node id="368534" visible="true" version="4" changeset="20063607" timestamp="2014-01-18T10:05:28Z" user="Andrés31" uid="811230" lat="47.9503976" lon="0.2075631"/>
+ <node id="2619663893" visible="true" version="2" changeset="20063607" timestamp="2014-01-18T10:05:28Z" user="Andrés31" uid="811230" lat="47.9484811" lon="0.2074677"/>
+ <node id="2626846599" visible="true" version="1" changeset="20063607" timestamp="2014-01-18T10:05:26Z" user="Andrés31" uid="811230" lat="47.9483033" lon="0.2074582"/>
+ <node id="2626846608" visible="true" version="1" changeset="20063607" timestamp="2014-01-18T10:05:26Z" user="Andrés31" uid="811230" lat="47.9486604" lon="0.2074825"/>
+ <node id="2626846631" visible="true" version="1" changeset="20063607" timestamp="2014-01-18T10:05:27Z" user="Andrés31" uid="811230" lat="47.9483686" lon="0.2074591"/>
+ <node id="3599294865" visible="true" version="2" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9498718" lon="0.2075404">
+  <tag k="raceway" v="start-finish"/>
+ </node>
+ <node id="6601036742" visible="true" version="4" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9511663" lon="0.2076063">
+  <tag k="raceway" v="start"/>
+ </node>
+ <node id="10083334982" visible="true" version="1" changeset="127190252" timestamp="2022-10-08T09:26:02Z" user="Lyon-St-Clair" uid="9060372" lat="47.9493358" lon="0.2075171"/>
+ <way id="773623629" visible="true" version="5" changeset="187314041" timestamp="2026-08-12T01:28:20Z" user="LordGarySugar" uid="13792107">
+  <nd ref="2626846599"/>
+  <nd ref="2626846631"/>
+  <nd ref="2619663893"/>
+  <nd ref="2626846608"/>
+  <nd ref="368498"/>
+  <nd ref="10083334982"/>
+  <nd ref="3599294865"/>
+  <nd ref="368534"/>
+  <nd ref="6601036742"/>
+  <nd ref="368503"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="width" v="13"/>
+ </way>
+</osm>

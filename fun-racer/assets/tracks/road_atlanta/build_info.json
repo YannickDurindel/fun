@@ -1,0 +1,308 @@
+{
+ "id": "road_atlanta",
+ "recipe": "tools/track/tracks/road_atlanta.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   1360423185,
+   1360423184,
+   9292566
+  ],
+  "raw_length_m": 4094.6,
+  "length_m": 4092.4,
+  "official_length_m": 4088.0,
+  "length_error": 0.00106,
+  "candidates": []
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "srtm30m",
+ "elevation": {
+  "range_m": 36.83,
+  "max_grade": 0.1207,
+  "min_grade": -0.1025,
+  "origin_m": 277.45
+ },
+ "turns": {
+  "official": 12,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Road Atlanta Racetrack",
+    "direction": "right",
+    "s_apex": 207.8,
+    "min_radius": 63.2
+   },
+   {
+    "id": "T2",
+    "name": "Road Atlanta Racetrack",
+    "direction": "left",
+    "s_apex": 537.5,
+    "min_radius": 136.3
+   },
+   {
+    "id": "T3",
+    "name": "Road Atlanta Racetrack",
+    "direction": "right",
+    "s_apex": 593.4,
+    "min_radius": 24.1
+   },
+   {
+    "id": "T4",
+    "name": "Road Atlanta Racetrack",
+    "direction": "left",
+    "s_apex": 725.3,
+    "min_radius": 84.7
+   },
+   {
+    "id": "T5",
+    "name": "The Esses",
+    "direction": "right",
+    "s_apex": 933.1,
+    "min_radius": 69.3
+   },
+   {
+    "id": "T6",
+    "name": "The Esses",
+    "direction": "left",
+    "s_apex": 995.0,
+    "min_radius": 106.5
+   },
+   {
+    "id": "T7",
+    "name": "The Esses",
+    "direction": "right",
+    "s_apex": 1090.9,
+    "min_radius": 63.0
+   },
+   {
+    "id": "T8",
+    "name": "The Esses",
+    "direction": "left",
+    "s_apex": 1172.9,
+    "min_radius": 40.5
+   },
+   {
+    "id": "T9",
+    "name": "Road Atlanta Racetrack",
+    "direction": "right",
+    "s_apex": 1780.3,
+    "min_radius": 52.5
+   },
+   {
+    "id": "T10",
+    "name": "Road Atlanta Racetrack",
+    "direction": "right",
+    "s_apex": 1922.1,
+    "min_radius": 22.3
+   },
+   {
+    "id": "T11",
+    "name": "Road Atlanta Racetrack",
+    "direction": "left",
+    "s_apex": 3282.8,
+    "min_radius": 19.2
+   },
+   {
+    "id": "T12",
+    "name": "Road Atlanta Racetrack",
+    "direction": "right",
+    "s_apex": 3338.7,
+    "min_radius": 31.2
+   },
+   {
+    "id": "T13",
+    "name": "Road Atlanta Racetrack",
+    "direction": "right",
+    "s_apex": 3502.6,
+    "min_radius": 89.2
+   },
+   {
+    "id": "T14",
+    "name": "Road Atlanta Racetrack",
+    "direction": "right",
+    "s_apex": 3774.3,
+    "min_radius": 77.0
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 101.9,
+    "direction": "right",
+    "angle_deg": 4.1,
+    "kind": "kink",
+    "min_radius": 251.3,
+    "used": false
+   },
+   {
+    "s_apex": 207.8,
+    "direction": "right",
+    "angle_deg": 73.8,
+    "kind": "corner",
+    "min_radius": 63.2,
+    "used": true
+   },
+   {
+    "s_apex": 311.7,
+    "direction": "right",
+    "angle_deg": 5.7,
+    "kind": "kink",
+    "min_radius": 202.0,
+    "used": false
+   },
+   {
+    "s_apex": 355.7,
+    "direction": "right",
+    "angle_deg": 12.9,
+    "kind": "kink",
+    "min_radius": 87.3,
+    "used": false
+   },
+   {
+    "s_apex": 383.6,
+    "direction": "right",
+    "angle_deg": 6.3,
+    "kind": "kink",
+    "min_radius": 131.2,
+    "used": false
+   },
+   {
+    "s_apex": 537.5,
+    "direction": "left",
+    "angle_deg": 35.0,
+    "kind": "corner",
+    "min_radius": 136.3,
+    "used": true
+   },
+   {
+    "s_apex": 593.4,
+    "direction": "right",
+    "angle_deg": 59.9,
+    "kind": "corner",
+    "min_radius": 24.1,
+    "used": true
+   },
+   {
+    "s_apex": 725.3,
+    "direction": "left",
+    "angle_deg": 54.6,
+    "kind": "corner",
+    "min_radius": 84.7,
+    "used": true
+   },
+   {
+    "s_apex": 841.2,
+    "direction": "left",
+    "angle_deg": 5.1,
+    "kind": "kink",
+    "min_radius": 227.0,
+    "used": false
+   },
+   {
+    "s_apex": 933.1,
+    "direction": "right",
+    "angle_deg": 56.1,
+    "kind": "corner",
+    "min_radius": 69.3,
+    "used": true
+   },
+   {
+    "s_apex": 995.0,
+    "direction": "left",
+    "angle_deg": 32.8,
+    "kind": "corner",
+    "min_radius": 106.5,
+    "used": true
+   },
+   {
+    "s_apex": 1090.9,
+    "direction": "right",
+    "angle_deg": 38.0,
+    "kind": "corner",
+    "min_radius": 63.0,
+    "used": true
+   },
+   {
+    "s_apex": 1172.9,
+    "direction": "left",
+    "angle_deg": 72.2,
+    "kind": "corner",
+    "min_radius": 40.5,
+    "used": true
+   },
+   {
+    "s_apex": 1780.3,
+    "direction": "right",
+    "angle_deg": 89.9,
+    "kind": "corner",
+    "min_radius": 52.5,
+    "used": true
+   },
+   {
+    "s_apex": 1922.1,
+    "direction": "right",
+    "angle_deg": 98.8,
+    "kind": "corner",
+    "min_radius": 22.3,
+    "used": true
+   },
+   {
+    "s_apex": 2193.9,
+    "direction": "left",
+    "angle_deg": 10.8,
+    "kind": "kink",
+    "min_radius": 325.4,
+    "used": false
+   },
+   {
+    "s_apex": 2853.2,
+    "direction": "right",
+    "angle_deg": 14.6,
+    "kind": "kink",
+    "min_radius": 334.6,
+    "used": false
+   },
+   {
+    "s_apex": 3282.8,
+    "direction": "left",
+    "angle_deg": 66.4,
+    "kind": "corner",
+    "min_radius": 19.2,
+    "used": true
+   },
+   {
+    "s_apex": 3338.7,
+    "direction": "right",
+    "angle_deg": 78.8,
+    "kind": "corner",
+    "min_radius": 31.2,
+    "used": true
+   },
+   {
+    "s_apex": 3450.6,
+    "direction": "right",
+    "angle_deg": 6.4,
+    "kind": "kink",
+    "min_radius": 135.2,
+    "used": false
+   },
+   {
+    "s_apex": 3502.6,
+    "direction": "right",
+    "angle_deg": 32.2,
+    "kind": "corner",
+    "min_radius": 89.2,
+    "used": true
+   },
+   {
+    "s_apex": 3774.3,
+    "direction": "right",
+    "angle_deg": 57.6,
+    "kind": "corner",
+    "min_radius": 77.0,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

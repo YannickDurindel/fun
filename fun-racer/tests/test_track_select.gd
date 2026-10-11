@@ -32,8 +32,8 @@ func test_cards_list_every_track() -> void:
 	var menu := await _open("tracks")
 	var screen := menu.current as TrackSelectScreen
 	assert_true(screen != null, "tracks screen is a TrackSelectScreen")
-	var all := TrackCatalog.all()
-	assert_true(screen.cards.size() == all.size() and all.size() >= 20, "one card per catalog entry (%d / %d)" % [screen.cards.size(), all.size()])
+	var all := SeriesCatalog.tracks(SeriesCatalog.F1)
+	assert_true(screen.cards.size() == all.size() and all.size() >= 20, "one card per F1 catalog entry (%d / %d)" % [screen.cards.size(), all.size()])
 	for i in mini(all.size(), screen.cards.size()):
 		assert_true(screen.cards[i].info == all[i], "card %d shows %s" % [i, all[i].id])
 		assert_true(screen.cards[i].focus_mode == Control.FOCUS_ALL and not screen.cards[i].disabled, "card %d can be focused" % i)

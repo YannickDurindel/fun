@@ -1,0 +1,35 @@
+# Nürburgring 24 Hours combination (Grand-Prix-Strecke with the Mercedes-Arena + Nordschleife),
+# 25378 m (Wikipedia, 24 Hours Nürburgring), clockwise. Endurance series (calendar_endurance.json).
+# Turn count is not standardised (calendar says 0): the detector's count is unofficial.
+#
+#   .venv/bin/python tools/track/build_track.py n24_nurburgring --plot
+
+id = "n24_nurburgring"
+series = "endurance"
+turns = 99   # unofficial: what the turn detector finds (99 incl. kinks), not standardised
+full_name = "Nürburgring Nordschleife + GP-Strecke (24h layout)"
+
+[osm]
+# No type=circuit relation used: box search over the whole complex (every highway=raceway way),
+# minus the ways below. The oneway tags are all digitised in race direction (clockwise), and the
+# graph search finds the 24h loop by length: GP start straight -> "Variante 24h-Rennen" -> Mercedes
+# Arena -> NGK-Schikane -> "Anbindung zur Nordschleife" -> Nordschleife -> T13 -> "Anbindung zum GP
+# Kurs" -> start straight (~4.6 km GP part + ~20.8 km Nordschleife).
+bbox = [6.88, 50.32, 7.04, 50.395]
+exclude_ways = [
+  820679450,                                     # NGK-Schikane duplicate of 1149161211 (parallel geometry)
+  30815119, 46194345, 769107218,                 # Boxengasse (main pit lane)
+  31009257, 32894824, 32894825, 32894842, 199642469, 199642470, 710354617,  # "Boxengasse an T13"
+  1113008496, 1113008498, 1113008501, 1113008502, 1113009320, 1113009321,
+  1113009324, 1113009325, 1113009326, 1113009622,  # rallycross circuit
+]
+length_tolerance = 0.04
+
+[layout]
+direction = "clockwise"
+# Start / finish: ESTIMATE on the SW-bound main straight, mid pit building (pit lane runs from
+# 50.3374, 6.9472 to 50.3324, 6.9427); check against aerial imagery.
+finish = [50.3352, 6.9469]
+
+[elevation]
+dataset = "terrarium"

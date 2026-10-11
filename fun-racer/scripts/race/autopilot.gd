@@ -282,6 +282,17 @@ func get_brake() -> float:
 func get_steer() -> float:
 	return _steer
 
+## Builds the plan if needed, and plans again once a measured envelope replaces the
+## provisional one. For users that read the plan without letting this node drive (AutoBrake).
+func ensure_plan() -> bool:
+	if _envelope_arrived():
+		_data = null
+	return prepare()
+
+## Centreline distance of `pos` (searching near `hint`, -1 = everywhere). Needs a plan.
+func closest_s(pos: Vector3, hint: float = -1.0) -> float:
+	return _data.closest_s(pos, hint)
+
 ## Target speed (m/s) of the profile at centreline distance s.
 func target_speed_at(s: float) -> float:
 	return _lerp_arr(_v_prof, s)
