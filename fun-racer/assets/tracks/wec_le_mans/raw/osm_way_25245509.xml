@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1294 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="31928893" visible="true" version="5" changeset="11249699" timestamp="2012-04-10T09:20:12Z" user="sparifankl" uid="650467" lat="47.9426304" lon="0.2344274"/>
+ <node id="2636377676" visible="true" version="1" changeset="20189490" timestamp="2014-01-25T08:49:40Z" user="Andrés31" uid="811230" lat="47.9432732" lon="0.2341138"/>
+ <way id="25245509" visible="true" version="21" changeset="180652778" timestamp="2026-03-31T02:04:54Z" user="Olyon" uid="1443767">
+  <nd ref="31928893"/>
+  <nd ref="2636377676"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="no"/>
+  <tag k="maxspeed" v="90"/>
+  <tag k="name" v="Ligne droite des Hunaudières"/>
+  <tag k="oneway" v="no"/>
+  <tag k="ref" v="D 338"/>
+  <tag k="sidewalk" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

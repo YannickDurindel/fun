@@ -289,6 +289,8 @@ def write_track_info(recipe, out_dir, scene_dir, log=print):
         "osm_relation": recipe.osm_relation,
         "available": available,
     }
+    if recipe.series != "f1":   # F1 tracks leave it out (the game's default series)
+        info["series"] = recipe.series
     with open(os.path.join(out_dir, "track_info.json"), "w", encoding="utf-8") as f:
         json.dump(info, f, indent=2, ensure_ascii=False)
         f.write("\n")

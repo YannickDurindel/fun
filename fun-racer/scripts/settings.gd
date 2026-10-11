@@ -41,6 +41,7 @@ const DEFAULTS: Dictionary = {
 		"speed_unit": "kmh",        # "kmh" or "mph"
 		"show_input_display": true,
 		"handling": "arcade",       # car physics: "arcade" or "simulation"
+		"auto_brake": 0,            # brake assist before corners: 0 off, 1 light, 2 medium, 3 strong
 		# Driving aids of the simulation handling (ignored by arcade). Applied live.
 		"aid_traction_control": 2,  # 0 off, 1 low, 2 high
 		"aid_abs": 1,               # 0 off, 1 on

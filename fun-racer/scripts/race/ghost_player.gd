@@ -35,6 +35,7 @@ var demo: bool = false
 var demo_lead: float = 10.0
 
 var _loaded_track: String = ""
+var _kit: String = CarKit.F1   ## CarKit of the track's series: the ghost wears its body and wheel positions
 var _demo_s: PackedFloat32Array = []   ## --ghost-demo: distance along the lap of each sample
 var _spin: PackedFloat32Array = PackedFloat32Array([0, 0, 0, 0])
 var _materials: Array[ShaderMaterial] = []
@@ -47,6 +48,9 @@ var _spin_nodes: Array[Node3D] = []
 
 func _ready() -> void:
 	demo = OS.get_cmdline_user_args().has("--ghost-demo")
+	var track := get_node_or_null(^"../Track") as Track
+	_kit = CarKit.for_track(track.race_id() if track != null else Game.config.track_id)
+	CarKit.dress(ghost_car, _kit, false)   # the body of the track's series
 	_setup_visuals()
 	ghost_car.visible = false
 	race = get_node_or_null(^"../Track/Race") as RaceManager
@@ -95,7 +99,7 @@ func _setup_visuals() -> void:
 		w.set_physics_process(false)
 		# Rest ride height: the body is level, so the smaller front wheels sit a little lower.
 		var comp := Car.FRONT_WHEEL_RADIUS - Car.REAR_WHEEL_RADIUS if i < 2 else 0.0
-		w.position = Car.WHEEL_OFFSETS[i] + Vector3(0.0, comp, 0.0)
+		w.position = CarKit.wheel_offsets(_kit)[i] + Vector3(0.0, comp, 0.0)
 		var pivot := w.get_node_or_null(^"Suspension/Pivot") as Node3D
 		var arm: float = w.get(&"_arm_length") if w.get(&"_arm_length") != null else 0.273
 		if pivot != null and arm > 0.0:
@@ -134,7 +138,7 @@ func _on_best_recorded(ghost: GhostData) -> void:
 		_loaded_track = ghost.track_id
 
 func _ensure_loaded() -> void:
-	var id := race.track.track_id if race.track != null else ""
+	var id := race.track.race_id() if race.track != null else ""
 	if id == _loaded_track:
 		return
 	_loaded_track = id
@@ -222,7 +226,7 @@ static func make_demo(track: Track, lateral: float = 2.5, sample_s: PackedFloat3
 	for i in range(1, n):
 		at[i] = at[i - 1] + 2.0 * DS / maxf(v[i - 1] + v[i], 0.5)
 	var g := GhostData.new()
-	g.track_id = track.track_id
+	g.track_id = track.race_id()
 	g.track_length = d.length
 	g.lap_time = at[n - 1]
 	g.sample_interval = maxf(1.0 / 30.0, g.lap_time / (GhostData.MAX_SAMPLES - 2))

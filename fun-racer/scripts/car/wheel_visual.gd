@@ -172,7 +172,7 @@ func _process(delta: float) -> void:
 	var w := _state()
 	if w == null:
 		return
-	position = Car.WHEEL_OFFSETS[wheel_index] + Vector3(0, w.compression, 0)
+	position = _car.visual_wheel_offsets[wheel_index] + Vector3(0, w.compression, 0)
 	if _steer:
 		_steer.rotation.y = w.steer_angle
 	if _spin:

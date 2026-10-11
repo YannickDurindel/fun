@@ -418,7 +418,7 @@ func _build_audio() -> void:
 	_add_slider("audio", "audio", "ui", "MENU", "Volume of menu and interface sounds.", 0, 100, 5)
 
 func _build_gameplay() -> void:
-	# Eight rows and a heading: a little tighter than the other tabs so they fit the panel.
+	# Nine rows and a heading: a little tighter than the other tabs so they fit the panel.
 	(_pages["gameplay"] as VBoxContainer).add_theme_constant_override(&"separation", 1)
 	_add_choice("gameplay", "gameplay", "speed_unit", "SPEED UNIT",
 			"Unit of the speedometer.", [["KM/H", "kmh"], ["MPH", "mph"]])
@@ -427,6 +427,9 @@ func _build_gameplay() -> void:
 	_add_choice("gameplay", "gameplay", "handling", "HANDLING",
 			"Arcade: easy and drifty. Simulation: real tyres, aero and gears. Applies from the next race.",
 			[["ARCADE", "arcade"], ["SIMULATION", "simulation"]])
+	_add_choice("gameplay", "gameplay", "auto_brake", "AUTO BRAKE",
+			"Brakes for you before corners. LIGHT: you still brake a bit. MEDIUM: just right. STRONG: early.",
+			[["OFF", 0], ["LIGHT", 1], ["MEDIUM", 2], ["STRONG", 3]])
 	var heading_box := MarginContainer.new()
 	heading_box.add_theme_constant_override(&"margin_left", 34)
 	heading_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -442,6 +445,8 @@ func _build_gameplay() -> void:
 	for key: String in AID_KEYS:
 		var info: Array = AID_ROWS[key]
 		_add_choice("gameplay", "gameplay", key, info[0], info[1], info[2])
+	for r: Row in _rows["gameplay"]:
+		r.custom_minimum_size.y = 54   # nine rows: a little shorter than the other tabs' 60
 
 ## Common sizes that fit the screen, plus whatever is currently set.
 func _resolution_options() -> Array:

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1321 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1256623476" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4532884" lon="-81.3479173"/>
+ <node id="1256623492" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4527951" lon="-81.3478505"/>
+ <node id="1256623516" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4531428" lon="-81.3479422"/>
+ <node id="1256623710" visible="true" version="2" changeset="7942886" timestamp="2011-04-23T12:06:10Z" user="Neverwhere" uid="221878" lat="27.4535074" lon="-81.3478853"/>
+ <node id="1256623773" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4530063" lon="-81.3479332"/>
+ <node id="13376286733" visible="true" version="1" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4534132" lon="-81.3478956"/>
+ <node id="13376286734" visible="true" version="1" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4532205" lon="-81.3479313"/>
+ <node id="13376286735" visible="true" version="1" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4530626" lon="-81.3479406"/>
+ <node id="13376286736" visible="true" version="1" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4528926" lon="-81.3478941"/>
+ <node id="13376286737" visible="true" version="1" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4529498" lon="-81.3479173"/>
+ <way id="1315957543" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330">
+  <nd ref="1256623710"/>
+  <nd ref="13376286733"/>
+  <nd ref="1256623476"/>
+  <nd ref="13376286734"/>
+  <nd ref="1256623516"/>
+  <nd ref="13376286735"/>
+  <nd ref="1256623773"/>
+  <nd ref="13376286737"/>
+  <nd ref="13376286736"/>
+  <nd ref="1256623492"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Bishop Bend"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

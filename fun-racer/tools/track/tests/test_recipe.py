@@ -43,6 +43,15 @@ class RecipeTest(unittest.TestCase):
         r = recipe.load("no_such_circuit", overrides={"osm_relation": 1, "length_m": 4000.0})
         self.assertEqual((r.length_m, r.source, r.road, r.turn_table), (4000.0, "", {}, []))
 
+    def test_series_from_the_series_calendar(self):
+        r = recipe.load("road_atlanta")
+        self.assertEqual((r.series, r.grand_prix, r.length_m), ("endurance", "Petit Le Mans", 4088.0))
+        self.assertEqual(recipe.load("imola").series, "f1")
+        r = recipe.from_dict("wec_le_mans", {"osm": {"relation": 1}})
+        self.assertEqual((r.series, r.length_m), ("endurance", 13626.0))
+        with self.assertRaises(BuildError):
+            recipe.from_dict("x", {"series": "karting", "length_m": 1000, "osm": {"relation": 1}})
+
     def test_command_line_overrides_recipe(self):
         r = recipe.from_dict("red_bull_ring", {"length_m": 4000, "osm": {"relation": 1}},
                              {"length_m": 4318.0, "direction": "anticlockwise"})

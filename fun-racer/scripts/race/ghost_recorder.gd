@@ -47,7 +47,7 @@ func _on_race_restarted() -> void:
 
 func _begin_lap() -> void:
 	buffer = GhostData.new()
-	buffer.track_id = race.track.track_id if race.track != null else ""
+	buffer.track_id = race.track.race_id() if race.track != null else ""
 	buffer.track_length = race.data.length if race.data != null else 0.0
 	_stride = maxi(1, sample_ticks)
 	buffer.sample_interval = _stride / float(Engine.physics_ticks_per_second)

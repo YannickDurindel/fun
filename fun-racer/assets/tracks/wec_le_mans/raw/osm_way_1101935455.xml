@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1291 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="368510" visible="true" version="9" changeset="127199205" timestamp="2022-10-08T12:47:29Z" user="Smockwette" uid="10505227" lat="47.9558230" lon="0.2093975"/>
+ <node id="1789587477" visible="true" version="2" changeset="20069582" timestamp="2014-01-18T17:22:43Z" user="Andrés31" uid="811230" lat="47.9564400" lon="0.2109034"/>
+ <way id="1101935455" visible="true" version="3" changeset="187314041" timestamp="2026-08-12T01:28:20Z" user="LordGarySugar" uid="13792107">
+  <nd ref="368510"/>
+  <nd ref="1789587477"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+ </way>
+</osm>

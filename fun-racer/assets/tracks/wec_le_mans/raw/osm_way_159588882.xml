@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1308 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="31928932" visible="true" version="3" changeset="8903297" timestamp="2011-08-02T17:57:52Z" user="Metacity" uid="160224" lat="47.9530353" lon="0.2294196"/>
+ <node id="603327127" visible="true" version="2" changeset="8903297" timestamp="2011-08-02T17:57:54Z" user="Metacity" uid="160224" lat="47.9480454" lon="0.2318228"/>
+ <node id="773932902" visible="true" version="3" changeset="8903501" timestamp="2011-08-02T18:22:53Z" user="Metacity" uid="160224" lat="47.9465050" lon="0.2325625"/>
+ <node id="1383337952" visible="true" version="1" changeset="8903297" timestamp="2011-08-02T17:57:05Z" user="Metacity" uid="160224" lat="47.9507139" lon="0.2305373"/>
+ <node id="2203113209" visible="true" version="1" changeset="15372494" timestamp="2013-03-15T11:48:44Z" user="Truchin" uid="138059" lat="47.9485070" lon="0.2315967"/>
+ <node id="2203113290" visible="true" version="1" changeset="15372494" timestamp="2013-03-15T11:48:46Z" user="Truchin" uid="138059" lat="47.9481411" lon="0.2317767"/>
+ <node id="2636360055" visible="true" version="2" changeset="71099619" timestamp="2019-06-10T11:53:44Z" user="Hervé TUC" uid="922338" lat="47.9451051" lon="0.2332311"/>
+ <node id="9037970012" visible="true" version="1" changeset="110287307" timestamp="2021-08-26T12:48:32Z" user="crln1" uid="2351029" lat="47.9516723" lon="0.2300759"/>
+ <node id="9177761996" visible="true" version="1" changeset="112603860" timestamp="2021-10-17T09:30:28Z" user="OldLion" uid="1931097" lat="47.9502138" lon="0.2307774"/>
+ <way id="159588882" visible="true" version="14" changeset="180652778" timestamp="2026-03-31T02:04:54Z" user="Olyon" uid="1443767">
+  <nd ref="2636360055"/>
+  <nd ref="773932902"/>
+  <nd ref="603327127"/>
+  <nd ref="2203113290"/>
+  <nd ref="2203113209"/>
+  <nd ref="9177761996"/>
+  <nd ref="1383337952"/>
+  <nd ref="9037970012"/>
+  <nd ref="31928932"/>
+  <tag k="alt_name" v="Route de Tours"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="no"/>
+  <tag k="maxspeed" v="90"/>
+  <tag k="name" v="Ligne droite des Hunaudières"/>
+  <tag k="name:en" v="Mulsanne straight"/>
+  <tag k="name:etymology:wikidata" v="Q111209427"/>
+  <tag k="oneway" v="no"/>
+  <tag k="ref" v="D 338"/>
+  <tag k="ref:FR:FANTOIR" v="722600483K"/>
+  <tag k="sidewalk" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

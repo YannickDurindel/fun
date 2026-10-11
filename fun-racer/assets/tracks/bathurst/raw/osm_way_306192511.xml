@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1316 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="35122545" visible="true" version="24" changeset="129117288" timestamp="2022-11-19T10:16:57Z" user="Osaka78" uid="9300097" lat="-33.4397488" lon="149.5610680">
+  <tag k="name" v="Murray's Corner"/>
+ </node>
+ <node id="662088419" visible="true" version="4" changeset="129117288" timestamp="2022-11-19T10:16:57Z" user="Osaka78" uid="9300097" lat="-33.4400079" lon="149.5610940"/>
+ <node id="662088450" visible="true" version="4" changeset="129117288" timestamp="2022-11-19T10:16:57Z" user="Osaka78" uid="9300097" lat="-33.4399016" lon="149.5611086"/>
+ <node id="3110398833" visible="true" version="2" changeset="129117288" timestamp="2022-11-19T10:16:57Z" user="Osaka78" uid="9300097" lat="-33.4401144" lon="149.5610732"/>
+ <node id="3113677733" visible="true" version="4" changeset="129117288" timestamp="2022-11-19T10:16:57Z" user="Osaka78" uid="9300097" lat="-33.4397945" lon="149.5610976"/>
+ <node id="10201606747" visible="true" version="1" changeset="129117288" timestamp="2022-11-19T10:16:57Z" user="Osaka78" uid="9300097" lat="-33.4398733" lon="149.5611118"/>
+ <node id="10201606748" visible="true" version="1" changeset="129117288" timestamp="2022-11-19T10:16:57Z" user="Osaka78" uid="9300097" lat="-33.4398366" lon="149.5611108"/>
+ <node id="10201606749" visible="true" version="1" changeset="129117288" timestamp="2022-11-19T10:16:57Z" user="Osaka78" uid="9300097" lat="-33.4398170" lon="149.5611056"/>
+ <node id="10201606750" visible="true" version="1" changeset="129117288" timestamp="2022-11-19T10:16:57Z" user="Osaka78" uid="9300097" lat="-33.4397685" lon="149.5610837"/>
+ <way id="306192511" visible="true" version="7" changeset="129117288" timestamp="2022-11-19T10:16:57Z" user="Osaka78" uid="9300097">
+  <nd ref="3110398833"/>
+  <nd ref="662088419"/>
+  <nd ref="662088450"/>
+  <nd ref="10201606747"/>
+  <nd ref="10201606748"/>
+  <nd ref="10201606749"/>
+  <nd ref="3113677733"/>
+  <nd ref="10201606750"/>
+  <nd ref="35122545"/>
+  <tag k="alt_name" v="Mount Panorama Scenic Road"/>
+  <tag k="highway" v="residential"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="maxweight" v="5"/>
+  <tag k="maxweight:bus" v="unrestricted"/>
+  <tag k="name" v="Murrays Corner"/>
+  <tag k="source" v="bing"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1314 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="395180430" visible="true" version="6" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9325374" lon="0.2089929"/>
+ <node id="400697486" visible="true" version="5" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9322813" lon="0.2090683"/>
+ <node id="1789604566" visible="true" version="2" changeset="19839927" timestamp="2014-01-06T09:14:45Z" user="Andrés31" uid="811230" lat="47.9335287" lon="0.2094567"/>
+ <node id="1789604578" visible="true" version="3" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9324508" lon="0.2090076"/>
+ <node id="1789604628" visible="true" version="3" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9332434" lon="0.2091785"/>
+ <node id="1789604647" visible="true" version="3" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9331092" lon="0.2090939"/>
+ <node id="1789604664" visible="true" version="3" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9331787" lon="0.2091337"/>
+ <node id="1789604819" visible="true" version="4" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9328918" lon="0.2090088"/>
+ <node id="2611959406" visible="true" version="3" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9334283" lon="0.2093358"/>
+ <node id="2611959412" visible="true" version="2" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9330412" lon="0.2090582"/>
+ <node id="2611959413" visible="true" version="2" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9327222" lon="0.2089882"/>
+ <node id="2611959415" visible="true" version="2" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9332997" lon="0.2092216"/>
+ <node id="2611959418" visible="true" version="2" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9334901" lon="0.2094045"/>
+ <node id="2611959425" visible="true" version="1" changeset="19839927" timestamp="2014-01-06T09:14:44Z" user="Andrés31" uid="811230" lat="47.9336234" lon="0.2095819"/>
+ <node id="2611959436" visible="true" version="3" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9328155" lon="0.2089965"/>
+ <node id="2611959438" visible="true" version="2" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9326245" lon="0.2089887"/>
+ <node id="2611959441" visible="true" version="1" changeset="19839927" timestamp="2014-01-06T09:14:44Z" user="Andrés31" uid="811230" lat="47.9335765" lon="0.2095184"/>
+ <node id="2611959443" visible="true" version="2" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9323748" lon="0.2090281"/>
+ <node id="2611959444" visible="true" version="3" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9329682" lon="0.2090300"/>
+ <node id="2611959454" visible="true" version="2" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9333750" lon="0.2092827"/>
+ <way id="34405909" visible="true" version="18" changeset="187314041" timestamp="2026-08-12T01:28:20Z" user="LordGarySugar" uid="13792107">
+  <nd ref="400697486"/>
+  <nd ref="2611959443"/>
+  <nd ref="1789604578"/>
+  <nd ref="395180430"/>
+  <nd ref="2611959438"/>
+  <nd ref="2611959413"/>
+  <nd ref="2611959436"/>
+  <nd ref="1789604819"/>
+  <nd ref="2611959444"/>
+  <nd ref="2611959412"/>
+  <nd ref="1789604647"/>
+  <nd ref="1789604664"/>
+  <nd ref="1789604628"/>
+  <nd ref="2611959415"/>
+  <nd ref="2611959454"/>
+  <nd ref="2611959406"/>
+  <nd ref="2611959418"/>
+  <nd ref="1789604566"/>
+  <nd ref="2611959441"/>
+  <nd ref="2611959425"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Virage Porsche"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+ </way>
+</osm>

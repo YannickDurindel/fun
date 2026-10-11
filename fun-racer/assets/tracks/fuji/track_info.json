@@ -1,0 +1,15 @@
+{
+  "id": "fuji",
+  "name": "Fuji Speedway",
+  "grand_prix": "6 Hours of Fuji",
+  "country": "Japan",
+  "country_code": "JP",
+  "city": "Oyama",
+  "length_m": 4563,
+  "turns": 16,
+  "scene": "res://scenes/tracks/fuji.tscn",
+  "track_json": "res://assets/tracks/fuji/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "endurance"
+}

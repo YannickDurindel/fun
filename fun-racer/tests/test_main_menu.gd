@@ -51,7 +51,7 @@ func test_opens_on_main_with_focus() -> void:
 
 func test_buttons_navigate() -> void:
 	var menu := await _open_menu()
-	var targets := {"play_button": "tracks", "records_button": "records", "options_button": "settings"}
+	var targets := {"play_button": "series", "records_button": "records", "options_button": "settings"}
 	for prop: String in targets:
 		var main := menu.current as MainMenu
 		assert_true(main != null, "back on the main screen before pressing %s" % prop)
@@ -89,7 +89,7 @@ func test_keyboard_navigation() -> void:
 	# Enter activates the focused button.
 	main.play_button.grab_focus()
 	await _press(&"ui_accept")
-	assert_true(menu.current_name == "tracks", "Enter on PLAY opens tracks (%s)" % menu.current_name)
+	assert_true(menu.current_name == "series", "Enter on PLAY opens the series list (%s)" % menu.current_name)
 	await _close_menu(menu)
 
 func test_hint_follows_input_device() -> void:

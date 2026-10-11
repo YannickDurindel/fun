@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="CarSpec" format=3]
+
+[ext_resource type="Script" path="res://scripts/car/sim/car_spec.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+wheelbase = 3.1
+dry_mass = 1030.0
+cg_height = 0.3
+inertia = Vector3(1500, 1750, 420)
+spring_front = 190000.0
+spring_rear = 170000.0
+heave_front = 245000.0
+heave_rear = 260000.0
+damper_front = 11600.0
+damper_rear = 11600.0
+damper_rebound_front = 18700.0
+damper_rebound_rear = 18700.0
+arb_front = 129000.0
+arb_rear = 103000.0
+tyre_mu = 1.8
+tyre_reference_load = 5200.0
+tyre_reference_load_rear = 6200.0
+cl_a = 3.7
+cd_a = 0.92
+aero_balance_front = 0.42
+drs_drag_factor = 1.0
+drs_downforce_factor = 1.0
+engine_power = 440000.0
+ers_power = 80000.0
+engine_torque_max = 900.0
+rpm_idle = 2200.0
+rpm_max = 8250.0
+rpm_shift_up = 6820.0
+rpm_shift_down = 4510.0
+gear_ratios = PackedFloat32Array(3.68, 2.8, 2.22, 1.82, 1.52, 1.27, 1.06)
+final_drive = 2.6
+engine_brake_torque = 115.0
+engine_brake_rpm = 6600.0
+rpm_limiter_band = 165.0
+idle_torque_max = 155.0
+clutch_torque_max = 1150.0
+rpm_clutch_bite = 2360.0
+rpm_clutch_band = 440.0
+rpm_launch = 4950.0
+rpm_launch_band = 1650.0
+shift_sync_rpm = 140.0
+rpm_downshift_limit = 7810.0
+torque_curve_rpm = PackedFloat32Array(2200, 3300, 4400, 4950, 5500, 5780, 6050, 6330, 6600, 6880, 7150, 7700, 8250)
+torque_curve = PackedFloat32Array(426, 555, 671, 710, 725, 728, 694, 664, 635, 606, 574, 503, 426)
+ers_torque_max = 160.0
+brake_torque_max = 16000.0
+fuel_flow_rpm = 5780.0
+fuel_capacity = 90.0
