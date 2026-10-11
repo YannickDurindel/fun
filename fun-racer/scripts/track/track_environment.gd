@@ -14,6 +14,8 @@ extends RefCounted
 ##
 ##   {
 ##     "preset": "temperate_day",            // optional starting point, see above
+##     "look": "detailed",                   // opt-in Real-Racing-style materials and lighting
+##                                           // (TrackLook); "" = the plain look (default)
 ##     "time": "day",                        // "day" | "dusk" | "night"
 ##     "sun": {"azimuth_deg": 60,            // compass bearing TO the sun: 0 north, 90 east
 ##             "elevation_deg": 45,          // above the horizon
@@ -70,6 +72,7 @@ const FLOOD_DUSK_SHARE: float = 0.45      ## floodlight strength at dusk
 
 const DEFAULTS: Dictionary = {
 	"preset": "",
+	"look": "",
 	"time": "day",
 	"sun": {"azimuth_deg": 60.0, "elevation_deg": 45.0, "color": [1.0, 0.95, 0.86], "energy": 1.5},
 	"sky": {"top": [0.24, 0.45, 0.78], "horizon": [0.74, 0.81, 0.88], "stars": 0.0,
@@ -146,6 +149,7 @@ var _old_environment: Environment
 var _sun: DirectionalLight3D
 var _old_sun: Dictionary = {}
 var _extra_light: DirectionalLight3D
+var _road_shaders: Dictionary = {}   ## shader -> original code (TrackLook.road)
 
 ## The environment of the track folder file `path` ("" or a missing file = the defaults).
 ## `time_override` ("day" / "dusk" / "night") forces that time's lighting.
@@ -255,6 +259,10 @@ func number(sec: String, key: String) -> float:
 	if v is float or v is int:
 		return float(v)
 	return float((DEFAULTS[sec] as Dictionary).get(key, 0.0))
+
+## True for "look": "detailed" (TrackLook materials and lighting).
+func detailed() -> bool:
+	return str(values.get("look", "")) == "detailed"
 
 func is_night() -> bool:
 	return time == "night"
@@ -382,6 +390,21 @@ func apply(sky_root: Node, light_parent: Node) -> void:
 		var e := _old_environment.duplicate(true) as Environment
 		_configure(e)
 		_world_env.environment = e
+	if detailed():
+		_apply_detailed(light_parent)
+
+## The opt-in detailed look (TrackLook): road material, tone mapping, sun shadows.
+func _apply_detailed(track: Node) -> void:
+	if _sun != null:
+		_old_sun["shadow"] = [_sun.directional_shadow_mode, _sun.directional_shadow_max_distance,
+				_sun.directional_shadow_split_1, _sun.directional_shadow_blend_splits,
+				_sun.shadow_blur, _sun.light_angular_distance]
+		TrackLook.sun(_sun)
+	var e := applied_environment()
+	if e != null:
+		TrackLook.environment(e, self)
+	if track is Node3D:
+		_road_shaders = TrackLook.road(track)
 
 ## Undoes apply(): the sky scene gets its own Environment and sun values back.
 func restore() -> void:
@@ -394,8 +417,18 @@ func restore() -> void:
 		_sun.light_energy = _old_sun["energy"]
 		_sun.light_cull_mask = _old_sun["mask"]
 		_sun.sky_mode = _old_sun["sky_mode"]
+		if _old_sun.has("shadow"):
+			var sh: Array = _old_sun["shadow"]
+			_sun.directional_shadow_mode = sh[0]
+			_sun.directional_shadow_max_distance = sh[1]
+			_sun.directional_shadow_split_1 = sh[2]
+			_sun.directional_shadow_blend_splits = sh[3]
+			_sun.shadow_blur = sh[4]
+			_sun.light_angular_distance = sh[5]
 	if is_instance_valid(_extra_light):
 		_extra_light.queue_free()
+	TrackLook.unroad(_road_shaders)
+	_road_shaders = {}
 	_world_env = null
 	_old_environment = null
 	_sun = null

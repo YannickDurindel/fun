@@ -1,0 +1,6 @@
+{
+  "look": "detailed",
+  "sun": {"azimuth_deg": 255, "elevation_deg": 38, "color": [1.0, 0.92, 0.80], "energy": 1.7},
+  "sky": {"top": [0.16, 0.36, 0.74], "horizon": [0.70, 0.79, 0.88]},
+  "fog": {"color": [0.72, 0.79, 0.87], "begin": 200, "end": 3200}
+}
