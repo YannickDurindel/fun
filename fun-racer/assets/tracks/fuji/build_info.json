@@ -69,8 +69,8 @@
  "start_finish_source": "recipe",
  "dem_dataset": "terrarium",
  "elevation": {
-  "range_m": 51.77,
-  "max_grade": 0.1269,
+  "range_m": 48.65,
+  "max_grade": 0.1051,
   "min_grade": -0.0918,
   "origin_m": 592.27
  },

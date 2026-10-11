@@ -48,10 +48,14 @@ func test_endurance_track_spawns_endurance_car() -> void:
 	cars.append_array(bots.bots)
 	assert_true(cars.size() == 2, "player and one bot (%d)" % cars.size())
 	var expected := CarKit.wheel_offsets(CarKit.ENDURANCE)
+	var e_spec := load("res://assets/car/specs/endurance.tres") as CarSpec
 	for car in cars:
 		assert_true(car.kit == CarKit.ENDURANCE, "%s wears the endurance kit" % car.name)
 		assert_true(_body_path(car) == "res://assets/car/endurance/body.glb", "%s body: %s" % [car.name, _body_path(car)])
 		assert_true(car.get_node(^"BodyVisual").get_script() != null, "%s keeps the head motion script" % car.name)
+		assert_true(is_equal_approx(car.wheelbase, 3.10) and is_equal_approx(car.wheel_offsets[2].z, 1.55), "%s physics wheelbase 3.10 m" % car.name)
+		assert_true(car.sim_spec_path.ends_with("endurance.tres") and is_equal_approx(car.mass, 1030.0), "%s own spec and mass" % car.name)
+		assert_true(not CarEnvelope.for_spec(car.sim_spec_path, null).provisional, "%s: the committed envelope of its spec is current (tools/lap_grip_sweep.gd --envelope --spec=...)" % car.name)
 		for i in 4:
 			var w := car.get_node(["WheelFL", "WheelFR", "WheelRL", "WheelRR"][i]) as Node3D
 			assert_true(is_equal_approx(w.position.z, expected[i].z) and is_equal_approx(w.position.x, expected[i].x),
@@ -59,6 +63,42 @@ func test_endurance_track_spawns_endurance_car() -> void:
 			assert_true(not (w.get_node(^"Suspension") as Node3D).visible and not (w.get_node(^"Steer/Upright") as Node3D).visible,
 					"%s wheel %d hides the open-wheel parts" % [car.name, i])
 	await _end(scene)
+
+func test_endurance_spec_is_a_hypercar() -> void:
+	var f1 := load(Car.SIM_SPEC_PATH) as CarSpec
+	var e := load("res://assets/car/specs/endurance.tres") as CarSpec
+	assert_true(is_equal_approx(e.wheelbase, 3.10) and is_equal_approx(f1.wheelbase, Car.WHEELBASE), "wheelbases")
+	assert_true(is_equal_approx(e.dry_mass, 1030.0), "LMH minimum mass")
+	assert_between(e.cl_a / e.cd_a, 3.5, 4.5, "lift to drag near 4")
+	assert_true(e.cl_a < f1.cl_a and e.cd_a < f1.cd_a * 1.0 and e.cd_a > 0.0, "less downforce than F1")
+	assert_between((e.engine_power + e.ers_power) / 1000.0, 500.0, 540.0, "combined power (kW)")
+	assert_true(CarKit.for_spec("res://assets/car/specs/endurance.tres") == CarKit.ENDURANCE and CarKit.for_spec(Car.SIM_SPEC_PATH) == CarKit.F1, "spec to kit")
+
+func test_f1_kit_is_a_no_op() -> void:
+	var car := (load("res://scenes/car/car.tscn") as PackedScene).instantiate() as Car
+	var mass := car.mass
+	var grip := car.lateral_grip_g
+	var curve := car.accel_curve_ms2.duplicate()
+	CarKit.apply(car, CarKit.F1)
+	assert_true(car.mass == mass and car.lateral_grip_g == grip and car.accel_curve_ms2 == curve, "arcade tuning untouched")
+	assert_true(car.wheel_offsets == Car.WHEEL_OFFSETS and car.wheelbase == Car.WHEELBASE and car.sim_spec_path == Car.SIM_SPEC_PATH, "F1 contacts and spec")
+	car.free()
+
+func test_ghost_wears_the_kit() -> void:
+	for pair in [[ENDURANCE_TRACK, CarKit.ENDURANCE], ["red_bull_ring", CarKit.F1]]:
+		_begin(0)
+		Game.config.track_id = pair[0]
+		var scene := spawn("res://scenes/race.tscn")
+		await physics_frames(2)
+		var ghost := scene.get_node("Ghost") as GhostPlayer
+		var body := ghost.ghost_car.get_node(^"BodyVisual/Body")
+		var want := "res://assets/car/endurance/body.glb" if pair[1] == CarKit.ENDURANCE else "res://assets/car/body.glb"
+		assert_true(body.scene_file_path == want, "%s ghost body: %s" % [pair[0], body.scene_file_path])
+		var offsets := CarKit.wheel_offsets(pair[1])
+		var fl := ghost.ghost_car.get_node(^"WheelFL") as Node3D
+		assert_true(is_equal_approx(fl.position.z, offsets[0].z), "%s ghost front axle at %.2f (got %.2f)" % [pair[0], offsets[0].z, fl.position.z])
+		assert_true((fl.get_node(^"Suspension") as Node3D).visible == (pair[1] == CarKit.F1), "%s ghost wishbones" % pair[0])
+		await _end(scene)
 
 func test_f1_track_keeps_f1_car() -> void:
 	_begin(1)

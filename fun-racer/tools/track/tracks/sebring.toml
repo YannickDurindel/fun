@@ -36,9 +36,12 @@ ways = [
 
 [layout]
 direction = "clockwise"   # OSM oneway order (signed area of the way chain checked: clockwise)
-# No start / finish node in OSM. Estimate: on the front straight (way 426154259) half way along
-# the pit lane (pit entry lon -81.3554, exit -81.3500). Check against aerial imagery.
-finish = [27.45023, -81.3527]
+# No start / finish node in OSM. Placed from Esri World Imagery (z20, Oct 2026): on the front straight
+# (way 426154259) opposite the pit building's central control tower, where a "SEBRING" banner is
+# painted on the asphalt beside a thin transverse line and the chequered patch of the pit wall
+# (lon -81.35368) sits 7 m further east. Accuracy about +-5 m. The earlier estimate (half way
+# along the pit lane, lon -81.3527) was ~105 m east of it. Pit entry lon -81.3554, exit -81.3500.
+finish = [27.45023, -81.35374]
 
 [elevation]
 dataset = "terrarium"

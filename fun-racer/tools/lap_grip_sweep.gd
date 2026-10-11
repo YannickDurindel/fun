@@ -93,6 +93,9 @@ func _envelope() -> void:
 	# Loaded at run time: class names of the game are not known when this script is compiled.
 	var script: GDScript = load("res://scripts/race/car_envelope.gd")
 	var spec_path: String = (load("res://scripts/car/car.gd") as GDScript).get_script_constant_map()["SIM_SPEC_PATH"]
+	for a in OS.get_cmdline_user_args():
+		if a.begins_with("--spec="):   # e.g. --spec=res://assets/car/specs/endurance.tres
+			spec_path = a.substr(7)
 	var env: RefCounted = await script.call(&"measure", root, spec_path)
 	print(env.call(&"describe"))
 	if not env.call(&"is_sane"):

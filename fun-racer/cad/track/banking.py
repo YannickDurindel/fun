@@ -40,8 +40,8 @@ Automatic defaults (estimates, NOT surveyed values)
 Declared banking
 ----------------
 The automatic camber never exceeds MAX_BANK (0.03 rad). A recipe that knows better says so:
-``[road] max_bank = 0.34`` raises the limit for that track (up to BANK_CEILING, 0.40 rad =
-23 degrees: beyond that the arcade car's road-plane model and the 2 m cross-sections stop
+``[road] max_bank = 0.34`` raises the limit for that track (up to BANK_CEILING, 0.56 rad =
+32 degrees, Daytona's 31: beyond that the arcade car's road-plane model and the 2 m cross-sections stop
 being a fair picture of the road), and ``[[road.override]] bank = ...`` or ``bank_keys`` then
 give the real angle. ``declared(cfg)`` is true for such a track, and everything that only a
 steeply banked road needs hangs on it, so that every other track builds byte for byte as
@@ -70,7 +70,7 @@ from __future__ import annotations
 import numpy as np
 
 MAX_BANK = 0.03          # rad: limit of the automatic camber, and of a recipe without max_bank
-BANK_CEILING = 0.40      # rad: the most a recipe may declare with [road] max_bank
+BANK_CEILING = 0.56      # rad: the most a recipe may declare with [road] max_bank
 MAX_ROLL_RATE = 0.012    # rad/m along the lap (see "Declared banking")
 BASE_WIDTH = 13.0        # m
 GRID_WIDTH = 15.0        # m, start / finish straight

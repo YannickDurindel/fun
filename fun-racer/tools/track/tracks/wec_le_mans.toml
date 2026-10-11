@@ -40,9 +40,10 @@ ways = [
 [layout]
 # Manual ways do not take the direction from the oneway tags.
 direction = "clockwise"
-# No start / finish node in OSM. Estimate: on the pit straight (way 773623629), 230 m after
-# the Raccordement, beside the pit building.
-finish = [47.94987, 0.20754]
+# No start / finish node in OSM. The Esri World Imagery aerial (z19, 0.2 m per pixel) shows the
+# white line across the pit straight in front of the start gantry and the race control tower, on
+# the estimate to within about 1 m (read off the picture to +/- 3 m).
+finish = [47.949865, 0.207541]
 
 [elevation]
 # OpenTopoData is rate limited per IP while several tracks build.

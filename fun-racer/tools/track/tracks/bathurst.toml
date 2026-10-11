@@ -33,11 +33,164 @@ ways = [
 
 [layout]
 direction = "anticlockwise"
-# Estimate: Pit Straight node about 93 m after Murrays Corner; OSM has no start/finish node.
-finish = [-33.4394894, 149.5598428]
+# OSM has no start / finish node (no raceway=* feature within 400 m). Esri World Imagery (z18;
+# z19 is "map data not yet available" here): the line is under the pedestrian / timing bridge
+# that crosses the pit straight at the pit building (race control). The paint itself is hidden
+# by the bridge and its shadow, so the position is the bridge centre line, about 5.7 m behind
+# the earlier node-based estimate (-33.4394894, 149.5598428); accuracy about 3 m.
+finish = [-33.4394894, 149.5597816]
 
 [elevation]
 dataset = "terrarium"
+
+# Turn table pinned to the official 23 turns. Numbering anchors found in published guides (none
+# is an official map; none gives all 23): Supercars "How Bathurst 1000 corners got their names"
+# (supercars.com, 2025: Hell Corner left, Turn 2 = Griffins Bend uphill right, Turn 4 = The
+# Cutting), Virtual Race Car Engineer and a Steam setup guide (T1 Hell Corner, T9 Sulman Park,
+# T18 The Dipper, T19 Forrest's Elbow, T20 the fast kink before the Chase, T21 / T22 the Chase
+# left / right, Murray's Corner last), a track guide that puts the Esses at T13-T17.
+# The OSM geometry resolves 22 corners; T11 is the weak right kink on Skyline (R ~ 1.4 km) that
+# fills the count to 23 (OSM draws Skyline almost straight), so T10..T17 names are a best fit,
+# not confirmed: T11-T12 and the Dipper direction (guides say left, the geometry has a right at
+# s 3764 before Forrest's Elbow) are uncertain. The slight right at s 5241 (R 128 m) is not
+# counted (T21 is a left per the guides).
+[[turn]]
+id = "T1"
+name = "Hell Corner"
+direction = "left"
+s = 388.8
+
+[[turn]]
+id = "T2"
+name = "Griffins Bend"
+direction = "right"
+s = 1489.1
+
+[[turn]]
+id = "T3"
+name = "The Cutting (entry)"
+direction = "left"
+s = 1888.0
+
+[[turn]]
+id = "T4"
+name = "The Cutting"
+direction = "left"
+s = 1994.2
+
+[[turn]]
+id = "T5"
+name = "Reid Park"
+direction = "right"
+s = 2164.5
+
+[[turn]]
+id = "T6"
+name = "Reid Park"
+direction = "right"
+s = 2316.8
+
+[[turn]]
+id = "T7"
+name = "Reid Park"
+direction = "left"
+s = 2421.1
+
+[[turn]]
+id = "T8"
+name = "Sulman Park"
+direction = "left"
+s = 2571.4
+
+[[turn]]
+id = "T9"
+name = "Sulman Park"
+direction = "left"
+s = 2705.7
+
+[[turn]]
+id = "T10"
+name = "McPhillamy Park"
+direction = "left"
+s = 3034.3
+
+[[turn]]
+id = "T11"
+name = "Skyline (right kink)"
+direction = "right"
+s = 3251.0
+
+[[turn]]
+id = "T12"
+name = "Skyline / top of the Esses"
+direction = "right"
+s = 3314.9
+
+[[turn]]
+id = "T13"
+name = "The Esses"
+direction = "left"
+s = 3379.1
+
+[[turn]]
+id = "T14"
+name = "The Esses"
+direction = "right"
+s = 3445.2
+
+[[turn]]
+id = "T15"
+name = "The Esses"
+direction = "left"
+s = 3521.4
+
+[[turn]]
+id = "T16"
+name = "The Esses"
+direction = "right"
+s = 3575.5
+
+[[turn]]
+id = "T17"
+name = "The Esses"
+direction = "left"
+s = 3687.7
+
+[[turn]]
+id = "T18"
+name = "The Dipper"
+direction = "right"
+s = 3763.9
+
+[[turn]]
+id = "T19"
+name = "Forrest's Elbow"
+direction = "left"
+s = 3898.2
+
+[[turn]]
+id = "T20"
+name = "Conrod Straight kink"
+direction = "left"
+s = 4122.6
+
+[[turn]]
+id = "T21"
+name = "The Chase (entry)"
+direction = "left"
+s = 5519.5
+
+[[turn]]
+id = "T22"
+name = "The Chase (exit)"
+direction = "right"
+s = 5631.8
+
+[[turn]]
+id = "T23"
+name = "Murrays Corner"
+direction = "left"
+s = 6084.7
 
 [road]
 retaining_walls = true    # hillside circuit
@@ -78,3 +231,30 @@ osm = "way/842363809"
 osm = "way/842363822"
 [[surroundings.exclude]]
 osm = "way/842363801"
+
+# Pit-straight pedestrian / timing bridge (OSM footway 791554959 with steps 37594859 /
+# 791554958): the automatic deck came out as a huge inverted cone over the start line, so the
+# three ways are excluded and the bridge is redrawn: a 3.5 m deck 6 to 7 m above the road
+# (clears the cars by >= 6 m) between two stair / lift towers, on the OSM footway line.
+[[surroundings.exclude]]
+osm = "way/791554959"
+[[surroundings.exclude]]
+osm = "way/37594859"
+[[surroundings.exclude]]
+osm = "way/791554958"
+
+[[surroundings.add]]
+polygon = [[-33.4393692, 149.5597953], [-33.4398125, 149.5597092], [-33.4398176, 149.5597464], [-33.4393743, 149.5598325]]
+kind = "concrete"
+height = 7.0
+min_height = 6.0
+
+[[surroundings.add]]
+polygon = [[-33.4393582, 149.5597977], [-33.4393582, 149.55983], [-33.4393854, 149.55983], [-33.4393854, 149.5597977]]
+kind = "concrete"
+height = 7.0
+
+[[surroundings.add]]
+polygon = [[-33.4398015, 149.5597116], [-33.4398015, 149.5597439], [-33.4398286, 149.5597439], [-33.4398286, 149.5597116]]
+kind = "concrete"
+height = 7.0

@@ -250,7 +250,7 @@ would fold. The start / finish lines and grid boxes are painted by the tarmac sh
 the lap length and `start_s`, so they need nothing per track.
 
 **Banking.** The automatic camber stops at 0.03 rad (1.7 degrees). A corner that is really
-banked is declared in the recipe: `max_bank` raises the track's limit (up to 0.40 rad, 23
+banked is declared in the recipe: `max_bank` raises the track's limit (up to 0.56 rad, 32
 degrees) and an override (or `bank_keys`) gives the angle. Zandvoort's two banked corners
 would read:
 

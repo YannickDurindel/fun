@@ -145,7 +145,7 @@ func _step_steering(state: SimState, spec: CarSpec, dt: float) -> void:
 	# Full input asks for the tightest turn the grip allows (wheelbase / radius) plus a margin
 	# of slip angle: the fronts work near their peak, not far past it.
 	var v := maxf(state.speed, 1.0)
-	steer_lock = clampf(Car.WHEELBASE * spec.aid_steer_grip_usage * _a_lat_max / (v * v) + spec.aid_steer_slip_margin * _peak_slip_angle(spec),
+	steer_lock = clampf(spec.wheelbase * spec.aid_steer_grip_usage * _a_lat_max / (v * v) + spec.aid_steer_slip_margin * _peak_slip_angle(spec),
 			minf(spec.aid_steer_min_lock, spec.max_steer_angle), spec.max_steer_angle)
 	var x := state.in_steer
 	var rate := spec.aid_steer_rate_digital
@@ -174,7 +174,7 @@ func _step_stability(state: SimState, spec: CarSpec, dt: float) -> void:
 	var slide := maxf(absf(rear) - spec.aid_stab_slip_deadband * peak, 0.0)
 	# Yaw beyond what the steering and the speed call for, in the direction of the rotation.
 	var r_limit := _a_lat_max / maxf(state.speed, 1.0)
-	var r_ref := clampf(state.v_long * tan(-_steer_norm * steer_lock) / Car.WHEELBASE, -r_limit, r_limit)
+	var r_ref := clampf(state.v_long * tan(-_steer_norm * steer_lock) / spec.wheelbase, -r_limit, r_limit)
 	var over_yaw := maxf((state.yaw_rate - r_ref) * signf(state.yaw_rate) - spec.aid_stab_yaw_deadband, 0.0)
 	var want := maxf(slide / maxf(spec.aid_stab_slip_range * peak, 1e-3), over_yaw / maxf(spec.aid_stab_yaw_range, 1e-3))
 	stability += (clampf(want, 0.0, 1.0) * fade - stability) * blend

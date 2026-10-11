@@ -36,7 +36,7 @@
   "range_m": 1.72,
   "max_grade": 0.0031,
   "min_grade": -0.0027,
-  "origin_m": 18.68
+  "origin_m": 18.56
  },
  "turns": {
   "official": 17,
@@ -46,175 +46,175 @@
     "id": "T1",
     "name": "Turn 1",
     "direction": "left",
-    "s_apex": 375.2,
+    "s_apex": 483.8,
     "min_radius": 66.8
    },
    {
     "id": "T2",
     "name": "Turn 2",
     "direction": "left",
-    "s_apex": 871.3,
+    "s_apex": 979.9,
     "min_radius": 30.0
    },
    {
     "id": "T3",
     "name": "Turn 3",
     "direction": "right",
-    "s_apex": 953.3,
+    "s_apex": 1059.9,
     "min_radius": 62.4
    },
    {
     "id": "T4",
     "name": "Turn 4",
     "direction": "left",
-    "s_apex": 1086.5,
-    "min_radius": 35.4
+    "s_apex": 1193.1,
+    "min_radius": 35.5
    },
    {
     "id": "T5",
     "name": "Gurney Bend",
     "direction": "right",
-    "s_apex": 1359.2,
-    "min_radius": 168.8
+    "s_apex": 1467.8,
+    "min_radius": 169.3
    },
    {
     "id": "T6",
     "name": "Hairpin",
     "direction": "right",
-    "s_apex": 1945.5,
-    "min_radius": 24.0
+    "s_apex": 2052.1,
+    "min_radius": 24.1
    },
    {
     "id": "T7",
     "name": "Hairpin",
     "direction": "left",
-    "s_apex": 2013.2,
+    "s_apex": 2121.8,
     "min_radius": 38.3
    },
    {
     "id": "T8",
     "name": "Hairpin",
     "direction": "right",
-    "s_apex": 2048.0,
-    "min_radius": 72.2
+    "s_apex": 2154.6,
+    "min_radius": 71.9
    },
    {
     "id": "T9",
     "name": "Fangio",
     "direction": "right",
-    "s_apex": 2195.6,
-    "min_radius": 101.5
+    "s_apex": 2302.2,
+    "min_radius": 101.6
    },
    {
     "id": "T10",
     "name": "Turn 10",
     "direction": "left",
-    "s_apex": 2439.6,
-    "min_radius": 172.8
+    "s_apex": 2546.2,
+    "min_radius": 172.9
    },
    {
     "id": "T11",
     "name": "Cunningham Corner",
     "direction": "right",
-    "s_apex": 2761.4,
-    "min_radius": 24.2
+    "s_apex": 2868.0,
+    "min_radius": 24.3
    },
    {
     "id": "T12",
     "name": "Turn 12",
     "direction": "left",
-    "s_apex": 2863.9,
-    "min_radius": 53.5
+    "s_apex": 2970.5,
+    "min_radius": 53.6
    },
    {
     "id": "T13",
     "name": "Collier Curve",
     "direction": "left",
-    "s_apex": 2960.3,
+    "s_apex": 3066.9,
     "min_radius": 55.9
    },
    {
     "id": "T14",
     "name": "Turn 14",
     "direction": "right",
-    "s_apex": 3114.1,
-    "min_radius": 64.8
+    "s_apex": 3220.7,
+    "min_radius": 64.9
    },
    {
     "id": "T15",
     "name": "Tower Turn",
     "direction": "right",
-    "s_apex": 3282.2,
+    "s_apex": 3388.8,
     "min_radius": 30.2
    },
    {
     "id": "T16",
     "name": "Bishop Bend",
     "direction": "left",
-    "s_apex": 3712.7,
+    "s_apex": 3821.3,
     "min_radius": 64.6
    },
    {
     "id": "T17",
     "name": "Turn 17",
     "direction": "left",
-    "s_apex": 3868.5,
-    "min_radius": 71.3
+    "s_apex": 3975.1,
+    "min_radius": 71.2
    },
    {
     "id": "T18",
     "name": "Gendebien Bend",
     "direction": "right",
-    "s_apex": 4094.0,
+    "s_apex": 4200.6,
     "min_radius": 54.1
    },
    {
     "id": "T19",
     "name": "Turn 19",
     "direction": "left",
-    "s_apex": 4173.9,
-    "min_radius": 78.4
+    "s_apex": 4280.5,
+    "min_radius": 78.3
    },
    {
     "id": "T20",
     "name": "Le Mans Curve",
     "direction": "right",
-    "s_apex": 4337.9,
-    "min_radius": 46.7
+    "s_apex": 4444.5,
+    "min_radius": 46.6
    },
    {
     "id": "T21",
     "name": "Ullman Straight",
     "direction": "right",
-    "s_apex": 5283.0,
+    "s_apex": 5389.6,
     "min_radius": 70.1
    },
    {
     "id": "T22",
     "name": "Sunset Bend",
     "direction": "right",
-    "s_apex": 5424.5,
-    "min_radius": 57.0
+    "s_apex": 5531.1,
+    "min_radius": 56.9
    },
    {
     "id": "T23",
     "name": "Sunset Bend",
     "direction": "right",
-    "s_apex": 5559.8,
+    "s_apex": 5666.4,
     "min_radius": 53.4
    }
   ],
   "auto_candidates": [
    {
-    "s_apex": 328.0,
+    "s_apex": 434.6,
     "direction": "left",
-    "angle_deg": 4.2,
+    "angle_deg": 4.4,
     "kind": "kink",
-    "min_radius": 249.5,
+    "min_radius": 248.6,
     "used": false
    },
    {
-    "s_apex": 375.2,
+    "s_apex": 483.8,
     "direction": "left",
     "angle_deg": 96.0,
     "kind": "corner",
@@ -222,31 +222,31 @@
     "used": true
    },
    {
-    "s_apex": 674.5,
+    "s_apex": 781.1,
     "direction": "right",
-    "angle_deg": 5.4,
+    "angle_deg": 5.3,
     "kind": "kink",
-    "min_radius": 164.3,
+    "min_radius": 164.7,
     "used": false
    },
    {
-    "s_apex": 752.4,
+    "s_apex": 859.0,
     "direction": "right",
-    "angle_deg": 8.1,
+    "angle_deg": 7.9,
     "kind": "kink",
-    "min_radius": 192.6,
+    "min_radius": 192.2,
     "used": false
    },
    {
-    "s_apex": 871.3,
+    "s_apex": 979.9,
     "direction": "left",
-    "angle_deg": 91.7,
+    "angle_deg": 91.9,
     "kind": "corner",
     "min_radius": 30.0,
     "used": true
    },
    {
-    "s_apex": 953.3,
+    "s_apex": 1059.9,
     "direction": "right",
     "angle_deg": 36.7,
     "kind": "corner",
@@ -254,95 +254,95 @@
     "used": true
    },
    {
-    "s_apex": 1086.5,
+    "s_apex": 1193.1,
     "direction": "left",
     "angle_deg": 103.5,
     "kind": "corner",
-    "min_radius": 35.4,
+    "min_radius": 35.5,
     "used": true
    },
    {
-    "s_apex": 1182.9,
+    "s_apex": 1289.5,
     "direction": "right",
     "angle_deg": 14.7,
     "kind": "kink",
-    "min_radius": 136.9,
+    "min_radius": 137.0,
     "used": false
    },
    {
-    "s_apex": 1258.7,
+    "s_apex": 1365.3,
     "direction": "right",
     "angle_deg": 8.1,
     "kind": "kink",
-    "min_radius": 200.5,
+    "min_radius": 200.2,
     "used": false
    },
    {
-    "s_apex": 1359.2,
+    "s_apex": 1467.8,
     "direction": "right",
-    "angle_deg": 39.8,
+    "angle_deg": 39.6,
     "kind": "corner",
-    "min_radius": 168.8,
+    "min_radius": 169.3,
     "used": true
    },
    {
-    "s_apex": 1945.5,
+    "s_apex": 2052.1,
     "direction": "right",
     "angle_deg": 134.6,
     "kind": "corner",
-    "min_radius": 24.0,
+    "min_radius": 24.1,
     "used": true
    },
    {
-    "s_apex": 2013.2,
+    "s_apex": 2121.8,
     "direction": "left",
-    "angle_deg": 40.0,
+    "angle_deg": 39.8,
     "kind": "corner",
     "min_radius": 38.3,
     "used": true
    },
    {
-    "s_apex": 2048.0,
+    "s_apex": 2154.6,
     "direction": "right",
     "angle_deg": 39.6,
     "kind": "corner",
-    "min_radius": 72.2,
+    "min_radius": 71.9,
     "used": true
    },
    {
-    "s_apex": 2195.6,
+    "s_apex": 2302.2,
     "direction": "right",
     "angle_deg": 25.3,
     "kind": "corner",
-    "min_radius": 101.5,
+    "min_radius": 101.6,
     "used": true
    },
    {
-    "s_apex": 2439.6,
+    "s_apex": 2546.2,
     "direction": "left",
     "angle_deg": 25.2,
     "kind": "corner",
-    "min_radius": 172.8,
+    "min_radius": 172.9,
     "used": true
    },
    {
-    "s_apex": 2761.4,
+    "s_apex": 2868.0,
     "direction": "right",
     "angle_deg": 99.1,
     "kind": "corner",
-    "min_radius": 24.2,
+    "min_radius": 24.3,
     "used": true
    },
    {
-    "s_apex": 2863.9,
+    "s_apex": 2970.5,
     "direction": "left",
     "angle_deg": 34.5,
     "kind": "corner",
-    "min_radius": 53.5,
+    "min_radius": 53.6,
     "used": true
    },
    {
-    "s_apex": 2960.3,
+    "s_apex": 3066.9,
     "direction": "left",
     "angle_deg": 38.6,
     "kind": "corner",
@@ -350,23 +350,23 @@
     "used": true
    },
    {
-    "s_apex": 3025.9,
+    "s_apex": 3132.5,
     "direction": "left",
     "angle_deg": 8.7,
     "kind": "kink",
-    "min_radius": 149.9,
+    "min_radius": 149.6,
     "used": false
    },
    {
-    "s_apex": 3114.1,
+    "s_apex": 3220.7,
     "direction": "right",
     "angle_deg": 26.3,
     "kind": "corner",
-    "min_radius": 64.8,
+    "min_radius": 64.9,
     "used": true
    },
    {
-    "s_apex": 3282.2,
+    "s_apex": 3388.8,
     "direction": "right",
     "angle_deg": 90.8,
     "kind": "corner",
@@ -374,7 +374,7 @@
     "used": true
    },
    {
-    "s_apex": 3663.5,
+    "s_apex": 3770.1,
     "direction": "right",
     "angle_deg": 8.2,
     "kind": "kink",
@@ -382,7 +382,7 @@
     "used": false
    },
    {
-    "s_apex": 3712.7,
+    "s_apex": 3821.3,
     "direction": "left",
     "angle_deg": 31.3,
     "kind": "corner",
@@ -390,15 +390,15 @@
     "used": true
    },
    {
-    "s_apex": 3868.5,
+    "s_apex": 3975.1,
     "direction": "left",
-    "angle_deg": 21.1,
+    "angle_deg": 20.9,
     "kind": "corner",
-    "min_radius": 71.3,
+    "min_radius": 71.2,
     "used": true
    },
    {
-    "s_apex": 4094.0,
+    "s_apex": 4200.6,
     "direction": "right",
     "angle_deg": 77.0,
     "kind": "corner",
@@ -406,23 +406,23 @@
     "used": true
    },
    {
-    "s_apex": 4173.9,
+    "s_apex": 4280.5,
     "direction": "left",
     "angle_deg": 24.7,
     "kind": "corner",
-    "min_radius": 78.4,
+    "min_radius": 78.3,
     "used": true
    },
    {
-    "s_apex": 4337.9,
+    "s_apex": 4444.5,
     "direction": "right",
     "angle_deg": 80.7,
     "kind": "corner",
-    "min_radius": 46.7,
+    "min_radius": 46.6,
     "used": true
    },
    {
-    "s_apex": 5283.0,
+    "s_apex": 5389.6,
     "direction": "right",
     "angle_deg": 32.4,
     "kind": "corner",
@@ -430,17 +430,17 @@
     "used": true
    },
    {
-    "s_apex": 5424.5,
+    "s_apex": 5531.1,
     "direction": "right",
-    "angle_deg": 83.4,
+    "angle_deg": 83.3,
     "kind": "corner",
-    "min_radius": 57.0,
+    "min_radius": 56.9,
     "used": true
    },
    {
-    "s_apex": 5559.8,
+    "s_apex": 5666.4,
     "direction": "right",
-    "angle_deg": 58.3,
+    "angle_deg": 58.4,
     "kind": "corner",
     "min_radius": 53.4,
     "used": true

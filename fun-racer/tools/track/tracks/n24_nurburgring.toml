@@ -28,7 +28,9 @@ length_tolerance = 0.04
 [layout]
 direction = "clockwise"
 # Start / finish: ESTIMATE on the SW-bound main straight, mid pit building (pit lane runs from
-# 50.3374, 6.9472 to 50.3324, 6.9427); check against aerial imagery.
+# 50.3374, 6.9472 to 50.3324, 6.9427); aerial check (Esri World Imagery z19): the painted
+# line is not resolvable (shadows, 0.3 m per pixel); the estimate is about 40 m before the
+# pedestrian bridge over the straight, kept unmoved.
 finish = [50.3352, 6.9469]
 
 [elevation]

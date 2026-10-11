@@ -29,18 +29,21 @@ ways = [
 [layout]
 direction = "anticlockwise"
 # OSM has no start / finish node: the end of the "Speedway" way, where the pit lane joins the
-# tri-oval (estimate; the real line is a little further along the pit wall).
+# tri-oval (estimate; the real line is a little further along the pit wall). Esri World Imagery
+# z19 (stitched, tiles 144065-144071 / 217667-217673) shows no painted line on the tri-oval
+# (no chequer, only the yellow inner line and pit-entry markings), so it is NOT conclusive and
+# the estimate is kept.
 finish = [29.18508, -81.074]
 
 [elevation]
 dataset = "terrarium"
 
 [road]
-# Real banking: 31 degrees in the oval turns, 18 on the tri-oval. The pipeline's ceiling is
-# 0.40 rad (23 degrees), so the oval turns are CAPPED at 0.40 rad and the tri-oval at ~0.31 rad
-# (18 degrees, as built). All left-handers: the right edge is higher (negative bank).
-# Long blends (100 m) because these are fast corners. s values are read off track.json.
-max_bank = 0.40
+# Real banking: 31 degrees (0.54 rad) in the oval turns, 18 (0.31) on the tri-oval; the back
+# straight's 2-3 degrees is left to the automatic crossfall. All left-handers: the right edge is
+# higher (negative bank). Blends of 110 m (twist rule: >= 1.5 x 0.54 / 0.012 = 68 m) because
+# these are 300 km/h corners. s values are read off track.json.
+max_bank = 0.56
 # Widths (estimates, not surveyed): the infield roads are 12-15 m (13 m as built); the oval's
 # banked racing surface is far wider than the "40 ft" quoted for NASCAR's racing groove: about
 # 18 m on the turns and the tri-oval (three to four cars abreast on the banking plus the paved
@@ -48,15 +51,15 @@ max_bank = 0.40
 base_width = 13.0
 grid_width = 18.0
 
-[[road.override]]           # oval turns 1-2 (south banking), capped at 0.40 rad (real 31 deg)
+[[road.override]]           # oval turns 1-2 (south banking), 31 deg
 s = [2200.0, 2800.0]
-bank = -0.40
-blend = 100.0
+bank = -0.54
+blend = 110.0
 
-[[road.override]]           # oval turns 3-4 (north banking), capped at 0.40 rad (real 31 deg)
+[[road.override]]           # oval turns 3-4 (north banking), 31 deg
 s = [4000.0, 4800.0]
-bank = -0.40
-blend = 100.0
+bank = -0.54
+blend = 110.0
 
 [[road.override]]           # tri-oval before the line, 18 deg
 s = [5260.0, 5700.0]

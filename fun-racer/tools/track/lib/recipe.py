@@ -67,7 +67,7 @@ PAIR_GAP = 1.5        # m between the tarmac edges of a [[road.pair]]: the room 
 ROUND_KEYS = {"node", "to_node", "reach_m", "note"}
 DIRECTIONS = {"clockwise", "anticlockwise"}
 AUTO_BANK = 0.03      # rad: cad/track/banking.py MAX_BANK, the limit without road.max_bank
-BANK_CEILING = 0.40   # rad: cad/track/banking.py BANK_CEILING
+BANK_CEILING = 0.56   # rad: cad/track/banking.py BANK_CEILING
 
 
 @dataclass

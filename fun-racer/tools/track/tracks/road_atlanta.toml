@@ -21,11 +21,12 @@ ways = [
 [layout]
 # Manual ways do not take the direction from the oneway tags.
 direction = "clockwise"
-# OSM has no start / finish node; without one the build would put the line in the middle of
-# the longest straight, which is the back straight. Estimate: the main-track node half way
-# between the pit entry (before Turn 12) and the pit exit (before Turn 1), beside the pit
-# building. Check it against aerial imagery and move it onto the painted line.
-finish = [34.149218, -83.81203]
+# OSM has no start / finish node. The line is on the front straight opposite the race control
+# tower, under the pedestrian bridge that links the tower to the infield; the Esri World Imagery
+# aerial (z19) shows the tower with the bridge crossing the straight there, but the painted line
+# itself is not resolvable at that resolution, so the position is read off the bridge to about
+# +/- 15 m (the earlier estimate, 150 m further back beside the pit building, is dropped).
+finish = [34.15040, -83.81420]
 
 [elevation]
 # The Terrain Tiles / SRTM surface model reads the pine tops: the descent to Turn 12 came out
