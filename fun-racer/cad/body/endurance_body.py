@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Parametric endurance prototype body (Le Mans Hypercar / LMDh style), modelled with build123d.
+"""Parametric endurance prototype body (a Le Mans Hypercar inspired by the 2023-24 Ferrari 499P:
+broad low nose between tall peaked fenders, visor canopy, shark fin, high wing between big end
+plates), modelled with build123d. Materials and decals: endurance_decals.py + the body scene.
 
 Regenerate the Godot asset with one command (from the repo root):
 
@@ -92,15 +94,17 @@ TESS_ANG = 0.18  # angular deflection (rad)
 # Materials: the F1 body's eight in its order (see the docstring), then the extras.
 # --------------------------------------------------------------------------
 MATERIALS = {
-    "Livery": Material("Livery", (0.020, 0.075, 0.33, 1.0), 0.35, 0.30),
-    "LiveryWhite": Material("LiveryWhite", (0.86, 0.87, 0.89, 1.0), 0.05, 0.32),
-    "Accent": Material("Accent", (0.85, 0.05, 0.06, 1.0), 0.10, 0.30),
-    "Carbon": Material("Carbon", (0.035, 0.037, 0.042, 1.0), 0.20, 0.28),
-    "Metal": Material("Metal", (0.80, 0.62, 0.32, 1.0), 1.0, 0.25),
+    # Ferrari-red body, yellow accents, white roundels (scenes/car/endurance_body_visual.tscn
+    # overrides these with clear-coat paint, triplanar carbon and emissive lights).
+    "Livery": Material("Livery", (0.55, 0.012, 0.012, 1.0), 0.30, 0.28),
+    "LiveryWhite": Material("LiveryWhite", (0.88, 0.88, 0.86, 1.0), 0.05, 0.30),
+    "Accent": Material("Accent", (0.96, 0.74, 0.04, 1.0), 0.10, 0.30),
+    "Carbon": Material("Carbon", (0.030, 0.031, 0.034, 1.0), 0.20, 0.30),
+    "Metal": Material("Metal", (0.80, 0.80, 0.82, 1.0), 1.0, 0.12),
     "Helmet": Material("Helmet", (0.95, 0.78, 0.05, 1.0), 0.05, 0.22),
     "Visor": Material("Visor", (0.02, 0.02, 0.03, 1.0), 0.6, 0.08),
     "Light": Material("Light", (0.6, 0.0, 0.0, 1.0), 0.0, 0.4, emissive=(1.0, 0.05, 0.03)),
-    "Glass": Material("Glass", (0.05, 0.07, 0.10, 1.0), 0.0, 0.06),
+    "Glass": Material("Glass", (0.05, 0.06, 0.07, 1.0), 0.0, 0.05),
     "Headlight": Material("Headlight", (0.9, 0.9, 0.85, 1.0), 0.0, 0.3, emissive=(1.0, 0.96, 0.88)),
 }
 
@@ -171,39 +175,41 @@ def arch_cutter(axle_x: float, tyre_r: float, y0: float) -> Solid:
 # surface, as on the F1 body.
 
 HULL_SECTIONS = [
-    # x,      width, z_bot, z_top
-    Section(-2.450, 0.860, -0.250, -0.130, n_top=2.6, n_bot=3.0, taper=0.90),
-    Section(-2.150, 1.160, -0.285, 0.000, n_top=3.0, n_bot=4.0, taper=0.88),
-    Section(-1.550, 1.240, -0.290, 0.090, n_top=3.0, n_bot=4.0, taper=0.88),
-    Section(-0.900, 1.300, -0.290, 0.150, n_top=3.0, n_bot=4.0, taper=0.88),
+    # x,      width, z_bot, z_top   (a broad, low nose whose centre dips between the fenders)
+    Section(-2.450, 1.500, -0.250, -0.100, n_top=2.8, n_bot=3.0, taper=0.92),
+    Section(-2.150, 1.600, -0.285, 0.000, n_top=3.2, n_bot=4.0, taper=0.90),
+    Section(-1.550, 1.240, -0.290, 0.080, n_top=3.0, n_bot=4.0, taper=0.88),
+    Section(-0.900, 1.300, -0.290, 0.140, n_top=3.0, n_bot=4.0, taper=0.88),
     Section(0.000, 1.340, -0.290, 0.170, n_top=3.0, n_bot=4.0, taper=0.88),
     Section(1.000, 1.340, -0.290, 0.170, n_top=3.0, n_bot=4.0, taper=0.88),
     Section(1.800, 1.300, -0.280, 0.150, n_top=3.0, n_bot=4.0, taper=0.88),
     Section(2.450, 1.300, -0.180, 0.130, n_top=3.0, n_bot=4.0, taper=0.90),
 ]
 
-# Fenders: tall over the wheels, falling into the doors; their inner half is buried in the hull.
+# Fenders: tall and peaked over the front wheels with a blunt, near-vertical front face (the
+# headlight modules sit in it), falling into the doors; their inner half is buried in the hull.
 FRONT_FENDER = [
-    Section(-2.420, 0.420, -0.230, -0.090, y_center=0.740, n_top=2.6, n_bot=3.0, taper=0.80),
-    Section(-2.200, 0.480, -0.270, 0.140, y_center=0.755, n_top=2.8, n_bot=3.5, taper=0.78),
-    Section(-1.850, 0.500, -0.280, 0.340, y_center=0.755, n_top=2.8, n_bot=3.5, taper=0.76),
-    Section(-1.550, 0.500, -0.280, 0.420, y_center=0.755, n_top=2.8, n_bot=3.5, taper=0.76),
-    Section(-1.250, 0.500, -0.280, 0.390, y_center=0.755, n_top=2.8, n_bot=3.5, taper=0.76),
-    Section(-0.950, 0.480, -0.285, 0.250, y_center=0.745, n_top=2.8, n_bot=3.5, taper=0.80),
-    Section(-0.700, 0.440, -0.285, 0.140, y_center=0.720, n_top=3.0, n_bot=3.5, taper=0.85),
+    Section(-2.440, 0.420, -0.240, 0.010, y_center=0.745, n_top=2.4, n_bot=3.0, taper=0.78),
+    Section(-2.300, 0.470, -0.270, 0.150, y_center=0.755, n_top=2.3, n_bot=3.5, taper=0.70),
+    Section(-2.000, 0.500, -0.280, 0.320, y_center=0.760, n_top=2.2, n_bot=3.5, taper=0.62),
+    Section(-1.550, 0.500, -0.280, 0.450, y_center=0.760, n_top=2.2, n_bot=3.5, taper=0.60),
+    Section(-1.200, 0.500, -0.280, 0.420, y_center=0.760, n_top=2.3, n_bot=3.5, taper=0.64),
+    Section(-0.900, 0.480, -0.285, 0.240, y_center=0.745, n_top=2.6, n_bot=3.5, taper=0.78),
+    Section(-0.650, 0.440, -0.285, 0.140, y_center=0.720, n_top=3.0, n_bot=3.5, taper=0.85),
 ]
 DOOR = [
     Section(-0.950, 0.480, -0.285, 0.170, y_center=0.720, n_top=3.2, n_bot=3.5, taper=0.86),
     Section(-0.300, 0.500, -0.290, 0.120, y_center=0.705, n_top=3.2, n_bot=3.5, taper=0.86),
-    Section(0.400, 0.500, -0.290, 0.120, y_center=0.705, n_top=3.2, n_bot=3.5, taper=0.86),
-    Section(0.950, 0.480, -0.285, 0.170, y_center=0.720, n_top=3.2, n_bot=3.5, taper=0.86),
+    Section(0.400, 0.500, -0.290, 0.130, y_center=0.705, n_top=3.2, n_bot=3.5, taper=0.86),
+    Section(0.950, 0.480, -0.285, 0.190, y_center=0.720, n_top=3.2, n_bot=3.5, taper=0.86),
 ]
+# Long rear fenders, high and peaked over the rear wheels, carried to the tail.
 REAR_FENDER = [
-    Section(0.700, 0.440, -0.285, 0.150, y_center=0.720, n_top=3.0, n_bot=3.5, taper=0.85),
-    Section(1.050, 0.490, -0.285, 0.340, y_center=0.745, n_top=2.8, n_bot=3.5, taper=0.78),
-    Section(1.550, 0.500, -0.285, 0.440, y_center=0.755, n_top=2.8, n_bot=3.5, taper=0.76),
-    Section(2.000, 0.500, -0.270, 0.410, y_center=0.755, n_top=2.8, n_bot=3.5, taper=0.76),
-    Section(2.450, 0.480, -0.180, 0.320, y_center=0.750, n_top=2.8, n_bot=3.2, taper=0.78),
+    Section(0.650, 0.440, -0.285, 0.160, y_center=0.720, n_top=3.0, n_bot=3.5, taper=0.85),
+    Section(1.050, 0.490, -0.285, 0.360, y_center=0.745, n_top=2.6, n_bot=3.5, taper=0.72),
+    Section(1.550, 0.500, -0.285, 0.470, y_center=0.755, n_top=2.4, n_bot=3.5, taper=0.66),
+    Section(2.050, 0.500, -0.270, 0.440, y_center=0.755, n_top=2.4, n_bot=3.5, taper=0.68),
+    Section(2.470, 0.480, -0.180, 0.340, y_center=0.750, n_top=2.6, n_bot=3.2, taper=0.74),
 ]
 ENGINE_COVER = [
     Section(0.450, 1.000, 0.000, 0.600, n_top=2.4, n_bot=3.0, taper=0.58),
@@ -211,15 +217,16 @@ ENGINE_COVER = [
     Section(1.750, 0.760, 0.000, 0.330, n_top=2.4, n_bot=3.0, taper=0.66),
     Section(2.450, 0.700, -0.050, 0.220, n_top=2.4, n_bot=3.0, taper=0.72),
 ]
+# Canopy: a teardrop bubble whose glazing wraps round the front like a visor.
 CANOPY_SECTIONS = [
-    Section(-1.150, 0.560, 0.000, 0.110, n_top=2.4, n_bot=3.0, taper=0.62),
-    Section(-0.750, 0.960, 0.000, 0.410, n_top=2.4, n_bot=3.0, taper=0.60),
-    Section(-0.350, 1.120, 0.000, 0.630, n_top=2.4, n_bot=3.0, taper=0.56),
+    Section(-1.250, 0.520, -0.050, 0.060, n_top=2.4, n_bot=3.0, taper=0.62),
+    Section(-0.850, 0.940, 0.000, 0.380, n_top=2.4, n_bot=3.0, taper=0.58),
+    Section(-0.400, 1.120, 0.000, 0.630, n_top=2.4, n_bot=3.0, taper=0.54),
     Section(0.050, 1.120, 0.000, ROOF_Z, n_top=2.4, n_bot=3.0, taper=0.56),
     Section(0.450, 1.000, 0.000, 0.610, n_top=2.4, n_bot=3.0, taper=0.58),
 ]
-GLASS_X0, GLASS_X1 = -1.05, 0.40   # glazing: windscreen and side windows, the roof above
-GLASS_Z0, GLASS_Z1 = 0.25, 0.585
+GLASS_X0, GLASS_X1 = -1.15, 0.40   # glazing: windscreen and side windows, the roof above
+GLASS_Z0, GLASS_Z1 = 0.22, 0.585
 
 
 def split(shape, cutter):
@@ -241,103 +248,66 @@ def make_bodywork() -> list[PartSpec]:
     for axle_x, r in ((FRONT_AXLE_X, FRONT_TYRE_R), (REAR_AXLE_X, REAR_TYRE_R)):
         for c in both_sides(arch_cutter(axle_x, r, 0.50)):
             body = body - c
+    # Side scoops behind the front wheels: a deep pocket in the front of each door.
+    body = body - mirrored_box(-0.86, 1.10, 0.02, 0.44, 0.36, 0.26)
     out: list[PartSpec] = []
 
-    # Front: red nose band across the whole front, a dark radiator mouth in the middle of it,
-    # dark brake-duct openings low on each fender face.
-    body, nose = split(body, box(-2.47, 0, 0, 0.30, 2.4, 1.2))
-    nose, mouth = split(nose, box(-2.47, 0, -0.175, 0.32, 0.56, 0.075))
-    nose, ducts = split(nose, mirrored_box(-2.47, 0.80, -0.185, 0.32, 0.20, 0.06))
-    out += [PartSpec("nose", nose, "Accent"), PartSpec("nose_mouth", mouth, "Carbon"),
-            PartSpec("brake_ducts", ducts, "Carbon")]
+    # Front: black lower lip across the whole nose (with the radiator mouth) above the splitter.
+    body, lip = split(body, box(-2.30, 0, -0.235, 0.70, 2.4, 0.11))
+    body, mouth = split(body, box(-2.47, 0, -0.150, 0.32, 0.50, 0.06))
+    out += [PartSpec("nose_lip", lip, "Carbon"), PartSpec("nose_mouth", mouth, "Carbon")]
 
-    # Headlights: a dark housing on the nose of each fender with an L-shaped DRL bar, a lower
-    # bar and three main-beam modules (Headlight) inlaid in it.
-    body, housing = split(body, mirrored_box(-2.16, 0.75, 0.115, 0.34, 0.42, 0.17))
-    led_polys = [
-        [(-2.31, 0.60), (-2.06, 0.575), (-2.02, 0.615), (-2.31, 0.655)],
-        [(-2.30, 0.70), (-2.10, 0.675), (-2.08, 0.715), (-2.30, 0.745)],
-        [(-2.12, 0.64), (-2.02, 0.64), (-2.02, 0.80), (-2.12, 0.80)],
-    ]
-    leds = None
-    for pts in led_polys:
-        pl = xy_plate(pts, 0.0, 0.3)
-        leds = pl if leds is None else leds + pl
-    for k in range(3):
-        leds = leds + box(-2.24, 0.80 + 0.05 * k, 0.1, 0.045, 0.035, 0.3)
-    leds = leds + mirror(leds, about=Plane.XZ)
-    housing, led = split(housing, leds)
-    out += [PartSpec("headlight_housing", housing, "Carbon"), PartSpec("headlights", led, "Headlight")]
+    # Headlights: a low square carbon module in the face of each fender with a 3 x 2 matrix of
+    # LED cells, and a slim light bar above it along the top of the fender face.
+    body, housing = split(body, mirrored_box(-2.42, 0.765, -0.100, 0.36, 0.31, 0.135))
+    cells = None
+    for i in range(3):
+        for j in range(2):
+            c = mirrored_box(-2.42, 0.675 + 0.09 * i, -0.130 + 0.058 * j, 0.40, 0.064, 0.036)
+            cells = c if cells is None else cells + c
+    housing, led = split(housing, cells)
+    body, upper = split(body, mirrored_box(-2.40, 0.765, 0.035, 0.40, 0.30, 0.022))
+    out += [PartSpec("headlight_housing", housing, "Carbon"),
+            PartSpec("headlights", led + upper, "Headlight")]
 
-    # Louvres on top of the front fenders, behind the wheel centre: a carbon panel with slots.
-    body, panel = split(body, mirrored_box(-1.24, 0.775, 0.60, 0.42, 0.30, 0.60))
-    for k in range(6):
-        panel = panel - mirrored_box(-1.40 + 0.065 * k, 0.775, 0.62, 0.028, 0.26, 0.60)
+    # Louvres on top of the front fenders, over the wheel: a carbon panel with open slots.
+    body, panel = split(body, mirrored_box(-1.36, 0.775, 0.62, 0.50, 0.30, 0.60))
+    for k in range(7):
+        panel = panel - mirrored_box(-1.56 + 0.065 * k, 0.775, 0.64, 0.028, 0.24, 0.60)
     out.append(PartSpec("louvres", panel, "Carbon"))
-    # Dark floor under the open slats, so they read as real openings with depth.
     floor = None
-    for k in range(6):
-        f = mirrored_box(-1.40 + 0.065 * k, 0.775, 0.302, 0.028, 0.26, 0.006)
+    for k in range(7):
+        f = mirrored_box(-1.56 + 0.065 * k, 0.775, 0.342, 0.028, 0.24, 0.006)
         floor = f if floor is None else floor + f
     out.append(PartSpec("louvre_depth", floor, "Carbon", False))
 
-    # Air outlets behind the front wheels: dark opening with livery slats.
-    body, outlet = split(body, mirrored_box(-1.07, 0.95, 0.075, 0.28, 0.5, 0.25))
-    bars = None
-    for k in range(4):
-        bb = mirrored_box(-1.17 + 0.075 * k, 0.95, 0.075, 0.025, 0.5, 0.25)
-        bars = bb if bars is None else bars + bb
-    outlet, outlet_bars = split(outlet, bars)
-    out += [PartSpec("outlets", outlet, "Carbon"), PartSpec("outlet_slats", outlet_bars, "Livery")]
+    # The scoop pocket: carbon inside, with three vertical vanes.
+    body, scoop = split(body, mirrored_box(-0.86, 1.06, 0.02, 0.48, 0.44, 0.30))
+    vanes = None
+    for k in range(3):
+        v = mirrored_box(-1.00 + 0.11 * k, 0.94, 0.02, 0.018, 0.08, 0.24)
+        vanes = v if vanes is None else vanes + v
+    out += [PartSpec("side_scoops", scoop, "Carbon"), PartSpec("scoop_vanes", vanes, "Carbon", False)]
 
-    # Tail-light clusters: a dark housing on each side with a red bar and vertical LED slats,
-    # joined by the centre bar across the tail.
-    body, thouse = split(body, mirrored_box(2.46, 0.66, 0.105, 0.12, 0.62, 0.10))
-    tbars = mirrored_box(2.46, 0.66, 0.105, 0.12, 0.58, 0.026)
-    for y in (0.50, 0.70, 0.90):
-        tbars = tbars + mirrored_box(2.46, y, 0.105, 0.12, 0.04, 0.09)
-    thouse, tled = split(thouse, tbars)
-    body, tail = split(body, box(2.47, 0, 0.105, 0.10, 2.4, 0.032))
-    out += [PartSpec("tail_housing", thouse, "Carbon"), PartSpec("tail_light", tail + tled, "Light")]
+    # Tail: a full-width red light bar across the top of the tail, carbon housing round it.
+    body, thouse = split(body, box(2.46, 0, 0.140, 0.12, 2.4, 0.07))
+    thouse, tled = split(thouse, box(2.46, 0, 0.140, 0.14, 2.4, 0.026))
+    out += [PartSpec("tail_housing", thouse, "Carbon"), PartSpec("tail_light", tled, "Light")]
 
-    # Dark rear panel between the rear fenders, under the tail lights (gearbox / diffuser exit).
-    body, rear_panel = split(body, box(2.47, 0, -0.10, 0.12, 1.06, 0.26))
+    # Black rear: the whole tail below the light bar (gearbox / diffuser exit, crash structure).
+    body, rear_panel = split(body, box(2.47, 0, -0.06, 0.12, 2.4, 0.33))
     out.append(PartSpec("rear_panel", rear_panel, "Carbon"))
 
-    # Carbon sills along the bottom of the doors, between the arches.
-    body, sills = split(body, mirrored_box(0.0, 0.85, -0.255, 2.0, 0.40, 0.08))
+    # Black lower body: deep carbon sills from the nose to the tail.
+    body, sills = split(body, mirrored_box(0.15, 0.85, -0.225, 4.3, 0.50, 0.13))
     out.append(PartSpec("sills", sills, "Carbon"))
 
-    # Livery blocking on the flanks: white stripe over a red pinstripe, and plain sponsor plates.
-    stripe = mirrored_box(0.6, 1.06, 0.100, 3.6, 0.4, 0.026)
-    body, st_w = split(body, stripe)
-    body, st_r = split(body, mirrored_box(0.6, 1.06, 0.076, 3.6, 0.4, 0.014))
-    body, st_low = split(body, mirrored_box(0.55, 1.06, -0.185, 1.7, 0.4, 0.012))
-    out += [PartSpec("flank_stripe", st_w, "LiveryWhite"), PartSpec("flank_pin", st_r, "Accent"),
-            PartSpec("flank_low", st_low, "Accent")]
-    plates = mirrored_box(0.60, 0.85, -0.075, 0.26, 0.8, 0.13)
-    body, plate1 = split(body, plates)
-    body, plate2 = split(body, mirrored_box(-0.50, 0.85, -0.075, 0.14, 0.8, 0.10))
-    body, plate3 = split(body, mirrored_box(1.18, 1.06, 0.20, 0.30, 0.4, 0.07))
-    out += [PartSpec("plates", plate1, "LiveryWhite"), PartSpec("plates2", plate2, "Accent"),
-            PartSpec("plates3", plate3, "Accent")]
+    # Yellow band along each flank above the sills, and a yellow stripe up the nose centre.
+    body, st = split(body, mirrored_box(0.55, 1.06, -0.135, 3.0, 0.40, 0.050))
+    body, nose_st = split(body, mirrored_box(-2.10, 0.075, 0.0, 0.70, 0.035, 0.40))
+    out += [PartSpec("flank_stripe", st, "Accent"), PartSpec("nose_stripes", nose_st, "Accent")]
 
-    # Number panels on the doors: white rounded rectangle with a dark digit area.
-    def rrect(hx, hz, r):
-        b = box(0.0, 0.85, 0.0, 2 * hx, 0.8, 2 * hz)
-        b = try_fillet(b, b.edges().filter_by(Axis.Y), r)
-        return b.moved(Location((0.05, 0.0, -0.07)))
-
-    outer, inner = rrect(0.27, 0.14, 0.05), rrect(0.215, 0.10, 0.035)
-    ring = outer - inner
-    ring = ring + mirror(ring, about=Plane.XZ)
-    inner = inner + mirror(inner, about=Plane.XZ)
-    body, panels = split(body, ring)
-    body, digits = split(body, inner)
-    out += [PartSpec("number_panels", panels, "LiveryWhite"), PartSpec("number_digit_area", digits, "Carbon")]
-
-    # Wheel-arch liners: the dark inner surface of each arch (a 3 cm shell round the opening
-    # plus the arch back wall), split off the body flush with the opening.
+    # Wheel-arch liners: the dark inner surface of each arch.
     liners = None
     for axle_x, r in ((FRONT_AXLE_X, FRONT_TYRE_R), (REAR_AXLE_X, REAR_TYRE_R)):
         big = Solid.make_cylinder(r + ARCH_CLEARANCE + 0.035, HALF_WIDTH + 0.2 - 0.46,
@@ -348,17 +318,14 @@ def make_bodywork() -> list[PartSpec]:
     body, liner = split(body, liners)
     out.append(PartSpec("arch_liners", liner, "Carbon"))
 
-    # Panel lines and shut lines: thin recessed grooves (Carbon) round the doors, the engine
-    # cover and the front bonnet.
+    # Panel lines and shut lines: thin recessed grooves round the doors and covers.
     g = 0.006
-    grooves = mirrored_box(-0.72, 0.9, -0.04, g, 0.7, 0.34)          # door front
+    grooves = mirrored_box(-0.62, 0.9, -0.04, g, 0.7, 0.34)           # door front
     grooves = grooves + mirrored_box(0.90, 0.9, -0.04, g, 0.7, 0.34)  # door rear
-    grooves = grooves + mirrored_box(0.09, 0.9, 0.126, 1.62, 0.7, g)  # door top
+    grooves = grooves + mirrored_box(0.14, 0.9, 0.126, 1.52, 0.7, g)  # door top
     grooves = grooves + mirrored_box(1.55, 0.30, 0.3, 1.9, g, 0.8)    # engine cover split
     grooves = grooves + box(0.50, 0, 0.3, g, 0.7, 0.8)
-    grooves = grooves + mirrored_box(-1.75, 0.34, 0.1, 1.3, g, 0.5)   # bonnet split
     grooves = grooves + box(-1.10, 0, 0.1, g, 0.7, 0.5)
-    grooves = grooves + box(-2.00, 0, 0.0, g, 0.7, 0.5)
     body, groove_part = split(body, grooves)
     out.append(PartSpec("panel_lines", groove_part, "Carbon"))
 
@@ -395,10 +362,9 @@ def make_canopy() -> list[PartSpec]:
                GLASS_X1 - GLASS_X0, 2.0, GLASS_Z1 - GLASS_Z0)
     shell, glass = split(canopy, band)
     out_extra: list[PartSpec] = []
-    # Roof stripe: white with red edges, front to rear along the centreline.
-    shell, roof_w = split(shell, box(0.1, 0, 0.8, 1.5, 0.12, 0.6))
-    shell, roof_r = split(shell, mirrored_box(0.1, 0.085, 0.8, 1.5, 0.03, 0.6))
-    out_extra += [PartSpec("roof_stripe", roof_w, "LiveryWhite"), PartSpec("roof_edge", roof_r, "Accent")]
+    # Sunstrip: a yellow band across the top of the windscreen, wrapping round like a visor.
+    shell, sun = split(shell, box(-0.47, 0, 0.75, 0.34, 2.0, 0.33))
+    out_extra += [PartSpec("sunstrip", sun, "Accent")]
     # Windscreen frame, belt line, rear window frame and A-pillars: Carbon strips on the glazing.
     frame = box(GLASS_X0 + 0.02, 0, 0.45, 0.04, 2.0, 0.7)
     frame = frame + box(GLASS_X1 - 0.02, 0, 0.45, 0.04, 2.0, 0.7)
@@ -407,58 +373,61 @@ def make_canopy() -> list[PartSpec]:
     pil = None
     for sgn in (1, -1):
         pts = []
-        for x in (-1.02, -0.85, -0.65, -0.45, -0.25, -0.05):
+        for x in (-1.12, -0.95, -0.75, -0.55, -0.35, -0.10):
             pts.append(_canopy_pt(x, 0.88, sgn))
         t = tube(pts, 0.032)
         pil = t if pil is None else pil + t
     glass, pillars = split(glass, pil)
     frame_part = frame_part + pillars
-    # Roof intake (engine air): a low livery scoop with a dark mouth.
+    # Roof intake (engine air): a black scoop with a split mouth and a camera pod on top.
     scoop = loft([
-        Section(0.000, 0.200, 0.560, 0.700, n_top=2.4, n_bot=3.0, taper=0.80),
-        Section(0.300, 0.230, 0.560, 0.735, n_top=2.4, n_bot=3.0, taper=0.80),
+        Section(-0.050, 0.240, 0.560, 0.715, n_top=2.8, n_bot=3.0, taper=0.82),
+        Section(0.300, 0.260, 0.560, 0.745, n_top=2.8, n_bot=3.0, taper=0.82),
         Section(0.750, 0.170, 0.480, 0.640, n_top=2.4, n_bot=3.0, taper=0.80),
     ])
-    scoop, mouth = split(scoop, box(0.0, 0, 0.665, 0.06, 0.15, 0.05))
+    scoop = scoop - box(0.07, 0, 0.655, 0.26, 0.17, 0.06)
+    divider = box(-0.03, 0, 0.66, 0.06, 0.012, 0.07)
+    cam = box(0.06, 0, 0.765, 0.10, 0.07, 0.07)
+    cam = try_fillet(cam, cam.edges(), 0.012)
+    lens = box(0.008, 0, 0.770, 0.006, 0.035, 0.030)
     return [
         PartSpec("canopy", shell, "Livery"),
         PartSpec("glazing", glass, "Glass"),
         PartSpec("windscreen_frame", frame_part, "Carbon"),
         *out_extra,
-        PartSpec("roof_scoop", scoop, "Livery"),
-        PartSpec("roof_scoop_mouth", mouth, "Carbon"),
+        PartSpec("roof_scoop", scoop + divider, "Carbon"),
+        PartSpec("camera_pod", cam, "Carbon"),
+        PartSpec("camera_lens", lens, "Glass", False),
     ]
 
 
 def make_fin() -> list[PartSpec]:
-    """Shark fin on the centreline, from the roof scoop back to the rear wing."""
+    """Tall dark shark fin on the centreline, from the roof scoop back to the rear wing."""
     fin = xz_plate(
-        [(0.70, 0.640), (0.90, 0.690), (1.60, 0.650), (2.12, 0.610), (2.16, 0.560),
-         (2.10, 0.300), (1.70, 0.340), (1.10, 0.480)],
+        [(0.70, 0.650), (0.95, 0.730), (1.60, 0.780), (2.06, 0.800), (2.14, 0.760),
+         (2.12, 0.300), (1.70, 0.330), (1.10, 0.480)],
         -0.006, 0.012,
     )
     fin = try_fillet(fin, fin.edges().filter_by(Axis.Y), 0.03)
-    fin, fin_stripe = split(fin, box(1.5, 0, 0.42, 1.6, 0.1, 0.07))
-    fin, fin_tip = split(fin, box(1.5, 0, 0.64, 1.6, 0.1, 0.04))
-    antenna = Solid.make_cylinder(0.007, 0.12, Plane(origin=(0.95, 0.0, 0.68), z_dir=(0, 0, 1)))
-    return [PartSpec("shark_fin", fin, "Livery", surface_control=False),
+    fin, fin_stripe = split(fin, box(1.5, 0, 0.705, 1.6, 0.1, 0.035))
+    antenna = Solid.make_cylinder(0.006, 0.14, Plane(origin=(-0.25, 0.0, 0.69), z_dir=(0, 0, 1)))
+    return [PartSpec("shark_fin", fin, "Carbon", surface_control=False),
             PartSpec("fin_stripe", fin_stripe, "Accent", surface_control=False),
-            PartSpec("fin_tip", fin_tip, "LiveryWhite", surface_control=False),
             PartSpec("antenna", antenna, "Carbon", False)]
 
 
 def make_mirrors() -> list[PartSpec]:
-    """Mirrors on short carbon stalks on the doors, just behind the front fenders."""
+    """Mirrors on carbon stalks rising from the inner edge of the front fenders."""
     housing = loft([
-        Section(-0.800, 0.130, 0.330, 0.390, y_center=0.880, n_top=2.6, n_bot=2.6, taper=0.85),
-        Section(-0.700, 0.170, 0.320, 0.410, y_center=0.885, n_top=3.0, n_bot=3.0, taper=0.90),
-        Section(-0.650, 0.170, 0.320, 0.410, y_center=0.885, n_top=3.0, n_bot=3.0, taper=0.90),
+        Section(-1.160, 0.150, 0.470, 0.530, y_center=0.585, n_top=2.6, n_bot=2.6, taper=0.85),
+        Section(-1.060, 0.190, 0.460, 0.550, y_center=0.590, n_top=3.0, n_bot=3.0, taper=0.90),
+        Section(-1.010, 0.190, 0.460, 0.550, y_center=0.590, n_top=3.0, n_bot=3.0, taper=0.90),
     ])
-    housing, glass = split(housing, box(-0.645, 0.885, 0.365, 0.03, 0.15, 0.075))
-    stalk = tube([(-0.700, 0.800, 0.140), (-0.715, 0.840, 0.250), (-0.720, 0.870, 0.335)], 0.014)
+    housing, glass = split(housing, box(-1.005, 0.590, 0.505, 0.03, 0.17, 0.075))
+    stalk = tube([(-1.090, 0.640, 0.270), (-1.085, 0.620, 0.380), (-1.080, 0.600, 0.470)], 0.016)
     out = []
     for i, s in enumerate(both_sides(housing)):
-        out.append(PartSpec(f"mirror{i}", s, "Accent"))
+        out.append(PartSpec(f"mirror{i}", s, "Livery"))
     for i, s in enumerate(both_sides(glass)):
         out.append(PartSpec(f"mirror_glass{i}", s, "Metal"))
     for i, s in enumerate(both_sides(stalk)):
@@ -467,34 +436,30 @@ def make_mirrors() -> list[PartSpec]:
 
 
 def make_rear_wing() -> list[PartSpec]:
+    """High rear wing between very large carbon end plates on the rear fenders."""
     out: list[PartSpec] = []
-    main = wing_element(2.080, 0.600, 0.340, 7.0, -RW_HALF_SPAN, RW_HALF_SPAN, camber=0.07, thickness=0.11)
-    flap = wing_element(2.390, 0.640, 0.110, 30.0, -RW_HALF_SPAN, RW_HALF_SPAN, camber=0.06, thickness=0.09)
-    out.append(PartSpec("rw_main", main, "LiveryWhite", surface_control=False))
-    out.append(PartSpec("rw_gurney", flap, "Accent", surface_control=False))
+    main = wing_element(2.060, 0.700, 0.340, 7.0, -RW_HALF_SPAN, RW_HALF_SPAN, camber=0.07, thickness=0.11)
+    flap = wing_element(2.370, 0.740, 0.120, 30.0, -RW_HALF_SPAN, RW_HALF_SPAN, camber=0.06, thickness=0.09)
+    out.append(PartSpec("rw_main", main, "Carbon", surface_control=False))
+    out.append(PartSpec("rw_flap", flap, "Accent", surface_control=False))
     endplate = xz_plate(
-        [(2.000, 0.420), (2.400, 0.360), (2.520, 0.420), (2.520, 0.760), (2.140, 0.760),
-         (2.020, 0.680)],
-        RW_HALF_SPAN, 0.014,
+        [(1.780, 0.300), (2.440, 0.240), (2.540, 0.330), (2.540, 0.880), (2.200, 0.880),
+         (1.980, 0.720)],
+        RW_HALF_SPAN, 0.016,
     )
-    endplate = try_fillet(endplate, endplate.edges().filter_by(Axis.Y), 0.04)
+    endplate = try_fillet(endplate, endplate.edges().filter_by(Axis.Y), 0.05)
     for j, s in enumerate(both_sides(endplate)):
-        out.append(PartSpec(f"rw_endplate{j}", s, "Accent"))
-    # Gurney flap on the flap's trailing edge, and a white panel + carbon foot strip and
-    # louvre slots on the outside of each end plate.
-    gurney = box(2.492, 0, 0.604, 0.006, 2 * RW_HALF_SPAN, 0.040)
+        out.append(PartSpec(f"rw_endplate{j}", s, "Carbon", surface_control=False))
+    gurney = box(2.482, 0, 0.708, 0.006, 2 * RW_HALF_SPAN, 0.040)
     out.append(PartSpec("rw_gurney_flap", gurney, "Carbon", False))
-    panel = xz_plate([(2.10, 0.62), (2.42, 0.62), (2.42, 0.72), (2.14, 0.72)], RW_HALF_SPAN + 0.014, 0.004)
-    foot = xz_plate([(2.03, 0.425), (2.40, 0.365), (2.50, 0.42), (2.50, 0.45), (2.03, 0.47)],
-                    RW_HALF_SPAN + 0.014, 0.004)
-    for j, s in enumerate(both_sides(panel)):
-        out.append(PartSpec(f"rw_panel{j}", s, "LiveryWhite", False))
-    for j, s in enumerate(both_sides(foot)):
-        out.append(PartSpec(f"rw_foot{j}", s, "Carbon", False))
+    # A thin white edge along the top of each end plate.
+    top = xz_plate([(2.20, 0.865), (2.54, 0.865), (2.54, 0.880), (2.20, 0.880)], RW_HALF_SPAN + 0.016, 0.004)
+    for j, s in enumerate(both_sides(top)):
+        out.append(PartSpec(f"rw_edge{j}", s, "LiveryWhite", False))
     # Swan-neck pylons: up from the engine cover, over the leading edge, onto the top surface.
     neck = xz_plate(
-        [(1.780, 0.200), (1.920, 0.200), (2.040, 0.560), (2.160, 0.660), (2.300, 0.680),
-         (2.300, 0.710), (2.130, 0.705), (1.990, 0.630), (1.880, 0.400)],
+        [(1.780, 0.200), (1.920, 0.200), (2.040, 0.660), (2.160, 0.760), (2.300, 0.780),
+         (2.300, 0.810), (2.130, 0.805), (1.990, 0.730), (1.880, 0.450)],
         0.300, 0.016,
     )
     neck = try_fillet(neck, neck.edges().filter_by(Axis.Y), 0.012)
@@ -510,14 +475,20 @@ def make_floor_splitter_diffuser() -> list[PartSpec]:
     outline = half + [(x, -y) for x, y in reversed(half[1:-1])]
     out.append(PartSpec("floor", xy_plate(outline, FLOOR_BOTTOM_Z, FLOOR_T), "Carbon", False))
 
-    split_half = [(-2.56, 0.0), (-2.56, 0.78), (-2.44, 0.94), (-2.10, 0.97), (-2.10, 0.0)]
+    split_half = [(-2.62, 0.0), (-2.62, 0.80), (-2.50, 0.96), (-2.10, 0.99), (-2.10, 0.0)]
     split_outline = split_half + [(x, -y) for x, y in reversed(split_half[1:-1])]
     splitter = xy_plate(split_outline, FLOOR_BOTTOM_Z, 0.018)
     splitter = try_fillet(splitter, splitter.edges().filter_by(Axis.Z), 0.03)
     out.append(PartSpec("splitter", splitter, "Carbon", False))
+    # Vertical fences under the nose, between the splitter and the black lip.
+    for y in (0.0, 0.16, 0.32):
+        fence = xz_plate([(-2.58, FLOOR_BOTTOM_Z + 0.01), (-2.20, FLOOR_BOTTOM_Z + 0.01), (-2.20, -0.20),
+                          (-2.47, -0.20)], y - 0.005, 0.010)
+        for j, f in enumerate(both_sides(fence) if y else [fence]):
+            out.append(PartSpec(f"nose_fence{y}_{j}", f, "Carbon", False))
     # Splitter end plates (vertical, with a rounded leading corner).
-    ep = xz_plate([(-2.56, FLOOR_BOTTOM_Z), (-2.10, FLOOR_BOTTOM_Z), (-2.10, -0.17), (-2.44, -0.15),
-                   (-2.56, -0.22)], 0.955, 0.012)
+    ep = xz_plate([(-2.62, FLOOR_BOTTOM_Z), (-2.10, FLOOR_BOTTOM_Z), (-2.10, -0.17), (-2.48, -0.15),
+                   (-2.62, -0.24)], 0.975, 0.012)
     ep = try_fillet(ep, ep.edges().filter_by(Axis.Y), 0.02)
     for j, s in enumerate(both_sides(ep)):
         out.append(PartSpec(f"splitter_endplate{j}", s, "Carbon", False))

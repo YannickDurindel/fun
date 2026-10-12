@@ -1,34 +1,57 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=19 format=3]
 
 [ext_resource type="PackedScene" path="res://assets/car/endurance/body.glb" id="1_body"]
+[ext_resource type="Script" path="res://assets/car/endurance/decals.gd" id="decals_gd"]
+[ext_resource type="Texture2D" path="res://assets/car/endurance/textures/carbon_albedo.png" id="carbon_a"]
+[ext_resource type="Texture2D" path="res://assets/car/endurance/textures/carbon_roughness.png" id="carbon_r"]
+[ext_resource type="Texture2D" path="res://assets/car/endurance/textures/decal_altura.png" id="tex_0"]
+[ext_resource type="Texture2D" path="res://assets/car/endurance/textures/decal_flank_l.png" id="tex_1"]
+[ext_resource type="Texture2D" path="res://assets/car/endurance/textures/decal_flank_r.png" id="tex_2"]
+[ext_resource type="Texture2D" path="res://assets/car/endurance/textures/decal_rear_l.png" id="tex_3"]
+[ext_resource type="Texture2D" path="res://assets/car/endurance/textures/decal_rear_r.png" id="tex_4"]
+[ext_resource type="Texture2D" path="res://assets/car/endurance/textures/decal_roundel.png" id="tex_5"]
+[ext_resource type="Texture2D" path="res://assets/car/endurance/textures/decal_sun.png" id="tex_6"]
 
 [sub_resource type="StandardMaterial3D" id="livery"]
 resource_name = "Livery"
-albedo_color = Color(0.02, 0.075, 0.33, 1)
-metallic = 0.45
+albedo_color = Color(0.78, 0.035, 0.03, 1)
+metallic = 0.25
 metallic_specular = 0.6
+roughness = 0.3
+clearcoat_enabled = true
+clearcoat = 1.0
+clearcoat_roughness = 0.03
+
+[sub_resource type="StandardMaterial3D" id="livery_white"]
+resource_name = "LiveryWhite"
+albedo_color = Color(0.86, 0.86, 0.84, 1)
+metallic = 0.05
 roughness = 0.32
 clearcoat_enabled = true
 clearcoat = 1.0
 clearcoat_roughness = 0.04
 
-[sub_resource type="StandardMaterial3D" id="livery_white"]
-resource_name = "LiveryWhite"
-albedo_color = Color(0.86, 0.87, 0.89, 1)
-metallic = 0.05
-roughness = 0.35
-clearcoat_enabled = true
-clearcoat = 1.0
-clearcoat_roughness = 0.05
-
 [sub_resource type="StandardMaterial3D" id="accent"]
 resource_name = "Accent"
-albedo_color = Color(0.85, 0.05, 0.06, 1)
-metallic = 0.15
-roughness = 0.32
+albedo_color = Color(0.95, 0.68, 0.03, 1)
+metallic = 0.12
+roughness = 0.3
 clearcoat_enabled = true
 clearcoat = 1.0
-clearcoat_roughness = 0.05
+clearcoat_roughness = 0.04
+
+[sub_resource type="StandardMaterial3D" id="carbon"]
+resource_name = "Carbon"
+albedo_texture = ExtResource("carbon_a")
+metallic = 0.25
+metallic_specular = 0.6
+roughness_texture = ExtResource("carbon_r")
+clearcoat_enabled = true
+clearcoat = 0.6
+clearcoat_roughness = 0.1
+uv1_scale = Vector3(12, 12, 12)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 4.0
 
 [sub_resource type="StandardMaterial3D" id="helmet"]
 resource_name = "Helmet"
@@ -39,33 +62,161 @@ clearcoat_enabled = true
 clearcoat = 1.0
 clearcoat_roughness = 0.03
 
+[sub_resource type="StandardMaterial3D" id="light"]
+resource_name = "Light"
+albedo_color = Color(0.6, 0.0, 0.0, 1)
+roughness = 0.35
+emission_enabled = true
+emission = Color(1, 0.04, 0.02, 1)
+emission_energy_multiplier = 4.0
+
 [sub_resource type="StandardMaterial3D" id="glass"]
 resource_name = "Glass"
 transparency = 1
-albedo_color = Color(0.05, 0.07, 0.1, 0.55)
-metallic = 0.2
-roughness = 0.05
+albedo_color = Color(0.05, 0.048, 0.04, 0.72)
+metallic = 0.1
+roughness = 0.04
 clearcoat_enabled = true
 clearcoat = 1.0
 clearcoat_roughness = 0.02
+
+[sub_resource type="StandardMaterial3D" id="headlight"]
+resource_name = "Headlight"
+albedo_color = Color(0.9, 0.9, 0.88, 1)
+roughness = 0.3
+emission_enabled = true
+emission = Color(1, 0.97, 0.9, 1)
+emission_energy_multiplier = 6.0
 
 [node name="EnduranceBodyVisual" type="Node3D"]
 
 [node name="Body" parent="." instance=ExtResource("1_body")]
 
 [node name="Livery" parent="Body" index="0"]
+layers = 8193
 surface_material_override/0 = SubResource("livery")
 
 [node name="LiveryWhite" parent="Body" index="1"]
+layers = 8193
 surface_material_override/0 = SubResource("livery_white")
 
 [node name="Accent" parent="Body" index="2"]
+layers = 8193
 surface_material_override/0 = SubResource("accent")
+
+[node name="Carbon" parent="Body" index="3"]
+layers = 8193
+surface_material_override/0 = SubResource("carbon")
 
 [node name="Helmet" parent="Body" index="5"]
 surface_material_override/0 = SubResource("helmet")
 
+[node name="Light" parent="Body" index="7"]
+surface_material_override/0 = SubResource("light")
+
 [node name="Glass" parent="Body" index="8"]
 surface_material_override/0 = SubResource("glass")
+
+[node name="Headlight" parent="Body" index="9"]
+surface_material_override/0 = SubResource("headlight")
+
+[node name="Decals" type="Node3D" parent="."]
+script = ExtResource("decals_gd")
+
+[node name="NoseRoundel" type="Decal" parent="Decals"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, -2.03)
+size = Vector3(0.46, 0.26, 0.46)
+texture_albedo = ExtResource("tex_5")
+cull_mask = 8192
+upper_fade = 0.05
+lower_fade = 0.05
+normal_fade = 0.2
+distance_fade_enabled = true
+distance_fade_begin = 30.0
+distance_fade_length = 10.0
+
+[node name="FlankR" type="Decal" parent="Decals"]
+transform = Transform3D(0, 1, 0, 0, 0, -1, -1, 0, 0, 1, 0.01, 0.25)
+size = Vector3(1.7, 0.3, 0.25)
+texture_albedo = ExtResource("tex_2")
+cull_mask = 8192
+upper_fade = 0.05
+lower_fade = 0.05
+normal_fade = 0.1
+distance_fade_enabled = true
+distance_fade_begin = 30.0
+distance_fade_length = 10.0
+
+[node name="FlankL" type="Decal" parent="Decals"]
+transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -1, 0.01, 0.25)
+size = Vector3(1.7, 0.3, 0.25)
+texture_albedo = ExtResource("tex_1")
+cull_mask = 8192
+upper_fade = 0.05
+lower_fade = 0.05
+normal_fade = 0.1
+distance_fade_enabled = true
+distance_fade_begin = 30.0
+distance_fade_length = 10.0
+
+[node name="RearR" type="Decal" parent="Decals"]
+transform = Transform3D(0, 1, 0, 0, 0, -1, -1, 0, 0, 0.49, 0.575, 2)
+size = Vector3(1.1, 1.02, 0.35)
+texture_albedo = ExtResource("tex_4")
+cull_mask = 8192
+upper_fade = 0.05
+lower_fade = 0.05
+normal_fade = 0.5
+distance_fade_enabled = true
+distance_fade_begin = 30.0
+distance_fade_length = 10.0
+
+[node name="RearL" type="Decal" parent="Decals"]
+transform = Transform3D(0, -1, 0, 0, 0, -1, 1, 0, 0, -0.49, 0.575, 2)
+size = Vector3(1.1, 1.02, 0.35)
+texture_albedo = ExtResource("tex_3")
+cull_mask = 8192
+upper_fade = 0.05
+lower_fade = 0.05
+normal_fade = 0.5
+distance_fade_enabled = true
+distance_fade_begin = 30.0
+distance_fade_length = 10.0
+
+[node name="FenderPanelR" type="Decal" parent="Decals"]
+transform = Transform3D(-1, 0, 0, 0, 0, -1, 0, -1, 0, 0.765, 0.115, -2.36)
+size = Vector3(0.27, 0.4, 0.068)
+texture_albedo = ExtResource("tex_0")
+cull_mask = 8192
+upper_fade = 0.05
+lower_fade = 0.05
+normal_fade = 0.1
+distance_fade_enabled = true
+distance_fade_begin = 30.0
+distance_fade_length = 10.0
+
+[node name="FenderPanelL" type="Decal" parent="Decals"]
+transform = Transform3D(-1, 0, 0, 0, 0, -1, 0, -1, 0, -0.765, 0.115, -2.36)
+size = Vector3(0.27, 0.4, 0.068)
+texture_albedo = ExtResource("tex_0")
+cull_mask = 8192
+upper_fade = 0.05
+lower_fade = 0.05
+normal_fade = 0.1
+distance_fade_enabled = true
+distance_fade_begin = 30.0
+distance_fade_length = 10.0
+
+[node name="Sunstrip" type="Decal" parent="Decals"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0.76, -0.47)
+size = Vector3(0.8, 0.32, 0.075)
+texture_albedo = ExtResource("tex_6")
+cull_mask = 8192
+upper_fade = 0.05
+lower_fade = 0.05
+normal_fade = 0.1
+distance_fade_enabled = true
+distance_fade_begin = 30.0
+distance_fade_length = 10.0
 
 [editable path="Body"]

@@ -9,6 +9,6 @@ cd "$(dirname "$0")/.." || exit 1
 TRACK=${1:-wec_le_mans}
 BOTS=${2:-9}
 FRAMES=${3:-900}
-MESA_VK_WSI_PRESENT_MODE=immediate tools/bin/godot --path . --resolution 1280x720 --disable-vsync -- \
+MESA_VK_WSI_PRESENT_MODE=immediate tools/offscreen.sh tools/bin/godot --path . --resolution 1280x720 --disable-vsync -- \
 	--track="$TRACK" --bots="$BOTS" --ghost=0 --no-countdown --frames=300 --bench="$FRAMES" ${BENCH_ARGS:-} 2>&1 \
 	| grep -E "FRAMETIME|SCRIPT ERROR|SHADER ERROR"
