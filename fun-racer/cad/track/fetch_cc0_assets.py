@@ -28,7 +28,7 @@ the GPU on import; WebP only keeps the repository small), packed for the shaders
 and their real-world tile size (metres per texture tile) and mean colour (as stored, 0..1) are
 written to photo/materials.json.
 
-Run: .venv/bin/python cad/track/fetch_cc0_assets.py
+Run: .venv/bin/python cad/track/fetch_cc0_assets.py [--force]   (--force re-encodes the WebPs)
 """
 
 from __future__ import annotations
@@ -71,6 +71,21 @@ MATERIALS = [
      "kind": "albedo", "why": "concrete walls, kerb surface texture"},
     {"name": "metal", "source": "ambientcg", "id": "Metal032", "res": "1K-JPG", "out": 1024,
      "kind": "albedo", "why": "armco barriers"},
+]
+
+
+# 3D models, cached only (never committed): the trees are rendered into billboard impostors
+# by cad/track/bake_impostors.gd, which writes look_detailed/trees/.
+MODELS = [
+    {"id": "island_tree_01", "why": "broadleaf tree impostor (oak-like)"},
+    {"id": "island_tree_02", "why": "broadleaf tree impostor (wide crown)"},
+    {"id": "tree_small_02", "why": "pine impostor (maritime pine of the Sarthe woods)"},
+    {"id": "shrub_04", "why": "bush impostor"},
+]
+# Alpha-tested materials (colour with alpha + normal), committed like the photo materials.
+ALPHA_MATERIALS = [
+    {"name": "chainlink", "id": "Fence003", "res": "1K-JPG", "out": 512,
+     "why": "catch-fence mesh (alpha tested)"},
 ]
 
 
@@ -227,7 +242,7 @@ def _maps_ambientcg(m: dict) -> tuple[dict, dict]:
         for n in z.namelist():
             base = Path(n).name                      # never trust the paths inside the zip
             for key, tag in (("color", "_Color."), ("normal", "_NormalGL."), ("rough", "_Roughness."),
-                             ("ao", "_AmbientOcclusion.")):
+                             ("ao", "_AmbientOcclusion."), ("opacity", "_Opacity.")):
                 if tag in base and base.lower().endswith((".jpg", ".png")):
                     dst = out / base
                     if not dst.exists():
@@ -271,11 +286,16 @@ def fetch_materials(credits: list[dict]) -> dict:
         else:
             pack = np.concatenate([color, rough[..., None]], axis=-1)
             name = f"{m['name']}_albedo.webp"
-        Image.fromarray((pack * 255.0 + 0.5).astype(np.uint8), "RGBA").save(pdir / name, quality=90, method=6)
+        # WebP encoding is slow (minutes for the 2K maps): existing files are kept unless
+        # --force is given.
+        force = "--force" in sys.argv
+        if force or not (pdir / name).exists():
+            Image.fromarray((pack * 255.0 + 0.5).astype(np.uint8), "RGBA").save(pdir / name, quality=90, method=6)
         written.append(name)
-        nrm = load("normal", "RGB")
-        Image.fromarray((nrm * 255.0 + 0.5).astype(np.uint8), "RGB").save(
-            pdir / f"{m['name']}_normal.webp", quality=92, method=6)
+        if force or not (pdir / f"{m['name']}_normal.webp").exists():
+            nrm = load("normal", "RGB")
+            Image.fromarray((nrm * 255.0 + 0.5).astype(np.uint8), "RGB").save(
+                pdir / f"{m['name']}_normal.webp", quality=92, method=6)
         written.append(f"{m['name']}_normal.webp")
         table[m["name"]] = {"tile_m": meta["tile_m"], "files": written, "kind": m["kind"],
                             "mean_rgb": [round(float(c), 4) for c in color.reshape(-1, 3).mean(0)]}
@@ -288,13 +308,59 @@ def fetch_materials(credits: list[dict]) -> dict:
     return table
 
 
+def fetch_models(credits: list[dict]) -> None:
+    """glTF (1k textures) of MODELS into CACHE/models/<id>/ for the impostor bake."""
+    for m in MODELS:
+        aid = m["id"]
+        info = _json(f"https://api.polyhaven.com/info/{aid}")
+        g = _json(f"https://api.polyhaven.com/files/{aid}")["gltf"]["1k"]["gltf"]
+        out = CACHE / "models" / aid
+        out.mkdir(parents=True, exist_ok=True)
+        files = {f"{aid}.gltf": g, **g.get("include", {})}
+        for rel, f in files.items():
+            parts = Path(rel).parts
+            if Path(rel).is_absolute() or ".." in parts:
+                raise RuntimeError(f"unsafe path {rel!r} in {aid}")
+            dst = out.joinpath(*parts)
+            if dst.exists() and hashlib.md5(dst.read_bytes()).hexdigest() == f.get("md5"):
+                continue
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            print(f"  downloading {f['url']}")
+            dst.write_bytes(_get(f["url"]))
+        credits.append({"name": info.get("name", aid), "file": f"trees/{aid}.png (rendered impostor)",
+                        "url": f"https://polyhaven.com/a/{aid}", "author": ", ".join(info.get("authors", {})),
+                        "licence": "CC0 1.0", "source": "Poly Haven", "note": m["why"]})
+
+
+def fetch_alpha_materials(credits: list[dict]) -> None:
+    """Colour + opacity (alpha) and normal maps of ALPHA_MATERIALS into photo/."""
+    from PIL import Image
+    pdir = OUT_DIR / "photo"
+    for m in ALPHA_MATERIALS:
+        m2 = dict(m, source="ambientcg")
+        paths, meta = _maps_ambientcg(m2)
+        opacity = paths.get("opacity")
+        n = m["out"]
+        col = Image.open(paths["color"]).convert("RGB").resize((n, n), Image.LANCZOS)
+        alpha = Image.open(opacity).convert("L").resize((n, n), Image.LANCZOS) if opacity else Image.new("L", (n, n), 255)
+        rgba = col.copy()
+        rgba.putalpha(alpha)
+        rgba.save(pdir / f"{m['name']}_albedo.png", optimize=True)
+        credits.append({"name": meta["name"], "file": f"photo/{m['name']}_albedo.png", "url": meta["url"],
+                        "author": meta["author"], "licence": "CC0 1.0", "source": meta["source"], "note": m["why"]})
+        print(f"  {m['name']}: {m['id']} tile {meta['tile_m']} m")
+
+
 def write_credits(credits: list[dict]) -> None:
     lines = ["# Credits of the detailed-look assets", "",
              "Every file below is CC0 1.0 (public domain dedication): no attribution is required,",
              "the list is kept so each file can be traced to its source. Generated by",
              "cad/track/fetch_cc0_assets.py; originals in ~/.cache/fun-racer/cc0/.",
              "The procedural textures of this folder (asphalt_*.png, the \"generated\" style) are",
-             "original work generated by cad/track/look_textures.py.", "",
+             "original work generated by cad/track/look_textures.py, as are boards.png and",
+             "distance_boards.png (fictional brands set in Barlow Condensed, SIL Open Font Licence,",
+             "assets/ui/fonts). trees/*.png are rendered from the Poly Haven models listed below by",
+             "cad/track/bake_impostors.gd.", "",
              "| File | Asset | Author | Source | Licence | Use |", "|---|---|---|---|---|---|"]
     for c in credits:
         lines.append(f"| {c['file']} | [{c['name']}]({c['url']}) | {c['author']} | {c['source']} "
@@ -306,6 +372,8 @@ def main() -> int:
     credits: list[dict] = []
     fetch_hdris(credits)
     fetch_materials(credits)
+    fetch_alpha_materials(credits)
+    fetch_models(credits)
     write_credits(credits)
     return 0
 

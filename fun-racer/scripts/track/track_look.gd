@@ -33,6 +33,16 @@ const DEFAULT_HDRI := "kloofendal_48d_partly_cloudy_puresky"
 const GRASS_SHADER := DIR + "/road_grass_detailed.gdshader"
 const RUNOFF_SHADER := DIR + "/runoff_detailed.gdshader"
 const KERB_SHADER := DIR + "/kerb_detailed.gdshader"
+const FLARE_SHADER := DIR + "/sun_flare.gdshader"
+const VIGNETTE_SHADER := DIR + "/vignette.gdshader"
+## Shared scenery shaders that scenery_ao() splices ambient occlusion into (realistic style).
+const FACADE_SHADER_PATH := "res://shaders/scenery_facade.gdshader"
+const SEATS_SHADER_PATH := "res://shaders/scenery_seats.gdshader"
+const FRAGMENT_HOOK := "void fragment() {\n"
+## Baked-lighting stand-in (LightmapGI cannot be baked from a script in Godot 4.7 and the
+## scenery is built at load time, see scenery_ao()): ambient occlusion by position.
+const FACADE_AO := "\t// TrackLook ambient occlusion: walls darker near the ground (contact with it).\n\tAO = mix(0.42, 1.0, smoothstep(-0.3, 3.5, UV.y));\n\tAO_LIGHT_AFFECT = 0.3;\n"
+const SEATS_AO := "\t// TrackLook ambient occlusion: the back rows sit under the roof.\n\tAO = mix(1.0, 0.55, smoothstep(4.0, 22.0, UV.y));\n\tAO_LIGHT_AFFECT = 0.2;\n"
 ## Photo-scanned CC0 materials of the realistic style (cad/track/fetch_cc0_assets.py):
 ## photo/<name>_detail|albedo.webp + <name>_normal.webp, tile sizes in materials.json.
 const PHOTO_DIR := DIR + "/photo"
@@ -293,6 +303,129 @@ static func _swap_materials(root: Node, swap: Dictionary) -> void:
 			if mesh != null and mesh.get_surface_count() == 1 and swap.has(mesh.surface_get_material(0)):
 				mmi.material_override = swap[mesh.surface_get_material(0)]
 
+## Baked-lighting stand-in for the static scenery: building walls darken towards the ground
+## and grandstand rows towards the back, in the shared scenery shaders (rewritten for the
+## session, restored by unroad() with the others). A LightmapGI bake is not possible here:
+## LightmapGI has no bake method a script can call (only the editor's Bake button), and the
+## scenery is generated at load time, so there is no saved scene to bake.
+static func scenery_ao(swapped: Dictionary) -> void:
+	for pair: Array in [[FACADE_SHADER_PATH, FACADE_AO], [SEATS_SHADER_PATH, SEATS_AO]]:
+		var sh := load(pair[0]) as Shader
+		if sh == null or swapped.has(sh) or not sh.code.contains(FRAGMENT_HOOK):
+			continue
+		swapped[sh] = sh.code
+		sh.code = sh.code.replace(FRAGMENT_HOOK, FRAGMENT_HOOK + str(pair[1]))
+
+## The scenery's own trees (Scenery, from the map data) as photo impostors: every tree
+## MultiMesh gets a quad and scenery_tree_card.gdshader with the impostor of its species
+## (trees/trees.json, cad/track/bake_impostors.gd), so the landscape near the track matches
+## the trackside dressing. Only the near copies (lod0): alpha-tested cards cost overdraw, and
+## far away the low-poly copies (lod1) read the same. Call it once Scenery has built its
+## trees (deferred from apply).
+const SCENERY_TREE_SHADER := DIR + "/scenery_tree_card.gdshader"
+const TREE_IMPOSTOR := {"conifer": "tree_small_02", "broadleaf": "island_tree_01", "palm": "island_tree_02",
+		"cypress": "tree_small_02", "bush": "shrub_04"}
+
+static func scenery_trees(track: Node) -> void:
+	if not is_instance_valid(track):
+		return
+	var scenery := track.get_node_or_null(^"Scenery")
+	var path := DIR + "/trees/trees.json"
+	if scenery == null or not FileAccess.file_exists(path):
+		return
+	var trees: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+	if not trees is Dictionary:
+		return
+	var shader := load(SCENERY_TREE_SHADER) as Shader
+	var quad := QuadMesh.new()
+	quad.size = Vector2(1.0, 1.0)
+	quad.center_offset = Vector3(0.0, 0.5, 0.0)
+	var mats := {}
+	for node: Node in scenery.find_children("trees_*", "MultiMeshInstance3D", true, false):
+		var mmi := node as MultiMeshInstance3D
+		var species := ""
+		for sp: String in TREE_IMPOSTOR:
+			if String(mmi.name).contains("_%s_lod" % sp):
+				species = sp
+		if species.is_empty() or mmi.multimesh == null or not String(mmi.name).ends_with("_lod0"):
+			continue
+		var id: String = TREE_IMPOSTOR[species]
+		if not (trees as Dictionary).has(id):
+			continue
+		if not mats.has(species):
+			var m := ShaderMaterial.new()
+			m.shader = shader
+			m.set_shader_parameter(&"atlas", load(str((trees[id] as Dictionary)["file"])))
+			m.set_shader_parameter(&"aspect", 0.75 if species == "cypress" else (1.3 if species == "bush" else 1.0))
+			m.set_shader_parameter(&"crop_w", float((trees[id] as Dictionary).get("crop_w", 1.0)))
+			m.set_shader_parameter(&"crop_h", float((trees[id] as Dictionary).get("crop_h", 1.0)))
+			mats[species] = m
+		mmi.multimesh.mesh = quad
+		mmi.material_override = mats[species]
+
+## Sun flare over the 3D view (sun_flare.gdshader), following `light` (the sun); added under
+## `track`, so it goes with it.
+static func sun_flare(track: Node, light: DirectionalLight3D, color: Color) -> void:
+	# (also the lens vignette, see SunFlare)
+	if light == null or track.get_node_or_null(^"LookSunFlare") != null:
+		return
+	var flare := SunFlare.new()
+	flare.name = "LookSunFlare"
+	flare.sun = light
+	flare.tint = color
+	track.add_child(flare)
+
+## The flare layer: a full-screen additive quad whose shader draws the glow at the sun's
+## screen position. One ray per frame from the camera towards the sun hides it behind
+## buildings, bridges and terrain (things with collision); it fades in and out. A second
+## quad multiplies a light lens vignette over the view.
+class SunFlare extends CanvasLayer:
+	var sun: DirectionalLight3D
+	var tint := Color(1.0, 0.92, 0.8)
+	var _rect: ColorRect
+	var _mat: ShaderMaterial
+	var _vis := 0.0
+
+	func _ready() -> void:
+		layer = -1   # under the HUD
+		_mat = ShaderMaterial.new()
+		_mat.shader = load(FLARE_SHADER)
+		_mat.set_shader_parameter(&"tint", tint)
+		_rect = ColorRect.new()
+		_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
+		_rect.material = _mat
+		add_child(_rect)
+		var vig := ColorRect.new()
+		vig.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		vig.set_anchors_preset(Control.PRESET_FULL_RECT)
+		var vm := ShaderMaterial.new()
+		vm.shader = load(VIGNETTE_SHADER)
+		vig.material = vm
+		add_child(vig)
+
+	func _process(delta: float) -> void:
+		var cam := get_viewport().get_camera_3d()
+		var want := 0.0
+		if cam != null and is_instance_valid(sun) and sun.visible:
+			var to_sun := sun.global_basis.z.normalized()   # the light shines along -Z
+			var far := cam.global_position + to_sun * 3000.0
+			if not cam.is_position_behind(far):
+				var px := cam.unproject_position(far)
+				var size := get_viewport().get_visible_rect().size
+				var uv := px / size
+				var facing := clampf(to_sun.dot(-cam.global_basis.z), 0.0, 1.0)
+				want = facing * facing * (1.0 - smoothstep(0.45, 0.8, (uv - Vector2(0.5, 0.5)).length()))
+				_mat.set_shader_parameter(&"sun_uv", uv)
+				_mat.set_shader_parameter(&"aspect", size.x / maxf(size.y, 1.0))
+				if want > 0.0:
+					var q := PhysicsRayQueryParameters3D.create(cam.global_position, cam.global_position + to_sun * 2000.0)
+					if not cam.get_world_3d().direct_space_state.intersect_ray(q).is_empty():
+						want = 0.0
+		_vis = move_toward(_vis, want, delta * 4.0)
+		_mat.set_shader_parameter(&"strength", _vis)
+		_rect.visible = _vis > 0.001
+
 ## Puts the original code back into the shaders road() rewrote.
 static func unroad(swapped: Dictionary) -> void:
 	for sh: Variant in swapped:
@@ -434,6 +567,20 @@ static func style() -> String:
 			v = arg.get_slice("=", 1)
 	return v if v == GENERATED else REALISTIC
 
+## The colour grade of the realistic style: a per-channel curve (Environment colour
+## correction reads each channel through the gradient): shadows lifted towards blue,
+## highlights rolled warm.
+static func grade_texture() -> GradientTexture1D:
+	var g := Gradient.new()
+	g.set_color(0, Color(0.0, 0.006, 0.022))
+	g.set_color(1, Color(1.0, 0.985, 0.95))
+	g.add_point(0.25, Color(0.24, 0.25, 0.265))
+	g.add_point(0.75, Color(0.765, 0.75, 0.73))
+	var t := GradientTexture1D.new()
+	t.gradient = g
+	t.width = 256
+	return t
+
 ## The sky panorama `id` of skies.json ("" = DEFAULT_HDRI), {} when it is not there.
 static func hdri(id: String) -> Dictionary:
 	if not FileAccess.file_exists(SKIES_FILE):
@@ -487,6 +634,19 @@ static func environment(e: Environment, env: TrackEnvironment) -> void:
 		e.tonemap_exposure = float(env.values.get("exposure", 1.0)) * 1.1
 		e.adjustment_contrast = 1.14
 		e.adjustment_saturation = 1.12
+		# Bloom: only what is really bright (sun glints on paint and glass, the sky near the
+		# sun), soft and wide, as a camera lens does.
+		e.glow_enabled = true
+		e.glow_intensity = 0.55
+		e.glow_strength = 1.0
+		e.glow_bloom = 0.02
+		e.glow_hdr_threshold = 1.15
+		e.glow_hdr_scale = 2.0
+		e.glow_blend_mode = Environment.GLOW_BLEND_MODE_SOFTLIGHT
+		for i in 7:
+			e.set_glow_level(i, 1.0 if i in [1, 3, 4] else 0.0)
+		# Colour grade: a touch of warmth in the highlights, cooler lifted shadows.
+		e.adjustment_color_correction = grade_texture()
 	elif env.time == "day" and e.sky != null and e.sky.sky_material is ProceduralSkyMaterial:
 		var mat := (e.sky.sky_material as ProceduralSkyMaterial).duplicate() as ProceduralSkyMaterial
 		var top := env.color("sky", "top")
@@ -565,7 +725,7 @@ static func car_reflections(track: Node3D, intensity: float = 1.0) -> Reflection
 ## scenes/car/endurance_body_visual.tscn): sharper, more metallic reflections of the
 ## photographed sky. Applied to copies, the scene's materials stay as they are.
 const CAR_PAINT := {
-	"Livery": {"metallic": 0.55, "roughness": 0.22, "clearcoat": 1.0, "clearcoat_roughness": 0.02},
+	"Livery": {"metallic": 0.2, "roughness": 0.22, "clearcoat": 1.0, "clearcoat_roughness": 0.02},
 	"LiveryWhite": {"metallic": 0.05, "roughness": 0.24, "clearcoat": 1.0, "clearcoat_roughness": 0.03},
 	"Accent": {"metallic": 0.2, "roughness": 0.24, "clearcoat": 1.0, "clearcoat_roughness": 0.03},
 	"Helmet": {"roughness": 0.2, "clearcoat": 1.0, "clearcoat_roughness": 0.02},
@@ -620,7 +780,9 @@ class CarTagger extends Node:
 			return
 		for surf in mi.mesh.get_surface_count():
 			var m := mi.get_active_material(surf) as StandardMaterial3D
-			if m == null or _saved.has(m) or not CAR_PAINT.has(m.resource_name):
+			# A car scene that brings its own clear-coat paint (the 499P-style endurance body)
+			# keeps it: only plain paints get the CAR_PAINT values.
+			if m == null or _saved.has(m) or not CAR_PAINT.has(m.resource_name) or m.clearcoat_enabled:
 				continue
 			var p: Dictionary = CAR_PAINT[m.resource_name]
 			var orig := {"clearcoat_enabled": m.clearcoat_enabled}

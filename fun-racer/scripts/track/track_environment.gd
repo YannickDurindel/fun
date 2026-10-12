@@ -433,6 +433,11 @@ func _apply_detailed(track: Node) -> void:
 			TrackLook.runoff(track)
 			TrackLook.barriers(track)
 			TrackLook.car_reflections(track)
+			TrackLook.scenery_ao(_road_shaders)
+			load("res://scripts/track/track_dressing.gd").build(track)
+			TrackLook.scenery_trees.call_deferred(track)
+			if not TrackLook.day_sky(self).is_empty():
+				TrackLook.sun_flare(track, _sun, _sun.light_color if _sun != null else Color.WHITE)
 
 ## Undoes apply(): the sky scene gets its own Environment and sun values back.
 func restore() -> void:

@@ -1,0 +1,24 @@
+{
+  "note": "Trackside dressing of the Circuit de la Sarthe (realistic look, scripts/track/track_dressing.gd). s in metres from the finish line on the 13 626 m lap of wec_le_mans (other versions of the circuit are mapped by lap fraction). side: -1 left, 1 right, 0 both (race direction). Read off the onboard frames and photos in ~/.cache/fun-racer/reference/wec_le_mans (contact_km*.jpg). trees: none | sparse | line | forest | pines | poplars; boards: advertising boards on the barrier; poles: wooden utility poles behind the barrier (public roads).",
+  "length": 13626,
+  "sections": [
+    {"s": [0, 650], "side": 0, "trees": "none", "boards": true},
+    {"s": [650, 1000], "side": 0, "trees": "pines", "boards": true, "tree_gap": 25},
+    {"s": [1000, 1700], "side": 0, "trees": "pines", "boards": true, "tree_gap": 35},
+    {"s": [1700, 2000], "side": -1, "trees": "pines", "boards": true},
+    {"s": [1700, 2000], "side": 1, "trees": "sparse", "boards": true},
+    {"s": [2000, 2450], "side": -1, "trees": "poplars", "boards": true},
+    {"s": [2000, 2450], "side": 1, "trees": "sparse"},
+    {"s": [2450, 3950], "side": 0, "trees": "line", "poles": true},
+    {"s": [3950, 4350], "side": 0, "trees": "sparse", "boards": true},
+    {"s": [4350, 5950], "side": 0, "trees": "forest", "poles": true},
+    {"s": [5950, 6400], "side": 0, "trees": "pines", "boards": true},
+    {"s": [6400, 7550], "side": 0, "trees": "forest", "poles": true},
+    {"s": [7550, 7850], "side": 0, "trees": "sparse", "boards": true},
+    {"s": [7850, 9750], "side": 0, "trees": "forest"},
+    {"s": [9750, 10250], "side": 0, "trees": "line", "boards": true},
+    {"s": [10250, 11350], "side": 0, "trees": "forest"},
+    {"s": [11350, 12000], "side": 0, "trees": "line", "boards": true},
+    {"s": [12000, 13626], "side": 0, "trees": "sparse", "boards": true}
+  ]
+}

@@ -17,6 +17,12 @@ the textures tile without seams and regenerate byte for byte.
       B fine mottling (binder bleeding, stains)
   (also the large-scale variation of the realistic grass, terrain and run-off)
 
+* boards.png          1280x1024 RGB atlas of 16 advertising boards (2 columns x 8 rows of
+                      640x128, a 5 m x 1 m board each) for FICTIONAL brands: colour blocks,
+                      the name in Barlow Condensed (assets/ui/fonts, SIL OFL) and simple
+                      graphic marks. Used by TrackDressing (realistic style).
+* distance_boards.png 768x256 RGB: the 300 / 200 / 100 m braking boards (256x256 each).
+
 Run: .venv/bin/python cad/track/look_textures.py
 """
 
@@ -122,6 +128,71 @@ def _write_png(path: Path, img: np.ndarray) -> None:
     path.write_bytes(png)
 
 
+BRANDS = [
+    # name, background, text colour, accent colour
+    ("VELOCITA", (200, 20, 30), (255, 255, 255), (255, 210, 0)),
+    ("NORDLUX", (10, 40, 110), (255, 255, 255), (90, 200, 255)),
+    ("ARCTURA TYRES", (250, 205, 0), (20, 20, 20), (20, 20, 20)),
+    ("KESTREL OIL", (0, 110, 70), (255, 255, 255), (250, 200, 40)),
+    ("SOLARIS", (255, 120, 0), (255, 255, 255), (40, 40, 40)),
+    ("MERIDIAN BANK", (240, 240, 240), (10, 40, 90), (200, 30, 40)),
+    ("BLUEFIN", (0, 150, 210), (255, 255, 255), (0, 60, 120)),
+    ("HALCYON WATCHES", (20, 60, 40), (230, 200, 120), (230, 200, 120)),
+    ("TORQUE ENERGY", (30, 30, 30), (120, 230, 40), (120, 230, 40)),
+    ("OCTAVE", (120, 20, 120), (255, 255, 255), (255, 170, 230)),
+    ("GRANITE", (90, 95, 100), (255, 255, 255), (255, 90, 40)),
+    ("PELICAN AIR", (255, 255, 255), (0, 90, 170), (0, 170, 200)),
+    ("RAPIDO", (230, 0, 80), (255, 255, 255), (255, 255, 255)),
+    ("ALPENGLOW", (0, 70, 140), (255, 210, 60), (255, 210, 60)),
+    ("CIRRUS", (210, 230, 245), (20, 60, 120), (20, 120, 200)),
+    ("FORGE MOTORS", (15, 15, 20), (230, 30, 30), (200, 200, 200)),
+]
+FONT = ROOT / "assets" / "ui" / "fonts" / "BarlowCondensed-BoldItalic.ttf"
+
+
+def boards() -> "object":
+    from PIL import Image, ImageDraw, ImageFont
+    cw, ch = 640, 128
+    atlas = Image.new("RGB", (cw * 2, ch * 8))
+    rng = np.random.default_rng(1923)
+    for i, (name, bg, fg, acc) in enumerate(BRANDS):
+        cell = Image.new("RGB", (cw, ch), bg)
+        d = ImageDraw.Draw(cell)
+        style = i % 4
+        if style == 1:                      # diagonal accent band on the left
+            d.polygon([(0, 0), (150, 0), (110, ch), (0, ch)], fill=acc)
+        elif style == 2:                    # stripes at the bottom
+            d.rectangle([0, ch - 22, cw, ch - 14], fill=acc)
+            d.rectangle([0, ch - 10, cw, ch - 4], fill=acc)
+        elif style == 3:                    # a round mark
+            d.ellipse([20, 20, 108, 108], fill=acc)
+            d.ellipse([44, 44, 84, 84], fill=bg)
+        size = 92 if len(name) < 10 else 74
+        font = ImageFont.truetype(str(FONT), size)
+        tw = d.textlength(name, font=font)
+        x0 = (cw - tw) / 2 + (55 if style in (1, 3) else 0)
+        d.text((x0, (ch - size) / 2 - 8), name, font=font, fill=fg)
+        # A little dirt and sun fading.
+        arr = np.asarray(cell).astype(np.float32)
+        arr *= 0.93 + 0.07 * rng.random((ch, cw, 1))
+        cell = Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8))
+        atlas.paste(cell, ((i % 2) * cw, (i // 2) * ch))
+    return atlas
+
+
+def distance_boards() -> "object":
+    from PIL import Image, ImageDraw, ImageFont
+    img = Image.new("RGB", (768, 256), (255, 255, 255))
+    d = ImageDraw.Draw(img)
+    font = ImageFont.truetype(str(FONT), 170)
+    for i, txt in enumerate(("300", "200", "100")):
+        x = i * 256
+        d.rectangle([x + 6, 6, x + 249, 249], outline=(20, 20, 20), width=10)
+        tw = d.textlength(txt, font=font)
+        d.text((x + (256 - tw) / 2, 18), txt, font=font, fill=(15, 15, 15))
+    return img
+
+
 def write_all(out_dir: Path = OUT_DIR) -> list[Path]:
     out_dir.mkdir(parents=True, exist_ok=True)
     detail, height = asphalt_detail()
@@ -129,6 +200,9 @@ def write_all(out_dir: Path = OUT_DIR) -> list[Path]:
     _write_png(paths[0], detail)
     _write_png(paths[1], normal_from_height(height, strength=6.0))
     _write_png(paths[2], asphalt_macro())
+    paths += [out_dir / "boards.png", out_dir / "distance_boards.png"]
+    boards().save(paths[3], optimize=True)
+    distance_boards().save(paths[4], optimize=True)
     return paths
 
 

@@ -25,6 +25,14 @@ const AUTO_ENV := "FUN_TRACKSIDE_AUTO"
 const BARRIER_STRAIGHT: float = 10.0       ## barrier distance from the road edge on straights
 const BARRIER_BEHIND_RUNOFF: float = 5.0   ## space between a run-off's outer edge and the wall
 const RUNOFF_KERB_ALLOWANCE: float = 2.5   ## room kept for kerbs between the edge and a run-off
+## Per-track tuning of the AUTOMATIC layout for tracks without a hand-made table:
+## {track_id: {"barrier_straight": m}}. Le Mans: on the public roads (Mulsanne, Route de Tours,
+## Indianapolis to Arnage) the armco runs 1 to 4 m from the white line (onboard footage), not
+## 10 m; the corner zones still push the wall out where cars arrive fast.
+const AUTO_TUNING: Dictionary = {
+	"wec_le_mans": {"barrier_straight": 3.5},
+	"wec_le_mans_survey": {"barrier_straight": 3.5},
+}
 
 # ---- automatic layout tuning
 const K_MIN: float = 1.0 / 400.0     ## curvature below this is "straight"
@@ -83,6 +91,8 @@ static func for_track(id: String, data: TrackData, force_auto: bool = false) -> 
 		layout._build_from_table(table.get_script_constant_map(), data)
 	else:
 		layout._build_auto(data)
+		var tune: Dictionary = AUTO_TUNING.get(id, {})
+		layout.barrier_straight = float(tune.get("barrier_straight", layout.barrier_straight))
 	return layout
 
 ## Kerbs of track `id` (hand-made table, or automatic when it has none).

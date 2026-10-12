@@ -1,0 +1,30 @@
+{
+  "island_tree_01": {
+    "crop_h": 0.99,
+    "crop_w": 0.956,
+    "file": "res://assets/tracks/_shared/look_detailed/trees/island_tree_01.png",
+    "height": 5.1279956817627,
+    "width": 5.1279956817627
+  },
+  "island_tree_02": {
+    "crop_h": 0.805,
+    "crop_w": 0.999,
+    "file": "res://assets/tracks/_shared/look_detailed/trees/island_tree_02.png",
+    "height": 4.29190046310425,
+    "width": 4.29190046310425
+  },
+  "shrub_04": {
+    "crop_h": 0.379,
+    "crop_w": 0.999,
+    "file": "res://assets/tracks/_shared/look_detailed/trees/shrub_04.png",
+    "height": 0.595363969802856,
+    "width": 0.595363969802856
+  },
+  "tree_small_02": {
+    "crop_h": 0.99,
+    "crop_w": 0.944,
+    "file": "res://assets/tracks/_shared/look_detailed/trees/tree_small_02.png",
+    "height": 4.64787557601929,
+    "width": 4.64787557601929
+  }
+}
