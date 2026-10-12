@@ -15,6 +15,7 @@ the textures tile without seams and regenerate byte for byte.
       R large blotches (colour drift, old / new surfacing)
       G mid streaks (stretched 8:1 along U: tyre marks, wear lanes)
       B fine mottling (binder bleeding, stains)
+  (also the large-scale variation of the realistic grass, terrain and run-off)
 
 Run: .venv/bin/python cad/track/look_textures.py
 """

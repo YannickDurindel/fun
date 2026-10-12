@@ -410,6 +410,13 @@ func _build_graphics() -> void:
 			[["LOW", 0], ["MEDIUM", 1], ["HIGH", 2]])
 	_add_slider("graphics", "graphics", "render_scale", "RENDER SCALE",
 			"Renders the 3D view at a lower resolution, then upscales. The biggest speed-up.", 50, 100, 5)
+	_add_choice("graphics", "graphics", "track_look", "TRACK LOOK",
+			"Style of the tracks that have one: GENERATED surfaces or REALISTIC photographed sky and materials. Applies from the next race.",
+			[["GENERATED", "generated"], ["REALISTIC", "realistic"]])
+	# Ten rows: tighter than the gameplay tab's nine so they fit the panel.
+	(_pages["graphics"] as VBoxContainer).add_theme_constant_override(&"separation", 1)
+	for r: Row in _rows["graphics"]:
+		r.custom_minimum_size.y = 51
 
 func _build_audio() -> void:
 	_add_slider("audio", "audio", "master", "MASTER", "Overall volume of the game.", 0, 100, 5)

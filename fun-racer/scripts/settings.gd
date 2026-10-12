@@ -17,6 +17,8 @@ const DEFAULTS: Dictionary = {
 		"shadows": 2,               # 0 off, 1 low, 2 medium, 3 high
 		"render_scale": 1.0,        # 3D resolution scale, 0.5 .. 1.0
 		"scenery": 1,               # trackside scenery: 0 low, 1 medium, 2 high
+		"track_look": "realistic",  # style of tracks opted in to the detailed look (TrackLook):
+		                            # "generated" (procedural) or "realistic" (photographic)
 	},
 	"audio": {
 		"master": 1.0,              # linear 0..1 per bus

@@ -19,11 +19,53 @@ extends RefCounted
 ## No reflection probe either: a box probe over the pit straight cost ~2 ms a frame (every
 ## pixel inside it samples it); the sky radiance does the reflections.
 
+const GENERATED := "generated"
+const REALISTIC := "realistic"
 const DIR := "res://assets/tracks/_shared/look_detailed"
 const TARMAC_SHADER := DIR + "/road_tarmac_detailed.gdshader"
 const DETAIL_TEX := DIR + "/asphalt_detail.png"
 const NORMAL_TEX := DIR + "/asphalt_normal.png"
 const MACRO_TEX := DIR + "/asphalt_macro.png"
+## CC0 sky panoramas (cad/track/fetch_cc0_assets.py): id -> {file, sun_azimuth_deg,
+## sun_elevation_deg, sun_color}, the sun as found in the unrotated panorama.
+const SKIES_FILE := DIR + "/sky/skies.json"
+const DEFAULT_HDRI := "kloofendal_48d_partly_cloudy_puresky"
+const GRASS_SHADER := DIR + "/road_grass_detailed.gdshader"
+const RUNOFF_SHADER := DIR + "/runoff_detailed.gdshader"
+const KERB_SHADER := DIR + "/kerb_detailed.gdshader"
+## Photo-scanned CC0 materials of the realistic style (cad/track/fetch_cc0_assets.py):
+## photo/<name>_detail|albedo.webp + <name>_normal.webp, tile sizes in materials.json.
+const PHOTO_DIR := DIR + "/photo"
+## Lines of shaders/terrain.gdshader that terrain() hooks into (it warns and leaves the
+## terrain alone when one is missing).
+const TERRAIN_UNIFORM_HOOK := "uniform float flood_reach = 90.0;\n"
+const TERRAIN_FRAGMENT_HOOK := "void fragment() {\n"
+const TERRAIN_ALBEDO_HOOK := "\tALBEDO = col;\n"
+const TERRAIN_ADDITIONS := """uniform sampler2D look_macro : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform sampler2D look_grass : source_color, hint_default_white, filter_linear_mipmap_anisotropic, repeat_enable;
+uniform vec3 look_grass_mean = vec3(0.27, 0.36, 0.16);
+uniform float look_grass_tile = 1.4;
+"""
+const TERRAIN_FUNCTION := """// Realistic look (TrackLook): large brightness / dryness blotches so the far land is not
+// flat, and the photographed lawn's grain within ~60 m of the camera.
+vec3 look_ground(vec3 col, vec2 p, float dist) {
+	float m1 = texture(look_macro, p / 900.0).r;
+	vec3 m2 = texture(look_macro, p / 230.0 + vec2(0.3, 0.6)).rgb;
+	col *= 0.84 + 0.32 * m1;
+	col = mix(col, col * vec3(1.1, 1.04, 0.8), smoothstep(0.45, 0.75, m2.b) * 0.55);
+	col *= 0.94 + 0.12 * m2.g;
+	float near = 1.0 - smoothstep(15.0, 60.0, dist);
+	vec2 gp = p / look_grass_tile;
+	vec2 gdx = dFdx(gp);
+	vec2 gdy = dFdy(gp);
+	if (near > 0.0) {
+		vec3 g = textureGrad(look_grass, gp, gdx, gdy).rgb;
+		col *= mix(vec3(1.0), clamp(g / look_grass_mean, vec3(0.3), vec3(2.5)), near * 0.8);
+	}
+	return col;
+}
+
+"""
 ## Metres of lap per lap-map texel (at most 16384 texels).
 const LAP_MAP_STEP: float = 1.5
 
@@ -34,9 +76,10 @@ const DRIVE_ACCEL: float = 7.0    ## m/s^2
 const TOP_SPEED: float = 92.0     ## m/s
 
 # ------------------------------------------------------------------------- road
-## Gives every road mesh under `track` the detailed tarmac. Returns {Shader: original code}
-## of the track shaders it rewrote, for unroad().
-static func road(track: Node3D) -> Dictionary:
+## Gives every road mesh under `track` the detailed tarmac: procedural aggregate (GENERATED)
+## or the photo-scanned asphalt (REALISTIC). Returns {Shader: original code} of the track
+## shaders it rewrote, for unroad().
+static func road(track: Node3D, realistic: bool = false) -> Dictionary:
 	var swapped := {}
 	var road_node := track.get_node_or_null(^"Road")
 	var data: TrackData = track.get("data") if track.get("data") is TrackData else null
@@ -60,12 +103,195 @@ static func road(track: Node3D) -> Dictionary:
 			if old.shader == null or not old.shader.resource_path.ends_with("road_tarmac.gdshader"):
 				continue
 			made[old] = _detailed_material(old, detailed, lap_map)
+			if realistic:
+				_photo_asphalt(made[old])
 			if not swapped.has(old.shader):
 				swapped[old.shader] = old.shader.code
 			mi.set_surface_override_material(surf, made[old])
 	for sh: Shader in swapped:
 		sh.code = detailed.code
 	return swapped
+
+## The grass verges of the road mesh: the track's road_grass.gdshader gets the detailed code
+## (draw order kept, as for the road) and its material the detail textures. The material is
+## the shared one on purpose: Scenery copies it for the track's verge colours afterwards.
+## Adds the rewritten shaders to `swapped` ({Shader: original code}).
+static func grass(track: Node3D, swapped: Dictionary) -> void:
+	var road_node := track.get_node_or_null(^"Road")
+	var detailed := load(GRASS_SHADER) as Shader
+	if road_node == null or detailed == null:
+		return
+	var done := {}
+	for node: Node in road_node.find_children("*", "MeshInstance3D", true, false):
+		var mi := node as MeshInstance3D
+		if mi.mesh == null:
+			continue
+		for surf in mi.mesh.get_surface_count():
+			var mat := mi.mesh.surface_get_material(surf) as ShaderMaterial
+			if mat == null or done.has(mat) or mat.shader == null \
+					or not mat.shader.resource_path.ends_with("road_grass.gdshader"):
+				continue
+			done[mat] = true
+			mat.set_shader_parameter(&"grass_albedo", photo_tex("grass_albedo"))
+			mat.set_shader_parameter(&"grass_far", photo_tex("grass_albedo"))
+			mat.set_shader_parameter(&"macro", load(MACRO_TEX))
+			mat.set_shader_parameter(&"tile_m", photo_tile("grass"))
+			if not swapped.has(mat.shader):
+				swapped[mat.shader] = mat.shader.code
+				mat.shader.code = detailed.code
+
+## The terrain: shaders/terrain.gdshader (shared by every track, restored with the others)
+## gets look_ground() spliced in before its albedo is written.
+static func terrain(track: Node3D, swapped: Dictionary) -> void:
+	var t := track.get_node_or_null(^"Terrain")
+	var mat: ShaderMaterial = t.get("material") if t != null and t.get("material") is ShaderMaterial else null
+	if mat == null or mat.shader == null or swapped.has(mat.shader):
+		return
+	var code := mat.shader.code
+	if not (code.contains(TERRAIN_UNIFORM_HOOK) and code.contains(TERRAIN_FRAGMENT_HOOK)
+			and code.contains(TERRAIN_ALBEDO_HOOK)):
+		push_warning("TrackLook: shaders/terrain.gdshader changed, the terrain keeps its plain look")
+		return
+	mat.set_shader_parameter(&"look_macro", load(MACRO_TEX))
+	mat.set_shader_parameter(&"look_grass", photo_tex("grass_albedo"))
+	mat.set_shader_parameter(&"look_grass_tile", photo_tile("grass"))
+	var mean: Variant = photo_info("grass").get("mean_rgb")
+	if mean is Array and (mean as Array).size() == 3:
+		# The texture is sampled as sRGB colour: the mean, stored as encoded values, is linearised.
+		var c := Color(float(mean[0]), float(mean[1]), float(mean[2])).srgb_to_linear()
+		mat.set_shader_parameter(&"look_grass_mean", Vector3(c.r, c.g, c.b))
+	swapped[mat.shader] = code
+	code = code.replace(TERRAIN_UNIFORM_HOOK, TERRAIN_UNIFORM_HOOK + TERRAIN_ADDITIONS)
+	code = code.replace(TERRAIN_FRAGMENT_HOOK, TERRAIN_FUNCTION + TERRAIN_FRAGMENT_HOOK)
+	code = code.replace(TERRAIN_ALBEDO_HOOK, "\tcol = look_ground(col, p, dist);\n" + TERRAIN_ALBEDO_HOOK)
+	mat.shader.code = code
+
+## Run-off areas of the Trackside: its plain gravel and tarmac materials are replaced on the
+## chunk meshes by runoff_detailed.gdshader materials (a small area of the screen, so the
+## new shader's late draw order costs little).
+static func runoff(track: Node3D) -> void:
+	var ts := track.get_node_or_null(^"Trackside")
+	if ts == null or not (ts.get("_mats") is Array):
+		return
+	var mats: Array = ts.get("_mats")
+	if mats.size() <= maxi(Trackside.Mat.GRAVEL, Trackside.Mat.TARMAC):
+		return
+	var shader := load(RUNOFF_SHADER) as Shader
+	if shader == null:
+		return
+	var gravel := ShaderMaterial.new()
+	gravel.shader = shader
+	gravel.set_shader_parameter(&"gravel", 1.0)
+	gravel.set_shader_parameter(&"detail", photo_tex("gravel_albedo"))
+	gravel.set_shader_parameter(&"detail_far", photo_tex("gravel_albedo"))
+	gravel.set_shader_parameter(&"detail_normal", photo_tex("gravel_normal"))
+	gravel.set_shader_parameter(&"macro", load(MACRO_TEX))
+	gravel.set_shader_parameter(&"tile_m", photo_tile("gravel"))
+	var tarmac := ShaderMaterial.new()
+	tarmac.shader = shader
+	tarmac.set_shader_parameter(&"gravel", 0.0)
+	tarmac.set_shader_parameter(&"detail_lin", photo_tex("asphalt_detail"))
+	tarmac.set_shader_parameter(&"detail_lin_far", photo_tex("asphalt_detail"))
+	tarmac.set_shader_parameter(&"detail_normal", photo_tex("asphalt_normal"))
+	tarmac.set_shader_parameter(&"macro", load(MACRO_TEX))
+	tarmac.set_shader_parameter(&"tile_m", photo_tile("asphalt"))
+	_swap_materials(ts, {mats[Trackside.Mat.GRAVEL]: gravel, mats[Trackside.Mat.TARMAC]: tarmac})
+
+## Photo-scanned asphalt on a detailed tarmac material: the same shader, the pack holds the
+## photo's luminance, roughness and AO instead of the procedural aggregate.
+static func _photo_asphalt(m: ShaderMaterial) -> void:
+	var tile := photo_tile("asphalt")
+	m.set_shader_parameter(&"detail", photo_tex("asphalt_detail"))
+	m.set_shader_parameter(&"detail_far", photo_tex("asphalt_detail"))
+	m.set_shader_parameter(&"detail_normal", photo_tex("asphalt_normal"))
+	m.set_shader_parameter(&"detail_scale", 1.0 / tile)
+	m.set_shader_parameter(&"detail_far_scale", 1.0 / (tile * 3.55))
+	m.set_shader_parameter(&"agg_contrast", 0.8)
+	m.set_shader_parameter(&"normal_strength", 1.0)
+
+## A photo texture of PHOTO_DIR: "asphalt_detail", "grass_albedo", "metal_normal"...
+static func photo_tex(name: String) -> Texture2D:
+	return load(PHOTO_DIR.path_join(name + ".webp")) as Texture2D
+
+## materials.json entry of a photo material ({} when missing).
+static func photo_info(name: String) -> Dictionary:
+	var path := PHOTO_DIR.path_join("materials.json")
+	if not FileAccess.file_exists(path):
+		return {}
+	var t: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
+	var e: Variant = (t as Dictionary).get(name) if t is Dictionary else null
+	return e if e is Dictionary else {}
+
+## Metres per texture tile of a photo material (2 m when unknown).
+static func photo_tile(name: String) -> float:
+	return float(photo_info(name).get("tile_m", 2.0))
+
+## Kerbs, concrete walls and armco of the Trackside: photo-scanned concrete under the kerb
+## paint (kerb_detailed.gdshader), concrete and galvanised steel on the barriers
+## (StandardMaterial3D, world-triplanar so no UVs are needed). Small areas of the screen.
+static func barriers(track: Node3D) -> void:
+	var ts := track.get_node_or_null(^"Trackside")
+	if ts == null or not (ts.get("_mats") is Array):
+		return
+	var mats: Array = ts.get("_mats")
+	if mats.size() < Trackside.Mat.size():
+		return
+	var swap := {}
+	var kerb_shader := load(KERB_SHADER) as Shader
+	for k: int in [Trackside.Mat.KERB_RW, Trackside.Mat.KERB_YELLOW]:
+		var old := mats[k] as ShaderMaterial
+		if old == null or kerb_shader == null:
+			continue
+		var m := ShaderMaterial.new()
+		m.shader = kerb_shader
+		for key: StringName in [&"color_a", &"color_b", &"stripe"]:
+			m.set_shader_parameter(key, old.get_shader_parameter(key))
+		m.set_shader_parameter(&"concrete", photo_tex("concrete_albedo"))
+		m.set_shader_parameter(&"macro", load(MACRO_TEX))
+		m.set_shader_parameter(&"tile_m", photo_tile("concrete"))
+		swap[old] = m
+	var conc := _photo_standard("concrete", 0.0)
+	conc.albedo_color = Color(0.92, 0.91, 0.88)
+	swap[mats[Trackside.Mat.CONCRETE]] = conc
+	var beam := _photo_standard("metal", 0.85)
+	beam.cull_mode = BaseMaterial3D.CULL_DISABLED
+	swap[mats[Trackside.Mat.BEAM]] = beam
+	_swap_materials(ts, swap)
+
+## A triplanar StandardMaterial3D of a photo material (colour + roughness in alpha + normal).
+static func _photo_standard(name: String, metallic: float) -> StandardMaterial3D:
+	var m := StandardMaterial3D.new()
+	m.albedo_texture = photo_tex(name + "_albedo")
+	m.roughness_texture = m.albedo_texture
+	m.roughness_texture_channel = BaseMaterial3D.TEXTURE_CHANNEL_ALPHA
+	m.roughness = 1.0
+	m.metallic = metallic
+	m.normal_enabled = true
+	m.normal_texture = photo_tex(name + "_normal")
+	m.uv1_triplanar = true
+	m.uv1_world_triplanar = true
+	var k := 1.0 / photo_tile(name)
+	m.uv1_scale = Vector3(k, k, k)
+	m.texture_filter = BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC
+	return m
+
+## Overrides every surface of the meshes (and multimeshes) under `root` whose material is a
+## key of `swap` with its value.
+static func _swap_materials(root: Node, swap: Dictionary) -> void:
+	for node: Node in root.find_children("*", "GeometryInstance3D", true, false):
+		if node is MeshInstance3D:
+			var mi := node as MeshInstance3D
+			if mi.mesh == null:
+				continue
+			for surf in mi.mesh.get_surface_count():
+				var m := mi.mesh.surface_get_material(surf)
+				if swap.has(m):
+					mi.set_surface_override_material(surf, swap[m])
+		elif node is MultiMeshInstance3D:
+			var mmi := node as MultiMeshInstance3D
+			var mesh := mmi.multimesh.mesh if mmi.multimesh != null else null
+			if mesh != null and mesh.get_surface_count() == 1 and swap.has(mesh.surface_get_material(0)):
+				mmi.material_override = swap[mesh.surface_get_material(0)]
 
 ## Puts the original code back into the shaders road() rewrote.
 static func unroad(swapped: Dictionary) -> void:
@@ -199,6 +425,35 @@ static func _speed_profile(data: TrackData, brake: PackedFloat32Array, load_g: P
 
 # ------------------------------------------------------------------------- lighting
 ## Environment settings of the detailed look (on the copy TrackEnvironment installs).
+## The style the player picked (Settings graphics/track_look): GENERATED or REALISTIC. Dev
+## flag (after `--`): --track-look=generated|realistic overrides it for this run.
+static func style() -> String:
+	var v := str(Settings.get_value("graphics", "track_look"))
+	for arg: String in OS.get_cmdline_user_args():
+		if arg.begins_with("--track-look="):
+			v = arg.get_slice("=", 1)
+	return v if v == GENERATED else REALISTIC
+
+## The sky panorama `id` of skies.json ("" = DEFAULT_HDRI), {} when it is not there.
+static func hdri(id: String) -> Dictionary:
+	if not FileAccess.file_exists(SKIES_FILE):
+		return {}
+	var skies: Variant = JSON.parse_string(FileAccess.get_file_as_string(SKIES_FILE))
+	if not skies is Dictionary:
+		return {}
+	var entry: Variant = (skies as Dictionary).get(id if not id.is_empty() else DEFAULT_HDRI)
+	if not entry is Dictionary or not ResourceLoader.exists(str((entry as Dictionary).get("file", ""))):
+		push_warning("TrackLook: no sky panorama '%s'" % id)
+		return {}
+	return entry
+
+## The day sky of the detailed look: environment.json "sky"/"hdri" (default DEFAULT_HDRI),
+## turned so its sun stands at the track's sun azimuth. {} at dusk / night or without it.
+static func day_sky(env: TrackEnvironment) -> Dictionary:
+	if env.time != "day" or env.look_style() != REALISTIC:
+		return {}
+	return hdri(str(env.section("sky").get("hdri", "")))
+
 static func environment(e: Environment, env: TrackEnvironment) -> void:
 	e.tonemap_mode = Environment.TONE_MAPPER_AGX
 	e.tonemap_white = 8.0
@@ -213,7 +468,26 @@ static func environment(e: Environment, env: TrackEnvironment) -> void:
 	e.fog_depth_curve = 1.4
 	e.fog_depth_begin = minf(e.fog_depth_begin, 180.0)
 	e.glow_intensity = maxf(e.glow_intensity, 0.4)
-	if env.time == "day" and e.sky != null and e.sky.sky_material is ProceduralSkyMaterial:
+	var pano_sky := day_sky(env)
+	if e.sky != null and not pano_sky.is_empty():
+		# A photographed sky: background, ambient light and reflections all come from it.
+		var pano := PanoramaSkyMaterial.new()
+		pano.panorama = load(str(pano_sky["file"]))
+		pano.energy_multiplier = env.number("sky", "hdri_energy")
+		e.sky.sky_material = pano
+		e.sky.radiance_size = Sky.RADIANCE_SIZE_256
+		e.sky_rotation = Vector3(0.0, deg_to_rad(float(pano_sky["sun_azimuth_deg"])
+				- env.number("sun", "azimuth_deg")), 0.0)
+		e.ambient_light_source = Environment.AMBIENT_SOURCE_SKY
+		e.ambient_light_sky_contribution = 1.0
+		e.fog_aerial_perspective = 0.85  # distant ground fades into the photographed horizon
+		# A photographed sky lights the scene more evenly: less haze, a little more contrast.
+		e.fog_depth_begin = maxf(e.fog_depth_begin, 450.0)
+		e.fog_depth_end = maxf(e.fog_depth_end, 5000.0)
+		e.tonemap_exposure = float(env.values.get("exposure", 1.0)) * 1.1
+		e.adjustment_contrast = 1.14
+		e.adjustment_saturation = 1.12
+	elif env.time == "day" and e.sky != null and e.sky.sky_material is ProceduralSkyMaterial:
 		var mat := (e.sky.sky_material as ProceduralSkyMaterial).duplicate() as ProceduralSkyMaterial
 		var top := env.color("sky", "top")
 		var horizon := env.color("sky", "horizon")
@@ -238,4 +512,122 @@ static func sun(light: DirectionalLight3D) -> void:
 	light.directional_shadow_split_1 = 0.14
 	light.directional_shadow_blend_splits = true
 	light.shadow_blur = 1.0
+	# Flat trackside meshes (run-off, lines) cast shadows: with the longer cascades their own
+	# shadow showed as ripples (acne) on the run-off; a little more bias hides it.
+	light.shadow_bias = 0.06
+	light.shadow_normal_bias = 2.0
 
+# ------------------------------------------------------------------------- car reflections
+## Render layer of the cars' meshes on a detailed track (instead of layer 1): the reflection
+## probe below shows only on this layer and does not capture it.
+const LAYER_CARS: int = 1 << 12
+const PROBE_NAME := "LookCarReflections"
+## Where the probe looks from: this far round the lap, this high above the road.
+const PROBE_S: float = 450.0
+const PROBE_HEIGHT: float = 1.5
+
+## One reflection probe for the cars' paint, captured once from the start / finish straight
+## (stands, pits, trees, the road and the sky) and used all round the lap (no box
+## projection): RR3-style glossy bodywork for the cost of one capture at load. Its
+## reflection_mask is LAYER_CARS, so only car pixels sample it (a probe over the road cost
+## ~2 ms a frame on the HD 520). A CarTagger moves every car mesh that enters the tree to
+## LAYER_CARS.
+static func car_reflections(track: Node3D, intensity: float = 1.0) -> ReflectionProbe:
+	var data: TrackData = track.get("data") if track.get("data") is TrackData else null
+	if data == null or track.get_node_or_null(NodePath(PROBE_NAME)) != null:
+		return null
+	var box := AABB(data.points[0], Vector3.ZERO)
+	for p in data.points:
+		box = box.expand(p)
+	box = box.grow(600.0)
+	var probe := ReflectionProbe.new()
+	probe.name = PROBE_NAME
+	probe.update_mode = ReflectionProbe.UPDATE_ONCE
+	probe.size = box.size
+	probe.box_projection = false
+	probe.max_distance = 1500.0
+	probe.intensity = intensity
+	probe.ambient_mode = ReflectionProbe.AMBIENT_DISABLED
+	probe.cull_mask = 0xFFFFF & ~LAYER_CARS
+	probe.reflection_mask = LAYER_CARS
+	var eye := data.sample(data.wrap_s(PROBE_S)).origin + Vector3.UP * PROBE_HEIGHT
+	probe.position = box.get_center()
+	probe.origin_offset = eye - box.get_center()
+	track.add_child(probe)
+	var tagger := CarTagger.new()
+	tagger.name = "LookCarTagger"
+	track.add_child(tagger)
+	for car: Node in track.get_tree().get_nodes_in_group(&"car"):
+		tagger.tag(car)
+	return probe
+
+## Paint of the car bodies on a detailed track (by material name, see
+## scenes/car/endurance_body_visual.tscn): sharper, more metallic reflections of the
+## photographed sky. Applied to copies, the scene's materials stay as they are.
+const CAR_PAINT := {
+	"Livery": {"metallic": 0.55, "roughness": 0.22, "clearcoat": 1.0, "clearcoat_roughness": 0.02},
+	"LiveryWhite": {"metallic": 0.05, "roughness": 0.24, "clearcoat": 1.0, "clearcoat_roughness": 0.03},
+	"Accent": {"metallic": 0.2, "roughness": 0.24, "clearcoat": 1.0, "clearcoat_roughness": 0.03},
+	"Helmet": {"roughness": 0.2, "clearcoat": 1.0, "clearcoat_roughness": 0.02},
+	"Glass": {"metallic": 0.0, "roughness": 0.02, "clearcoat": 1.0, "clearcoat_roughness": 0.0},
+	"Carbon": {"roughness": 0.3, "clearcoat": 0.6, "clearcoat_roughness": 0.08},
+}
+
+## Puts the meshes of every car (a Car and everything under it) on LAYER_CARS as they enter
+## the tree, while this node is in it, and gives their paint the CAR_PAINT values. The paint
+## is changed in place on the materials the car scenes share (bots copy them when they are
+## dressed, so they get it too) and put back when this node leaves the tree. Swapping in
+## copies instead left stale material RIDs in the renderer ("Parameter material is null").
+class CarTagger extends Node:
+	var _saved := {}   # Material -> {property: original value}
+
+	func _enter_tree() -> void:
+		get_tree().node_added.connect(_on_node_added)
+
+	func _exit_tree() -> void:
+		if get_tree().node_added.is_connected(_on_node_added):
+			get_tree().node_added.disconnect(_on_node_added)
+		for m: Variant in _saved:
+			if is_instance_valid(m):
+				var orig: Dictionary = _saved[m]
+				for key: String in orig:
+					(m as Material).set(key, orig[key])
+		_saved.clear()
+
+	func _on_node_added(node: Node) -> void:
+		if node is GeometryInstance3D and _in_car(node):
+			_tag_one(node as GeometryInstance3D)
+
+	func tag(root: Node) -> void:
+		for n: Node in root.find_children("*", "GeometryInstance3D", true, false):
+			_tag_one(n as GeometryInstance3D)
+
+	static func _in_car(node: Node) -> bool:
+		var p := node.get_parent()
+		for _i in 8:
+			if p == null:
+				return false
+			if p is Car:
+				return true
+			p = p.get_parent()
+		return false
+
+	func _tag_one(g: GeometryInstance3D) -> void:
+		if g.layers & 1:
+			g.layers = (g.layers & ~1) | LAYER_CARS
+		var mi := g as MeshInstance3D
+		if mi == null or mi.mesh == null:
+			return
+		for surf in mi.mesh.get_surface_count():
+			var m := mi.get_active_material(surf) as StandardMaterial3D
+			if m == null or _saved.has(m) or not CAR_PAINT.has(m.resource_name):
+				continue
+			var p: Dictionary = CAR_PAINT[m.resource_name]
+			var orig := {"clearcoat_enabled": m.clearcoat_enabled}
+			for key: String in p:
+				orig[key] = m.get(key)
+			_saved[m] = orig
+			for key: String in p:
+				m.set(key, p[key])
+			if float(p.get("clearcoat", 0.0)) > 0.0:
+				m.clearcoat_enabled = true

@@ -1,0 +1,67 @@
+{
+  "asphalt": {
+    "tile_m": 2.0,
+    "files": [
+      "asphalt_detail.webp",
+      "asphalt_normal.webp"
+    ],
+    "kind": "detail",
+    "mean_rgb": [
+      0.2424,
+      0.8132,
+      0.9511
+    ]
+  },
+  "grass": {
+    "tile_m": 1.4,
+    "files": [
+      "grass_albedo.webp",
+      "grass_normal.webp"
+    ],
+    "kind": "albedo",
+    "mean_rgb": [
+      0.2681,
+      0.3592,
+      0.1586
+    ]
+  },
+  "gravel": {
+    "tile_m": 1.5,
+    "files": [
+      "gravel_albedo.webp",
+      "gravel_normal.webp"
+    ],
+    "kind": "albedo",
+    "mean_rgb": [
+      0.8534,
+      0.8395,
+      0.8081
+    ]
+  },
+  "concrete": {
+    "tile_m": 1.1,
+    "files": [
+      "concrete_albedo.webp",
+      "concrete_normal.webp"
+    ],
+    "kind": "albedo",
+    "mean_rgb": [
+      0.723,
+      0.723,
+      0.723
+    ]
+  },
+  "metal": {
+    "tile_m": 2.0,
+    "files": [
+      "metal_albedo.webp",
+      "metal_normal.webp"
+    ],
+    "kind": "albedo",
+    "mean_rgb": [
+      0.4893,
+      0.5369,
+      0.5785
+    ]
+  }
+}

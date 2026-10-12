@@ -15,14 +15,20 @@ extends RefCounted
 ##   {
 ##     "preset": "temperate_day",            // optional starting point, see above
 ##     "look": "detailed",                   // opt-in Real-Racing-style materials and lighting
-##                                           // (TrackLook); "" = the plain look (default)
+##                                           // (TrackLook); "" = the plain look (default). The
+##                                           // player picks its style (Options > Graphics >
+##                                           // TRACK LOOK): "generated" or "realistic"
+##     "realistic": {..},                    // keys of this file used only in the realistic
+##                                           // style (merged over the others)
 ##     "time": "day",                        // "day" | "dusk" | "night"
 ##     "sun": {"azimuth_deg": 60,            // compass bearing TO the sun: 0 north, 90 east
 ##             "elevation_deg": 45,          // above the horizon
 ##             "color": [1.0, 0.95, 0.86], "energy": 1.5},   // at night this is the moon
 ##     "sky": {"top": [0.24, 0.45, 0.78], "horizon": [0.74, 0.81, 0.88],
 ##             "stars": 0.0,                 // 0..1 star brightness
-##             "glow_color": [0.9, 0.55, 0.25], "glow": 0.0}, // city glow at the horizon, 0..1
+##             "glow_color": [0.9, 0.55, 0.25], "glow": 0.0, // city glow at the horizon, 0..1
+##             "hdri": "", "hdri_energy": 1.0},  // look "detailed", by day: photographed sky
+##                                       // (TrackLook.hdri id; "" = its default), brightness
 ##     "ambient": {"color": [0.62, 0.64, 0.66], "energy": 1.0},   // light in the shade
 ##     "fog": {"color": [0.74, 0.81, 0.88], "begin": 250, "end": 2900},   // metres
 ##     "exposure": 1.0,
@@ -73,10 +79,11 @@ const FLOOD_DUSK_SHARE: float = 0.45      ## floodlight strength at dusk
 const DEFAULTS: Dictionary = {
 	"preset": "",
 	"look": "",
+	"realistic": {},
 	"time": "day",
 	"sun": {"azimuth_deg": 60.0, "elevation_deg": 45.0, "color": [1.0, 0.95, 0.86], "energy": 1.5},
 	"sky": {"top": [0.24, 0.45, 0.78], "horizon": [0.74, 0.81, 0.88], "stars": 0.0,
-		"glow_color": [0.90, 0.55, 0.25], "glow": 0.0},
+		"glow_color": [0.90, 0.55, 0.25], "glow": 0.0, "hdri": "", "hdri_energy": 1.0},
 	"ambient": {"color": [0.62, 0.64, 0.66], "energy": 1.0},
 	"fog": {"color": [0.74, 0.81, 0.88], "begin": 250.0, "end": 2900.0},
 	"exposure": 1.0,
@@ -149,7 +156,7 @@ var _old_environment: Environment
 var _sun: DirectionalLight3D
 var _old_sun: Dictionary = {}
 var _extra_light: DirectionalLight3D
-var _road_shaders: Dictionary = {}   ## shader -> original code (TrackLook.road)
+var _road_shaders: Dictionary = {}   ## shader -> original code (TrackLook road / grass / terrain)
 
 ## The environment of the track folder file `path` ("" or a missing file = the defaults).
 ## `time_override` ("day" / "dusk" / "night") forces that time's lighting.
@@ -190,6 +197,10 @@ static func load_file(path: String, time_override: String = "") -> TrackEnvironm
 		# A day preset used for a dusk or night track: that time's stock lighting.
 		_relight(v, file_time)
 	_merge(v, file)
+	if str(v.get("look", "")) == "detailed" and TrackLook.style() == TrackLook.REALISTIC \
+			and file.get("realistic") is Dictionary:
+		_check_keys(file["realistic"], DEFAULTS, path + "/realistic")
+		_merge(v, file["realistic"])
 	if not time_override.is_empty() and not time_override in TIMES:
 		push_warning("TrackEnvironment: unknown --time=%s" % time_override)
 	elif not time_override.is_empty():
@@ -263,6 +274,10 @@ func number(sec: String, key: String) -> float:
 ## True for "look": "detailed" (TrackLook materials and lighting).
 func detailed() -> bool:
 	return str(values.get("look", "")) == "detailed"
+
+## Style of the detailed look ("generated" / "realistic", the player's choice), "" without it.
+func look_style() -> String:
+	return TrackLook.style() if detailed() else ""
 
 func is_night() -> bool:
 	return time == "night"
@@ -398,13 +413,26 @@ func _apply_detailed(track: Node) -> void:
 	if _sun != null:
 		_old_sun["shadow"] = [_sun.directional_shadow_mode, _sun.directional_shadow_max_distance,
 				_sun.directional_shadow_split_1, _sun.directional_shadow_blend_splits,
-				_sun.shadow_blur, _sun.light_angular_distance]
+				_sun.shadow_blur, _sun.shadow_bias, _sun.shadow_normal_bias]
 		TrackLook.sun(_sun)
 	var e := applied_environment()
 	if e != null:
 		TrackLook.environment(e, self)
+		var pano := TrackLook.day_sky(self)
+		if _sun != null and not pano.is_empty():
+			# The sun stands where the photographed sky has it: the track's azimuth (the sky is
+			# turned to it), the photo's elevation and colour.
+			_aim(_sun, direction(number("sun", "azimuth_deg"), float(pano["sun_elevation_deg"])))
+			_sun.light_color = to_color(pano["sun_color"], _sun.light_color)
 	if track is Node3D:
-		_road_shaders = TrackLook.road(track)
+		var realistic := look_style() == TrackLook.REALISTIC
+		_road_shaders = TrackLook.road(track, realistic)
+		if realistic:
+			TrackLook.grass(track, _road_shaders)
+			TrackLook.terrain(track, _road_shaders)
+			TrackLook.runoff(track)
+			TrackLook.barriers(track)
+			TrackLook.car_reflections(track)
 
 ## Undoes apply(): the sky scene gets its own Environment and sun values back.
 func restore() -> void:
@@ -424,7 +452,8 @@ func restore() -> void:
 			_sun.directional_shadow_split_1 = sh[2]
 			_sun.directional_shadow_blend_splits = sh[3]
 			_sun.shadow_blur = sh[4]
-			_sun.light_angular_distance = sh[5]
+			_sun.shadow_bias = sh[5]
+			_sun.shadow_normal_bias = sh[6]
 	if is_instance_valid(_extra_light):
 		_extra_light.queue_free()
 	TrackLook.unroad(_road_shaders)

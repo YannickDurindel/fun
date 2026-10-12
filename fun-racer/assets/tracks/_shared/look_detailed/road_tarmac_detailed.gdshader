@@ -29,6 +29,8 @@ uniform int grid_slots = 20;
 uniform float wetness : hint_range(0.0, 1.0) = 0.0;   // 0 dry .. 1 standing water (not used yet)
 uniform float normal_strength = 0.8;
 uniform float agg_contrast = 0.45;   // aggregate albedo contrast (1 = the texture's)
+uniform float detail_scale = 0.625;      // texture tiles per metre of the close-up detail
+uniform float detail_far_scale = 0.231;  // ... and of the larger tile seen further away
 uniform float patch_seed = 0.0;
 
 varying vec2 world_xz;
@@ -59,7 +61,7 @@ void fragment() {
 
 	// --- aggregate: the 1.6 m tile up close only (branch: the GPU skips it for distant
 	// pixels), the 4.3 m tile everywhere so the near tile does not repeat visibly.
-	vec2 uv1 = world_xz * 0.625;
+	vec2 uv1 = world_xz * detail_scale;
 	vec2 uv1_dx = dFdx(uv1);
 	vec2 uv1_dy = dFdy(uv1);
 	vec4 d1 = vec4(0.25, 0.86, 0.8, 0.5);              // the tile's mean
@@ -68,7 +70,7 @@ void fragment() {
 		d1 = textureGrad(detail, uv1, uv1_dx, uv1_dy);
 		n1 = textureGrad(detail_normal, uv1, uv1_dx, uv1_dy).xy * 2.0 - 1.0;
 	}
-	vec4 d2 = texture(detail_far, world_xz * 0.231 + vec2(0.31, 0.67));
+	vec4 d2 = texture(detail_far, world_xz * detail_far_scale + vec2(0.31, 0.67));
 	vec3 mac = texture(macro, world_xz * (1.0 / 160.0)).rgb;
 	vec3 lm = texture(lap_map, vec2(s / track_length, 0.5)).rgb;
 	float agg = 1.0 + (mix(d1.r, d2.r, 0.3) / 0.25 - 1.0) * agg_contrast;   // ~1 on average
@@ -145,7 +147,7 @@ void fragment() {
 	col *= 1.0 - rubber_strength * mix(1.25, 0.9, 1.0 - near) * rub;
 	col *= 1.0 - 0.7 * clamp(marks * 1.3, 0.0, 1.0);
 	col = mix(col, col * vec3(1.25, 1.22, 1.15) + vec3(0.02), edge_dust * (1.0 - rub) * 0.55);
-	col *= 1.0 - 0.45 * seam;
+	col *= 1.0 - 0.3 * seam;
 	col *= mix(1.0, 0.88 + 0.12 * cav, near);
 
 	// --- painted lines (as the track shader: edges, finish, start, grid), worn

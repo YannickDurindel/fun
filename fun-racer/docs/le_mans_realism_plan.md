@@ -49,6 +49,22 @@ the Endurance list. No agent of this plan edits `wec_le_mans.toml` or `assets/tr
   products are committed to the track folder (grids, masks, small JPEGs), each < 20 MB, the
   whole track folder < 80 MB.
 
+## Reference imagery (private use, never committed)
+
+Real-world look comes from real references. For every 25 m of the lap there is a reference
+index in `~/.cache/fun-racer/reference/<id>/index.json` (s -> frames / photos), built by the
+reference agent from:
+- YouTube onboard laps (4K, dry, daylight) and drone / track-walk videos of the hero spots,
+  downloaded with yt-dlp for this private project only, frames extracted with ffmpeg and
+  matched to s;
+- Panoramax / Mapillary street-level photos of the public-road sections (Mulsanne, Arnage,
+  Indianapolis), with their GPS and heading;
+- Wikimedia Commons photos of the landmarks (Dunlop bridge, grandstands, pits, Tertre Rouge).
+Raw videos, frames and photos stay in the cache; nothing from them is committed except
+textures the projection experiment (W2-F) produces. Every W2 agent (landmarks, dressing,
+landscape) must look at the references of its section before modelling anything, and the
+validation wave compares game screenshots with reference frames at the same s.
+
 ## Wave 0 - data and quick win (1 agent, ~1 day)
 
 **W0. Data acquisition + `ign` quick win.** Owns: `tools/track/lib/ign_data.py` (new),
