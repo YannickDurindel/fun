@@ -51,6 +51,12 @@ DATASETS = {
     # decks need [[elevation.key]] entries. Points without a tile fall back to terrarium.
     # Select it with `[elevation] dataset = "dgm1"`.
     "dgm1": "DGM1 1 m (GeoBasis-DE / LVermGeo RP, dl-de/by-2-0)",
+    # France: IGN's LiDAR HD classified point clouds (ground class), gridded by lib/lidar.py
+    # into lidar_road.* (0.25 m, 40 m either side of the lap) and lidar_terrain.* (1 m, 600 m)
+    # next to track.json. Only those grids are read (the raw tiles stay in the cache); points
+    # they do not cover (holes, the far terrain) get RGE ALTI ("ign"). Bridge decks carrying
+    # the lap are in the road grid already. Select it with `[elevation] dataset = "lidar_hd"`.
+    "lidar_hd": "LiDAR HD ground points (IGN, Licence Ouverte 2.0), RGE ALTI (IGN) beyond them",
 }
 TERRARIUM_URL = "https://s3.amazonaws.com/elevation-tiles-prod/terrarium"
 TERRARIUM_ZOOM = 13     # ~19 m * cos(latitude) per pixel, finer than the source DEMs
@@ -230,7 +236,7 @@ def fallback_dataset(dataset, lat):
 
 
 def attribution(dataset):
-    if dataset in ("terrarium", "ahn", "ign", "dgm1"):
+    if dataset in ("terrarium", "ahn", "ign", "dgm1", "lidar_hd"):
         return f"Elevation: {DATASETS[dataset]}."
     return f"Elevation: {DATASETS.get(dataset, dataset)} via OpenTopoData."
 
@@ -397,6 +403,25 @@ def _dgm1_elevations(fetcher, latlon):
     return out
 
 
+def _lidar_elevations(fetcher, latlon, prefix):
+    """Heights from the track's LiDAR HD grids (lib/lidar.py; they sit next to track.json, i.e.
+    in the parent of the raw/ cache): the centreline ("dem" prefix) from the 0.25 m road grid,
+    the terrain from the 1 m grid; every point they do not cover from RGE ALTI."""
+    from . import lidar
+    track_dir = os.path.dirname(os.path.abspath(fetcher.cache_dir))
+    try:
+        vals = lidar.sample_latlon(track_dir, latlon, prefix)
+    except FileNotFoundError as e:
+        raise BuildError(f"{e}: build them first (tools/track: python -m lib.lidar <id>)") from e
+    out = [round(float(v), 3) if v == v else None for v in vals]
+    miss = [k for k, v in enumerate(out) if v is None]
+    if miss:
+        sub = _ign_elevations(fetcher, [latlon[k] for k in miss], prefix)
+        for k, v in zip(miss, sub):
+            out[k] = v
+    return out
+
+
 def fetch_elevations(fetcher, latlon, dataset, prefix):
     """Elevations in metres (None = no data) for (lat, lon) pairs, 100 per request, cached as
     ``<prefix>_<hash of the request>.json``."""
@@ -410,6 +435,8 @@ def fetch_elevations(fetcher, latlon, dataset, prefix):
         return _ign_elevations(fetcher, latlon, prefix)
     if dataset == "dgm1":
         return _dgm1_elevations(fetcher, latlon)
+    if dataset == "lidar_hd":
+        return _lidar_elevations(fetcher, latlon, prefix)
     out = []
     for c in range(0, len(latlon), 100):
         chunk = latlon[c:c + 100]

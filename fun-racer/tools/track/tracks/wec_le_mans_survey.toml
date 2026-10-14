@@ -55,7 +55,17 @@ direction = "clockwise"
 finish = [47.949865, 0.207541]
 
 [elevation]
-dataset = "ign"
+# IGN LiDAR HD ground points (about 30 per m^2), gridded by lib/lidar.py into lidar_road.* (0.25 m,
+# 40 m either side of the lap) and lidar_terrain.* (1 m, 600 m) in the track folder; the far
+# terrain and the grids' holes are RGE ALTI. Rebuild the grids after the plan view changes:
+#   cd tools/track && nice -n 10 ../../.venv/bin/python -m lib.lidar wec_le_mans_survey
+# The centreline is sampled every 2 m (median of a 4 x 4 m footprint): cm-exact, so only a light
+# smoothing. Bridges come from the class 17 points: three decks carry the lap (s ~ 2090 m after
+# Tertre Rouge, ~ 2548 m at the start of the Hunaudieres, ~ 11910 m Virage du Pont), where RGE ALTI
+# and the old profile dipped 4.5-5.5 m to the ground under them; the grid has the deck there, so
+# no [[elevation.key]] is needed. Footbridges over the lap do not touch the road.
+dataset = "lidar_hd"
+smooth_sigma_m = 4.0
 
 [road]
 # Widths are ESTIMATES (no published per-section figures): the Bugatti part and the pit straight

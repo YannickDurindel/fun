@@ -478,7 +478,10 @@ def build(recipe, fetcher, log=print):
         start_s = float(recipe.start_offset_m) % length
 
     # ---- elevation -----------------------------------------------------------------------
-    dem_idx = list(range(0, n, int(DEM_STEP / step)))
+    # A lidar ground grid is sampled at every point: its heights are cm-exact, and a 10 m
+    # spacing would cut the crests the grid shows.
+    every = 1 if recipe.dem_dataset == "lidar_hd" else int(DEM_STEP / step)
+    dem_idx = list(range(0, n, every))
     latlon = [(lat0 - true_samples[i][1] / ky, lon0 + true_samples[i][0] / kx) for i in dem_idx]
     elev, dataset = _elevations(fetcher, latlon, recipe, log, warnings)
     dem_s = [i * step for i in dem_idx]

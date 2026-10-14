@@ -51,6 +51,16 @@ so shading and collision are seamless across chunk boundaries.
 UVs: UV0 = (s, lateral metres, + right), UV1 = (racing-line lateral offset, half width).
 The tarmac shader uses world-space XZ for texture tiling and UV0/UV1 for painted lines.
 
+Measured cross-sections
+-----------------------
+With ``[road] sections = "lidar"`` in the recipe the road surface is not the analytic plane
+above: every cross-section is sampled from the lidar grid of the track (lidar_road.json /
+.bin) every 0.5 m across, a robust smooth section is fitted, and the mesh gets a column of it
+at most 1 m apart (cad/track/road_sections.py). The heights
+are written to road_profile.json ("xsec", "xsec_columns"), the profile's "bank" becomes the
+measured mean cross slope, and the verges start from the measured edges. Without the key the
+module is never imported and every track builds byte for byte as before.
+
 Crossovers
 ----------
 Where the lap crosses itself (track.json "crossings", a figure of eight) the upper road is
@@ -451,8 +461,17 @@ def build(track_path: Path = TRACK_DIR / "track.json", out_dir: Path = TRACK_DIR
     hw = 0.5 * width
     R = Rh * np.cos(bank)[:, None] - U0 * np.sin(bank)[:, None]
 
-    left_edge = P - R * hw[:, None]
-    right_edge = P + R * hw[:, None]
+    # Measured cross-sections ([road] sections = "lidar", cad/track/road_sections.py): the road
+    # surface comes from the lidar grid instead of the analytic crossfall. Without the key
+    # nothing below changes.
+    xs = measured_sections(road_cfg, out_dir, track_id, P, T, Rh, hw, bank)
+    if xs is None:
+        left_edge = P - R * hw[:, None]
+        right_edge = P + R * hw[:, None]
+    else:
+        road_lat = hw[:, None] * xs["u"][None, :]
+        road_v = P[:, None, :] + Rh[:, None, :] * road_lat[:, :, None] + UP * xs["xsec"][:, :, None]
+        left_edge, right_edge = road_v[:, 0], road_v[:, -1]
     ext_l = verge_extent(P, left_edge, -Rh, hw, -1.0, step)
     ext_r = verge_extent(P, right_edge, Rh, hw, 1.0, step)
     pairs = pair_spans((road_cfg or {}).get("pair", []), P, Rh, hw, step)
@@ -462,8 +481,9 @@ def build(track_path: Path = TRACK_DIR / "track.json", out_dir: Path = TRACK_DIR
     rl = racing_line(P, step, hw)
 
     # ---- full-lap vertex grids: (n, rows, 3), rows ordered left -> right ----
-    road_lat = np.stack([-hw, np.zeros(n), hw], 1)
-    road_v = P[:, None, :] + R[:, None, :] * road_lat[:, :, None]
+    if xs is None:
+        road_lat = np.stack([-hw, np.zeros(n), hw], 1)
+        road_v = P[:, None, :] + R[:, None, :] * road_lat[:, :, None]
 
     # Declared banking: the verge starts in the plane of the road (its slope along Rh, + =
     # rising outward) instead of at the normal fall. As written to the profile, so that the
@@ -620,6 +640,17 @@ def build(track_path: Path = TRACK_DIR / "track.json", out_dir: Path = TRACK_DIR
         profile["verge_blend"] = VERGE_BLEND
         profile["verge_slope_left"] = slope_l.tolist()
         profile["verge_slope_right"] = slope_r.tolist()
+    if xs is not None:
+        # Only tracks with measured sections have the keys, so every other profile is unchanged.
+        profile["convention"] += ("; xsec[i][k] = height (m) above centreline point i of the road "
+                                  "surface at lateral (-1 + 2 k / (xsec_columns - 1)) * width[i] / 2, "
+                                  "horizontally along the section's right vector; bank = its mean "
+                                  "cross slope, see cad/track/road_sections.py")
+        profile["bank"] = np.round(xs["bank"], 6).tolist()
+        profile["xsec_columns"] = int(len(xs["u"]))
+        profile["xsec"] = xs["xsec"].tolist()
+        profile["xsec_measured"] = np.round(xs["measured"], 3).tolist()
+        profile["xsec_stats"] = xs["stats"]
     if bridges:
         profile["bridges"] = bridges
     pairs = [{k: v for k, v in sp.items() if k != "legs"} for sp in pairs]
@@ -630,9 +661,29 @@ def build(track_path: Path = TRACK_DIR / "track.json", out_dir: Path = TRACK_DIR
     road_textures.write_all(out_dir)
     return {"chunks": nchunks, "triangles": tri_total, "bridges": bridges, "pairs": pairs,
             "wall_length": wall_len, "notes": notes,
+            "sections": xs["stats"] if xs is not None else None,
             "verge_min": float(min(ext_l.min(), ext_r.min())),
             "width": (float(width.min()), float(width.max())),
-            "bank": (float(bank.min()), float(bank.max()))}
+            "bank": (float(bank.min()), float(bank.max())) if xs is None
+            else (float(xs["bank"].min()), float(xs["bank"].max()))}
+
+
+def measured_sections(road_cfg: dict | None, out_dir: Path, track_id: str, P: np.ndarray,
+                      T: np.ndarray, Rh: np.ndarray, hw: np.ndarray, bank: np.ndarray) -> dict | None:
+    """The recipe's ``[road] sections``: None (or "analytic") keeps the analytic crossfall and
+    banking of banking.py; "lidar" fits the road surface to the lidar grid of the track
+    (cad/track/road_sections.py, which documents the method)."""
+    mode = (road_cfg or {}).get("sections", "analytic")
+    if mode == "analytic":
+        return None
+    if mode != "lidar":
+        raise ValueError(f"[road] sections must be \"analytic\" or \"lidar\", not {mode!r}")
+    if banking.declared(road_cfg):
+        raise ValueError("[road] sections = \"lidar\" measures the camber and banking: it cannot be "
+                         "combined with declared banking (max_bank)")
+    import road_sections
+    grid = road_sections.RoadGrid.find(out_dir, track_id, TRACKS_DIR)
+    return road_sections.fit(grid, P, T, Rh, hw, bank)
 
 
 def main(argv: list[str]) -> None:

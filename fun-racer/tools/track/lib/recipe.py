@@ -52,7 +52,8 @@ SECTION_KEYS = {
     "layout": {"direction", "finish", "start", "start_offset_m", "sectors", "spline", "shift"},
     "elevation": {"dataset", "smooth_sigma_m", "override", "key", "key_join_m", "smooth"},
     "road": {"base_width", "grid_width", "crossfall", "camber_gain", "bank_keys", "width_keys",
-             "override", "track_json_widths", "retaining_walls", "pair", "max_bank", "shoulder"},
+             "override", "track_json_widths", "retaining_walls", "pair", "max_bank", "shoulder",
+             "sections"},
     "terrain": {"near", "far", "smooth_sigma_m"},
 }
 TURN_KEYS = {"id", "name", "direction", "s"}
@@ -355,6 +356,11 @@ def validate(r):
     if r.osm_ways and (r.extra_ways or r.avoid_nodes):
         raise BuildError("recipe: osm.extra_ways / avoid_nodes steer the loop search and have no "
                          "effect on an explicit osm.ways list; remove one or the other")
+    if r.road.get("sections", "analytic") not in ("analytic", "lidar"):
+        raise BuildError('recipe: road.sections must be "analytic" (the default) or "lidar" (measured '
+                         "cross-sections from lidar_road.json, cad/track/road_sections.py)")
+    if r.road.get("sections") == "lidar" and "max_bank" in r.road:
+        raise BuildError('recipe: road.sections = "lidar" measures the camber: drop road.max_bank')
     if not isinstance(r.road.get("retaining_walls", False), bool):
         raise BuildError("recipe: road.retaining_walls must be true or false")
     if r.direction is not None and r.direction not in DIRECTIONS:

@@ -114,6 +114,7 @@ name = "Tosa"
                               # lower stretch of the lap beside it (see Known limits)
 # width_keys = [[0.0, 15.0, "grid"], ...]
 # track_json_widths = false  # keep a nominal width in track.json: see "Road widths"
+# sections = "lidar"         # measured camber / crown from lidar_road.*: see "Measured sections"
 [[road.override]]             # or change single stretches
 s = [2700.0, 2950.0]          # from, to (may wrap around the finish line)
 width = 12.0                  # 6 to 30 m
@@ -299,6 +300,24 @@ the autopilot plans a banked corner faster than a flat one (`CarEnvelope.banked_
 banked track with `tools/lap_check.sh <id>` in both handling modes and look at both sides of
 the corner from the chase camera. `tests/fixtures/tracks/banked_oval` (an oval with two 18
 degree turns, `make_banked_oval.py`) is the reference case, `tests/test_banking.gd` its test.
+
+**Measured sections.** With `[road] sections = "lidar"` the road surface is not the analytic
+crossfall and camber above but measured: the road step reads the track's lidar road grid
+(`lidar_road.json` / `.bin` of `lib/lidar.py`, in the output folder or the track folder) and at
+every centreline point (2 m) samples it across the road every 0.5 m, fits a robust smooth
+section (crown, camber, drainage breaks; noise, parked cars and kerb artefacts rejected), clamps
+slopes steeper than 12 % between columns, and builds the road mesh from it with a column at most
+1 m apart (within a few mm of the fitted section in between; `cad/track/road_sections.py`
+documents the method and its constants). A gap in the grid
+up to 150 m (a bridge deck, a hole) takes the sections either side; a longer one keeps the
+analytic section, blended in over 24 m. `road_profile.json` gets `xsec` (per point, the
+height of every column above the centreline point), `xsec_columns`, `xsec_measured` and
+`xsec_stats`, and its `bank` becomes the measured mean cross slope; the game's
+`RoadSurface.surface_point()` interpolates the very triangles of the mesh, and cars spawn on the
+measured surface. Not combinable with declared banking (`max_bank`). The build log prints the
+coverage and the fit residual. `tests/fixtures/tracks/measured_oval` (`make_measured_oval.py`, a
+known crown and camber) is the reference case, `tests/test_measured_sections.gd` and
+`tools/track/tests/test_measured_sections.py` its tests. Without the key nothing changes.
 
 **Road widths.** The road step builds the widths of the `[road]` table and writes them to
 `road_profile.json`. The game's drivers (the autopilot's racing line, the bots' off-road test)
@@ -619,6 +638,21 @@ model (dl-de/by-2-0, credit "GeoBasis-DE / LVermGeo RP"), read from 1 km GeoTIFF
 `lib/rlp_data.py` downloads into the shared cache `~/.cache/fun-racer/rlp/` (never into git). Being
 bare ground, it gives the valley floor under a bridge deck: pin every deck with `[[elevation.key]]`
 entries (heights from the laser points, class 20). Points without a tile fall back to terrarium.
+
+`lidar_hd` is for circuits in France with IGN LiDAR HD coverage (classified point clouds, about
+30 ground points per m², Licence Ouverte 2.0, credit "IGN"). The tiles (100-300 MB each) are
+downloaded once by `lib/ign_data.py` into `~/.cache/fun-racer/ign/lidar/`; `lib/lidar.py` grids
+their ground points (class 2, and 9 water) into two compact files next to `track.json`, which are
+committed and are all the build reads: `lidar_road.*` (0.25 m cells, 40 m either side of the
+lap) and `lidar_terrain.*` (1 m, 600 m). Per cell a robust median, outliers more than 15 cm off
+a local plane rejected, small holes filled, bridges found from class 17 (a deck carrying the
+lap replaces the valley floor, a footbridge over it is ignored); the format is described at the
+top of `lib/lidar.py`. The centreline is sampled every 2 m (a median over 4 x 4 m), the near
+terrain from the 1 m grid, the far terrain and the grids' holes from RGE ALTI (`ign`).
+
+```sh
+cd tools/track && nice -n 10 ../../.venv/bin/python -m lib.lidar wec_le_mans_survey   # ~15 min
+```
 
 `terrarium` is a fourth choice that does not go through OpenTopoData: Terrain Tiles on AWS
 Open Data (Mapzen's global mosaic of SRTM, EU-DEM, 3DEP and others, as PNG tiles at zoom 13).

@@ -4,7 +4,7 @@
   47.949865,
   0.207541
  ],
- "origin_elevation_m": 52.93,
+ "origin_elevation_m": 52.87,
  "plan_scale": 1.000352391859748,
  "near": {
   "file": "terrain_height.bin",
@@ -31,5 +31,5 @@
   "blend": 40.0,
   "road_profile": "road_profile.json"
  },
- "attribution": "Elevation: RGE ALTI (IGN, Licence Ouverte 2.0) via the Geoplateforme altimetry service."
+ "attribution": "Elevation: LiDAR HD ground points (IGN, Licence Ouverte 2.0), RGE ALTI (IGN) beyond them."
 }

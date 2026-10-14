@@ -103,5 +103,11 @@ func scenery_path(file: String) -> String:
 ## flat on the banking; elsewhere the crossfall (at most 0.03 rad) is left to the suspension.
 func spawn_transform(s: float, lateral: float = 0.0) -> Transform3D:
 	var xf := data.sample(s)
+	var road := get_node_or_null(^"Road")
+	if road != null and road.has_method(&"has_sections") and road.call(&"has_sections"):
+		# Measured cross-sections (crown, camber): start on the real surface under the slot.
+		xf.origin = road.call(&"surface_point", s, lateral)
+		xf.origin += xf.basis.y * (Car.REAR_WHEEL_RADIUS + 0.05)
+		return xf
 	xf.origin += xf.basis.x * lateral + xf.basis.y * (Car.REAR_WHEEL_RADIUS + 0.05)
 	return xf
