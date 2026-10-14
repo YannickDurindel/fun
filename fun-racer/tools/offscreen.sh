@@ -9,8 +9,16 @@ SOCK=wayland-offscreen
 RUN="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
 if [[ ! -S "$RUN/$SOCK" ]] || ! pgrep -f "weston.*--socket=$SOCK" >/dev/null; then
 	rm -f "$RUN/$SOCK" "$RUN/$SOCK.lock"
-	nohup weston --backend=headless --renderer=gl --socket="$SOCK" --width=1920 --height=1080 \
-		--idle-time=0 >/dev/null 2>&1 &
+	# weston outlives this call: it must not keep the caller's other file descriptors open (a
+	# `flock LOCK tools/offscreen.sh ...` caller would otherwise stay locked as long as weston runs).
+	(
+		for fd in /proc/$BASHPID/fd/*; do
+			fd=${fd##*/}
+			if ((fd > 2)); then eval "exec $fd>&-" 2>/dev/null || true; fi
+		done
+		exec nohup weston --backend=headless --renderer=gl --socket="$SOCK" --width=1920 --height=1080 \
+			--idle-time=0 >/dev/null 2>&1
+	) &
 	for _ in $(seq 50); do [[ -S "$RUN/$SOCK" ]] && break; sleep 0.1; done
 fi
 # Godot picks the display server from the environment: no X11, only the hidden Wayland socket.

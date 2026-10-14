@@ -8,7 +8,9 @@ shader_type spatial;
 // the forests on the HD 520; the sphere normal already shades the crown.
 render_mode world_vertex_coords, cull_disabled, depth_draw_opaque, diffuse_lambert_wrap, specular_disabled, shadows_disabled;
 
-uniform sampler2D atlas : source_color, filter_linear_mipmap_anisotropic, repeat_disable;
+// Trilinear, not anisotropic: the card always faces the camera, so anisotropy adds texture
+// fetches for nothing.
+uniform sampler2D atlas : source_color, filter_linear_mipmap, repeat_disable;
 uniform float crown = 0.62;
 uniform float crop_w = 1.0;   // share of the impostor square the tree covers (trees.json)
 uniform float crop_h = 1.0;          // crown centre, share of the height

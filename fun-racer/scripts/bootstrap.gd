@@ -60,7 +60,13 @@ var scenery_dir: String = ""
 var no_scenery: bool = false
 ## --bench=N: frames to time after the warm-up (0 = off).
 var bench_frames: int = 0
+## --bench-size=WxH: window size of the bench (default 1280x720, the perf budget's). Set from
+## here because Godot's Wayland display server ignores --resolution (the window stays at the
+## project's 1600x900).
+var bench_size := Vector2i(1280, 720)
 var _bench_start_usec: int = 0
+var _bench_gpu_ms: float = 0.0
+var _bench_cpu_ms: float = 0.0
 ## --tour: distances round the lap to photograph in one run; "every:N" is expanded on the track.
 var tour: PackedFloat32Array = PackedFloat32Array()
 var tour_every: float = 0.0
@@ -128,6 +134,10 @@ func _init() -> void:
 		elif arg.begins_with("--bench="):
 			bench_frames = maxi(0, int(arg.get_slice("=", 1)))
 			dev_run = true
+		elif arg.begins_with("--bench-size="):
+			var wh := arg.get_slice("=", 1).split("x")
+			if wh.size() == 2 and wh[0].is_valid_int() and wh[1].is_valid_int():
+				bench_size = Vector2i(int(wh[0]), int(wh[1]))
 
 ## "x,y,z" -> Vector3 (missing or malformed parts are 0).
 static func _parse_vec3(text: String) -> Vector3:
@@ -217,6 +227,9 @@ func _process(_delta: float) -> void:
 	if screenshot_path.is_empty() and bench_frames == 0:
 		return
 	_frame += 1
+	if bench_frames > 0 and _frame == 1 and DisplayServer.get_name() != "headless":
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		DisplayServer.window_set_size(bench_size)
 	if (tour.size() > 0 or tour_every > 0.0) and not screenshot_path.is_empty():
 		if _frame >= screenshot_frames:
 			_tour_step()
@@ -230,10 +243,23 @@ func _process(_delta: float) -> void:
 		if bench_frames == 0:
 			get_tree().quit()
 		_bench_start_usec = Time.get_ticks_usec()   # after the screenshot, when both are asked for
-	elif bench_frames > 0 and _frame == screenshot_frames + bench_frames:
-		var ms := float(Time.get_ticks_usec() - _bench_start_usec) / 1000.0 / bench_frames
-		print("FRAMETIME avg=%.2f ms (%.1f fps) over %d frames" % [ms, 1000.0 / maxf(ms, 1e-3), bench_frames])
-		get_tree().quit()
+		if bench_frames > 0:
+			RenderingServer.viewport_set_measure_render_time(get_viewport().get_viewport_rid(), true)
+	elif bench_frames > 0 and _frame > screenshot_frames and _frame <= screenshot_frames + bench_frames:
+		# GPU / CPU render time of the frames: the GPU figure barely moves when other processes
+		# load the CPU, so it is the one to compare between two runs on a busy machine.
+		var vp := get_viewport().get_viewport_rid()
+		_bench_gpu_ms += RenderingServer.viewport_get_measured_render_time_gpu(vp)
+		_bench_cpu_ms += RenderingServer.viewport_get_measured_render_time_cpu(vp)
+		if _frame == screenshot_frames + bench_frames:
+			var ms := float(Time.get_ticks_usec() - _bench_start_usec) / 1000.0 / bench_frames
+			print("FRAMETIME avg=%.2f ms (%.1f fps) over %d frames, gpu=%.2f ms, render cpu=%.2f ms, %d draws, %d objects, %dk prims, %s" % [ms,
+					1000.0 / maxf(ms, 1e-3), bench_frames, _bench_gpu_ms / bench_frames, _bench_cpu_ms / bench_frames,
+					RenderingServer.get_rendering_info(RenderingServer.RENDERING_INFO_TOTAL_DRAW_CALLS_IN_FRAME),
+					RenderingServer.get_rendering_info(RenderingServer.RENDERING_INFO_TOTAL_OBJECTS_IN_FRAME),
+					RenderingServer.get_rendering_info(RenderingServer.RENDERING_INFO_TOTAL_PRIMITIVES_IN_FRAME) / 1000,
+					get_viewport().get_visible_rect().size])
+			get_tree().quit()
 
 ## One step of --tour: move the car to the next stop, let the camera settle, save the picture.
 func _tour_step() -> void:

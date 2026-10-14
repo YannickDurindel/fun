@@ -18,7 +18,9 @@ extends RefCounted
 ##
 ## Table: {"length": lap m, "sections": [{"s": [s0, s1], "side": -1 | 1 | 0 (both),
 ##   "trees": none | sparse | line | forest | pines | poplars, "tree_gap": m (extra distance of
-##   the trees behind the barrier, run-off areas), "boards": bool, "poles": bool}]}
+##   the trees behind the barrier, run-off areas), "boards": bool, "poles": bool,
+##   "fence": bool (default true; false: no catch fence there, e.g. in the woods, where the
+##   alpha-blended chain-link over the forest cost ~1 ms a frame on the HD 520)}]}
 
 const DIR := "res://assets/tracks/_shared/look_detailed"
 const TABLE_DIR := DIR + "/dressing"
@@ -63,6 +65,8 @@ var _rng := RandomNumberGenerator.new()
 var _scale := 1.0
 ## "kind|chunk" -> {xf: Array[Transform3D], color: Array[Color], custom: Array[Color]}
 var _batches := {}
+## [s0, s1, side] stretches without a catch fence (sections with "fence": false).
+var _no_fence: Array[Vector3] = []
 ## chunk -> {"fence": SurfaceTool, "boards": SurfaceTool, "tyres": SurfaceTool}
 var _tools := {}
 var _trees := {}
@@ -176,6 +180,8 @@ func _section(sec: Dictionary) -> void:
 	var kind := str(sec.get("trees", "none"))
 	var gap := float(sec.get("tree_gap", 0.0))
 	for side: float in sides:
+		if not bool(sec.get("fence", true)):
+			_no_fence.append(Vector3(s0, s1, side))
 		if KINDS.has(kind):
 			for row: Array in KINDS[kind]:
 				_tree_row(s0, s1, side, float(row[0]) + gap, float(row[1]), float(row[2]), float(row[3]),
@@ -215,7 +221,7 @@ func _fences() -> void:
 		var u := 0.0
 		while s <= _data.length:
 			var concrete: bool = layout != null and bool(layout.call(&"is_concrete", s))
-			if concrete:
+			if concrete or _fenceless(s, side):
 				prev = {}
 			else:
 				var d := _barrier(s, side) + FENCE_BEHIND
@@ -232,6 +238,12 @@ func _fences() -> void:
 							Vector2(u / 2.0, FENCE_HEIGHT / 2.0), Vector2(u / 2.0, 0.0), Vector2(prev["u"], 0.0), -out)
 				prev = {"p": p, "u": u / 2.0}
 			s += FENCE_POST_STEP
+
+func _fenceless(s: float, side: float) -> bool:
+	for r in _no_fence:
+		if r.z == side and s >= r.x and s <= r.y:
+			return true
+	return false
 
 # ------------------------------------------------------------------ boards
 func _boards(s0: float, s1: float, side: float) -> void:
@@ -345,6 +357,9 @@ func _materials() -> Dictionary:
 		sm.set_shader_parameter(&"atlas", load(str((_trees[id] as Dictionary)["file"])))
 		sm.set_shader_parameter(&"crop_w", float((_trees[id] as Dictionary).get("crop_w", 1.0)))
 		sm.set_shader_parameter(&"crop_h", float((_trees[id] as Dictionary).get("crop_h", 1.0)))
+		# Drawn before the other opaque geometry (the Mobile renderer has no depth prepass): the
+		# forests then hide the ground behind them from the depth test (-0.4 ms in the woods).
+		sm.render_priority = -50
 		m["tree:" + id] = sm
 	var fence := StandardMaterial3D.new()
 	fence.albedo_texture = load(CHAINLINK_TEX)
