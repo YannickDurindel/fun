@@ -14,10 +14,10 @@
 
 [sub_resource type="StandardMaterial3D" id="livery"]
 resource_name = "Livery"
-albedo_color = Color(0.78, 0.035, 0.03, 1)
-metallic = 0.25
-metallic_specular = 0.6
-roughness = 0.3
+albedo_color = Color(0.56, 0.028, 0.032, 1)
+metallic = 0.12
+metallic_specular = 0.5
+roughness = 0.34
 clearcoat_enabled = true
 clearcoat = 1.0
 clearcoat_roughness = 0.03
@@ -124,7 +124,7 @@ surface_material_override/0 = SubResource("headlight")
 script = ExtResource("decals_gd")
 
 [node name="NoseRoundel" type="Decal" parent="Decals"]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, -2.03)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.03)
 size = Vector3(0.46, 0.26, 0.46)
 texture_albedo = ExtResource("tex_5")
 cull_mask = 8192
