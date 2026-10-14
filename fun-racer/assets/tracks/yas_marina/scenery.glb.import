@@ -3,10 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
+uid="uid://c3pf1cig3vvnn"
+path="res://.godot/imported/scenery.glb-c15502d3ad4d063ff1fee83e729fa8c6.scn"
 
 [deps]
 
 source_file="res://assets/tracks/yas_marina/scenery.glb"
+dest_files=["res://.godot/imported/scenery.glb-c15502d3ad4d063ff1fee83e729fa8c6.scn"]
 
 [params]
 

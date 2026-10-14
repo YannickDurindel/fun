@@ -3,10 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
+uid="uid://mhe8ikmaxq1o"
+path="res://.godot/imported/scenery.glb-6ca630dbcbc77426d4e4a740bc855a8c.scn"
 
 [deps]
 
 source_file="res://assets/tracks/monza/scenery.glb"
+dest_files=["res://.godot/imported/scenery.glb-6ca630dbcbc77426d4e4a740bc855a8c.scn"]
 
 [params]
 

@@ -2,10 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
+uid="uid://tu1320rmsf08"
+path="res://.godot/imported/landcover.png-0df6e6840b7838e96b704db82a35699a.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/tracks/miami/landcover.png"
+dest_files=["res://.godot/imported/landcover.png-0df6e6840b7838e96b704db82a35699a.ctex"]
 
 [params]
 

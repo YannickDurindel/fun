@@ -3,10 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
+uid="uid://dhnlmghklmdjb"
+path="res://.godot/imported/scenery.glb-f5bd58192963710d83d1df058c0705b5.scn"
 
 [deps]
 
 source_file="res://assets/tracks/lusail/scenery.glb"
+dest_files=["res://.godot/imported/scenery.glb-f5bd58192963710d83d1df058c0705b5.scn"]
 
 [params]
 

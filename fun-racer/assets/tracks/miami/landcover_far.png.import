@@ -2,10 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
+uid="uid://cdvjifmatnwmi"
+path="res://.godot/imported/landcover_far.png-25db7bc2077f946ab52664d4e4871077.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/tracks/miami/landcover_far.png"
+dest_files=["res://.godot/imported/landcover_far.png-25db7bc2077f946ab52664d4e4871077.ctex"]
 
 [params]
 
