@@ -122,7 +122,10 @@ static func side_sign(turn_sign: float, side: String) -> float:
 
 # ------------------------------------------------------------------ hand-made tables
 ## `c` = constants of a table script: KERBS, RUNOFF, CONCRETE_RANGES, BARRIER_STRAIGHT,
-## BARRIER_CORNER_OUTSIDE, BARRIER_BEHIND_RUNOFF (see trackside_layouts/red_bull_ring.gd).
+## BARRIER_CORNER_OUTSIDE, BARRIER_BEHIND_RUNOFF (see trackside_layouts/red_bull_ring.gd), and
+## optionally BARRIER_ZONES, BARRIER_ZONE_RAMP, LAP_LENGTH (measured barrier stretches, see
+## trackside_layouts/wec_le_mans_survey.gd). A BARRIER_CORNER_OUTSIDE not above BARRIER_STRAIGHT
+## adds no corner zones.
 func _build_from_table(c: Dictionary, data: TrackData) -> void:
 	is_auto = false
 	var idx := turn_index(data)
@@ -140,13 +143,24 @@ func _build_from_table(c: Dictionary, data: TrackData) -> void:
 				"s0": data.wrap_s(t["s_apex"] + r[2]), "len": float(r[3]) - float(r[2]),
 				"u0": float(r[5]), "u1": float(r[6])})
 	concrete_ranges = c.get("CONCRETE_RANGES", [])
+	if c.has("LAP_LENGTH"):
+		var lk := data.length / maxf(float(c["LAP_LENGTH"]), 1.0)
+		concrete_ranges = concrete_ranges.map(func(r: Array) -> Array: return [float(r[0]) * lk, float(r[1]) * lk])
 	barrier_straight = float(c.get("BARRIER_STRAIGHT", BARRIER_STRAIGHT))
 	var corner := float(c.get("BARRIER_CORNER_OUTSIDE", 15.0))
 	var behind := float(c.get("BARRIER_BEHIND_RUNOFF", BARRIER_BEHIND_RUNOFF))
-	for id: String in idx:
-		var t: Dictionary = idx[id]
-		barrier_zones.append({"s0": float(t["s_apex"]) - 60.0, "len": 140.0, "ramp": 40.0,
-				"side": -float(t["sign"]), "dist": corner})
+	if corner > barrier_straight:
+		for id: String in idx:
+			var t: Dictionary = idx[id]
+			barrier_zones.append({"s0": float(t["s_apex"]) - 60.0, "len": 140.0, "ramp": 40.0,
+					"side": -float(t["sign"]), "dist": corner})
+	# Optional measured barrier stretches (survey tables): [from_s, to_s, side, dist] in absolute
+	# s of a lap of LAP_LENGTH metres, scaled to this lap.
+	var k := data.length / maxf(float(c.get("LAP_LENGTH", data.length)), 1.0)
+	var ramp := float(c.get("BARRIER_ZONE_RAMP", 8.0))
+	for z: Array in c.get("BARRIER_ZONES", []):
+		barrier_zones.append({"s0": data.wrap_s(float(z[0]) * k), "len": fposmod(float(z[1]) - float(z[0]), _length / k) * k,
+				"ramp": ramp, "side": float(z[2]), "dist": float(z[3])})
 	_add_runoff_zones(behind)
 
 func _add_runoff_zones(behind: float) -> void:

@@ -37,6 +37,9 @@ const FENCE_POST_STEP: float = 4.0
 const FENCE_BEHIND: float = 0.35   ## m behind the barrier line
 const TREE_RANGE: float = 900.0    ## m, visibility range of the trees
 const PROP_RANGE: float = 500.0    ## m, of the small props
+## Run-off areas shallower than this (m) get no tyre wall (tarmac strips beside the kerbs, as
+## the photo-traced tables of the survey tracks have them).
+const TYRE_WALL_MIN_DEPTH: float = 8.0
 
 ## Tree species by impostor id (trees.json), with the kinds that use them.
 const BROADLEAF := ["island_tree_01", "island_tree_02"]
@@ -301,6 +304,8 @@ func _tyre_walls() -> void:
 	if not runoff is Array:
 		return
 	for r: Dictionary in runoff:
+		if float(r.get("u1", TYRE_WALL_MIN_DEPTH)) < TYRE_WALL_MIN_DEPTH:
+			continue   # a tarmac strip beside the kerbs, not a run-off area with a wall at its end
 		var side := float(r["side"])
 		var s0 := float(r["s0"])
 		var length := float(r["len"])
