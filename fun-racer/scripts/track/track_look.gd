@@ -174,6 +174,8 @@ static func terrain(track: Node3D, swapped: Dictionary) -> void:
 	code = code.replace(TERRAIN_UNIFORM_HOOK, TERRAIN_UNIFORM_HOOK + TERRAIN_ADDITIONS)
 	code = code.replace(TERRAIN_FRAGMENT_HOOK, TERRAIN_FUNCTION + TERRAIN_FRAGMENT_HOOK)
 	code = code.replace(TERRAIN_ALBEDO_HOOK, "\tcol = look_ground(col, p, dist);\n" + TERRAIN_ALBEDO_HOOK)
+	# Survey tracks with an orthophoto drape (landscape.json): the real ground pattern.
+	code = TerrainOrtho.splice(track, mat, code)
 	mat.shader.code = code
 
 ## Run-off areas of the Trackside: its plain gravel and tarmac materials are replaced on the

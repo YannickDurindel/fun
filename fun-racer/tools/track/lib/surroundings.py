@@ -1675,6 +1675,8 @@ def build(recipe, out_dir, fetcher, log=print):
         c = f.point if f.point is not None else (f.line if f.line is not None else f.outers[0]).mean(axis=0)
         return bool(points_in_rings(c[None], drop_areas)[0])
 
+    # Footprints the recipe takes away (landmarks stand there): BD TOPO must not put them back.
+    dropped_rings = [r for f in near_feats if f.outers and excluded(f) for r in f.outers] + drop_areas
     near_feats = [f for f in near_feats if not excluded(f)]
     far_feats = [f for f in far_feats if not excluded(f)]
 
@@ -1780,6 +1782,17 @@ def build(recipe, out_dir, fetcher, log=print):
             solids.append(s)
     solids = drop_outlines_with_parts(solids)
     resolve_heights(solids, cfg)
+    # Survey tracks (raw/ign_manifest.json): measured heights from IGN BD TOPO, and the
+    # buildings OpenStreetMap does not have (lib/landscape.py; nothing happens without them).
+    from . import landscape
+    protected = {o["osm"] for o in overrides if "height" in o or "levels" in o}
+    topo_extra, _ = landscape.apply_building_heights(
+        solids, out_dir, rect=detail, sky=(sky_rect, SKYLINE_HEIGHT), avoid=dropped_rings, corridor_xz=corridor.xz,
+        keep=lambda s: any(_ref_matches(s.ref, w) for w in protected), log=log)
+    for k, (ring, h) in enumerate(topo_extra):
+        s = Solid(f"ign/{k + 1}", {"building": "yes"}, sg.oriented(ring, True), [])
+        s.height, s.min_height, s.source = h, 0.0, "IGN BD TOPO"
+        solids.append(s)
     for s, _ in added_solids:
         if s.height is None and s.kind != "stand":
             s.height = s.min_height + default_height(s.type, s.area, cfg)
