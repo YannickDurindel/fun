@@ -68,11 +68,28 @@ dataset = "lidar_hd"
 smooth_sigma_m = 4.0
 
 [road]
-# Widths are ESTIMATES (no published per-section figures): the Bugatti part and the pit straight
-# are 13 to 15 m (the OSM width tag of the pit straight says 13 m), the public roads are
-# narrower: the D338 Mulsanne straight is one carriageway of two lanes plus the verge markings,
-# about 11 to 12 m between the kerbs; the D140 Route du Golf and the D139 about 10 to 11 m;
-# Indianapolis and Arnage (village streets) 9 to 10 m, as seen on the IGN aerial photograph.
+# Widths traced from the IGN BD ORTHO 20 cm orthophotos (lib/ortho.py -> ortho_edges.json, one
+# station every 2 m: kerb inner edge / painted edge line / asphalt boundary, see its edge_rule).
+# lib/ortho.road_width_keys smooths them (42 m running median, 6 m Gaussian) and they replace
+# width_keys below; those stay as the ESTIMATE that takes over where the trace is uncertain
+# (fewer than 30-50 % confident edges over 100 m: trees and shadow, chicane bypasses). The
+# estimate is blended in on 15 stretches, 6 % of the lap, mostly 50-90 % traced still: in the
+# Hunaudieres chicanes (s ~ 4505-4775 Daytona, 6235-6332 Michelin, 6448-6534) and the wooded
+# D140 Route du Golf (7778-7820, 8628-8723, 9293-9545). Traced against the estimate:
+#   pit straight 15.0 (15), Dunlop to Tertre Rouge 10.8 (13), D338 Hunaudieres 13.9 (12, 3 lanes
+#   and the turn lanes), Mulsanne 10.6 (11.5), D140 11.6 (11), Indianapolis 12.5 (10), Arnage 12.6
+#   (9.5), D139 14.3 (11), Porsche curves 9.5 (12.5, the painted blue run-off is outside),
+#   Raccordement 16 (13.5).
+# Re-trace after the centreline changes (track.json stations): cd tools/track &&
+#   nice -n 10 ../../.venv/bin/python -m lib.ortho wec_le_mans_survey
+# The finish line (s = 0) and the start line in front of the painted grid (start_s = 144 m) are
+# both within 1 m of the white lines on the orthophoto (s ~ +0.8 m and ~ 144.9 m).
+widths_from = "ortho_edges.json"
+# Cross-sections (crown, camber) measured from the lidar road grid (cad/track/road_sections.py)
+# are OFF for now: with them the simulation autopilot runs off at the Virage de Mulsanne (s ~ 7790,
+# measured camber 1.1 deg falling to 0 at the exit against 1.7 deg analytic) and at Dunlop. Turn
+# them back on once the autopilot's corner speeds account for the camber.
+# sections = "lidar"
 base_width = 13.0
 grid_width = 15.0
 width_keys = [
@@ -96,3 +113,98 @@ width_keys = [
   [13450.0, 13.5, "Raccordement"],
   [13520.0, 15.0, "pit straight"],
 ]
+
+# The chicanes and the slow bends: here the cars use the kerbs, which the trace leaves outside
+# the edge (its edge rule stops at a kerb's inner edge), and the open asphalt of a chicane's
+# bypass or a junction mouth bulges the trace (Daytona 10.2 to 17.7 m, Michelin 8.8 to 17.4 m,
+# the Mulsanne junction 8.4 to 18.5 m). On those bulges and pinches the simulation car's racing
+# line (opened up to its steering lock, autopilot.gd) swung wide and came back at full lock: it
+# ran off at the Mulsanne exit, spun in the Daytona chicane and left the road at Dunlop. So
+# through each of them the width is held at the traced width between the kerbs plus the traced
+# kerbs (ortho_edges.json "kerbs", about 0.7 to 1.5 m a side), rounded:
+#   Dunlop 10.8 + 1.3 + 1.2 -> 13.0 (the estimate was 13), Daytona 10.2-11 between the kerbs
+#   + 0.7 + 1.1 -> 12.5 (12), Michelin 10.4 + 0.7 + 0.75 -> 12.0 (12), Mulsanne (20 m radius,
+#   both edges flagged at the apex, s ~ 7738-7770) 10.6 + 1.05 -> 11.7 (11.5), Ford 10.5 + 0.9
+#   + 1.4 -> 12.8 (12.5), Raccordement (18 m radius) 9.2 + 1.05 + 0.8 -> 11.1, taken 11.5 (13.5).
+[[road.override]]
+s = [790.0, 950.0]
+width = 13.0
+blend = 25.0
+note = "Chicane Dunlop: traced width + kerbs"
+
+[[road.override]]
+s = [4010.0, 4280.0]
+width = 12.5
+blend = 25.0
+note = "Chicane Daytona (Forza): traced width between the kerbs + kerbs, bypass bulges left out"
+
+[[road.override]]
+s = [5970.0, 6270.0]
+width = 12.0
+blend = 25.0
+note = "Chicane Michelin (Playstation): traced width + kerbs, bypass bulges left out"
+
+[[road.override]]
+s = [7550.0, 7930.0]
+width = 11.7
+blend = 25.0
+note = "Virage de Mulsanne junction: traced width + kerb (slip road mouth, island, flagged apex, and the D140 junction mouth after it, which bulges the trace to 16.6 m)"
+
+[[road.override]]
+s = [13225.0, 13335.0]
+width = 12.8
+blend = 25.0
+note = "Chicane Ford: traced width + kerbs"
+
+[[road.override]]
+s = [13375.0, 13460.0]
+width = 11.5
+blend = 20.0
+note = "Raccordement: traced width + kerbs"
+
+# W2-F landmarks: drop the OSM / BD TOPO boxes under these footprints (centroid test)
+[[surroundings.exclude]]
+polygon = [[47.9502269, 0.208212], [47.9524749, 0.2082833], [47.9524805, 0.2078915], [47.9502325, 0.2078203]]
+note = "pit building (landmark pits)"
+[[surroundings.exclude]]
+polygon = [[47.9495789, 0.2081442], [47.9501887, 0.208272], [47.9502257, 0.2078786], [47.949616, 0.2077507]]
+note = "race control tower (landmark pits)"
+[[surroundings.exclude]]
+polygon = [[47.9498845, 0.2069403], [47.9502103, 0.2069521], [47.9502065, 0.2071884], [47.9498807, 0.2071767]]
+note = "grandstand batiment.2193045"
+[[surroundings.exclude]]
+polygon = [[47.950232, 0.2069597], [47.9508067, 0.2069759], [47.9508038, 0.2072066], [47.9502291, 0.2071904]]
+note = "grandstand batiment.2193044"
+[[surroundings.exclude]]
+polygon = [[47.9514181, 0.2069705], [47.950846, 0.2069558], [47.9508434, 0.207185], [47.9514154, 0.2071998]]
+note = "grandstand batiment.2193047"
+[[surroundings.exclude]]
+polygon = [[47.9515136, 0.2068685], [47.952167, 0.2068926], [47.9521605, 0.2072872], [47.9515071, 0.2072631]]
+note = "grandstand batiment.2193058"
+[[surroundings.exclude]]
+polygon = [[47.9525876, 0.2070359], [47.9521175, 0.207017], [47.9521129, 0.2072744], [47.952583, 0.2072934]]
+note = "grandstand batiment.2193059"
+[[surroundings.exclude]]
+polygon = [[47.9530439, 0.2070716], [47.9534634, 0.2070961], [47.953456, 0.2073791], [47.9530365, 0.2073546]]
+note = "grandstand batiment.17447897"
+[[surroundings.exclude]]
+polygon = [[47.953899, 0.2071486], [47.9534742, 0.2071007], [47.9534593, 0.2073941], [47.9538841, 0.207442]]
+note = "grandstand batiment.344901"
+[[surroundings.exclude]]
+polygon = [[47.953906, 0.2072072], [47.9541878, 0.2072474], [47.9541745, 0.207455], [47.9538927, 0.2074149]]
+note = "grandstand batiment.2193061"
+[[surroundings.exclude]]
+polygon = [[47.9543004, 0.2071751], [47.9547178, 0.2072397], [47.9546982, 0.2075218], [47.9542808, 0.2074572]]
+note = "grandstand batiment.40374312"
+[[surroundings.exclude]]
+polygon = [[47.9547896, 0.2073067], [47.9552074, 0.2073674], [47.955189, 0.2076485], [47.9547713, 0.2075878]]
+note = "grandstand batiment.40374139"
+[[surroundings.exclude]]
+polygon = [[47.9572594, 0.2100282], [47.9576613, 0.2106519], [47.9575511, 0.2108103], [47.9571492, 0.2101865]]
+note = "grandstand batiment.2193223"
+[[surroundings.exclude]]
+polygon = [[47.9473194, 0.2073438], [47.9479124, 0.2070721], [47.947968, 0.2073424], [47.9473749, 0.2076141]]
+note = "grandstand batiment.345127"
+[[surroundings.exclude]]
+polygon = [[47.9473727, 0.2073257], [47.9474256, 0.2075856], [47.947292, 0.2076461], [47.9472392, 0.2073862]]
+note = "grandstand batiment.40374321"

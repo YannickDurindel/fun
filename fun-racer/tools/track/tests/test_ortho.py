@@ -215,6 +215,48 @@ class LeMansProductTest(unittest.TestCase):
     def test_small(self):
         self.assertLess(os.path.getsize(os.path.join(LE_MANS, "ortho_edges.json")), 2e6)
 
+    def test_recipe_widths_from_the_trace(self):
+        """[road] widths_from: the built widths are the smoothed trace, and track.json (the
+        drivers' road) carries them, except where a [[road.override]] (and its blend) holds it."""
+        from lib import recipe
+        rec = recipe.load("wec_le_mans_survey")
+        self.assertEqual(rec.road.get("widths_from"), "ortho_edges.json")
+        keys = rec.road["width_keys"]
+        self.assertEqual(len(keys), len(self.track["points"]))
+        w = np.array([k[1] for k in keys])
+        self.assertTrue(np.all((w >= ortho.WIDTH_RANGE[0]) & (w <= ortho.WIDTH_RANGE[1])))
+        self.assertLess(np.abs(np.diff(w)).max(), 1.5)            # no step along 2 m
+        self.assertAlmostEqual(float(np.median(w[:150])), 15.0, delta=0.5)
+        self.assertGreater(rec.widths_info["traced_share"], 0.9)
+        tw = np.array([p["width"] for p in self.track["points"]])
+        s = np.array([p["s"] for p in self.track["points"]])
+        free = np.ones(len(s), bool)
+        for o in rec.road.get("override", []):
+            free &= ~((s >= o["s"][0] - o.get("blend", 0.0)) & (s <= o["s"][1] + o.get("blend", 0.0)))
+        self.assertGreater(free.mean(), 0.8)
+        np.testing.assert_allclose(tw[free], w[free], atol=2e-3)
+
+
+class WidthKeysTest(unittest.TestCase):
+    def test_estimate_takes_over_where_both_edges_are_uncertain(self):
+        n, step = 400, 2.0
+        flag = [0] * n
+        for i in range(150, 250):
+            flag[i] = 1
+        st = {"s": [i * step for i in range(n)], "left": [6.0] * n, "right": [6.0] * n,
+              "flag_left": flag, "flag_right": flag}
+        with tempfile.TemporaryDirectory() as d:
+            p = os.path.join(d, "e.json")
+            with open(p, "w", encoding="utf-8") as f:
+                json.dump({"stations": st}, f)
+            keys, info = ortho.road_width_keys(p, n * step, [[0.0, 9.0], [400.0, 9.0]])
+            with self.assertRaises(ValueError):
+                ortho.road_width_keys(p, n * step, None, n_points=n + 1)
+        w = np.array([k[1] for k in keys])
+        self.assertAlmostEqual(w[20], 12.0, places=2)              # traced
+        self.assertAlmostEqual(w[200], 9.0, places=2)              # estimate
+        self.assertEqual(len(info["blended"]), 1)
+
 
 class HelpersTest(unittest.TestCase):
     def test_dp_follows_the_cheap_path_and_holds_through_noise(self):

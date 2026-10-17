@@ -53,7 +53,7 @@ SECTION_KEYS = {
     "elevation": {"dataset", "smooth_sigma_m", "override", "key", "key_join_m", "smooth"},
     "road": {"base_width", "grid_width", "crossfall", "camber_gain", "bank_keys", "width_keys",
              "override", "track_json_widths", "retaining_walls", "pair", "max_bank", "shoulder",
-             "sections"},
+             "sections", "widths_from"},
     "terrain": {"near", "far", "smooth_sigma_m"},
 }
 TURN_KEYS = {"id", "name", "direction", "s"}
@@ -116,6 +116,7 @@ class Recipe:
     terrain: dict = field(default_factory=dict)
     surroundings: dict = field(default_factory=dict)   # [surroundings], read by lib/surroundings.py
     source: str = ""
+    widths_info: dict | None = None   # [road] widths_from: what lib/ortho.road_width_keys did
 
     @property
     def turns_pinned(self):
@@ -240,7 +241,34 @@ def from_dict(track_id, data, overrides=None, calendar_path=CALENDAR, source="")
             setattr(r, k, v)
     r.full_name = data.get("full_name") or f"{r.name} (Grand Prix circuit)"
     validate(r)
+    _widths_from(r)
     return r
+
+
+def _widths_from(r):
+    """``[road] widths_from = "ortho_edges.json"``: the road widths traced from the orthophotos
+    (lib/ortho.py, a product in assets/tracks/<id>/) replace ``width_keys``, which stay the
+    estimate on the stretches where the trace is uncertain (ortho.road_width_keys)."""
+    name = r.road.get("widths_from")
+    if name is None:
+        return
+    if not isinstance(name, str) or os.path.basename(name) != name:
+        raise BuildError("recipe: road.widths_from must be a file name in assets/tracks/<id>/")
+    path = os.path.join(ROOT, "assets", "tracks", r.id, name)
+    if not os.path.exists(path):
+        raise BuildError(f"recipe: road.widths_from: {path} does not exist (python -m lib.ortho {r.id})")
+    n = None
+    tj = os.path.join(ROOT, "assets", "tracks", r.id, "track.json")
+    if os.path.exists(tj):
+        with open(tj, encoding="utf-8") as f:
+            n = len(json.load(f)["points"])
+    from . import ortho
+    try:
+        keys, info = ortho.road_width_keys(path, r.length_m, r.road.get("width_keys"), n)
+    except ValueError as e:
+        raise BuildError(f"recipe: road.widths_from: {e}") from e
+    r.road["width_keys"] = keys
+    r.widths_info = dict(info, source=name)
 
 
 SURR_BUILDING_KEYS = {"osm", "height", "levels", "type", "remove", "note"}

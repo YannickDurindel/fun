@@ -1104,6 +1104,72 @@ def section_widths(s, edges, width_keys):
     return rows
 
 
+# ---------- reader: the [road] widths of a build ----------
+
+WIDTH_MEDIAN_M = 42.0      # running median of the traced width: junction mouths, gaps in a kerb
+WIDTH_SIGMA_M = 6.0        # then a Gaussian, so the road edge has no step
+WIDTH_CONF_M = 100.0       # window of the confident-edge share
+WIDTH_CONF_LO, WIDTH_CONF_HI = 0.3, 0.5   # share at / under which the estimate is used, fully traced
+WIDTH_RANGE = (6.5, 25.0)  # m: clamp (cad/track/banking.py allows 6-30 m)
+
+
+def _smoothstep_keys(keys, s, length):
+    """cad/track/banking.py interp_keys (cyclic smoothstep through (s, value[, note]) keys)."""
+    ks = np.array([k[0] for k in keys], float)
+    kv = np.array([k[1] for k in keys], float)
+    ks, kv = np.append(ks, ks[0] + length), np.append(kv, kv[0])
+    u = np.mod(np.asarray(s, float) - ks[0], length) + ks[0]
+    j = np.clip(np.searchsorted(ks, u, side="right") - 1, 0, len(ks) - 2)
+    t = (u - ks[j]) / (ks[j + 1] - ks[j])
+    t = t * t * (3.0 - 2.0 * t)
+    return kv[j] + (kv[j + 1] - kv[j]) * t
+
+
+def road_width_keys(path, length, estimate_keys=None, n_points=None):
+    """``[road] width_keys`` (one key per station) from an ``ortho_edges.json`` product, for
+    ``[road] widths_from`` (lib/recipe.py). Returns (keys, info).
+
+    The traced width (left + right edge, stations of track.json) goes through a running median
+    of WIDTH_MEDIAN_M and a Gaussian of WIDTH_SIGMA_M. Where the edges are uncertain the recipe's
+    own ``estimate_keys`` take over: the share of confident edges (two per station, an
+    interpolated one counts 0) over WIDTH_CONF_M blends from the estimate (share <= 0.3) to the
+    trace (>= 0.5), so a single side under trees, interpolated by trace_edges between confident
+    stations, still counts as traced. ``info``: the blended stretches and the traced share."""
+    from scipy.ndimage import gaussian_filter1d, median_filter, uniform_filter1d
+    with open(path, encoding="utf-8") as f:
+        st = json.load(f)["stations"]
+    s = np.asarray(st["s"], float)
+    if n_points is not None and len(s) != n_points:
+        raise ValueError(f"{os.path.basename(path)} has {len(s)} stations, track.json {n_points} "
+                         "points: trace it again on this centreline (python -m lib.ortho)")
+    step = float(np.median(np.diff(s)))
+    w = np.asarray(st["left"], float) + np.asarray(st["right"], float)
+    good = (2 - np.asarray(st["flag_left"]) - np.asarray(st["flag_right"])) / 2.0
+    share = uniform_filter1d(good, max(1, int(round(WIDTH_CONF_M / step))) | 1, mode="wrap")
+    a = np.clip((share - WIDTH_CONF_LO) / (WIDTH_CONF_HI - WIDTH_CONF_LO), 0.0, 1.0)
+    w = median_filter(w, max(3, int(round(WIDTH_MEDIAN_M / step))) | 1, mode="wrap")
+    if estimate_keys:
+        est = _smoothstep_keys(estimate_keys, s, length)
+        w = est + (w - est) * a
+    else:
+        a = np.ones_like(a)
+    w = np.clip(gaussian_filter1d(w, WIDTH_SIGMA_M / step, mode="wrap"), *WIDTH_RANGE)
+    keys = [[round(float(x), 2), round(float(y), 3)] for x, y in zip(s, w) if x < length]
+    blended, i, n = [], 0, len(s)
+    while i < n:
+        if a[i] < 1.0:
+            j = i
+            while j < n and a[j] < 1.0:
+                j += 1
+            blended.append([round(float(s[i]), 1), round(float(s[j - 1]), 1),
+                            round(float(a[i:j].min()), 2)])
+            i = j
+        else:
+            i += 1
+    return keys, {"traced_share": round(float(a.mean()), 3), "blended": blended,
+                  "range": [round(float(w.min()), 2), round(float(w.max()), 2)]}
+
+
 def _r(a, nd=2):
     return [None if not np.isfinite(v) else round(float(v), nd) for v in np.asarray(a, float)]
 
