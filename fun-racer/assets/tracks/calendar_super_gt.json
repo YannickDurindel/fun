@@ -1,0 +1,85 @@
+{
+ "note": "Japanese GT events, current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "tracks": [
+  {
+   "id": "jgt_okayama",
+   "name": "Okayama",
+   "grand_prix": "300 km · Mimasaka",
+   "country": "Japan",
+   "country_code": "JP",
+   "city": "Mimasaka",
+   "length_m": 3703,
+   "turns": 13
+  },
+  {
+   "id": "jgt_fuji_3h",
+   "name": "Mount Fuji",
+   "grand_prix": "3 Hours · Mount Fuji",
+   "country": "Japan",
+   "country_code": "JP",
+   "city": "Oyama",
+   "length_m": 4563,
+   "turns": 16
+  },
+  {
+   "id": "jgt_sepang",
+   "name": "Sepang",
+   "grand_prix": "300 km · Sepang",
+   "country": "Malaysia",
+   "country_code": "MY",
+   "city": "Sepang",
+   "length_m": 5543,
+   "turns": 15
+  },
+  {
+   "id": "jgt_fuji_350",
+   "name": "Mount Fuji",
+   "grand_prix": "350 km · Mount Fuji",
+   "country": "Japan",
+   "country_code": "JP",
+   "city": "Oyama",
+   "length_m": 4563,
+   "turns": 16
+  },
+  {
+   "id": "jgt_suzuka",
+   "name": "Suzuka",
+   "grand_prix": "300 km · Suzuka",
+   "country": "Japan",
+   "country_code": "JP",
+   "city": "Suzuka",
+   "length_m": 5807,
+   "turns": 18
+  },
+  {
+   "id": "jgt_sugo",
+   "name": "Sugo",
+   "grand_prix": "300 km · Sugo",
+   "country": "Japan",
+   "country_code": "JP",
+   "city": "Murata",
+   "length_m": 3586,
+   "turns": 0
+  },
+  {
+   "id": "jgt_autopolis",
+   "name": "Autopolis",
+   "grand_prix": "300 km · Autopolis",
+   "country": "Japan",
+   "country_code": "JP",
+   "city": "Hita",
+   "length_m": 4674,
+   "turns": 18
+  },
+  {
+   "id": "jgt_motegi",
+   "name": "Motegi",
+   "grand_prix": "Season finale · Motegi",
+   "country": "Japan",
+   "country_code": "JP",
+   "city": "Motegi",
+   "length_m": 4801,
+   "turns": 14
+  }
+ ]
+}

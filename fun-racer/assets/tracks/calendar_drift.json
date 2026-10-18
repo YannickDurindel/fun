@@ -1,0 +1,85 @@
+{
+ "note": "Pro drifting events: judged tandem battles, no lap length, current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "tracks": [
+  {
+   "id": "drf_long_beach",
+   "name": "Long Beach streets",
+   "grand_prix": "Street drift · Long Beach",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Long Beach",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "drf_atlanta",
+   "name": "Road Atlanta, Braselton",
+   "grand_prix": "Drift · Braselton",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Braselton",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "drf_orlando",
+   "name": "Orlando",
+   "grand_prix": "Drift · Orlando",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Orlando",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "drf_englishtown",
+   "name": "Old Bridge, New Jersey",
+   "grand_prix": "Drift · Englishtown",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Englishtown",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "drf_monroe",
+   "name": "Evergreen, Monroe",
+   "grand_prix": "Drift · Seattle",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Monroe",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "drf_st_louis",
+   "name": "Gateway, Madison",
+   "grand_prix": "Drift · St. Louis",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Madison",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "drf_utah",
+   "name": "Tooele, Utah",
+   "grand_prix": "Drift · Utah",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Tooele",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "drf_irwindale",
+   "name": "Irwindale",
+   "grand_prix": "Season finale · Irwindale",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Irwindale",
+   "length_m": 0,
+   "turns": 0
+  }
+ ]
+}

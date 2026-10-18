@@ -1,0 +1,95 @@
+{
+ "note": "GT sprint and endurance cup events (the 24 Hours of Spa is in the endurance list), current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "tracks": [
+  {
+   "id": "gt_paul_ricard",
+   "name": "Le Castellet",
+   "grand_prix": "Endurance cup · Le Castellet",
+   "country": "France",
+   "country_code": "FR",
+   "city": "Le Castellet",
+   "length_m": 5770,
+   "turns": 15
+  },
+  {
+   "id": "gt_brands_hatch",
+   "name": "Brands Hatch",
+   "grand_prix": "Sprint cup · Brands Hatch",
+   "country": "United Kingdom",
+   "country_code": "GB",
+   "city": "West Kingsdown",
+   "length_m": 3908,
+   "turns": 9
+  },
+  {
+   "id": "gt_monza",
+   "name": "Monza",
+   "grand_prix": "Endurance cup · Monza",
+   "country": "Italy",
+   "country_code": "IT",
+   "city": "Monza",
+   "length_m": 5793,
+   "turns": 11
+  },
+  {
+   "id": "gt_misano",
+   "name": "Misano",
+   "grand_prix": "Sprint cup · Misano",
+   "country": "Italy",
+   "country_code": "IT",
+   "city": "Misano Adriatico",
+   "length_m": 4226,
+   "turns": 16
+  },
+  {
+   "id": "gt_magny_cours",
+   "name": "Magny-Cours",
+   "grand_prix": "Sprint cup · Magny-Cours",
+   "country": "France",
+   "country_code": "FR",
+   "city": "Magny-Cours",
+   "length_m": 4411,
+   "turns": 17
+  },
+  {
+   "id": "gt_nurburgring",
+   "name": "Nürburgring",
+   "grand_prix": "Endurance cup · Nürburg",
+   "country": "Germany",
+   "country_code": "DE",
+   "city": "Nürburg",
+   "length_m": 5148,
+   "turns": 15
+  },
+  {
+   "id": "gt_zandvoort",
+   "name": "Zandvoort",
+   "grand_prix": "Sprint cup · Zandvoort",
+   "country": "Netherlands",
+   "country_code": "NL",
+   "city": "Zandvoort",
+   "length_m": 4259,
+   "turns": 14
+  },
+  {
+   "id": "gt_valencia",
+   "name": "Cheste, Valencia",
+   "grand_prix": "Sprint cup · Valencia",
+   "country": "Spain",
+   "country_code": "ES",
+   "city": "Cheste",
+   "length_m": 4005,
+   "turns": 14
+  },
+  {
+   "id": "gt_barcelona",
+   "name": "Barcelona",
+   "grand_prix": "Endurance cup finale · Barcelona",
+   "country": "Spain",
+   "country_code": "ES",
+   "city": "Montmeló",
+   "length_m": 4657,
+   "turns": 14
+  }
+ ]
+}

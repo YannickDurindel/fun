@@ -1,0 +1,115 @@
+{
+ "note": "Electric street-circuit events, current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "tracks": [
+  {
+   "id": "fe_sao_paulo",
+   "name": "Anhembi, São Paulo",
+   "grand_prix": "City race · São Paulo",
+   "country": "Brazil",
+   "country_code": "BR",
+   "city": "São Paulo",
+   "length_m": 2933,
+   "turns": 11
+  },
+  {
+   "id": "fe_mexico_city",
+   "name": "Mexico City",
+   "grand_prix": "City race · Mexico City",
+   "country": "Mexico",
+   "country_code": "MX",
+   "city": "Mexico City",
+   "length_m": 2628,
+   "turns": 16
+  },
+  {
+   "id": "fe_miami",
+   "name": "Homestead, Miami",
+   "grand_prix": "City race · Miami",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Homestead",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "fe_jeddah",
+   "name": "Jeddah Corniche",
+   "grand_prix": "Night double-header · Jeddah",
+   "country": "Saudi Arabia",
+   "country_code": "SA",
+   "city": "Jeddah",
+   "length_m": 3001,
+   "turns": 19
+  },
+  {
+   "id": "fe_madrid",
+   "name": "Jarama, Madrid",
+   "grand_prix": "City race · Madrid",
+   "country": "Spain",
+   "country_code": "ES",
+   "city": "San Sebastián de los Reyes",
+   "length_m": 3850,
+   "turns": 13
+  },
+  {
+   "id": "fe_berlin",
+   "name": "Tempelhof Airport, Berlin",
+   "grand_prix": "Double-header · Berlin",
+   "country": "Germany",
+   "country_code": "DE",
+   "city": "Berlin",
+   "length_m": 2343,
+   "turns": 15
+  },
+  {
+   "id": "fe_monaco",
+   "name": "Monte Carlo",
+   "grand_prix": "Double-header · Monte Carlo",
+   "country": "Monaco",
+   "country_code": "MC",
+   "city": "Monte Carlo",
+   "length_m": 3337,
+   "turns": 19
+  },
+  {
+   "id": "fe_sanya",
+   "name": "Sanya",
+   "grand_prix": "City race · Sanya",
+   "country": "China",
+   "country_code": "CN",
+   "city": "Sanya",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "fe_shanghai",
+   "name": "Shanghai",
+   "grand_prix": "Double-header · Shanghai",
+   "country": "China",
+   "country_code": "CN",
+   "city": "Shanghai",
+   "length_m": 3051,
+   "turns": 12
+  },
+  {
+   "id": "fe_tokyo",
+   "name": "Tokyo Bay",
+   "grand_prix": "Double-header · Tokyo",
+   "country": "Japan",
+   "country_code": "JP",
+   "city": "Tokyo",
+   "length_m": 2585,
+   "turns": 18
+  },
+  {
+   "id": "fe_london",
+   "name": "Docklands, London",
+   "grand_prix": "Indoor double-header · London",
+   "country": "United Kingdom",
+   "country_code": "GB",
+   "city": "London",
+   "length_m": 2085,
+   "turns": 22
+  }
+ ]
+}

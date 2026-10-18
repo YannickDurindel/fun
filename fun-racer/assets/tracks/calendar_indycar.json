@@ -1,0 +1,175 @@
+{
+ "note": "American open-wheel events: street, road and oval, current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "tracks": [
+  {
+   "id": "aow_st_petersburg",
+   "name": "St. Petersburg streets",
+   "grand_prix": "Street race · St. Petersburg",
+   "country": "United States",
+   "country_code": "US",
+   "city": "St. Petersburg",
+   "length_m": 2897,
+   "turns": 14
+  },
+  {
+   "id": "aow_phoenix",
+   "name": "Phoenix oval",
+   "grand_prix": "Oval race · Avondale",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Avondale",
+   "length_m": 1645,
+   "turns": 4
+  },
+  {
+   "id": "aow_arlington",
+   "name": "Arlington streets",
+   "grand_prix": "Street race · Arlington",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Arlington",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "aow_barber",
+   "name": "Barber, Birmingham",
+   "grand_prix": "Road course · Birmingham",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Birmingham",
+   "length_m": 3701,
+   "turns": 17
+  },
+  {
+   "id": "aow_long_beach",
+   "name": "Long Beach streets",
+   "grand_prix": "Street race · Long Beach",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Long Beach",
+   "length_m": 3167,
+   "turns": 11
+  },
+  {
+   "id": "aow_indy_road",
+   "name": "Indianapolis road course",
+   "grand_prix": "Road course · Indianapolis",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Speedway",
+   "length_m": 3925,
+   "turns": 14
+  },
+  {
+   "id": "aow_indy_500",
+   "name": "Indianapolis oval",
+   "grand_prix": "500-mile oval classic · Indianapolis",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Speedway",
+   "length_m": 4023,
+   "turns": 4
+  },
+  {
+   "id": "aow_detroit",
+   "name": "Detroit streets",
+   "grand_prix": "Street race · Detroit",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Detroit",
+   "length_m": 2647,
+   "turns": 9
+  },
+  {
+   "id": "aow_gateway",
+   "name": "Gateway oval, Madison",
+   "grand_prix": "Oval race · Madison",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Madison",
+   "length_m": 2012,
+   "turns": 4
+  },
+  {
+   "id": "aow_road_america",
+   "name": "Road America, Elkhart Lake",
+   "grand_prix": "Road course · Elkhart Lake",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Elkhart Lake",
+   "length_m": 6515,
+   "turns": 14
+  },
+  {
+   "id": "aow_mid_ohio",
+   "name": "Mid-Ohio, Lexington",
+   "grand_prix": "Road course · Lexington",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Lexington",
+   "length_m": 3634,
+   "turns": 13
+  },
+  {
+   "id": "aow_nashville",
+   "name": "Nashville oval",
+   "grand_prix": "Oval race · Lebanon",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Lebanon",
+   "length_m": 2140,
+   "turns": 4
+  },
+  {
+   "id": "aow_portland",
+   "name": "Portland",
+   "grand_prix": "Road course · Portland",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Portland",
+   "length_m": 3161,
+   "turns": 12
+  },
+  {
+   "id": "aow_markham",
+   "name": "Markham streets",
+   "grand_prix": "Street race · Markham",
+   "country": "Canada",
+   "country_code": "CA",
+   "city": "Markham",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "aow_washington",
+   "name": "Washington streets",
+   "grand_prix": "Street race · Washington",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Washington",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "aow_milwaukee",
+   "name": "Milwaukee Mile, West Allis",
+   "grand_prix": "Oval double-header · West Allis",
+   "country": "United States",
+   "country_code": "US",
+   "city": "West Allis",
+   "length_m": 1609,
+   "turns": 4
+  },
+  {
+   "id": "aow_laguna_seca",
+   "name": "Laguna Seca, Monterey",
+   "grand_prix": "Season finale · Monterey",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Monterey",
+   "length_m": 3602,
+   "turns": 11
+  }
+ ]
+}

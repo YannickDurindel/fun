@@ -40,7 +40,26 @@ func test_catalog() -> void:
 	assert_true(SeriesCatalog.has_events("endurance"), "endurance can be browsed")
 	var le_mans := TrackCatalog.find("wec_le_mans")
 	assert_true(le_mans != null and le_mans.series == "endurance", "Le Mans is an endurance event")
-	assert_true(not SeriesCatalog.has_events("nascar"), "series without a calendar cannot be opened")
+	# Every series has a calendar of its own; only F1 and endurance have cars to race them.
+	assert_true(ids.size() == TrackCatalog.CALENDARS.size(), "one calendar per series")
+	var all_ids := {}
+	for s in SeriesCatalog.all():
+		var id: String = s["id"]
+		assert_true(TrackCatalog.CALENDARS.has(id), "%s has a calendar file" % id)
+		assert_true(SeriesCatalog.has_events(id), "%s has events" % id)
+		if id == "f1" or id == "endurance":
+			continue
+		assert_true(not SeriesCatalog.is_playable(id), "%s is coming soon" % id)
+		for t in SeriesCatalog.tracks(id):
+			assert_true(not t.available and t.circuit.is_empty(), "%s: %s is coming soon, on no built circuit" % [id, t.id])
+			assert_true(not t.name.is_empty() and not t.grand_prix.is_empty() and t.country_code.length() == 2,
+					"%s: %s has a venue, an event and a country" % [id, t.id])
+			assert_true(not all_ids.has(t.id), "event ids are unique (%s)" % t.id)
+			all_ids[t.id] = true
+	for id in ["moto", "junior", "german_touring", "aus_touring", "super_formula", "super_gt", "rally_raid",
+			"hill_climb", "drift", "karting"]:
+		assert_true(ids.has(id), "%s is listed" % id)
+	assert_true(ids.find("endurance") == 1, "the playable series come first")
 
 func test_play_flow() -> void:
 	# A permanent locked endurance fixture: every real endurance event is built now.
@@ -49,9 +68,16 @@ func test_play_flow() -> void:
 	var screen := menu.current as SeriesSelectScreen
 	assert_true(screen != null and screen.cards.size() == SeriesCatalog.all().size(), "one card per series")
 	assert_true(get_viewport().gui_get_focus_owner() == screen.card_for("f1"), "F1 is pre-focused")
-	# A coming-soon series stays on this screen.
+	# A coming-soon series opens its calendar, every event locked.
 	screen.card_for("nascar").pressed.emit()
-	assert_true(menu.current_name == "series", "NASCAR cannot be opened yet")
+	assert_true(menu.current_name == "tracks", "NASCAR opens its calendar")
+	var stock := menu.current as TrackSelectScreen
+	assert_true(stock.cards.size() == SeriesCatalog.tracks("nascar").size() and stock.cards.size() > 20, "lists the stock car events")
+	var first := stock.cards[0]
+	assert_true(not first.info.available and not stock.select(first.info) and menu.current_name == "tracks", "they cannot be raced")
+	menu.back()
+	await get_tree().process_frame
+	screen = menu.current as SeriesSelectScreen
 	# Endurance opens its own track list, every event locked.
 	screen.card_for("endurance").pressed.emit()
 	assert_true(menu.current_name == "tracks", "endurance opens the track list")
@@ -77,6 +103,16 @@ func test_play_flow() -> void:
 		c = c.get_node(c.focus_neighbor_bottom) as Control
 		steps += 1
 	assert_true(c == screen.back_button, "the grid leads down to BACK")
+	# The last card scrolls into view when focused, and right/left walk along a row.
+	var last: Control = screen.cards.back()
+	last.grab_focus()
+	await get_tree().process_frame
+	await get_tree().process_frame
+	var view := screen.get_global_rect()
+	var r := last.get_global_rect()
+	assert_true(view.encloses(r) and r.end.y <= SeriesSelectScreen.TOP + SeriesSelectScreen.AREA_H + 20.0,
+			"the last series is scrolled into view (%s)" % str(r))
+	assert_true(screen.cards[0].get_node(screen.cards[0].focus_neighbor_right) == screen.cards[1], "right moves along the row")
 	await _close(menu)
 
 func test_start_on_tracks_keeps_back_path() -> void:

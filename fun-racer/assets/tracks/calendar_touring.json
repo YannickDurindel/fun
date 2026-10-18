@@ -1,0 +1,105 @@
+{
+ "note": "British touring car events (three races a weekend), current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "tracks": [
+  {
+   "id": "tc_donington_national",
+   "name": "Donington Park National",
+   "grand_prix": "Season opener · Castle Donington",
+   "country": "United Kingdom",
+   "country_code": "GB",
+   "city": "Castle Donington",
+   "length_m": 3185,
+   "turns": 9
+  },
+  {
+   "id": "tc_brands_indy",
+   "name": "Brands Hatch Indy",
+   "grand_prix": "Round · Brands Hatch Indy",
+   "country": "United Kingdom",
+   "country_code": "GB",
+   "city": "West Kingsdown",
+   "length_m": 1929,
+   "turns": 5
+  },
+  {
+   "id": "tc_snetterton",
+   "name": "Snetterton",
+   "grand_prix": "Round · Snetterton",
+   "country": "United Kingdom",
+   "country_code": "GB",
+   "city": "Snetterton",
+   "length_m": 4779,
+   "turns": 12
+  },
+  {
+   "id": "tc_thruxton",
+   "name": "Thruxton",
+   "grand_prix": "Round · Thruxton",
+   "country": "United Kingdom",
+   "country_code": "GB",
+   "city": "Andover",
+   "length_m": 3792,
+   "turns": 11
+  },
+  {
+   "id": "tc_oulton_park",
+   "name": "Oulton Park",
+   "grand_prix": "Round · Oulton Park",
+   "country": "United Kingdom",
+   "country_code": "GB",
+   "city": "Tarporley",
+   "length_m": 3582,
+   "turns": 0
+  },
+  {
+   "id": "tc_croft",
+   "name": "Croft",
+   "grand_prix": "Round · Croft",
+   "country": "United Kingdom",
+   "country_code": "GB",
+   "city": "Dalton-on-Tees",
+   "length_m": 3423,
+   "turns": 10
+  },
+  {
+   "id": "tc_knockhill",
+   "name": "Knockhill",
+   "grand_prix": "Round · Knockhill",
+   "country": "United Kingdom",
+   "country_code": "GB",
+   "city": "Dunfermline",
+   "length_m": 2045,
+   "turns": 9
+  },
+  {
+   "id": "tc_donington_gp",
+   "name": "Donington Park GP",
+   "grand_prix": "Round · Donington Park GP",
+   "country": "United Kingdom",
+   "country_code": "GB",
+   "city": "Castle Donington",
+   "length_m": 4020,
+   "turns": 12
+  },
+  {
+   "id": "tc_silverstone",
+   "name": "Silverstone National",
+   "grand_prix": "Round · Silverstone",
+   "country": "United Kingdom",
+   "country_code": "GB",
+   "city": "Silverstone",
+   "length_m": 2638,
+   "turns": 6
+  },
+  {
+   "id": "tc_brands_gp",
+   "name": "Brands Hatch GP",
+   "grand_prix": "Season finale · Brands Hatch GP",
+   "country": "United Kingdom",
+   "country_code": "GB",
+   "city": "West Kingsdown",
+   "length_m": 3908,
+   "turns": 9
+  }
+ ]
+}

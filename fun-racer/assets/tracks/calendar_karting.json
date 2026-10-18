@@ -1,0 +1,65 @@
+{
+ "note": "International karting events, current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "tracks": [
+  {
+   "id": "kart_valencia",
+   "name": "Chiva, Valencia",
+   "grand_prix": "Kart championship · Valencia",
+   "country": "Spain",
+   "country_code": "ES",
+   "city": "Chiva",
+   "length_m": 1428,
+   "turns": 0
+  },
+  {
+   "id": "kart_franciacorta",
+   "name": "Franciacorta",
+   "grand_prix": "Kart championship · Franciacorta",
+   "country": "Italy",
+   "country_code": "IT",
+   "city": "Castrezzato",
+   "length_m": 1300,
+   "turns": 0
+  },
+  {
+   "id": "kart_kristianstad",
+   "name": "Kristianstad",
+   "grand_prix": "Kart championship · Kristianstad",
+   "country": "Sweden",
+   "country_code": "SE",
+   "city": "Kristianstad",
+   "length_m": 1100,
+   "turns": 0
+  },
+  {
+   "id": "kart_genk",
+   "name": "Genk",
+   "grand_prix": "Kart championship · Genk",
+   "country": "Belgium",
+   "country_code": "BE",
+   "city": "Genk",
+   "length_m": 1360,
+   "turns": 0
+  },
+  {
+   "id": "kart_le_mans",
+   "name": "Le Mans",
+   "grand_prix": "Kart championship · Le Mans",
+   "country": "France",
+   "country_code": "FR",
+   "city": "Le Mans",
+   "length_m": 1355,
+   "turns": 0
+  },
+  {
+   "id": "kart_lonato",
+   "name": "Lonato del Garda",
+   "grand_prix": "World kart final · Lonato",
+   "country": "Italy",
+   "country_code": "IT",
+   "city": "Lonato del Garda",
+   "length_m": 1010,
+   "turns": 0
+  }
+ ]
+}

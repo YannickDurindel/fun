@@ -1,0 +1,225 @@
+{
+ "note": "Motorcycle Grand Prix events, current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "tracks": [
+  {
+   "id": "mgp_buriram",
+   "name": "Buriram",
+   "grand_prix": "Motorcycle GP · Thailand",
+   "country": "Thailand",
+   "country_code": "TH",
+   "city": "Buriram",
+   "length_m": 4554,
+   "turns": 12
+  },
+  {
+   "id": "mgp_goiania",
+   "name": "Goiânia",
+   "grand_prix": "Motorcycle GP · Brazil",
+   "country": "Brazil",
+   "country_code": "BR",
+   "city": "Goiânia",
+   "length_m": 3835,
+   "turns": 0
+  },
+  {
+   "id": "mgp_austin",
+   "name": "Austin",
+   "grand_prix": "Motorcycle GP · Americas",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Austin",
+   "length_m": 5513,
+   "turns": 20
+  },
+  {
+   "id": "mgp_lusail",
+   "name": "Lusail",
+   "grand_prix": "Night race · Qatar",
+   "country": "Qatar",
+   "country_code": "QA",
+   "city": "Lusail",
+   "length_m": 5380,
+   "turns": 16
+  },
+  {
+   "id": "mgp_jerez",
+   "name": "Jerez",
+   "grand_prix": "Motorcycle GP · Spain",
+   "country": "Spain",
+   "country_code": "ES",
+   "city": "Jerez de la Frontera",
+   "length_m": 4423,
+   "turns": 13
+  },
+  {
+   "id": "mgp_le_mans",
+   "name": "Le Mans",
+   "grand_prix": "Motorcycle GP · France",
+   "country": "France",
+   "country_code": "FR",
+   "city": "Le Mans",
+   "length_m": 4185,
+   "turns": 14
+  },
+  {
+   "id": "mgp_catalunya",
+   "name": "Barcelona",
+   "grand_prix": "Motorcycle GP · Catalonia",
+   "country": "Spain",
+   "country_code": "ES",
+   "city": "Montmeló",
+   "length_m": 4657,
+   "turns": 14
+  },
+  {
+   "id": "mgp_mugello",
+   "name": "Mugello",
+   "grand_prix": "Motorcycle GP · Italy",
+   "country": "Italy",
+   "country_code": "IT",
+   "city": "Scarperia",
+   "length_m": 5245,
+   "turns": 15
+  },
+  {
+   "id": "mgp_balaton",
+   "name": "Lake Balaton",
+   "grand_prix": "Motorcycle GP · Hungary",
+   "country": "Hungary",
+   "country_code": "HU",
+   "city": "Balatonfőkajár",
+   "length_m": 4075,
+   "turns": 17
+  },
+  {
+   "id": "mgp_brno",
+   "name": "Brno",
+   "grand_prix": "Motorcycle GP · Czechia",
+   "country": "Czechia",
+   "country_code": "CZ",
+   "city": "Brno",
+   "length_m": 5403,
+   "turns": 14
+  },
+  {
+   "id": "mgp_assen",
+   "name": "Assen",
+   "grand_prix": "Motorcycle GP · Netherlands",
+   "country": "Netherlands",
+   "country_code": "NL",
+   "city": "Assen",
+   "length_m": 4542,
+   "turns": 18
+  },
+  {
+   "id": "mgp_sachsenring",
+   "name": "Sachsenring",
+   "grand_prix": "Motorcycle GP · Germany",
+   "country": "Germany",
+   "country_code": "DE",
+   "city": "Hohenstein-Ernstthal",
+   "length_m": 3671,
+   "turns": 13
+  },
+  {
+   "id": "mgp_silverstone",
+   "name": "Silverstone",
+   "grand_prix": "Motorcycle GP · Great Britain",
+   "country": "United Kingdom",
+   "country_code": "GB",
+   "city": "Silverstone",
+   "length_m": 5900,
+   "turns": 18
+  },
+  {
+   "id": "mgp_aragon",
+   "name": "Alcañiz",
+   "grand_prix": "Motorcycle GP · Aragón",
+   "country": "Spain",
+   "country_code": "ES",
+   "city": "Alcañiz",
+   "length_m": 5077,
+   "turns": 17
+  },
+  {
+   "id": "mgp_misano",
+   "name": "Misano",
+   "grand_prix": "Motorcycle GP · San Marino",
+   "country": "Italy",
+   "country_code": "IT",
+   "city": "Misano Adriatico",
+   "length_m": 4226,
+   "turns": 16
+  },
+  {
+   "id": "mgp_spielberg",
+   "name": "Spielberg",
+   "grand_prix": "Motorcycle GP · Austria",
+   "country": "Austria",
+   "country_code": "AT",
+   "city": "Spielberg",
+   "length_m": 4348,
+   "turns": 10
+  },
+  {
+   "id": "mgp_motegi",
+   "name": "Motegi",
+   "grand_prix": "Motorcycle GP · Japan",
+   "country": "Japan",
+   "country_code": "JP",
+   "city": "Motegi",
+   "length_m": 4801,
+   "turns": 14
+  },
+  {
+   "id": "mgp_mandalika",
+   "name": "Mandalika, Lombok",
+   "grand_prix": "Motorcycle GP · Indonesia",
+   "country": "Indonesia",
+   "country_code": "ID",
+   "city": "Kuta",
+   "length_m": 4310,
+   "turns": 17
+  },
+  {
+   "id": "mgp_phillip_island",
+   "name": "Phillip Island",
+   "grand_prix": "Motorcycle GP · Australia",
+   "country": "Australia",
+   "country_code": "AU",
+   "city": "Phillip Island",
+   "length_m": 4448,
+   "turns": 12
+  },
+  {
+   "id": "mgp_sepang",
+   "name": "Sepang",
+   "grand_prix": "Motorcycle GP · Malaysia",
+   "country": "Malaysia",
+   "country_code": "MY",
+   "city": "Sepang",
+   "length_m": 5543,
+   "turns": 15
+  },
+  {
+   "id": "mgp_portimao",
+   "name": "Portimão",
+   "grand_prix": "Motorcycle GP · Portugal",
+   "country": "Portugal",
+   "country_code": "PT",
+   "city": "Portimão",
+   "length_m": 4592,
+   "turns": 15
+  },
+  {
+   "id": "mgp_valencia",
+   "name": "Cheste, Valencia",
+   "grand_prix": "Season finale · Valencia",
+   "country": "Spain",
+   "country_code": "ES",
+   "city": "Cheste",
+   "length_m": 4005,
+   "turns": 14
+  }
+ ]
+}

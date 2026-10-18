@@ -1,0 +1,145 @@
+{
+ "note": "Australian V8 touring car events, current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "tracks": [
+  {
+   "id": "atc_sydney",
+   "name": "Eastern Creek, Sydney",
+   "grand_prix": "Season opener · Sydney",
+   "country": "Australia",
+   "country_code": "AU",
+   "city": "Eastern Creek",
+   "length_m": 3930,
+   "turns": 10
+  },
+  {
+   "id": "atc_melbourne",
+   "name": "Melbourne",
+   "grand_prix": "Grand Prix support · Melbourne",
+   "country": "Australia",
+   "country_code": "AU",
+   "city": "Melbourne",
+   "length_m": 5278,
+   "turns": 14
+  },
+  {
+   "id": "atc_taupo",
+   "name": "Taupō",
+   "grand_prix": "Round · Taupō",
+   "country": "New Zealand",
+   "country_code": "NZ",
+   "city": "Taupō",
+   "length_m": 3300,
+   "turns": 0
+  },
+  {
+   "id": "atc_christchurch",
+   "name": "Ruapuna, Christchurch",
+   "grand_prix": "Round · Christchurch",
+   "country": "New Zealand",
+   "country_code": "NZ",
+   "city": "Christchurch",
+   "length_m": 3330,
+   "turns": 0
+  },
+  {
+   "id": "atc_symmons_plains",
+   "name": "Symmons Plains",
+   "grand_prix": "Round · Launceston",
+   "country": "Australia",
+   "country_code": "AU",
+   "city": "Launceston",
+   "length_m": 2411,
+   "turns": 7
+  },
+  {
+   "id": "atc_wanneroo",
+   "name": "Wanneroo, Perth",
+   "grand_prix": "Night race · Perth",
+   "country": "Australia",
+   "country_code": "AU",
+   "city": "Perth",
+   "length_m": 2411,
+   "turns": 7
+  },
+  {
+   "id": "atc_darwin",
+   "name": "Hidden Valley, Darwin",
+   "grand_prix": "Round · Darwin",
+   "country": "Australia",
+   "country_code": "AU",
+   "city": "Darwin",
+   "length_m": 2870,
+   "turns": 11
+  },
+  {
+   "id": "atc_townsville",
+   "name": "Townsville streets",
+   "grand_prix": "Street race · Townsville",
+   "country": "Australia",
+   "country_code": "AU",
+   "city": "Townsville",
+   "length_m": 2860,
+   "turns": 13
+  },
+  {
+   "id": "atc_ipswich",
+   "name": "Ipswich",
+   "grand_prix": "Round · Ipswich",
+   "country": "Australia",
+   "country_code": "AU",
+   "city": "Ipswich",
+   "length_m": 3120,
+   "turns": 6
+  },
+  {
+   "id": "atc_the_bend",
+   "name": "Tailem Bend",
+   "grand_prix": "Round · Tailem Bend",
+   "country": "Australia",
+   "country_code": "AU",
+   "city": "Tailem Bend",
+   "length_m": 4950,
+   "turns": 18
+  },
+  {
+   "id": "atc_sandown",
+   "name": "Sandown, Melbourne",
+   "grand_prix": "500 km · Sandown",
+   "country": "Australia",
+   "country_code": "AU",
+   "city": "Springvale",
+   "length_m": 3104,
+   "turns": 6
+  },
+  {
+   "id": "atc_bathurst",
+   "name": "Mount Panorama, Bathurst",
+   "grand_prix": "1000 km · Bathurst",
+   "country": "Australia",
+   "country_code": "AU",
+   "city": "Bathurst",
+   "length_m": 6213,
+   "turns": 23
+  },
+  {
+   "id": "atc_gold_coast",
+   "name": "Surfers Paradise streets",
+   "grand_prix": "Street race · Gold Coast",
+   "country": "Australia",
+   "country_code": "AU",
+   "city": "Gold Coast",
+   "length_m": 2960,
+   "turns": 14
+  },
+  {
+   "id": "atc_adelaide",
+   "name": "Adelaide streets",
+   "grand_prix": "Season finale · Adelaide",
+   "country": "Australia",
+   "country_code": "AU",
+   "city": "Adelaide",
+   "length_m": 3780,
+   "turns": 14
+  }
+ ]
+}

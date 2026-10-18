@@ -38,7 +38,12 @@ from .net import BuildError
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 CALENDAR = os.path.join(ROOT, "assets", "tracks", "calendar.json")
 # Other series keep their circuits in a calendar of their own (the entry carries no "series").
-SERIES_CALENDARS = {"endurance": os.path.join(ROOT, "assets", "tracks", "calendar_endurance.json")}
+SERIES_CALENDARS = {
+    s: os.path.join(ROOT, "assets", "tracks", f"calendar_{s}.json")
+    for s in ("endurance", "junior", "formula_e", "indycar", "super_formula", "moto", "gt", "super_gt", "touring",
+              "german_touring", "aus_touring", "nascar", "rally", "rallycross", "rally_raid", "hill_climb", "drift",
+              "karting")
+}
 SERIES = {"f1"} | set(SERIES_CALENDARS)
 RECIPE_DIR = os.path.join(ROOT, "tools", "track", "tracks")
 

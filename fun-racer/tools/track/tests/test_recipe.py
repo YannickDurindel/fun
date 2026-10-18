@@ -1,5 +1,6 @@
 """Recipe parsing: defaults from calendar.json, the Red Bull Ring recipe, and error messages."""
 import os
+import re
 import tempfile
 import unittest
 
@@ -50,13 +51,23 @@ class RecipeTest(unittest.TestCase):
         r = recipe.from_dict("wec_le_mans", {"osm": {"relation": 1}})
         self.assertEqual((r.series, r.length_m), ("endurance", 13626.0))
         with self.assertRaises(BuildError):
-            recipe.from_dict("x", {"series": "karting", "length_m": 1000, "osm": {"relation": 1}})
+            recipe.from_dict("x", {"series": "no_such_series", "length_m": 1000, "osm": {"relation": 1}})
 
     def test_command_line_overrides_recipe(self):
         r = recipe.from_dict("red_bull_ring", {"length_m": 4000, "osm": {"relation": 1}},
                              {"length_m": 4318.0, "direction": "anticlockwise"})
         self.assertEqual(r.length_m, 4318.0)
         self.assertEqual(r.direction, "anticlockwise")
+
+    def test_series_calendars_match_the_game(self):
+        # TrackCatalog.CALENDARS (GDScript) and SERIES_CALENDARS list the same files.
+        src = open(os.path.join(recipe.ROOT, "scripts", "track", "track_catalog.gd"), encoding="utf-8").read()
+        block = src[src.index("const CALENDARS := {"):src.index("}", src.index("const CALENDARS := {"))]
+        game = dict(re.findall(r'"(\w+)": "res://assets/tracks/(calendar_\w+\.json)"', block))
+        ours = {s: os.path.basename(p) for s, p in recipe.SERIES_CALENDARS.items()}
+        self.assertEqual(game, ours)
+        for path in recipe.SERIES_CALENDARS.values():
+            self.assertTrue(os.path.exists(path), path)
 
     def test_track_outside_the_calendar_needs_a_length(self):
         with self.assertRaisesRegex(BuildError, "official lap length"):

@@ -13,10 +13,28 @@ extends RefCounted
 
 const TRACKS_DIR := "res://assets/tracks"
 const CALENDAR := "res://assets/tracks/calendar.json"
-## Series id -> calendar file (tools/track/lib/recipe.py SERIES_CALENDARS lists the same files).
+## Series id -> calendar file, in SeriesCatalog order (tools/track/lib/recipe.py SERIES_CALENDARS
+## lists the same files). Only F1 and endurance have cars: other calendars carry no "track".
 const CALENDARS := {
 	"f1": CALENDAR,
 	"endurance": "res://assets/tracks/calendar_endurance.json",
+	"junior": "res://assets/tracks/calendar_junior.json",
+	"formula_e": "res://assets/tracks/calendar_formula_e.json",
+	"indycar": "res://assets/tracks/calendar_indycar.json",
+	"super_formula": "res://assets/tracks/calendar_super_formula.json",
+	"moto": "res://assets/tracks/calendar_moto.json",
+	"gt": "res://assets/tracks/calendar_gt.json",
+	"super_gt": "res://assets/tracks/calendar_super_gt.json",
+	"touring": "res://assets/tracks/calendar_touring.json",
+	"german_touring": "res://assets/tracks/calendar_german_touring.json",
+	"aus_touring": "res://assets/tracks/calendar_aus_touring.json",
+	"nascar": "res://assets/tracks/calendar_nascar.json",
+	"rally": "res://assets/tracks/calendar_rally.json",
+	"rallycross": "res://assets/tracks/calendar_rallycross.json",
+	"rally_raid": "res://assets/tracks/calendar_rally_raid.json",
+	"hill_climb": "res://assets/tracks/calendar_hill_climb.json",
+	"drift": "res://assets/tracks/calendar_drift.json",
+	"karting": "res://assets/tracks/calendar_karting.json",
 }
 ## Scene of a track whose track_info.json names none: the generic track scene, which builds
 ## any track folder (race_setup.gd sets its track_id).

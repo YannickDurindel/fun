@@ -2,17 +2,20 @@ class_name SeriesSelectScreen
 extends UIScreen
 ## Series selection, opened by PLAY: one big card per SeriesCatalog entry (F1, Endurance, ...).
 ## A series with events opens the track list for that series (TrackSelectScreen.series);
-## the others are "coming soon": they can be browsed but not opened.
+## the others are "coming soon": they can be browsed but not opened. The grid scrolls once
+## there are more rows than fit (cards keep MIN_CARD_H); focus scrolls it into view.
 
 const MARGIN := 90.0
 const TOP := 172.0
 const AREA_H := 780.0
 const COLUMNS := 4
 const GAP := 24.0
+const MIN_CARD_H := 236.0
 
 var cards: Array[SeriesCard] = []
 var back_button: Button
 
+var _scroll: ScrollContainer
 var _grid: GridContainer
 var _hint: Label
 var _last_card: SeriesCard
@@ -51,16 +54,27 @@ func _build() -> void:
 	title.position = Vector2(MARGIN, 44)
 	add_child(title)
 
+	_scroll = ScrollContainer.new()
+	_scroll.follow_focus = true
+	_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	add_child(_scroll)
+	var pad := MarginContainer.new()
+	# Room for the slanted card edges, the focus frame and the scroll bar.
+	pad.add_theme_constant_override(&"margin_left", 12)
+	pad.add_theme_constant_override(&"margin_right", 22)
+	pad.add_theme_constant_override(&"margin_top", 6)
+	pad.add_theme_constant_override(&"margin_bottom", 6)
+	_scroll.add_child(pad)
 	_grid = GridContainer.new()
 	_grid.columns = COLUMNS
 	_grid.add_theme_constant_override(&"h_separation", int(GAP))
 	_grid.add_theme_constant_override(&"v_separation", int(GAP))
-	add_child(_grid)
+	pad.add_child(_grid)
 	for s in SeriesCatalog.all():
 		var card := SeriesCard.new()
 		card.setup(s)
 		card.focus_entered.connect(_on_card_focused.bind(card))
-		card.mouse_entered.connect(card.grab_focus)
+		card.mouse_entered.connect(_on_card_hovered.bind(card))
 		card.pressed.connect(select.bind(card.series_id))
 		_grid.add_child(card)
 		cards.append(card)
@@ -82,12 +96,12 @@ func _build() -> void:
 func _layout() -> void:
 	var w := maxf(size.x, 1100.0) if size.x > 1.0 else 1920.0
 	var rows := ceili(float(cards.size()) / COLUMNS)
-	var card_w := floorf((w - 2.0 * MARGIN - GAP * (COLUMNS - 1)) / COLUMNS)
-	var card_h := floorf((AREA_H - GAP * (rows - 1)) / maxi(rows, 1))
+	var card_w := floorf((w - 2.0 * MARGIN - 34.0 - GAP * (COLUMNS - 1)) / COLUMNS)
+	var card_h := maxf(floorf((AREA_H - 12.0 - GAP * (rows - 1)) / maxi(rows, 1)), MIN_CARD_H)
 	for c in cards:
 		c.set_card_size(Vector2(card_w, card_h))
-	_grid.position = Vector2(MARGIN, TOP)
-	_grid.size = Vector2.ZERO
+	_scroll.position = Vector2(MARGIN - 12.0, TOP - 6.0)
+	_scroll.size = Vector2(w - 2.0 * MARGIN + 12.0, AREA_H + 12.0)
 	_hint.position = Vector2(w - MARGIN - 1000.0, TOP + AREA_H + 36)
 	_hint.size = Vector2(1000.0, 30)
 	_wire_focus()
@@ -115,6 +129,14 @@ func _wire_back() -> void:
 	var up: Control = _last_card if _last_card != null else (cards.back() if not cards.is_empty() else null)
 	back_button.focus_neighbor_top = back_button.get_path_to(up) if up != null else NodePath(".")
 
+## Hovering focuses a card, but must not scroll the grid under the mouse (follow_focus would).
+func _on_card_hovered(card: SeriesCard) -> void:
+	if card.has_focus():
+		return
+	_scroll.follow_focus = false
+	card.grab_focus()
+	_scroll.follow_focus = true
+
 func _on_card_focused(card: SeriesCard) -> void:
 	_last_card = card
 	_wire_back()
@@ -129,7 +151,7 @@ class SeriesCard extends Button:
 
 	func setup(s: Dictionary) -> void:
 		series_id = s["id"]
-		mouse_filter = Control.MOUSE_FILTER_STOP
+		mouse_filter = Control.MOUSE_FILTER_PASS   # let the wheel scroll the grid
 		var open := SeriesCatalog.has_events(series_id)
 		var playable := SeriesCatalog.is_playable(series_id)
 		add_theme_stylebox_override(&"normal", _box(Color(0.05, 0.08, 0.15, 0.9) if open else Color(0.03, 0.035, 0.05, 0.55), playable))
@@ -200,8 +222,18 @@ class SeriesCard extends Button:
 		_status.size = Vector2(sz.x - 110 - 30, 30)
 		_title.position = Vector2(28, sz.y - 150)
 		_title.size = Vector2(sz.x - 56, 74)
+		_fit_title(sz.x - 56)
 		_tagline.position = Vector2(30, sz.y - 70)
 		_tagline.size = Vector2(sz.x - 60, 32)
+
+	## Long names ("Motorcycle Grand Prix") shrink the title font until they fit on one line.
+	func _fit_title(width: float) -> void:
+		var font := _title.get_theme_font(&"font")
+		var fs := 58
+		while fs > 30 and font.get_string_size(_title.text, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x > width - 8.0:
+			fs -= 2
+		_title.add_theme_font_size_override(&"font_size", fs)
+		_title.position.y += (58 - fs) * 0.6   # keep the baseline where full-size titles sit
 
 	func _add(l: Label) -> void:
 		l.mouse_filter = Control.MOUSE_FILTER_IGNORE
