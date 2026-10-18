@@ -234,9 +234,10 @@ func test_engine_is_a_v6_in_simulation_and_the_v12_in_arcade() -> void:
 	assert_between(audio2.engine_freq_hz, 1190.0, 1210.0, "firing frequency at 12000 rpm, V12 (rpm/60 x 6)")
 	car2.gear = 2
 	await _frames(2)
+	var cuts2: int = audio2.shift_cuts
 	car2.gear = 3
 	await _frames(2)
-	assert_true(audio2.shift_cuts == 0, "no shift cut in arcade")
+	assert_true(audio2.shift_cuts == cuts2 + 1, "the arcade V12 cuts on an upshift too")
 
 ## Power of `buf` at `hz` (Goertzel), normalised by the number of samples.
 func _power_at(buf: PackedVector2Array, hz: float, rate: float) -> float:

@@ -4,8 +4,14 @@ extends Node3D
 ##     Each _process tops the buffer up to `target_latency` seconds of queued audio (never more
 ##     than get_frames_available()), so pitch lags the car by ~target_latency and nothing spins
 ##     when the buffer isn't consumed (headless / Dummy driver).
-##   * Screech + wind: seamless loops generated in code at startup (audio_loops.gd), driven by
-##     volume_db / pitch_scale only.
+##   * Screech, scrub, kerb rumble, wind and whoosh: seamless loops generated in code at startup
+##     (audio_loops.gd), driven by volume_db / pitch_scale only:
+##       - scrub: the grainy rubbing of tyres working near the limit, rising with slip before
+##         the screech starts (and a lower crunch with wheels on grass / gravel);
+##       - kerb rumble: wheels on a `kerb` surface, its ridge rate following the speed;
+##       - whoosh: a bot going by close, with a doppler shift from the closing speed.
+##   * Gear changes: an upshift cuts the ignition for a moment and cracks back in, a downshift
+##     blips with an overrun bang (both engines).
 ## The engine's character follows the car's handling: the arcade car keeps its V12 screamer,
 ## the simulation car gets the turbo-hybrid V6 (lower, with whistle, shift cut, lift-off
 ## crackle and limiter stutter) over its own rev range, and its tyre screech comes from each
@@ -18,6 +24,12 @@ const AudioLoops := preload("res://scripts/audio/audio_loops.gd")
 const TyreSlip := preload("res://scripts/fx/tyre_slip.gd")
 ## Simulation: patch sliding speed (m/s) at which one wheel screeches at full volume.
 const SIM_SCREECH_FULL_SPEED: float = 12.0
+## Spacing (m) of the ridges of a kerb: sets the rumble rate against the speed.
+const KERB_RIDGE_M: float = 1.0
+## Whoosh: a bot closer than WHOOSH_FAR (m) is heard, full at WHOOSH_NEAR.
+const WHOOSH_FAR: float = 16.0
+const WHOOSH_NEAR: float = 3.0
+const SOUND_SPEED: float = 343.0
 
 @export var car_path: NodePath
 ## Synth mix rate (22050..48000; GDScript cost scales with it).
@@ -29,6 +41,9 @@ const SIM_SCREECH_FULL_SPEED: float = 12.0
 @export var engine_volume_db: float = -3.0
 @export var screech_volume_db: float = -7.0
 @export var wind_volume_db: float = -9.0
+@export var scrub_volume_db: float = -7.0
+@export var kerb_volume_db: float = 0.0
+@export var whoosh_volume_db: float = -5.0
 ## Cap on frames rendered in one _process (bounds cost of the first fill / hitches).
 @export var max_fill_frames: int = 4096
 ## Silence after a respawn before the engine fades back in.
@@ -64,7 +79,22 @@ var engine_cylinders: int:
 var screech_pitch: float:
 	get:
 		return _screech_player.pitch_scale if _screech_player else 1.0
-## Upshifts heard so far (each one cuts the simulation engine for a moment).
+var scrub_gain: float:
+	get:
+		return _scrub_gain
+var kerb_gain: float:
+	get:
+		return _kerb_gain
+var whoosh_gain: float:
+	get:
+		return _whoosh_gain
+var kerb_pitch: float:
+	get:
+		return _kerb_player.pitch_scale if _kerb_player else 1.0
+var whoosh_pitch: float:
+	get:
+		return _whoosh_player.pitch_scale if _whoosh_player else 1.0
+## Upshifts heard so far (each one cuts the engine for a moment).
 var shift_cuts: int = 0
 
 var _car: Car
@@ -72,6 +102,12 @@ var _synth: EngineSynth
 var _engine_player: AudioStreamPlayer
 var _screech_player: AudioStreamPlayer
 var _wind_player: AudioStreamPlayer
+var _scrub_player: AudioStreamPlayer
+var _kerb_player: AudioStreamPlayer
+var _whoosh_player: AudioStreamPlayer
+var _scrub_gain: float = 0.0
+var _kerb_gain: float = 0.0
+var _whoosh_gain: float = 0.0
 var _playback: AudioStreamGeneratorPlayback
 var _screech_gain: float = 0.0
 var _wind_gain: float = 0.0
@@ -90,6 +126,9 @@ func _ready() -> void:
 	_engine_player = _make_player("EnginePlayer", &"Engine")
 	_screech_player = _make_player("ScreechPlayer", &"FX")
 	_wind_player = _make_player("WindPlayer", &"FX")
+	_scrub_player = _make_player("ScrubPlayer", &"FX")
+	_kerb_player = _make_player("KerbPlayer", &"FX")
+	_whoosh_player = _make_player("WhooshPlayer", &"FX")
 
 	var gen := AudioStreamGenerator.new()
 	gen.mix_rate = mix_rate
@@ -105,6 +144,12 @@ func _ready() -> void:
 	_wind_player.stream = AudioLoops.make_wind()
 	_wind_player.volume_db = -80.0
 	_wind_player.play()
+	for pair: Array in [[_scrub_player, AudioLoops.make_scrub()], [_kerb_player, AudioLoops.make_kerb()],
+			[_whoosh_player, AudioLoops.make_whoosh()]]:
+		var p: AudioStreamPlayer = pair[0]
+		p.stream = pair[1]
+		p.volume_db = -80.0
+		p.play()
 
 	if _car:
 		_car.respawned.connect(_on_respawned)
@@ -159,9 +204,11 @@ func _process(delta: float) -> void:
 			if st != null:
 				pedal = st.in_brake if _car.gear < 0 else st.in_throttle
 				throttle = st.in_brake if _car.gear < 0 else st.throttle
-			if _car.gear > _last_gear and _last_gear >= 1:
-				_synth.shift_cut()
-				shift_cuts += 1
+		if _car.gear > _last_gear and _last_gear >= 1:
+			_synth.shift_cut()
+			shift_cuts += 1
+		elif _car.gear < _last_gear and _car.gear >= 1 and throttle < 0.5:
+			_synth.downshift_blip()
 		_last_gear = _car.gear
 
 	# Master gain: muted briefly after respawn, then a soft fade-in.
@@ -178,6 +225,9 @@ func _process(delta: float) -> void:
 
 	_update_screech(delta, has_car, speed)
 	_update_wind(delta, speed)
+	_update_scrub(delta, has_car, speed)
+	_update_kerb(delta, has_car, speed)
+	_update_whoosh(delta, has_car)
 
 func _fill_engine() -> void:
 	if _playback == null:
@@ -245,9 +295,86 @@ func _update_wind(delta: float, speed: float) -> void:
 	# Raising pitch_scale shifts the low-passed noise spectrum up: the cutoff rises with speed.
 	_wind_player.pitch_scale = 0.45 + 1.6 * s
 
+## Eases `gain` towards `target` (attack / release time constants) and sets the player.
+func _ease_loop(p: AudioStreamPlayer, gain: float, target: float, delta: float, attack: float,
+		release: float, volume_db: float, pitch: float) -> float:
+	gain += (target - gain) * (1.0 - exp(-delta / (attack if target > gain else release)))
+	if gain < 1e-4 and target == 0.0:
+		gain = 0.0
+	p.volume_db = volume_db + linear_to_db(maxf(gain, 1e-4))
+	p.pitch_scale = pitch
+	return gain
+
+## Tyre scrub: rises with how hard the tyres work, from well before the screech; on grass or
+## gravel it becomes a lower crunch.
+func _update_scrub(delta: float, has_car: bool, speed: float) -> void:
+	var work := 0.0
+	var off := 0.0
+	if has_car:
+		var sim_car := _car.sim != null
+		var pa := TyreSlip.peak_angle(_car)
+		var pr := TyreSlip.peak_ratio(_car)
+		for w: WheelState in _car.wheels:
+			if w == null or not w.contact:
+				continue
+			if w.surface == &"grass" or w.surface == &"gravel":
+				off += 0.25
+			if sim_car:
+				# Combined slip against the tyre's peak: scrub builds from half the peak.
+				var sx := w.slip_ratio / pr
+				var sy := tan(absf(w.slip_angle)) / tan(pa)
+				work = maxf(work, smoothstep(0.45, 1.1, sqrt(sx * sx + sy * sy)))
+			else:
+				work = maxf(work, smoothstep(0.03, 0.45, w.slip))
+	var spd := smoothstep(3.0, 25.0, absf(speed) / Car.KMH) if has_car else 0.0
+	var target := maxf(work * 0.8, off * 0.9) * spd * _master
+	var pitch := lerpf(0.85 + 0.35 * clampf(speed / 300.0, 0.0, 1.0) + 0.1 * work, 0.6, clampf(off * 2.0, 0.0, 1.0))
+	_scrub_gain = _ease_loop(_scrub_player, _scrub_gain, target, delta, 0.06, 0.15, scrub_volume_db, pitch)
+
+## Kerb rumble: one wheel on a kerb is heard, more wheels louder; the ridge rate follows speed.
+func _update_kerb(delta: float, has_car: bool, speed: float) -> void:
+	var on := 0
+	if has_car:
+		for w: WheelState in _car.wheels:
+			if w != null and w.contact and w.surface == &"kerb":
+				on += 1
+	var v := absf(speed) / Car.KMH
+	var target := minf(1.0, 0.45 + 0.2 * on) * smoothstep(2.0, 15.0, v) * _master if on > 0 else 0.0
+	var pitch := clampf(v / (AudioLoops.KERB_BUMPS * KERB_RIDGE_M), 0.3, 2.5)
+	_kerb_gain = _ease_loop(_kerb_player, _kerb_gain, target, delta, 0.015, 0.06, kerb_volume_db, pitch)
+
+## Whoosh of the closest bot going by: louder the closer and the faster it passes, pitched by
+## the doppler shift of the closing speed.
+func _update_whoosh(delta: float, has_car: bool) -> void:
+	var target := 0.0
+	var pitch := 1.0
+	var bm := get_tree().get_first_node_in_group(&"bot_manager") if has_car else null
+	if bm != null:
+		for bot: Car in bm.bots:
+			if bot == null or not is_instance_valid(bot):
+				continue
+			var w := whoosh(bot.global_position - _car.global_position, bot.linear_velocity - _car.linear_velocity)
+			if w.x > target:
+				target = w.x
+				pitch = w.y
+	_whoosh_gain = _ease_loop(_whoosh_player, _whoosh_gain, target * _master, delta, 0.05, 0.25,
+			whoosh_volume_db, pitch)
+
+## Whoosh of one car at `rel` (m, from the player) moving at `dv` (m/s) relative to the player:
+## (gain 0..1, doppler pitch).
+static func whoosh(rel: Vector3, dv: Vector3) -> Vector2:
+	var d := rel.length()
+	if d > WHOOSH_FAR or d < 0.01:
+		return Vector2(0.0, 1.0)
+	var g := smoothstep(WHOOSH_FAR, WHOOSH_NEAR, d) * smoothstep(3.0, 20.0, dv.length())
+	var closing := -dv.dot(rel / d)
+	return Vector2(g, clampf(SOUND_SPEED / maxf(SOUND_SPEED - closing, 100.0), 0.75, 1.35))
+
 func _on_respawned() -> void:
 	_mute_timer = respawn_mute_seconds
 	_screech_gain = 0.0
+	_scrub_gain = 0.0
+	_kerb_gain = 0.0
 	# respawned is emitted before the car republishes rpm, so snap to idle; the engine then
 	# slews to the car's new rpm while still muted.
 	_synth.reset(0.0, 0.0)
