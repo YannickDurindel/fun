@@ -413,7 +413,7 @@ func _build_graphics() -> void:
 	_add_choice("graphics", "graphics", "track_look", "TRACK LOOK",
 			"Style of the tracks that have one: GENERATED surfaces or REALISTIC photographed sky and materials. Applies from the next race.",
 			[["GENERATED", "generated"], ["REALISTIC", "realistic"]])
-	# Ten rows: tighter than the gameplay tab's nine so they fit the panel.
+	# Ten rows: tighter than the other tabs so they fit the panel.
 	(_pages["graphics"] as VBoxContainer).add_theme_constant_override(&"separation", 1)
 	for r: Row in _rows["graphics"]:
 		r.custom_minimum_size.y = 51
@@ -425,7 +425,7 @@ func _build_audio() -> void:
 	_add_slider("audio", "audio", "ui", "MENU", "Volume of menu and interface sounds.", 0, 100, 5)
 
 func _build_gameplay() -> void:
-	# Nine rows and a heading: a little tighter than the other tabs so they fit the panel.
+	# Ten rows and a heading: the tightest tab, so they fit the panel.
 	(_pages["gameplay"] as VBoxContainer).add_theme_constant_override(&"separation", 1)
 	_add_choice("gameplay", "gameplay", "speed_unit", "SPEED UNIT",
 			"Unit of the speedometer.", [["KM/H", "kmh"], ["MPH", "mph"]])
@@ -437,6 +437,9 @@ func _build_gameplay() -> void:
 	_add_choice("gameplay", "gameplay", "auto_brake", "AUTO BRAKE",
 			"Brakes for you before corners. LIGHT: you still brake a bit. MEDIUM: just right. STRONG: early.",
 			[["OFF", 0], ["LIGHT", 1], ["MEDIUM", 2], ["STRONG", 3]])
+	_add_choice("gameplay", "gameplay", "car_contact", "CAR CONTACT",
+			"Off: the other cars are ghosts you drive through. On: they are solid and you can bump. Applies from the next race.",
+			[["OFF", false], ["ON", true]])
 	var heading_box := MarginContainer.new()
 	heading_box.add_theme_constant_override(&"margin_left", 34)
 	heading_box.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -453,7 +456,7 @@ func _build_gameplay() -> void:
 		var info: Array = AID_ROWS[key]
 		_add_choice("gameplay", "gameplay", key, info[0], info[1], info[2])
 	for r: Row in _rows["gameplay"]:
-		r.custom_minimum_size.y = 54   # nine rows: a little shorter than the other tabs' 60
+		r.custom_minimum_size.y = 48   # ten rows and a heading: shorter than the other tabs' 60
 
 ## Common sizes that fit the screen, plus whatever is currently set.
 func _resolution_options() -> Array:

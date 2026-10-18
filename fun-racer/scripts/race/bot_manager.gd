@@ -11,6 +11,11 @@ extends Node3D
 ##     hits them) and only mask the world; the player (who shares the world's layer) is excluded
 ##     explicitly. A bot close to the player or the camera is dithered out so it never blocks
 ##     the view.
+##   * Car contact (Settings gameplay/car_contact, off by default): bots are solid instead. They
+##     sit on CONTACT_LAYER and mask the world, the player (on the world's layer) and each other;
+##     the player masks CONTACT_LAYER as well, and every car's wheel rays skip every car. No proximity fade (only a little dither when the camera
+##     is inside one), a bot near the player is always simulated (never on rails, where it would
+##     slide through), and the BotDriver keeps a gap behind the car ahead and pulls out to pass.
 ##   * Follows the RaceManager: frozen during the countdown, released on race_started,
 ##     re-gridded on race_restarted. The RaceManager only knows the player; this node keeps
 ##     every car's progress and provides the live classification: get_standings().
@@ -49,6 +54,12 @@ const NAME_TAG_DISTANCE: float = 70.0
 const LOD_HYSTERESIS: float = 1.1
 const UNSEEN_MARGIN: float = 3.0       ## m behind the camera plane before a car counts as unseen
 const RAILS_RETURN: float = 0.8
+## Car contact: the bots' physics layer (the chase camera's rays ignore it), the distance to
+## the player within which a bot is always simulated, and the camera dither range.
+const CONTACT_LAYER: int = 1 << 5
+const CONTACT_SIM_DISTANCE: float = 30.0
+const CONTACT_CAMERA_FADE_MIN: float = 0.5
+const CONTACT_CAMERA_FADE_MAX: float = 2.0
 
 ## Fixed palette: one livery per bot slot (the player is blue / white / red).
 const LIVERIES: Array[Dictionary] = [
@@ -79,6 +90,8 @@ const PLAYER_COLOR := Color(0.16, 0.45, 1.0)
 ## At most this many bots are simulated at once, the nearest ones (-1 = no cap). A Car costs
 ## about 0.2 ms per 240 Hz tick on the target CPU; on rails it costs a tenth of that.
 @export var max_simulated: int = 2
+## -1 = Settings gameplay/car_contact, 0 = ghosts, 1 = solid cars.
+@export var car_contact: int = -1
 
 ## One classified car (the player or a bot).
 class Entry:
@@ -114,6 +127,8 @@ var race: RaceManager
 var racing: bool = false
 ## Physics seconds since GO.
 var race_time: float = 0.0
+## Car contact on (see the header): fixed for the race at _ready.
+var contact: bool = false
 
 var _data: TrackData
 var _entries: Array[Entry] = []
@@ -143,6 +158,7 @@ func _ready() -> void:
 	if race == null:
 		race = get_tree().get_first_node_in_group(&"race_manager") as RaceManager
 	var level := difficulty if difficulty >= 0 else Game.config.bot_difficulty
+	contact = car_contact == 1 if car_contact >= 0 else bool(Settings.get_value("gameplay", "car_contact"))
 	if player != null:
 		var e := Entry.new()
 		e.name = PLAYER_NAME
@@ -152,6 +168,8 @@ func _ready() -> void:
 		_entries.append(e)
 	for i in n:
 		_spawn_bot(i, level)
+	if contact:
+		_setup_contact()
 	_regrid()
 	if race != null:
 		race.race_restarted.connect(_on_race_restarted)
@@ -172,18 +190,24 @@ func _spawn_bot(i: int, level: int) -> void:
 	car.name = "Bot%d" % (i + 1)
 	add_child(car)
 	CarKit.apply(car, _kit)   # before _dress, which collects the body's meshes
+	if contact:
+		car.collision_layer = CONTACT_LAYER   # rays and exceptions: _setup_contact
+		car.collision_mask |= CONTACT_LAYER
+		if car.sim != null:
+			car.sim.aids.use_all()
 	# Ghost: on no layer (nothing detects it), masking the world only. The player lives on
 	# the world's layer, so it is excluded from both the body and the wheel rays.
-	car.collision_layer = 0
-	if player != null:
-		car.add_collision_exception_with(player)
-		var ray := car.get(&"_ray") as PhysicsRayQueryParameters3D
-		if ray != null:
-			ray.exclude = [car.get_rid(), player.get_rid()]
-	if car.sim != null:
-		car.sim.aids.use_all()   # bots keep their aids whatever the player chose
+	if not contact:
+		car.collision_layer = 0
 		if player != null:
-			car.sim._ray.exclude = [car.get_rid(), player.get_rid()]
+			car.add_collision_exception_with(player)
+			var ray := car.get(&"_ray") as PhysicsRayQueryParameters3D
+			if ray != null:
+				ray.exclude = [car.get_rid(), player.get_rid()]
+		if car.sim != null:
+			car.sim.aids.use_all()   # bots keep their aids whatever the player chose
+			if player != null:
+				car.sim._ray.exclude = [car.get_rid(), player.get_rid()]
 	var driver := BotDriver.new()
 	driver.name = "Driver"
 	driver.configure(car, track, level, i, variation_seed)
@@ -201,6 +225,37 @@ func _spawn_bot(i: int, level: int) -> void:
 	e.color = livery["primary"]
 	_dress(e, livery)
 	_entries.append(e)
+
+## Car contact: the player masks the bots' layer too, every car's wheel rays skip every car,
+## and every driver knows the field to keep its distance.
+func _setup_contact() -> void:
+	var cars: Array[Car] = []
+	var rids: Array[RID] = []
+	if player != null:
+		cars.append(player)
+		rids.append(player.get_rid())
+	for car in bots:
+		cars.append(car)
+		rids.append(car.get_rid())
+	if player != null:
+		# A body only reacts to the layers it masks: without this the bots would bounce off
+		# the player as off a wall. Its wheel rays (which use its mask) skip the bots.
+		player.collision_mask |= CONTACT_LAYER
+		var pray := player.get(&"_ray") as PhysicsRayQueryParameters3D
+		if pray != null:
+			pray.exclude = rids
+		if player.sim != null:
+			player.sim._ray.exclude = rids
+	for i in bots.size():
+		var car := bots[i]
+		var ray := car.get(&"_ray") as PhysicsRayQueryParameters3D
+		if ray != null:
+			ray.exclude = rids
+		if car.sim != null:
+			car.sim._ray.exclude = rids
+		drivers[i].contact_layer = car.collision_layer
+		drivers[i].contact_mask = car.collision_mask
+		drivers[i].contact_cars = cars
 
 ## Gives the bot its own materials (livery colours + the proximity dither) and collects the
 ## nodes the view LOD touches.
@@ -334,8 +389,10 @@ func _update_rails(cam: Camera3D) -> void:
 		var d := INF
 		var limit := rails_distance
 		var seen := true
+		var forced := false
 		if player != null:
 			d = minf(d, pos.distance_to(player.global_position))
+			forced = contact and d < CONTACT_SIM_DISTANCE
 		if cam != null:
 			d = minf(d, pos.distance_to(cam.global_position))
 			seen = not cam.is_position_behind(pos)
@@ -344,13 +401,15 @@ func _update_rails(cam: Camera3D) -> void:
 		e.driver.rail_smooth = seen
 		# Hysteresis: a simulated car keeps its place a little longer, in range and in rank.
 		e.rail_score = d if e.driver.on_rails else d * RAILS_RETURN
+		if forced:
+			e.rail_score = -1.0   # solid and next to the player: simulated, whatever the cap
 		if e.rail_score < limit * RAILS_RETURN:
 			near.append(e)
 		else:
 			e.driver.set_on_rails(true)
 	near.sort_custom(func(a: Entry, b: Entry) -> bool: return a.rail_score < b.rail_score)
 	for i in near.size():
-		near[i].driver.set_on_rails(max_simulated >= 0 and i >= max_simulated)
+		near[i].driver.set_on_rails(max_simulated >= 0 and i >= max_simulated and near[i].rail_score >= 0.0)
 
 func _speed(e: Entry) -> float:
 	return e.driver.speed() if e.driver != null else e.car.linear_velocity.length()
@@ -445,7 +504,7 @@ func _process(_delta: float) -> void:
 			continue
 		var pos := e.car.global_position
 		var dc := cam_pos.distance_to(pos)
-		var dp := player_pos.distance_to(pos) if player != null else INF
+		var dp := player_pos.distance_to(pos) if player != null and not contact else INF
 		_update_fade(e, dc, dp)
 		# A car well behind the camera plane is never drawn: treat it as far away.
 		var unseen := (pos - cam_pos).dot(cam_forward) < -UNSEEN_MARGIN
@@ -456,16 +515,18 @@ func _process(_delta: float) -> void:
 func _update_fade(e: Entry, dc: float, dp: float) -> void:
 	var opacity := lerpf(FADE_MIN_OPACITY, 1.0, smoothstep(FADE_NEAR, FADE_FAR, dp))
 	var ghosted := opacity < 0.999
-	var fade_max := CAMERA_FADE_MAX
+	var cam_min := CONTACT_CAMERA_FADE_MIN if contact else CAMERA_FADE_MIN
+	var cam_max := CONTACT_CAMERA_FADE_MAX if contact else CAMERA_FADE_MAX
+	var fade_max := cam_max
 	if ghosted:
-		fade_max = snappedf(maxf(CAMERA_FADE_MAX, dc / opacity), 0.25)
+		fade_max = snappedf(maxf(cam_max, dc / opacity), 0.25)
 	if not is_equal_approx(fade_max, e.fade_max):
 		e.fade_max = fade_max
 		for m in e.materials:
-			m.distance_fade_min_distance = 0.0 if ghosted else CAMERA_FADE_MIN
+			m.distance_fade_min_distance = 0.0 if ghosted else cam_min
 			m.distance_fade_max_distance = fade_max
 	# The wheels keep their shared materials: they simply go when the body is mostly gone.
-	var faded := opacity <= 0.6 or dc <= CAMERA_FADE_MAX * 0.7
+	var faded := opacity <= 0.6 or dc <= cam_max * 0.7
 	if faded != e.wheels_faded:
 		e.wheels_faded = faded
 		_show_wheels(e)

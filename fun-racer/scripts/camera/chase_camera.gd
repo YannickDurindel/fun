@@ -44,6 +44,9 @@ enum Mode { CHASE_LOW = 1, CHASE_HIGH = 2, COCKPIT = 3 }
 
 const OVERVIEW_PITCH_DEG: float = 55.0
 const OVERVIEW_FOV: float = 50.0
+## Ground and boom rays: every physics layer but the solid bots' (car contact), which never
+## count as ground or as a wall between the car and the camera.
+const RAY_MASK: int = 0xFFFFFFFF & ~BotManager.CONTACT_LAYER
 
 ## Car (or any Node3D) to follow. main.tscn sets this; keep the name.
 @export var target_path: NodePath
@@ -536,7 +539,7 @@ func _sample_ground() -> void:
 	# terrain or trimesh road (one-sided faces are hit from above).
 	var top := maxf(global_position.y, _target.global_position.y) + 1.0
 	var from := Vector3(global_position.x, top, global_position.z)
-	var q := PhysicsRayQueryParameters3D.create(from, from + Vector3.DOWN * 60.0)
+	var q := PhysicsRayQueryParameters3D.create(from, from + Vector3.DOWN * 60.0, RAY_MASK)
 	if _target is CollisionObject3D:
 		q.exclude = [(_target as CollisionObject3D).get_rid()]
 	var hit := space.intersect_ray(q)
@@ -555,7 +558,7 @@ func _sample_boom() -> void:
 	if seg_len < 1e-3:
 		_boom_limit = INF
 		return
-	var q := PhysicsRayQueryParameters3D.create(_boom_from, _boom_to + seg / seg_len * occlusion_margin)
+	var q := PhysicsRayQueryParameters3D.create(_boom_from, _boom_to + seg / seg_len * occlusion_margin, RAY_MASK)
 	q.collide_with_areas = false
 	if _target is CollisionObject3D:
 		q.exclude = [(_target as CollisionObject3D).get_rid()]

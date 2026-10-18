@@ -15,6 +15,9 @@ extends Autopilot
 ## personal `speed_scale`, throttle ceiling and lateral line shift so the field spreads out
 ## instead of driving in single file.
 ##
+## With car contact (BotManager) the bot is a solid car: it keeps a braking gap behind the car
+## ahead in its lane and pulls out to pass, and it respawns only where no other car stands.
+##
 ## Either handling model: the pace settings scale the car's CarEnvelope (see Autopilot), so a
 ## simulation bot uses the same fractions of the simulation car's measured limits, and drives
 ## it with the Autopilot's simulation controller. Bots never wait for a measurement: if the
@@ -55,6 +58,17 @@ const RAIL_GAIN: float = 1.018
 ## The simulation car does not quite reach its profile out of the corners (measured: laps on
 ## rails at the profile's speed were 3 % quicker than simulated ones), hence a gain below 1.
 const RAIL_GAIN_SIM: float = 0.97
+## Car contact: look this far ahead for traffic (m), cars closer than LANE_HALF_WIDTH to the
+## bot's axis are in its lane; FOLLOW_GAP is the gap (m, nose to tail) it brakes to hold.
+const TRAFFIC_LOOK: float = 40.0
+const LANE_HALF_WIDTH: float = 2.4
+const ALONGSIDE_WIDTH: float = 2.8    ## m: a car this close beside the bot makes it move over
+const CAR_LENGTH: float = 5.4
+const FOLLOW_GAP: float = 2.5
+const FOLLOW_DECEL: float = 7.0       ## m/s^2 the follow speed is planned with
+const DODGE_SHIFT: float = 2.4        ## m of line shift to pull out of the slower car's lane
+const DODGE_HOLD: float = 1.5         ## s the pull-out is held after the car ahead is clear
+const RESPAWN_CLEAR: float = 7.0      ## m: no respawn closer than this to another car
 
 var difficulty: int = MEDIUM
 var bot_index: int = 0
@@ -68,6 +82,11 @@ var on_rails: bool = false
 var rail_smooth: bool = true
 ## Profile speed on rails (m/s); the car moves at rail_speed * RAIL_GAIN, see speed().
 var rail_speed: float = 0.0
+## Car contact (set by BotManager; 0 = ghost): the car's layer and mask while simulated (on
+## rails both are cleared so nothing hits the frozen body) and every car of the race.
+var contact_layer: int = 0
+var contact_mask: int = 0
+var contact_cars: Array[Car] = []
 
 var _rng := RandomNumberGenerator.new()
 var _base_shift: float = 0.0
@@ -84,6 +103,9 @@ var _progress_s: float = -1.0
 var _rail_s: float = 0.0
 var _rail_lateral_error: float = 0.0   ## m off its line when it went on rails; eased out
 var _respawn_tick: int = -1000
+var _base_scale: float = 1.0
+var _dodge: float = 0.0          ## line shift away from the car ahead
+var _dodge_hold: float = 0.0
 
 ## Pace settings of a difficulty (clamped to EASY..HARD).
 static func pace_of(p_difficulty: int) -> Dictionary:
@@ -106,6 +128,7 @@ func configure(p_car: Car, p_track: Track, p_difficulty: int, index: int, p_seed
 	# Field spread: the first bots are the quickest, with a little seeded noise on top.
 	var rank := clampf(index / 6.0 + _rng.randf_range(-0.08, 0.08), 0.0, 1.0)
 	speed_scale = lerpf(spread.x, spread.y, rank)
+	_base_scale = speed_scale
 	_base_throttle = clampf(float(p["throttle"]) - _rng.randf_range(0.0, 0.03), 0.3, 1.0)
 	throttle_cap = _base_throttle
 	# Alternate sides, growing outwards, so neighbours on the grid take different lines.
@@ -122,6 +145,9 @@ func reset_run(grid_progress: float) -> void:
 	on_rails = false
 	if _car != null:
 		_car.freeze = false
+		if contact_layer != 0:
+			_car.collision_layer = contact_layer
+			_car.collision_mask = contact_mask
 	rail_speed = 0.0
 	_respawn_tick = -1000
 	_tick = 0
@@ -137,6 +163,9 @@ func reset_run(grid_progress: float) -> void:
 	line_shift = _base_shift
 	line_shift_overrun = 0.0
 	throttle_cap = _base_throttle
+	speed_scale = _base_scale
+	_dodge = 0.0
+	_dodge_hold = 0.0
 	_throttle = 0.0
 	_brake = 0.0
 	_steer = 0.0
@@ -153,6 +182,8 @@ func _schedule_mistake() -> void:
 func _before_think(dt: float) -> void:
 	_track_progress()
 	_check_stuck(dt)
+	if contact_layer != 0:
+		_watch_traffic(dt)
 	_update_mistake(dt)
 
 func _track_progress() -> void:
@@ -177,10 +208,53 @@ func _update_mistake(dt: float) -> void:
 			_start_mistake()
 	throttle_cap = MISTAKE_LIFT_THROTTLE if _mistake_lift else _base_throttle
 	# The line moves over smoothly (about 2 m/s), never as a step.
-	_shift_now = move_toward(_shift_now, _base_shift + _mistake_shift, 2.0 * dt)
+	_shift_now = move_toward(_shift_now, _base_shift + _mistake_shift + _dodge, 2.0 * dt)
 	line_shift = _shift_now
 	# The overrun allowance stays until the line has eased back, so it never snaps inwards.
 	line_shift_overrun = MISTAKE_WIDE_OVERRUN if absf(_shift_now - _base_shift) > 0.01 else 0.0
+
+## Car contact: the nearest car ahead in the bot's lane caps its pace to a speed it can still
+## brake from to FOLLOW_GAP behind it, and a slower one (or one alongside) makes it move over.
+func _watch_traffic(dt: float) -> void:
+	speed_scale = _base_scale
+	var xf := _car.global_transform
+	var fwd := -xf.basis.z
+	var v_fwd := _car.linear_velocity.dot(fwd)
+	var nearest := TRAFFIC_LOOK
+	var v_cap := INF
+	var side_of := 0.0
+	for other in contact_cars:
+		if other == _car or not is_instance_valid(other) or other.freeze:
+			continue   # itself, or a bot on rails (not solid)
+		var d := other.global_position - xf.origin
+		var ahead := d.dot(fwd)
+		var side := d.dot(xf.basis.x)
+		if absf(ahead) < CAR_LENGTH and absf(side) < ALONGSIDE_WIDTH and nearest == TRAFFIC_LOOK:
+			side_of = side   # alongside: give it room
+		if ahead <= 0.0 or ahead > nearest or absf(side) > LANE_HALF_WIDTH:
+			continue
+		nearest = ahead
+		var gap := maxf(ahead - CAR_LENGTH - FOLLOW_GAP, 0.0)
+		var v_other := maxf(other.linear_velocity.dot(fwd), 0.0)
+		v_cap = v_other + sqrt(2.0 * FOLLOW_DECEL * gap)
+		side_of = side if v_other < v_fwd - 1.0 or v_other < 5.0 else 0.0   # slower, or stopped
+	if v_cap < INF and current_s >= 0.0:
+		var v_line := maxf(target_speed_at(current_s), 1.0)
+		speed_scale = minf(_base_scale, maxf(v_cap, 0.5) / v_line)
+	if side_of != 0.0:
+		_dodge = -signf(side_of) * DODGE_SHIFT   # away from it
+		_dodge_hold = DODGE_HOLD
+	else:
+		_dodge_hold = maxf(0.0, _dodge_hold - dt)
+		if _dodge_hold <= 0.0:
+			_dodge = 0.0
+
+## True when no other car stands within RESPAWN_CLEAR of `pos` (always without car contact).
+func _clear_at(pos: Vector3) -> bool:
+	for other in contact_cars:
+		if other != _car and is_instance_valid(other) and other.global_position.distance_to(pos) < RESPAWN_CLEAR:
+			return false
+	return true
 
 ## In a corner: run wide (the line drifts to the outside). On a straight: a lazy throttle.
 func _start_mistake() -> void:
@@ -218,11 +292,14 @@ func respawn_on_track() -> void:
 		return
 	var s := current_s if current_s >= 0.0 else maxf(_progress_s, 0.0)
 	var lateral := line_offset_at(s) if _data != null else 0.0
+	var xf := _track.spawn_transform(s, lateral)
+	if contact_layer != 0 and not _clear_at(xf.origin):
+		return   # a car stands there: try again on the next think
 	_stuck = 0.0
 	_upside = 0.0
 	respawns += 1
 	_respawn_tick = _tick
-	_car.spawn_transform = _track.spawn_transform(s, lateral)
+	_car.spawn_transform = xf
 	_car.respawn()   # emits respawned -> Autopilot forgets its s hint
 	_progress_s = s
 	current_s = s
@@ -256,11 +333,19 @@ func set_on_rails(rails: bool) -> void:
 		# Static while on rails: the physics server stops testing it against the world.
 		_car.freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
 		_car.freeze = true
+		if contact_layer != 0:
+			_car.collision_layer = 0   # frozen on rails: nothing may hit it
+			_car.collision_mask = 0
+			speed_scale = _base_scale
+			_dodge = 0.0
 		on_rails = true
 	else:
 		var v := speed()
 		on_rails = false
 		_car.freeze = false
+		if contact_layer != 0:
+			_car.collision_layer = contact_layer
+			_car.collision_mask = contact_mask
 		var xf := _rail_transform()
 		_car.global_transform = xf
 		_car.linear_velocity = -xf.basis.z * v

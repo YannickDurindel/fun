@@ -52,6 +52,8 @@ func _ready() -> void:
 	if flags.has("difficulty"): d["bot_difficulty"] = int(flags["difficulty"])
 	if flags.has("ghost"): d["ghost"] = flags["ghost"] != "0"
 	if flags.has("camera"): d["camera"] = int(flags["camera"])
+	if flags.has("car-contact"):   # --car-contact=1: solid bots for this run (dev runs never save)
+		Settings.set_value("gameplay", "car_contact", flags["car-contact"] != "0")
 	pending.apply_dict(d)
 	config = pending.copy()
 

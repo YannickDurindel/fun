@@ -448,9 +448,11 @@ func test_gameplay_tab_rows() -> void:
 	assert_true(Settings.get_value("gameplay", "aid_stability") == 0, "stability row writes the setting")
 	# Keyboard / gamepad: the rows chain from HANDLING down to BACK, and left / right edits.
 	var chain: Control = handling.widget
-	# AUTO BRAKE (both handlings, not an aid row) sits between HANDLING and the aids.
+	# AUTO BRAKE and CAR CONTACT (both handlings, not aid rows) sit between HANDLING and the aids.
 	chain = chain.get_node(chain.focus_neighbor_bottom) as Control
 	assert_true(chain == screen.row("gameplay", "auto_brake").widget, "down from HANDLING reaches AUTO BRAKE")
+	chain = chain.get_node(chain.focus_neighbor_bottom) as Control
+	assert_true(chain == screen.row("gameplay", "car_contact").widget, "down from AUTO BRAKE reaches CAR CONTACT")
 	for key in KEYS:
 		chain = chain.get_node(chain.focus_neighbor_bottom) as Control
 		assert_true(chain == screen.row("gameplay", key).widget, "down reaches %s" % key)
