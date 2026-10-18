@@ -7,6 +7,12 @@ extends Camera3D
 ## spring, blending towards the velocity heading while the car slides, keep the
 ## horizon level, damp height changes and widen the FOV with speed.
 ##
+## Sense of speed (chase modes): the FOV widens steadily up to `fov_max_speed_kmh`, the
+## boom stretches a little under acceleration and closes in under braking (`accel_pullback`),
+## and a small high-frequency shake (mostly rotation, so the whole picture trembles, not just
+## the car) comes in on kerbs, grass and gravel and at very high speed. `shake_enabled` off
+## removes all shake.
+##
 ## Hills: the boom pitches with the road (`slope_follow` of the grade, taken from
 ## the averaged wheel contact normals, not the bouncing body) so a climb or a
 ## descent is framed like the flat; banking rolls the view only a little
@@ -86,11 +92,19 @@ const OVERVIEW_FOV: float = 50.0
 @export var drift_slip_full_deg: float = 30.0
 ## Extra pull-back (m) at top speed, gives a sense of acceleration.
 @export var speed_pullback: float = 0.6
+## Boom stretch (m per m/s^2 of the car's longitudinal acceleration): the camera falls back
+## a touch as the car launches and closes in under braking. Clamped to `accel_pullback_max`.
+@export var accel_pullback: float = 0.025
+@export var accel_pullback_max: float = 0.35
+## Time constant (s) of the acceleration filter (smooths gear changes and bumps).
+@export var accel_lag: float = 0.3
 
 @export_group("Field of view")
 @export var fov_rest: float = 70.0
 @export var fov_max: float = 88.0
-@export var fov_max_speed_kmh: float = 500.0
+## Speed of the widest FOV: about the top speed of the fastest cars, so the view keeps
+## widening all the way down a long straight.
+@export var fov_max_speed_kmh: float = 380.0
 @export var fov_lag: float = 0.25
 @export var cockpit_fov_rest: float = 75.0
 @export var cockpit_fov_max: float = 92.0
@@ -99,8 +113,14 @@ const OVERVIEW_FOV: float = 50.0
 @export var shake_enabled: bool = true
 ## Positional amplitude (m) at shake_full_kmh. Very subtle by design.
 @export var shake_amplitude: float = 0.012
-@export var shake_start_kmh: float = 250.0
-@export var shake_full_kmh: float = 550.0
+## Rotational amplitude (degrees) at shake_full_kmh: a faint buzz at very high speed.
+@export var shake_angle_deg: float = 0.05
+@export var shake_start_kmh: float = 200.0
+@export var shake_full_kmh: float = 360.0
+## Rotational amplitude (degrees) with all wheels on a kerb at speed (grass and gravel
+## a little less, see ROUGH_SURFACES), reached at rough_full_kmh.
+@export var rough_shake_deg: float = 0.3
+@export var rough_full_kmh: float = 120.0
 
 @export_group("Ground")
 ## Minimum clearance above the ground under the camera.
@@ -130,6 +150,12 @@ var _initialized: bool = false
 var _live_target_ticks: int = 2
 var _time: float = 0.0
 var _last_delta: float = 0.0
+# Sense of speed: filtered longitudinal acceleration (m/s^2) and rough-surface amount (0..1).
+var _accel: float = 0.0
+var _prev_speed_ms: float = 0.0
+var _rough: float = 0.0
+## How much each surface shakes the chase camera (0..1), by the wheels' `surface`.
+const ROUGH_SURFACES := {&"kerb": 1.0, &"gravel": 0.8, &"grass": 0.5}
 
 # Ground height under the camera, sampled in _physics_process (safe for the space state).
 var _ground_y: float = -INF
@@ -316,6 +342,9 @@ func _update(delta: float) -> void:
 		_vy_filtered = (vel - _road_normal * vel.dot(_road_normal)).y
 		# Velocity, not speed_kmh: right after respawn speed_kmh is stale until the next tick.
 		_speed_kmh = vel.length() * 3.6
+		_prev_speed_ms = vel.length()
+		_accel = 0.0
+		_rough = 0.0
 		_initialized = true
 	elif delta > 0.0:
 		# Yaw: spring on the wrapped angle error (shortest way round).
@@ -343,6 +372,13 @@ func _update(delta: float) -> void:
 		_roll = r.x
 		_roll_vel = r.y
 		_speed_kmh = lerpf(_speed_kmh, speed_kmh_now, 1.0 - exp(-delta / maxf(fov_lag, 1e-3)))
+		var speed_ms := vel.length()
+		var a := clampf((speed_ms - _prev_speed_ms) / delta, -60.0, 30.0)
+		_prev_speed_ms = speed_ms
+		_accel = lerpf(_accel, a, 1.0 - exp(-delta / maxf(accel_lag, 1e-3)))
+		# Rough surface: quick to start (the kerb strike), a little slower to die away.
+		var rough := _surface_roughness()
+		_rough = lerpf(_rough, rough, 1.0 - exp(-delta / (0.03 if rough > _rough else 0.12)))
 
 	if mode == Mode.COCKPIT:
 		_update_cockpit(xf)
@@ -402,6 +438,7 @@ func _update_chase(xf: Transform3D) -> void:
 	var look_ahead := high_look_ahead if high else low_look_ahead
 	var speed_t := _speed_t()
 	dist += speed_pullback * speed_t
+	dist += clampf(_accel * accel_pullback, -accel_pullback_max, accel_pullback_max)
 
 	# Heading basis: yaw around world up, then gentle slope pitch. Horizon stays level.
 	var heading := Basis(Vector3.UP, _yaw) * Basis(Vector3.RIGHT, _pitch)
@@ -437,18 +474,29 @@ func _update_chase(xf: Transform3D) -> void:
 	var floor_y := (_ground_y if _ground_y > -INF else xf.origin.y - 2.0) + min_ground_clearance
 	cam_pos.y = maxf(cam_pos.y, floor_y)
 
-	if shake_enabled and shake_amplitude > 0.0:
-		var s := smoothstep(shake_start_kmh, shake_full_kmh, _speed_kmh) * shake_amplitude
-		if s > 0.0:
-			var t := _time
+	var shake_rot := Vector2.ZERO
+	if shake_enabled:
+		var fast := smoothstep(shake_start_kmh, shake_full_kmh, _speed_kmh)
+		var t := _time
+		if fast > 0.0 and shake_amplitude > 0.0:
 			cam_pos += Vector3(
 				sin(t * 37.1) * 0.6 + sin(t * 53.7 + 1.3) * 0.4,
 				sin(t * 41.3 + 0.7) * 0.6 + sin(t * 67.9 + 2.1) * 0.4,
-				0.0) * s
+				0.0) * fast * shake_amplitude
+		# Angles (radians): the high-speed buzz plus the kerb / grass rumble (faster, ~13-19 Hz).
+		var buzz := deg_to_rad(shake_angle_deg) * fast
+		var rumble := deg_to_rad(rough_shake_deg) * _rough * smoothstep(15.0, rough_full_kmh, _speed_kmh)
+		shake_rot = Vector2(
+			(sin(t * 47.3 + 0.4) * 0.6 + sin(t * 71.1) * 0.4) * buzz
+				+ (sin(t * 83.0) * 0.55 + sin(t * 119.0 + 1.7) * 0.45) * rumble,
+			(sin(t * 43.9 + 2.2) * 0.6 + sin(t * 61.7 + 0.9) * 0.4) * buzz * 0.5
+				+ (sin(t * 97.0 + 0.6) * 0.5 + sin(t * 131.0 + 2.4) * 0.5) * rumble * 0.4)
 
 	var b := Basis.looking_at(look_at_pt - cam_pos, Vector3.UP)
 	if absf(_roll) > 1e-5:
 		b = b * Basis(Vector3.BACK, _roll)   # roll about the view axis: right edge up for + roll
+	if shake_rot != Vector2.ZERO:
+		b = b * Basis(Vector3.RIGHT, shake_rot.x) * Basis(Vector3.UP, shake_rot.y)
 	global_transform = Transform3D(b, cam_pos)
 	fov = lerpf(fov_rest, fov_max, speed_t)
 	near = 0.1
@@ -459,10 +507,25 @@ func _update_cockpit(xf: Transform3D) -> void:
 	fov = lerpf(cockpit_fov_rest, cockpit_fov_max, _speed_t())
 	near = 0.05
 
-## Ease-out 0..1 speed factor for FOV / pull-back.
+## 0..1 speed factor for FOV / pull-back: linear, so the view keeps widening at high speed
+## (an ease-out curve did most of it below 150 km/h and nothing on the straights).
 func _speed_t() -> float:
-	var t := clampf(_speed_kmh / maxf(fov_max_speed_kmh, 1.0), 0.0, 1.0)
-	return 1.0 - (1.0 - t) * (1.0 - t)
+	return clampf(_speed_kmh / maxf(fov_max_speed_kmh, 1.0), 0.0, 1.0)
+
+## 0..1: share of the wheels touching a rough surface (kerb, gravel, grass), weighted by
+## ROUGH_SURFACES. 0 for targets without wheels.
+func _surface_roughness() -> float:
+	if not "wheels" in _target:
+		return 0.0
+	var sum := 0.0
+	var n := 0
+	for w: Variant in _target.get("wheels"):
+		if w == null:
+			continue
+		n += 1
+		if bool(w.get("contact")):
+			sum += float(ROUGH_SURFACES.get(w.get("surface"), 0.0))
+	return sum / n if n > 0 else 0.0
 
 func _sample_ground() -> void:
 	var space := get_world_3d().direct_space_state if get_world_3d() else null

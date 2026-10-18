@@ -563,7 +563,10 @@ static func _speed_profile(data: TrackData, brake: PackedFloat32Array, load_g: P
 ## The style the player picked (Settings graphics/track_look): GENERATED or REALISTIC. Dev
 ## flag (after `--`): --track-look=generated|realistic overrides it for this run.
 static func style() -> String:
-	var v := str(Settings.get_value("graphics", "track_look"))
+	# A race scene run directly (tools/screenshot.sh) loads its track in _enter_tree, before
+	# the Settings autoload is ready: its default then.
+	var v := str(Settings.get_value("graphics", "track_look") if Settings.is_node_ready() \
+			else Settings.default_value("graphics", "track_look"))
 	for arg: String in OS.get_cmdline_user_args():
 		if arg.begins_with("--track-look="):
 			v = arg.get_slice("=", 1)
@@ -629,13 +632,21 @@ static func environment(e: Environment, env: TrackEnvironment) -> void:
 				- env.number("sun", "azimuth_deg")), 0.0)
 		e.ambient_light_source = Environment.AMBIENT_SOURCE_SKY
 		e.ambient_light_sky_contribution = 1.0
-		e.fog_aerial_perspective = 0.85  # distant ground fades into the photographed horizon
-		# A photographed sky lights the scene more evenly: less haze, a little more contrast.
-		e.fog_depth_begin = maxf(e.fog_depth_begin, 450.0)
-		e.fog_depth_end = maxf(e.fog_depth_end, 5000.0)
+		# Broadcast-camera haze (aerial perspective): it starts close but stays light (depth
+		# fog density is its maximum), so the stands across the straight already sit a little
+		# back and the far end of a straight melts into the horizon, never into a white wall.
+		e.fog_aerial_perspective = 0.9   # the haze takes the photographed horizon's colour
+		e.fog_depth_begin = 120.0
+		e.fog_depth_end = maxf(e.fog_depth_end, 4500.0)
+		e.fog_depth_curve = 1.1
+		e.fog_density = 0.4
+		e.fog_sun_scatter = 0.2
+		# Shade lit by the whole sky: a little more ambient, so shadows read blue-grey, not black.
+		e.ambient_light_energy = env.number("ambient", "energy") * 1.2
 		e.tonemap_exposure = float(env.values.get("exposure", 1.0)) * 1.1
-		e.adjustment_contrast = 1.14
-		e.adjustment_saturation = 1.12
+		e.adjustment_contrast = 1.12
+		# AgX already keeps colour; less extra saturation keeps the grass from looking dyed.
+		e.adjustment_saturation = 1.05
 		# Bloom: only what is really bright (sun glints on paint and glass, the sky near the
 		# sun), soft and wide, as a camera lens does.
 		e.glow_enabled = true
@@ -667,11 +678,15 @@ static func environment(e: Environment, env: TrackEnvironment) -> void:
 		e.sky.sky_material = mat
 		e.sky.radiance_size = Sky.RADIANCE_SIZE_128
 
-## Sun of the detailed look: longer, finer shadow cascades.
+## Sun of the detailed look: longer, finer shadow cascades (four: sharp under the car, the
+## trees and stands along the next 200 m still cast theirs).
 static func sun(light: DirectionalLight3D) -> void:
-	light.directional_shadow_mode = DirectionalLight3D.SHADOW_PARALLEL_2_SPLITS
-	light.directional_shadow_max_distance = 140.0
-	light.directional_shadow_split_1 = 0.14
+	light.directional_shadow_mode = DirectionalLight3D.SHADOW_PARALLEL_4_SPLITS
+	light.directional_shadow_max_distance = 220.0
+	light.directional_shadow_split_1 = 0.05
+	light.directional_shadow_split_2 = 0.16
+	light.directional_shadow_split_3 = 0.42
+	light.directional_shadow_fade_start = 0.8
 	light.directional_shadow_blend_splits = true
 	light.shadow_blur = 1.0
 	# Flat trackside meshes (run-off, lines) cast shadows: with the longer cascades their own

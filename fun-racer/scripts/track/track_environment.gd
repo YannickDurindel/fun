@@ -413,7 +413,9 @@ func _apply_detailed(track: Node) -> void:
 	if _sun != null:
 		_old_sun["shadow"] = [_sun.directional_shadow_mode, _sun.directional_shadow_max_distance,
 				_sun.directional_shadow_split_1, _sun.directional_shadow_blend_splits,
-				_sun.shadow_blur, _sun.shadow_bias, _sun.shadow_normal_bias]
+				_sun.shadow_blur, _sun.shadow_bias, _sun.shadow_normal_bias,
+				_sun.directional_shadow_split_2, _sun.directional_shadow_split_3,
+				_sun.directional_shadow_fade_start]
 		TrackLook.sun(_sun)
 	var e := applied_environment()
 	if e != null:
@@ -459,6 +461,9 @@ func restore() -> void:
 			_sun.shadow_blur = sh[4]
 			_sun.shadow_bias = sh[5]
 			_sun.shadow_normal_bias = sh[6]
+			_sun.directional_shadow_split_2 = sh[7]
+			_sun.directional_shadow_split_3 = sh[8]
+			_sun.directional_shadow_fade_start = sh[9]
 	if is_instance_valid(_extra_light):
 		_extra_light.queue_free()
 	TrackLook.unroad(_road_shaders)
