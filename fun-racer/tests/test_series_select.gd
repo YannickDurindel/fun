@@ -40,15 +40,15 @@ func test_catalog() -> void:
 	assert_true(SeriesCatalog.has_events("endurance"), "endurance can be browsed")
 	var le_mans := TrackCatalog.find("wec_le_mans")
 	assert_true(le_mans != null and le_mans.series == "endurance", "Le Mans is an endurance event")
-	# Every series has a calendar of its own; only F1 and endurance have cars to race them.
+	# Every series has a calendar of its own; only series with a CarKit have cars to race them.
 	assert_true(ids.size() == TrackCatalog.CALENDARS.size(), "one calendar per series")
 	var all_ids := {}
 	for s in SeriesCatalog.all():
 		var id: String = s["id"]
 		assert_true(TrackCatalog.CALENDARS.has(id), "%s has a calendar file" % id)
 		assert_true(SeriesCatalog.has_events(id), "%s has events" % id)
-		if id == "f1" or id == "endurance":
-			continue
+		if id == "f1" or CarKit.KITS.has(id):
+			continue   # a series with a car of its own races its events on built circuits
 		assert_true(not SeriesCatalog.is_playable(id), "%s is coming soon" % id)
 		for t in SeriesCatalog.tracks(id):
 			assert_true(not t.available and t.circuit.is_empty(), "%s: %s is coming soon, on no built circuit" % [id, t.id])

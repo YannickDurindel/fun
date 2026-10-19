@@ -1,5 +1,5 @@
 {
- "note": "German touring car events, current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "note": "German touring car events, current season in calendar order. \"track\": the built circuit the event is raced on (a track folder); TrackCatalog makes the event playable when that track is. Events without one are coming soon.",
  "tracks": [
   {
    "id": "dtc_spielberg",
@@ -9,7 +9,8 @@
    "country_code": "AT",
    "city": "Spielberg",
    "length_m": 4318,
-   "turns": 10
+   "turns": 10,
+   "track": "red_bull_ring"
   },
   {
    "id": "dtc_zandvoort",
@@ -19,7 +20,8 @@
    "country_code": "NL",
    "city": "Zandvoort",
    "length_m": 4259,
-   "turns": 14
+   "turns": 14,
+   "track": "zandvoort"
   },
   {
    "id": "dtc_lausitzring",
@@ -39,7 +41,8 @@
    "country_code": "DE",
    "city": "Nuremberg",
    "length_m": 2300,
-   "turns": 4
+   "turns": 4,
+   "track": "norisring"
   },
   {
    "id": "dtc_oschersleben",
@@ -69,7 +72,8 @@
    "country_code": "DE",
    "city": "Hohenstein-Ernstthal",
    "length_m": 3671,
-   "turns": 13
+   "turns": 13,
+   "track": "sachsenring"
   },
   {
    "id": "dtc_hockenheim",
@@ -79,7 +83,8 @@
    "country_code": "DE",
    "city": "Hockenheim",
    "length_m": 4574,
-   "turns": 17
+   "turns": 17,
+   "track": "hockenheim"
   }
  ]
 }

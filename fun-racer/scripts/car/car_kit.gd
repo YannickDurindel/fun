@@ -11,6 +11,70 @@ extends RefCounted
 
 const F1 := "f1"
 const ENDURANCE := "endurance"
+const JUNIOR := "junior"
+
+const TOURING := "touring"
+const GERMAN_TOURING := "german_touring"
+const AUS_TOURING := "aus_touring"
+## The touring car (cad/body/touring_body.py, a generic four-door racing saloon), shared by the
+## three touring series: 2.70 m wheelbase, the F1 car's track widths and wheels.
+const TOURING_KIT := {
+	"body": "res://scenes/car/touring_body_visual.tscn",
+	"wheel_offsets": [
+		Vector3(-0.80, 0.0, -1.35), Vector3(0.80, 0.0, -1.35),
+		Vector3(-0.78, 0.0, 1.35), Vector3(0.78, 0.0, 1.35),
+	],
+	"open_wheel_parts": false,   # the wheels are inside the arches
+	"sim_spec": "res://assets/car/specs/touring.tres",
+	"collision_length": 4.4,
+	# The Car's arcade tuning of a touring car: about 1250 kg with the driver, about 300 kW,
+	# 0-100 km/h in about 4.5 s, 265 km/h flat out, a little downforce from splitter and wing,
+	# softer springs and bars than the prototypes (it leans in the corners).
+	"arcade": {
+		"mass": 1250.0,
+		"center_of_mass": Vector3(0.0, -0.06, 0.05),
+		"spring_rate": 110000.0, "damper_bump": 7000.0, "damper_rebound": 8500.0,
+		"travel_up": 0.07, "travel_down": 0.09,
+		"bump_stop_rate": 1500000.0, "anti_roll_rate": 32000.0, "anti_pitch_rate": 45000.0,
+		"downforce_coef": 0.08, "downforce_max": 3500.0,
+		"accel_curve_kmh": [0, 50, 100, 150, 200, 240, 265, 280, 400],
+		"accel_curve_ms2": [8.5, 7.6, 5.8, 4.0, 2.4, 1.1, 0.3, 0.0, 0.0],
+		"gear_top_kmh": [75, 115, 155, 195, 235, 275],
+		"brake_decel": 13.5, "coast_decel": 0.9, "drag_decel_coef": 5.0e-5,
+		"lateral_grip_g": 2.3, "aero_grip_g": 6.0e-5,
+		"drift_lateral_grip_g": 1.7, "drift_aero_grip_g": 6.0e-5,
+	},
+}
+
+const GT := "gt"
+const SUPER_GT := "super_gt"
+## The GT3-style coupe (cad/body/gt_body.py, a generic front-engine racing coupe), shared by
+## the GT and Japanese GT series: 2.65 m wheelbase, 2.04 m wide, the F1 car's wheels.
+const GT_KIT := {
+	"body": "res://scenes/car/gt_body_visual.tscn",
+	"wheel_offsets": [
+		Vector3(-0.84, 0.0, -1.325), Vector3(0.84, 0.0, -1.325),
+		Vector3(-0.82, 0.0, 1.325), Vector3(0.82, 0.0, 1.325),
+	],
+	"open_wheel_parts": false,
+	"sim_spec": "res://assets/car/specs/gt.tres",
+	"collision_length": 4.6,
+	# The Car's arcade tuning of a GT3 car (about 1300 kg, 410 kW / 550 hp, no hybrid, little
+	# downforce and a lot of drag, about 285 km/h flat out, 0-100 km/h in about 3.2 s).
+	"arcade": {
+		"mass": 1300.0,
+		"center_of_mass": Vector3(0.0, -0.06, 0.05),
+		"spring_rate": 190000.0, "damper_bump": 11000.0, "damper_rebound": 13000.0,
+		"bump_stop_rate": 2200000.0, "anti_roll_rate": 85000.0, "anti_pitch_rate": 85000.0,
+		"downforce_coef": 0.22, "downforce_max": 7000.0,
+		"accel_curve_kmh": [0, 50, 100, 150, 200, 250, 280, 295, 400],
+		"accel_curve_ms2": [9.5, 9.0, 7.6, 5.6, 3.5, 1.6, 0.55, 0.0, 0.0],
+		"gear_top_kmh": [85, 125, 165, 205, 245, 300],
+		"brake_decel": 14.0, "coast_decel": 0.9, "drag_decel_coef": 5.0e-5,
+		"lateral_grip_g": 2.4, "aero_grip_g": 1.0e-4,
+		"drift_lateral_grip_g": 1.7, "drift_aero_grip_g": 1.0e-4,
+	},
+}
 
 const KITS := {
 	ENDURANCE: {
@@ -42,6 +106,36 @@ const KITS := {
 			"drift_lateral_grip_g": 2.0, "drift_aero_grip_g": 2.0e-4,
 		},
 	},
+	JUNIOR: {
+		# cad/body/f1_body.py --junior: the F1 tub and wheels with cheaper aero (two-element
+		# wings, no beam wing, no fin) and a light blue / white / yellow livery.
+		"body": "res://scenes/car/junior_body_visual.tscn",
+		"wheel_offsets": [
+			Vector3(-0.80, 0.0, -1.80), Vector3(0.80, 0.0, -1.80),
+			Vector3(-0.78, 0.0, 1.80), Vector3(0.78, 0.0, 1.80),
+		],
+		"open_wheel_parts": true,
+		"sim_spec": "res://assets/car/specs/junior.tres",
+		"collision_length": 5.4,
+		# The Car's arcade tuning of a feeder single-seater (795 kg with driver, about 460 kW
+		# from a turbo V6 and no hybrid, roughly two thirds of an F1 car's downforce, about
+		# 335 km/h at Monza with DRS, 0-100 km/h in about 2.9 s).
+		"arcade": {
+			"mass": 795.0,
+			"downforce_coef": 0.38, "downforce_max": 12000.0,
+			"accel_curve_kmh": [0, 50, 100, 150, 200, 250, 300, 320, 335, 350],
+			"accel_curve_ms2": [13.5, 12.5, 10.2, 7.6, 5.1, 3.3, 2.0, 1.4, 0.7, 0.0],
+			"gear_top_kmh": [90, 135, 180, 230, 285, 345],
+			"brake_decel": 16.5, "coast_decel": 0.85, "drag_decel_coef": 3.6e-5,
+			"lateral_grip_g": 2.8, "aero_grip_g": 1.8e-4,
+			"drift_lateral_grip_g": 2.0, "drift_aero_grip_g": 1.8e-4,
+		},
+	},
+	TOURING: TOURING_KIT,
+	GERMAN_TOURING: TOURING_KIT,
+	AUS_TOURING: TOURING_KIT,
+	GT: GT_KIT,
+	SUPER_GT: GT_KIT,
 }
 
 const BODY_MOTION := preload("res://scripts/car/body_motion.gd")

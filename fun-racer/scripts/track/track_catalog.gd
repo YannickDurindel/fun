@@ -14,7 +14,8 @@ extends RefCounted
 const TRACKS_DIR := "res://assets/tracks"
 const CALENDAR := "res://assets/tracks/calendar.json"
 ## Series id -> calendar file, in SeriesCatalog order (tools/track/lib/recipe.py SERIES_CALENDARS
-## lists the same files). Only F1 and endurance have cars: other calendars carry no "track".
+## lists the same files). An event is raced on a built circuit ("track") only in a series with a
+## CarKit; the others stay coming soon.
 const CALENDARS := {
 	"f1": CALENDAR,
 	"endurance": "res://assets/tracks/calendar_endurance.json",

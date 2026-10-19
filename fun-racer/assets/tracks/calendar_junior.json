@@ -1,5 +1,5 @@
 {
- "note": "Feeder single-seater events (support races of the Grand Prix weekends), current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "note": "Feeder single-seater events (support races of the Grand Prix weekends), current season in calendar order. \"track\": the built circuit the event is raced on (an F1 track folder); TrackCatalog makes the event playable when that track is. Events without one (Madrid) are coming soon.",
  "tracks": [
   {
    "id": "jnr_albert_park",
@@ -9,7 +9,8 @@
    "country_code": "AU",
    "city": "Melbourne",
    "length_m": 5278,
-   "turns": 14
+   "turns": 14,
+   "track": "albert_park"
   },
   {
    "id": "jnr_bahrain",
@@ -19,7 +20,8 @@
    "country_code": "BH",
    "city": "Sakhir",
    "length_m": 5412,
-   "turns": 15
+   "turns": 15,
+   "track": "bahrain"
   },
   {
    "id": "jnr_jeddah",
@@ -29,7 +31,8 @@
    "country_code": "SA",
    "city": "Jeddah",
    "length_m": 6174,
-   "turns": 27
+   "turns": 27,
+   "track": "jeddah"
   },
   {
    "id": "jnr_monaco",
@@ -39,7 +42,8 @@
    "country_code": "MC",
    "city": "Monte Carlo",
    "length_m": 3337,
-   "turns": 19
+   "turns": 19,
+   "track": "monaco"
   },
   {
    "id": "jnr_catalunya",
@@ -49,7 +53,8 @@
    "country_code": "ES",
    "city": "Montmeló",
    "length_m": 4657,
-   "turns": 14
+   "turns": 14,
+   "track": "catalunya"
   },
   {
    "id": "jnr_red_bull_ring",
@@ -59,7 +64,8 @@
    "country_code": "AT",
    "city": "Spielberg",
    "length_m": 4318,
-   "turns": 10
+   "turns": 10,
+   "track": "red_bull_ring"
   },
   {
    "id": "jnr_silverstone",
@@ -69,7 +75,8 @@
    "country_code": "GB",
    "city": "Silverstone",
    "length_m": 5891,
-   "turns": 18
+   "turns": 18,
+   "track": "silverstone"
   },
   {
    "id": "jnr_spa",
@@ -79,7 +86,8 @@
    "country_code": "BE",
    "city": "Stavelot",
    "length_m": 7004,
-   "turns": 19
+   "turns": 19,
+   "track": "spa"
   },
   {
    "id": "jnr_hungaroring",
@@ -89,7 +97,8 @@
    "country_code": "HU",
    "city": "Mogyoród",
    "length_m": 4381,
-   "turns": 14
+   "turns": 14,
+   "track": "hungaroring"
   },
   {
    "id": "jnr_monza",
@@ -99,7 +108,8 @@
    "country_code": "IT",
    "city": "Monza",
    "length_m": 5793,
-   "turns": 11
+   "turns": 11,
+   "track": "monza"
   },
   {
    "id": "jnr_madrid",
@@ -119,7 +129,8 @@
    "country_code": "AZ",
    "city": "Baku",
    "length_m": 6003,
-   "turns": 20
+   "turns": 20,
+   "track": "baku"
   },
   {
    "id": "jnr_lusail",
@@ -129,7 +140,8 @@
    "country_code": "QA",
    "city": "Lusail",
    "length_m": 5419,
-   "turns": 16
+   "turns": 16,
+   "track": "lusail"
   },
   {
    "id": "jnr_yas_marina",
@@ -139,7 +151,8 @@
    "country_code": "AE",
    "city": "Abu Dhabi",
    "length_m": 5281,
-   "turns": 16
+   "turns": 16,
+   "track": "yas_marina"
   }
  ]
 }

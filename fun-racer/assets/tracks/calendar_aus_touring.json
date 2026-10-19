@@ -1,5 +1,5 @@
 {
- "note": "Australian V8 touring car events, current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "note": "Australian V8 touring car events, current season in calendar order. \"track\": the built circuit the event is raced on (a track folder); TrackCatalog makes the event playable when that track is. Events without one are coming soon.",
  "tracks": [
   {
    "id": "atc_sydney",
@@ -19,7 +19,8 @@
    "country_code": "AU",
    "city": "Melbourne",
    "length_m": 5278,
-   "turns": 14
+   "turns": 14,
+   "track": "albert_park"
   },
   {
    "id": "atc_taupo",
@@ -119,7 +120,8 @@
    "country_code": "AU",
    "city": "Bathurst",
    "length_m": 6213,
-   "turns": 23
+   "turns": 23,
+   "track": "bathurst"
   },
   {
    "id": "atc_gold_coast",

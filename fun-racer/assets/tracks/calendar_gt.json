@@ -1,5 +1,5 @@
 {
- "note": "GT sprint and endurance cup events (the 24 Hours of Spa is in the endurance list), current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "note": "GT sprint and endurance cup events (the 24 Hours of Spa is in the endurance list), current season in calendar order. \"track\": the built circuit the event is raced on with the GT car (CarKit \"gt\"); TrackCatalog makes the event playable when that track is. Events without one are coming soon.",
  "tracks": [
   {
    "id": "gt_paul_ricard",
@@ -9,7 +9,8 @@
    "country_code": "FR",
    "city": "Le Castellet",
    "length_m": 5770,
-   "turns": 15
+   "turns": 15,
+   "track": "paul_ricard"
   },
   {
    "id": "gt_brands_hatch",
@@ -19,7 +20,8 @@
    "country_code": "GB",
    "city": "West Kingsdown",
    "length_m": 3908,
-   "turns": 9
+   "turns": 9,
+   "track": "brands_hatch"
   },
   {
    "id": "gt_monza",
@@ -29,7 +31,8 @@
    "country_code": "IT",
    "city": "Monza",
    "length_m": 5793,
-   "turns": 11
+   "turns": 11,
+   "track": "monza"
   },
   {
    "id": "gt_misano",
@@ -39,7 +42,8 @@
    "country_code": "IT",
    "city": "Misano Adriatico",
    "length_m": 4226,
-   "turns": 16
+   "turns": 16,
+   "track": "misano"
   },
   {
    "id": "gt_magny_cours",
@@ -59,7 +63,8 @@
    "country_code": "DE",
    "city": "Nürburg",
    "length_m": 5148,
-   "turns": 15
+   "turns": 15,
+   "track": "nurburgring_gp"
   },
   {
    "id": "gt_zandvoort",
@@ -69,7 +74,8 @@
    "country_code": "NL",
    "city": "Zandvoort",
    "length_m": 4259,
-   "turns": 14
+   "turns": 14,
+   "track": "zandvoort"
   },
   {
    "id": "gt_valencia",
@@ -89,7 +95,8 @@
    "country_code": "ES",
    "city": "Montmeló",
    "length_m": 4657,
-   "turns": 14
+   "turns": 14,
+   "track": "catalunya"
   }
  ]
 }

@@ -4,6 +4,11 @@
 Regenerate the Godot asset with one command (from the repo root):
 
     .venv/bin/python cad/body/f1_body.py            # -> assets/car/body.glb
+    .venv/bin/python cad/body/f1_body.py --junior   # -> assets/car/junior/body.glb
+
+``--junior``: the feeder single-seater of the Junior Formula kit, the same tub with cheaper
+aero: a two-element front wing with plain endplates, a two-element rear wing on twin pylons,
+no beam wing, no shark fin.
 
 Then re-import in Godot: ``tools/bin/godot --headless --path . --import``.
 
@@ -53,6 +58,8 @@ from profiles import Section, airfoil_face  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
 OUT_PATH = REPO / "assets" / "car" / "body.glb"
+JUNIOR_OUT_PATH = REPO / "assets" / "car" / "junior" / "body.glb"
+JUNIOR = "--junior" in sys.argv[1:]
 
 # --------------------------------------------------------------------------
 # Global dimensions (metres, CAD frame)
@@ -271,12 +278,14 @@ def make_airbox_and_fin() -> list[PartSpec]:
     # T-camera on the airbox
     tcam = Box(0.09, 0.05, 0.025).locate(Location((0.33, 0, 0.575)))
     tcam = try_fillet(tcam, tcam.edges(), 0.008)
-    return [
+    out = [
         PartSpec("airbox", box, "Livery"),
         PartSpec("airbox_plug", plug, "Carbon"),
-        PartSpec("shark_fin", fin, "Livery", surface_control=False),
         PartSpec("tcam", tcam, "Accent", False),
     ]
+    if not JUNIOR:
+        out.append(PartSpec("shark_fin", fin, "Livery", surface_control=False))
+    return out
 
 
 def make_halo() -> list[PartSpec]:
@@ -327,6 +336,8 @@ def make_front_wing() -> list[PartSpec]:
         (-2.520, -0.205, 0.140, 28.0, 0.22, "LiveryWhite"),
         (-2.430, -0.145, 0.115, 40.0, 0.30, "Accent"),
     ]
+    if JUNIOR:   # one flap of a deeper chord, flatter
+        flaps = [(-2.620, -0.250, 0.230, 18.0, 0.18, "LiveryWhite")]
     for i, (lx, lz, c, a, yin, mat) in enumerate(flaps):
         flap = wing_element(lx, lz, c, a, yin, FW_HALF_SPAN - 0.012, camber=0.07, thickness=0.09)
         for j, s in enumerate(both_sides(flap)):
@@ -350,8 +361,9 @@ def make_front_wing() -> list[PartSpec]:
                     FW_HALF_SPAN - 0.075, 0.008)
     for j, s in enumerate(both_sides(endplate)):
         out.append(PartSpec(f"fw_endplate{j}", s, "Accent"))
-    for j, s in enumerate(both_sides(vane)):
-        out.append(PartSpec(f"fw_vane{j}", s, "Carbon"))
+    if not JUNIOR:
+        for j, s in enumerate(both_sides(vane)):
+            out.append(PartSpec(f"fw_vane{j}", s, "Carbon"))
     return out
 
 
@@ -359,13 +371,16 @@ def make_rear_wing() -> list[PartSpec]:
     out: list[PartSpec] = []
     main = wing_element(2.235, 0.415, 0.290, 9.0, -RW_HALF_SPAN, RW_HALF_SPAN, camber=0.08, thickness=0.11)
     flap = wing_element(2.480, 0.470, 0.200, 32.0, -RW_HALF_SPAN, RW_HALF_SPAN, camber=0.07, thickness=0.09)
+    if JUNIOR:   # a flatter flap
+        flap = wing_element(2.470, 0.455, 0.170, 20.0, -RW_HALF_SPAN, RW_HALF_SPAN, camber=0.06, thickness=0.09)
     out.append(PartSpec("rw_main", main, "LiveryWhite", surface_control=False))
     out.append(PartSpec("rw_flap", flap, "Accent", surface_control=False))
     # Beam wing: two small elements low down
     b1 = wing_element(2.290, 0.030, 0.150, 8.0, -RW_HALF_SPAN, RW_HALF_SPAN, camber=0.06, thickness=0.10)
     b2 = wing_element(2.450, 0.065, 0.120, 24.0, -RW_HALF_SPAN, RW_HALF_SPAN, camber=0.06, thickness=0.10)
-    out.append(PartSpec("beam_wing0", b1, "Carbon", surface_control=False))
-    out.append(PartSpec("beam_wing1", b2, "Carbon", surface_control=False))
+    if not JUNIOR:
+        out.append(PartSpec("beam_wing0", b1, "Carbon", surface_control=False))
+        out.append(PartSpec("beam_wing1", b2, "Carbon", surface_control=False))
     endplate = xz_plate(
         [
             (2.42, 0.000),
@@ -391,7 +406,12 @@ def make_rear_wing() -> list[PartSpec]:
         0.016,
     )
     pylon = try_fillet(pylon, pylon.edges().filter_by(Axis.Y), 0.012)
-    out.append(PartSpec("rw_pylon", pylon, "Carbon"))
+    if JUNIOR:   # two straight pylons under the mainplane instead of the swan neck
+        for y in (-0.20, 0.20):
+            post = xz_plate([(2.10, -0.02), (2.24, -0.02), (2.42, 0.42), (2.30, 0.42)], y - 0.008, 0.016)
+            out.append(PartSpec(f"rw_pylon{y}", post, "Carbon"))
+    else:
+        out.append(PartSpec("rw_pylon", pylon, "Carbon"))
     return out
 
 
@@ -496,10 +516,12 @@ def main() -> None:
         n = groups[p.material].add_shape(p.shape, TESS_TOL, TESS_ANG, p.surface_control)
         total += n
         print(f"  {p.name:18s} {p.material:12s} {n:7d} tris")
-    write_glb(OUT_PATH, list(groups.values()))
+    out_path = JUNIOR_OUT_PATH if JUNIOR else OUT_PATH
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    write_glb(out_path, list(groups.values()))
     for g in groups.values():
         print(f"{g.material.name:12s} {g.triangle_count:7d} tris")
-    print(f"total {total} triangles -> {OUT_PATH.relative_to(REPO)}")
+    print(f"total {total} triangles -> {out_path.relative_to(REPO)}")
 
 
 if __name__ == "__main__":

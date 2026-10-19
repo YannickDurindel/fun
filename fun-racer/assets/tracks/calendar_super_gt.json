@@ -1,5 +1,5 @@
 {
- "note": "Japanese GT events, current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "note": "Japanese GT events, current season in calendar order. \"track\": the built circuit the event is raced on with the GT car (CarKit \"super_gt\"); TrackCatalog makes the event playable when that track is. Events without one are coming soon.",
  "tracks": [
   {
    "id": "jgt_okayama",
@@ -19,7 +19,8 @@
    "country_code": "JP",
    "city": "Oyama",
    "length_m": 4563,
-   "turns": 16
+   "turns": 16,
+   "track": "fuji"
   },
   {
    "id": "jgt_sepang",
@@ -29,7 +30,8 @@
    "country_code": "MY",
    "city": "Sepang",
    "length_m": 5543,
-   "turns": 15
+   "turns": 15,
+   "track": "sepang"
   },
   {
    "id": "jgt_fuji_350",
@@ -39,7 +41,8 @@
    "country_code": "JP",
    "city": "Oyama",
    "length_m": 4563,
-   "turns": 16
+   "turns": 16,
+   "track": "fuji"
   },
   {
    "id": "jgt_suzuka",
@@ -49,7 +52,8 @@
    "country_code": "JP",
    "city": "Suzuka",
    "length_m": 5807,
-   "turns": 18
+   "turns": 18,
+   "track": "suzuka"
   },
   {
    "id": "jgt_sugo",

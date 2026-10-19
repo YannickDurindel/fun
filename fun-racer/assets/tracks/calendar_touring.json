@@ -1,5 +1,5 @@
 {
- "note": "British touring car events (three races a weekend), current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "note": "British touring car events (three races a weekend), current season in calendar order. \"track\": the built circuit the event is raced on (a track folder); TrackCatalog makes the event playable when that track is. Events without one are coming soon.",
  "tracks": [
   {
    "id": "tc_donington_national",
@@ -9,7 +9,8 @@
    "country_code": "GB",
    "city": "Castle Donington",
    "length_m": 3185,
-   "turns": 9
+   "turns": 9,
+   "track": "donington_park_national"
   },
   {
    "id": "tc_brands_indy",
@@ -19,7 +20,8 @@
    "country_code": "GB",
    "city": "West Kingsdown",
    "length_m": 1929,
-   "turns": 5
+   "turns": 5,
+   "track": "brands_hatch_indy"
   },
   {
    "id": "tc_snetterton",
@@ -29,7 +31,8 @@
    "country_code": "GB",
    "city": "Snetterton",
    "length_m": 4779,
-   "turns": 12
+   "turns": 12,
+   "track": "snetterton"
   },
   {
    "id": "tc_thruxton",
@@ -49,7 +52,8 @@
    "country_code": "GB",
    "city": "Tarporley",
    "length_m": 3582,
-   "turns": 0
+   "turns": 0,
+   "track": "oulton_park"
   },
   {
    "id": "tc_croft",
@@ -79,17 +83,19 @@
    "country_code": "GB",
    "city": "Castle Donington",
    "length_m": 4020,
-   "turns": 12
+   "turns": 12,
+   "track": "donington_park"
   },
   {
    "id": "tc_silverstone",
-   "name": "Silverstone National",
+   "name": "Silverstone",
    "grand_prix": "Round · Silverstone",
    "country": "United Kingdom",
    "country_code": "GB",
    "city": "Silverstone",
-   "length_m": 2638,
-   "turns": 6
+   "length_m": 5891,
+   "turns": 18,
+   "track": "silverstone"
   },
   {
    "id": "tc_brands_gp",
@@ -99,7 +105,8 @@
    "country_code": "GB",
    "city": "West Kingsdown",
    "length_m": 3908,
-   "turns": 9
+   "turns": 9,
+   "track": "brands_hatch"
   }
  ]
 }

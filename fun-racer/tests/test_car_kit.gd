@@ -114,3 +114,16 @@ func test_f1_track_keeps_f1_car() -> void:
 		assert_true(is_equal_approx(fl.position.z, Car.WHEEL_OFFSETS[0].z), "%s front wheel at the F1 axle" % car.name)
 		assert_true((fl.get_node(^"Suspension") as Node3D).visible, "%s shows its wishbones" % car.name)
 	await _end(scene)
+
+func test_gt_kit_is_a_gt3_car() -> void:
+	assert_true(CarKit.for_track("gt_monza") == CarKit.GT and CarKit.for_track("jgt_suzuka") == CarKit.SUPER_GT, "GT events take the GT car")
+	assert_true(TrackCatalog.find("gt_monza").available and TrackCatalog.find("jgt_fuji_3h").available, "GT events on built circuits are playable")
+	assert_true(CarKit.KITS[CarKit.GT] == CarKit.KITS[CarKit.SUPER_GT], "one car for both GT series")
+	var w := CarKit.wheel_offsets(CarKit.GT)
+	assert_true(is_equal_approx(w[2].z - w[0].z, 2.65), "GT3 wheelbase 2.65 m")
+	var gt := load("res://assets/car/specs/gt.tres") as CarSpec
+	var e := load("res://assets/car/specs/endurance.tres") as CarSpec
+	assert_true(is_equal_approx(gt.wheelbase, 2.65) and is_equal_approx(gt.dry_mass, 1300.0), "GT3 spec wheelbase and mass")
+	assert_true(gt.cl_a < e.cl_a and gt.tyre_mu < e.tyre_mu and gt.engine_power + gt.ers_power < e.engine_power + e.ers_power,
+			"less downforce, grip and power than the Hypercar")
+	assert_true(not CarEnvelope.for_spec("res://assets/car/specs/gt.tres", null).provisional, "the committed GT envelope is current")
