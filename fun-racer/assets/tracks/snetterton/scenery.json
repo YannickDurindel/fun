@@ -1,0 +1,146 @@
+{
+ "version": 1,
+ "frame": "Godot metres: x=east, y=up (relative to finish line), z=-north; origin at finish line",
+ "attribution": "Surroundings (c) OpenStreetMap contributors (ODbL 1.0), via the Overpass API.",
+ "osm_base": "2026-10-18T15:15:36Z",
+ "landcover": {
+  "classes": [
+   "grass",
+   "forest",
+   "water",
+   "sand",
+   "paved",
+   "farmland",
+   "rock",
+   "gravel",
+   "scrub",
+   "beach"
+  ],
+  "near": {
+   "file": "landcover.png",
+   "x0": -1200.0,
+   "z0": -1000.0,
+   "step": 2.5,
+   "nx": 960,
+   "nz": 640
+  },
+  "far": {
+   "file": "landcover_far.png",
+   "x0": -6000.0,
+   "z0": -6200.0,
+   "step": 50.0,
+   "nx": 240,
+   "nz": 240
+  },
+  "near_share": {
+   "grass": 0.5223,
+   "forest": 0.0537,
+   "water": 0.0,
+   "sand": 0.0,
+   "paved": 0.111,
+   "farmland": 0.3073,
+   "rock": 0.0,
+   "gravel": 0.0056,
+   "scrub": 0.0,
+   "beach": 0.0
+  }
+ },
+ "mesh": {
+  "file": "scenery.glb",
+  "chunk_m": 400.0,
+  "chunk_x0": -6000.0,
+  "chunk_z0": -6400.0,
+  "node": "chunk_<i>_<j>, i = floor((x - chunk_x0) / chunk_m), j = floor((z - chunk_z0) / chunk_m)",
+  "materials": [
+   "building_wall",
+   "building_roof",
+   "building_glass",
+   "stand_seats",
+   "stand_structure",
+   "concrete",
+   "metal",
+   "emissive_window",
+   "emissive_light"
+  ],
+  "triangles": {
+   "building_wall": 266,
+   "building_roof": 81,
+   "building_glass": 0,
+   "stand_seats": 0,
+   "stand_structure": 0,
+   "concrete": 152,
+   "metal": 0,
+   "emissive_window": 0,
+   "emissive_light": 0
+  },
+  "vertices": 969,
+  "chunks": 11
+ },
+ "trees": {
+  "file": "scenery_points.bin",
+  "dtype": "float32",
+  "record": [
+   "x",
+   "y",
+   "z",
+   "height",
+   "species"
+  ],
+  "record_bytes": 20,
+  "count": 825,
+  "species": [
+   "broadleaved",
+   "needleleaved",
+   "palm",
+   "bush"
+  ],
+  "species_counts": {
+   "broadleaved": 407,
+   "needleleaved": 418,
+   "palm": 0,
+   "bush": 0
+  },
+  "chunk_m": 400.0,
+  "chunks": [[12,14,0,35],[12,15,35,7],[17,13,42,1],[17,14,43,100],[17,15,143,417],[17,16,560,263],[17,17,823,2]]
+ },
+ "water": [],
+ "roofs": [],
+ "counts": {
+  "buildings": 26,
+  "grandstands": 0,
+  "canopies": 0,
+  "bridges": 3,
+  "masts": 0,
+  "lamps": 0,
+  "skyline": 0,
+  "cut_by_road": 0
+ },
+ "default_heights": [
+  {"osm":"way/145755929","type":"yes","height":6.0,"from":"type default","dist":23},
+  {"osm":"way/419561276","type":"yes","height":6.0,"from":"type default","dist":23},
+  {"osm":"way/419561226","type":"yes","height":6.0,"from":"type default","dist":24},
+  {"osm":"way/161988852","type":"yes","height":6.0,"from":"type default","dist":29,"name":"Tyrells"},
+  {"osm":"way/161988859","type":"yes","height":6.0,"from":"type default","dist":31},
+  {"osm":"way/951247410","type":"yes","height":6.0,"from":"type default","dist":51},
+  {"osm":"way/951247408","type":"yes","height":6.0,"from":"type default","dist":55},
+  {"osm":"way/951247409","type":"yes","height":6.0,"from":"type default","dist":82},
+  {"osm":"way/951247407","type":"yes","height":6.0,"from":"type default","dist":107},
+  {"osm":"way/1370938246","type":"yes","height":6.0,"from":"type default","dist":199},
+  {"osm":"way/1370938245","type":"yes","height":6.0,"from":"type default","dist":221},
+  {"osm":"way/1370938241","type":"yes","height":6.0,"from":"type default","dist":237},
+  {"osm":"way/1370938244","type":"yes","height":6.0,"from":"type default","dist":247},
+  {"osm":"way/1370938243","type":"yes","height":6.0,"from":"type default","dist":275},
+  {"osm":"way/1370938239","type":"yes","height":6.0,"from":"type default","dist":305},
+  {"osm":"way/1370938240","type":"yes","height":6.0,"from":"type default","dist":305},
+  {"osm":"way/1370938242","type":"yes","height":6.0,"from":"type default","dist":307},
+  {"osm":"way/1559097256","type":"yes","height":6.0,"from":"type default","dist":503,"name":"Elmtree Beers"},
+  {"osm":"way/191098420","type":"yes","height":6.0,"from":"type default","dist":539},
+  {"osm":"way/694311573","type":"yes","height":6.0,"from":"type default","dist":545},
+  {"osm":"way/332167584","type":"yes","height":6.0,"from":"type default","dist":575},
+  {"osm":"way/191098418","type":"yes","height":6.0,"from":"type default","dist":578},
+  {"osm":"way/191098419","type":"yes","height":6.0,"from":"type default","dist":584},
+  {"osm":"way/191098421","type":"yes","height":6.0,"from":"type default","dist":632},
+  {"osm":"way/653891076","type":"industrial","height":9.0,"from":"type default","dist":716},
+  {"osm":"way/653891074","type":"industrial","height":9.0,"from":"type default","dist":725}
+ ]
+}

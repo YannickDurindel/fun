@@ -1,0 +1,15 @@
+{
+  "id": "brands_hatch_indy",
+  "name": "Brands Hatch Indy",
+  "grand_prix": "Brands Hatch Indy",
+  "country": "United Kingdom",
+  "country_code": "GB",
+  "city": "West Kingsdown",
+  "length_m": 1929,
+  "turns": 5,
+  "scene": "res://scenes/tracks/brands_hatch_indy.tscn",
+  "track_json": "res://assets/tracks/brands_hatch_indy/track.json",
+  "osm_relation": 11248425,
+  "available": true,
+  "series": "circuit"
+}

@@ -1,0 +1,313 @@
+{
+ "id": "misano",
+ "recipe": "tools/track/tracks/misano.toml",
+ "osm": {
+  "relation": 8671383,
+  "loop_ways": [
+   624263855,
+   624263850,
+   624263854,
+   624263849,
+   624263853,
+   624263848,
+   1784572,
+   624263852,
+   624263860,
+   624263859,
+   624263858,
+   624263845,
+   624263847,
+   624263844,
+   624263857,
+   624263846,
+   624263856,
+   624263851
+  ],
+  "raw_length_m": 4223.0,
+  "length_m": 4218.5,
+  "official_length_m": 4226.0,
+  "length_error": -0.00177,
+  "candidates": [
+   {
+    "length_m": 4223.0,
+    "ways": [
+     624263855,
+     624263850,
+     624263854,
+     624263849,
+     624263853,
+     624263848,
+     1784572,
+     624263852,
+     624263860,
+     624263859,
+     624263858,
+     624263845,
+     624263847,
+     624263844,
+     624263857,
+     624263846,
+     624263856,
+     624263851
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "start: relation member role (finish line = start line)",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 8.72,
+  "max_grade": 0.0165,
+  "min_grade": -0.018,
+  "origin_m": 24.04
+ },
+ "turns": {
+  "official": 16,
+  "mode": "auto",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Variante del Parco",
+    "direction": "right",
+    "s_apex": 304.6,
+    "min_radius": 37.3
+   },
+   {
+    "id": "T2",
+    "name": "Variante del Parco",
+    "direction": "left",
+    "s_apex": 420.8,
+    "min_radius": 28.4
+   },
+   {
+    "id": "T3",
+    "name": "Variante del Parco",
+    "direction": "right",
+    "s_apex": 529.0,
+    "min_radius": 60.1
+   },
+   {
+    "id": "T4",
+    "name": "Variante del Parco",
+    "direction": "right",
+    "s_apex": 617.2,
+    "min_radius": 104.5
+   },
+   {
+    "id": "T5",
+    "name": "Curva del Rio",
+    "direction": "right",
+    "s_apex": 863.6,
+    "min_radius": 18.9
+   },
+   {
+    "id": "T6",
+    "name": "Curva del Rio",
+    "direction": "right",
+    "s_apex": 953.8,
+    "min_radius": 26.6
+   },
+   {
+    "id": "T7",
+    "name": "Variante Arena",
+    "direction": "left",
+    "s_apex": 1064.0,
+    "min_radius": 28.5
+   },
+   {
+    "id": "T8",
+    "name": "Curva Quercia",
+    "direction": "left",
+    "s_apex": 1735.3,
+    "min_radius": 29.0
+   },
+   {
+    "id": "T9",
+    "name": "Curva Tramonto",
+    "direction": "right",
+    "s_apex": 2134.0,
+    "min_radius": 75.3
+   },
+   {
+    "id": "T10",
+    "name": "Curva Tramonto",
+    "direction": "right",
+    "s_apex": 2206.2,
+    "min_radius": 28.9
+   },
+   {
+    "id": "T11",
+    "name": "Curvone",
+    "direction": "right",
+    "s_apex": 2859.4,
+    "min_radius": 85.4
+   },
+   {
+    "id": "T12",
+    "name": "Turn 12",
+    "direction": "right",
+    "s_apex": 3160.0,
+    "min_radius": 100.9
+   },
+   {
+    "id": "T13",
+    "name": "Curva del Carro",
+    "direction": "right",
+    "s_apex": 3302.3,
+    "min_radius": 38.3
+   },
+   {
+    "id": "T14",
+    "name": "Curva del Carro",
+    "direction": "right",
+    "s_apex": 3500.6,
+    "min_radius": 21.3
+   },
+   {
+    "id": "T15",
+    "name": "Turn 15",
+    "direction": "left",
+    "s_apex": 3699.0,
+    "min_radius": 36.5
+   },
+   {
+    "id": "T16",
+    "name": "Curva Misano",
+    "direction": "left",
+    "s_apex": 3955.5,
+    "min_radius": 29.7
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 304.6,
+    "direction": "right",
+    "angle_deg": 67.8,
+    "kind": "corner",
+    "min_radius": 37.3,
+    "used": true
+   },
+   {
+    "s_apex": 420.8,
+    "direction": "left",
+    "angle_deg": 87.6,
+    "kind": "corner",
+    "min_radius": 28.4,
+    "used": true
+   },
+   {
+    "s_apex": 529.0,
+    "direction": "right",
+    "angle_deg": 53.4,
+    "kind": "corner",
+    "min_radius": 60.1,
+    "used": true
+   },
+   {
+    "s_apex": 617.2,
+    "direction": "right",
+    "angle_deg": 36.0,
+    "kind": "corner",
+    "min_radius": 104.5,
+    "used": true
+   },
+   {
+    "s_apex": 863.6,
+    "direction": "right",
+    "angle_deg": 124.4,
+    "kind": "corner",
+    "min_radius": 18.9,
+    "used": true
+   },
+   {
+    "s_apex": 953.8,
+    "direction": "right",
+    "angle_deg": 69.7,
+    "kind": "corner",
+    "min_radius": 26.6,
+    "used": true
+   },
+   {
+    "s_apex": 1064.0,
+    "direction": "left",
+    "angle_deg": 65.5,
+    "kind": "corner",
+    "min_radius": 28.5,
+    "used": true
+   },
+   {
+    "s_apex": 1735.3,
+    "direction": "left",
+    "angle_deg": 149.6,
+    "kind": "corner",
+    "min_radius": 29.0,
+    "used": true
+   },
+   {
+    "s_apex": 2134.0,
+    "direction": "right",
+    "angle_deg": 30.4,
+    "kind": "corner",
+    "min_radius": 75.3,
+    "used": true
+   },
+   {
+    "s_apex": 2206.2,
+    "direction": "right",
+    "angle_deg": 154.8,
+    "kind": "corner",
+    "min_radius": 28.9,
+    "used": true
+   },
+   {
+    "s_apex": 2859.4,
+    "direction": "right",
+    "angle_deg": 32.0,
+    "kind": "corner",
+    "min_radius": 85.4,
+    "used": true
+   },
+   {
+    "s_apex": 3160.0,
+    "direction": "right",
+    "angle_deg": 30.4,
+    "kind": "corner",
+    "min_radius": 100.9,
+    "used": true
+   },
+   {
+    "s_apex": 3302.3,
+    "direction": "right",
+    "angle_deg": 61.2,
+    "kind": "corner",
+    "min_radius": 38.3,
+    "used": true
+   },
+   {
+    "s_apex": 3500.6,
+    "direction": "right",
+    "angle_deg": 155.7,
+    "kind": "corner",
+    "min_radius": 21.3,
+    "used": true
+   },
+   {
+    "s_apex": 3699.0,
+    "direction": "left",
+    "angle_deg": 63.3,
+    "kind": "corner",
+    "min_radius": 36.5,
+    "used": true
+   },
+   {
+    "s_apex": 3955.5,
+    "direction": "left",
+    "angle_deg": 81.3,
+    "kind": "corner",
+    "min_radius": 29.7,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

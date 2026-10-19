@@ -1,0 +1,15 @@
+{
+  "id": "hockenheim",
+  "name": "Hockenheim",
+  "grand_prix": "Hockenheim",
+  "country": "Germany",
+  "country_code": "DE",
+  "city": "Hockenheim",
+  "length_m": 4574,
+  "turns": 17,
+  "scene": "res://scenes/tracks/hockenheim.tscn",
+  "track_json": "res://assets/tracks/hockenheim/track.json",
+  "osm_relation": 284588,
+  "available": true,
+  "series": "circuit"
+}

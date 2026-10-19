@@ -1,0 +1,353 @@
+{
+ "id": "paul_ricard",
+ "recipe": "tools/track/tracks/paul_ricard.toml",
+ "osm": {
+  "relation": 10316343,
+  "loop_ways": [
+   1282552677,
+   686700676,
+   686700678,
+   686700682,
+   686700685,
+   686700689,
+   686700844,
+   686705495,
+   686705498,
+   686705499,
+   1209342415,
+   790806550,
+   790806552,
+   686705508,
+   686705513,
+   686705515,
+   686705517,
+   1209342418,
+   686705519,
+   23463089,
+   1282557464
+  ],
+  "raw_length_m": 5771.1,
+  "length_m": 5766.5,
+  "official_length_m": 5770.0,
+  "length_error": -0.0006,
+  "candidates": [
+   {
+    "length_m": 5771.0,
+    "ways": [
+     1282552677,
+     686700676,
+     686700678,
+     686700682,
+     686700685,
+     686700689,
+     686700844,
+     686705495,
+     686705498,
+     686705499,
+     1209342415,
+     790806550,
+     790806552,
+     686705508,
+     686705513,
+     686705515,
+     686705517,
+     1209342418,
+     686705519,
+     23463089,
+     1282557464
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "ign",
+ "elevation": {
+  "range_m": 29.4,
+  "max_grade": 0.034,
+  "min_grade": -0.0402,
+  "origin_m": 426.75
+ },
+ "turns": {
+  "official": 15,
+  "mode": "auto",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "\"S\" de la Verrerie",
+    "direction": "left",
+    "s_apex": 560.4,
+    "min_radius": 34.0
+   },
+   {
+    "id": "T2",
+    "name": "\"S\" de la Verrerie",
+    "direction": "right",
+    "s_apex": 676.5,
+    "min_radius": 50.9
+   },
+   {
+    "id": "T3",
+    "name": "\"S\" de la Verrerie",
+    "direction": "right",
+    "s_apex": 764.5,
+    "min_radius": 110.4
+   },
+   {
+    "id": "T4",
+    "name": "Circuit Paul Ricard",
+    "direction": "left",
+    "s_apex": 898.6,
+    "min_radius": 217.3
+   },
+   {
+    "id": "T5",
+    "name": "Virage de l'hotel",
+    "direction": "right",
+    "s_apex": 1224.8,
+    "min_radius": 33.9
+   },
+   {
+    "id": "T6",
+    "name": "Virage de l'hotel",
+    "direction": "left",
+    "s_apex": 1290.9,
+    "min_radius": 41.6
+   },
+   {
+    "id": "T7",
+    "name": "Virage du camp",
+    "direction": "right",
+    "s_apex": 1435.0,
+    "min_radius": 13.0
+   },
+   {
+    "id": "T8",
+    "name": "Virage de la Sainte-Baume",
+    "direction": "right",
+    "s_apex": 1539.1,
+    "min_radius": 39.3
+   },
+   {
+    "id": "T9",
+    "name": "Circuit Paul Ricard",
+    "direction": "left",
+    "s_apex": 1805.3,
+    "min_radius": 47.5
+   },
+   {
+    "id": "T10",
+    "name": "Courbe de Signes",
+    "direction": "right",
+    "s_apex": 3726.6,
+    "min_radius": 97.1
+   },
+   {
+    "id": "T11",
+    "name": "Courbe de Signes",
+    "direction": "right",
+    "s_apex": 3798.6,
+    "min_radius": 86.1
+   },
+   {
+    "id": "T12",
+    "name": "Double droite du Beausset",
+    "direction": "right",
+    "s_apex": 4369.0,
+    "min_radius": 38.2
+   },
+   {
+    "id": "T13",
+    "name": "Virage de Bendor",
+    "direction": "left",
+    "s_apex": 4701.3,
+    "min_radius": 38.4
+   },
+   {
+    "id": "T14",
+    "name": "Courbe du Garlaban",
+    "direction": "right",
+    "s_apex": 4819.3,
+    "min_radius": 164.0
+   },
+   {
+    "id": "T15",
+    "name": "Virage du Lac",
+    "direction": "left",
+    "s_apex": 5263.6,
+    "min_radius": 42.9
+   },
+   {
+    "id": "T16",
+    "name": "Virage du Pont",
+    "direction": "right",
+    "s_apex": 5361.7,
+    "min_radius": 13.9
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 560.4,
+    "direction": "left",
+    "angle_deg": 74.2,
+    "kind": "corner",
+    "min_radius": 34.0,
+    "used": true
+   },
+   {
+    "s_apex": 676.5,
+    "direction": "right",
+    "angle_deg": 64.3,
+    "kind": "corner",
+    "min_radius": 50.9,
+    "used": true
+   },
+   {
+    "s_apex": 764.5,
+    "direction": "right",
+    "angle_deg": 18.8,
+    "kind": "corner",
+    "min_radius": 110.4,
+    "used": true
+   },
+   {
+    "s_apex": 898.6,
+    "direction": "left",
+    "angle_deg": 15.3,
+    "kind": "corner",
+    "min_radius": 217.3,
+    "used": true
+   },
+   {
+    "s_apex": 1018.7,
+    "direction": "left",
+    "angle_deg": 8.0,
+    "kind": "kink",
+    "min_radius": 190.2,
+    "used": false
+   },
+   {
+    "s_apex": 1088.8,
+    "direction": "right",
+    "angle_deg": 6.2,
+    "kind": "kink",
+    "min_radius": 340.8,
+    "used": false
+   },
+   {
+    "s_apex": 1224.8,
+    "direction": "right",
+    "angle_deg": 66.8,
+    "kind": "corner",
+    "min_radius": 33.9,
+    "used": true
+   },
+   {
+    "s_apex": 1290.9,
+    "direction": "left",
+    "angle_deg": 103.9,
+    "kind": "corner",
+    "min_radius": 41.6,
+    "used": true
+   },
+   {
+    "s_apex": 1435.0,
+    "direction": "right",
+    "angle_deg": 115.2,
+    "kind": "corner",
+    "min_radius": 13.0,
+    "used": true
+   },
+   {
+    "s_apex": 1539.1,
+    "direction": "right",
+    "angle_deg": 137.6,
+    "kind": "corner",
+    "min_radius": 39.3,
+    "used": true
+   },
+   {
+    "s_apex": 1805.3,
+    "direction": "left",
+    "angle_deg": 45.9,
+    "kind": "corner",
+    "min_radius": 47.5,
+    "used": true
+   },
+   {
+    "s_apex": 3726.6,
+    "direction": "right",
+    "angle_deg": 26.5,
+    "kind": "corner",
+    "min_radius": 97.1,
+    "used": true
+   },
+   {
+    "s_apex": 3798.6,
+    "direction": "right",
+    "angle_deg": 41.4,
+    "kind": "corner",
+    "min_radius": 86.1,
+    "used": true
+   },
+   {
+    "s_apex": 4369.0,
+    "direction": "right",
+    "angle_deg": 209.8,
+    "kind": "corner",
+    "min_radius": 38.2,
+    "used": true
+   },
+   {
+    "s_apex": 4469.1,
+    "direction": "right",
+    "angle_deg": 6.0,
+    "kind": "kink",
+    "min_radius": 202.0,
+    "used": false
+   },
+   {
+    "s_apex": 4701.3,
+    "direction": "left",
+    "angle_deg": 157.3,
+    "kind": "corner",
+    "min_radius": 38.4,
+    "used": true
+   },
+   {
+    "s_apex": 4819.3,
+    "direction": "right",
+    "angle_deg": 72.1,
+    "kind": "corner",
+    "min_radius": 164.0,
+    "used": true
+   },
+   {
+    "s_apex": 5087.5,
+    "direction": "right",
+    "angle_deg": 4.2,
+    "kind": "kink",
+    "min_radius": 257.9,
+    "used": false
+   },
+   {
+    "s_apex": 5263.6,
+    "direction": "left",
+    "angle_deg": 135.1,
+    "kind": "corner",
+    "min_radius": 42.9,
+    "used": true
+   },
+   {
+    "s_apex": 5361.7,
+    "direction": "right",
+    "angle_deg": 125.8,
+    "kind": "corner",
+    "min_radius": 13.9,
+    "used": true
+   }
+  ]
+ },
+ "warnings": [
+  "turn detection found 16 turns (16 corners, 4 kinks) but the official count is 15: check the plot and, if needed, pin the turns with [[turn]] entries (id, name, direction, s) in the recipe"
+ ]
+}

@@ -1,0 +1,346 @@
+{
+ "id": "brands_hatch",
+ "recipe": "tools/track/tracks/brands_hatch.toml",
+ "osm": {
+  "relation": 7218462,
+  "loop_ways": [
+   171570162,
+   4906929,
+   25804993,
+   25804999,
+   25805047,
+   171570163,
+   25805049,
+   171570165,
+   25805072,
+   171570251,
+   171570252,
+   820329315,
+   25804641,
+   171570166,
+   25805012,
+   25804653,
+   171570161,
+   25804669,
+   171570167,
+   25804846,
+   25804824,
+   25804875,
+   820329314,
+   171570164,
+   25804935
+  ],
+  "raw_length_m": 3899.4,
+  "length_m": 3898.3,
+  "official_length_m": 3908.0,
+  "length_error": -0.00248,
+  "candidates": [
+   {
+    "length_m": 3899.5,
+    "ways": [
+     171570162,
+     4906929,
+     25804993,
+     25804999,
+     25805047,
+     171570163,
+     25805049,
+     171570165,
+     25805072,
+     171570251,
+     171570252,
+     820329315,
+     25804641,
+     171570166,
+     25805012,
+     25804653,
+     171570161,
+     25804669,
+     171570167,
+     25804846,
+     25804824,
+     25804875,
+     820329314,
+     171570164,
+     25804935
+    ]
+   },
+   {
+    "length_m": 3895.2,
+    "ways": [
+     171570162,
+     4906929,
+     25804993,
+     25804999,
+     25805047,
+     171570163,
+     25805049,
+     171570165,
+     25805072,
+     171570251,
+     171570252,
+     820329315,
+     25804641,
+     4906930,
+     25805012,
+     25804653,
+     171570161,
+     25804669,
+     171570167,
+     25804846,
+     25804824,
+     25804875,
+     820329314,
+     171570164,
+     25804935
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 31.16,
+  "max_grade": 0.1056,
+  "min_grade": -0.0957,
+  "origin_m": 130.53
+ },
+ "turns": {
+  "official": 9,
+  "mode": "auto",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Paddock Hill",
+    "direction": "right",
+    "s_apex": 176.5,
+    "min_radius": 56.4
+   },
+   {
+    "id": "T2",
+    "name": "Druids Bend",
+    "direction": "right",
+    "s_apex": 537.4,
+    "min_radius": 31.3
+   },
+   {
+    "id": "T3",
+    "name": "Turn 3",
+    "direction": "left",
+    "s_apex": 695.8,
+    "min_radius": 59.8
+   },
+   {
+    "id": "T4",
+    "name": "Graham Hill Bend",
+    "direction": "left",
+    "s_apex": 786.0,
+    "min_radius": 34.0
+   },
+   {
+    "id": "T5",
+    "name": "Surtees",
+    "direction": "left",
+    "s_apex": 1185.0,
+    "min_radius": 35.4
+   },
+   {
+    "id": "T6",
+    "name": "Hawthorns Bend",
+    "direction": "right",
+    "s_apex": 1953.0,
+    "min_radius": 78.3
+   },
+   {
+    "id": "T7",
+    "name": "Westfield Bend",
+    "direction": "right",
+    "s_apex": 2273.8,
+    "min_radius": 35.3
+   },
+   {
+    "id": "T8",
+    "name": "Dingle Dell",
+    "direction": "right",
+    "s_apex": 2398.1,
+    "min_radius": 72.1
+   },
+   {
+    "id": "T9",
+    "name": "Dingle Dell Corner",
+    "direction": "right",
+    "s_apex": 2528.5,
+    "min_radius": 133.0
+   },
+   {
+    "id": "T10",
+    "name": "Sheene Curve",
+    "direction": "right",
+    "s_apex": 2664.8,
+    "min_radius": 29.2
+   },
+   {
+    "id": "T11",
+    "name": "Stirlings Bend",
+    "direction": "left",
+    "s_apex": 2913.5,
+    "min_radius": 36.9
+   },
+   {
+    "id": "T12",
+    "name": "Clearways",
+    "direction": "right",
+    "s_apex": 3334.5,
+    "min_radius": 60.5
+   },
+   {
+    "id": "T13",
+    "name": "Clark Curve",
+    "direction": "right",
+    "s_apex": 3531.0,
+    "min_radius": 129.5
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 176.5,
+    "direction": "right",
+    "angle_deg": 107.0,
+    "kind": "corner",
+    "min_radius": 56.4,
+    "used": true
+   },
+   {
+    "s_apex": 352.9,
+    "direction": "right",
+    "angle_deg": 5.7,
+    "kind": "kink",
+    "min_radius": 247.3,
+    "used": false
+   },
+   {
+    "s_apex": 537.4,
+    "direction": "right",
+    "angle_deg": 173.6,
+    "kind": "corner",
+    "min_radius": 31.3,
+    "used": true
+   },
+   {
+    "s_apex": 695.8,
+    "direction": "left",
+    "angle_deg": 19.0,
+    "kind": "corner",
+    "min_radius": 59.8,
+    "used": true
+   },
+   {
+    "s_apex": 786.0,
+    "direction": "left",
+    "angle_deg": 83.0,
+    "kind": "corner",
+    "min_radius": 34.0,
+    "used": true
+   },
+   {
+    "s_apex": 924.4,
+    "direction": "left",
+    "angle_deg": 10.0,
+    "kind": "kink",
+    "min_radius": 154.4,
+    "used": false
+   },
+   {
+    "s_apex": 1185.0,
+    "direction": "left",
+    "angle_deg": 135.7,
+    "kind": "corner",
+    "min_radius": 35.4,
+    "used": true
+   },
+   {
+    "s_apex": 1433.7,
+    "direction": "right",
+    "angle_deg": 10.7,
+    "kind": "kink",
+    "min_radius": 176.9,
+    "used": false
+   },
+   {
+    "s_apex": 1953.0,
+    "direction": "right",
+    "angle_deg": 82.7,
+    "kind": "corner",
+    "min_radius": 78.3,
+    "used": true
+   },
+   {
+    "s_apex": 2273.8,
+    "direction": "right",
+    "angle_deg": 61.3,
+    "kind": "corner",
+    "min_radius": 35.3,
+    "used": true
+   },
+   {
+    "s_apex": 2398.1,
+    "direction": "right",
+    "angle_deg": 27.8,
+    "kind": "corner",
+    "min_radius": 72.1,
+    "used": true
+   },
+   {
+    "s_apex": 2528.5,
+    "direction": "right",
+    "angle_deg": 29.6,
+    "kind": "corner",
+    "min_radius": 133.0,
+    "used": true
+   },
+   {
+    "s_apex": 2664.8,
+    "direction": "right",
+    "angle_deg": 42.2,
+    "kind": "corner",
+    "min_radius": 29.2,
+    "used": true
+   },
+   {
+    "s_apex": 2729.0,
+    "direction": "right",
+    "angle_deg": 12.3,
+    "kind": "kink",
+    "min_radius": 124.7,
+    "used": false
+   },
+   {
+    "s_apex": 2913.5,
+    "direction": "left",
+    "angle_deg": 84.2,
+    "kind": "corner",
+    "min_radius": 36.9,
+    "used": true
+   },
+   {
+    "s_apex": 3334.5,
+    "direction": "right",
+    "angle_deg": 95.0,
+    "kind": "corner",
+    "min_radius": 60.5,
+    "used": true
+   },
+   {
+    "s_apex": 3531.0,
+    "direction": "right",
+    "angle_deg": 29.3,
+    "kind": "corner",
+    "min_radius": 129.5,
+    "used": true
+   }
+  ]
+ },
+ "warnings": [
+  "turn detection found 13 turns (13 corners, 4 kinks) but the official count is 9: check the plot and, if needed, pin the turns with [[turn]] entries (id, name, direction, s) in the recipe"
+ ]
+}

@@ -1,0 +1,346 @@
+{
+ "id": "oulton_park",
+ "recipe": "tools/track/tracks/oulton_park.toml",
+ "osm": {
+  "relation": 11249454,
+  "loop_ways": [
+   820427221,
+   820427227,
+   820427217,
+   820427218,
+   820427219,
+   820427212,
+   820427210,
+   27299255,
+   820427876,
+   820427202,
+   820427209,
+   820427213,
+   820427214,
+   820427216,
+   820427215,
+   820427224,
+   820427225,
+   820427222,
+   820427223,
+   820427226,
+   820427220
+  ],
+  "raw_length_m": 3572.3,
+  "length_m": 3572.6,
+  "official_length_m": 3582.0,
+  "length_error": -0.00263,
+  "candidates": [
+   {
+    "length_m": 3572.4,
+    "ways": [
+     820427221,
+     820427227,
+     820427217,
+     820427218,
+     820427219,
+     820427212,
+     820427210,
+     27299255,
+     820427876,
+     820427202,
+     820427209,
+     820427213,
+     820427214,
+     820427216,
+     820427215,
+     820427224,
+     820427225,
+     820427222,
+     820427223,
+     820427226,
+     820427220
+    ]
+   },
+   {
+    "length_m": 3555.1,
+    "ways": [
+     721714385,
+     820427218,
+     820427219,
+     820427212,
+     820427210,
+     27299255,
+     820427876,
+     820427202,
+     820427209,
+     820427213,
+     820427214,
+     820427216,
+     820427215,
+     820427224,
+     820427225,
+     820427222,
+     820427223,
+     820427226,
+     820427220,
+     820427221
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 15.58,
+  "max_grade": 0.0654,
+  "min_grade": -0.048,
+  "origin_m": 68.11
+ },
+ "turns": {
+  "official": null,
+  "mode": "auto",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Old Hall Corner",
+    "direction": "right",
+    "s_apex": 188.5,
+    "min_radius": 41.2
+   },
+   {
+    "id": "T2",
+    "name": "The Avenue",
+    "direction": "right",
+    "s_apex": 485.4,
+    "min_radius": 125.9
+   },
+   {
+    "id": "T3",
+    "name": "Cascades",
+    "direction": "left",
+    "s_apex": 704.0,
+    "min_radius": 58.1
+   },
+   {
+    "id": "T4",
+    "name": "Island Hairpin",
+    "direction": "right",
+    "s_apex": 1225.4,
+    "min_radius": 18.7
+   },
+   {
+    "id": "T5",
+    "name": "Hislop's",
+    "direction": "right",
+    "s_apex": 1760.9,
+    "min_radius": 21.7
+   },
+   {
+    "id": "T6",
+    "name": "Hislop's",
+    "direction": "left",
+    "s_apex": 1813.1,
+    "min_radius": 25.7
+   },
+   {
+    "id": "T7",
+    "name": "Hislop's",
+    "direction": "right",
+    "s_apex": 1929.4,
+    "min_radius": 27.2
+   },
+   {
+    "id": "T8",
+    "name": "Turn 8 (kink)",
+    "direction": "right",
+    "s_apex": 2097.9,
+    "min_radius": 112.8
+   },
+   {
+    "id": "T9",
+    "name": "Turn 9",
+    "direction": "left",
+    "s_apex": 2186.1,
+    "min_radius": 126.6
+   },
+   {
+    "id": "T10",
+    "name": "Turn 10",
+    "direction": "left",
+    "s_apex": 2410.7,
+    "min_radius": 106.7
+   },
+   {
+    "id": "T11",
+    "name": "Druids Corner",
+    "direction": "right",
+    "s_apex": 2571.2,
+    "min_radius": 58.4
+   },
+   {
+    "id": "T12",
+    "name": "Druids Corner",
+    "direction": "right",
+    "s_apex": 2647.4,
+    "min_radius": 61.0
+   },
+   {
+    "id": "T13",
+    "name": "Lodge Corner",
+    "direction": "right",
+    "s_apex": 3142.8,
+    "min_radius": 31.9
+   },
+   {
+    "id": "T14",
+    "name": "Deer Leap",
+    "direction": "left",
+    "s_apex": 3337.3,
+    "min_radius": 166.8
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 10.0,
+    "direction": "left",
+    "angle_deg": 4.4,
+    "kind": "kink",
+    "min_radius": 211.6,
+    "used": false
+   },
+   {
+    "s_apex": 188.5,
+    "direction": "right",
+    "angle_deg": 80.3,
+    "kind": "corner",
+    "min_radius": 41.2,
+    "used": true
+   },
+   {
+    "s_apex": 485.4,
+    "direction": "right",
+    "angle_deg": 20.0,
+    "kind": "corner",
+    "min_radius": 125.9,
+    "used": true
+   },
+   {
+    "s_apex": 704.0,
+    "direction": "left",
+    "angle_deg": 109.2,
+    "kind": "corner",
+    "min_radius": 58.1,
+    "used": true
+   },
+   {
+    "s_apex": 1225.4,
+    "direction": "right",
+    "angle_deg": 176.2,
+    "kind": "corner",
+    "min_radius": 18.7,
+    "used": true
+   },
+   {
+    "s_apex": 1760.9,
+    "direction": "right",
+    "angle_deg": 58.2,
+    "kind": "corner",
+    "min_radius": 21.7,
+    "used": true
+   },
+   {
+    "s_apex": 1813.1,
+    "direction": "left",
+    "angle_deg": 77.9,
+    "kind": "corner",
+    "min_radius": 25.7,
+    "used": true
+   },
+   {
+    "s_apex": 1929.4,
+    "direction": "right",
+    "angle_deg": 75.9,
+    "kind": "corner",
+    "min_radius": 27.2,
+    "used": true
+   },
+   {
+    "s_apex": 2097.9,
+    "direction": "right",
+    "angle_deg": 10.6,
+    "kind": "kink",
+    "min_radius": 112.8,
+    "used": true
+   },
+   {
+    "s_apex": 2186.1,
+    "direction": "left",
+    "angle_deg": 17.3,
+    "kind": "corner",
+    "min_radius": 126.6,
+    "used": true
+   },
+   {
+    "s_apex": 2410.7,
+    "direction": "left",
+    "angle_deg": 21.5,
+    "kind": "corner",
+    "min_radius": 106.7,
+    "used": true
+   },
+   {
+    "s_apex": 2466.9,
+    "direction": "right",
+    "angle_deg": 6.2,
+    "kind": "kink",
+    "min_radius": 339.1,
+    "used": false
+   },
+   {
+    "s_apex": 2571.2,
+    "direction": "right",
+    "angle_deg": 43.8,
+    "kind": "corner",
+    "min_radius": 58.4,
+    "used": true
+   },
+   {
+    "s_apex": 2647.4,
+    "direction": "right",
+    "angle_deg": 48.9,
+    "kind": "corner",
+    "min_radius": 61.0,
+    "used": true
+   },
+   {
+    "s_apex": 2783.8,
+    "direction": "left",
+    "angle_deg": 4.7,
+    "kind": "kink",
+    "min_radius": 472.3,
+    "used": false
+   },
+   {
+    "s_apex": 3142.8,
+    "direction": "right",
+    "angle_deg": 108.3,
+    "kind": "corner",
+    "min_radius": 31.9,
+    "used": true
+   },
+   {
+    "s_apex": 3275.1,
+    "direction": "right",
+    "angle_deg": 7.5,
+    "kind": "kink",
+    "min_radius": 181.5,
+    "used": false
+   },
+   {
+    "s_apex": 3337.3,
+    "direction": "left",
+    "angle_deg": 23.0,
+    "kind": "corner",
+    "min_radius": 166.8,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

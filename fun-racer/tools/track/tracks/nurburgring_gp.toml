@@ -1,0 +1,29 @@
+# Nürburgring (Grand-Prix-Strecke) (Nürburg, Germany), 5148 m.
+# Built for other series' calendars (event(s) gt_nurburgring link it with "track"): series "circuit"
+# keeps it out of every series list on its own, F1 included.
+#
+#   .venv/bin/python tools/track/build_track.py nurburgring_gp --plot
+
+id = "nurburgring_gp"
+series = "circuit"
+name = "Nürburgring"
+grand_prix = "Nürburgring"
+country = "Germany"
+country_code = "DE"
+city = "Nürburg"
+length_m = 5148
+turns = 15
+full_name = "Nürburgring (Grand-Prix-Strecke)"
+
+[osm]
+# type=circuit relation "Nürburgring Grand Prix Strecke".
+relation = 38567
+
+[elevation]
+dataset = "terrarium"
+
+[layout]
+# The ways carry no oneway tags; the Grand-Prix-Strecke is raced clockwise. OSM has no start /
+# finish node: the line is on the start / finish straight in front of the pits (+/- 60 m).
+direction = "clockwise"
+finish = [50.334864, 6.946632]

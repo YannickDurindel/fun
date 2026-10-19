@@ -1,0 +1,201 @@
+{
+ "id": "brands_hatch_indy",
+ "recipe": "tools/track/tracks/brands_hatch_indy.toml",
+ "osm": {
+  "relation": 11248425,
+  "loop_ways": [
+   4928103,
+   820329315,
+   25804641,
+   171570166,
+   25805012,
+   25804653,
+   171570161,
+   25804669,
+   171570167,
+   25804846,
+   25804824,
+   25804875
+  ],
+  "raw_length_m": 1928.9,
+  "length_m": 1928.1,
+  "official_length_m": 1929.0,
+  "length_error": -0.00045,
+  "candidates": [
+   {
+    "length_m": 1929.0,
+    "ways": [
+     4928103,
+     820329315,
+     25804641,
+     171570166,
+     25805012,
+     25804653,
+     171570161,
+     25804669,
+     171570167,
+     25804846,
+     25804824,
+     25804875
+    ]
+   },
+   {
+    "length_m": 1924.6,
+    "ways": [
+     4928103,
+     820329315,
+     25804641,
+     4906930,
+     25805012,
+     25804653,
+     171570161,
+     25804669,
+     171570167,
+     25804846,
+     25804824,
+     25804875
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 19.43,
+  "max_grade": 0.1057,
+  "min_grade": -0.0958,
+  "origin_m": 130.53
+ },
+ "turns": {
+  "official": 5,
+  "mode": "auto",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Paddock Hill",
+    "direction": "right",
+    "s_apex": 176.1,
+    "min_radius": 56.3
+   },
+   {
+    "id": "T2",
+    "name": "Druids Bend",
+    "direction": "right",
+    "s_apex": 536.3,
+    "min_radius": 31.3
+   },
+   {
+    "id": "T3",
+    "name": "Turn 3",
+    "direction": "left",
+    "s_apex": 694.4,
+    "min_radius": 59.6
+   },
+   {
+    "id": "T4",
+    "name": "Graham Hill Bend",
+    "direction": "left",
+    "s_apex": 784.4,
+    "min_radius": 33.9
+   },
+   {
+    "id": "T5",
+    "name": "Surtees",
+    "direction": "left",
+    "s_apex": 1142.6,
+    "min_radius": 71.1
+   },
+   {
+    "id": "T6",
+    "name": "McLaren",
+    "direction": "right",
+    "s_apex": 1338.7,
+    "min_radius": 43.2
+   },
+   {
+    "id": "T7",
+    "name": "Clark Curve",
+    "direction": "right",
+    "s_apex": 1552.8,
+    "min_radius": 129.2
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 176.1,
+    "direction": "right",
+    "angle_deg": 107.0,
+    "kind": "corner",
+    "min_radius": 56.3,
+    "used": true
+   },
+   {
+    "s_apex": 352.2,
+    "direction": "right",
+    "angle_deg": 5.7,
+    "kind": "kink",
+    "min_radius": 246.5,
+    "used": false
+   },
+   {
+    "s_apex": 536.3,
+    "direction": "right",
+    "angle_deg": 173.6,
+    "kind": "corner",
+    "min_radius": 31.3,
+    "used": true
+   },
+   {
+    "s_apex": 694.4,
+    "direction": "left",
+    "angle_deg": 19.0,
+    "kind": "corner",
+    "min_radius": 59.6,
+    "used": true
+   },
+   {
+    "s_apex": 784.4,
+    "direction": "left",
+    "angle_deg": 83.0,
+    "kind": "corner",
+    "min_radius": 33.9,
+    "used": true
+   },
+   {
+    "s_apex": 922.5,
+    "direction": "left",
+    "angle_deg": 10.0,
+    "kind": "kink",
+    "min_radius": 154.1,
+    "used": false
+   },
+   {
+    "s_apex": 1142.6,
+    "direction": "left",
+    "angle_deg": 60.8,
+    "kind": "corner",
+    "min_radius": 71.1,
+    "used": true
+   },
+   {
+    "s_apex": 1338.7,
+    "direction": "right",
+    "angle_deg": 206.7,
+    "kind": "corner",
+    "min_radius": 43.2,
+    "used": true
+   },
+   {
+    "s_apex": 1552.8,
+    "direction": "right",
+    "angle_deg": 29.5,
+    "kind": "corner",
+    "min_radius": 129.2,
+    "used": true
+   }
+  ]
+ },
+ "warnings": [
+  "turn detection found 7 turns (7 corners, 2 kinks) but the official count is 5: check the plot and, if needed, pin the turns with [[turn]] entries (id, name, direction, s) in the recipe"
+ ]
+}

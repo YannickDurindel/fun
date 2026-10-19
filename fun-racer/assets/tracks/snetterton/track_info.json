@@ -1,0 +1,15 @@
+{
+  "id": "snetterton",
+  "name": "Snetterton",
+  "grand_prix": "Snetterton",
+  "country": "United Kingdom",
+  "country_code": "GB",
+  "city": "Snetterton",
+  "length_m": 4779,
+  "turns": 12,
+  "scene": "res://scenes/tracks/snetterton.tscn",
+  "track_json": "res://assets/tracks/snetterton/track.json",
+  "osm_relation": 7282345,
+  "available": true,
+  "series": "circuit"
+}

@@ -1,0 +1,23 @@
+# Misano World Circuit (Misano Adriatico, Italy), 4226 m.
+# Built for other series' calendars (event(s) gt_misano link it with "track"): series "circuit"
+# keeps it out of every series list on its own, F1 included.
+#
+#   .venv/bin/python tools/track/build_track.py misano --plot
+
+id = "misano"
+series = "circuit"
+name = "Misano"
+grand_prix = "Misano"
+country = "Italy"
+country_code = "IT"
+city = "Misano Adriatico"
+length_m = 4226
+turns = 16
+full_name = "Misano World Circuit"
+
+[osm]
+# type=circuit relation "Misano World Circuit".
+relation = 8671383
+
+[elevation]
+dataset = "terrarium"

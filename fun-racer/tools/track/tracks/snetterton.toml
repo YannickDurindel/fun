@@ -1,0 +1,28 @@
+# Snetterton (300 circuit) (Snetterton, United Kingdom), 4779 m.
+# Built for other series' calendars (event(s) tc_snetterton link it with "track"): series "circuit"
+# keeps it out of every series list on its own, F1 included.
+#
+#   .venv/bin/python tools/track/build_track.py snetterton --plot
+
+id = "snetterton"
+series = "circuit"
+name = "Snetterton"
+grand_prix = "Snetterton"
+country = "United Kingdom"
+country_code = "GB"
+city = "Snetterton"
+length_m = 4779
+turns = 12
+full_name = "Snetterton (300 circuit)"
+
+[osm]
+# type=circuit relation "Snetterton GT Circuit".
+relation = 7282345
+
+[elevation]
+dataset = "terrarium"
+
+[layout]
+# OSM has no start / finish node: the line is on the pit straight between Murrays and
+# Riches (read off the centreline, +/- 60 m).
+finish = [52.463482, 0.946399]

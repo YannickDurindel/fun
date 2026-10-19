@@ -345,7 +345,8 @@ def corner_infills(P: np.ndarray, s: np.ndarray, outer: np.ndarray, ext: np.ndar
         # the other way: flip those so every triangle faces up, and drop zero-area ones.
         down = fn[:, 1] < 0.0
         tri[down] = tri[down][:, [0, 2, 1]]
-        tri = tri[np.abs(fn[:, 1]) > 1e-9]
+        keep = np.abs(fn[:, 1]) > 1e-9
+        tri, fn = tri[keep], fn[keep]   # fn must stay aligned with tri for the sums below
         if len(tri) == 0:
             continue
         acc = np.zeros_like(poly3)

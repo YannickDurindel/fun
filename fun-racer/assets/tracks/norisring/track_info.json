@@ -1,0 +1,15 @@
+{
+  "id": "norisring",
+  "name": "Norisring",
+  "grand_prix": "Norisring",
+  "country": "Germany",
+  "country_code": "DE",
+  "city": "Nuremberg",
+  "length_m": 2300,
+  "turns": 4,
+  "scene": "res://scenes/tracks/norisring.tscn",
+  "track_json": "res://assets/tracks/norisring/track.json",
+  "osm_relation": 1889538,
+  "available": true,
+  "series": "circuit"
+}

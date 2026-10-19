@@ -1,0 +1,15 @@
+{
+  "id": "sachsenring",
+  "name": "Sachsenring",
+  "grand_prix": "Sachsenring",
+  "country": "Germany",
+  "country_code": "DE",
+  "city": "Hohenstein-Ernstthal",
+  "length_m": 3671,
+  "turns": 13,
+  "scene": "res://scenes/tracks/sachsenring.tscn",
+  "track_json": "res://assets/tracks/sachsenring/track.json",
+  "osm_relation": 2148312,
+  "available": true,
+  "series": "circuit"
+}

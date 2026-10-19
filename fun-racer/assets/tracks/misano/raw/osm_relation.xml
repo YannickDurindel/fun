@@ -1,0 +1,953 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1307 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="7473410" visible="true" version="9" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9643374" lon="12.6857129"/>
+ <node id="7473413" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9643254" lon="12.6860562"/>
+ <node id="7594323" visible="true" version="9" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9636492" lon="12.6888364"/>
+ <node id="7594346" visible="true" version="9" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9620371" lon="12.6893399"/>
+ <node id="7594354" visible="true" version="9" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9620176" lon="12.6896622"/>
+ <node id="7594356" visible="true" version="9" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9622189" lon="12.6898702"/>
+ <node id="7594365" visible="true" version="9" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9631963" lon="12.6902201"/>
+ <node id="7594368" visible="true" version="9" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9635305" lon="12.6901520"/>
+ <node id="7594380" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9642046" lon="12.6891375"/>
+ <node id="7594386" visible="true" version="9" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9644985" lon="12.6882843"/>
+ <node id="7594403" visible="true" version="9" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9648513" lon="12.6853257"/>
+ <node id="7594428" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9630498" lon="12.6791970"/>
+ <node id="7594434" visible="true" version="9" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9627224" lon="12.6784814"/>
+ <node id="7594440" visible="true" version="9" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9624391" lon="12.6783837"/>
+ <node id="7594447" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9621969" lon="12.6787156"/>
+ <node id="7594466" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9632641" lon="12.6822157"/>
+ <node id="7594481" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9635585" lon="12.6832941"/>
+ <node id="7594483" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9634931" lon="12.6837588"/>
+ <node id="7594492" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9631015" lon="12.6838717"/>
+ <node id="7594521" visible="true" version="6" changeset="17001983" timestamp="2013-07-18T16:58:54Z" user="Andrés31" uid="811230" lat="43.9607958" lon="12.6817797"/>
+ <node id="7594555" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9587795" lon="12.6791492"/>
+ <node id="7594574" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9581076" lon="12.6797559"/>
+ <node id="7594579" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9583748" lon="12.6805867"/>
+ <node id="7594587" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9593682" lon="12.6810159"/>
+ <node id="7594593" visible="true" version="9" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9596532" lon="12.6813958"/>
+ <node id="7594621" visible="true" version="6" changeset="17001983" timestamp="2013-07-18T16:44:03Z" user="Andrés31" uid="811230" lat="43.9598864" lon="12.6827550"/>
+ <node id="271641290" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9624965" lon="12.6783784"/>
+ <node id="271641291" visible="true" version="9" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9621910" lon="12.6787863"/>
+ <node id="271641296" visible="true" version="9" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9621793" lon="12.6792760"/>
+ <node id="271641300" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9627512" lon="12.6785101"/>
+ <node id="271641316" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9635626" lon="12.6833536"/>
+ <node id="271641317" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9635645" lon="12.6834041"/>
+ <node id="271641319" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9635561" lon="12.6835425"/>
+ <node id="271641321" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9634039" lon="12.6838718"/>
+ <node id="271641322" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9633080" lon="12.6839119"/>
+ <node id="271641325" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9632857" lon="12.6839139"/>
+ <node id="271641328" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9630730" lon="12.6838521"/>
+ <node id="271641330" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9629523" lon="12.6837613"/>
+ <node id="271641332" visible="true" version="4" changeset="9967117" timestamp="2011-11-27T14:02:02Z" user="Samuele Battarra" uid="51179" lat="43.9612227" lon="12.6822190"/>
+ <node id="271641336" visible="true" version="5" changeset="17001983" timestamp="2013-07-18T16:58:54Z" user="Andrés31" uid="811230" lat="43.9602889" lon="12.6811689"/>
+ <node id="271641351" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9580857" lon="12.6793830"/>
+ <node id="271641353" visible="true" version="6" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9581353" lon="12.6799275"/>
+ <node id="271641354" visible="true" version="6" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9583197" lon="12.6804648"/>
+ <node id="271641359" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9596093" lon="12.6811872"/>
+ <node id="271641360" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9596500" lon="12.6813358"/>
+ <node id="271641362" visible="true" version="9" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9596322" lon="12.6821047"/>
+ <node id="271641377" visible="true" version="7" changeset="17001983" timestamp="2013-07-18T16:44:04Z" user="Andrés31" uid="811230" lat="43.9598341" lon="12.6827172"/>
+ <node id="271641386" visible="true" version="9" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9641458" lon="12.6854566"/>
+ <node id="271641387" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9643224" lon="12.6856675"/>
+ <node id="271641389" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9643473" lon="12.6857738"/>
+ <node id="271641390" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9643445" lon="12.6859395"/>
+ <node id="271641400" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9637830" lon="12.6885610"/>
+ <node id="271641403" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9634565" lon="12.6889476"/>
+ <node id="271641404" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9621987" lon="12.6892292"/>
+ <node id="271641406" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9620646" lon="12.6893013"/>
+ <node id="271641407" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9620018" lon="12.6894307"/>
+ <node id="271641409" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9619949" lon="12.6895558"/>
+ <node id="271641410" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9620697" lon="12.6897662"/>
+ <node id="271641412" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9621897" lon="12.6898571"/>
+ <node id="271641420" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9633410" lon="12.6902377"/>
+ <node id="271641423" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9635978" lon="12.6900639"/>
+ <node id="271641444" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9643888" lon="12.6887824"/>
+ <node id="271641446" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9644499" lon="12.6885677"/>
+ <node id="271641453" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9648308" lon="12.6856957"/>
+ <node id="271641454" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9647778" lon="12.6849069"/>
+ <node id="831486850" visible="true" version="2" changeset="17008152" timestamp="2013-07-19T08:02:51Z" user="Andrés31" uid="811230" lat="43.9638651" lon="12.6854928"/>
+ <node id="831486867" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9582145" lon="12.6773075"/>
+ <node id="831486870" visible="true" version="2" changeset="17001983" timestamp="2013-07-18T16:44:04Z" user="Andrés31" uid="811230" lat="43.9608788" lon="12.6835759"/>
+ <node id="831486871" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9582272" lon="12.6771826"/>
+ <node id="831486878" visible="true" version="5" changeset="17001983" timestamp="2013-07-18T16:44:04Z" user="Andrés31" uid="811230" lat="43.9597953" lon="12.6826826"/>
+ <node id="831486887" visible="true" version="4" changeset="17001983" timestamp="2013-07-18T16:50:28Z" user="Andrés31" uid="811230" lat="43.9588758" lon="12.6774998"/>
+ <node id="831486892" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9634871" lon="12.6828902"/>
+ <node id="831486894" visible="true" version="2" changeset="17008152" timestamp="2013-07-19T08:02:51Z" user="Andrés31" uid="811230" lat="43.9639927" lon="12.6856191"/>
+ <node id="831486900" visible="true" version="9" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9596302" lon="12.6821851"/>
+ <node id="831486912" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9586608" lon="12.6787582"/>
+ <node id="831486913" visible="true" version="2" changeset="17008152" timestamp="2013-07-19T08:02:50Z" user="Andrés31" uid="811230" lat="43.9635853" lon="12.6852837"/>
+ <node id="831486915" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9635625" lon="12.6889005"/>
+ <node id="831486918" visible="true" version="4" changeset="17001983" timestamp="2013-07-18T16:44:04Z" user="Andrés31" uid="811230" lat="43.9607819" lon="12.6835506"/>
+ <node id="831486919" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9582445" lon="12.6771254"/>
+ <node id="831486939" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9589162" lon="12.6776278"/>
+ <node id="831486941" visible="true" version="2" changeset="17008152" timestamp="2013-07-19T08:02:50Z" user="Andrés31" uid="811230" lat="43.9639164" lon="12.6855353"/>
+ <node id="831486960" visible="true" version="2" changeset="17001983" timestamp="2013-07-18T16:44:04Z" user="Andrés31" uid="811230" lat="43.9609251" lon="12.6835967"/>
+ <node id="831486961" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9582219" lon="12.6772167"/>
+ <node id="831486976" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9585108" lon="12.6770654"/>
+ <node id="831486979" visible="true" version="2" changeset="17008152" timestamp="2013-07-19T08:02:50Z" user="Andrés31" uid="811230" lat="43.9640065" lon="12.6856406"/>
+ <node id="831486986" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9586608" lon="12.6788997"/>
+ <node id="831486988" visible="true" version="2" changeset="17008152" timestamp="2013-07-19T08:02:51Z" user="Andrés31" uid="811230" lat="43.9637693" lon="12.6854163"/>
+ <node id="831487003" visible="true" version="2" changeset="17001983" timestamp="2013-07-18T16:44:04Z" user="Andrés31" uid="811230" lat="43.9608365" lon="12.6835631"/>
+ <node id="831487004" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9582351" lon="12.6771510"/>
+ <node id="831487011" visible="true" version="6" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9588992" lon="12.6775561"/>
+ <node id="831487019" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9622041" lon="12.6786534"/>
+ <node id="831487021" visible="true" version="2" changeset="17008152" timestamp="2013-07-19T08:02:50Z" user="Andrés31" uid="811230" lat="43.9639549" lon="12.6855742"/>
+ <node id="831487029" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9586658" lon="12.6787196"/>
+ <node id="831487033" visible="true" version="2" changeset="17001983" timestamp="2013-07-18T16:44:04Z" user="Andrés31" uid="811230" lat="43.9631220" lon="12.6849824"/>
+ <node id="831487047" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9648305" lon="12.6851225"/>
+ <node id="831487051" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9586764" lon="12.6786667"/>
+ <node id="831487054" visible="true" version="4" changeset="17001983" timestamp="2013-07-18T16:44:04Z" user="Andrés31" uid="811230" lat="43.9607358" lon="12.6835428"/>
+ <node id="831487055" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9584073" lon="12.6770223"/>
+ <node id="831487067" visible="true" version="2" changeset="17008152" timestamp="2013-07-19T08:02:51Z" user="Andrés31" uid="811230" lat="43.9640310" lon="12.6856807"/>
+ <node id="831487072" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9589032" lon="12.6778131"/>
+ <node id="831487074" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9586674" lon="12.6789415"/>
+ <node id="945402773" visible="true" version="6" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9622754" lon="12.6797618"/>
+ <node id="956982333" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9596674" lon="12.6824639"/>
+ <node id="956982341" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9596842" lon="12.6825159"/>
+ <node id="956982413" visible="true" version="4" changeset="17001983" timestamp="2013-07-18T16:44:04Z" user="Andrés31" uid="811230" lat="43.9606887" lon="12.6835332"/>
+ <node id="2388661554" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:00Z" user="Andrés31" uid="811230" lat="43.9585025" lon="12.6809586"/>
+ <node id="2388661555" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9582540" lon="12.6771086"/>
+ <node id="2388661556" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9594931" lon="12.6810583"/>
+ <node id="2388661559" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9584511" lon="12.6770288"/>
+ <node id="2388661560" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9596547" lon="12.6824139"/>
+ <node id="2388661563" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9582558" lon="12.6803193"/>
+ <node id="2388661564" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9588518" lon="12.6774629"/>
+ <node id="2388661565" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9584194" lon="12.6806710"/>
+ <node id="2388661567" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9583090" lon="12.6770469"/>
+ <node id="2388661568" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:00Z" user="Andrés31" uid="811230" lat="43.9581361" lon="12.6801254"/>
+ <node id="2388661569" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:00Z" user="Andrés31" uid="811230" lat="43.9581164" lon="12.6800191"/>
+ <node id="2388661570" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:00Z" user="Andrés31" uid="811230" lat="43.9587979" lon="12.6820127"/>
+ <node id="2388661572" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:00Z" user="Andrés31" uid="811230" lat="43.9581607" lon="12.6802314"/>
+ <node id="2388661574" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:00Z" user="Andrés31" uid="811230" lat="43.9588925" lon="12.6822407"/>
+ <node id="2388661576" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9582832" lon="12.6770704"/>
+ <node id="2388661578" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:00Z" user="Andrés31" uid="811230" lat="43.9583924" lon="12.6807709"/>
+ <node id="2388661580" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:00Z" user="Andrés31" uid="811230" lat="43.9580989" lon="12.6798793"/>
+ <node id="2388661581" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:00Z" user="Andrés31" uid="811230" lat="43.9587824" lon="12.6819269"/>
+ <node id="2388661583" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9583236" lon="12.6770379"/>
+ <node id="2388661585" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:00Z" user="Andrés31" uid="811230" lat="43.9586745" lon="12.6812655"/>
+ <node id="2388661587" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9581251" lon="12.6798640"/>
+ <node id="2388661589" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:00Z" user="Andrés31" uid="811230" lat="43.9588153" lon="12.6820878"/>
+ <node id="2388661591" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9596242" lon="12.6812224"/>
+ <node id="2388661592" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9582007" lon="12.6801777"/>
+ <node id="2388661596" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9595912" lon="12.6811540"/>
+ <node id="2388661598" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:00Z" user="Andrés31" uid="811230" lat="43.9592709" lon="12.6826645"/>
+ <node id="2388661599" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:00Z" user="Andrés31" uid="811230" lat="43.9585615" lon="12.6810565"/>
+ <node id="2388661605" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9584650" lon="12.6807438"/>
+ <node id="2388661609" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:01Z" user="Andrés31" uid="811230" lat="43.9587207" lon="12.6814119"/>
+ <node id="2388661611" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9597400" lon="12.6826225"/>
+ <node id="2388661616" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9596337" lon="12.6822702"/>
+ <node id="2388661620" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:01Z" user="Andrés31" uid="811230" lat="43.9590817" lon="12.6824929"/>
+ <node id="2388661622" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9596454" lon="12.6812976"/>
+ <node id="2388661623" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9583833" lon="12.6770232"/>
+ <node id="2388661625" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:01Z" user="Andrés31" uid="811230" lat="43.9580887" lon="12.6797601"/>
+ <node id="2388661627" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:01Z" user="Andrés31" uid="811230" lat="43.9606166" lon="12.6835094"/>
+ <node id="2388661628" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:01Z" user="Andrés31" uid="811230" lat="43.9585222" lon="12.6808091"/>
+ <node id="2388661629" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9584687" lon="12.6770359"/>
+ <node id="2388661630" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9594112" lon="12.6810242"/>
+ <node id="2388661631" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9585658" lon="12.6808487"/>
+ <node id="2388661632" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9580845" lon="12.6794799"/>
+ <node id="2388661633" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9581765" lon="12.6801041"/>
+ <node id="2388661634" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9580821" lon="12.6795075"/>
+ <node id="2388661635" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9583570" lon="12.6770271"/>
+ <node id="2388661636" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:01Z" user="Andrés31" uid="811230" lat="43.9586956" lon="12.6813207"/>
+ <node id="2388661638" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:01Z" user="Andrés31" uid="811230" lat="43.9592149" lon="12.6826243"/>
+ <node id="2388661640" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9587698" lon="12.6809501"/>
+ <node id="2388661641" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:01Z" user="Andrés31" uid="811230" lat="43.9588384" lon="12.6821442"/>
+ <node id="2388661642" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:01Z" user="Andrés31" uid="811230" lat="43.9583499" lon="12.6806904"/>
+ <node id="2388661643" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9580889" lon="12.6795623"/>
+ <node id="2388661644" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9587209" lon="12.6809383"/>
+ <node id="2388661645" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:01Z" user="Andrés31" uid="811230" lat="43.9586482" lon="12.6812063"/>
+ <node id="2388661647" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9597217" lon="12.6825965"/>
+ <node id="2388661648" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:01Z" user="Andrés31" uid="811230" lat="43.9587284" lon="12.6814629"/>
+ <node id="2388661650" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9594569" lon="12.6810393"/>
+ <node id="2388661653" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9580944" lon="12.6796462"/>
+ <node id="2388661654" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:01Z" user="Andrés31" uid="811230" lat="43.9583075" lon="12.6806046"/>
+ <node id="2388661655" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:01Z" user="Andrés31" uid="811230" lat="43.9591261" lon="12.6825438"/>
+ <node id="2388661656" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9595657" lon="12.6811179"/>
+ <node id="2388661658" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:02Z" user="Andrés31" uid="811230" lat="43.9586208" lon="12.6811567"/>
+ <node id="2388661659" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:02Z" user="Andrés31" uid="811230" lat="43.9588616" lon="12.6821898"/>
+ <node id="2388661660" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9597029" lon="12.6825602"/>
+ <node id="2388661661" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9583377" lon="12.6770318"/>
+ <node id="2388661664" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:02Z" user="Andrés31" uid="811230" lat="43.9580841" lon="12.6796653"/>
+ <node id="2388661665" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9595797" lon="12.6811358"/>
+ <node id="2388661666" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:02Z" user="Andrés31" uid="811230" lat="43.9598975" lon="12.6830640"/>
+ <node id="2388661667" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9595205" lon="12.6810758"/>
+ <node id="2388661670" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9582672" lon="12.6770900"/>
+ <node id="2388661671" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:02Z" user="Andrés31" uid="811230" lat="43.9581897" lon="12.6803203"/>
+ <node id="2388661674" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9595466" lon="12.6810979"/>
+ <node id="2388661675" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9586712" lon="12.6809183"/>
+ <node id="2388661676" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:02Z" user="Andrés31" uid="811230" lat="43.9593308" lon="12.6827048"/>
+ <node id="2388661677" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:02Z" user="Andrés31" uid="811230" lat="43.9582592" lon="12.6804946"/>
+ <node id="2388661679" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9584295" lon="12.6770238"/>
+ <node id="2388661681" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9582942" lon="12.6770590"/>
+ <node id="2388661682" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:02Z" user="Andrés31" uid="811230" lat="43.9591686" lon="12.6825841"/>
+ <node id="2388661683" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:02Z" user="Andrés31" uid="811230" lat="43.9587361" lon="12.6815299"/>
+ <node id="2388661687" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:02Z" user="Andrés31" uid="811230" lat="43.9606533" lon="12.6835228"/>
+ <node id="2388661689" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9596424" lon="12.6823516"/>
+ <node id="2388661691" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:02Z" user="Andrés31" uid="811230" lat="43.9582187" lon="12.6804007"/>
+ <node id="2388661693" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:02Z" user="Andrés31" uid="811230" lat="43.9584542" lon="12.6808782"/>
+ <node id="2388661694" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9596376" lon="12.6812595"/>
+ <node id="2388661695" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:02Z" user="Andrés31" uid="811230" lat="43.9587110" lon="12.6813690"/>
+ <node id="2388661697" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9586203" lon="12.6808897"/>
+ <node id="2388661698" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9584959" lon="12.6770525"/>
+ <node id="2388661699" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9597642" lon="12.6826488"/>
+ <node id="2388661701" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:02Z" user="Andrés31" uid="811230" lat="43.9587709" lon="12.6818384"/>
+ <node id="2388661702" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9581571" lon="12.6800285"/>
+ <node id="2388661703" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:03Z" user="Andrés31" uid="811230" lat="43.9605464" lon="12.6834752"/>
+ <node id="2388661704" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:44:03Z" user="Andrés31" uid="811230" lat="43.9605792" lon="12.6834927"/>
+ <node id="2388661705" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9584830" lon="12.6770443"/>
+ <node id="2388665465" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9587322" lon="12.6790776"/>
+ <node id="2388665466" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9589204" lon="12.6776670"/>
+ <node id="2388665467" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9589121" lon="12.6777773"/>
+ <node id="2388665468" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9589179" lon="12.6777453"/>
+ <node id="2388665469" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9586919" lon="12.6790076"/>
+ <node id="2388665470" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9589095" lon="12.6775916"/>
+ <node id="2388665471" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9586581" lon="12.6788076"/>
+ <node id="2388665472" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9588868" lon="12.6775239"/>
+ <node id="2388665473" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9586765" lon="12.6789735"/>
+ <node id="2388665474" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9587100" lon="12.6790414"/>
+ <node id="2388665475" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:50:28Z" user="Andrés31" uid="811230" lat="43.9588641" lon="12.6774804"/>
+ <node id="2388665476" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9586581" lon="12.6788589"/>
+ <node id="2388665477" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9589214" lon="12.6777048"/>
+ <node id="2388665478" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9587558" lon="12.6791140"/>
+ <node id="2388672050" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:58:53Z" user="Andrés31" uid="811230" lat="43.9606735" lon="12.6816430"/>
+ <node id="2388672068" visible="true" version="1" changeset="17001983" timestamp="2013-07-18T16:58:53Z" user="Andrés31" uid="811230" lat="43.9605914" lon="12.6815440"/>
+ <node id="2388879910" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9635060" lon="12.6837325"/>
+ <node id="2388879911" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9633716" lon="12.6838924"/>
+ <node id="2388879912" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9634191" lon="12.6838577"/>
+ <node id="2388879913" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9635634" lon="12.6834614"/>
+ <node id="2388879914" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9631165" lon="12.6838799"/>
+ <node id="2388879915" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9633531" lon="12.6839006"/>
+ <node id="2388879916" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9634348" lon="12.6838410"/>
+ <node id="2388879917" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9631569" lon="12.6838982"/>
+ <node id="2388879918" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9633875" lon="12.6838838"/>
+ <node id="2388879919" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9635200" lon="12.6836951"/>
+ <node id="2388879920" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9632400" lon="12.6839140"/>
+ <node id="2388879921" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9635281" lon="12.6836652"/>
+ <node id="2388879922" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9633292" lon="12.6839075"/>
+ <node id="2388879923" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9634604" lon="12.6838104"/>
+ <node id="2388879924" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9634476" lon="12.6838272"/>
+ <node id="2388879925" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9635374" lon="12.6836325"/>
+ <node id="2388879926" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9635197" lon="12.6830407"/>
+ <node id="2388879927" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9634438" lon="12.6827303"/>
+ <node id="2388879928" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9635482" lon="12.6835906"/>
+ <node id="2388879929" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9635605" lon="12.6835029"/>
+ <node id="2388879930" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9631363" lon="12.6838902"/>
+ <node id="2388879931" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9631777" lon="12.6839043"/>
+ <node id="2388879932" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9633332" lon="12.6823965"/>
+ <node id="2388879933" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9635445" lon="12.6831804"/>
+ <node id="2388879934" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9631972" lon="12.6839085"/>
+ <node id="2388879935" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9633904" lon="12.6825635"/>
+ <node id="2388879936" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9600406" lon="12.6828527"/>
+ <node id="2388879938" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9634768" lon="12.6837868"/>
+ <node id="2388879939" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9632168" lon="12.6839118"/>
+ <node id="2388879940" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9632633" lon="12.6839141"/>
+ <node id="2388882052" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9621877" lon="12.6794328"/>
+ <node id="2388882053" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9622093" lon="12.6795573"/>
+ <node id="2388882054" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9622498" lon="12.6796965"/>
+ <node id="2388882055" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9622261" lon="12.6796233"/>
+ <node id="2388882056" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9621960" lon="12.6794873"/>
+ <node id="2388882057" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9621812" lon="12.6793628"/>
+ <node id="2388891173" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9623067" lon="12.6784585"/>
+ <node id="2388891174" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9622228" lon="12.6785840"/>
+ <node id="2388891175" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9622120" lon="12.6786147"/>
+ <node id="2388891176" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9626214" lon="12.6784141"/>
+ <node id="2388891177" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9622458" lon="12.6785399"/>
+ <node id="2388891178" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9625120" lon="12.6783788"/>
+ <node id="2388891179" visible="true" version="1" changeset="17004641" timestamp="2013-07-18T20:46:50Z" user="Andrés31" uid="811230" lat="43.9628668" lon="12.6787042"/>
+ <node id="2388891180" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9623805" lon="12.6784065"/>
+ <node id="2388891181" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9627020" lon="12.6784641"/>
+ <node id="2388891182" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9623596" lon="12.6784176"/>
+ <node id="2388891183" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9625424" lon="12.6783847"/>
+ <node id="2388891184" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9626633" lon="12.6784368"/>
+ <node id="2388891185" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9630078" lon="12.6790706"/>
+ <node id="2388891186" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9627794" lon="12.6785464"/>
+ <node id="2388891187" visible="true" version="1" changeset="17004641" timestamp="2013-07-18T20:46:50Z" user="Andrés31" uid="811230" lat="43.9628383" lon="12.6786469"/>
+ <node id="2388891188" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9622765" lon="12.6784943"/>
+ <node id="2388891189" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9624207" lon="12.6783890"/>
+ <node id="2388891190" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9625260" lon="12.6783806"/>
+ <node id="2388891191" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9625972" lon="12.6784036"/>
+ <node id="2388891192" visible="true" version="1" changeset="17004641" timestamp="2013-07-18T20:46:50Z" user="Andrés31" uid="811230" lat="43.9628098" lon="12.6785950"/>
+ <node id="2388891193" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9629151" lon="12.6788130"/>
+ <node id="2388891194" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9622911" lon="12.6784760"/>
+ <node id="2388891195" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9624583" lon="12.6783805"/>
+ <node id="2388891196" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9626828" lon="12.6784496"/>
+ <node id="2388891197" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9628930" lon="12.6787606"/>
+ <node id="2388891198" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9629635" lon="12.6789420"/>
+ <node id="2388891199" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9623380" lon="12.6784307"/>
+ <node id="2388891200" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9625773" lon="12.6783953"/>
+ <node id="2388891201" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9623223" lon="12.6784431"/>
+ <node id="2388891202" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9622599" lon="12.6785185"/>
+ <node id="2388891203" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9624780" lon="12.6783787"/>
+ <node id="2388891204" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9622341" lon="12.6785591"/>
+ <node id="2388891205" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9626414" lon="12.6784240"/>
+ <node id="2388891206" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9623999" lon="12.6783976"/>
+ <node id="2388891207" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9625593" lon="12.6783893"/>
+ <node id="2389155901" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9620865" lon="12.6897869"/>
+ <node id="2389155903" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9619937" lon="12.6895067"/>
+ <node id="2389155905" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9621605" lon="12.6898427"/>
+ <node id="2389155906" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9621005" lon="12.6892730"/>
+ <node id="2389155909" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9642621" lon="12.6890446"/>
+ <node id="2389155911" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9648079" lon="12.6850160"/>
+ <node id="2389155912" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9620030" lon="12.6896053"/>
+ <node id="2389155914" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9634713" lon="12.6901971"/>
+ <node id="2389155915" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9620179" lon="12.6893761"/>
+ <node id="2389155919" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9637035" lon="12.6899027"/>
+ <node id="2389155921" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9620488" lon="12.6893208"/>
+ <node id="2389155923" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9621055" lon="12.6898051"/>
+ <node id="2389155925" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9635603" lon="12.6901171"/>
+ <node id="2389155926" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9632618" lon="12.6902369"/>
+ <node id="2389155927" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9621310" lon="12.6898244"/>
+ <node id="2389155929" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9620399" lon="12.6897173"/>
+ <node id="2389155932" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9644241" lon="12.6886754"/>
+ <node id="2389155933" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9621241" lon="12.6892585"/>
+ <node id="2389155934" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9635021" lon="12.6901764"/>
+ <node id="2389155937" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9619936" lon="12.6895319"/>
+ <node id="2389155938" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9632307" lon="12.6902304"/>
+ <node id="2389155939" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9620553" lon="12.6897437"/>
+ <node id="2389155940" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9620272" lon="12.6893585"/>
+ <node id="2389155941" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9620060" lon="12.6894114"/>
+ <node id="2389155942" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9619988" lon="12.6895807"/>
+ <node id="2389155944" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9643023" lon="12.6889756"/>
+ <node id="2389155945" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9619953" lon="12.6894792"/>
+ <node id="2389155946" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9648441" lon="12.6852184"/>
+ <node id="2389155947" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9633870" lon="12.6902292"/>
+ <node id="2389155948" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9619980" lon="12.6894554"/>
+ <node id="2389155950" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9620114" lon="12.6893920"/>
+ <node id="2389155951" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9648505" lon="12.6854429"/>
+ <node id="2389155953" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9632977" lon="12.6902393"/>
+ <node id="2389155955" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9620816" lon="12.6892854"/>
+ <node id="2389155957" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9629031" lon="12.6890715"/>
+ <node id="2389155959" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9621725" lon="12.6892374"/>
+ <node id="2389155960" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9620089" lon="12.6896317"/>
+ <node id="2389155961" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9620288" lon="12.6896947"/>
+ <node id="2389155962" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9621470" lon="12.6892476"/>
+ <node id="2389155963" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9634334" lon="12.6902154"/>
+ <node id="2389155965" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9643440" lon="12.6888938"/>
+ <node id="2389155967" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9648421" lon="12.6855687"/>
+ <node id="2389155968" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9644717" lon="12.6884577"/>
+ <node id="2389197943" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9642975" lon="12.6856155"/>
+ <node id="2389197944" visible="true" version="1" changeset="17008152" timestamp="2013-07-19T08:02:49Z" user="Andrés31" uid="811230" lat="43.9641137" lon="12.6868053"/>
+ <node id="2389197945" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9642820" lon="12.6855903"/>
+ <node id="2389197946" visible="true" version="1" changeset="17008152" timestamp="2013-07-19T08:02:49Z" user="Andrés31" uid="811230" lat="43.9641079" lon="12.6868885"/>
+ <node id="2389197948" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9640828" lon="12.6871487"/>
+ <node id="2389197950" visible="true" version="1" changeset="17008152" timestamp="2013-07-19T08:02:49Z" user="Andrés31" uid="811230" lat="43.9641351" lon="12.6860607"/>
+ <node id="2389197951" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9635086" lon="12.6889292"/>
+ <node id="2389197954" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9643296" lon="12.6856881"/>
+ <node id="2389197955" visible="true" version="1" changeset="17008152" timestamp="2013-07-19T08:02:49Z" user="Andrés31" uid="811230" lat="43.9640924" lon="12.6870682"/>
+ <node id="2389197956" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9636832" lon="12.6887974"/>
+ <node id="2389197959" visible="true" version="1" changeset="17008152" timestamp="2013-07-19T08:02:49Z" user="Andrés31" uid="811230" lat="43.9640522" lon="12.6857245"/>
+ <node id="2389197960" visible="true" version="1" changeset="17008152" timestamp="2013-07-19T08:02:49Z" user="Andrés31" uid="811230" lat="43.9641384" lon="12.6861337"/>
+ <node id="2389197962" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9636142" lon="12.6888665"/>
+ <node id="2389197963" visible="true" version="1" changeset="17008152" timestamp="2013-07-19T08:02:49Z" user="Andrés31" uid="811230" lat="43.9641370" lon="12.6862195"/>
+ <node id="2389197965" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9643505" lon="12.6858392"/>
+ <node id="2389197967" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9642035" lon="12.6854984"/>
+ <node id="2389197968" visible="true" version="1" changeset="17008152" timestamp="2013-07-19T08:02:49Z" user="Andrés31" uid="811230" lat="43.9641002" lon="12.6869904"/>
+ <node id="2389197969" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9637633" lon="12.6886358"/>
+ <node id="2389197970" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9640719" lon="12.6872267"/>
+ <node id="2389197971" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9643104" lon="12.6856401"/>
+ <node id="2389197972" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9637069" lon="12.6887669"/>
+ <node id="2389197974" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9643497" lon="12.6858067"/>
+ <node id="2389197976" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9637465" lon="12.6886901"/>
+ <node id="2389197977" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9643489" lon="12.6858903"/>
+ <node id="2389197979" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9642474" lon="12.6855414"/>
+ <node id="2389197980" visible="true" version="1" changeset="17008152" timestamp="2013-07-19T08:02:50Z" user="Andrés31" uid="811230" lat="43.9641121" lon="12.6859093"/>
+ <node id="2389197983" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9642268" lon="12.6855200"/>
+ <node id="2389197988" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9637307" lon="12.6887275"/>
+ <node id="2389197989" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9641800" lon="12.6854801"/>
+ <node id="2389197991" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9643433" lon="12.6857412"/>
+ <node id="2389197994" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9643379" lon="12.6859876"/>
+ <node id="2389197996" visible="true" version="3" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9642662" lon="12.6855662"/>
+ <node id="2389197997" visible="true" version="1" changeset="17008152" timestamp="2013-07-19T08:02:50Z" user="Andrés31" uid="811230" lat="43.9640727" lon="12.6857795"/>
+ <node id="2389197998" visible="true" version="1" changeset="17008152" timestamp="2013-07-19T08:02:50Z" user="Andrés31" uid="811230" lat="43.9640969" lon="12.6858515"/>
+ <node id="2389197999" visible="true" version="1" changeset="17008152" timestamp="2013-07-19T08:02:50Z" user="Andrés31" uid="811230" lat="43.9641262" lon="12.6859812"/>
+ <node id="4503303472" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9621766" lon="12.6842075">
+  <tag k="raceway" v="start-finish"/>
+ </node>
+ <node id="5895842571" visible="true" version="1" changeset="62445029" timestamp="2018-09-10T08:33:29Z" user="L987" uid="506470" lat="43.9601403" lon="12.6832178"/>
+ <node id="5895842572" visible="true" version="1" changeset="62445029" timestamp="2018-09-10T08:33:29Z" user="L987" uid="506470" lat="43.9635342" lon="12.6852505"/>
+ <node id="9129207546" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9581160" lon="12.6798077"/>
+ <node id="9129207547" visible="true" version="1" changeset="111810696" timestamp="2021-09-28T10:15:02Z" user="Lyon-St-Clair" uid="9060372" lat="43.9602140" lon="12.6810686"/>
+ <node id="9380415099" visible="true" version="1" changeset="115585640" timestamp="2021-12-30T22:50:54Z" user="Samuele Battarra" uid="51179" lat="43.9633998" lon="12.6851631"/>
+ <node id="9384463561" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9628033" lon="12.6846050"/>
+ <node id="9384463571" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9582018" lon="12.6775119"/>
+ <node id="9384463596" visible="true" version="5" changeset="180663703" timestamp="2026-03-31T09:33:22Z" user="Francesco Zanaboni" uid="11979968" lat="43.9631708" lon="12.6795990"/>
+ <node id="9384463610" visible="true" version="4" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179" lat="43.9647831" lon="12.6860675"/>
+ <node id="9384530429" visible="true" version="1" changeset="115652510" timestamp="2022-01-01T21:55:52Z" user="Samuele Battarra" uid="51179" lat="43.9594071" lon="12.6827532"/>
+ <way id="1784572" visible="true" version="29" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179">
+  <nd ref="271641330"/>
+  <nd ref="271641328"/>
+  <nd ref="7594492"/>
+  <nd ref="2388879914"/>
+  <nd ref="2388879930"/>
+  <nd ref="2388879917"/>
+  <nd ref="2388879931"/>
+  <nd ref="2388879934"/>
+  <nd ref="2388879939"/>
+  <nd ref="2388879920"/>
+  <nd ref="2388879940"/>
+  <nd ref="271641325"/>
+  <nd ref="271641322"/>
+  <nd ref="2388879922"/>
+  <nd ref="2388879915"/>
+  <nd ref="2388879911"/>
+  <nd ref="2388879918"/>
+  <nd ref="271641321"/>
+  <nd ref="2388879912"/>
+  <nd ref="2388879916"/>
+  <nd ref="2388879924"/>
+  <nd ref="2388879923"/>
+  <nd ref="2388879938"/>
+  <nd ref="7594483"/>
+  <nd ref="2388879910"/>
+  <nd ref="2388879919"/>
+  <nd ref="2388879921"/>
+  <nd ref="2388879925"/>
+  <nd ref="2388879928"/>
+  <nd ref="271641319"/>
+  <nd ref="2388879929"/>
+  <nd ref="2388879913"/>
+  <nd ref="271641317"/>
+  <nd ref="271641316"/>
+  <nd ref="7594481"/>
+  <nd ref="2388879933"/>
+  <nd ref="2388879926"/>
+  <nd ref="831486892"/>
+  <nd ref="2388879927"/>
+  <nd ref="2388879935"/>
+  <nd ref="2388879932"/>
+  <nd ref="7594466"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Curva Quercia"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="230354597" visible="true" version="10" changeset="111810696" timestamp="2021-09-28T10:15:02Z" user="Lyon-St-Clair" uid="9060372">
+  <nd ref="2389197970"/>
+  <nd ref="2389197948"/>
+  <nd ref="2389197955"/>
+  <nd ref="2389197968"/>
+  <nd ref="2389197946"/>
+  <nd ref="2389197944"/>
+  <nd ref="2389197963"/>
+  <nd ref="2389197960"/>
+  <nd ref="2389197950"/>
+  <nd ref="2389197999"/>
+  <nd ref="2389197980"/>
+  <nd ref="2389197998"/>
+  <nd ref="2389197997"/>
+  <nd ref="2389197959"/>
+  <nd ref="831487067"/>
+  <nd ref="831486979"/>
+  <nd ref="831486894"/>
+  <nd ref="831487021"/>
+  <nd ref="831486941"/>
+  <nd ref="831486850"/>
+  <nd ref="831486988"/>
+  <nd ref="831486913"/>
+  <nd ref="5895842572"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="624263844" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179">
+  <nd ref="7594380"/>
+  <nd ref="2389155919"/>
+  <nd ref="271641423"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="624263845" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179">
+  <nd ref="271641453"/>
+  <nd ref="9384463610"/>
+  <nd ref="7594386"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="624263846" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179">
+  <nd ref="271641404"/>
+  <nd ref="2389155957"/>
+  <nd ref="271641403"/>
+  <nd ref="2389197951"/>
+  <nd ref="831486915"/>
+  <nd ref="2389197962"/>
+  <nd ref="7594323"/>
+  <nd ref="2389197956"/>
+  <nd ref="2389197972"/>
+  <nd ref="2389197988"/>
+  <nd ref="2389197976"/>
+  <nd ref="2389197969"/>
+  <nd ref="271641400"/>
+  <nd ref="2389197970"/>
+  <nd ref="7473413"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="624263847" visible="true" version="6" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179">
+  <nd ref="7594386"/>
+  <nd ref="2389155968"/>
+  <nd ref="271641446"/>
+  <nd ref="2389155932"/>
+  <nd ref="271641444"/>
+  <nd ref="2389155965"/>
+  <nd ref="2389155944"/>
+  <nd ref="2389155909"/>
+  <nd ref="7594380"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="624263848" visible="true" version="6" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179">
+  <nd ref="7594555"/>
+  <nd ref="9129207547"/>
+  <nd ref="271641336"/>
+  <nd ref="2388672068"/>
+  <nd ref="2388672050"/>
+  <nd ref="7594521"/>
+  <nd ref="271641332"/>
+  <nd ref="271641330"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="624263849" visible="true" version="6" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179">
+  <nd ref="831487072"/>
+  <nd ref="831487051"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="624263850" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179">
+  <nd ref="271641351"/>
+  <nd ref="9384463571"/>
+  <nd ref="831486867"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="624263851" visible="true" version="9" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179">
+  <nd ref="271641386"/>
+  <nd ref="9384463561"/>
+  <nd ref="4503303472"/>
+  <nd ref="2388879936"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="624263852" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179">
+  <nd ref="7594466"/>
+  <nd ref="945402773"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="624263853" visible="true" version="6" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179">
+  <nd ref="831487051"/>
+  <nd ref="831487029"/>
+  <nd ref="831486912"/>
+  <nd ref="2388665471"/>
+  <nd ref="2388665476"/>
+  <nd ref="831486986"/>
+  <nd ref="831487074"/>
+  <nd ref="2388665473"/>
+  <nd ref="2388665469"/>
+  <nd ref="2388665474"/>
+  <nd ref="2388665465"/>
+  <nd ref="2388665478"/>
+  <nd ref="7594555"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Variante Arena"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="624263854" visible="true" version="8" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179">
+  <nd ref="831486867"/>
+  <nd ref="831486961"/>
+  <nd ref="831486871"/>
+  <nd ref="831487004"/>
+  <nd ref="831486919"/>
+  <nd ref="2388661555"/>
+  <nd ref="2388661670"/>
+  <nd ref="2388661576"/>
+  <nd ref="2388661681"/>
+  <nd ref="2388661567"/>
+  <nd ref="2388661583"/>
+  <nd ref="2388661661"/>
+  <nd ref="2388661635"/>
+  <nd ref="2388661623"/>
+  <nd ref="831487055"/>
+  <nd ref="2388661679"/>
+  <nd ref="2388661559"/>
+  <nd ref="2388661629"/>
+  <nd ref="2388661705"/>
+  <nd ref="2388661698"/>
+  <nd ref="831486976"/>
+  <nd ref="2388661564"/>
+  <nd ref="2388665475"/>
+  <nd ref="831486887"/>
+  <nd ref="2388665472"/>
+  <nd ref="831487011"/>
+  <nd ref="2388665470"/>
+  <nd ref="831486939"/>
+  <nd ref="2388665466"/>
+  <nd ref="2388665477"/>
+  <nd ref="2388665468"/>
+  <nd ref="2388665467"/>
+  <nd ref="831487072"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Curva del Rio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="624263855" visible="true" version="9" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179">
+  <nd ref="2388879936"/>
+  <nd ref="7594621"/>
+  <nd ref="271641377"/>
+  <nd ref="831486878"/>
+  <nd ref="2388661699"/>
+  <nd ref="2388661611"/>
+  <nd ref="2388661647"/>
+  <nd ref="2388661660"/>
+  <nd ref="956982341"/>
+  <nd ref="956982333"/>
+  <nd ref="2388661560"/>
+  <nd ref="2388661689"/>
+  <nd ref="2388661616"/>
+  <nd ref="831486900"/>
+  <nd ref="271641362"/>
+  <nd ref="7594593"/>
+  <nd ref="271641360"/>
+  <nd ref="2388661622"/>
+  <nd ref="2388661694"/>
+  <nd ref="2388661591"/>
+  <nd ref="271641359"/>
+  <nd ref="2388661596"/>
+  <nd ref="2388661665"/>
+  <nd ref="2388661656"/>
+  <nd ref="2388661674"/>
+  <nd ref="2388661667"/>
+  <nd ref="2388661556"/>
+  <nd ref="2388661650"/>
+  <nd ref="2388661630"/>
+  <nd ref="7594587"/>
+  <nd ref="2388661640"/>
+  <nd ref="2388661644"/>
+  <nd ref="2388661675"/>
+  <nd ref="2388661697"/>
+  <nd ref="2388661631"/>
+  <nd ref="2388661628"/>
+  <nd ref="2388661605"/>
+  <nd ref="2388661565"/>
+  <nd ref="7594579"/>
+  <nd ref="271641354"/>
+  <nd ref="2388661563"/>
+  <nd ref="2388661592"/>
+  <nd ref="2388661633"/>
+  <nd ref="2388661702"/>
+  <nd ref="271641353"/>
+  <nd ref="2388661587"/>
+  <nd ref="9129207546"/>
+  <nd ref="7594574"/>
+  <nd ref="2388661653"/>
+  <nd ref="2388661643"/>
+  <nd ref="2388661632"/>
+  <nd ref="271641351"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Variante del Parco"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="624263856" visible="true" version="4" changeset="111810696" timestamp="2021-09-28T10:15:02Z" user="Lyon-St-Clair" uid="9060372">
+  <nd ref="7473413"/>
+  <nd ref="2389197994"/>
+  <nd ref="271641390"/>
+  <nd ref="2389197977"/>
+  <nd ref="2389197965"/>
+  <nd ref="2389197974"/>
+  <nd ref="271641389"/>
+  <nd ref="2389197991"/>
+  <nd ref="7473410"/>
+  <nd ref="2389197954"/>
+  <nd ref="271641387"/>
+  <nd ref="2389197971"/>
+  <nd ref="2389197943"/>
+  <nd ref="2389197945"/>
+  <nd ref="2389197996"/>
+  <nd ref="2389197979"/>
+  <nd ref="2389197983"/>
+  <nd ref="2389197967"/>
+  <nd ref="2389197989"/>
+  <nd ref="271641386"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Curva Misano"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="624263857" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179">
+  <nd ref="271641423"/>
+  <nd ref="2389155925"/>
+  <nd ref="7594368"/>
+  <nd ref="2389155934"/>
+  <nd ref="2389155914"/>
+  <nd ref="2389155963"/>
+  <nd ref="2389155947"/>
+  <nd ref="271641420"/>
+  <nd ref="2389155953"/>
+  <nd ref="2389155926"/>
+  <nd ref="2389155938"/>
+  <nd ref="7594365"/>
+  <nd ref="7594356"/>
+  <nd ref="271641412"/>
+  <nd ref="2389155905"/>
+  <nd ref="2389155927"/>
+  <nd ref="2389155923"/>
+  <nd ref="2389155901"/>
+  <nd ref="271641410"/>
+  <nd ref="2389155939"/>
+  <nd ref="2389155929"/>
+  <nd ref="2389155961"/>
+  <nd ref="7594354"/>
+  <nd ref="2389155960"/>
+  <nd ref="2389155912"/>
+  <nd ref="2389155942"/>
+  <nd ref="271641409"/>
+  <nd ref="2389155937"/>
+  <nd ref="2389155903"/>
+  <nd ref="2389155945"/>
+  <nd ref="2389155948"/>
+  <nd ref="271641407"/>
+  <nd ref="2389155941"/>
+  <nd ref="2389155950"/>
+  <nd ref="2389155915"/>
+  <nd ref="2389155940"/>
+  <nd ref="7594346"/>
+  <nd ref="2389155921"/>
+  <nd ref="271641406"/>
+  <nd ref="2389155955"/>
+  <nd ref="2389155906"/>
+  <nd ref="2389155933"/>
+  <nd ref="2389155962"/>
+  <nd ref="2389155959"/>
+  <nd ref="271641404"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Curva del Carro"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="624263858" visible="true" version="6" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179">
+  <nd ref="271641454"/>
+  <nd ref="2389155911"/>
+  <nd ref="831487047"/>
+  <nd ref="2389155946"/>
+  <nd ref="7594403"/>
+  <nd ref="2389155951"/>
+  <nd ref="2389155967"/>
+  <nd ref="271641453"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Curvone"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="624263859" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179">
+  <nd ref="7594428"/>
+  <nd ref="9384463596"/>
+  <nd ref="271641454"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="624263860" visible="true" version="7" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179">
+  <nd ref="945402773"/>
+  <nd ref="2388882054"/>
+  <nd ref="2388882055"/>
+  <nd ref="2388882053"/>
+  <nd ref="2388882056"/>
+  <nd ref="2388882052"/>
+  <nd ref="2388882057"/>
+  <nd ref="271641296"/>
+  <nd ref="271641291"/>
+  <nd ref="7594447"/>
+  <nd ref="831487019"/>
+  <nd ref="2388891175"/>
+  <nd ref="2388891174"/>
+  <nd ref="2388891204"/>
+  <nd ref="2388891177"/>
+  <nd ref="2388891202"/>
+  <nd ref="2388891188"/>
+  <nd ref="2388891194"/>
+  <nd ref="2388891173"/>
+  <nd ref="2388891201"/>
+  <nd ref="2388891199"/>
+  <nd ref="2388891182"/>
+  <nd ref="2388891180"/>
+  <nd ref="2388891206"/>
+  <nd ref="2388891189"/>
+  <nd ref="7594440"/>
+  <nd ref="2388891195"/>
+  <nd ref="2388891203"/>
+  <nd ref="271641290"/>
+  <nd ref="2388891178"/>
+  <nd ref="2388891190"/>
+  <nd ref="2388891183"/>
+  <nd ref="2388891207"/>
+  <nd ref="2388891200"/>
+  <nd ref="2388891191"/>
+  <nd ref="2388891176"/>
+  <nd ref="2388891205"/>
+  <nd ref="2388891184"/>
+  <nd ref="2388891196"/>
+  <nd ref="2388891181"/>
+  <nd ref="7594434"/>
+  <nd ref="271641300"/>
+  <nd ref="2388891186"/>
+  <nd ref="2388891192"/>
+  <nd ref="2388891187"/>
+  <nd ref="2388891179"/>
+  <nd ref="2388891197"/>
+  <nd ref="2388891193"/>
+  <nd ref="2388891198"/>
+  <nd ref="2388891185"/>
+  <nd ref="7594428"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Curva Tramonto"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="624348303" visible="true" version="6" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179">
+  <nd ref="5895842571"/>
+  <nd ref="2388661666"/>
+  <nd ref="9384530429"/>
+  <nd ref="2388661676"/>
+  <nd ref="2388661598"/>
+  <nd ref="2388661638"/>
+  <nd ref="2388661682"/>
+  <nd ref="2388661655"/>
+  <nd ref="2388661620"/>
+  <nd ref="2388661574"/>
+  <nd ref="2388661659"/>
+  <nd ref="2388661641"/>
+  <nd ref="2388661589"/>
+  <nd ref="2388661570"/>
+  <nd ref="2388661581"/>
+  <nd ref="2388661701"/>
+  <nd ref="2388661683"/>
+  <nd ref="2388661648"/>
+  <nd ref="2388661609"/>
+  <nd ref="2388661695"/>
+  <nd ref="2388661636"/>
+  <nd ref="2388661585"/>
+  <nd ref="2388661645"/>
+  <nd ref="2388661658"/>
+  <nd ref="2388661599"/>
+  <nd ref="2388661554"/>
+  <nd ref="2388661693"/>
+  <nd ref="2388661578"/>
+  <nd ref="2388661642"/>
+  <nd ref="2388661654"/>
+  <nd ref="2388661677"/>
+  <nd ref="2388661691"/>
+  <nd ref="2388661671"/>
+  <nd ref="2388661572"/>
+  <nd ref="2388661568"/>
+  <nd ref="2388661569"/>
+  <nd ref="2388661580"/>
+  <nd ref="2388661625"/>
+  <nd ref="2388661664"/>
+  <nd ref="2388661634"/>
+  <nd ref="271641351"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="624348305" visible="true" version="4" changeset="115585640" timestamp="2021-12-30T22:50:54Z" user="Samuele Battarra" uid="51179">
+  <nd ref="5895842572"/>
+  <nd ref="9380415099"/>
+  <nd ref="831487033"/>
+  <nd ref="831486960"/>
+  <nd ref="831486870"/>
+  <nd ref="831487003"/>
+  <nd ref="831486918"/>
+  <nd ref="831487054"/>
+  <nd ref="956982413"/>
+  <nd ref="2388661687"/>
+  <nd ref="2388661627"/>
+  <nd ref="2388661704"/>
+  <nd ref="2388661703"/>
+  <nd ref="5895842571"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <relation id="8671383" visible="true" version="5" changeset="164745185" timestamp="2025-04-09T22:47:09Z" user="Samuele Battarra" uid="51179">
+  <member type="node" ref="4503303472" role="start"/>
+  <member type="way" ref="624263854" role=""/>
+  <member type="way" ref="624263850" role=""/>
+  <member type="way" ref="624263855" role=""/>
+  <member type="way" ref="624263851" role=""/>
+  <member type="way" ref="624263856" role=""/>
+  <member type="way" ref="624263846" role=""/>
+  <member type="way" ref="624263857" role=""/>
+  <member type="way" ref="624263844" role=""/>
+  <member type="way" ref="624263847" role=""/>
+  <member type="way" ref="624263845" role=""/>
+  <member type="way" ref="624263858" role=""/>
+  <member type="way" ref="624263859" role=""/>
+  <member type="way" ref="624263860" role=""/>
+  <member type="way" ref="624263852" role=""/>
+  <member type="way" ref="1784572" role=""/>
+  <member type="way" ref="624263848" role=""/>
+  <member type="way" ref="624263853" role=""/>
+  <member type="way" ref="624263849" role=""/>
+  <member type="way" ref="230354597" role="pit_lane"/>
+  <member type="way" ref="624348305" role="pit_lane"/>
+  <member type="way" ref="624348303" role="pit_lane"/>
+  <tag k="name" v="Misano World Circuit"/>
+  <tag k="type" v="circuit"/>
+ </relation>
+</osm>

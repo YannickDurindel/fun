@@ -1,0 +1,15 @@
+{
+  "id": "sepang",
+  "name": "Sepang",
+  "grand_prix": "Sepang",
+  "country": "Malaysia",
+  "country_code": "MY",
+  "city": "Sepang",
+  "length_m": 5543,
+  "turns": 15,
+  "scene": "res://scenes/tracks/sepang.tscn",
+  "track_json": "res://assets/tracks/sepang/track.json",
+  "osm_relation": 284496,
+  "available": true,
+  "series": "circuit"
+}

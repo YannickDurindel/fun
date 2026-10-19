@@ -44,7 +44,9 @@ SERIES_CALENDARS = {
               "german_touring", "aus_touring", "nascar", "rally", "rallycross", "rally_raid", "hill_climb", "drift",
               "karting")
 }
-SERIES = {"f1"} | set(SERIES_CALENDARS)
+# "circuit": a circuit built only for other series' events (their calendar entry links it with
+# "track"); no series lists it on its own, so it is not in the F1 list either.
+SERIES = {"f1", "circuit"} | set(SERIES_CALENDARS)
 RECIPE_DIR = os.path.join(ROOT, "tools", "track", "tracks")
 
 TOP_KEYS = {"id", "series", "name", "full_name", "grand_prix", "country", "country_code", "city", "length_m",

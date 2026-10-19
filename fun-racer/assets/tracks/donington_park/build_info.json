@@ -1,0 +1,330 @@
+{
+ "id": "donington_park",
+ "recipe": "tools/track/tracks/donington_park.toml",
+ "osm": {
+  "relation": 51165,
+  "loop_ways": [
+   841515343,
+   841515319,
+   841515320,
+   841515321,
+   841515324,
+   28381201,
+   842454048,
+   841515326,
+   841515325,
+   841515314,
+   242867013,
+   841515315,
+   842454041,
+   842454046,
+   841515305,
+   841515306,
+   841515342
+  ],
+  "raw_length_m": 3999.9,
+  "length_m": 3996.6,
+  "official_length_m": 4020.0,
+  "length_error": -0.00583,
+  "candidates": [
+   {
+    "length_m": 3999.9,
+    "ways": [
+     841515343,
+     841515319,
+     841515320,
+     841515321,
+     841515324,
+     28381201,
+     842454048,
+     841515326,
+     841515325,
+     841515314,
+     242867013,
+     841515315,
+     842454041,
+     842454046,
+     841515305,
+     841515306,
+     841515342
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 34.69,
+  "max_grade": 0.0582,
+  "min_grade": -0.0681,
+  "origin_m": 90.04
+ },
+ "turns": {
+  "official": 12,
+  "mode": "auto",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Redgate",
+    "direction": "right",
+    "s_apex": 340.0,
+    "min_radius": 38.7
+   },
+   {
+    "id": "T2",
+    "name": "Hollywood",
+    "direction": "right",
+    "s_apex": 519.1,
+    "min_radius": 84.6
+   },
+   {
+    "id": "T3",
+    "name": "Craner Curves",
+    "direction": "right",
+    "s_apex": 706.2,
+    "min_radius": 157.3
+   },
+   {
+    "id": "T4",
+    "name": "Craner Curves",
+    "direction": "left",
+    "s_apex": 826.9,
+    "min_radius": 63.1
+   },
+   {
+    "id": "T5",
+    "name": "Old Hairpin",
+    "direction": "right",
+    "s_apex": 1082.5,
+    "min_radius": 43.7
+   },
+   {
+    "id": "T6",
+    "name": "Starkey's Bridge",
+    "direction": "left",
+    "s_apex": 1291.7,
+    "min_radius": 52.5
+   },
+   {
+    "id": "T7",
+    "name": "Turn 7",
+    "direction": "left",
+    "s_apex": 1563.3,
+    "min_radius": 101.9
+   },
+   {
+    "id": "T8",
+    "name": "McLeans",
+    "direction": "right",
+    "s_apex": 1730.3,
+    "min_radius": 40.0
+   },
+   {
+    "id": "T9",
+    "name": "Coppice",
+    "direction": "right",
+    "s_apex": 2054.3,
+    "min_radius": 41.3
+   },
+   {
+    "id": "T10",
+    "name": "Coppice",
+    "direction": "right",
+    "s_apex": 2118.6,
+    "min_radius": 71.0
+   },
+   {
+    "id": "T11",
+    "name": "Coppice",
+    "direction": "right",
+    "s_apex": 2173.0,
+    "min_radius": 83.7
+   },
+   {
+    "id": "T12",
+    "name": "Fogarty's",
+    "direction": "left",
+    "s_apex": 2794.7,
+    "min_radius": 23.3
+   },
+   {
+    "id": "T13",
+    "name": "Fogarty's",
+    "direction": "right",
+    "s_apex": 2830.9,
+    "min_radius": 34.1
+   },
+   {
+    "id": "T14",
+    "name": "Melbourne Hairpin",
+    "direction": "right",
+    "s_apex": 3319.8,
+    "min_radius": 18.0
+   },
+   {
+    "id": "T15",
+    "name": "Goddards",
+    "direction": "left",
+    "s_apex": 3700.1,
+    "min_radius": 23.2
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 340.0,
+    "direction": "right",
+    "angle_deg": 115.3,
+    "kind": "corner",
+    "min_radius": 38.7,
+    "used": true
+   },
+   {
+    "s_apex": 519.1,
+    "direction": "right",
+    "angle_deg": 39.0,
+    "kind": "corner",
+    "min_radius": 84.6,
+    "used": true
+   },
+   {
+    "s_apex": 643.8,
+    "direction": "right",
+    "angle_deg": 10.9,
+    "kind": "kink",
+    "min_radius": 158.4,
+    "used": false
+   },
+   {
+    "s_apex": 706.2,
+    "direction": "right",
+    "angle_deg": 16.8,
+    "kind": "corner",
+    "min_radius": 157.3,
+    "used": true
+   },
+   {
+    "s_apex": 826.9,
+    "direction": "left",
+    "angle_deg": 43.6,
+    "kind": "corner",
+    "min_radius": 63.1,
+    "used": true
+   },
+   {
+    "s_apex": 973.8,
+    "direction": "right",
+    "angle_deg": 11.3,
+    "kind": "kink",
+    "min_radius": 153.5,
+    "used": false
+   },
+   {
+    "s_apex": 1082.5,
+    "direction": "right",
+    "angle_deg": 59.5,
+    "kind": "corner",
+    "min_radius": 43.7,
+    "used": true
+   },
+   {
+    "s_apex": 1291.7,
+    "direction": "left",
+    "angle_deg": 30.3,
+    "kind": "corner",
+    "min_radius": 52.5,
+    "used": true
+   },
+   {
+    "s_apex": 1366.2,
+    "direction": "left",
+    "angle_deg": 11.6,
+    "kind": "kink",
+    "min_radius": 254.0,
+    "used": false
+   },
+   {
+    "s_apex": 1563.3,
+    "direction": "left",
+    "angle_deg": 34.0,
+    "kind": "corner",
+    "min_radius": 101.9,
+    "used": true
+   },
+   {
+    "s_apex": 1730.3,
+    "direction": "right",
+    "angle_deg": 91.4,
+    "kind": "corner",
+    "min_radius": 40.0,
+    "used": true
+   },
+   {
+    "s_apex": 2054.3,
+    "direction": "right",
+    "angle_deg": 59.8,
+    "kind": "corner",
+    "min_radius": 41.3,
+    "used": true
+   },
+   {
+    "s_apex": 2118.6,
+    "direction": "right",
+    "angle_deg": 26.4,
+    "kind": "corner",
+    "min_radius": 71.0,
+    "used": true
+   },
+   {
+    "s_apex": 2173.0,
+    "direction": "right",
+    "angle_deg": 38.3,
+    "kind": "corner",
+    "min_radius": 83.7,
+    "used": true
+   },
+   {
+    "s_apex": 2794.7,
+    "direction": "left",
+    "angle_deg": 70.2,
+    "kind": "corner",
+    "min_radius": 23.3,
+    "used": true
+   },
+   {
+    "s_apex": 2830.9,
+    "direction": "right",
+    "angle_deg": 65.1,
+    "kind": "corner",
+    "min_radius": 34.1,
+    "used": true
+   },
+   {
+    "s_apex": 3319.8,
+    "direction": "right",
+    "angle_deg": 178.4,
+    "kind": "corner",
+    "min_radius": 18.0,
+    "used": true
+   },
+   {
+    "s_apex": 3595.5,
+    "direction": "right",
+    "angle_deg": 8.0,
+    "kind": "kink",
+    "min_radius": 322.5,
+    "used": false
+   },
+   {
+    "s_apex": 3700.1,
+    "direction": "left",
+    "angle_deg": 171.0,
+    "kind": "corner",
+    "min_radius": 23.2,
+    "used": true
+   }
+  ]
+ },
+ "warnings": [
+  "turn detection found 15 turns (15 corners, 4 kinks) but the official count is 12: check the plot and, if needed, pin the turns with [[turn]] entries (id, name, direction, s) in the recipe"
+ ]
+}
