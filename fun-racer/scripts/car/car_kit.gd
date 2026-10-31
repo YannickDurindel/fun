@@ -273,6 +273,7 @@ const FORMULA_E_KIT := {
 		Vector3(-0.702, 0.0, 1.485), Vector3(0.702, 0.0, 1.485),
 	],
 	"open_wheel_parts": true,
+	"sound": "electric",   # electric drivetrain whine instead of the combustion engine
 	"sim_spec": "res://assets/car/specs/formula_e.tres",
 	"collision_length": 4.9,
 	# The Car's arcade tuning of an electric street racer (860 kg with the driver, 350 kW, no
@@ -529,6 +530,16 @@ const KITS := {
 }
 
 const BODY_MOTION := preload("res://scripts/car/body_motion.gd")
+
+## CarKit "sound" profile of an electric drivetrain (engine_audio.gd -> electric_synth.gd).
+const SOUND_ELECTRIC := "electric"
+
+## The kit's sound profile: "" for the combustion engine (every kit without "sound"),
+## SOUND_ELECTRIC for an electric car.
+static func sound(kit: String) -> String:
+	if KITS.has(kit):
+		return String(KITS[kit].get("sound", ""))
+	return ""
 
 ## Kit of the series a track belongs to.
 static func for_track(track_id: String) -> String:

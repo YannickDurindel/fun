@@ -16,10 +16,14 @@ extends Node3D
 ## the simulation car gets the turbo-hybrid V6 (lower, with whistle, shift cut, lift-off
 ## crackle and limiter stutter) over its own rev range, and its tyre screech comes from each
 ## wheel's real slip (wheelspin, lock-up, sliding) instead of the arcade drift flag.
+## Sound profile: a kit with "sound": "electric" (CarKit.sound, the Formula E car) swaps the
+## combustion synth for electric_synth.gd (motor, inverter and gear whine, no shift cut or
+## crack); every other kit keeps the engine above. Tyre, wind and kerb loops are shared.
 ## Players are non-positional (the camera is always near the car); this node still follows the
 ## car's position so positional children could be added later.
 
 const EngineSynth := preload("res://scripts/audio/engine_synth.gd")
+const ElectricSynth := preload("res://scripts/audio/electric_synth.gd")
 const AudioLoops := preload("res://scripts/audio/audio_loops.gd")
 const TyreSlip := preload("res://scripts/fx/tyre_slip.gd")
 ## Simulation: patch sliding speed (m/s) at which one wheel screeches at full volume.
@@ -96,9 +100,11 @@ var whoosh_pitch: float:
 		return _whoosh_player.pitch_scale if _whoosh_player else 1.0
 ## Upshifts heard so far (each one cuts the engine for a moment).
 var shift_cuts: int = 0
+## CarKit sound profile in use ("" = combustion engine, "electric").
+var sound_profile: String = ""
 
 var _car: Car
-var _synth: EngineSynth
+var _synth: RefCounted   ## EngineSynth or ElectricSynth (same interface)
 var _engine_player: AudioStreamPlayer
 var _screech_player: AudioStreamPlayer
 var _wind_player: AudioStreamPlayer
@@ -161,6 +167,24 @@ func _ready() -> void:
 ## may move the limiter). The car's model is fixed once it is in the tree, so the switch
 ## happens at most once.
 func _apply_character() -> void:
+	var profile := CarKit.sound(_car.kit) if _car != null and is_instance_valid(_car) else ""
+	if profile != sound_profile:
+		sound_profile = profile
+		_v6 = false
+		if profile == CarKit.SOUND_ELECTRIC:
+			_synth = ElectricSynth.new(mix_rate)
+		else:
+			_synth = EngineSynth.new(mix_rate, 12)
+		_synth.reset(_car.rpm if _car != null and is_instance_valid(_car) else 0.0, 0.0)
+	if profile == CarKit.SOUND_ELECTRIC:
+		var lo := _car.idle_rpm
+		var hi := Car.MAX_RPM
+		if _car.sim != null and _car.sim.spec != null:
+			lo = _car.sim.spec.rpm_idle
+			hi = _car.sim.spec.rpm_max
+		if _synth.rpm_high != hi or _synth.rpm_low != lo:
+			_synth.set_rev_range(lo, hi)
+		return
 	var sim_car := _car != null and is_instance_valid(_car) and _car.sim != null and _car.sim.spec != null
 	if sim_car:
 		var spec := _car.sim.spec
@@ -204,7 +228,9 @@ func _process(delta: float) -> void:
 			if st != null:
 				pedal = st.in_brake if _car.gear < 0 else st.in_throttle
 				throttle = st.in_brake if _car.gear < 0 else st.throttle
-		if _car.gear > _last_gear and _last_gear >= 1:
+		if sound_profile == CarKit.SOUND_ELECTRIC:
+			pass   # single speed: no ignition cut, crack or blip
+		elif _car.gear > _last_gear and _last_gear >= 1:
 			_synth.shift_cut()
 			shift_cuts += 1
 		elif _car.gear < _last_gear and _car.gear >= 1 and throttle < 0.5:

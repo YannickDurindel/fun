@@ -4,6 +4,7 @@ extends TestCase
 ## Scene-level waits are wall-clock based (the smoothing is time based, not frame based).
 
 const EngineSynth := preload("res://scripts/audio/engine_synth.gd")
+const ElectricSynth := preload("res://scripts/audio/electric_synth.gd")
 
 func _audio(main: Node) -> Node:
 	return main.get_node("EngineAudio")
@@ -221,3 +222,65 @@ func _seconds(t: float) -> void:
 	var end := Time.get_ticks_msec() + int(t * 1000.0)
 	while Time.get_ticks_msec() < end:
 		await get_tree().process_frame
+
+## Sound profiles: only the Formula E kit is electric; every other kit keeps the engine.
+func test_kit_sound_profiles() -> void:
+	assert_true(CarKit.sound(CarKit.FORMULA_E) == CarKit.SOUND_ELECTRIC, "Formula E is electric")
+	for kit: String in CarKit.KITS:
+		if kit != CarKit.FORMULA_E:
+			assert_true(CarKit.sound(kit) == "", "%s keeps the combustion engine" % kit)
+	assert_true(CarKit.sound(CarKit.F1) == "", "F1 keeps the combustion engine")
+
+## Electric synth: the motor whine follows motor speed, the transmission whine sits at the
+## gear-mesh order, the inverter carrier is heard at low speed, and shifts make no cut.
+func test_electric_synth_whine() -> void:
+	var s := ElectricSynth.new(24000.0)
+	s.set_rev_range(2000.0, 11000.0)
+	s.reset(3000.0, 1.0)
+	var f_low := s.freq_hz
+	s.reset(9000.0, 1.0)
+	var f_high := s.freq_hz
+	assert_true(f_high > f_low * 2.0, "whine rises with motor speed: %.0f -> %.0f" % [f_low, f_high])
+	var on := _electric_at(9000.0)
+	var f0 := f_high
+	var off_band := maxf(_power_at(on, f0 * 0.83, 24000.0), _power_at(on, f0 * 1.17, 24000.0))
+	assert_true(_power_at(on, f0, 24000.0) > off_band * 20.0, "motor order is a clear tone")
+	var fg := f0 * ElectricSynth.GEAR_RATIO
+	assert_true(_power_at(on, fg, 24000.0) > _power_at(on, fg * 1.1, 24000.0) * 10.0, "gear whine at the mesh order")
+	var low := _electric_at(3000.0)
+	var fc := ElectricSynth.carrier_hz(3000.0 / 11000.0)
+	assert_true(_power_at(low, fc, 24000.0) > _power_at(low, fc * 1.1, 24000.0) * 10.0,
+			"inverter carrier heard at low speed")
+	s.shift_cut()
+	assert_true(not s.is_shift_cut(), "no shift cut on an electric car")
+
+func _electric_at(rpm: float) -> PackedVector2Array:
+	var s := ElectricSynth.new(24000.0)
+	s.set_rev_range(2000.0, 11000.0)
+	s.reset(rpm, 1.0)
+	var out := PackedVector2Array()
+	for k in 30:
+		s.update(1.0 / 60.0, rpm, 1.0)
+		out.append_array(s.render(400))
+	return out
+
+## In the scene: a car wearing the Formula E kit gets the electric profile (no cylinders, no
+## shift cuts); the default car keeps the engine.
+func test_formula_e_car_is_electric() -> void:
+	var main := spawn("res://scenes/main.tscn")
+	var car := main.get_node("Car") as Car
+	var audio := _audio(main)
+	await _seconds(0.1)
+	assert_true(audio.sound_profile == "", "default car is combustion")
+	assert_true(audio.engine_cylinders > 0, "default car has cylinders")
+	CarKit.apply(car, CarKit.FORMULA_E)
+	await _seconds(0.2)
+	assert_true(audio.sound_profile == CarKit.SOUND_ELECTRIC, "Formula E car is electric")
+	assert_true(audio.engine_cylinders == 0, "no cylinders")
+	var cuts: int = audio.shift_cuts
+	car.gear = 1
+	await get_tree().process_frame
+	car.gear = 2
+	await _seconds(0.1)
+	assert_true(audio.shift_cuts == cuts, "no shift crack on the electric car")
+	assert_true(audio.engine_freq_hz > 0.0, "the motor whine is playing")
