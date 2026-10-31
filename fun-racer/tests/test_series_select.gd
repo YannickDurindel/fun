@@ -62,19 +62,21 @@ func test_catalog() -> void:
 	assert_true(ids.find("endurance") == 1, "the playable series come first")
 
 func test_play_flow() -> void:
-	# A permanent locked endurance fixture: every real endurance event is built now.
+	# Permanent locked fixtures (endurance, motorcycles): every series has a car now and real
+	# events get built, so the locked cases cannot rely on the real calendars.
 	TrackCatalog.set_extra_dirs(PackedStringArray(["res://tests/fixtures/locked_tracks"]))
 	var menu := await _open()
 	var screen := menu.current as SeriesSelectScreen
 	assert_true(screen != null and screen.cards.size() == SeriesCatalog.all().size(), "one card per series")
 	assert_true(get_viewport().gui_get_focus_owner() == screen.card_for("f1"), "F1 is pre-focused")
-	# A coming-soon series opens its calendar, every event locked.
+	# A series opens its calendar: its coming-soon events are listed but locked.
 	screen.card_for("moto").pressed.emit()
 	assert_true(menu.current_name == "tracks", "Motorcycle GP opens its calendar")
-	var stock := menu.current as TrackSelectScreen
-	assert_true(stock.cards.size() == SeriesCatalog.tracks("moto").size() and stock.cards.size() > 20, "lists the motorcycle events")
-	var first := stock.cards[0]
-	assert_true(not first.info.available and not stock.select(first.info) and menu.current_name == "tracks", "they cannot be raced")
+	var bikes := menu.current as TrackSelectScreen
+	assert_true(bikes.cards.size() == SeriesCatalog.tracks("moto").size() and bikes.cards.size() > 20, "lists the motorcycle events")
+	var soon := bikes.card_for("locked_moto")
+	assert_true(soon != null and not soon.info.available and not bikes.select(soon.info) and menu.current_name == "tracks",
+			"a coming-soon event cannot be raced")
 	menu.back()
 	await get_tree().process_frame
 	screen = menu.current as SeriesSelectScreen

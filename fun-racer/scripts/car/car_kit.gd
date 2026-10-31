@@ -432,6 +432,81 @@ const KART_KIT := {
 	},
 }
 
+const MOTO := "moto"
+## The prototype Grand Prix motorcycle (cad/body/moto_body.py: a generic race bike with a full
+## fairing and winglets, and its rider in leathers; scripts/car/bike_visual.gd) of the
+## motorcycle series: 1.45 m wheelbase. A bike is a Car like the others: four ray-cast contacts
+## (0.40 m apart, hidden: the physics never leans, so it cannot fall over) and a tuning that
+## rides like a bike. What is two-wheeled is the look: bike_visual.gd leans bike and rider into
+## the corner by the angle the cornering asks for (atan of the lateral acceleration over g: the
+## grip budget gives up to about 57 deg, "lean_max_deg" caps it), lifts the front near the
+## wheelie limit and the rear under the hardest braking, steers the fork about its rake, tucks
+## the rider in on the straights and hangs him off in the corners. The body scene draws its
+## own two wheels: the Car's four wheel visuals are hidden (kit key "bike"). The simulation
+## (assets/car/specs/moto.tres) runs the same four-contact stand-in on the force model, with
+## the bike's mass, engine, six-speed box, drag, tyres and front-biased brakes: an
+## approximation (no lean dynamics, no wheelie or stoppie), arcade stays the default.
+const MOTO_KIT := {
+	"body": "res://scenes/car/moto_body_visual.tscn",
+	"wheel_offsets": [
+		Vector3(-0.20, 0.0, -0.725), Vector3(0.20, 0.0, -0.725),
+		Vector3(-0.20, 0.0, 0.725), Vector3(0.20, 0.0, 0.725),
+	],
+	"open_wheel_parts": false,
+	"sim_spec": "res://assets/car/specs/moto.tres",
+	"collision_length": 2.05,
+	# The box of a bike and rider: 0.70 m wide (the handlebars and the rider's shoulders), from
+	# 12 cm above the ground to the rider's back.
+	"collision_box": Vector3(0.70, 0.95, 2.05),
+	"collision_y": 0.235,
+	# The chase camera close behind the rider's back; the onboard view from the rider's helmet
+	# behind the screen, leaning with the bike by "cockpit_lean" of its lean.
+	"camera": {
+		"low_distance": 3.7, "low_height": 1.30, "low_look_height": 0.55, "low_look_ahead": 6.0,
+		"high_distance": 6.6, "high_height": 2.50, "high_look_height": 0.45, "high_look_ahead": 10.0,
+		"cockpit_offset": Vector3(0.0, 0.78, -0.22),
+		"cockpit_lean": 0.6,
+	},
+	# What only the look of a bike uses (bike_visual.gd): the most it leans, and the
+	# accelerations at which the front (wheelie) and the rear (stoppie) start to lift. The
+	# arcade tuning stays just under both: the full-throttle table below 150 km/h is the
+	# wheelie limit and the brakes the stoppie limit, as a rider with anti-wheelie electronics
+	# and a perfect hand on the brake lever would use them.
+	"bike": {
+		"lean_max_deg": 60.0,
+		"wheelie_accel": 10.8, "wheelie_max_deg": 4.0,
+		"stoppie_decel": 12.6, "stoppie_max_deg": 3.0,
+	},
+	# The Car's arcade tuning of a prototype Grand Prix bike: 157 kg + a 70 kg rider, about
+	# 200 kW, 0-100 km/h in about 2.6 s (wheelie limited), about 355 km/h flat out, very strong
+	# brakes held just short of lifting the rear (about 1.3 g), a cornering budget of about 1.6 g
+	# (57 deg of lean), little downforce from the winglets and a lot of drag off the throttle.
+	# The steering eases in (the bike has to be tipped into the corner before it turns); no
+	# brake-and-steer or steering-only slides (they belong to cars).
+	"arcade": {
+		"mass": 227.0,
+		"inertia": Vector3(70.0, 65.0, 40.0),
+		# Low between the hidden contacts (0.40 m apart): nothing the tyres do rolls it over,
+		# in the arcade or the simulation (a real bike's is about 0.6 m up, but leans).
+		"center_of_mass": Vector3(0.0, -0.30, 0.0725),
+		"spring_rate": 30000.0, "damper_bump": 2000.0, "damper_rebound": 2500.0,
+		"travel_up": 0.05, "travel_down": 0.06, "bump_stop_start": 0.035,
+		"bump_stop_rate": 400000.0, "anti_roll_rate": 30000.0, "anti_pitch_rate": 20000.0,
+		"downforce_coef": 0.01, "downforce_max": 300.0,
+		"accel_curve_kmh": [0, 50, 100, 150, 200, 250, 300, 330, 350, 358, 400],
+		"accel_curve_ms2": [10.8, 10.8, 10.5, 9.0, 7.0, 4.8, 2.8, 1.5, 0.6, 0.0, 0.0],
+		"gear_top_kmh": [115, 165, 210, 255, 300, 365],
+		"brake_decel": 12.5, "coast_decel": 1.2, "drag_decel_coef": 9.0e-5,
+		"reverse_max_kmh": 8.0,
+		"max_steer_angle": 0.45, "steer_in_time": 0.16, "steer_out_time": 0.11,
+		"lateral_grip_g": 1.70, "aero_grip_g": 1.0e-5,
+		"drift_min_speed_kmh": 9999.0, "overdrive_min_speed_kmh": 9999.0,
+		"drift_lateral_grip_g": 1.3, "drift_aero_grip_g": 1.0e-5,
+		"grass_grip": 0.5, "gravel_grip": 0.35, "grass_drag": 2.5, "gravel_drag": 7.0,
+		"launch_spin_speed": 2.0, "drift_spin_speed": 0.0,
+	},
+}
+
 const KITS := {
 	ENDURANCE: {
 		# cad/body/endurance_body.py: 3.10 m wheelbase, the F1 car's track widths and wheels.
@@ -527,6 +602,7 @@ const KITS := {
 	SUPER_FORMULA: SUPER_FORMULA_KIT,
 	RALLY_RAID: RALLY_RAID_KIT,
 	KART: KART_KIT,
+	MOTO: MOTO_KIT,
 }
 
 const BODY_MOTION := preload("res://scripts/car/body_motion.gd")
@@ -571,6 +647,16 @@ static func visual_wheel_offsets(kit: String) -> Array[Vector3]:
 		out[i].y += wheel_radius(kit, i) - (Car.FRONT_WHEEL_RADIUS if i < 2 else Car.REAR_WHEEL_RADIUS)
 	return out
 
+## The two-wheel look of a bike kit (lean, wheelie and stoppie limits), empty for a car.
+static func bike(kit: String) -> Dictionary:
+	if KITS.has(kit):
+		return KITS[kit].get("bike", {})
+	return {}
+
+## True for a motorcycle: its body scene draws its own two wheels and leans.
+static func is_bike(kit: String) -> bool:
+	return not bike(kit).is_empty()
+
 ## The kit's chase-camera overrides (ChaseCamera export names -> values), empty for most kits.
 static func camera(kit: String) -> Dictionary:
 	if KITS.has(kit):
@@ -606,8 +692,8 @@ static func dress(root: Node3D, kit: String, head_motion: bool) -> void:
 	var car := root
 	var old := car.get_node_or_null(^"BodyVisual") as Node3D
 	var body := (load(k["body"]) as PackedScene).instantiate() as Node3D
-	if head_motion:
-		body.set_script(BODY_MOTION)   # the driver's head moves as in car.tscn
+	if head_motion and body.get_script() == null:
+		body.set_script(BODY_MOTION)   # the driver's head moves as in car.tscn (a bike: its own)
 	if old != null:
 		body.transform = old.transform
 		var at := old.get_index()
@@ -622,6 +708,10 @@ static func dress(root: Node3D, kit: String, head_motion: bool) -> void:
 	for wheel_name: String in ["WheelFL", "WheelFR", "WheelRL", "WheelRR"]:
 		var w := car.get_node_or_null(wheel_name) as Node3D
 		if w == null:
+			continue
+		if k.has("bike"):
+			w.visible = false   # the bike's body scene draws its two wheels
+			w.set_process(false)
 			continue
 		for part: String in ["Suspension", "Steer/Upright"]:
 			var n := w.get_node_or_null(part) as Node3D

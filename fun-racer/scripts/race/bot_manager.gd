@@ -565,6 +565,10 @@ static var _far_wheel_meshes: Dictionary = {}   # kit -> ArrayMesh
 static func far_wheel_mesh(kit: String = CarKit.F1) -> ArrayMesh:
 	if _far_wheel_meshes.has(kit):
 		return _far_wheel_meshes[kit]
+	if CarKit.is_bike(kit):
+		# A bike's two wheels are part of its body scene (they lean with it): no stand-in.
+		_far_wheel_meshes[kit] = ArrayMesh.new()
+		return _far_wheel_meshes[kit]
 	var offsets := CarKit.visual_wheel_offsets(kit)
 	var st := SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)

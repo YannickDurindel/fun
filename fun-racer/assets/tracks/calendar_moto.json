@@ -1,5 +1,5 @@
 {
- "note": "Motorcycle Grand Prix events, current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "note": "Motorcycle Grand Prix events, current season in calendar order. \"track\": the built circuit the event is raced on with the Grand Prix bike (CarKit \"moto\"); TrackCatalog makes the event playable when that track is. Events without one are coming soon.",
  "tracks": [
   {
    "id": "mgp_buriram",
@@ -29,7 +29,8 @@
    "country_code": "US",
    "city": "Austin",
    "length_m": 5513,
-   "turns": 20
+   "turns": 20,
+   "track": "cota"
   },
   {
    "id": "mgp_lusail",
@@ -39,7 +40,8 @@
    "country_code": "QA",
    "city": "Lusail",
    "length_m": 5380,
-   "turns": 16
+   "turns": 16,
+   "track": "lusail"
   },
   {
    "id": "mgp_jerez",
@@ -69,7 +71,8 @@
    "country_code": "ES",
    "city": "Montmeló",
    "length_m": 4657,
-   "turns": 14
+   "turns": 14,
+   "track": "catalunya"
   },
   {
    "id": "mgp_mugello",
@@ -119,7 +122,8 @@
    "country_code": "DE",
    "city": "Hohenstein-Ernstthal",
    "length_m": 3671,
-   "turns": 13
+   "turns": 13,
+   "track": "sachsenring"
   },
   {
    "id": "mgp_silverstone",
@@ -129,7 +133,8 @@
    "country_code": "GB",
    "city": "Silverstone",
    "length_m": 5900,
-   "turns": 18
+   "turns": 18,
+   "track": "silverstone"
   },
   {
    "id": "mgp_aragon",
@@ -149,7 +154,8 @@
    "country_code": "IT",
    "city": "Misano Adriatico",
    "length_m": 4226,
-   "turns": 16
+   "turns": 16,
+   "track": "misano"
   },
   {
    "id": "mgp_spielberg",
@@ -159,7 +165,8 @@
    "country_code": "AT",
    "city": "Spielberg",
    "length_m": 4348,
-   "turns": 10
+   "turns": 10,
+   "track": "red_bull_ring"
   },
   {
    "id": "mgp_motegi",
@@ -199,7 +206,8 @@
    "country_code": "MY",
    "city": "Sepang",
    "length_m": 5543,
-   "turns": 15
+   "turns": 15,
+   "track": "sepang"
   },
   {
    "id": "mgp_portimao",

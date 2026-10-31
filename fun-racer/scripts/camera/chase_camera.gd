@@ -510,8 +510,18 @@ func _update_chase(xf: Transform3D) -> void:
 
 func _update_cockpit(xf: Transform3D) -> void:
 	# Rigidly attached: no lag, inherits pitch and roll.
-	var offset: Vector3 = _kit_camera().get(&"cockpit_offset", cockpit_offset)
-	global_transform = Transform3D(xf.basis.orthonormalized(), xf * offset)
+	var kc := _kit_camera()
+	var offset: Vector3 = kc.get(&"cockpit_offset", cockpit_offset)
+	var b := xf.basis.orthonormalized()
+	if kc.has(&"cockpit_lean"):
+		# A bike (bike_visual.gd): the view rides in the rider's helmet as the bike leans about
+		# its tyres, and rolls by a share of that lean (the full roll is hard to watch).
+		var body := _target.get_node_or_null(^"BodyVisual")
+		var lean: float = body.get(&"lean") if body != null and body.get(&"lean") != null else 0.0
+		var pivot := Vector3(0.0, -0.36, 0.0)
+		offset = pivot + Basis(Vector3.BACK, -lean) * (offset - pivot)
+		b = b * Basis(Vector3.BACK, -lean * float(kc[&"cockpit_lean"]))
+	global_transform = Transform3D(b, xf * offset)
 	fov = lerpf(cockpit_fov_rest, cockpit_fov_max, _speed_t())
 	near = 0.05
 
