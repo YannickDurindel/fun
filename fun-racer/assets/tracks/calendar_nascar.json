@@ -1,5 +1,5 @@
 {
- "note": "Stock car events: ovals, road courses and a street race, current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "note": "Stock car events: ovals, road courses and a street race, current season in calendar order. \"track\": the built circuit the event is raced on with this series' car (CarKit \"nascar\"); TrackCatalog makes the event playable when that track is. Events without one are coming soon.",
  "tracks": [
   {
    "id": "stk_daytona_500",
@@ -29,7 +29,8 @@
    "country_code": "US",
    "city": "Austin",
    "length_m": 3862,
-   "turns": 0
+   "turns": 0,
+   "track": "cota"
   },
   {
    "id": "stk_phoenix",

@@ -565,19 +565,20 @@ static var _far_wheel_meshes: Dictionary = {}   # kit -> ArrayMesh
 static func far_wheel_mesh(kit: String = CarKit.F1) -> ArrayMesh:
 	if _far_wheel_meshes.has(kit):
 		return _far_wheel_meshes[kit]
-	var offsets := CarKit.wheel_offsets(kit)
+	var offsets := CarKit.visual_wheel_offsets(kit)
 	var st := SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 	for i in offsets.size():
 		var front := i < 2
 		var tyre := CylinderMesh.new()
-		tyre.top_radius = Car.FRONT_WHEEL_RADIUS if front else Car.REAR_WHEEL_RADIUS
+		tyre.top_radius = CarKit.wheel_radius(kit, i)
 		tyre.bottom_radius = tyre.top_radius
-		tyre.height = 0.31 if front else 0.38
+		# The F1 tyre widths, scaled with the kit's tyre size (rally raid, kart).
+		tyre.height = (0.31 if front else 0.38) * clampf(tyre.top_radius / (Car.FRONT_WHEEL_RADIUS if front else Car.REAR_WHEEL_RADIUS), 0.6, 1.0)
 		tyre.radial_segments = 12
 		tyre.rings = 0
 		# Cylinder axis (Y) along the axle (X); fronts sit lower by the radius difference.
-		var at := offsets[i] + Vector3(0.0, tyre.top_radius - Car.REAR_WHEEL_RADIUS, 0.0)
+		var at := offsets[i] + Vector3(0.0, (Car.FRONT_WHEEL_RADIUS if front else Car.REAR_WHEEL_RADIUS) - Car.REAR_WHEEL_RADIUS, 0.0)
 		st.append_from(tyre, 0, Transform3D(Basis(Vector3.FORWARD, PI * 0.5), at))
 	var mat := StandardMaterial3D.new()
 	mat.albedo_color = Color(0.035, 0.035, 0.04)

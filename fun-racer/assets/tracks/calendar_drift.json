@@ -1,5 +1,5 @@
 {
- "note": "Pro drifting events: judged tandem battles, no lap length, current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "note": "Pro drifting events: judged tandem battles, no lap length, current season in calendar order. \"track\": the built circuit the event is raced on with this series' car (CarKit \"drift\"); TrackCatalog makes the event playable when that track is. Events without one are coming soon.",
  "tracks": [
   {
    "id": "drf_long_beach",
@@ -19,7 +19,8 @@
    "country_code": "US",
    "city": "Braselton",
    "length_m": 0,
-   "turns": 0
+   "turns": 0,
+   "track": "road_atlanta"
   },
   {
    "id": "drf_orlando",

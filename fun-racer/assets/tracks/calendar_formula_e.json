@@ -1,5 +1,5 @@
 {
- "note": "Electric street-circuit events, current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "note": "Electric street-circuit events, current season in calendar order. \"track\": the built circuit the event is raced on with this series' car (CarKit \"formula_e\"); TrackCatalog makes the event playable when that track is. Events without one are coming soon.",
  "tracks": [
   {
    "id": "fe_sao_paulo",
@@ -39,7 +39,8 @@
    "country_code": "SA",
    "city": "Jeddah",
    "length_m": 3001,
-   "turns": 19
+   "turns": 19,
+   "track": "jeddah"
   },
   {
    "id": "fe_madrid",
@@ -69,7 +70,8 @@
    "country_code": "MC",
    "city": "Monte Carlo",
    "length_m": 3337,
-   "turns": 19
+   "turns": 19,
+   "track": "monaco"
   },
   {
    "id": "fe_sanya",
@@ -89,7 +91,8 @@
    "country_code": "CN",
    "city": "Shanghai",
    "length_m": 3051,
-   "turns": 12
+   "turns": 12,
+   "track": "shanghai"
   },
   {
    "id": "fe_tokyo",

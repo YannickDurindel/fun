@@ -169,6 +169,9 @@ var _boom_to: Vector3
 var _boom_valid: bool = false
 var _boom_limit: float = INF     ## max boom length allowed by the last obstruction probe
 var _boom_len: float = INF       ## smoothed boom length actually used
+# CarKit camera overrides of the target, cached per kit (see _kit_camera).
+var _kit_camera_for: Variant = null
+var _kit_camera_values: Dictionary = {}
 # --overview pose (see _setup_overview).
 var _fixed: bool = false
 var _fixed_pos: Vector3
@@ -435,10 +438,11 @@ func _road_angles(xf: Transform3D) -> Vector2:
 
 func _update_chase(xf: Transform3D) -> void:
 	var high := mode == Mode.CHASE_HIGH
-	var dist := high_distance if high else low_distance
-	var height := high_height if high else low_height
-	var look_h := high_look_height if high else low_look_height
-	var look_ahead := high_look_ahead if high else low_look_ahead
+	var kc := _kit_camera()
+	var dist: float = kc.get(&"high_distance" if high else &"low_distance", high_distance if high else low_distance)
+	var height: float = kc.get(&"high_height" if high else &"low_height", high_height if high else low_height)
+	var look_h: float = kc.get(&"high_look_height" if high else &"low_look_height", high_look_height if high else low_look_height)
+	var look_ahead: float = kc.get(&"high_look_ahead" if high else &"low_look_ahead", high_look_ahead if high else low_look_ahead)
 	var speed_t := _speed_t()
 	dist += speed_pullback * speed_t
 	dist += clampf(_accel * accel_pullback, -accel_pullback_max, accel_pullback_max)
@@ -506,9 +510,23 @@ func _update_chase(xf: Transform3D) -> void:
 
 func _update_cockpit(xf: Transform3D) -> void:
 	# Rigidly attached: no lag, inherits pitch and roll.
-	global_transform = Transform3D(xf.basis.orthonormalized(), xf * cockpit_offset)
+	var offset: Vector3 = _kit_camera().get(&"cockpit_offset", cockpit_offset)
+	global_transform = Transform3D(xf.basis.orthonormalized(), xf * offset)
 	fov = lerpf(cockpit_fov_rest, cockpit_fov_max, _speed_t())
 	near = 0.05
+
+## The target car's CarKit camera overrides (a tall truck, a kart), empty for most cars.
+func _kit_camera() -> Dictionary:
+	var k: Variant = _target.get(&"kit") if _target != null else null
+	if k == null:
+		return {}
+	if k != _kit_camera_for:
+		_kit_camera_for = k
+		_kit_camera_values = {}
+		var d := CarKit.camera(String(k))
+		for key: String in d:
+			_kit_camera_values[StringName(key)] = d[key]
+	return _kit_camera_values
 
 ## 0..1 speed factor for FOV / pull-back: linear, so the view keeps widening at high speed
 ## (an ease-out curve did most of it below 150 km/h and nothing on the straights).

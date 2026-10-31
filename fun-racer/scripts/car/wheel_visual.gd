@@ -88,6 +88,10 @@ var _sim_materials_ready: bool = false
 var _disc_mat: StandardMaterial3D
 var _stripe_mat: StandardMaterial3D
 var _stripe_compound: StringName = &""
+## Tyre radius this wheel is drawn at (CarKit "wheels": the rally raid's and the kart's are not
+## the F1 car's); the spin is scaled so the tread rolls at the road speed.
+var radius: float = 0.0
+var _spin_scale: float = 1.0
 
 static func geometry(front: bool) -> Dictionary:
 	if _geometry_cache.is_empty():
@@ -98,6 +102,7 @@ static func geometry(front: bool) -> Dictionary:
 func _ready() -> void:
 	_is_front = wheel_index < 2
 	_side = -1.0 if wheel_index % 2 == 0 else 1.0
+	radius = Car.FRONT_WHEEL_RADIUS if _is_front else Car.REAR_WHEEL_RADIUS
 	var g := geometry(_is_front)
 	var joint_x: float = g["joint_x"]
 	var chassis_x: float = g["chassis_x"]
@@ -136,6 +141,25 @@ func _ready() -> void:
 		# QuadMesh faces +Z; turn it to face outward (+X right, -X left).
 		_blur.rotation = Vector3(0.0, _side * PI * 0.5, 0.0)
 		_blur.visible = false
+
+## CarKit: draws this wheel with `scene` (a right-hand wheel, origin at its centre, axle along
+## X) of tyre radius `r`; the speed-blur disc is fitted to its rim (`rim_radius`, outer face at
+## `rim_face_x`). The physics still rolls the F1 car's radius: the spin is scaled to match.
+func use_kit_wheel(scene: PackedScene, r: float, rim_radius: float, rim_face_x: float) -> void:
+	var holder := get_node_or_null(^"Steer/Spin/Wheel")
+	if holder != null and scene != null:
+		for child in holder.get_children():
+			holder.remove_child(child)
+			child.queue_free()
+		var inst := scene.instantiate()
+		inst.name = "kit_wheel"
+		holder.add_child(inst)
+	_spin_scale = radius / maxf(r, 0.01)
+	radius = r
+	if _blur != null:
+		var g := geometry(_is_front)
+		_blur.scale = Vector3.ONE * (rim_radius / float(g["rim_radius"]))
+		_blur.position.x = (rim_face_x - float(g["joint_x"])) * _side
 
 func _attach(scene: PackedScene, holder_path: String) -> void:
 	var holder := get_node_or_null(holder_path)
@@ -177,7 +201,7 @@ func _process(delta: float) -> void:
 		_steer.rotation.y = w.steer_angle
 	if _spin:
 		# Same rotation as -spin_angle, but keeps the stored Euler angle small.
-		_spin.rotation.x = -fmod(w.spin_angle, TAU)
+		_spin.rotation.x = -fmod(w.spin_angle * _spin_scale, TAU)
 	if _pivot:
 		# The wheel frame moved up by `compression`; shear the arms vertically about the
 		# pickup line so every inboard point stays on the chassis and every outer joint
@@ -228,8 +252,7 @@ func _own_material(material_name: String) -> StandardMaterial3D:
 func _update_blur(delta: float) -> void:
 	if _blur == null or _blur_mat == null:
 		return
-	var radius := Car.FRONT_WHEEL_RADIUS if _is_front else Car.REAR_WHEEL_RADIUS
-	var v := absf(_omega) * radius * 3.6
+	var v := absf(_omega) * (Car.FRONT_WHEEL_RADIUS if _is_front else Car.REAR_WHEEL_RADIUS) * 3.6
 	_rim_speed_kmh = lerpf(_rim_speed_kmh, v, 1.0 - exp(-10.0 * maxf(delta, 0.0)))
 	var a := smoothstep(BLUR_START_KMH, BLUR_FULL_KMH, _rim_speed_kmh) * BLUR_MAX_ALPHA
 	_blur.visible = a > 0.01

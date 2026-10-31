@@ -69,10 +69,10 @@ func test_play_flow() -> void:
 	assert_true(screen != null and screen.cards.size() == SeriesCatalog.all().size(), "one card per series")
 	assert_true(get_viewport().gui_get_focus_owner() == screen.card_for("f1"), "F1 is pre-focused")
 	# A coming-soon series opens its calendar, every event locked.
-	screen.card_for("nascar").pressed.emit()
-	assert_true(menu.current_name == "tracks", "NASCAR opens its calendar")
+	screen.card_for("moto").pressed.emit()
+	assert_true(menu.current_name == "tracks", "Motorcycle GP opens its calendar")
 	var stock := menu.current as TrackSelectScreen
-	assert_true(stock.cards.size() == SeriesCatalog.tracks("nascar").size() and stock.cards.size() > 20, "lists the stock car events")
+	assert_true(stock.cards.size() == SeriesCatalog.tracks("moto").size() and stock.cards.size() > 20, "lists the motorcycle events")
 	var first := stock.cards[0]
 	assert_true(not first.info.available and not stock.select(first.info) and menu.current_name == "tracks", "they cannot be raced")
 	menu.back()

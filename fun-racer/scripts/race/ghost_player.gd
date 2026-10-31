@@ -99,7 +99,7 @@ func _setup_visuals() -> void:
 		w.set_physics_process(false)
 		# Rest ride height: the body is level, so the smaller front wheels sit a little lower.
 		var comp := Car.FRONT_WHEEL_RADIUS - Car.REAR_WHEEL_RADIUS if i < 2 else 0.0
-		w.position = CarKit.wheel_offsets(_kit)[i] + Vector3(0.0, comp, 0.0)
+		w.position = CarKit.visual_wheel_offsets(_kit)[i] + Vector3(0.0, comp, 0.0)
 		var pivot := w.get_node_or_null(^"Suspension/Pivot") as Node3D
 		var arm: float = w.get(&"_arm_length") if w.get(&"_arm_length") != null else 0.273
 		if pivot != null and arm > 0.0:
@@ -184,7 +184,7 @@ func show_at(t: float, delta: float = 0.0) -> void:
 	var speed := data.speed_at(t) if t <= end else 0.0
 	var steer := data.steer_at(t)
 	for i in _wheels.size():
-		_spin[i] = fmod(_spin[i] + speed * delta / (Car.FRONT_WHEEL_RADIUS if i < 2 else Car.REAR_WHEEL_RADIUS), TAU)
+		_spin[i] = fmod(_spin[i] + speed * delta / CarKit.wheel_radius(_kit, i), TAU)
 		if _spin_nodes[i] != null:
 			_spin_nodes[i].rotation.x = -_spin[i]
 		if i < 2 and _steer_nodes[i] != null:

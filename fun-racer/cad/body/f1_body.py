@@ -5,10 +5,16 @@ Regenerate the Godot asset with one command (from the repo root):
 
     .venv/bin/python cad/body/f1_body.py            # -> assets/car/body.glb
     .venv/bin/python cad/body/f1_body.py --junior   # -> assets/car/junior/body.glb
+    .venv/bin/python cad/body/f1_body.py --indycar  # -> assets/car/indycar/body.glb
 
 ``--junior``: the feeder single-seater of the Junior Formula kit, the same tub with cheaper
 aero: a two-element front wing with plain endplates, a two-element rear wing on twin pylons,
 no beam wing, no shark fin.
+
+``--indycar``: the American open-wheeler of the IndyCar kit (generic, no make), the same tub in
+low-drag oval trim: a windscreen (aeroscreen) wrapped round the cockpit on the halo frame, a
+small one-flap front wing, a flat single-element rear wing on twin pylons, no beam wing, and
+guards behind the rear wheels. One more material after Light: Glass (the screen).
 
 Then re-import in Godot: ``tools/bin/godot --headless --path . --import``.
 
@@ -60,6 +66,8 @@ REPO = Path(__file__).resolve().parents[2]
 OUT_PATH = REPO / "assets" / "car" / "body.glb"
 JUNIOR_OUT_PATH = REPO / "assets" / "car" / "junior" / "body.glb"
 JUNIOR = "--junior" in sys.argv[1:]
+INDYCAR_OUT_PATH = REPO / "assets" / "car" / "indycar" / "body.glb"
+INDYCAR = "--indycar" in sys.argv[1:]
 
 # --------------------------------------------------------------------------
 # Global dimensions (metres, CAD frame)
@@ -90,6 +98,8 @@ MATERIALS = {
     "Visor": Material("Visor", (0.02, 0.02, 0.03, 1.0), 0.6, 0.08),
     "Light": Material("Light", (0.6, 0.0, 0.0, 1.0), 0.0, 0.4, emissive=(1.0, 0.05, 0.03)),
 }
+if INDYCAR:
+    MATERIALS["Glass"] = Material("Glass", (0.20, 0.22, 0.25, 0.35), 0.0, 0.05)
 
 
 @dataclass
@@ -283,7 +293,7 @@ def make_airbox_and_fin() -> list[PartSpec]:
         PartSpec("airbox_plug", plug, "Carbon"),
         PartSpec("tcam", tcam, "Accent", False),
     ]
-    if not JUNIOR:
+    if not JUNIOR:   # the IndyCar keeps its fin on the ovals
         out.append(PartSpec("shark_fin", fin, "Livery", surface_control=False))
     return out
 
@@ -304,7 +314,33 @@ def make_halo() -> list[PartSpec]:
     ]
     hoop = tube(hoop_pts, 0.024)
     pillar = tube([(-0.575, 0.0, 0.47), (-0.62, 0.0, 0.40), (-0.70, 0.0, 0.29), (-0.78, 0.0, 0.17)], 0.026)
-    return [PartSpec("halo", hoop, "Carbon", False), PartSpec("halo_pillar", pillar, "Carbon", False)]
+    out = [PartSpec("halo", hoop, "Carbon", False), PartSpec("halo_pillar", pillar, "Carbon", False)]
+    if INDYCAR:
+        out += make_aeroscreen()
+    return out
+
+
+def make_aeroscreen() -> list[PartSpec]:
+    """Windscreen wrapped round the cockpit: a 12 mm shell, closed at the front, open on top
+    behind the halo's crown and at the back. Its frame is the halo hoop."""
+    def secs(shrink: float, z_bot: float, x_last: float) -> list[Section]:
+        rows = [
+            # x,     width, z_top
+            (-0.860, 0.420, 0.250),
+            (-0.700, 0.600, 0.420),
+            (-0.550, 0.680, 0.490),
+            (-0.300, 0.720, 0.500),
+            (-0.050, 0.720, 0.480),
+            (x_last, 0.700, 0.440),
+        ]
+        return [Section(x + (shrink if i == 0 else 0.0), w - 2 * shrink, z_bot, zt - shrink,
+                        n_top=2.4, n_bot=3.0, taper=0.82, z_split=0.30)
+                for i, (x, w, zt) in enumerate(rows)]
+    outer = loft(secs(0.0, 0.16, 0.10))
+    inner = loft(secs(0.012, 0.10, 0.40))
+    shell = outer - inner
+    shell = shell - Box(1.0, 1.0, 0.5).locate(Location((-0.45 + 0.5, 0, 0.40 + 0.25)))
+    return [PartSpec("aeroscreen", shell, "Glass")]
 
 
 def make_mirrors() -> list[PartSpec]:
@@ -338,6 +374,8 @@ def make_front_wing() -> list[PartSpec]:
     ]
     if JUNIOR:   # one flap of a deeper chord, flatter
         flaps = [(-2.620, -0.250, 0.230, 18.0, 0.18, "LiveryWhite")]
+    if INDYCAR:   # oval trim: one short, almost flat flap
+        flaps = [(-2.640, -0.262, 0.160, 9.0, 0.20, "LiveryWhite")]
     for i, (lx, lz, c, a, yin, mat) in enumerate(flaps):
         flap = wing_element(lx, lz, c, a, yin, FW_HALF_SPAN - 0.012, camber=0.07, thickness=0.09)
         for j, s in enumerate(both_sides(flap)):
@@ -361,7 +399,7 @@ def make_front_wing() -> list[PartSpec]:
                     FW_HALF_SPAN - 0.075, 0.008)
     for j, s in enumerate(both_sides(endplate)):
         out.append(PartSpec(f"fw_endplate{j}", s, "Accent"))
-    if not JUNIOR:
+    if not (JUNIOR or INDYCAR):
         for j, s in enumerate(both_sides(vane)):
             out.append(PartSpec(f"fw_vane{j}", s, "Carbon"))
     return out
@@ -373,12 +411,15 @@ def make_rear_wing() -> list[PartSpec]:
     flap = wing_element(2.480, 0.470, 0.200, 32.0, -RW_HALF_SPAN, RW_HALF_SPAN, camber=0.07, thickness=0.09)
     if JUNIOR:   # a flatter flap
         flap = wing_element(2.470, 0.455, 0.170, 20.0, -RW_HALF_SPAN, RW_HALF_SPAN, camber=0.06, thickness=0.09)
+    if INDYCAR:   # speedway wing: one flat element and a gurney strip, no flap
+        main = wing_element(2.250, 0.430, 0.300, 3.0, -RW_HALF_SPAN, RW_HALF_SPAN, camber=0.04, thickness=0.09)
+        flap = Box(0.006, 2 * RW_HALF_SPAN, 0.025).locate(Location((2.545, 0, 0.428)))
     out.append(PartSpec("rw_main", main, "LiveryWhite", surface_control=False))
     out.append(PartSpec("rw_flap", flap, "Accent", surface_control=False))
     # Beam wing: two small elements low down
     b1 = wing_element(2.290, 0.030, 0.150, 8.0, -RW_HALF_SPAN, RW_HALF_SPAN, camber=0.06, thickness=0.10)
     b2 = wing_element(2.450, 0.065, 0.120, 24.0, -RW_HALF_SPAN, RW_HALF_SPAN, camber=0.06, thickness=0.10)
-    if not JUNIOR:
+    if not (JUNIOR or INDYCAR):
         out.append(PartSpec("beam_wing0", b1, "Carbon", surface_control=False))
         out.append(PartSpec("beam_wing1", b2, "Carbon", surface_control=False))
     endplate = xz_plate(
@@ -406,7 +447,7 @@ def make_rear_wing() -> list[PartSpec]:
         0.016,
     )
     pylon = try_fillet(pylon, pylon.edges().filter_by(Axis.Y), 0.012)
-    if JUNIOR:   # two straight pylons under the mainplane instead of the swan neck
+    if JUNIOR or INDYCAR:   # two straight pylons under the mainplane instead of the swan neck
         for y in (-0.20, 0.20):
             post = xz_plate([(2.10, -0.02), (2.24, -0.02), (2.42, 0.42), (2.30, 0.42)], y - 0.008, 0.016)
             out.append(PartSpec(f"rw_pylon{y}", post, "Carbon"))
@@ -463,6 +504,26 @@ def make_floor_and_diffuser() -> list[PartSpec]:
     return out
 
 
+def make_wheel_guards() -> list[PartSpec]:
+    """IndyCar: a guard behind each rear wheel, on a plate from the diffuser wall (wheels must
+    not climb each other on the ovals)."""
+    if not INDYCAR:
+        return []
+    guard = loft([
+        Section(2.230, 0.200, -0.290, -0.020, y_center=0.790, n_top=2.6, n_bot=3.0, taper=0.85),
+        Section(2.300, 0.380, -0.300, 0.020, y_center=0.780, n_top=3.0, n_bot=3.4, taper=0.85),
+        Section(2.520, 0.380, -0.300, 0.000, y_center=0.780, n_top=3.0, n_bot=3.4, taper=0.85),
+        Section(2.600, 0.300, -0.280, -0.050, y_center=0.770, n_top=2.6, n_bot=3.0, taper=0.85),
+    ])
+    plate = xy_plate([(2.24, 0.52), (2.56, 0.52), (2.56, 0.62), (2.24, 0.62)], FLOOR_BOTTOM_Z, 0.015)
+    out = []
+    for j, s in enumerate(both_sides(guard)):
+        out.append(PartSpec(f"wheel_guard{j}", s, "Livery"))
+    for j, s in enumerate(both_sides(plate)):
+        out.append(PartSpec(f"guard_plate{j}", s, "Carbon", False))
+    return out
+
+
 def make_rear_details() -> list[PartSpec]:
     exhaust = Solid.make_cylinder(0.042, 0.42, Plane(origin=(1.95, 0, 0.075), z_dir=(1, 0, 0.06)))
     bore = Solid.make_cylinder(0.032, 0.2, Plane(origin=(2.25, 0, 0.093), z_dir=(1, 0, 0.06)))
@@ -498,6 +559,7 @@ def build_parts() -> list[PartSpec]:
         make_front_wing,
         make_rear_wing,
         make_floor_and_diffuser,
+        make_wheel_guards,
         make_rear_details,
         make_driver,
     ]
@@ -516,7 +578,7 @@ def main() -> None:
         n = groups[p.material].add_shape(p.shape, TESS_TOL, TESS_ANG, p.surface_control)
         total += n
         print(f"  {p.name:18s} {p.material:12s} {n:7d} tris")
-    out_path = JUNIOR_OUT_PATH if JUNIOR else OUT_PATH
+    out_path = JUNIOR_OUT_PATH if JUNIOR else INDYCAR_OUT_PATH if INDYCAR else OUT_PATH
     out_path.parent.mkdir(parents=True, exist_ok=True)
     write_glb(out_path, list(groups.values()))
     for g in groups.values():
