@@ -1,7 +1,7 @@
 extends TestCase
-## IndyCar: its events take the indycar kit, the F1 tub in American oval trim (aeroscreen, small
-## flat wings, rear wheel guards) with a turbo V6 on oval boost, half an F1 car's downforce and
-## a low-drag top speed near 380 km/h.
+## IndyCar: its events take the indycar kit, the F1 tub shortened to a 3.00 m wheelbase in
+## American oval trim (aeroscreen, small flat wings, rear wheel guards) with a turbo V6 on oval
+## boost, half an F1 car's downforce and a low-drag top speed near 380 km/h.
 
 const SERIES := "indycar"
 const SPEC := "res://assets/car/specs/indycar.tres"
@@ -14,7 +14,8 @@ func test_series_takes_the_indycar_kit() -> void:
 		assert_true(CarKit.for_track(t.id) == CarKit.INDYCAR, "%s is raced with the IndyCar" % t.id)
 	assert_true(CarKit.KITS[CarKit.INDYCAR]["open_wheel_parts"], "an open-wheeler shows its wishbones")
 	var w := CarKit.wheel_offsets(CarKit.INDYCAR)
-	assert_true(is_equal_approx(w[2].z - w[0].z, 3.6), "the F1 tub's wheelbase")
+	assert_true(is_equal_approx(w[2].z - w[0].z, 3.0), "a 3.00 m wheelbase, shorter than the F1 tub's")
+	assert_true(is_equal_approx(load(SPEC).wheelbase, 3.0), "the simulation spec has the same wheelbase")
 
 func test_spec_is_an_oval_open_wheeler() -> void:
 	var f1 := load(Car.SIM_SPEC_PATH) as CarSpec

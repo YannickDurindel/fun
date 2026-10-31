@@ -14,7 +14,12 @@ no beam wing, no shark fin.
 ``--indycar``: the American open-wheeler of the IndyCar kit (generic, no make), the same tub in
 low-drag oval trim: a windscreen (aeroscreen) wrapped round the cockpit on the halo frame, a
 small one-flap front wing, a flat single-element rear wing on twin pylons, no beam wing, and
-guards behind the rear wheels. One more material after Light: Glass (the screen).
+guards behind the rear wheels. One more material after Light: Glass (the screen). Shortened
+like ``formula_body.py`` does for Formula E / Super Formula: every part but the driver and the
+rear wheel guards is scaled in CAD x by 3.00 / 3.60 about the origin, for a 3.00 m wheelbase
+(front axle x = -1.50, rear x = +1.50, about 4.65 m long); the guards are built behind the
+moved rear wheels. Wheel centres the game must use (Godot car-local): front (+-0.80, 0, -1.50),
+rear (+-0.78, 0, +1.50).
 
 Then re-import in Godot: ``tools/bin/godot --headless --path . --import``.
 
@@ -45,6 +50,7 @@ from build123d import (
     Edge,
     Face,
     Location,
+    Matrix,
     Part,
     Plane,
     Solid,
@@ -68,6 +74,7 @@ JUNIOR_OUT_PATH = REPO / "assets" / "car" / "junior" / "body.glb"
 JUNIOR = "--junior" in sys.argv[1:]
 INDYCAR_OUT_PATH = REPO / "assets" / "car" / "indycar" / "body.glb"
 INDYCAR = "--indycar" in sys.argv[1:]
+INDYCAR_WHEELBASE = 3.00
 
 # --------------------------------------------------------------------------
 # Global dimensions (metres, CAD frame)
@@ -504,9 +511,9 @@ def make_floor_and_diffuser() -> list[PartSpec]:
     return out
 
 
-def make_wheel_guards() -> list[PartSpec]:
+def make_wheel_guards(dx: float = 0.0) -> list[PartSpec]:
     """IndyCar: a guard behind each rear wheel, on a plate from the diffuser wall (wheels must
-    not climb each other on the ovals)."""
+    not climb each other on the ovals). Built for the F1 rear axle, moved by ``dx`` along x."""
     if not INDYCAR:
         return []
     guard = loft([
@@ -516,6 +523,8 @@ def make_wheel_guards() -> list[PartSpec]:
         Section(2.600, 0.300, -0.280, -0.050, y_center=0.770, n_top=2.6, n_bot=3.0, taper=0.85),
     ])
     plate = xy_plate([(2.24, 0.52), (2.56, 0.52), (2.56, 0.62), (2.24, 0.62)], FLOOR_BOTTOM_Z, 0.015)
+    guard = guard.moved(Location((dx, 0, 0)))
+    plate = plate.moved(Location((dx, 0, 0)))
     out = []
     for j, s in enumerate(both_sides(guard)):
         out.append(PartSpec(f"wheel_guard{j}", s, "Livery"))
@@ -559,14 +568,23 @@ def build_parts() -> list[PartSpec]:
         make_front_wing,
         make_rear_wing,
         make_floor_and_diffuser,
-        make_wheel_guards,
         make_rear_details,
-        make_driver,
     ]
     parts: list[PartSpec] = []
     for b in builders:
         print(f"building {b.__name__} ...")
         parts.extend(b())
+    if INDYCAR:   # shorter than the F1 tub: scale the length as formula_body.py does
+        sx = INDYCAR_WHEELBASE / (REAR_AXLE_X - FRONT_AXLE_X)
+        # transform_geometry, not scale(): scale() ignores a located shape's placement (a
+        # Box(...).locate(...) would keep its F1 position).
+        m = Matrix([[sx, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]])
+        for p in parts:
+            p.shape = p.shape.transform_geometry(m)
+        print("building make_wheel_guards ...")
+        parts += make_wheel_guards(INDYCAR_WHEELBASE / 2 - REAR_AXLE_X)
+    print("building make_driver ...")
+    parts += make_driver()   # not scaled: the helmet keeps its shape
     return parts
 
 

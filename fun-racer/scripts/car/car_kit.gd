@@ -79,9 +79,9 @@ const GT_KIT := {
 const INDYCAR := "indycar"
 
 const NASCAR := "nascar"
-## The stock car (cad/body/stock_body.py, a generic American oval racer with a fastback roof
-## and a blade spoiler) of the NASCAR series: 2.80 m wheelbase, the F1 car's track widths and
-## wheels.
+## The stock car (cad/body/stock_body.py, a generic American oval racer: a boxy notchback with
+## an upright greenhouse, a flat deck lid and a tall blade spoiler) of the NASCAR series: 2.80 m
+## wheelbase, the F1 car's track widths and wheels.
 const STOCK_KIT := {
 	"body": "res://scenes/car/stock_body_visual.tscn",
 	"wheel_offsets": [
@@ -563,17 +563,18 @@ const KITS := {
 		},
 	},
 	INDYCAR: {
-		# cad/body/f1_body.py --indycar: the F1 tub and wheels in American oval trim: aeroscreen
-		# on the halo, small flat wings, no beam wing, guards behind the rear wheels; a teal /
-		# white / magenta livery.
+		# cad/body/f1_body.py --indycar: the F1 tub shortened to a 3.00 m wheelbase (the F1
+		# car's track widths and wheels) in American oval trim: aeroscreen on the halo, small
+		# flat wings, no beam wing, guards behind the rear wheels; a teal / white / magenta livery.
 		"body": "res://scenes/car/indycar_body_visual.tscn",
 		"wheel_offsets": [
-			Vector3(-0.80, 0.0, -1.80), Vector3(0.80, 0.0, -1.80),
-			Vector3(-0.78, 0.0, 1.80), Vector3(0.78, 0.0, 1.80),
+			Vector3(-0.80, 0.0, -1.50), Vector3(0.80, 0.0, -1.50),
+			Vector3(-0.78, 0.0, 1.50), Vector3(0.78, 0.0, 1.50),
 		],
 		"open_wheel_parts": true,
 		"sim_spec": "res://assets/car/specs/indycar.tres",
-		"collision_length": 5.4,
+		# The F1 car's 0.9 m overhang past each axle.
+		"collision_length": 4.8,
 		# The Car's arcade tuning of an IndyCar on the ovals (about 805 kg with the driver, about
 		# 550 kW from a turbo V6 on oval boost, low-drag wings: half an F1 car's downforce, about
 		# 380 km/h on a superspeedway, 0-100 km/h in about 3 s).

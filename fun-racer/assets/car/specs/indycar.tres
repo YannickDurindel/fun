@@ -4,10 +4,11 @@
 
 [resource]
 script = ExtResource("1")
+wheelbase = 3.0
 dry_mass = 805.0
 weight_front = 0.42
 cg_height = 0.27
-inertia = Vector3(1080, 1280, 310)
+inertia = Vector3(920, 1080, 300)
 spring_front = 150000.0
 spring_rear = 140000.0
 heave_front = 200000.0
