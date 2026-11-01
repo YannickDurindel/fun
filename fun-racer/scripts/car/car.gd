@@ -200,11 +200,23 @@ var wheels: Array[WheelState] = []
 
 var spawn_transform: Transform3D
 
+## Look of the car (CarKit): which body it wears and where its wheels are drawn. Only the
+## visuals use these; the physics always runs on WHEEL_OFFSETS.
+var kit: String = CarKit.F1
+var visual_wheel_offsets: Array[Vector3] = WHEEL_OFFSETS.duplicate()
+## What the physics runs on (CarKit.apply sets the kit's): contact points, wheelbase and the
+## simulation spec. The F1 car's are the constants above.
+var wheel_offsets: Array[Vector3] = WHEEL_OFFSETS.duplicate()
+var wheelbase: float = WHEELBASE
+var sim_spec_path: String = SIM_SPEC_PATH
+
 ## Which model drives this car. Empty = follow the game: the --handling= flag, else the
 ## player's `gameplay/handling` setting. Set it before the car enters the tree to force one.
 @export var handling: StringName = &""
 ## The simulation model when handling == &"simulation", else null.
 var sim: SimHandling
+## Brake assist on the player's car (AutoBrake.attach), null otherwise.
+var auto_brake: AutoBrake
 # ---- simulation extras (arcade leaves the defaults)
 var ers_charge: float = 1.0          ## 0..1 of the lap's electric energy left
 var drs_open: bool = false
@@ -279,12 +291,25 @@ func _ready() -> void:
 		handling = Bootstrap.handling_override if Bootstrap.handling_override != &"" \
 				else StringName(Settings.get_value("gameplay", "handling"))
 	if handling == HANDLING_SIMULATION:
-		sim = SimHandling.new(self, load(SIM_SPEC_PATH) as CarSpec)
-		if Bootstrap.autodrive:
-			sim.aids.use_all()   # the autopilot drives with every aid, whatever Options say
+		_make_sim()
 	_reset_drivetrain()
 	_apply_control_settings()
 	Settings.changed.connect(_on_setting_changed)
+
+func _make_sim() -> void:
+	sim = SimHandling.new(self, load(sim_spec_path) as CarSpec)
+	if Bootstrap.autodrive:
+		sim.aids.use_all()   # the autopilot drives with every aid, whatever Options say
+
+## Changes the physical car after it entered the tree (CarKit.apply): a new simulation spec
+## means a new SimHandling.
+func set_sim_spec(path: String) -> void:
+	if path == sim_spec_path:
+		return
+	sim_spec_path = path
+	if sim != null:
+		_make_sim()
+		_reset_drivetrain()
 
 ## True when the steering input is all-or-nothing (keys) and is being ramped by this car.
 func is_steer_digital() -> bool:
@@ -314,7 +339,7 @@ func wheel_radius(i: int) -> float:
 
 ## World-space centre of wheel i, including suspension travel.
 func wheel_center_world(i: int) -> Vector3:
-	return global_transform * (WHEEL_OFFSETS[i] + Vector3(0.0, wheels[i].compression, 0.0))
+	return global_transform * (wheel_offsets[i] + Vector3(0.0, wheels[i].compression, 0.0))
 
 ## Test / AI hook: replaces driver input until clear_input_override().
 func set_input_override(p_throttle: float, p_brake: float, p_steer: float) -> void:
@@ -345,6 +370,8 @@ func _physics_process(_delta: float) -> void:
 		_raw_steer = clampf(Bootstrap.get_steer(), -1.0, 1.0)
 		_steer_digital = Bootstrap.is_steer_digital()
 		_steer_overdrive = not _steer_digital and not Bootstrap.autodrive
+		if auto_brake != null and not Bootstrap.autodrive:
+			auto_brake.apply(self)   # brake assist: may cut the throttle and add brake
 		if Input.is_action_just_pressed("respawn"):
 			respawn()
 		if sim != null:
@@ -434,7 +461,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	for i in 4:
 		hit_ok[i] = false
 		var r := wheel_radius(i)
-		var mount := xf * (WHEEL_OFFSETS[i] + Vector3(0.0, travel_up, 0.0))
+		var mount := xf * (wheel_offsets[i] + Vector3(0.0, travel_up, 0.0))
 		_ray.from = mount
 		_ray.to = mount - up * (travel_up + travel_down + r)
 		var hit := space.intersect_ray(_ray)
@@ -443,7 +470,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			_comp[i] = -travel_down
 			_air_time[i] += dt
 			ws.contact = false
-			ws.contact_point = xf * (WHEEL_OFFSETS[i] + Vector3(0.0, -travel_down - r, 0.0))
+			ws.contact_point = xf * (wheel_offsets[i] + Vector3(0.0, -travel_down - r, 0.0))
 			ws.contact_normal = up
 		else:
 			var p: Vector3 = hit["position"]
@@ -464,7 +491,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 	# Static wheel loads from the centre-of-mass position, so the car rests exactly at ride height.
 	var com_z := center_of_mass.z
-	var front_share := clampf((WHEEL_OFFSETS[2].z - com_z) / WHEELBASE, 0.0, 1.0)
+	var front_share := clampf((wheel_offsets[2].z - com_z) / wheelbase, 0.0, 1.0)
 	var weight := mass * g
 	_bar_roll.fill(0.0)
 	if hit_ok[0] and hit_ok[1]:
@@ -547,11 +574,11 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var steer_max := max_steer_angle
 	if planar_speed > 1.0:
 		steer_max = minf(max_steer_angle,
-				atan(WHEELBASE * steer_grip_usage * maxf(a_lat_max - signf(steer) * bank_pull, 0.0) / (planar_speed * planar_speed)))
+				atan(wheelbase * steer_grip_usage * maxf(a_lat_max - signf(steer) * bank_pull, 0.0) / (planar_speed * planar_speed)))
 	_steer_max = steer_max
 	steer_angle = -steer * steer_max
 
-	var b_rear := WHEEL_OFFSETS[2].z - com_z
+	var b_rear := wheel_offsets[2].z - com_z
 	var kin_slip := 0.0
 	if v_long > 0.5:
 		kin_slip = atan2(-b_rear * w.dot(n_avg), v_long)
@@ -600,7 +627,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		else:
 			# Grip: yaw follows the kinematic bicycle model, lateral slide is cancelled.
 			var grip := a_lat_max * _grip_blend * _surf_mu
-			var yaw_des := v_long * tan(steer_angle) / WHEELBASE
+			var yaw_des := v_long * tan(steer_angle) / wheelbase
 			if planar_speed > 1.0:
 				# + = left: gravity along a banked road turns the car with the tyres or against them.
 				yaw_des = clampf(yaw_des, -maxf(grip - bank_pull, 0.0) / planar_speed,
@@ -816,7 +843,7 @@ func _update_wheels(dt: float, xf: Transform3D, v: Vector3, w: Vector3, com: Vec
 		var r := wheel_radius(i)
 		var is_front := i < 2
 		ws.steer_angle = vis_steer if is_front else 0.0
-		var p := xf * WHEEL_OFFSETS[i]
+		var p := xf * wheel_offsets[i]
 		var vp := v + w.cross(p - com)
 		# Velocity in the wheel's own frame (front wheels are steered).
 		var wf := f.rotated(xf.basis.y.normalized(), ws.steer_angle) if is_front else f

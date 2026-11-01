@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1307 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="31928932" visible="true" version="3" changeset="8903297" timestamp="2011-08-02T17:57:52Z" user="Metacity" uid="160224" lat="47.9530353" lon="0.2294196"/>
+ <node id="1383355667" visible="true" version="2" changeset="19868168" timestamp="2014-01-07T18:40:52Z" user="Andrés31" uid="811230" lat="47.9566670" lon="0.2276793"/>
+ <node id="4252252139" visible="true" version="1" changeset="40130882" timestamp="2016-06-19T08:49:56Z" user="Ben Harris" uid="16089" lat="47.9549660" lon="0.2285010"/>
+ <node id="7925322455" visible="true" version="1" changeset="91175376" timestamp="2020-09-20T13:16:23Z" user="Lyon-St-Clair" uid="9060372" lat="47.9550347" lon="0.2284678"/>
+ <way id="255699444" visible="true" version="10" changeset="187314041" timestamp="2026-08-12T01:28:20Z" user="LordGarySugar" uid="13792107">
+  <nd ref="1383355667"/>
+  <nd ref="7925322455"/>
+  <nd ref="4252252139"/>
+  <nd ref="31928932"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lanes" v="1"/>
+  <tag k="lit" v="no"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

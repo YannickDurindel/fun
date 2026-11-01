@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1319 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="35122841" visible="true" version="18" changeset="129112054" timestamp="2022-11-19T07:02:30Z" user="Osaka78" uid="9300097" lat="-33.4390099" lon="149.5558213"/>
+ <node id="3890232199" visible="true" version="5" changeset="129111020" timestamp="2022-11-19T05:56:12Z" user="Osaka78" uid="9300097" lat="-33.4392561" lon="149.5556564">
+  <tag k="direction" v="backward"/>
+  <tag k="highway" v="give_way"/>
+ </node>
+ <node id="7630562527" visible="true" version="5" changeset="187437219" timestamp="2026-08-14T11:38:16Z" user="TheSwavu" uid="2622285" lat="-33.4390271" lon="149.5557925"/>
+ <node id="10201085402" visible="true" version="1" changeset="129111020" timestamp="2022-11-19T05:56:12Z" user="Osaka78" uid="9300097" lat="-33.4390717" lon="149.5557355"/>
+ <node id="10201085403" visible="true" version="2" changeset="129112054" timestamp="2022-11-19T07:02:30Z" user="Osaka78" uid="9300097" lat="-33.4390472" lon="149.5557640"/>
+ <node id="10201085409" visible="true" version="1" changeset="129111020" timestamp="2022-11-19T05:56:12Z" user="Osaka78" uid="9300097" lat="-33.4391825" lon="149.5556741"/>
+ <node id="10201085410" visible="true" version="1" changeset="129111020" timestamp="2022-11-19T05:56:12Z" user="Osaka78" uid="9300097" lat="-33.4390856" lon="149.5557210"/>
+ <node id="10201085411" visible="true" version="1" changeset="129111020" timestamp="2022-11-19T05:56:12Z" user="Osaka78" uid="9300097" lat="-33.4390996" lon="149.5557088"/>
+ <node id="10201085412" visible="true" version="1" changeset="129111020" timestamp="2022-11-19T05:56:12Z" user="Osaka78" uid="9300097" lat="-33.4391202" lon="149.5556952"/>
+ <node id="10201085413" visible="true" version="1" changeset="129111020" timestamp="2022-11-19T05:56:12Z" user="Osaka78" uid="9300097" lat="-33.4391418" lon="149.5556856"/>
+ <way id="414156370" visible="true" version="7" changeset="129112054" timestamp="2022-11-19T07:02:30Z" user="Osaka78" uid="9300097">
+  <nd ref="35122841"/>
+  <nd ref="7630562527"/>
+  <nd ref="10201085403"/>
+  <nd ref="10201085402"/>
+  <nd ref="10201085410"/>
+  <nd ref="10201085411"/>
+  <nd ref="10201085412"/>
+  <nd ref="10201085413"/>
+  <nd ref="10201085409"/>
+  <nd ref="3890232199"/>
+  <tag k="alt_name" v="Mount Panorama Scenic Road"/>
+  <tag k="highway" v="residential"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="maxweight" v="5"/>
+  <tag k="maxweight:bus" v="unrestricted"/>
+  <tag k="name" v="Hell Corner"/>
+  <tag k="source" v="bing"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -2,10 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
+uid="uid://bl1u8mqqa3h6e"
+path="res://.godot/imported/landcover_far.png-4ec8e87b228fb61fd2b5d701988b3b5d.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/tracks/gilles_villeneuve/landcover_far.png"
+dest_files=["res://.godot/imported/landcover_far.png-4ec8e87b228fb61fd2b5d701988b3b5d.ctex"]
 
 [params]
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1308 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="35122877" visible="true" version="12" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4436599" lon="149.5604287"/>
+ <node id="440697140" visible="true" version="4" changeset="70903332" timestamp="2019-06-03T23:35:30Z" user="Osaka78" uid="9300097" lat="-33.4418511" lon="149.5607443"/>
+ <node id="440697142" visible="true" version="3" changeset="9456673" timestamp="2011-10-03T04:41:56Z" user="imroy" uid="119007" lat="-33.4412272" lon="149.5608597"/>
+ <node id="615150073" visible="true" version="5" changeset="70603468" timestamp="2019-05-25T03:41:13Z" user="Osaka78" uid="9300097" lat="-33.4421520" lon="149.5606911"/>
+ <node id="615150082" visible="true" version="6" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4425445" lon="149.5606194"/>
+ <node id="3110398833" visible="true" version="2" changeset="129117288" timestamp="2022-11-19T10:16:57Z" user="Osaka78" uid="9300097" lat="-33.4401144" lon="149.5610732"/>
+ <node id="10201537776" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4435947" lon="149.5604340"/>
+ <node id="10201537777" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4435355" lon="149.5604430"/>
+ <node id="10201537778" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4433980" lon="149.5604658"/>
+ <node id="10201537779" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4427190" lon="149.5605865"/>
+ <way id="306192514" visible="true" version="5" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097">
+  <nd ref="35122877"/>
+  <nd ref="10201537776"/>
+  <nd ref="10201537777"/>
+  <nd ref="10201537778"/>
+  <nd ref="10201537779"/>
+  <nd ref="615150082"/>
+  <nd ref="615150073"/>
+  <nd ref="440697140"/>
+  <nd ref="440697142"/>
+  <nd ref="3110398833"/>
+  <tag k="alt_name" v="Mount Panorama Scenic Road"/>
+  <tag k="highway" v="residential"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="maxweight" v="5"/>
+  <tag k="maxweight:bus" v="unrestricted"/>
+  <tag k="name" v="Conrod Straight"/>
+  <tag k="source" v="bing"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

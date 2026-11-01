@@ -37,19 +37,30 @@ from .net import BuildError
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 CALENDAR = os.path.join(ROOT, "assets", "tracks", "calendar.json")
+# Other series keep their circuits in a calendar of their own (the entry carries no "series").
+SERIES_CALENDARS = {
+    s: os.path.join(ROOT, "assets", "tracks", f"calendar_{s}.json")
+    for s in ("endurance", "junior", "formula_e", "indycar", "super_formula", "moto", "gt", "super_gt", "touring",
+              "german_touring", "aus_touring", "nascar", "rally", "rallycross", "rally_raid", "hill_climb", "drift",
+              "karting")
+}
+# "circuit": a circuit built only for other series' events (their calendar entry links it with
+# "track"); no series lists it on its own, so it is not in the F1 list either.
+SERIES = {"f1", "circuit"} | set(SERIES_CALENDARS)
 RECIPE_DIR = os.path.join(ROOT, "tools", "track", "tracks")
 
-TOP_KEYS = {"id", "name", "full_name", "grand_prix", "country", "country_code", "city", "length_m",
+TOP_KEYS = {"id", "series", "name", "full_name", "grand_prix", "country", "country_code", "city", "length_m",
             "turns", "osm", "layout", "elevation", "turn", "road", "terrain", "surroundings"}
 SECTION_KEYS = {
     "surroundings": {"margin_m", "far_margin_m", "default_levels", "level_height_m", "tree_density",
                      "tree_species", "building", "exclude", "add", "roof"},
     "osm": {"relation", "ways", "bbox", "exclude_ways", "extra_ways", "avoid_nodes", "avoid_names",
             "ignore_oneway", "length_tolerance", "round"},
-    "layout": {"direction", "finish", "start", "start_offset_m", "sectors", "spline", "shift"},
+    "layout": {"direction", "finish", "start", "start_offset_m", "sectors", "spline", "plan_sigma_m", "shift"},
     "elevation": {"dataset", "smooth_sigma_m", "override", "key", "key_join_m", "smooth"},
     "road": {"base_width", "grid_width", "crossfall", "camber_gain", "bank_keys", "width_keys",
-             "override", "track_json_widths", "retaining_walls", "pair", "max_bank", "shoulder"},
+             "override", "track_json_widths", "retaining_walls", "pair", "max_bank", "shoulder",
+             "sections", "widths_from"},
     "terrain": {"near", "far", "smooth_sigma_m"},
 }
 TURN_KEYS = {"id", "name", "direction", "s"}
@@ -64,12 +75,13 @@ PAIR_GAP = 1.5        # m between the tarmac edges of a [[road.pair]]: the room 
 ROUND_KEYS = {"node", "to_node", "reach_m", "note"}
 DIRECTIONS = {"clockwise", "anticlockwise"}
 AUTO_BANK = 0.03      # rad: cad/track/banking.py MAX_BANK, the limit without road.max_bank
-BANK_CEILING = 0.40   # rad: cad/track/banking.py BANK_CEILING
+BANK_CEILING = 0.56   # rad: cad/track/banking.py BANK_CEILING
 
 
 @dataclass
 class Recipe:
     id: str
+    series: str = "f1"
     name: str = ""
     full_name: str = ""
     grand_prix: str = ""
@@ -96,6 +108,7 @@ class Recipe:
     start_offset_m: float | None = None
     sectors: list | None = None
     spline: str = "centripetal"
+    plan_sigma_m: float | None = None   # [layout] plan_sigma_m: plan-view smoothing (default centreline.PLAN_SIGMA)
     # [elevation]
     dem_dataset: str | None = None
     elev_sigma_m: float = 45.0
@@ -111,19 +124,33 @@ class Recipe:
     terrain: dict = field(default_factory=dict)
     surroundings: dict = field(default_factory=dict)   # [surroundings], read by lib/surroundings.py
     source: str = ""
+    widths_info: dict | None = None   # [road] widths_from: what lib/ortho.road_width_keys did
 
     @property
     def turns_pinned(self):
         return bool(self.turn_table) and all("s" in t for t in self.turn_table)
 
 
-def calendar_entry(track_id, calendar_path=CALENDAR):
+def _entry_in(calendar_path, track_id):
     try:
         with open(calendar_path, encoding="utf-8") as f:
             cal = json.load(f)
     except OSError:
         return {}
     return next((t for t in cal.get("tracks", []) if t.get("id") == track_id), {})
+
+
+def calendar_entry(track_id, calendar_path=CALENDAR):
+    """The calendar entry of a circuit: from `calendar_path`, else from a series calendar
+    (then with its "series")."""
+    entry = _entry_in(calendar_path, track_id)
+    if entry or calendar_path != CALENDAR:
+        return entry
+    for series, path in SERIES_CALENDARS.items():
+        entry = _entry_in(path, track_id)
+        if entry:
+            return {**entry, "series": series}
+    return {}
 
 
 def _check_keys(where, d, allowed):
@@ -192,7 +219,7 @@ def from_dict(track_id, data, overrides=None, calendar_path=CALENDAR, source="")
         return data.get(key, cal.get(key, default))
 
     r = Recipe(
-        id=track_id, name=meta("name", track_id.replace("_", " ").title()),
+        id=track_id, series=meta("series", "f1"), name=meta("name", track_id.replace("_", " ").title()),
         grand_prix=meta("grand_prix"), country=meta("country"),
         country_code=meta("country_code"), city=meta("city"),
         length_m=float(meta("length_m", 0.0)), turns=meta("turns", None),
@@ -208,6 +235,7 @@ def from_dict(track_id, data, overrides=None, calendar_path=CALENDAR, source="")
         start=_latlon("layout.start", lay.get("start")),
         start_offset_m=lay.get("start_offset_m"), sectors=lay.get("sectors"),
         spline=lay.get("spline", "centripetal"),
+        plan_sigma_m=lay.get("plan_sigma_m"),
         dem_dataset=elev.get("dataset"), elev_sigma_m=float(elev.get("smooth_sigma_m", 45.0)),
         elev_overrides=[dict(o) for o in elev.get("override", [])],
         elev_keys=_tables("elevation.key", elev.get("key", [])),
@@ -222,7 +250,34 @@ def from_dict(track_id, data, overrides=None, calendar_path=CALENDAR, source="")
             setattr(r, k, v)
     r.full_name = data.get("full_name") or f"{r.name} (Grand Prix circuit)"
     validate(r)
+    _widths_from(r)
     return r
+
+
+def _widths_from(r):
+    """``[road] widths_from = "ortho_edges.json"``: the road widths traced from the orthophotos
+    (lib/ortho.py, a product in assets/tracks/<id>/) replace ``width_keys``, which stay the
+    estimate on the stretches where the trace is uncertain (ortho.road_width_keys)."""
+    name = r.road.get("widths_from")
+    if name is None:
+        return
+    if not isinstance(name, str) or os.path.basename(name) != name:
+        raise BuildError("recipe: road.widths_from must be a file name in assets/tracks/<id>/")
+    path = os.path.join(ROOT, "assets", "tracks", r.id, name)
+    if not os.path.exists(path):
+        raise BuildError(f"recipe: road.widths_from: {path} does not exist (python -m lib.ortho {r.id})")
+    n = None
+    tj = os.path.join(ROOT, "assets", "tracks", r.id, "track.json")
+    if os.path.exists(tj):
+        with open(tj, encoding="utf-8") as f:
+            n = len(json.load(f)["points"])
+    from . import ortho
+    try:
+        keys, info = ortho.road_width_keys(path, r.length_m, r.road.get("width_keys"), n)
+    except ValueError as e:
+        raise BuildError(f"recipe: road.widths_from: {e}") from e
+    r.road["width_keys"] = keys
+    r.widths_info = dict(info, source=name)
 
 
 SURR_BUILDING_KEYS = {"osm", "height", "levels", "type", "remove", "note"}
@@ -312,9 +367,12 @@ def validate_surroundings(r):
 
 
 def validate(r):
+    if r.series not in SERIES:
+        raise BuildError(f"recipe: series must be one of {', '.join(sorted(SERIES))}, "
+                         f"not '{r.series}'")
     if r.length_m <= 0.0:
         raise BuildError(f"no official lap length for '{r.id}': it is not in assets/tracks/"
-                         "calendar.json, so give length_m in the recipe or --length")
+                         "calendar.json or a series calendar, so give length_m in the recipe or --length")
     if not 500.0 <= r.length_m <= 30000.0:
         raise BuildError(f"length_m = {r.length_m} m is not a plausible lap length")
     validate_surroundings(r)
@@ -335,12 +393,20 @@ def validate(r):
     if r.osm_ways and (r.extra_ways or r.avoid_nodes):
         raise BuildError("recipe: osm.extra_ways / avoid_nodes steer the loop search and have no "
                          "effect on an explicit osm.ways list; remove one or the other")
+    if r.road.get("sections", "analytic") not in ("analytic", "lidar"):
+        raise BuildError('recipe: road.sections must be "analytic" (the default) or "lidar" (measured '
+                         "cross-sections from lidar_road.json, cad/track/road_sections.py)")
+    if r.road.get("sections") == "lidar" and "max_bank" in r.road:
+        raise BuildError('recipe: road.sections = "lidar" measures the camber: drop road.max_bank')
     if not isinstance(r.road.get("retaining_walls", False), bool):
         raise BuildError("recipe: road.retaining_walls must be true or false")
     if r.direction is not None and r.direction not in DIRECTIONS:
         raise BuildError("recipe: layout.direction must be 'clockwise' or 'anticlockwise'")
     if r.spline not in ("centripetal", "uniform"):
         raise BuildError("recipe: layout.spline must be 'centripetal' or 'uniform'")
+    if r.plan_sigma_m is not None and (not isinstance(r.plan_sigma_m, (int, float))
+                                       or isinstance(r.plan_sigma_m, bool) or not 0.0 < r.plan_sigma_m <= 60.0):
+        raise BuildError("recipe: layout.plan_sigma_m must be a distance in metres (above 0, at most 60)")
     if not isinstance(r.osm_round, list) or not all(isinstance(o, dict) for o in r.osm_round):
         raise BuildError("recipe: osm.round must be written as [[osm.round]] tables")
     for o in r.osm_round:

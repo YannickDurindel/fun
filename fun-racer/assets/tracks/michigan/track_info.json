@@ -1,0 +1,15 @@
+{
+  "id": "michigan",
+  "name": "Brooklyn, Michigan",
+  "grand_prix": "Brooklyn, Michigan",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Brooklyn",
+  "length_m": 3219,
+  "turns": 4,
+  "scene": "res://scenes/tracks/michigan.tscn",
+  "track_json": "res://assets/tracks/michigan/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "circuit"
+}

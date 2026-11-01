@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1321 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="395178746" visible="true" version="7" changeset="91175376" timestamp="2020-09-20T13:16:23Z" user="Lyon-St-Clair" uid="9060372" lat="47.9135188" lon="0.2433932"/>
+ <node id="400697195" visible="true" version="4" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9135308" lon="0.2425749"/>
+ <node id="1383406670" visible="true" version="2" changeset="19930597" timestamp="2014-01-11T08:30:59Z" user="Andrés31" uid="811230" lat="47.9143707" lon="0.2437473"/>
+ <node id="1789604759" visible="true" version="1" changeset="11911469" timestamp="2012-06-16T06:56:11Z" user="homeslice60148" uid="365944" lat="47.9135689" lon="0.2434183"/>
+ <node id="2611959392" visible="true" version="2" changeset="91175376" timestamp="2020-09-20T13:16:23Z" user="Lyon-St-Clair" uid="9060372" lat="47.9134327" lon="0.2432106"/>
+ <node id="2611959401" visible="true" version="2" changeset="91175376" timestamp="2020-09-20T13:16:23Z" user="Lyon-St-Clair" uid="9060372" lat="47.9134385" lon="0.2432468"/>
+ <node id="2611959405" visible="true" version="3" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9134284" lon="0.2431739"/>
+ <node id="2611959408" visible="true" version="2" changeset="91175376" timestamp="2020-09-20T13:16:23Z" user="Lyon-St-Clair" uid="9060372" lat="47.9134949" lon="0.2433736"/>
+ <node id="2611959420" visible="true" version="2" changeset="91175376" timestamp="2020-09-20T13:16:23Z" user="Lyon-St-Clair" uid="9060372" lat="47.9134488" lon="0.2432827"/>
+ <node id="2611959423" visible="true" version="2" changeset="91175376" timestamp="2020-09-20T13:16:23Z" user="Lyon-St-Clair" uid="9060372" lat="47.9134618" lon="0.2433169"/>
+ <node id="2611959439" visible="true" version="2" changeset="91175376" timestamp="2020-09-20T13:16:23Z" user="Lyon-St-Clair" uid="9060372" lat="47.9134781" lon="0.2433512"/>
+ <node id="2618263202" visible="true" version="1" changeset="19930597" timestamp="2014-01-11T08:30:57Z" user="Andrés31" uid="811230" lat="47.9148396" lon="0.2438664"/>
+ <node id="2618263223" visible="true" version="1" changeset="19930597" timestamp="2014-01-11T08:30:57Z" user="Andrés31" uid="811230" lat="47.9146185" lon="0.2438349"/>
+ <node id="2618263225" visible="true" version="1" changeset="19930597" timestamp="2014-01-11T08:30:57Z" user="Andrés31" uid="811230" lat="47.9149906" lon="0.2438741"/>
+ <node id="2618263246" visible="true" version="1" changeset="19930597" timestamp="2014-01-11T08:30:57Z" user="Andrés31" uid="811230" lat="47.9144473" lon="0.2437779"/>
+ <node id="2618263253" visible="true" version="1" changeset="19930597" timestamp="2014-01-11T08:30:57Z" user="Andrés31" uid="811230" lat="47.9145039" lon="0.2438013"/>
+ <node id="2618263255" visible="true" version="1" changeset="19930597" timestamp="2014-01-11T08:30:57Z" user="Andrés31" uid="811230" lat="47.9147164" lon="0.2438510"/>
+ <node id="2618263259" visible="true" version="1" changeset="19930597" timestamp="2014-01-11T08:30:58Z" user="Andrés31" uid="811230" lat="47.9145798" lon="0.2438262"/>
+ <node id="2618263270" visible="true" version="1" changeset="19930597" timestamp="2014-01-11T08:30:58Z" user="Andrés31" uid="811230" lat="47.9149101" lon="0.2438717"/>
+ <node id="2618263271" visible="true" version="1" changeset="19930597" timestamp="2014-01-11T08:30:58Z" user="Andrés31" uid="811230" lat="47.9145430" lon="0.2438154"/>
+ <node id="2618263286" visible="true" version="1" changeset="19930597" timestamp="2014-01-11T08:30:58Z" user="Andrés31" uid="811230" lat="47.9146634" lon="0.2438429"/>
+ <node id="2618263299" visible="true" version="1" changeset="19930597" timestamp="2014-01-11T08:30:58Z" user="Andrés31" uid="811230" lat="47.9147645" lon="0.2438577"/>
+ <node id="7925322403" visible="true" version="2" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9134279" lon="0.2431367"/>
+ <node id="7925322404" visible="true" version="2" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9134322" lon="0.2430967"/>
+ <node id="7925322405" visible="true" version="2" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9134402" lon="0.2430499"/>
+ <way id="256130500" visible="true" version="5" changeset="134535323" timestamp="2023-04-05T11:56:33Z" user="Kalepom" uid="392288">
+  <nd ref="2618263225"/>
+  <nd ref="2618263270"/>
+  <nd ref="2618263202"/>
+  <nd ref="2618263299"/>
+  <nd ref="2618263255"/>
+  <nd ref="2618263286"/>
+  <nd ref="2618263223"/>
+  <nd ref="2618263259"/>
+  <nd ref="2618263271"/>
+  <nd ref="2618263253"/>
+  <nd ref="2618263246"/>
+  <nd ref="1383406670"/>
+  <nd ref="1789604759"/>
+  <nd ref="395178746"/>
+  <nd ref="2611959408"/>
+  <nd ref="2611959439"/>
+  <nd ref="2611959423"/>
+  <nd ref="2611959420"/>
+  <nd ref="2611959401"/>
+  <nd ref="2611959392"/>
+  <nd ref="2611959405"/>
+  <nd ref="7925322403"/>
+  <nd ref="7925322404"/>
+  <nd ref="7925322405"/>
+  <nd ref="400697195"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lanes" v="1"/>
+  <tag k="lit" v="no"/>
+  <tag k="name" v="Virage de Mulsanne"/>
+  <tag k="name:en" v="Mulsanne Corner"/>
+  <tag k="name:etymology:wikidata" v="Q1225526"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

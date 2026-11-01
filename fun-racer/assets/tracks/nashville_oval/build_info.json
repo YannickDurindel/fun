@@ -1,0 +1,102 @@
+{
+ "id": "nashville_oval",
+ "recipe": "tools/track/tracks/nashville_oval.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   185563917
+  ],
+  "raw_length_m": 2118.7,
+  "length_m": 2118.8,
+  "official_length_m": 2140.0,
+  "length_error": -0.0099,
+  "candidates": []
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 5.68,
+  "max_grade": 0.0104,
+  "min_grade": -0.0249,
+  "origin_m": 172.31
+ },
+ "turns": {
+  "official": 4,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Turn 1",
+    "direction": "left",
+    "s_apex": 412.2,
+    "min_radius": 107.3
+   },
+   {
+    "id": "T2",
+    "name": "Turn 2",
+    "direction": "left",
+    "s_apex": 674.9,
+    "min_radius": 110.3
+   },
+   {
+    "id": "T3",
+    "name": "Turn 3",
+    "direction": "left",
+    "s_apex": 1644.9,
+    "min_radius": 118.2
+   },
+   {
+    "id": "T4",
+    "name": "Turn 4",
+    "direction": "left",
+    "s_apex": 2071.3,
+    "min_radius": 235.8
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 52.5,
+    "direction": "left",
+    "angle_deg": 14.2,
+    "kind": "kink",
+    "min_radius": 224.3,
+    "used": false
+   },
+   {
+    "s_apex": 412.2,
+    "direction": "left",
+    "angle_deg": 32.5,
+    "kind": "corner",
+    "min_radius": 107.3,
+    "used": true
+   },
+   {
+    "s_apex": 674.9,
+    "direction": "left",
+    "angle_deg": 122.4,
+    "kind": "corner",
+    "min_radius": 110.3,
+    "used": true
+   },
+   {
+    "s_apex": 1644.9,
+    "direction": "left",
+    "angle_deg": 156.9,
+    "kind": "corner",
+    "min_radius": 118.2,
+    "used": true
+   },
+   {
+    "s_apex": 2071.3,
+    "direction": "left",
+    "angle_deg": 18.8,
+    "kind": "corner",
+    "min_radius": 235.8,
+    "used": true
+   }
+  ]
+ },
+ "warnings": [
+  "the finish line point is 105 m away from the loop; check [layout] finish"
+ ]
+}

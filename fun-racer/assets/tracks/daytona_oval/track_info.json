@@ -1,0 +1,15 @@
+{
+  "id": "daytona_oval",
+  "name": "Daytona Oval",
+  "grand_prix": "Tri-oval · Daytona Beach",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Daytona Beach",
+  "length_m": 4023,
+  "turns": 4,
+  "scene": "res://scenes/tracks/daytona_oval.tscn",
+  "track_json": "res://assets/tracks/daytona_oval/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "circuit"
+}

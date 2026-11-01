@@ -1,0 +1,15 @@
+{
+  "id": "nurburgring_gp",
+  "name": "Nürburgring",
+  "grand_prix": "Nürburgring",
+  "country": "Germany",
+  "country_code": "DE",
+  "city": "Nürburg",
+  "length_m": 5148,
+  "turns": 15,
+  "scene": "res://scenes/tracks/nurburgring_gp.tscn",
+  "track_json": "res://assets/tracks/nurburgring_gp/track.json",
+  "osm_relation": 38567,
+  "available": true,
+  "series": "circuit"
+}

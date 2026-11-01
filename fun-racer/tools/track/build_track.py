@@ -94,6 +94,12 @@ def run(argv=None, log=print):
     os.makedirs(out_dir, exist_ok=True)
     log(f"building '{rec.id}' ({rec.name}, official {rec.length_m:.0f} m) -> {out_dir}"
         + (f"  [recipe {rec.source}]" if rec.source else "  [no recipe: all automatic]"))
+    if rec.widths_info:
+        wi = rec.widths_info
+        log(f"road widths from {wi['source']}: {wi['range'][0]:.1f}-{wi['range'][1]:.1f} m, traced "
+            f"{100 * wi['traced_share']:.0f} %, the recipe's estimate blended in on "
+            f"{len(wi['blended'])} stretches: "
+            + ", ".join(f"{a:.0f}-{b:.0f}" for a, b, _ in wi["blended"]))
     t0 = time.time()
     timings = {}
 
@@ -152,6 +158,11 @@ def run(argv=None, log=print):
                 log("plot: the surroundings picture needs matplotlib, skipped")
     for w in binfo.get("warnings", []):
         log(f"WARNING: {w}")
+    if "centreline" in steps or "road" in steps:
+        from lib import report as report_mod
+        wiggle = report_mod.wiggle_warning(report_mod.build(out_dir)["banked_wiggles"])
+        if wiggle:
+            log(f"WARNING: {wiggle}")
     log(f"done in {time.time() - t0:.1f} s ({fetcher.requests} network requests): "
         + ", ".join(f"{k} {v} s" for k, v in timings.items()))
     if args.compare:

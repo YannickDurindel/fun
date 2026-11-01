@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1314 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="400697387" visible="true" version="4" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9221245" lon="0.2198725"/>
+ <node id="6178626559" visible="true" version="1" changeset="65960936" timestamp="2019-01-02T14:57:41Z" user="LudoTA" uid="5197297" lat="47.9213973" lon="0.2202198"/>
+ <node id="9334531447" visible="true" version="1" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9220521" lon="0.2199109"/>
+ <node id="13233570985" visible="true" version="1" changeset="173294173" timestamp="2025-10-14T21:11:32Z" user="LudoTA" uid="5197297" lat="47.9217436" lon="0.2200564"/>
+ <way id="1505387930" visible="true" version="1" changeset="181962891" timestamp="2026-04-28T22:45:24Z" user="14im" uid="10954515">
+  <nd ref="400697387"/>
+  <nd ref="9334531447"/>
+  <nd ref="13233570985"/>
+  <nd ref="6178626559"/>
+  <tag k="cycleway:both" v="shoulder"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="no"/>
+  <tag k="maxspeed" v="80"/>
+  <tag k="name" v="Route du Golf"/>
+  <tag k="parking:both" v="no"/>
+  <tag k="ref" v="D 140"/>
+  <tag k="sidewalk" v="no"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

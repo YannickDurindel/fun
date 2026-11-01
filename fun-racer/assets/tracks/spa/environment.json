@@ -1,5 +1,6 @@
 {
  "preset": "temperate_day",
+ "look": "detailed",
  "time": "day",
  "sun": {"azimuth_deg": 213, "elevation_deg": 55, "color": [0.98, 0.96, 0.93], "energy": 1.0},
  "sky": {"top": [0.50, 0.56, 0.65], "horizon": [0.80, 0.82, 0.84], "stars": 0.0, "glow": 0.0},
@@ -27,5 +28,8 @@
   "scale": 1.0
  },
  "water": {"color": [0.16, 0.22, 0.20], "deep_color": [0.06, 0.10, 0.10]},
- "stands": {"seat_colors": [[0.16, 0.27, 0.62], [0.55, 0.57, 0.62], [0.20, 0.30, 0.55]], "crowd": 0.75}
+ "stands": {"seat_colors": [[0.16, 0.27, 0.62], [0.55, 0.57, 0.62], [0.20, 0.30, 0.55]], "crowd": 0.75},
+ "realistic": {
+  "sky": {"hdri": "kloofendal_48d_partly_cloudy_puresky", "hdri_energy": 1.0}
+ }
 }

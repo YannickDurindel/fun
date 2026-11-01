@@ -1,0 +1,65 @@
+{
+ "note": "Rallycross events: mixed tarmac and gravel, joker lap, current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "tracks": [
+  {
+   "id": "rx_montalegre",
+   "name": "Montalegre",
+   "grand_prix": "Rallycross · Montalegre",
+   "country": "Portugal",
+   "country_code": "PT",
+   "city": "Montalegre",
+   "length_m": 1180,
+   "turns": 0
+  },
+  {
+   "id": "rx_hell",
+   "name": "Hell, Trøndelag",
+   "grand_prix": "Rallycross · Hell",
+   "country": "Norway",
+   "country_code": "NO",
+   "city": "Stjørdal",
+   "length_m": 1035,
+   "turns": 0
+  },
+  {
+   "id": "rx_holjes",
+   "name": "Höljes",
+   "grand_prix": "Rallycross · Höljes",
+   "country": "Sweden",
+   "country_code": "SE",
+   "city": "Höljes",
+   "length_m": 1210,
+   "turns": 0
+  },
+  {
+   "id": "rx_loheac",
+   "name": "Lohéac",
+   "grand_prix": "Rallycross · Lohéac",
+   "country": "France",
+   "country_code": "FR",
+   "city": "Lohéac",
+   "length_m": 1350,
+   "turns": 0
+  },
+  {
+   "id": "rx_riga",
+   "name": "Riga",
+   "grand_prix": "Rallycross · Riga",
+   "country": "Latvia",
+   "country_code": "LV",
+   "city": "Riga",
+   "length_m": 1290,
+   "turns": 0
+  },
+  {
+   "id": "rx_mettet",
+   "name": "Mettet",
+   "grand_prix": "Rallycross · Mettet",
+   "country": "Belgium",
+   "country_code": "BE",
+   "city": "Mettet",
+   "length_m": 1140,
+   "turns": 0
+  }
+ ]
+}

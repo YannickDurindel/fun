@@ -2,10 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
+uid="uid://dtxp5js3xd4k8"
+path="res://.godot/imported/landcover.png-4d16a12901b3712a3588715665d1aebe.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/tracks/yas_marina/landcover.png"
+dest_files=["res://.godot/imported/landcover.png-4d16a12901b3712a3588715665d1aebe.ctex"]
 
 [params]
 

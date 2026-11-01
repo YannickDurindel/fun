@@ -10,6 +10,7 @@ extends Resource
 @export var weight_front: float = 0.46         ## share of static weight on the front axle
 @export var cg_height: float = 0.25            ## m above the ground
 @export var inertia: Vector3 = Vector3(1100.0, 1300.0, 320.0)   ## kg m^2 about x (pitch), y (yaw), z (roll)
+@export var wheelbase: float = 3.60            ## m between the axles (Car.wheelbase, the physics wheel contacts)
 @export var max_steer_angle: float = 0.35      ## rad at the front wheels, full lock
 
 @export_group("Wheels")

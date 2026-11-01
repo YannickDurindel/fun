@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="PackedScene" path="res://assets/car/kart/body.glb" id="1_body"]
+
+[sub_resource type="StandardMaterial3D" id="livery"]
+resource_name = "Livery"
+albedo_color = Color(0.82, 0.08, 0.1, 1)
+metallic = 0.0
+roughness = 0.32
+clearcoat_enabled = true
+clearcoat = 0.6
+clearcoat_roughness = 0.08
+
+[sub_resource type="StandardMaterial3D" id="livery_white"]
+resource_name = "LiveryWhite"
+albedo_color = Color(0.88, 0.88, 0.86, 1)
+roughness = 0.35
+clearcoat_enabled = true
+clearcoat = 0.6
+clearcoat_roughness = 0.08
+
+[sub_resource type="StandardMaterial3D" id="accent"]
+resource_name = "Accent"
+albedo_color = Color(0.97, 0.76, 0.05, 1)
+roughness = 0.32
+clearcoat_enabled = true
+clearcoat = 0.6
+clearcoat_roughness = 0.08
+
+[sub_resource type="StandardMaterial3D" id="plastic"]
+resource_name = "Carbon"
+albedo_color = Color(0.035, 0.036, 0.04, 1)
+roughness = 0.6
+
+[sub_resource type="StandardMaterial3D" id="helmet"]
+resource_name = "Helmet"
+albedo_color = Color(0.93, 0.93, 0.93, 1)
+metallic = 0.05
+roughness = 0.25
+clearcoat_enabled = true
+clearcoat = 1.0
+clearcoat_roughness = 0.03
+
+[sub_resource type="StandardMaterial3D" id="suit"]
+resource_name = "Suit"
+albedo_color = Color(0.09, 0.11, 0.17, 1)
+roughness = 0.85
+
+[node name="KartBodyVisual" type="Node3D"]
+
+[node name="Body" parent="." instance=ExtResource("1_body")]
+
+[node name="Livery" parent="Body" index="0"]
+layers = 8193
+surface_material_override/0 = SubResource("livery")
+
+[node name="LiveryWhite" parent="Body" index="1"]
+layers = 8193
+surface_material_override/0 = SubResource("livery_white")
+
+[node name="Accent" parent="Body" index="2"]
+layers = 8193
+surface_material_override/0 = SubResource("accent")
+
+[node name="Carbon" parent="Body" index="3"]
+layers = 8193
+surface_material_override/0 = SubResource("plastic")
+
+[node name="Helmet" parent="Body" index="5"]
+surface_material_override/0 = SubResource("helmet")
+
+[node name="Suit" parent="Body" index="7"]
+surface_material_override/0 = SubResource("suit")
+
+[editable path="Body"]

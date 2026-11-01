@@ -1,0 +1,80 @@
+# Circuit de la Sarthe (Le Mans, France): the 24 Hours layout, 13626 m, 38 turns, clockwise.
+# Endurance series (calendar_endurance.json).
+#
+#   .venv/bin/python tools/track/build_track.py wec_le_mans --plot
+
+id = "wec_le_mans"
+series = "endurance"
+full_name = "Circuit de la Sarthe (24 Hours layout)"
+
+[osm]
+# No 24 Hours relation (relation 2725877 is only the Bugatti circuit). The lap is chained by
+# hand, in driving order, from the raceway ways (Bugatti part, chicanes, Mulsanne, Arnage,
+# Porsche, Ford) and the D338 / D140 / D139 highway ways between them (found with a shortest-path
+# search over the OSM graph; the chain is 13627 m against 13626 m official).
+ignore_oneway = true
+ways = [
+  773623628, 1101935455,                 # Courbe Dunlop
+  773623626, 773623627,                  # Chicane Dunlop and the way to La Chapelle
+  1101935457, 34405868,                  # La Chapelle
+  226901643, 226901631,                  # Esses de la Foret, Tertre Rouge
+  624045670, 624045671,                  # exit of Tertre Rouge onto the Hunaudieres
+  158840041, 255699444, 159588882,       # D338 Mulsanne straight (one carriageway, northbound way reversed)
+  1358131505, 34405892,                  # first chicane (Daytona / Forza)
+  25245509, 34405893, 159588880,         # straight again
+  256130501,                             # Chicane Michelin (Playstation)
+  1505387925, 158840027, 1505387926,     # D338 to Mulsanne
+  256130500,                             # Virage de Mulsanne
+  1494893860, 1505387934, 1505387935,    # D140 Route du Golf
+  121230938, 1505387930, 1505387929,     # to Indianapolis
+  1011729892, 231829816, 231829814,      # Virage d'Indianapolis and the way to Arnage
+  1011729891,                            # Virage d'Arnage
+  158840033,                             # D139 to the Porsche curves
+  34405909, 1011729893,                  # Virage Porsche
+  226901647, 226901650, 257319131,       # Virage du Pont, Karting, Corvette
+  226901635, 226901626,                  # Maison Blanche, Chicane Ford
+  226901639, 258242164,                  # Raccordement
+  773623629,                             # pit straight up to the Dunlop curve
+]
+
+[layout]
+# Manual ways do not take the direction from the oneway tags.
+direction = "clockwise"
+# No start / finish node in OSM. The Esri World Imagery aerial (z19, 0.2 m per pixel) shows the
+# white line across the pit straight in front of the start gantry and the race control tower, on
+# the estimate to within about 1 m (read off the picture to +/- 3 m).
+finish = [47.949865, 0.207541]
+
+[elevation]
+# OpenTopoData is rate limited per IP while several tracks build.
+dataset = "terrarium"
+
+[road]
+# Widths are ESTIMATES (no published per-section figures): the Bugatti part and the pit straight
+# are 13 to 15 m (the OSM width tag of the pit straight says 13 m), the public roads are
+# narrower: the D338 Mulsanne straight is one carriageway of two lanes plus the verge markings,
+# about 11 to 12 m between the kerbs; the D140 Route du Golf and the D139 about 10 to 11 m;
+# Indianapolis and Arnage (village streets) 9 to 10 m, as seen on the IGN aerial photograph.
+base_width = 13.0
+grid_width = 15.0
+width_keys = [
+  [0.0, 15.0, "pit straight"],
+  [320.0, 15.0, ""],
+  [400.0, 13.0, "Dunlop curve and chicane (Bugatti circuit part)"],
+  [2150.0, 13.0, "Tertre Rouge exit"],
+  [2300.0, 12.0, "D338 Mulsanne straight (estimate)"],
+  [7450.0, 12.0, ""],
+  [7600.0, 11.5, "Virage de Mulsanne"],
+  [7850.0, 11.0, "D140 Route du Golf (estimate)"],
+  [9550.0, 11.0, ""],
+  [9700.0, 10.0, "Indianapolis, village street (estimate)"],
+  [9950.0, 10.0, ""],
+  [10050.0, 9.5, "Arnage, village street (estimate)"],
+  [10300.0, 10.0, ""],
+  [10450.0, 11.0, "D139 towards Porsche (estimate)"],
+  [11400.0, 11.0, ""],
+  [11500.0, 12.5, "Porsche curves (raceway)"],
+  [13300.0, 12.5, ""],
+  [13450.0, 13.5, "Raccordement"],
+  [13520.0, 15.0, "pit straight"],
+]

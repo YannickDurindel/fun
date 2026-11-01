@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1293 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="101134811" visible="true" version="5" changeset="14440039" timestamp="2012-12-28T15:37:27Z" user="Andrés31" uid="811230" lat="29.1857596" lon="-81.0696652"/>
+ <node id="101134814" visible="true" version="5" changeset="10125111" timestamp="2011-12-15T16:15:53Z" user="SteveDorries" uid="168862" lat="29.1858866" lon="-81.0696130"/>
+ <node id="101134815" visible="true" version="6" changeset="14440039" timestamp="2012-12-28T15:37:28Z" user="Andrés31" uid="811230" lat="29.1864209" lon="-81.0698139"/>
+ <node id="101134816" visible="true" version="6" changeset="14440039" timestamp="2012-12-28T15:37:27Z" user="Andrés31" uid="811230" lat="29.1864246" lon="-81.0698708"/>
+ <node id="101134818" visible="true" version="6" changeset="14440039" timestamp="2012-12-28T15:37:27Z" user="Andrés31" uid="811230" lat="29.1864220" lon="-81.0699197"/>
+ <node id="101134820" visible="true" version="6" changeset="14440039" timestamp="2012-12-28T15:37:27Z" user="Andrés31" uid="811230" lat="29.1864078" lon="-81.0699789"/>
+ <node id="101134822" visible="true" version="6" changeset="14440039" timestamp="2012-12-28T15:37:27Z" user="Andrés31" uid="811230" lat="29.1863889" lon="-81.0700322"/>
+ <node id="101134824" visible="true" version="6" changeset="14440039" timestamp="2012-12-28T15:37:27Z" user="Andrés31" uid="811230" lat="29.1863582" lon="-81.0700880"/>
+ <node id="101134826" visible="true" version="6" changeset="14440039" timestamp="2012-12-28T15:37:27Z" user="Andrés31" uid="811230" lat="29.1862873" lon="-81.0701786"/>
+ <node id="101134828" visible="true" version="5" changeset="10125111" timestamp="2011-12-15T16:15:53Z" user="SteveDorries" uid="168862" lat="29.1862081" lon="-81.0702562"/>
+ <node id="1547453288" visible="true" version="2" changeset="14440039" timestamp="2012-12-28T15:37:28Z" user="Andrés31" uid="811230" lat="29.1856217" lon="-81.0697301"/>
+ <node id="2085914534" visible="true" version="1" changeset="14440039" timestamp="2012-12-28T15:37:20Z" user="Andrés31" uid="811230" lat="29.1862451" lon="-81.0695810"/>
+ <node id="2085914596" visible="true" version="1" changeset="14440039" timestamp="2012-12-28T15:37:21Z" user="Andrés31" uid="811230" lat="29.1861985" lon="-81.0695661"/>
+ <node id="2085914597" visible="true" version="1" changeset="14440039" timestamp="2012-12-28T15:37:21Z" user="Andrés31" uid="811230" lat="29.1864064" lon="-81.0697715"/>
+ <node id="2085914601" visible="true" version="1" changeset="14440039" timestamp="2012-12-28T15:37:21Z" user="Andrés31" uid="811230" lat="29.1855506" lon="-81.0697714"/>
+ <node id="2085914609" visible="true" version="1" changeset="14440039" timestamp="2012-12-28T15:37:21Z" user="Andrés31" uid="811230" lat="29.1860843" lon="-81.0695590"/>
+ <node id="2085914620" visible="true" version="3" changeset="190176172" timestamp="2026-10-08T03:21:30Z" user="Mateusz Konieczny" uid="1722488" lat="29.1859446" lon="-81.0704856"/>
+ <node id="2085914642" visible="true" version="1" changeset="14440039" timestamp="2012-12-28T15:37:22Z" user="Andrés31" uid="811230" lat="29.1859570" lon="-81.0695842"/>
+ <node id="2085914688" visible="true" version="1" changeset="14440039" timestamp="2012-12-28T15:37:23Z" user="Andrés31" uid="811230" lat="29.1863820" lon="-81.0697190"/>
+ <node id="2085914701" visible="true" version="1" changeset="14440039" timestamp="2012-12-28T15:37:24Z" user="Andrés31" uid="811230" lat="29.1861426" lon="-81.0695583"/>
+ <node id="2085914713" visible="true" version="1" changeset="14440039" timestamp="2012-12-28T15:37:24Z" user="Andrés31" uid="811230" lat="29.1860208" lon="-81.0695663"/>
+ <node id="2085914751" visible="true" version="1" changeset="14440039" timestamp="2012-12-28T15:37:25Z" user="Andrés31" uid="811230" lat="29.1862871" lon="-81.0696095"/>
+ <node id="2085914768" visible="true" version="1" changeset="14440039" timestamp="2012-12-28T15:37:25Z" user="Andrés31" uid="811230" lat="29.1863477" lon="-81.0696672"/>
+ <way id="352104911" visible="true" version="6" changeset="175032519" timestamp="2025-11-23T16:13:38Z" user="HeyItsAdam" uid="7466976">
+  <nd ref="2085914620"/>
+  <nd ref="101134828"/>
+  <nd ref="101134826"/>
+  <nd ref="101134824"/>
+  <nd ref="101134822"/>
+  <nd ref="101134820"/>
+  <nd ref="101134818"/>
+  <nd ref="101134816"/>
+  <nd ref="101134815"/>
+  <nd ref="2085914597"/>
+  <nd ref="2085914688"/>
+  <nd ref="2085914768"/>
+  <nd ref="2085914751"/>
+  <nd ref="2085914534"/>
+  <nd ref="2085914596"/>
+  <nd ref="2085914701"/>
+  <nd ref="2085914609"/>
+  <nd ref="2085914713"/>
+  <nd ref="2085914642"/>
+  <nd ref="101134814"/>
+  <nd ref="101134811"/>
+  <nd ref="1547453288"/>
+  <nd ref="2085914601"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="International Horseshoe"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="tiger:cfcc" v="A74"/>
+  <tag k="tiger:county" v="Volusia, FL"/>
+  <tag k="tiger:name_base" v="Daytona International"/>
+  <tag k="tiger:reviewed" v="no"/>
+ </way>
+</osm>

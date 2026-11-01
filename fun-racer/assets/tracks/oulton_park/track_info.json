@@ -1,0 +1,15 @@
+{
+  "id": "oulton_park",
+  "name": "Oulton Park",
+  "grand_prix": "Oulton Park",
+  "country": "United Kingdom",
+  "country_code": "GB",
+  "city": "Tarporley",
+  "length_m": 3582,
+  "turns": 14,
+  "scene": "res://scenes/tracks/oulton_park.tscn",
+  "track_json": "res://assets/tracks/oulton_park/track.json",
+  "osm_relation": 11249454,
+  "available": true,
+  "series": "circuit"
+}

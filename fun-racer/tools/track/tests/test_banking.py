@@ -36,7 +36,7 @@ class BankRecipeTest(unittest.TestCase):
         _recipe({"override": [{"s": [100.0, 300.0], "bank": 0.03}]})
 
     def test_max_bank_and_shoulder_ranges(self):
-        for road in ({"max_bank": 0.41}, {"max_bank": 0.02}, {"max_bank": True}, {"shoulder": -1.0},
+        for road in ({"max_bank": 0.57}, {"max_bank": 0.02}, {"max_bank": True}, {"shoulder": -1.0},
                      {"shoulder": 11.0}):
             with self.assertRaises(BuildError, msg=str(road)):
                 _recipe(road)
@@ -81,7 +81,7 @@ class BankProfileTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "max_bank"):
             self._profile({"override": [{"s": [1300.0, 1500.0], "bank": 0.2}]})
         with self.assertRaisesRegex(ValueError, "max_bank"):
-            self._profile({"max_bank": 0.5})
+            self._profile({"max_bank": 0.6})
         # A declared limit does not loosen the automatic camber.
         loose = self._profile({"max_bank": 0.4, "camber_gain": 10.0})
         self.assertLessEqual(float(self.np.abs(loose).max()), self.banking.MAX_BANK + 1e-9)

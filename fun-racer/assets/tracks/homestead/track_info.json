@@ -1,0 +1,15 @@
+{
+  "id": "homestead",
+  "name": "Homestead, Miami",
+  "grand_prix": "Homestead, Miami",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Homestead",
+  "length_m": 2414,
+  "turns": 4,
+  "scene": "res://scenes/tracks/homestead.tscn",
+  "track_json": "res://assets/tracks/homestead/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "circuit"
+}

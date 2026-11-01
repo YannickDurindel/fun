@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1295 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1256623421" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:05Z" user="Neverwhere" uid="221878" lat="27.4528608" lon="-81.3582686"/>
+ <node id="1256623436" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:05Z" user="Neverwhere" uid="221878" lat="27.4531274" lon="-81.3580567"/>
+ <node id="1256623445" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:06Z" user="Neverwhere" uid="221878" lat="27.4533678" lon="-81.3579977"/>
+ <node id="1256623446" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:06Z" user="Neverwhere" uid="221878" lat="27.4531797" lon="-81.3580272"/>
+ <node id="1256623452" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:06Z" user="Neverwhere" uid="221878" lat="27.4526918" lon="-81.3582096"/>
+ <node id="1256623460" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:06Z" user="Neverwhere" uid="221878" lat="27.4526228" lon="-81.3580889"/>
+ <node id="1256623461" visible="true" version="2" changeset="156545031" timestamp="2024-09-12T20:13:25Z" user="Spyder_Monkey" uid="21177877" lat="27.4526178" lon="-81.3579865"/>
+ <node id="1256623480" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:06Z" user="Neverwhere" uid="221878" lat="27.4532297" lon="-81.3580084"/>
+ <node id="1256623484" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:06Z" user="Neverwhere" uid="221878" lat="27.4537581" lon="-81.3578475"/>
+ <node id="1256623506" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:07Z" user="Neverwhere" uid="221878" lat="27.4534439" lon="-81.3579950"/>
+ <node id="1256623522" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:07Z" user="Neverwhere" uid="221878" lat="27.4528132" lon="-81.3582659"/>
+ <node id="1256623524" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:07Z" user="Neverwhere" uid="221878" lat="27.4526513" lon="-81.3581587"/>
+ <node id="1256623539" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:08Z" user="Neverwhere" uid="221878" lat="27.4527513" lon="-81.3582498"/>
+ <node id="1256623553" visible="true" version="2" changeset="156545031" timestamp="2024-09-12T20:13:25Z" user="Spyder_Monkey" uid="21177877" lat="27.4526213" lon="-81.3577487"/>
+ <node id="1256623587" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:09Z" user="Neverwhere" uid="221878" lat="27.4532797" lon="-81.3580031"/>
+ <node id="1256623601" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:09Z" user="Neverwhere" uid="221878" lat="27.4529608" lon="-81.3582364"/>
+ <node id="1256623604" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:09Z" user="Neverwhere" uid="221878" lat="27.4530012" lon="-81.3581935"/>
+ <node id="1256623634" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:10Z" user="Neverwhere" uid="221878" lat="27.4529203" lon="-81.3582552"/>
+ <node id="1256623669" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:10Z" user="Neverwhere" uid="221878" lat="27.4536510" lon="-81.3579226"/>
+ <node id="1256623715" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:11Z" user="Neverwhere" uid="221878" lat="27.4530560" lon="-81.3581238"/>
+ <node id="1256623728" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:12Z" user="Neverwhere" uid="221878" lat="27.4539223" lon="-81.3577080"/>
+ <way id="1315957550" visible="true" version="1" changeset="156694610" timestamp="2024-09-16T15:47:59Z" user="Spyder_Monkey" uid="21177877">
+  <nd ref="1256623553"/>
+  <nd ref="1256623461"/>
+  <nd ref="1256623460"/>
+  <nd ref="1256623524"/>
+  <nd ref="1256623452"/>
+  <nd ref="1256623539"/>
+  <nd ref="1256623522"/>
+  <nd ref="1256623421"/>
+  <nd ref="1256623634"/>
+  <nd ref="1256623601"/>
+  <nd ref="1256623604"/>
+  <nd ref="1256623715"/>
+  <nd ref="1256623436"/>
+  <nd ref="1256623446"/>
+  <nd ref="1256623480"/>
+  <nd ref="1256623587"/>
+  <nd ref="1256623445"/>
+  <nd ref="1256623506"/>
+  <nd ref="1256623669"/>
+  <nd ref="1256623484"/>
+  <nd ref="1256623728"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Hairpin"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

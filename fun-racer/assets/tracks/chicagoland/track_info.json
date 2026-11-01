@@ -1,0 +1,15 @@
+{
+  "id": "chicagoland",
+  "name": "Joliet, Chicago",
+  "grand_prix": "Joliet, Chicago",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Joliet",
+  "length_m": 2414,
+  "turns": 4,
+  "scene": "res://scenes/tracks/chicagoland.tscn",
+  "track_json": "res://assets/tracks/chicagoland/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "circuit"
+}

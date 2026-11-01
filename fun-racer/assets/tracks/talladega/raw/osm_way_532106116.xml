@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (3907562 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="63890962" visible="true" version="3" changeset="3184547" timestamp="2009-11-22T11:24:12Z" user="woodpeck_fixbot" uid="147510" lat="33.5732108" lon="-86.0700695"/>
+ <node id="63890965" visible="true" version="4" changeset="8373489" timestamp="2011-06-07T19:54:41Z" user="Neverwhere" uid="221878" lat="33.5737108" lon="-86.0697207"/>
+ <node id="63890967" visible="true" version="3" changeset="3184547" timestamp="2009-11-22T11:24:12Z" user="woodpeck_fixbot" uid="147510" lat="33.5740332" lon="-86.0694001"/>
+ <node id="63890969" visible="true" version="3" changeset="3314061" timestamp="2009-12-07T08:26:45Z" user="woodpeck_fixbot" uid="147510" lat="33.5743478" lon="-86.0689967"/>
+ <node id="63890973" visible="true" version="3" changeset="2611868" timestamp="2009-09-25T05:34:45Z" user="woodpeck_fixbot" uid="147510" lat="33.5746625" lon="-86.0683787"/>
+ <node id="63890976" visible="true" version="3" changeset="3184547" timestamp="2009-11-22T11:24:12Z" user="woodpeck_fixbot" uid="147510" lat="33.5748484" lon="-86.0677950"/>
+ <node id="63890978" visible="true" version="3" changeset="2611868" timestamp="2009-09-25T05:34:45Z" user="woodpeck_fixbot" uid="147510" lat="33.5749557" lon="-86.0667994"/>
+ <node id="63890980" visible="true" version="3" changeset="3184547" timestamp="2009-11-22T11:24:12Z" user="woodpeck_fixbot" uid="147510" lat="33.5747126" lon="-86.0654004"/>
+ <node id="63890982" visible="true" version="3" changeset="2611868" timestamp="2009-09-25T05:34:45Z" user="woodpeck_fixbot" uid="147510" lat="33.5743478" lon="-86.0646450"/>
+ <node id="63890985" visible="true" version="4" changeset="8369438" timestamp="2011-06-07T12:04:24Z" user="Neverwhere" uid="221878" lat="33.5736515" lon="-86.0638805"/>
+ <node id="63890990" visible="true" version="3" changeset="2611868" timestamp="2009-09-25T05:34:45Z" user="woodpeck_fixbot" uid="147510" lat="33.5730749" lon="-86.0634949"/>
+ <node id="63890992" visible="true" version="3" changeset="3184547" timestamp="2009-11-22T11:24:12Z" user="woodpeck_fixbot" uid="147510" lat="33.5727174" lon="-86.0633404"/>
+ <node id="304303884" visible="true" version="10" changeset="332607" timestamp="2008-10-13T17:51:43Z" user="California Bear" uid="28923" lat="33.5722311" lon="-86.0703785"/>
+ <node id="304304168" visible="true" version="10" changeset="8373489" timestamp="2011-06-07T19:54:43Z" user="Neverwhere" uid="221878" lat="33.5749477" lon="-86.0672944"/>
+ <node id="304304169" visible="true" version="9" changeset="332607" timestamp="2008-10-13T17:51:43Z" user="California Bear" uid="28923" lat="33.5749271" lon="-86.0663702"/>
+ <node id="304304170" visible="true" version="9" changeset="332607" timestamp="2008-10-13T17:51:43Z" user="California Bear" uid="28923" lat="33.5748770" lon="-86.0659840"/>
+ <node id="304304171" visible="true" version="9" changeset="332607" timestamp="2008-10-13T17:51:43Z" user="California Bear" uid="28923" lat="33.5748127" lon="-86.0656922"/>
+ <node id="304304172" visible="true" version="9" changeset="332607" timestamp="2008-10-13T17:51:43Z" user="California Bear" uid="28923" lat="33.5746196" lon="-86.0651600"/>
+ <node id="304304173" visible="true" version="9" changeset="332607" timestamp="2008-10-13T17:51:43Z" user="California Bear" uid="28923" lat="33.5745052" lon="-86.0649197"/>
+ <node id="304304174" visible="true" version="9" changeset="332607" timestamp="2008-10-13T17:51:43Z" user="California Bear" uid="28923" lat="33.5741619" lon="-86.0643876"/>
+ <node id="304304175" visible="true" version="9" changeset="332607" timestamp="2008-10-13T17:51:44Z" user="California Bear" uid="28923" lat="33.5739402" lon="-86.0641472"/>
+ <node id="304304176" visible="true" version="10" changeset="8369438" timestamp="2011-06-07T12:04:25Z" user="Neverwhere" uid="221878" lat="33.5737778" lon="-86.0639886"/>
+ <node id="304304177" visible="true" version="9" changeset="332607" timestamp="2008-10-13T17:51:44Z" user="California Bear" uid="28923" lat="33.5734039" lon="-86.0636923"/>
+ <node id="304304206" visible="true" version="8" changeset="332607" timestamp="2008-10-13T17:51:44Z" user="California Bear" uid="28923" lat="33.5721310" lon="-86.0631430"/>
+ <node id="304306606" visible="true" version="1" changeset="332607" timestamp="2008-10-13T17:51:43Z" user="California Bear" uid="28923" lat="33.5727674" lon="-86.0702498"/>
+ <node id="1315881639" visible="true" version="1" changeset="8376398" timestamp="2011-06-08T06:44:41Z" user="Neverwhere" uid="221878" lat="33.5696732" lon="-86.0709309"/>
+ <node id="5164225472" visible="true" version="1" changeset="52875454" timestamp="2017-10-13T02:21:02Z" user="Skybunny" uid="1751737" lat="33.5718833" lon="-86.0630754"/>
+ <way id="532106116" visible="true" version="1" changeset="52875454" timestamp="2017-10-13T02:21:03Z" user="Skybunny" uid="1751737">
+  <nd ref="5164225472"/>
+  <nd ref="304304206"/>
+  <nd ref="63890992"/>
+  <nd ref="63890990"/>
+  <nd ref="304304177"/>
+  <nd ref="63890985"/>
+  <nd ref="304304176"/>
+  <nd ref="304304175"/>
+  <nd ref="304304174"/>
+  <nd ref="63890982"/>
+  <nd ref="304304173"/>
+  <nd ref="304304172"/>
+  <nd ref="63890980"/>
+  <nd ref="304304171"/>
+  <nd ref="304304170"/>
+  <nd ref="304304169"/>
+  <nd ref="63890978"/>
+  <nd ref="304304168"/>
+  <nd ref="63890976"/>
+  <nd ref="63890973"/>
+  <nd ref="63890969"/>
+  <nd ref="63890967"/>
+  <nd ref="63890965"/>
+  <nd ref="63890962"/>
+  <nd ref="304306606"/>
+  <nd ref="304303884"/>
+  <nd ref="1315881639"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="paved"/>
+  <tag k="tiger:cfcc" v="A41"/>
+  <tag k="tiger:county" v="Talladega, AL"/>
+  <tag k="tiger:reviewed" v="no"/>
+ </way>
+</osm>

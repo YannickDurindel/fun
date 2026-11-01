@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1310 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1256623466" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4508036" lon="-81.3462632"/>
+ <node id="1256623485" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4505606" lon="-81.3461055"/>
+ <node id="1256623512" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4504139" lon="-81.3460775"/>
+ <node id="1256623543" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4497177" lon="-81.3464423"/>
+ <node id="1256623554" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4498801" lon="-81.3463279"/>
+ <node id="1256623585" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4501352" lon="-81.3461503"/>
+ <node id="1256623605" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4499561" lon="-81.3462724"/>
+ <node id="1256623671" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4503398" lon="-81.3460794"/>
+ <node id="1256623693" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4506759" lon="-81.3461580"/>
+ <node id="13376286740" visible="true" version="1" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4507378" lon="-81.3462043"/>
+ <node id="13376286741" visible="true" version="1" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4506169" lon="-81.3461275"/>
+ <node id="13376286742" visible="true" version="1" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4504918" lon="-81.3460854"/>
+ <node id="13376286743" visible="true" version="1" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4502629" lon="-81.3460919"/>
+ <node id="13376286745" visible="true" version="1" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4497897" lon="-81.3463942"/>
+ <node id="13376286746" visible="true" version="1" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4502061" lon="-81.3461104"/>
+ <way id="1315957540" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330">
+  <nd ref="1256623466"/>
+  <nd ref="13376286740"/>
+  <nd ref="1256623693"/>
+  <nd ref="13376286741"/>
+  <nd ref="1256623485"/>
+  <nd ref="13376286742"/>
+  <nd ref="1256623512"/>
+  <nd ref="1256623671"/>
+  <nd ref="13376286743"/>
+  <nd ref="13376286746"/>
+  <nd ref="1256623585"/>
+  <nd ref="1256623605"/>
+  <nd ref="1256623554"/>
+  <nd ref="13376286745"/>
+  <nd ref="1256623543"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Gendebien Bend"/>
+  <tag k="name:etymology:wikidata" v="Q172142"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

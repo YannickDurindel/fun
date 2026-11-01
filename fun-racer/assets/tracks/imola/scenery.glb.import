@@ -3,10 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
+uid="uid://dec8xgxbmfwhv"
+path="res://.godot/imported/scenery.glb-e79e320d11f6127930e4b427509735d5.scn"
 
 [deps]
 
 source_file="res://assets/tracks/imola/scenery.glb"
+dest_files=["res://.godot/imported/scenery.glb-e79e320d11f6127930e4b427509735d5.scn"]
 
 [params]
 

@@ -2,10 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
+uid="uid://wn8mnykthb6x"
+path="res://.godot/imported/landcover.png-884e4c672f80c52ed86944d4d356458c.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/tracks/bahrain/landcover.png"
+dest_files=["res://.godot/imported/landcover.png-884e4c672f80c52ed86944d4d356458c.ctex"]
 
 [params]
 

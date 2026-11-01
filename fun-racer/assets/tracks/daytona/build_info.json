@@ -1,0 +1,384 @@
+{
+ "id": "daytona",
+ "recipe": "tools/track/tracks/daytona.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   352696267,
+   352104911,
+   352104914,
+   1315971773,
+   352070313,
+   352104912,
+   352070310,
+   352070308,
+   352067004,
+   352070311,
+   198466856,
+   352070316
+  ],
+  "raw_length_m": 5768.3,
+  "length_m": 5766.4,
+  "official_length_m": 5729.0,
+  "length_error": 0.00653,
+  "candidates": []
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 5.41,
+  "max_grade": 0.0208,
+  "min_grade": -0.0193,
+  "origin_m": 8.88
+ },
+ "turns": {
+  "official": 12,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Turn 1",
+    "direction": "left",
+    "s_apex": 143.1,
+    "min_radius": 42.8
+   },
+   {
+    "id": "T2",
+    "name": "Turn 2",
+    "direction": "right",
+    "s_apex": 319.9,
+    "min_radius": 65.5
+   },
+   {
+    "id": "T3",
+    "name": "Turn 3",
+    "direction": "left",
+    "s_apex": 369.6,
+    "min_radius": 46.6
+   },
+   {
+    "id": "T4",
+    "name": "International Horseshoe",
+    "direction": "right",
+    "s_apex": 631.9,
+    "min_radius": 27.2
+   },
+   {
+    "id": "T5",
+    "name": "Dogleg",
+    "direction": "left",
+    "s_apex": 1128.7,
+    "min_radius": 82.9
+   },
+   {
+    "id": "T6",
+    "name": "West Horseshoe",
+    "direction": "right",
+    "s_apex": 1450.6,
+    "min_radius": 30.5
+   },
+   {
+    "id": "T7",
+    "name": "Turn 7",
+    "direction": "left",
+    "s_apex": 1834.2,
+    "min_radius": 21.2
+   },
+   {
+    "id": "T8",
+    "name": "Turn 8",
+    "direction": "left",
+    "s_apex": 1989.2,
+    "min_radius": 49.4
+   },
+   {
+    "id": "T9",
+    "name": "Turn 9",
+    "direction": "left",
+    "s_apex": 2179.9,
+    "min_radius": 180.5
+   },
+   {
+    "id": "T10",
+    "name": "Turn 10",
+    "direction": "left",
+    "s_apex": 3501.4,
+    "min_radius": 53.6
+   },
+   {
+    "id": "T11",
+    "name": "Le Mans Chicane",
+    "direction": "right",
+    "s_apex": 3572.9,
+    "min_radius": 32.3
+   },
+   {
+    "id": "T12",
+    "name": "Le Mans Chicane",
+    "direction": "right",
+    "s_apex": 3646.4,
+    "min_radius": 26.6
+   },
+   {
+    "id": "T13",
+    "name": "Le Mans Chicane",
+    "direction": "left",
+    "s_apex": 3704.1,
+    "min_radius": 48.7
+   },
+   {
+    "id": "T14",
+    "name": "Le Mans Chicane",
+    "direction": "left",
+    "s_apex": 3773.6,
+    "min_radius": 79.1
+   },
+   {
+    "id": "T15",
+    "name": "Speedway",
+    "direction": "left",
+    "s_apex": 3982.3,
+    "min_radius": 168.2
+   },
+   {
+    "id": "T16",
+    "name": "Speedway",
+    "direction": "left",
+    "s_apex": 4222.7,
+    "min_radius": 173.3
+   },
+   {
+    "id": "T17",
+    "name": "Speedway",
+    "direction": "left",
+    "s_apex": 4479.1,
+    "min_radius": 201.8
+   },
+   {
+    "id": "T18",
+    "name": "Speedway",
+    "direction": "left",
+    "s_apex": 5307.7,
+    "min_radius": 142.7
+   },
+   {
+    "id": "T19",
+    "name": "Speedway",
+    "direction": "left",
+    "s_apex": 5727.0,
+    "min_radius": 48.5
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 49.7,
+    "direction": "left",
+    "angle_deg": 12.3,
+    "kind": "kink",
+    "min_radius": 115.4,
+    "used": false
+   },
+   {
+    "s_apex": 143.1,
+    "direction": "left",
+    "angle_deg": 119.7,
+    "kind": "corner",
+    "min_radius": 42.8,
+    "used": true
+   },
+   {
+    "s_apex": 319.9,
+    "direction": "right",
+    "angle_deg": 29.1,
+    "kind": "corner",
+    "min_radius": 65.5,
+    "used": true
+   },
+   {
+    "s_apex": 369.6,
+    "direction": "left",
+    "angle_deg": 35.5,
+    "kind": "corner",
+    "min_radius": 46.6,
+    "used": true
+   },
+   {
+    "s_apex": 631.9,
+    "direction": "right",
+    "angle_deg": 176.3,
+    "kind": "corner",
+    "min_radius": 27.2,
+    "used": true
+   },
+   {
+    "s_apex": 1128.7,
+    "direction": "left",
+    "angle_deg": 38.4,
+    "kind": "corner",
+    "min_radius": 82.9,
+    "used": true
+   },
+   {
+    "s_apex": 1450.6,
+    "direction": "right",
+    "angle_deg": 178.6,
+    "kind": "corner",
+    "min_radius": 30.5,
+    "used": true
+   },
+   {
+    "s_apex": 1834.2,
+    "direction": "left",
+    "angle_deg": 107.3,
+    "kind": "corner",
+    "min_radius": 21.2,
+    "used": true
+   },
+   {
+    "s_apex": 1989.2,
+    "direction": "left",
+    "angle_deg": 51.7,
+    "kind": "corner",
+    "min_radius": 49.4,
+    "used": true
+   },
+   {
+    "s_apex": 2040.8,
+    "direction": "left",
+    "angle_deg": 4.6,
+    "kind": "kink",
+    "min_radius": 288.1,
+    "used": false
+   },
+   {
+    "s_apex": 2179.9,
+    "direction": "left",
+    "angle_deg": 138.9,
+    "kind": "corner",
+    "min_radius": 180.5,
+    "used": true
+   },
+   {
+    "s_apex": 2859.5,
+    "direction": "left",
+    "angle_deg": 8.1,
+    "kind": "kink",
+    "min_radius": 362.7,
+    "used": false
+   },
+   {
+    "s_apex": 3501.4,
+    "direction": "left",
+    "angle_deg": 46.1,
+    "kind": "corner",
+    "min_radius": 53.6,
+    "used": true
+   },
+   {
+    "s_apex": 3572.9,
+    "direction": "right",
+    "angle_deg": 42.1,
+    "kind": "corner",
+    "min_radius": 32.3,
+    "used": true
+   },
+   {
+    "s_apex": 3646.4,
+    "direction": "right",
+    "angle_deg": 45.4,
+    "kind": "corner",
+    "min_radius": 26.6,
+    "used": true
+   },
+   {
+    "s_apex": 3704.1,
+    "direction": "left",
+    "angle_deg": 33.1,
+    "kind": "corner",
+    "min_radius": 48.7,
+    "used": true
+   },
+   {
+    "s_apex": 3751.8,
+    "direction": "right",
+    "angle_deg": 10.2,
+    "kind": "kink",
+    "min_radius": 80.7,
+    "used": false
+   },
+   {
+    "s_apex": 3773.6,
+    "direction": "left",
+    "angle_deg": 15.7,
+    "kind": "corner",
+    "min_radius": 79.1,
+    "used": true
+   },
+   {
+    "s_apex": 3982.3,
+    "direction": "left",
+    "angle_deg": 43.2,
+    "kind": "corner",
+    "min_radius": 168.2,
+    "used": true
+   },
+   {
+    "s_apex": 4222.7,
+    "direction": "left",
+    "angle_deg": 49.9,
+    "kind": "corner",
+    "min_radius": 173.3,
+    "used": true
+   },
+   {
+    "s_apex": 4479.1,
+    "direction": "left",
+    "angle_deg": 43.6,
+    "kind": "corner",
+    "min_radius": 201.8,
+    "used": true
+   },
+   {
+    "s_apex": 4745.4,
+    "direction": "left",
+    "angle_deg": 8.0,
+    "kind": "kink",
+    "min_radius": 306.3,
+    "used": false
+   },
+   {
+    "s_apex": 5307.7,
+    "direction": "left",
+    "angle_deg": 16.2,
+    "kind": "corner",
+    "min_radius": 142.7,
+    "used": true
+   },
+   {
+    "s_apex": 5427.0,
+    "direction": "left",
+    "angle_deg": 11.9,
+    "kind": "kink",
+    "min_radius": 130.3,
+    "used": false
+   },
+   {
+    "s_apex": 5534.3,
+    "direction": "left",
+    "angle_deg": 9.9,
+    "kind": "kink",
+    "min_radius": 229.3,
+    "used": false
+   },
+   {
+    "s_apex": 5727.0,
+    "direction": "left",
+    "angle_deg": 19.5,
+    "kind": "corner",
+    "min_radius": 48.5,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

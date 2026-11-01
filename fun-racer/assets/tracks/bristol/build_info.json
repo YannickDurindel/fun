@@ -1,0 +1,62 @@
+{
+ "id": "bristol",
+ "recipe": "tools/track/tracks/bristol.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   116606212
+  ],
+  "raw_length_m": 847.4,
+  "length_m": 847.0,
+  "official_length_m": 858.0,
+  "length_error": -0.01279,
+  "candidates": []
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 0.16,
+  "max_grade": 0.0006,
+  "min_grade": -0.0006,
+  "origin_m": 445.62
+ },
+ "turns": {
+  "official": 4,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Bristol Motor Speedway",
+    "direction": "left",
+    "s_apex": 279.3,
+    "min_radius": 62.7
+   },
+   {
+    "id": "T2",
+    "name": "Bristol Motor Speedway",
+    "direction": "left",
+    "s_apex": 552.4,
+    "min_radius": 55.5
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 279.3,
+    "direction": "left",
+    "angle_deg": 180.8,
+    "kind": "corner",
+    "min_radius": 62.7,
+    "used": true
+   },
+   {
+    "s_apex": 552.4,
+    "direction": "left",
+    "angle_deg": 175.3,
+    "kind": "corner",
+    "min_radius": 55.5,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

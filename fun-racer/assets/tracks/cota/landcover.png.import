@@ -2,10 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
+uid="uid://il1x37hmtkd"
+path="res://.godot/imported/landcover.png-10d4645cd30ac62bc48871841eabfb8a.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/tracks/cota/landcover.png"
+dest_files=["res://.godot/imported/landcover.png-10d4645cd30ac62bc48871841eabfb8a.ctex"]
 
 [params]
 

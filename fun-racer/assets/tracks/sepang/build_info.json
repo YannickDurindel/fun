@@ -1,0 +1,302 @@
+{
+ "id": "sepang",
+ "recipe": "tools/track/tracks/sepang.toml",
+ "osm": {
+  "relation": 284496,
+  "loop_ways": [
+   23410503,
+   1561055768,
+   1561055767,
+   1561055754,
+   1561055755,
+   1561055769,
+   1561055756,
+   1561055757,
+   1561055758,
+   144359489,
+   1561055759,
+   1561055760,
+   1561055761,
+   1561055762,
+   1561055763,
+   1561055764,
+   1561055770,
+   1561055771,
+   1561055765,
+   1561055766
+  ],
+  "raw_length_m": 5552.4,
+  "length_m": 5549.4,
+  "official_length_m": 5543.0,
+  "length_error": 0.00116,
+  "candidates": [
+   {
+    "length_m": 5552.4,
+    "ways": [
+     23410503,
+     1561055768,
+     1561055767,
+     1561055754,
+     1561055755,
+     1561055769,
+     1561055756,
+     1561055757,
+     1561055758,
+     144359489,
+     1561055759,
+     1561055760,
+     1561055761,
+     1561055762,
+     1561055763,
+     1561055764,
+     1561055770,
+     1561055771,
+     1561055765,
+     1561055766
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "start: relation member role (finish line = start line)",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 27.88,
+  "max_grade": 0.0963,
+  "min_grade": -0.0742,
+  "origin_m": 45.21
+ },
+ "turns": {
+  "official": 15,
+  "mode": "auto",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Pangkor Laut Chicane",
+    "direction": "right",
+    "s_apex": 625.2,
+    "min_radius": 28.6
+   },
+   {
+    "id": "T2",
+    "name": "Pangkor Laut Chicane",
+    "direction": "left",
+    "s_apex": 781.0,
+    "min_radius": 20.6
+   },
+   {
+    "id": "T3",
+    "name": "3",
+    "direction": "right",
+    "s_apex": 906.9,
+    "min_radius": 90.0
+   },
+   {
+    "id": "T4",
+    "name": "3",
+    "direction": "right",
+    "s_apex": 1066.7,
+    "min_radius": 115.3
+   },
+   {
+    "id": "T5",
+    "name": "Langkawi Curve",
+    "direction": "right",
+    "s_apex": 1594.0,
+    "min_radius": 18.6
+   },
+   {
+    "id": "T6",
+    "name": "Genting Curve",
+    "direction": "left",
+    "s_apex": 2073.4,
+    "min_radius": 76.3
+   },
+   {
+    "id": "T7",
+    "name": "Genting Curve",
+    "direction": "right",
+    "s_apex": 2213.2,
+    "min_radius": 79.1
+   },
+   {
+    "id": "T8",
+    "name": "KLIA Curve",
+    "direction": "right",
+    "s_apex": 2578.7,
+    "min_radius": 26.6
+   },
+   {
+    "id": "T9",
+    "name": "KLIA Curve",
+    "direction": "right",
+    "s_apex": 2688.6,
+    "min_radius": 28.9
+   },
+   {
+    "id": "T10",
+    "name": "Berjaya Tioman Corner",
+    "direction": "left",
+    "s_apex": 3176.0,
+    "min_radius": 17.0
+   },
+   {
+    "id": "T11",
+    "name": "10",
+    "direction": "right",
+    "s_apex": 3291.8,
+    "min_radius": 57.2
+   },
+   {
+    "id": "T12",
+    "name": "Kenyir Lake Corner",
+    "direction": "right",
+    "s_apex": 3523.6,
+    "min_radius": 35.8
+   },
+   {
+    "id": "T13",
+    "name": "12",
+    "direction": "left",
+    "s_apex": 3865.1,
+    "min_radius": 45.3
+   },
+   {
+    "id": "T14",
+    "name": "Sunway Lagoon Corner",
+    "direction": "right",
+    "s_apex": 4238.6,
+    "min_radius": 30.5
+   },
+   {
+    "id": "T15",
+    "name": "15",
+    "direction": "left",
+    "s_apex": 5157.5,
+    "min_radius": 30.7
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 625.2,
+    "direction": "right",
+    "angle_deg": 205.0,
+    "kind": "corner",
+    "min_radius": 28.6,
+    "used": true
+   },
+   {
+    "s_apex": 781.0,
+    "direction": "left",
+    "angle_deg": 150.4,
+    "kind": "corner",
+    "min_radius": 20.6,
+    "used": true
+   },
+   {
+    "s_apex": 906.9,
+    "direction": "right",
+    "angle_deg": 48.8,
+    "kind": "corner",
+    "min_radius": 90.0,
+    "used": true
+   },
+   {
+    "s_apex": 1066.7,
+    "direction": "right",
+    "angle_deg": 62.2,
+    "kind": "corner",
+    "min_radius": 115.3,
+    "used": true
+   },
+   {
+    "s_apex": 1594.0,
+    "direction": "right",
+    "angle_deg": 104.8,
+    "kind": "corner",
+    "min_radius": 18.6,
+    "used": true
+   },
+   {
+    "s_apex": 2073.4,
+    "direction": "left",
+    "angle_deg": 126.1,
+    "kind": "corner",
+    "min_radius": 76.3,
+    "used": true
+   },
+   {
+    "s_apex": 2213.2,
+    "direction": "right",
+    "angle_deg": 97.9,
+    "kind": "corner",
+    "min_radius": 79.1,
+    "used": true
+   },
+   {
+    "s_apex": 2578.7,
+    "direction": "right",
+    "angle_deg": 61.6,
+    "kind": "corner",
+    "min_radius": 26.6,
+    "used": true
+   },
+   {
+    "s_apex": 2688.6,
+    "direction": "right",
+    "angle_deg": 62.8,
+    "kind": "corner",
+    "min_radius": 28.9,
+    "used": true
+   },
+   {
+    "s_apex": 3176.0,
+    "direction": "left",
+    "angle_deg": 140.1,
+    "kind": "corner",
+    "min_radius": 17.0,
+    "used": true
+   },
+   {
+    "s_apex": 3291.8,
+    "direction": "right",
+    "angle_deg": 80.6,
+    "kind": "corner",
+    "min_radius": 57.2,
+    "used": true
+   },
+   {
+    "s_apex": 3523.6,
+    "direction": "right",
+    "angle_deg": 105.4,
+    "kind": "corner",
+    "min_radius": 35.8,
+    "used": true
+   },
+   {
+    "s_apex": 3865.1,
+    "direction": "left",
+    "angle_deg": 66.2,
+    "kind": "corner",
+    "min_radius": 45.3,
+    "used": true
+   },
+   {
+    "s_apex": 4238.6,
+    "direction": "right",
+    "angle_deg": 196.2,
+    "kind": "corner",
+    "min_radius": 30.5,
+    "used": true
+   },
+   {
+    "s_apex": 5157.5,
+    "direction": "left",
+    "angle_deg": 172.0,
+    "kind": "corner",
+    "min_radius": 30.7,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

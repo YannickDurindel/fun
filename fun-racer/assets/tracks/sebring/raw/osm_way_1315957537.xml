@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1293 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1256623643" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4483050" lon="-81.3471371"/>
+ <node id="1256623724" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4482764" lon="-81.3551908"/>
+ <node id="4254618385" visible="true" version="1" changeset="40160524" timestamp="2016-06-20T16:01:13Z" user="GinaroZ" uid="3432400" lat="27.4482668" lon="-81.3562725"/>
+ <way id="1315957537" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330">
+  <nd ref="1256623643"/>
+  <nd ref="1256623724"/>
+  <nd ref="4254618385"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Ullman Straight"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

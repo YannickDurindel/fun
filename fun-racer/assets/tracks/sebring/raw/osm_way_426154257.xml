@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1322 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1256623443" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:06Z" user="Neverwhere" uid="221878" lat="27.4500903" lon="-81.3569973"/>
+ <node id="1256623450" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4499192" lon="-81.3572649"/>
+ <node id="1256623495" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4498435" lon="-81.3573260"/>
+ <node id="1256623521" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:07Z" user="Neverwhere" uid="221878" lat="27.4499974" lon="-81.3571850"/>
+ <node id="1256623551" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:08Z" user="Neverwhere" uid="221878" lat="27.4501307" lon="-81.3568846"/>
+ <node id="1256623552" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:08Z" user="Neverwhere" uid="221878" lat="27.4502188" lon="-81.3560290"/>
+ <node id="1256623574" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:08Z" user="Neverwhere" uid="221878" lat="27.4500498" lon="-81.3570992"/>
+ <node id="1256623588" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:09Z" user="Neverwhere" uid="221878" lat="27.4501712" lon="-81.3566915"/>
+ <node id="1256623633" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:10Z" user="Neverwhere" uid="221878" lat="27.4501926" lon="-81.3564072"/>
+ <node id="4254618378" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4494841" lon="-81.3575453"/>
+ <node id="4254618379" visible="true" version="1" changeset="40160524" timestamp="2016-06-20T16:01:12Z" user="GinaroZ" uid="3432400" lat="27.4493222" lon="-81.3575865"/>
+ <node id="4254618380" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4492227" lon="-81.3575827"/>
+ <node id="4254618381" visible="true" version="1" changeset="40160524" timestamp="2016-06-20T16:01:12Z" user="GinaroZ" uid="3432400" lat="27.4489995" lon="-81.3575090"/>
+ <node id="4254618382" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4489162" lon="-81.3574532"/>
+ <node id="4254618383" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4488187" lon="-81.3573416"/>
+ <node id="4254618384" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4487082" lon="-81.3571785"/>
+ <node id="4254618385" visible="true" version="1" changeset="40160524" timestamp="2016-06-20T16:01:13Z" user="GinaroZ" uid="3432400" lat="27.4482668" lon="-81.3562725"/>
+ <node id="4254618386" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4491162" lon="-81.3575625"/>
+ <node id="4254618387" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4483471" lon="-81.3565326"/>
+ <node id="13376286812" visible="true" version="1" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4483001" lon="-81.3564057"/>
+ <node id="13376286813" visible="true" version="1" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4494052" lon="-81.3575709"/>
+ <node id="13376286814" visible="true" version="1" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4499615" lon="-81.3572281"/>
+ <node id="13376286815" visible="true" version="1" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4497140" lon="-81.3574179"/>
+ <way id="426154257" visible="true" version="6" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330">
+  <nd ref="4254618385"/>
+  <nd ref="13376286812"/>
+  <nd ref="4254618387"/>
+  <nd ref="4254618384"/>
+  <nd ref="4254618383"/>
+  <nd ref="4254618382"/>
+  <nd ref="4254618381"/>
+  <nd ref="4254618386"/>
+  <nd ref="4254618380"/>
+  <nd ref="4254618379"/>
+  <nd ref="13376286813"/>
+  <nd ref="4254618378"/>
+  <nd ref="13376286815"/>
+  <nd ref="1256623495"/>
+  <nd ref="1256623450"/>
+  <nd ref="13376286814"/>
+  <nd ref="1256623521"/>
+  <nd ref="1256623574"/>
+  <nd ref="1256623443"/>
+  <nd ref="1256623551"/>
+  <nd ref="1256623588"/>
+  <nd ref="1256623633"/>
+  <nd ref="1256623552"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Sunset Bend"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

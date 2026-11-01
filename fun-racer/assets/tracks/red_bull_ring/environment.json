@@ -1,0 +1,13 @@
+{
+  "preset": "temperate_day",
+  "look": "detailed",
+  "sun": {"azimuth_deg": 225, "elevation_deg": 48, "color": [1.0, 0.95, 0.87], "energy": 1.6},
+  "sky": {"top": [0.18, 0.38, 0.74], "horizon": [0.70, 0.79, 0.88]},
+  "fog": {"color": [0.72, 0.79, 0.87], "begin": 220, "end": 3400},
+  "verge": {"grass_color": [0.17, 0.33, 0.10], "dry_color": [0.29, 0.36, 0.14]},
+  "realistic": {
+    "sky": {"hdri": "kloofendal_48d_partly_cloudy_puresky", "hdri_energy": 1.0},
+    "verge": {"grass_color": [0.15, 0.28, 0.08], "dry_color": [0.30, 0.32, 0.14]},
+    "terrain_palette": {"grass": [[0.15, 0.27, 0.09], [0.23, 0.33, 0.12]]}
+  }
+}

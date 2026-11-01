@@ -1,0 +1,15 @@
+{
+  "id": "martinsville",
+  "name": "Martinsville",
+  "grand_prix": "Martinsville",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Ridgeway",
+  "length_m": 847,
+  "turns": 4,
+  "scene": "res://scenes/tracks/martinsville.tscn",
+  "track_json": "res://assets/tracks/martinsville/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "circuit"
+}

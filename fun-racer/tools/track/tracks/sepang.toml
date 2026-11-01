@@ -1,0 +1,23 @@
+# Sepang International Circuit (Sepang, Malaysia), 5543 m.
+# Built for other series' calendars (event(s) jgt_sepang link it with "track"): series "circuit"
+# keeps it out of every series list on its own, F1 included.
+#
+#   .venv/bin/python tools/track/build_track.py sepang --plot
+
+id = "sepang"
+series = "circuit"
+name = "Sepang"
+grand_prix = "Sepang"
+country = "Malaysia"
+country_code = "MY"
+city = "Sepang"
+length_m = 5543
+turns = 15
+full_name = "Sepang International Circuit"
+
+[osm]
+# type=circuit relation "Sepang International Circuit".
+relation = 284496
+
+[elevation]
+dataset = "terrarium"

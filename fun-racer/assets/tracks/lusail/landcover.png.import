@@ -2,10 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
+uid="uid://b2kpcfa4qvnwt"
+path="res://.godot/imported/landcover.png-e5b91297dde038f7e0c853d2ba683b87.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/tracks/lusail/landcover.png"
+dest_files=["res://.godot/imported/landcover.png-e5b91297dde038f7e0c853d2ba683b87.ctex"]
 
 [params]
 

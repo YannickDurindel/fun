@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (4034577 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1205719363" visible="true" version="3" changeset="48105480" timestamp="2017-04-24T23:59:38Z" user="Trucker88" uid="4298442" lat="33.0361559" lon="-97.2846152"/>
+ <node id="1205719407" visible="true" version="3" changeset="48105480" timestamp="2017-04-24T23:59:38Z" user="Trucker88" uid="4298442" lat="33.0384276" lon="-97.2838432"/>
+ <node id="1205720256" visible="true" version="3" changeset="48105480" timestamp="2017-04-24T23:59:38Z" user="Trucker88" uid="4298442" lat="33.0398954" lon="-97.2826105"/>
+ <node id="2676030863" visible="true" version="2" changeset="48105480" timestamp="2017-04-24T23:59:38Z" user="Trucker88" uid="4298442" lat="33.0364574" lon="-97.2845404"/>
+ <node id="2676030864" visible="true" version="2" changeset="48105480" timestamp="2017-04-24T23:59:38Z" user="Trucker88" uid="4298442" lat="33.0359207" lon="-97.2846185"/>
+ <node id="2676030867" visible="true" version="2" changeset="48105480" timestamp="2017-04-24T23:59:38Z" user="Trucker88" uid="4298442" lat="33.0360014" lon="-97.2846218"/>
+ <node id="2676030896" visible="true" version="2" changeset="48105480" timestamp="2017-04-24T23:59:38Z" user="Trucker88" uid="4298442" lat="33.0385611" lon="-97.2837531"/>
+ <node id="2676030897" visible="true" version="2" changeset="48105480" timestamp="2017-04-24T23:59:38Z" user="Trucker88" uid="4298442" lat="33.0381899" lon="-97.2839504"/>
+ <node id="4814455764" visible="true" version="1" changeset="48105480" timestamp="2017-04-24T23:59:38Z" user="Trucker88" uid="4298442" lat="33.0360833" lon="-97.2846229"/>
+ <node id="4814455765" visible="true" version="1" changeset="48105480" timestamp="2017-04-24T23:59:38Z" user="Trucker88" uid="4298442" lat="33.0362521" lon="-97.2845999"/>
+ <node id="4814455766" visible="true" version="1" changeset="48105480" timestamp="2017-04-24T23:59:38Z" user="Trucker88" uid="4298442" lat="33.0363325" lon="-97.2845790"/>
+ <node id="4814455767" visible="true" version="1" changeset="48105480" timestamp="2017-04-24T23:59:38Z" user="Trucker88" uid="4298442" lat="33.0382865" lon="-97.2839156"/>
+ <node id="4814455768" visible="true" version="1" changeset="48105480" timestamp="2017-04-24T23:59:38Z" user="Trucker88" uid="4298442" lat="33.0383608" lon="-97.2838827"/>
+ <node id="4814455769" visible="true" version="1" changeset="48105480" timestamp="2017-04-24T23:59:38Z" user="Trucker88" uid="4298442" lat="33.0384851" lon="-97.2838081"/>
+ <node id="4814455770" visible="true" version="1" changeset="48105480" timestamp="2017-04-24T23:59:38Z" user="Trucker88" uid="4298442" lat="33.0386242" lon="-97.2836958"/>
+ <node id="4820110927" visible="true" version="1" changeset="48192795" timestamp="2017-04-27T12:12:06Z" user="Trucker88" uid="4298442" lat="33.0368541" lon="-97.2844053"/>
+ <node id="4820110935" visible="true" version="1" changeset="48192795" timestamp="2017-04-27T12:12:06Z" user="Trucker88" uid="4298442" lat="33.0378199" lon="-97.2840764"/>
+ <way id="261968503" visible="true" version="3" changeset="48192795" timestamp="2017-04-27T12:12:10Z" user="Trucker88" uid="4298442">
+  <nd ref="1205720256"/>
+  <nd ref="4814455770"/>
+  <nd ref="2676030896"/>
+  <nd ref="4814455769"/>
+  <nd ref="1205719407"/>
+  <nd ref="4814455768"/>
+  <nd ref="4814455767"/>
+  <nd ref="2676030897"/>
+  <nd ref="4820110935"/>
+  <nd ref="4820110927"/>
+  <nd ref="2676030863"/>
+  <nd ref="4814455766"/>
+  <nd ref="4814455765"/>
+  <nd ref="1205719363"/>
+  <nd ref="4814455764"/>
+  <nd ref="2676030867"/>
+  <nd ref="2676030864"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+ </way>
+</osm>

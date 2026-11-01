@@ -1,0 +1,28 @@
+# Hockenheimring (Grand Prix circuit) (Hockenheim, Germany), 4574 m.
+# Built for other series' calendars (event(s) dtc_hockenheim link it with "track"): series "circuit"
+# keeps it out of every series list on its own, F1 included.
+#
+#   .venv/bin/python tools/track/build_track.py hockenheim --plot
+
+id = "hockenheim"
+series = "circuit"
+name = "Hockenheim"
+grand_prix = "Hockenheim"
+country = "Germany"
+country_code = "DE"
+city = "Hockenheim"
+length_m = 4574
+turns = 17
+full_name = "Hockenheimring (Grand Prix circuit)"
+
+[osm]
+# type=circuit relation "Hockenheimring Grand Prix Circuit".
+relation = 284588
+
+[elevation]
+dataset = "terrarium"
+
+[layout]
+# OSM has no start / finish node: the line is on the start / finish straight between the
+# Südkurve and Turn 1, in front of the pits (+/- 60 m).
+finish = [49.327848, 8.565775]

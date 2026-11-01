@@ -405,7 +405,9 @@ def build(recipe, out_dir, fetcher, log=print):
         f"points, {math.ceil(len(fx) * len(fz) / 100) + math.ceil(len(gx) * len(gz) / 100)} requests "
         "when nothing is cached")
     near_raw, v1 = fetch_grid(fetcher, dataset, fx, fz, to_latlon, base)
-    far, v2 = fetch_grid(fetcher, dataset, gx, gz, to_latlon, base)
+    # The lidar grids reach 600 m from the lap: the 12 km horizon grid is RGE ALTI's.
+    far_dataset = "ign" if dataset == "lidar_hd" else dataset
+    far, v2 = fetch_grid(fetcher, far_dataset, gx, gz, to_latlon, base)
     if v1 + v2:
         log(f"  {v1 + v2} DEM voids (sea / dataset edge) filled from the nearest valid point in their row")
 

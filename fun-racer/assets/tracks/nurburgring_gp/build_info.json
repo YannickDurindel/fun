@@ -1,0 +1,334 @@
+{
+ "id": "nurburgring_gp",
+ "recipe": "tools/track/tracks/nurburgring_gp.toml",
+ "osm": {
+  "relation": 38567,
+  "loop_ways": [
+   1113009624,
+   820330153,
+   820330152,
+   1079809245,
+   1443047845,
+   1443047844,
+   27852990,
+   820679450,
+   1149161210,
+   1149161208,
+   1443047846,
+   1443047847,
+   1079809244,
+   820679447,
+   820679448,
+   820679446,
+   1113009623,
+   820679445,
+   820330155,
+   820330154
+  ],
+  "raw_length_m": 5121.4,
+  "length_m": 5116.6,
+  "official_length_m": 5148.0,
+  "length_error": -0.00611,
+  "candidates": [
+   {
+    "length_m": 5121.6,
+    "ways": [
+     1113009624,
+     820330153,
+     820330152,
+     1079809245,
+     1443047845,
+     1443047844,
+     27852990,
+     820679450,
+     1149161210,
+     1149161208,
+     1443047846,
+     1443047847,
+     1079809244,
+     820679447,
+     820679448,
+     820679446,
+     1113009623,
+     820679445,
+     820330155,
+     820330154
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 54.69,
+  "max_grade": 0.0863,
+  "min_grade": -0.0794,
+  "origin_m": 619.6
+ },
+ "turns": {
+  "official": 15,
+  "mode": "auto",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Nürburgring Sprintstrecke",
+    "direction": "right",
+    "s_apex": 533.3,
+    "min_radius": 14.3
+   },
+   {
+    "id": "T2",
+    "name": "Nürburgring Sprintstrecke",
+    "direction": "left",
+    "s_apex": 770.8,
+    "min_radius": 50.5
+   },
+   {
+    "id": "T3",
+    "name": "Nürburgring Sprintstrecke",
+    "direction": "left",
+    "s_apex": 980.1,
+    "min_radius": 28.5
+   },
+   {
+    "id": "T4",
+    "name": "Nürburgring Sprintstrecke",
+    "direction": "right",
+    "s_apex": 1096.8,
+    "min_radius": 21.6
+   },
+   {
+    "id": "T5",
+    "name": "Turn 5",
+    "direction": "left",
+    "s_apex": 1573.8,
+    "min_radius": 61.3
+   },
+   {
+    "id": "T6",
+    "name": "Ford-Kurve",
+    "direction": "right",
+    "s_apex": 1744.8,
+    "min_radius": 31.3
+   },
+   {
+    "id": "T7",
+    "name": "Goodyear-Kehre",
+    "direction": "right",
+    "s_apex": 2328.5,
+    "min_radius": 34.6
+   },
+   {
+    "id": "T8",
+    "name": "Michael-Schumacher-S",
+    "direction": "left",
+    "s_apex": 2733.0,
+    "min_radius": 63.2
+   },
+   {
+    "id": "T9",
+    "name": "Michael-Schumacher-S",
+    "direction": "right",
+    "s_apex": 2881.9,
+    "min_radius": 98.7
+   },
+   {
+    "id": "T10",
+    "name": "Nürburgring Sprintstrecke",
+    "direction": "left",
+    "s_apex": 3318.6,
+    "min_radius": 35.4
+   },
+   {
+    "id": "T11",
+    "name": "Nürburgring Sprintstrecke",
+    "direction": "right",
+    "s_apex": 3574.2,
+    "min_radius": 46.7
+   },
+   {
+    "id": "T12",
+    "name": "Nürburgring Sprintstrecke",
+    "direction": "right",
+    "s_apex": 3970.7,
+    "min_radius": 97.9
+   },
+   {
+    "id": "T13",
+    "name": "NGK-Schikane",
+    "direction": "left",
+    "s_apex": 4455.7,
+    "min_radius": 31.1
+   },
+   {
+    "id": "T14",
+    "name": "NGK-Schikane",
+    "direction": "right",
+    "s_apex": 4512.0,
+    "min_radius": 47.3
+   },
+   {
+    "id": "T15",
+    "name": "Nürburgring Sprintstrecke",
+    "direction": "right",
+    "s_apex": 4761.6,
+    "min_radius": 38.2
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 388.4,
+    "direction": "right",
+    "angle_deg": 6.5,
+    "kind": "kink",
+    "min_radius": 454.7,
+    "used": false
+   },
+   {
+    "s_apex": 533.3,
+    "direction": "right",
+    "angle_deg": 152.9,
+    "kind": "corner",
+    "min_radius": 14.3,
+    "used": true
+   },
+   {
+    "s_apex": 770.8,
+    "direction": "left",
+    "angle_deg": 128.7,
+    "kind": "corner",
+    "min_radius": 50.5,
+    "used": true
+   },
+   {
+    "s_apex": 980.1,
+    "direction": "left",
+    "angle_deg": 173.0,
+    "kind": "corner",
+    "min_radius": 28.5,
+    "used": true
+   },
+   {
+    "s_apex": 1096.8,
+    "direction": "right",
+    "angle_deg": 99.3,
+    "kind": "corner",
+    "min_radius": 21.6,
+    "used": true
+   },
+   {
+    "s_apex": 1348.4,
+    "direction": "right",
+    "angle_deg": 6.7,
+    "kind": "kink",
+    "min_radius": 232.8,
+    "used": false
+   },
+   {
+    "s_apex": 1573.8,
+    "direction": "left",
+    "angle_deg": 81.1,
+    "kind": "corner",
+    "min_radius": 61.3,
+    "used": true
+   },
+   {
+    "s_apex": 1744.8,
+    "direction": "right",
+    "angle_deg": 125.6,
+    "kind": "corner",
+    "min_radius": 31.3,
+    "used": true
+   },
+   {
+    "s_apex": 2020.6,
+    "direction": "left",
+    "angle_deg": 14.5,
+    "kind": "kink",
+    "min_radius": 272.4,
+    "used": false
+   },
+   {
+    "s_apex": 2203.7,
+    "direction": "left",
+    "angle_deg": 7.5,
+    "kind": "kink",
+    "min_radius": 320.0,
+    "used": false
+   },
+   {
+    "s_apex": 2328.5,
+    "direction": "right",
+    "angle_deg": 195.6,
+    "kind": "corner",
+    "min_radius": 34.6,
+    "used": true
+   },
+   {
+    "s_apex": 2733.0,
+    "direction": "left",
+    "angle_deg": 62.3,
+    "kind": "corner",
+    "min_radius": 63.2,
+    "used": true
+   },
+   {
+    "s_apex": 2881.9,
+    "direction": "right",
+    "angle_deg": 34.5,
+    "kind": "corner",
+    "min_radius": 98.7,
+    "used": true
+   },
+   {
+    "s_apex": 3318.6,
+    "direction": "left",
+    "angle_deg": 83.3,
+    "kind": "corner",
+    "min_radius": 35.4,
+    "used": true
+   },
+   {
+    "s_apex": 3574.2,
+    "direction": "right",
+    "angle_deg": 105.5,
+    "kind": "corner",
+    "min_radius": 46.7,
+    "used": true
+   },
+   {
+    "s_apex": 3970.7,
+    "direction": "right",
+    "angle_deg": 35.5,
+    "kind": "corner",
+    "min_radius": 97.9,
+    "used": true
+   },
+   {
+    "s_apex": 4455.7,
+    "direction": "left",
+    "angle_deg": 55.2,
+    "kind": "corner",
+    "min_radius": 31.1,
+    "used": true
+   },
+   {
+    "s_apex": 4512.0,
+    "direction": "right",
+    "angle_deg": 55.2,
+    "kind": "corner",
+    "min_radius": 47.3,
+    "used": true
+   },
+   {
+    "s_apex": 4761.6,
+    "direction": "right",
+    "angle_deg": 146.1,
+    "kind": "corner",
+    "min_radius": 38.2,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

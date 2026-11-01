@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (3955526 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1962189183" visible="true" version="3" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0495632" lon="-86.4058562"/>
+ <node id="1962189184" visible="true" version="3" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0490068" lon="-86.4079959"/>
+ <node id="1962189186" visible="true" version="2" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0464723" lon="-86.4096022"/>
+ <node id="1962189187" visible="true" version="3" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0459350" lon="-86.4097124"/>
+ <node id="1962189188" visible="true" version="3" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0455600" lon="-86.4097208"/>
+ <node id="1962189189" visible="true" version="3" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0421092" lon="-86.4069998"/>
+ <node id="1962189190" visible="true" version="3" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0496432" lon="-86.4065558"/>
+ <node id="1962189191" visible="true" version="3" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0469152" lon="-86.4094412"/>
+ <node id="1962189194" visible="true" version="3" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0429114" lon="-86.4090605"/>
+ <node id="1962189195" visible="true" version="3" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0436739" lon="-86.4053658"/>
+ <node id="1962189196" visible="true" version="3" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0435091" lon="-86.4093045"/>
+ <node id="1962189197" visible="true" version="3" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0479706" lon="-86.4045149"/>
+ <node id="1962189198" visible="true" version="3" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0428138" lon="-86.4057557"/>
+ <node id="1962189199" visible="true" version="3" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0482421" lon="-86.4045359"/>
+ <node id="1962189200" visible="true" version="2" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0491080" lon="-86.4050034"/>
+ <node id="1962189201" visible="true" version="2" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0420973" lon="-86.4077099"/>
+ <node id="1962189202" visible="true" version="2" changeset="32452823" timestamp="2015-07-06T16:40:17Z" user="nfgusedautoparts" uid="113450" lat="36.0494813" lon="-86.4073092"/>
+ <node id="1962189203" visible="true" version="3" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0431269" lon="-86.4055607"/>
+ <node id="1962189204" visible="true" version="3" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0425308" lon="-86.4060286"/>
+ <node id="3637417495" visible="true" version="2" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0422240" lon="-86.4065494"/>
+ <node id="3637417496" visible="true" version="2" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0423130" lon="-86.4063427"/>
+ <node id="3637417501" visible="true" version="2" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0423106" lon="-86.4083761"/>
+ <node id="3637417531" visible="true" version="2" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0441462" lon="-86.4052544"/>
+ <node id="3637417533" visible="true" version="2" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0446230" lon="-86.4051476"/>
+ <node id="3637417534" visible="true" version="2" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0466660" lon="-86.4047249"/>
+ <node id="3637417539" visible="true" version="2" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0469440" lon="-86.4046688"/>
+ <node id="3637417550" visible="true" version="2" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0485912" lon="-86.4046354"/>
+ <node id="3637417556" visible="true" version="2" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0492348" lon="-86.4077465"/>
+ <node id="3637417558" visible="true" version="2" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0494029" lon="-86.4054188"/>
+ <node id="3637417562" visible="true" version="2" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0495821" lon="-86.4069896"/>
+ <node id="7597988388" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0488738" lon="-86.4081117"/>
+ <node id="7597988389" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0487258" lon="-86.4082276"/>
+ <node id="7597988390" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0486086" lon="-86.4083130"/>
+ <node id="7597988391" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0493234" lon="-86.4076197"/>
+ <node id="7597988392" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0494087" lon="-86.4074725"/>
+ <node id="7597988393" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0495409" lon="-86.4071483"/>
+ <node id="7597988394" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0496118" lon="-86.4068398"/>
+ <node id="7597988395" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0496310" lon="-86.4067047"/>
+ <node id="7597988396" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0496406" lon="-86.4064149"/>
+ <node id="7597988397" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0496307" lon="-86.4062697"/>
+ <node id="7597988398" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0496174" lon="-86.4061417"/>
+ <node id="7597988399" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0495933" lon="-86.4059947"/>
+ <node id="7597988400" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0495234" lon="-86.4057176"/>
+ <node id="7597988401" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0494698" lon="-86.4055769"/>
+ <node id="7597988402" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0493411" lon="-86.4053106"/>
+ <node id="7597988403" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0492711" lon="-86.4052015"/>
+ <node id="7597988404" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0491963" lon="-86.4051057"/>
+ <node id="7597988405" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0490215" lon="-86.4049204"/>
+ <node id="7597988406" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0489421" lon="-86.4048500"/>
+ <node id="7597988407" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0488383" lon="-86.4047739"/>
+ <node id="7597988408" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0487094" lon="-86.4046958"/>
+ <node id="7597988409" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0484877" lon="-86.4045951"/>
+ <node id="7597988410" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0483751" lon="-86.4045646"/>
+ <node id="7597988411" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0481008" lon="-86.4045183"/>
+ <node id="7597988412" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0478089" lon="-86.4045220"/>
+ <node id="7597988413" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0476296" lon="-86.4045441"/>
+ <node id="7597988414" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0473564" lon="-86.4045911"/>
+ <node id="7597988415" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0435084" lon="-86.4054098"/>
+ <node id="7597988416" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0433014" lon="-86.4054857"/>
+ <node id="7597988417" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0429577" lon="-86.4056496"/>
+ <node id="7597988418" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0426667" lon="-86.4058814"/>
+ <node id="7597988419" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0424177" lon="-86.4061733"/>
+ <node id="7597988420" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0421599" lon="-86.4067413"/>
+ <node id="7597988421" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0420826" lon="-86.4072092"/>
+ <node id="7597988422" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0420789" lon="-86.4074632"/>
+ <node id="7597988423" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0421476" lon="-86.4079547"/>
+ <node id="7597988424" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0422200" lon="-86.4081727"/>
+ <node id="7597988425" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0424177" lon="-86.4085644"/>
+ <node id="7597988426" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0425250" lon="-86.4087103"/>
+ <node id="7597988427" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0426369" lon="-86.4088472"/>
+ <node id="7597988428" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0427529" lon="-86.4089568"/>
+ <node id="7597988429" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0433016" lon="-86.4092398"/>
+ <node id="7597988430" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0437372" lon="-86.4093659"/>
+ <node id="7597988431" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0441851" lon="-86.4094676"/>
+ <node id="7597988432" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0451270" lon="-86.4096661"/>
+ <node id="7597988433" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0452921" lon="-86.4096917"/>
+ <node id="7597988434" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0454336" lon="-86.4097095"/>
+ <node id="7597988435" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0456873" lon="-86.4097241"/>
+ <node id="7597988436" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0458276" lon="-86.4097226"/>
+ <node id="7597988437" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0460413" lon="-86.4096979"/>
+ <node id="7597988438" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0461588" lon="-86.4096759"/>
+ <node id="7597988439" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0462444" lon="-86.4096598"/>
+ <node id="7597988440" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0463481" lon="-86.4096356"/>
+ <node id="7597988441" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0466133" lon="-86.4095591"/>
+ <node id="7597988442" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0467632" lon="-86.4095075"/>
+ <node id="7597988443" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0470717" lon="-86.4093559"/>
+ <node id="7597988444" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0472071" lon="-86.4092733"/>
+ <node id="7597988445" visible="true" version="1" changeset="86278514" timestamp="2020-06-06T12:30:56Z" user="Gabriele Dri" uid="3821761" lat="36.0473872" lon="-86.4091541"/>
+ <node id="7598301656" visible="true" version="1" changeset="86283141" timestamp="2020-06-06T15:29:02Z" user="Gabriele Dri" uid="3821761" lat="36.0458611" lon="-86.4048914"/>
+ <node id="7598302187" visible="true" version="1" changeset="86283141" timestamp="2020-06-06T15:29:02Z" user="Gabriele Dri" uid="3821761" lat="36.0485345" lon="-86.4046133"/>
+ <node id="7598302344" visible="true" version="1" changeset="86283141" timestamp="2020-06-06T15:29:02Z" user="Gabriele Dri" uid="3821761" lat="36.0423866" lon="-86.4062237"/>
+ <node id="7598357622" visible="true" version="1" changeset="86283834" timestamp="2020-06-06T15:57:15Z" user="Gabriele Dri" uid="3821761" lat="36.0494391" lon="-86.4055000"/>
+ <way id="185563917" visible="true" version="6" changeset="182893658" timestamp="2026-05-19T18:11:48Z" user="benguuuuu" uid="23421615">
+  <nd ref="1962189186"/>
+  <nd ref="7597988440"/>
+  <nd ref="7597988439"/>
+  <nd ref="7597988438"/>
+  <nd ref="7597988437"/>
+  <nd ref="1962189187"/>
+  <nd ref="7597988436"/>
+  <nd ref="7597988435"/>
+  <nd ref="1962189188"/>
+  <nd ref="7597988434"/>
+  <nd ref="7597988433"/>
+  <nd ref="7597988432"/>
+  <nd ref="7597988431"/>
+  <nd ref="7597988430"/>
+  <nd ref="1962189196"/>
+  <nd ref="7597988429"/>
+  <nd ref="1962189194"/>
+  <nd ref="7597988428"/>
+  <nd ref="7597988427"/>
+  <nd ref="7597988426"/>
+  <nd ref="7597988425"/>
+  <nd ref="3637417501"/>
+  <nd ref="7597988424"/>
+  <nd ref="7597988423"/>
+  <nd ref="1962189201"/>
+  <nd ref="7597988422"/>
+  <nd ref="7597988421"/>
+  <nd ref="1962189189"/>
+  <nd ref="7597988420"/>
+  <nd ref="3637417495"/>
+  <nd ref="3637417496"/>
+  <nd ref="7598302344"/>
+  <nd ref="7597988419"/>
+  <nd ref="1962189204"/>
+  <nd ref="7597988418"/>
+  <nd ref="1962189198"/>
+  <nd ref="7597988417"/>
+  <nd ref="1962189203"/>
+  <nd ref="7597988416"/>
+  <nd ref="7597988415"/>
+  <nd ref="1962189195"/>
+  <nd ref="3637417531"/>
+  <nd ref="3637417533"/>
+  <nd ref="7598301656"/>
+  <nd ref="3637417534"/>
+  <nd ref="3637417539"/>
+  <nd ref="7597988414"/>
+  <nd ref="7597988413"/>
+  <nd ref="7597988412"/>
+  <nd ref="1962189197"/>
+  <nd ref="7597988411"/>
+  <nd ref="1962189199"/>
+  <nd ref="7597988410"/>
+  <nd ref="7597988409"/>
+  <nd ref="7598302187"/>
+  <nd ref="3637417550"/>
+  <nd ref="7597988408"/>
+  <nd ref="7597988407"/>
+  <nd ref="7597988406"/>
+  <nd ref="7597988405"/>
+  <nd ref="1962189200"/>
+  <nd ref="7597988404"/>
+  <nd ref="7597988403"/>
+  <nd ref="7597988402"/>
+  <nd ref="3637417558"/>
+  <nd ref="7598357622"/>
+  <nd ref="7597988401"/>
+  <nd ref="7597988400"/>
+  <nd ref="1962189183"/>
+  <nd ref="7597988399"/>
+  <nd ref="7597988398"/>
+  <nd ref="7597988397"/>
+  <nd ref="7597988396"/>
+  <nd ref="1962189190"/>
+  <nd ref="7597988395"/>
+  <nd ref="7597988394"/>
+  <nd ref="3637417562"/>
+  <nd ref="7597988393"/>
+  <nd ref="1962189202"/>
+  <nd ref="7597988392"/>
+  <nd ref="7597988391"/>
+  <nd ref="3637417556"/>
+  <nd ref="1962189184"/>
+  <nd ref="7597988388"/>
+  <nd ref="7597988389"/>
+  <nd ref="7597988390"/>
+  <nd ref="7597988445"/>
+  <nd ref="7597988444"/>
+  <nd ref="7597988443"/>
+  <nd ref="1962189191"/>
+  <nd ref="7597988442"/>
+  <nd ref="7597988441"/>
+  <nd ref="1962189186"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

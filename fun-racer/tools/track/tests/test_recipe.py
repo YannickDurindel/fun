@@ -1,5 +1,6 @@
 """Recipe parsing: defaults from calendar.json, the Red Bull Ring recipe, and error messages."""
 import os
+import re
 import tempfile
 import unittest
 
@@ -16,6 +17,9 @@ class RecipeTest(unittest.TestCase):
         self.assertEqual(r.turns, 10)
         self.assertEqual(r.direction, "clockwise")
         self.assertEqual(r.spline, "uniform")
+        self.assertIsNone(r.plan_sigma_m)          # the default plan-view smoothing
+        self.assertEqual(recipe.from_dict("imola", {"osm": {"relation": 1},
+                                                    "layout": {"plan_sigma_m": 35.0}}).plan_sigma_m, 35.0)
         self.assertEqual(r.sectors, [2352.2, 3219.5])
         self.assertTrue(r.turns_pinned)
         self.assertEqual([t["id"] for t in r.turn_table], [f"T{i}" for i in range(1, 11)])
@@ -43,11 +47,30 @@ class RecipeTest(unittest.TestCase):
         r = recipe.load("no_such_circuit", overrides={"osm_relation": 1, "length_m": 4000.0})
         self.assertEqual((r.length_m, r.source, r.road, r.turn_table), (4000.0, "", {}, []))
 
+    def test_series_from_the_series_calendar(self):
+        r = recipe.load("road_atlanta")
+        self.assertEqual((r.series, r.grand_prix, r.length_m), ("endurance", "Petit Le Mans", 4088.0))
+        self.assertEqual(recipe.load("imola").series, "f1")
+        r = recipe.from_dict("wec_le_mans", {"osm": {"relation": 1}})
+        self.assertEqual((r.series, r.length_m), ("endurance", 13626.0))
+        with self.assertRaises(BuildError):
+            recipe.from_dict("x", {"series": "no_such_series", "length_m": 1000, "osm": {"relation": 1}})
+
     def test_command_line_overrides_recipe(self):
         r = recipe.from_dict("red_bull_ring", {"length_m": 4000, "osm": {"relation": 1}},
                              {"length_m": 4318.0, "direction": "anticlockwise"})
         self.assertEqual(r.length_m, 4318.0)
         self.assertEqual(r.direction, "anticlockwise")
+
+    def test_series_calendars_match_the_game(self):
+        # TrackCatalog.CALENDARS (GDScript) and SERIES_CALENDARS list the same files.
+        src = open(os.path.join(recipe.ROOT, "scripts", "track", "track_catalog.gd"), encoding="utf-8").read()
+        block = src[src.index("const CALENDARS := {"):src.index("}", src.index("const CALENDARS := {"))]
+        game = dict(re.findall(r'"(\w+)": "res://assets/tracks/(calendar_\w+\.json)"', block))
+        ours = {s: os.path.basename(p) for s, p in recipe.SERIES_CALENDARS.items()}
+        self.assertEqual(game, ours)
+        for path in recipe.SERIES_CALENDARS.values():
+            self.assertTrue(os.path.exists(path), path)
 
     def test_track_outside_the_calendar_needs_a_length(self):
         with self.assertRaisesRegex(BuildError, "official lap length"):
@@ -73,6 +96,8 @@ class RecipeTest(unittest.TestCase):
                 ({"layout": {"finish": [200.0, 3.0]}}, "lat, lon"),
                 ({"layout": {"sectors": [3000.0, 1000.0]}}, "sectors"),
                 ({"layout": {"spline": "bezier"}}, "spline"),
+                ({"layout": {"plan_sigma_m": 0.0}}, "plan_sigma_m"),
+                ({"layout": {"plan_sigma_m": "wide"}}, "plan_sigma_m"),
                 ({"osm": {"bbox": [2.0, 1.0, 1.0, 2.0]}}, "bbox"),
                 ({"turn": [{"name": "x"}]}, "needs an id"),
                 ({"turn": [{"id": "T1", "s": 10.0, "direction": "left"}, {"id": "T2"}]}, "either every"),

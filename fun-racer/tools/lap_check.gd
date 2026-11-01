@@ -86,6 +86,8 @@ func _run() -> void:
 		if prev_speed - speed > 8.0:
 			impacts += 1
 			impact_s.append(int(s))
+			print("  .. impact s=%.0f speed %.0f -> %.0f km/h airborne=%s edge=%.2f off=%.2f v=%s" % [s, prev_speed * 3.6, speed * 3.6, str(not bool(car.get(&"is_grounded"))), hw - off, off, car.linear_velocity])
+			print("     wheels: ", (car.get(&"wheels") as Array).map(func(w): return "c=%s comp=%.3f" % [w.contact, w.compression]), " rot=", car.rotation_degrees, " fwd=", car.get(&"forward_speed"), " steer=", car.get(&"steer"), " pos=", car.global_position)
 		prev_speed = speed
 		stuck = stuck + TICK if speed < 1.0 and t > 8.0 else 0.0
 		if stuck > 6.0:

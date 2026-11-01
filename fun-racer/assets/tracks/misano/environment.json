@@ -1,0 +1,11 @@
+{
+  "preset": "temperate_day",
+  "look": "detailed",
+  "sun": {"azimuth_deg": 230, "elevation_deg": 55, "color": [1.0, 0.95, 0.87], "energy": 1.6},
+  "realistic": {
+    "sun": {"elevation_deg": 32, "color": [1.0, 0.91, 0.76], "energy": 1.8},
+    "sky": {"hdri": "syferfontein_18d_clear_puresky", "hdri_energy": 1.0},
+    "verge": {"grass_color": [0.15, 0.28, 0.08], "dry_color": [0.30, 0.32, 0.14]},
+    "terrain_palette": {"grass": [[0.15, 0.27, 0.09], [0.23, 0.33, 0.12]]}
+  }
+}

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1300 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="69886462" visible="true" version="4" changeset="37072669" timestamp="2016-02-08T05:06:49Z" user="xDraconian" uid="2694586" lat="34.1367048" lon="-83.8183600"/>
+ <node id="69886465" visible="true" version="6" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1364362" lon="-83.8183919"/>
+ <node id="69886469" visible="true" version="5" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1363062" lon="-83.8183921"/>
+ <node id="69886470" visible="true" version="4" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1362018" lon="-83.8183160"/>
+ <node id="69886471" visible="true" version="4" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1361480" lon="-83.8181271"/>
+ <node id="69886473" visible="true" version="4" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1361836" lon="-83.8174126"/>
+ <node id="69886475" visible="true" version="6" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1362579" lon="-83.8168459"/>
+ <node id="69886477" visible="true" version="5" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1363691" lon="-83.8166662"/>
+ <node id="69886482" visible="true" version="5" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1365199" lon="-83.8165374"/>
+ <node id="69886484" visible="true" version="5" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1368647" lon="-83.8164792"/>
+ <node id="69886487" visible="true" version="5" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1374052" lon="-83.8165240"/>
+ <node id="69886489" visible="true" version="5" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1389087" lon="-83.8165818"/>
+ <node id="69886491" visible="true" version="5" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1400091" lon="-83.8165246"/>
+ <node id="69886496" visible="true" version="5" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1411785" lon="-83.8164409"/>
+ <node id="69886719" visible="true" version="5" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1444540" lon="-83.8188161"/>
+ <node id="69886720" visible="true" version="5" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1439090" lon="-83.8187955"/>
+ <node id="69886722" visible="true" version="5" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1436242" lon="-83.8187567"/>
+ <node id="69886723" visible="true" version="2" changeset="2719342" timestamp="2009-10-03T05:59:46Z" user="woodpeck_fixbot" uid="147510" lat="34.1419800" lon="-83.8184920"/>
+ <node id="69886725" visible="true" version="3" changeset="7946944" timestamp="2011-04-23T20:00:38Z" user="Neverwhere" uid="221878" lat="34.1412977" lon="-83.8183866"/>
+ <node id="69886728" visible="true" version="4" changeset="37072669" timestamp="2016-02-08T05:06:49Z" user="xDraconian" uid="2694586" lat="34.1396160" lon="-83.8181358"/>
+ <node id="69886733" visible="true" version="4" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1385476" lon="-83.8180591"/>
+ <node id="69886735" visible="true" version="4" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1383458" lon="-83.8180715"/>
+ <node id="69886737" visible="true" version="5" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1376244" lon="-83.8181925"/>
+ <node id="1257076686" visible="true" version="3" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1405406" lon="-83.8164719"/>
+ <node id="1257076726" visible="true" version="3" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1363176" lon="-83.8167386"/>
+ <node id="1257076740" visible="true" version="3" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1382680" lon="-83.8165721"/>
+ <node id="1257076759" visible="true" version="4" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1361623" lon="-83.8178063"/>
+ <node id="1257076868" visible="true" version="3" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1366209" lon="-83.8164978"/>
+ <node id="1257076872" visible="true" version="4" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1379007" lon="-83.8181314"/>
+ <node id="1257076886" visible="true" version="2" changeset="37072669" timestamp="2016-02-08T05:06:49Z" user="xDraconian" uid="2694586" lat="34.1364517" lon="-83.8165878"/>
+ <node id="1257076915" visible="true" version="2" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1362675" lon="-83.8183808"/>
+ <node id="1257076927" visible="true" version="3" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1402094" lon="-83.8165023"/>
+ <node id="1257076933" visible="true" version="3" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1362053" lon="-83.8170793"/>
+ <node id="1257076934" visible="true" version="2" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1361547" lon="-83.8182078"/>
+ <node id="3994652579" visible="true" version="2" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1372127" lon="-83.8182853"/>
+ <node id="3994652580" visible="true" version="2" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1391335" lon="-83.8180809"/>
+ <node id="11375068519" visible="true" version="1" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1408799" lon="-83.8164487"/>
+ <node id="11375068526" visible="true" version="1" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1398147" lon="-83.8165410"/>
+ <node id="11375068527" visible="true" version="1" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1385934" lon="-83.8165820"/>
+ <node id="11375068528" visible="true" version="1" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1379956" lon="-83.8165612"/>
+ <node id="11375068529" visible="true" version="1" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1371248" lon="-83.8165039"/>
+ <node id="11375068530" visible="true" version="1" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1367536" lon="-83.8164746"/>
+ <node id="11375068531" visible="true" version="1" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1366790" lon="-83.8164824"/>
+ <node id="11375068532" visible="true" version="1" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1365704" lon="-83.8165145"/>
+ <node id="11375068533" visible="true" version="1" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1364065" lon="-83.8166270"/>
+ <node id="11375068534" visible="true" version="2" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1362897" lon="-83.8167820"/>
+ <node id="11375068535" visible="true" version="2" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1362290" lon="-83.8169362"/>
+ <node id="11375068536" visible="true" version="1" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1361521" lon="-83.8179855"/>
+ <node id="11375068537" visible="true" version="1" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1361720" lon="-83.8182724"/>
+ <node id="11375068539" visible="true" version="1" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1381087" lon="-83.8180961"/>
+ <node id="11375068540" visible="true" version="1" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1388424" lon="-83.8180632"/>
+ <node id="11375068541" visible="true" version="1" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1394185" lon="-83.8181084"/>
+ <node id="11375068542" visible="true" version="1" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1441639" lon="-83.8188129"/>
+ <node id="11375068543" visible="true" version="1" changeset="144438308" timestamp="2023-11-25T11:44:08Z" user="Lexerati" uid="16953257" lat="34.1446939" lon="-83.8188032"/>
+ <node id="12576947357" visible="true" version="1" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1442986" lon="-83.8188158"/>
+ <node id="12576947358" visible="true" version="1" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1445849" lon="-83.8188104"/>
+ <node id="12576947359" visible="true" version="1" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1387731" lon="-83.8180608"/>
+ <node id="12576947360" visible="true" version="1" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1382403" lon="-83.8180809"/>
+ <node id="12576947361" visible="true" version="1" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1380194" lon="-83.8181104"/>
+ <node id="12576947383" visible="true" version="1" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1384401" lon="-83.8180661"/>
+ <node id="12576947384" visible="true" version="1" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1386755" lon="-83.8180581"/>
+ <node id="12576947385" visible="true" version="1" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1373623" lon="-83.8182566"/>
+ <node id="12576947386" visible="true" version="1" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1370748" lon="-83.8183062"/>
+ <node id="12576947387" visible="true" version="1" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1363599" lon="-83.8183974"/>
+ <node id="12576947388" visible="true" version="1" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1362279" lon="-83.8183478"/>
+ <node id="12576947389" visible="true" version="1" changeset="162369499" timestamp="2025-02-10T21:57:57Z" user="palimpadum" uid="155936" lat="34.1362179" lon="-83.8169973"/>
+ <way id="1360423184" visible="true" version="1" changeset="162585229" timestamp="2025-02-16T20:07:05Z" user="elizabuppy" uid="22486084">
+  <nd ref="11375068543"/>
+  <nd ref="12576947358"/>
+  <nd ref="69886719"/>
+  <nd ref="12576947357"/>
+  <nd ref="11375068542"/>
+  <nd ref="69886720"/>
+  <nd ref="69886722"/>
+  <nd ref="69886723"/>
+  <nd ref="69886725"/>
+  <nd ref="69886728"/>
+  <nd ref="11375068541"/>
+  <nd ref="3994652580"/>
+  <nd ref="11375068540"/>
+  <nd ref="12576947359"/>
+  <nd ref="12576947384"/>
+  <nd ref="69886733"/>
+  <nd ref="12576947383"/>
+  <nd ref="69886735"/>
+  <nd ref="12576947360"/>
+  <nd ref="11375068539"/>
+  <nd ref="12576947361"/>
+  <nd ref="1257076872"/>
+  <nd ref="69886737"/>
+  <nd ref="12576947385"/>
+  <nd ref="3994652579"/>
+  <nd ref="12576947386"/>
+  <nd ref="69886462"/>
+  <nd ref="69886465"/>
+  <nd ref="12576947387"/>
+  <nd ref="69886469"/>
+  <nd ref="1257076915"/>
+  <nd ref="12576947388"/>
+  <nd ref="69886470"/>
+  <nd ref="11375068537"/>
+  <nd ref="1257076934"/>
+  <nd ref="69886471"/>
+  <nd ref="11375068536"/>
+  <nd ref="1257076759"/>
+  <nd ref="69886473"/>
+  <nd ref="1257076933"/>
+  <nd ref="12576947389"/>
+  <nd ref="11375068535"/>
+  <nd ref="69886475"/>
+  <nd ref="11375068534"/>
+  <nd ref="1257076726"/>
+  <nd ref="69886477"/>
+  <nd ref="11375068533"/>
+  <nd ref="1257076886"/>
+  <nd ref="69886482"/>
+  <nd ref="11375068532"/>
+  <nd ref="1257076868"/>
+  <nd ref="11375068531"/>
+  <nd ref="11375068530"/>
+  <nd ref="69886484"/>
+  <nd ref="11375068529"/>
+  <nd ref="69886487"/>
+  <nd ref="11375068528"/>
+  <nd ref="1257076740"/>
+  <nd ref="11375068527"/>
+  <nd ref="69886489"/>
+  <nd ref="11375068526"/>
+  <nd ref="69886491"/>
+  <nd ref="1257076927"/>
+  <nd ref="1257076686"/>
+  <nd ref="11375068519"/>
+  <nd ref="69886496"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Road Atlanta Racetrack"/>
+  <tag k="oneway" v="-1"/>
+  <tag k="service" v="raceway"/>
+  <tag k="sport" v="motor"/>
+  <tag k="tiger:cfcc" v="A41"/>
+  <tag k="tiger:county" v="Hall, GA"/>
+  <tag k="tiger:reviewed" v="no"/>
+ </way>
+</osm>

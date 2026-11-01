@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1315 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1638851233" visible="true" version="4" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9223566" lon="0.2194711"/>
+ <node id="1638851235" visible="true" version="4" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9222899" lon="0.2197007"/>
+ <node id="1789604567" visible="true" version="3" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9223581" lon="0.2193477"/>
+ <node id="1789604702" visible="true" version="3" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9223104" lon="0.2196566"/>
+ <node id="1789604734" visible="true" version="3" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9223045" lon="0.2190391"/>
+ <node id="1789604756" visible="true" version="3" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9223409" lon="0.2195640"/>
+ <node id="1789604761" visible="true" version="3" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9222672" lon="0.2197409"/>
+ <node id="1789604941" visible="true" version="3" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9223605" lon="0.2194128"/>
+ <node id="2611959419" visible="true" version="2" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9223246" lon="0.2191249"/>
+ <node id="2611959440" visible="true" version="2" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9223432" lon="0.2192160"/>
+ <node id="2611959460" visible="true" version="2" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9223525" lon="0.2192803"/>
+ <node id="2620242671" visible="true" version="2" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9222425" lon="0.2197744"/>
+ <node id="9334531443" visible="true" version="1" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9223496" lon="0.2195211"/>
+ <node id="9334531444" visible="true" version="1" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9223277" lon="0.2196093"/>
+ <way id="1011729892" visible="true" version="6" changeset="185053266" timestamp="2026-07-03T17:28:27Z" user="ltcars27" uid="24261862">
+  <nd ref="1789604734"/>
+  <nd ref="2611959419"/>
+  <nd ref="2611959440"/>
+  <nd ref="2611959460"/>
+  <nd ref="1789604567"/>
+  <nd ref="1789604941"/>
+  <nd ref="1638851233"/>
+  <nd ref="9334531443"/>
+  <nd ref="1789604756"/>
+  <nd ref="9334531444"/>
+  <nd ref="1789604702"/>
+  <nd ref="1638851235"/>
+  <nd ref="1789604761"/>
+  <nd ref="2620242671"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lane_markings" v="yes"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="no"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Virage d'Indianapolis"/>
+  <tag k="ref" v="D 140"/>
+  <tag k="sidewalk" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

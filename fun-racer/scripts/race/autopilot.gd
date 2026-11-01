@@ -282,6 +282,17 @@ func get_brake() -> float:
 func get_steer() -> float:
 	return _steer
 
+## Builds the plan if needed, and plans again once a measured envelope replaces the
+## provisional one. For users that read the plan without letting this node drive (AutoBrake).
+func ensure_plan() -> bool:
+	if _envelope_arrived():
+		_data = null
+	return prepare()
+
+## Centreline distance of `pos` (searching near `hint`, -1 = everywhere). Needs a plan.
+func closest_s(pos: Vector3, hint: float = -1.0) -> float:
+	return _data.closest_s(pos, hint)
+
 ## Target speed (m/s) of the profile at centreline distance s.
 func target_speed_at(s: float) -> float:
 	return _lerp_arr(_v_prof, s)
@@ -812,7 +823,7 @@ func _think(delta: float) -> void:
 	_have_prev_err = true
 	k_cmd += cross_track_gain * err + cross_track_damping * clampf(err_rate, -10.0, 10.0)
 	var steer_max := _steer_max(v, k_cmd)
-	var steer := -atan(k_cmd * Car.WHEELBASE) / maxf(steer_max, 1e-3) * steer_gain
+	var steer := -atan(k_cmd * _car.wheelbase) / maxf(steer_max, 1e-3) * steer_gain
 	_steer = clampf(steer, -1.0, 1.0)
 
 	# ---- pedals: speed error against the profile
@@ -1016,7 +1027,7 @@ func _sim_steer_for(v: float, k: float, theta: float) -> float:
 	var aids := _car.sim.aids
 	var c := clampf(_car.sim.spec.aid_steer_center_gain, 0.0, 1.0) if aids.steering_help else 1.0
 	var norm := u * (c + (1.0 - c) * u)
-	norm = clampf(norm + Car.WHEELBASE * (absf(k) * cos(theta) - k_flat) / maxf(aids.steer_lock, 0.01), 0.0, 1.0)
+	norm = clampf(norm + _car.wheelbase * (absf(k) * cos(theta) - k_flat) / maxf(aids.steer_lock, 0.01), 0.0, 1.0)
 	if c > 0.999:
 		return norm
 	return (sqrt(c * c + 4.0 * (1.0 - c) * norm) - c) / (2.0 * (1.0 - c))
@@ -1028,7 +1039,7 @@ func _steer_max(v: float, k: float = 0.0) -> float:
 	if v <= 1.0:
 		return _car.max_steer_angle
 	a_lat = maxf(a_lat + signf(k) * _car.bank_pull, 0.0)
-	return minf(_car.max_steer_angle, atan(Car.WHEELBASE * _car.steer_grip_usage * a_lat / (v * v)))
+	return minf(_car.max_steer_angle, atan(_car.wheelbase * _car.steer_grip_usage * a_lat / (v * v)))
 
 # ================================================================ statistics
 func _init_turn_stats() -> void:

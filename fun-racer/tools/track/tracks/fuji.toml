@@ -1,0 +1,74 @@
+# Fuji Speedway (Oyama, Shizuoka, Japan): the full Grand Prix course as raced in the WEC
+# "6 Hours of Fuji", with the Dunlop chicane / final sector, 4563 m, 16 turns, clockwise.
+# Endurance series (calendar_endurance.json).
+#
+#   .venv/bin/python tools/track/build_track.py fuji --plot
+
+id = "fuji"
+series = "endurance"
+full_name = "Fuji Speedway (Grand Prix course)"
+
+[osm]
+# No type=circuit relation (only the venue way 196330118, leisure=sports_centre). The box
+# holds the main loop (way 148622740), pit lane, short circuit, drift course and karting.
+bbox = [138.915, 35.363, 138.945, 35.380]
+
+[layout]
+direction = "clockwise"
+# OSM has no start / finish node. Estimate: the pit-straight grandstand stands about 600 m
+# before the Turn 1 braking zone, i.e. roughly 120 m past the middle of the 1.5 km straight
+# (where the build would put it). Checked on Esri World Imagery z18/z19 (the area between the two grandstands, pit building opposite, tiles z20 not available): no painted start/finish line or gantry is readable at this resolution, so the estimate is kept; the point lies between the grandstand and pit building, inside the plausible zone (+/- 100 m).
+finish = [35.372777, 138.927778]
+
+[elevation]
+dataset = "terrarium"
+# Elevation: the terrain model gives a 52 m range; published figures are about 40 m (f1-fansite.com
+# circuit data: 40 m / 131 ft; samuraicarjapanjdm.jp track guide: about 35 m), so the model is a
+# little deep at the low point between 300R and Dunlop (s = 2617) and noisy on the climb after
+# Dunlop. Hard [[elevation.key]]s there (-40 m at s = 2617, -36 m at s = 1585) made steep ramps
+# beside corners and the autopilot left the road at s = 1714 / 2760, so only wider smoothing is
+# used: it keeps the shape of the DEM and removes its dips.
+[[elevation.smooth]]
+s = [2300.0, 2580.0]
+sigma_m = 150.0
+blend = 150.0
+[[elevation.smooth]]
+s = [2950.0, 3300.0]
+sigma_m = 70.0
+blend = 100.0
+
+[road]
+# The course is 15 m wide all round (circuit data sheet; Wikipedia gives 15 m). The default 13 m
+# came from the generic base width.
+base_width = 15.0
+grid_width = 15.0
+
+# Official numbering (16 turns). The names are the usual ones; the detector's numbering matches
+# the published layout on these. Final sector (after Dunlop): the fast right-hander the guides call "13 Turn" / "13th" (Hertz, Porsche WEC; the detector numbers it T12 because it counts the Dunlop chicane as three turns T9 to T11), T14 "GR Supra corner" (ja.wikipedia corner list: GR Supra corner 2019-2025, renamed GR GT corner in 2025), T16 "Panasonic corner" (Le Mans Ultimate guide, ja.wikipedia). Sources disagree on exact numbers for T11-T15, so only these three are named; T15 is left unnamed.
+[[turn]]
+id = "T1"
+name = "TGR corner"
+[[turn]]
+id = "T3"
+name = "Coca-Cola corner"
+[[turn]]
+id = "T4"
+name = "100R"
+[[turn]]
+id = "T6"
+name = "Hairpin"
+[[turn]]
+id = "T8"
+name = "300R"
+[[turn]]
+id = "T9"
+name = "Dunlop corner"
+[[turn]]
+id = "T12"
+name = "13 Turn"
+[[turn]]
+id = "T14"
+name = "GR Supra corner"
+[[turn]]
+id = "T16"
+name = "Panasonic corner"

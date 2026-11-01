@@ -1,0 +1,15 @@
+{
+  "id": "nashville_oval",
+  "name": "Nashville Oval",
+  "grand_prix": "Superspeedway · Lebanon",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Lebanon",
+  "length_m": 2140,
+  "turns": 4,
+  "scene": "res://scenes/tracks/nashville_oval.tscn",
+  "track_json": "res://assets/tracks/nashville_oval/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "circuit"
+}

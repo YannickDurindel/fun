@@ -1,0 +1,145 @@
+{
+ "note": "Rally events: special stages, so no length or turn count, current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "tracks": [
+  {
+   "id": "rly_monte_carlo",
+   "name": "Alpes-Maritimes and Hautes-Alpes",
+   "grand_prix": "Winter rally · Monte Carlo",
+   "country": "Monaco",
+   "country_code": "MC",
+   "city": "Monte Carlo",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "rly_sweden",
+   "name": "Västerbotten forests",
+   "grand_prix": "Snow rally · Umeå",
+   "country": "Sweden",
+   "country_code": "SE",
+   "city": "Umeå",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "rly_kenya",
+   "name": "Rift Valley",
+   "grand_prix": "Safari rally · Naivasha",
+   "country": "Kenya",
+   "country_code": "KE",
+   "city": "Naivasha",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "rly_croatia",
+   "name": "Istria and Gorski Kotar",
+   "grand_prix": "Tarmac rally · Rijeka",
+   "country": "Croatia",
+   "country_code": "HR",
+   "city": "Rijeka",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "rly_canarias",
+   "name": "Gran Canaria",
+   "grand_prix": "Tarmac rally · Las Palmas",
+   "country": "Spain",
+   "country_code": "ES",
+   "city": "Las Palmas",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "rly_portugal",
+   "name": "Northern Portugal",
+   "grand_prix": "Gravel rally · Matosinhos",
+   "country": "Portugal",
+   "country_code": "PT",
+   "city": "Matosinhos",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "rly_japan",
+   "name": "Aichi and Gifu mountains",
+   "grand_prix": "Tarmac rally · Toyota City",
+   "country": "Japan",
+   "country_code": "JP",
+   "city": "Toyota",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "rly_greece",
+   "name": "Central Greece",
+   "grand_prix": "Rough gravel rally · Lamia",
+   "country": "Greece",
+   "country_code": "GR",
+   "city": "Lamia",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "rly_estonia",
+   "name": "South Estonia",
+   "grand_prix": "Fast gravel rally · Tartu",
+   "country": "Estonia",
+   "country_code": "EE",
+   "city": "Tartu",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "rly_finland",
+   "name": "Central Finland lakes",
+   "grand_prix": "Flying gravel rally · Jyväskylä",
+   "country": "Finland",
+   "country_code": "FI",
+   "city": "Jyväskylä",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "rly_paraguay",
+   "name": "Itapúa",
+   "grand_prix": "Gravel rally · Encarnación",
+   "country": "Paraguay",
+   "country_code": "PY",
+   "city": "Encarnación",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "rly_chile",
+   "name": "Biobío forests",
+   "grand_prix": "Gravel rally · Concepción",
+   "country": "Chile",
+   "country_code": "CL",
+   "city": "Concepción",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "rly_sardinia",
+   "name": "Sardinian hills",
+   "grand_prix": "Gravel rally · Olbia",
+   "country": "Italy",
+   "country_code": "IT",
+   "city": "Olbia",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "rly_saudi",
+   "name": "Hejaz desert roads",
+   "grand_prix": "Desert rally · Jeddah",
+   "country": "Saudi Arabia",
+   "country_code": "SA",
+   "city": "Jeddah",
+   "length_m": 0,
+   "turns": 0
+  }
+ ]
+}

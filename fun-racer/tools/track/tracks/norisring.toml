@@ -1,0 +1,41 @@
+# Norisring (Nuremberg street circuit) (Nuremberg, Germany), 2300 m.
+# Built for other series' calendars (event(s) dtc_norisring link it with "track"): series "circuit"
+# keeps it out of every series list on its own, F1 included.
+#
+#   .venv/bin/python tools/track/build_track.py norisring --plot
+
+id = "norisring"
+series = "circuit"
+name = "Norisring"
+grand_prix = "Norisring"
+country = "Germany"
+country_code = "DE"
+city = "Nuremberg"
+length_m = 2300
+turns = 4
+full_name = "Norisring (Nuremberg street circuit)"
+
+[osm]
+# type=circuit relation "Norisring".
+relation = 1889538
+# The Dutzendteich hairpin is drawn with a sharp vertex that folds the road mesh: round it.
+[[osm.round]]
+node = 27323219
+reach_m = 18.0
+
+[elevation]
+dataset = "terrarium"
+
+[layout]
+# The ways carry no oneway tags; the Norisring is raced clockwise (both hairpins, the
+# Grundig-Kehre and the Dutzendteich-Kehre, are right-handers).
+direction = "clockwise"
+# OSM has no start / finish node: ESTIMATE, the middle of the longest straight (the pit
+# straight in front of the stone grandstand), +/- 100 m.
+finish = [49.431147, 11.124645]
+
+[road]
+# A temporary street circuit: narrower than the 13 m default, and the 13 m radius hairpins
+# fold the default road there.
+base_width = 11.0
+grid_width = 13.0

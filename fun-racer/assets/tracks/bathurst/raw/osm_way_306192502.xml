@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1298 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="35122869" visible="true" version="15" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4581838" lon="149.5570270"/>
+ <node id="4056397208" visible="true" version="3" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4578902" lon="149.5561276"/>
+ <node id="10091505273" visible="true" version="2" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4584167" lon="149.5565840">
+  <tag k="name" v="Forrest's Elbow"/>
+ </node>
+ <node id="10201537717" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4580593" lon="149.5562237"/>
+ <node id="10201537718" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4581891" lon="149.5562926"/>
+ <node id="10201537719" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4582366" lon="149.5563203"/>
+ <node id="10201537720" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4582781" lon="149.5563489"/>
+ <node id="10201537721" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4583173" lon="149.5563842"/>
+ <node id="10201537722" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4583503" lon="149.5564243"/>
+ <node id="10201537723" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4583690" lon="149.5564532"/>
+ <node id="10201537724" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4583948" lon="149.5565068"/>
+ <node id="10201537725" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4584098" lon="149.5565543"/>
+ <node id="10201537726" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4584206" lon="149.5566130"/>
+ <node id="10201537727" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4584222" lon="149.5566547"/>
+ <node id="10201537728" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4584200" lon="149.5566911"/>
+ <node id="10201537729" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4584024" lon="149.5567697"/>
+ <node id="10201537730" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4583847" lon="149.5568137"/>
+ <node id="10201537731" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4583659" lon="149.5568474"/>
+ <node id="10201537732" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4583313" lon="149.5568926"/>
+ <node id="10201537733" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4582858" lon="149.5569377"/>
+ <node id="10201537734" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4582304" lon="149.5569880"/>
+ <way id="306192502" visible="true" version="9" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097">
+  <nd ref="4056397208"/>
+  <nd ref="10201537717"/>
+  <nd ref="10201537718"/>
+  <nd ref="10201537719"/>
+  <nd ref="10201537720"/>
+  <nd ref="10201537721"/>
+  <nd ref="10201537722"/>
+  <nd ref="10201537723"/>
+  <nd ref="10201537724"/>
+  <nd ref="10201537725"/>
+  <nd ref="10091505273"/>
+  <nd ref="10201537726"/>
+  <nd ref="10201537727"/>
+  <nd ref="10201537728"/>
+  <nd ref="10201537729"/>
+  <nd ref="10201537730"/>
+  <nd ref="10201537731"/>
+  <nd ref="10201537732"/>
+  <nd ref="10201537733"/>
+  <nd ref="10201537734"/>
+  <nd ref="35122869"/>
+  <tag k="alt_name" v="Mount Panorama Scenic Road"/>
+  <tag k="highway" v="residential"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="maxweight" v="5"/>
+  <tag k="maxweight:bus" v="unrestricted"/>
+  <tag k="name" v="Forrest's Elbow"/>
+  <tag k="source" v="NSW LPI Imagery"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

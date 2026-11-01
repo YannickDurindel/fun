@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (4105520 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="322700032" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:35Z" user="Neverwhere" uid="221878" lat="33.3753645" lon="-112.3134447"/>
+ <node id="322700034" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:33Z" user="Neverwhere" uid="221878" lat="33.3752543" lon="-112.3136821"/>
+ <node id="322700035" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:34Z" user="Neverwhere" uid="221878" lat="33.3751072" lon="-112.3138782"/>
+ <node id="322700037" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:36Z" user="Neverwhere" uid="221878" lat="33.3749000" lon="-112.3140563"/>
+ <node id="322700038" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:35Z" user="Neverwhere" uid="221878" lat="33.3747109" lon="-112.3141547"/>
+ <node id="322700040" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:32Z" user="Neverwhere" uid="221878" lat="33.3744471" lon="-112.3142153"/>
+ <node id="322700042" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:37Z" user="Neverwhere" uid="221878" lat="33.3741763" lon="-112.3142134"/>
+ <node id="322700045" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:34Z" user="Neverwhere" uid="221878" lat="33.3739193" lon="-112.3141338"/>
+ <node id="322700046" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:37Z" user="Neverwhere" uid="221878" lat="33.3736871" lon="-112.3139728"/>
+ <node id="322700048" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:37Z" user="Neverwhere" uid="221878" lat="33.3734664" lon="-112.3137204"/>
+ <node id="322700049" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:33Z" user="Neverwhere" uid="221878" lat="33.3732724" lon="-112.3133543"/>
+ <node id="322700051" visible="true" version="3" changeset="33990860" timestamp="2015-09-13T00:30:36Z" user="Dr Kludge" uid="292665" lat="33.3731561" lon="-112.3130642"/>
+ <node id="322700052" visible="true" version="3" changeset="33990860" timestamp="2015-09-13T00:30:36Z" user="Dr Kludge" uid="292665" lat="33.3730383" lon="-112.3126901"/>
+ <node id="322700053" visible="true" version="3" changeset="33990860" timestamp="2015-09-13T00:30:36Z" user="Dr Kludge" uid="292665" lat="33.3727816" lon="-112.3116763"/>
+ <node id="322700055" visible="true" version="3" changeset="33990860" timestamp="2015-09-13T00:30:36Z" user="Dr Kludge" uid="292665" lat="33.3727290" lon="-112.3110792"/>
+ <node id="322700057" visible="true" version="3" changeset="33990860" timestamp="2015-09-13T00:30:36Z" user="Dr Kludge" uid="292665" lat="33.3727944" lon="-112.3107605"/>
+ <node id="322700058" visible="true" version="3" changeset="33990860" timestamp="2015-09-13T00:30:36Z" user="Dr Kludge" uid="292665" lat="33.3729122" lon="-112.3104405"/>
+ <node id="322700061" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:36Z" user="Neverwhere" uid="221878" lat="33.3731649" lon="-112.3098355"/>
+ <node id="322700062" visible="true" version="2" changeset="13988403" timestamp="2012-11-22T17:30:16Z" user="Dr Kludge" uid="292665" lat="33.3740179" lon="-112.3080906"/>
+ <node id="322700064" visible="true" version="2" changeset="13988403" timestamp="2012-11-22T17:30:16Z" user="Dr Kludge" uid="292665" lat="33.3741523" lon="-112.3078707"/>
+ <node id="322700065" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:32Z" user="Neverwhere" uid="221878" lat="33.3743306" lon="-112.3076672"/>
+ <node id="322700066" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:33Z" user="Neverwhere" uid="221878" lat="33.3745391" lon="-112.3075237"/>
+ <node id="322700068" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:36Z" user="Neverwhere" uid="221878" lat="33.3747808" lon="-112.3074103"/>
+ <node id="322700069" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:36Z" user="Neverwhere" uid="221878" lat="33.3750478" lon="-112.3073566"/>
+ <node id="322700071" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:37Z" user="Neverwhere" uid="221878" lat="33.3753067" lon="-112.3073526"/>
+ <node id="322700073" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:36Z" user="Neverwhere" uid="221878" lat="33.3755166" lon="-112.3073888"/>
+ <node id="322700074" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:35Z" user="Neverwhere" uid="221878" lat="33.3757182" lon="-112.3074637"/>
+ <node id="322700075" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:35Z" user="Neverwhere" uid="221878" lat="33.3759523" lon="-112.3076101"/>
+ <node id="322700077" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:33Z" user="Neverwhere" uid="221878" lat="33.3761684" lon="-112.3078295"/>
+ <node id="322700078" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:35Z" user="Neverwhere" uid="221878" lat="33.3763783" lon="-112.3081160"/>
+ <node id="322700079" visible="true" version="2" changeset="13988403" timestamp="2012-11-22T17:30:16Z" user="Dr Kludge" uid="292665" lat="33.3765153" lon="-112.3084232"/>
+ <node id="322700080" visible="true" version="2" changeset="13988403" timestamp="2012-11-22T17:30:16Z" user="Dr Kludge" uid="292665" lat="33.3765848" lon="-112.3087531"/>
+ <node id="322700086" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:34Z" user="Neverwhere" uid="221878" lat="33.3766085" lon="-112.3090700"/>
+ <node id="322700087" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:36Z" user="Neverwhere" uid="221878" lat="33.3765868" lon="-112.3093222"/>
+ <node id="322700088" visible="true" version="2" changeset="8363942" timestamp="2011-06-06T19:52:33Z" user="Neverwhere" uid="221878" lat="33.3765322" lon="-112.3095512"/>
+ <node id="1314810450" visible="true" version="2" changeset="33990860" timestamp="2015-09-13T00:30:33Z" user="Dr Kludge" uid="292665" lat="33.3729081" lon="-112.3121716"/>
+ <node id="1314810460" visible="true" version="1" changeset="8367097" timestamp="2011-06-07T06:43:51Z" user="Neverwhere" uid="221878" lat="33.3762567" lon="-112.3079501"/>
+ <node id="7020854989" visible="true" version="1" changeset="77745972" timestamp="2019-11-29T23:36:07Z" user="TheDutchMan13" uid="1330847" lat="33.3733854" lon="-112.3093844"/>
+ <way id="29333335" visible="true" version="11" changeset="139653267" timestamp="2023-08-09T10:47:18Z" user="Mateusz Konieczny - bot account" uid="3199858">
+  <nd ref="322700088"/>
+  <nd ref="322700032"/>
+  <nd ref="322700034"/>
+  <nd ref="322700035"/>
+  <nd ref="322700037"/>
+  <nd ref="322700038"/>
+  <nd ref="322700040"/>
+  <nd ref="322700042"/>
+  <nd ref="322700045"/>
+  <nd ref="322700046"/>
+  <nd ref="322700048"/>
+  <nd ref="322700049"/>
+  <nd ref="322700051"/>
+  <nd ref="322700052"/>
+  <nd ref="1314810450"/>
+  <nd ref="322700053"/>
+  <nd ref="322700055"/>
+  <nd ref="322700057"/>
+  <nd ref="322700058"/>
+  <nd ref="322700061"/>
+  <nd ref="7020854989"/>
+  <nd ref="322700062"/>
+  <nd ref="322700064"/>
+  <nd ref="322700065"/>
+  <nd ref="322700066"/>
+  <nd ref="322700068"/>
+  <nd ref="322700069"/>
+  <nd ref="322700071"/>
+  <nd ref="322700073"/>
+  <nd ref="322700074"/>
+  <nd ref="322700075"/>
+  <nd ref="322700077"/>
+  <nd ref="1314810460"/>
+  <nd ref="322700078"/>
+  <nd ref="322700079"/>
+  <nd ref="322700080"/>
+  <nd ref="322700086"/>
+  <nd ref="322700087"/>
+  <nd ref="322700088"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Phoenix Raceway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q1803538"/>
+  <tag k="wikipedia" v="de:Phoenix Raceway"/>
+ </way>
+</osm>

@@ -3,7 +3,8 @@ extends UIScreen
 ## Track selection: a scrollable grid of cards (one per TrackCatalog entry) and a detail panel
 ## for the focused track (map, location, length, turns, elevation, the player's best lap).
 ## Accepting a playable track sets Game.pending.track_id and opens the race options;
-## "coming soon" circuits can be browsed but not selected.
+## "coming soon" circuits can be browsed but not selected. Lists the tracks of `series`
+## (set by the series select screen before it opens this one).
 
 const RaceTimer := preload("res://scripts/ui/race_timer.gd")
 const MARGIN := 90.0
@@ -12,6 +13,9 @@ const PANEL_H := 780.0
 const DETAIL_W := 740.0
 const CARD_SIZE := Vector2(290, 150)
 const GAP := 16
+
+## SeriesCatalog id whose tracks are listed. Static: survives the trip to a race and back.
+static var series: String = SeriesCatalog.F1
 
 var cards: Array[TrackCard] = []
 ## Track shown in the detail panel (the last focused card).
@@ -101,7 +105,8 @@ static func _imperial() -> bool:
 
 func _build() -> void:
 	var title := Label.new()
-	title.text = "SELECT TRACK"
+	var series_name := String(SeriesCatalog.find(series).get("name", "")).to_upper()
+	title.text = "SELECT TRACK" if series_name.is_empty() else "%s  ·  SELECT TRACK" % series_name
 	title.theme_type_variation = &"TitleLabel"
 	title.position = Vector2(MARGIN, 44)
 	add_child(title)
@@ -121,9 +126,10 @@ func _build() -> void:
 	_grid.add_theme_constant_override(&"h_separation", GAP)
 	_grid.add_theme_constant_override(&"v_separation", GAP)
 	pad.add_child(_grid)
-	for info in TrackCatalog.all():
+	for info in SeriesCatalog.tracks(series):
 		var card := TrackCard.new()
-		card.setup(info, read_best(info))
+		# F1 cards name the circuit; other series name the event ("24 Hours of Le Mans").
+		card.setup(info, read_best(info), info.name if series == SeriesCatalog.F1 else info.grand_prix)
 		card.focus_entered.connect(_on_card_focused.bind(card))
 		card.mouse_entered.connect(_on_card_hovered.bind(card))
 		card.pressed.connect(select.bind(info))
@@ -320,7 +326,7 @@ class TrackCard extends Button:
 	var info: TrackInfo
 	var best: Dictionary = {}   ## TrackSelectScreen.read_best(info), read once when the card is built
 
-	func setup(track: TrackInfo, track_best: Dictionary) -> void:
+	func setup(track: TrackInfo, track_best: Dictionary, caption: String = "") -> void:
 		info = track
 		best = track_best
 		custom_minimum_size = CARD_SIZE
@@ -367,7 +373,7 @@ class TrackCard extends Button:
 		_add(tag)
 
 		var title := Label.new()
-		title.text = info.name.to_upper()
+		title.text = (info.name if caption.is_empty() else caption).to_upper()
 		title.theme_type_variation = &"HeaderLabel"
 		title.add_theme_font_size_override(&"font_size", 27)
 		title.add_theme_constant_override(&"line_spacing", -6)

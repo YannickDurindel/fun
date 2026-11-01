@@ -1,0 +1,15 @@
+{
+  "id": "daytona",
+  "name": "Daytona International Speedway",
+  "grand_prix": "24 Hours of Daytona",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Daytona Beach",
+  "length_m": 5729,
+  "turns": 12,
+  "scene": "res://scenes/tracks/daytona.tscn",
+  "track_json": "res://assets/tracks/daytona/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "endurance"
+}

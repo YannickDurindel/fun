@@ -17,6 +17,8 @@ const DEFAULTS: Dictionary = {
 		"shadows": 2,               # 0 off, 1 low, 2 medium, 3 high
 		"render_scale": 1.0,        # 3D resolution scale, 0.5 .. 1.0
 		"scenery": 1,               # trackside scenery: 0 low, 1 medium, 2 high
+		"track_look": "realistic",  # style of tracks opted in to the detailed look (TrackLook):
+		                            # "generated" (procedural) or "realistic" (photographic)
 	},
 	"audio": {
 		"master": 1.0,              # linear 0..1 per bus
@@ -41,6 +43,8 @@ const DEFAULTS: Dictionary = {
 		"speed_unit": "kmh",        # "kmh" or "mph"
 		"show_input_display": true,
 		"handling": "arcade",       # car physics: "arcade" or "simulation"
+		"auto_brake": 0,            # brake assist before corners: 0 off, 1 light, 2 medium, 3 strong
+		"car_contact": false,       # bots are solid cars (true) or ghosts (false); next race
 		# Driving aids of the simulation handling (ignored by arcade). Applied live.
 		"aid_traction_control": 2,  # 0 off, 1 low, 2 high
 		"aid_abs": 1,               # 0 off, 1 on

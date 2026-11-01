@@ -1,0 +1,28 @@
+# Brands Hatch (Indy circuit) (West Kingsdown, United Kingdom), 1929 m.
+# Built for other series' calendars (event(s) tc_brands_indy link it with "track"): series "circuit"
+# keeps it out of every series list on its own, F1 included.
+#
+#   .venv/bin/python tools/track/build_track.py brands_hatch_indy --plot
+
+id = "brands_hatch_indy"
+series = "circuit"
+name = "Brands Hatch Indy"
+grand_prix = "Brands Hatch Indy"
+country = "United Kingdom"
+country_code = "GB"
+city = "West Kingsdown"
+length_m = 1929
+turns = 5
+full_name = "Brands Hatch (Indy circuit)"
+
+[osm]
+# type=circuit relation "Brands Hatch Indy Circuit".
+relation = 11248425
+
+[elevation]
+dataset = "terrarium"
+
+[layout]
+# OSM has no start / finish node: the line is shared with the GP circuit, on the Brabham
+# Straight about 170 m before Paddock Hill Bend (see brands_hatch.toml).
+finish = [51.360643, 0.261438]

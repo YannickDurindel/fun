@@ -860,12 +860,18 @@ class Corridor:
             info.append({"pts": body, "i0": int(idx[a]), "i1": int(idx[b]),
                          "s0": 1.0 if lat[a] > 0.0 else -1.0, "s1": 1.0 if lat[b] > 0.0 else -1.0})
 
-        def along_edge(i0, i1, side):
-            """Limit-line points from centreline point i0 to i1, the short way round the lap."""
+        def along_edge(i0, i1, side, p0, p1):
+            """Limit-line points from centreline point i0 to i1, the short way round the lap
+            (p0, p1: where the outline leaves and comes back to the limit line)."""
             d = (i1 - i0) % self.n
             steps = d if d <= self.n - d else d - self.n
             if abs(steps) * self.step > 250.0:
-                return np.zeros((0, 2))     # two legs of the lap side by side: join straight
+                # Two legs of the lap side by side: join straight, unless that line crosses
+                # the road (a grandstand along a curved front stretch, an oval's tri-oval).
+                k = max(2, int(math.ceil(float(np.hypot(*(p1 - p0))) / 2.0)))
+                chord = p0 + (p1 - p0) * (np.arange(1, k) / k)[:, None]
+                if not self.on_road(chord, margin - 0.1).any():
+                    return np.zeros((0, 2))
             ks = [(i0 + j * (1 if steps > 0 else -1)) % self.n for j in range(1, abs(steps))]
             return np.array([self._edge(k, side, margin) for k in ks]).reshape(-1, 2)
 
@@ -883,7 +889,8 @@ class Corridor:
                 side = info[a]["s1"]
                 nxt = next(((a + j) % len(info) for j in range(1, len(info) + 1)
                             if info[(a + j) % len(info)]["s0"] == side), a)
-                loop.append(along_edge(info[a]["i1"], info[nxt]["i0"], side))
+                loop.append(along_edge(info[a]["i1"], info[nxt]["i0"], side,
+                                       info[a]["pts"][-1], info[nxt]["pts"][0]))
                 a = nxt
             piece = sg.clean_ring(np.concatenate([p for p in loop if len(p)]), tol=1e-3)
             if len(piece) >= 3:
@@ -1319,7 +1326,7 @@ def build_solid(mesh, s, ground, corridor, counts):
             tint = parse_colour(s.tags["building:colour"]) if "building:colour" in s.tags else pick(STAND_TINTS, s.ref)
             covered = s.tags.get("covered") == "yes" or "roof:shape" in s.tags
             sg.grandstand(mesh, outer, toward, g_lo, g_lo - 1.5, s.height if s.source != "type default" else None,
-                          srgb_to_linear(tint) + (0.0,), covered)
+                          srgb_to_linear(tint) + (0.0,), covered, keep_off=corridor.on_road)
             counts["grandstands"] += 1
             continue
         wall_mat, wall_col, roof_col = building_colours(s)
@@ -1675,6 +1682,8 @@ def build(recipe, out_dir, fetcher, log=print):
         c = f.point if f.point is not None else (f.line if f.line is not None else f.outers[0]).mean(axis=0)
         return bool(points_in_rings(c[None], drop_areas)[0])
 
+    # Footprints the recipe takes away (landmarks stand there): BD TOPO must not put them back.
+    dropped_rings = [r for f in near_feats if f.outers and excluded(f) for r in f.outers] + drop_areas
     near_feats = [f for f in near_feats if not excluded(f)]
     far_feats = [f for f in far_feats if not excluded(f)]
 
@@ -1780,6 +1789,17 @@ def build(recipe, out_dir, fetcher, log=print):
             solids.append(s)
     solids = drop_outlines_with_parts(solids)
     resolve_heights(solids, cfg)
+    # Survey tracks (raw/ign_manifest.json): measured heights from IGN BD TOPO, and the
+    # buildings OpenStreetMap does not have (lib/landscape.py; nothing happens without them).
+    from . import landscape
+    protected = {o["osm"] for o in overrides if "height" in o or "levels" in o}
+    topo_extra, _ = landscape.apply_building_heights(
+        solids, out_dir, rect=detail, sky=(sky_rect, SKYLINE_HEIGHT), avoid=dropped_rings, corridor_xz=corridor.xz,
+        keep=lambda s: any(_ref_matches(s.ref, w) for w in protected), log=log)
+    for k, (ring, h) in enumerate(topo_extra):
+        s = Solid(f"ign/{k + 1}", {"building": "yes"}, sg.oriented(ring, True), [])
+        s.height, s.min_height, s.source = h, 0.0, "IGN BD TOPO"
+        solids.append(s)
     for s, _ in added_solids:
         if s.height is None and s.kind != "stand":
             s.height = s.min_height + default_height(s.type, s.area, cfg)

@@ -1,0 +1,28 @@
+# Brands Hatch (West Kingsdown, Kent, UK): the Grand Prix circuit, 3908 m, clockwise.
+# Built for the GT and touring calendars (gt_brands_hatch, tc_brands_gp link it with "track"):
+# series "circuit" keeps it out of every series list on its own, F1 included.
+#
+#   .venv/bin/python tools/track/build_track.py brands_hatch --plot
+
+id = "brands_hatch"
+series = "circuit"
+name = "Brands Hatch"
+grand_prix = "Brands Hatch"
+country = "United Kingdom"
+country_code = "GB"
+city = "West Kingsdown"
+length_m = 3908
+turns = 9
+full_name = "Brands Hatch (Grand Prix circuit)"
+
+[osm]
+# type=circuit relation "Brands Hatch Grand Prix".
+relation = 7218462
+
+[elevation]
+dataset = "terrarium"
+
+[layout]
+# OSM has no start / finish node. The line is on the Brabham Straight, about 170 m before
+# Paddock Hill Bend, opposite the pits (position read off the centreline, +/- 30 m).
+finish = [51.360643, 0.261438]

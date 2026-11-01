@@ -1,0 +1,336 @@
+{
+ "id": "snetterton",
+ "recipe": "tools/track/tracks/snetterton.toml",
+ "osm": {
+  "relation": 7282345,
+  "loop_ways": [
+   159636490,
+   159636493,
+   159636492,
+   161975520,
+   232356866,
+   232356870,
+   232356862,
+   232356869,
+   232356863,
+   232356867,
+   232356865,
+   232356868,
+   232356872,
+   159636489,
+   159636497,
+   232356871,
+   232356864,
+   145755937,
+   159636487,
+   159636494,
+   159636488,
+   161975521,
+   159636491,
+   159636496
+  ],
+  "raw_length_m": 4794.5,
+  "length_m": 4793.0,
+  "official_length_m": 4779.0,
+  "length_error": 0.00293,
+  "candidates": [
+   {
+    "length_m": 4794.4,
+    "ways": [
+     159636490,
+     159636493,
+     159636492,
+     161975520,
+     232356866,
+     232356870,
+     232356862,
+     232356869,
+     232356863,
+     232356867,
+     232356865,
+     232356868,
+     232356872,
+     159636489,
+     159636497,
+     232356871,
+     232356864,
+     145755937,
+     159636487,
+     159636494,
+     159636488,
+     161975521,
+     159636491,
+     159636496
+    ]
+   },
+   {
+    "length_m": 4794.5,
+    "ways": [
+     159636490,
+     159636493,
+     159636492,
+     161975520,
+     232356866,
+     232356870,
+     232356862,
+     232356869,
+     232356863,
+     232356867,
+     232356865,
+     232356868,
+     232356872,
+     159636489,
+     159636497,
+     232356871,
+     232356864,
+     145755937,
+     159636487,
+     159636494,
+     159636488,
+     161975521,
+     159636491,
+     159636496,
+     145755934,
+     159636496
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 6.2,
+  "max_grade": 0.0111,
+  "min_grade": -0.0116,
+  "origin_m": 41.17
+ },
+ "turns": {
+  "official": 12,
+  "mode": "auto",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Senna Straight",
+    "direction": "right",
+    "s_apex": 464.7,
+    "min_radius": 57.1
+   },
+   {
+    "id": "T2",
+    "name": "Montreal",
+    "direction": "right",
+    "s_apex": 937.4,
+    "min_radius": 19.1
+   },
+   {
+    "id": "T3",
+    "name": "Palmer",
+    "direction": "left",
+    "s_apex": 1296.5,
+    "min_radius": 65.8
+   },
+   {
+    "id": "T4",
+    "name": "Agostini",
+    "direction": "left",
+    "s_apex": 1847.0,
+    "min_radius": 26.7
+   },
+   {
+    "id": "T5",
+    "name": "Hamilton",
+    "direction": "left",
+    "s_apex": 2134.2,
+    "min_radius": 45.3
+   },
+   {
+    "id": "T6",
+    "name": "Oggies",
+    "direction": "right",
+    "s_apex": 2361.6,
+    "min_radius": 20.9
+   },
+   {
+    "id": "T7",
+    "name": "Oggies",
+    "direction": "right",
+    "s_apex": 2437.4,
+    "min_radius": 49.3
+   },
+   {
+    "id": "T8",
+    "name": "Williams",
+    "direction": "right",
+    "s_apex": 2650.8,
+    "min_radius": 43.6
+   },
+   {
+    "id": "T9",
+    "name": "Brundle",
+    "direction": "left",
+    "s_apex": 3484.5,
+    "min_radius": 75.6
+   },
+   {
+    "id": "T10",
+    "name": "Nelson",
+    "direction": "right",
+    "s_apex": 3586.2,
+    "min_radius": 21.5
+   },
+   {
+    "id": "T11",
+    "name": "Bomb Hole",
+    "direction": "right",
+    "s_apex": 3807.6,
+    "min_radius": 55.3
+   },
+   {
+    "id": "T12",
+    "name": "Coram",
+    "direction": "right",
+    "s_apex": 4100.8,
+    "min_radius": 70.2
+   },
+   {
+    "id": "T13",
+    "name": "Coram",
+    "direction": "right",
+    "s_apex": 4284.3,
+    "min_radius": 92.5
+   },
+   {
+    "id": "T14",
+    "name": "Murrays",
+    "direction": "left",
+    "s_apex": 4416.0,
+    "min_radius": 15.1
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 464.7,
+    "direction": "right",
+    "angle_deg": 88.5,
+    "kind": "corner",
+    "min_radius": 57.1,
+    "used": true
+   },
+   {
+    "s_apex": 937.4,
+    "direction": "right",
+    "angle_deg": 175.5,
+    "kind": "corner",
+    "min_radius": 19.1,
+    "used": true
+   },
+   {
+    "s_apex": 1296.5,
+    "direction": "left",
+    "angle_deg": 114.7,
+    "kind": "corner",
+    "min_radius": 65.8,
+    "used": true
+   },
+   {
+    "s_apex": 1847.0,
+    "direction": "left",
+    "angle_deg": 159.7,
+    "kind": "corner",
+    "min_radius": 26.7,
+    "used": true
+   },
+   {
+    "s_apex": 2134.2,
+    "direction": "left",
+    "angle_deg": 59.3,
+    "kind": "corner",
+    "min_radius": 45.3,
+    "used": true
+   },
+   {
+    "s_apex": 2361.6,
+    "direction": "right",
+    "angle_deg": 98.4,
+    "kind": "corner",
+    "min_radius": 20.9,
+    "used": true
+   },
+   {
+    "s_apex": 2437.4,
+    "direction": "right",
+    "angle_deg": 37.3,
+    "kind": "corner",
+    "min_radius": 49.3,
+    "used": true
+   },
+   {
+    "s_apex": 2650.8,
+    "direction": "right",
+    "angle_deg": 97.6,
+    "kind": "corner",
+    "min_radius": 43.6,
+    "used": true
+   },
+   {
+    "s_apex": 3484.5,
+    "direction": "left",
+    "angle_deg": 53.0,
+    "kind": "corner",
+    "min_radius": 75.6,
+    "used": true
+   },
+   {
+    "s_apex": 3586.2,
+    "direction": "right",
+    "angle_deg": 81.8,
+    "kind": "corner",
+    "min_radius": 21.5,
+    "used": true
+   },
+   {
+    "s_apex": 3807.6,
+    "direction": "right",
+    "angle_deg": 70.9,
+    "kind": "corner",
+    "min_radius": 55.3,
+    "used": true
+   },
+   {
+    "s_apex": 4100.8,
+    "direction": "right",
+    "angle_deg": 64.6,
+    "kind": "corner",
+    "min_radius": 70.2,
+    "used": true
+   },
+   {
+    "s_apex": 4284.3,
+    "direction": "right",
+    "angle_deg": 86.2,
+    "kind": "corner",
+    "min_radius": 92.5,
+    "used": true
+   },
+   {
+    "s_apex": 4416.0,
+    "direction": "left",
+    "angle_deg": 85.2,
+    "kind": "corner",
+    "min_radius": 15.1,
+    "used": true
+   },
+   {
+    "s_apex": 4655.3,
+    "direction": "right",
+    "angle_deg": 9.1,
+    "kind": "kink",
+    "min_radius": 206.3,
+    "used": false
+   }
+  ]
+ },
+ "warnings": [
+  "turn detection found 14 turns (14 corners, 1 kinks) but the official count is 12: check the plot and, if needed, pin the turns with [[turn]] entries (id, name, direction, s) in the recipe"
+ ]
+}

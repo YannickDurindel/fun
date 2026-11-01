@@ -3,10 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
+uid="uid://bwiqtrwu32em"
+path="res://.godot/imported/scenery.glb-59b7f91fb4316ea5b94c00b550e7dc23.scn"
 
 [deps]
 
 source_file="res://assets/tracks/silverstone/scenery.glb"
+dest_files=["res://.godot/imported/scenery.glb-59b7f91fb4316ea5b94c00b550e7dc23.scn"]
 
 [params]
 

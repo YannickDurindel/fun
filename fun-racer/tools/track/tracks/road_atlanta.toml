@@ -1,0 +1,144 @@
+# Michelin Raceway Road Atlanta (Braselton, Georgia, USA): the full course of Petit Le Mans,
+# 4088 m (2.54 mi), 12 turns, clockwise. Endurance series (calendar_endurance.json).
+#
+#   .venv/bin/python tools/track/build_track.py road_atlanta --plot
+
+id = "road_atlanta"
+series = "endurance"
+full_name = "Michelin Raceway Road Atlanta (full course)"
+
+[osm]
+# No type=circuit relation (the venue relation 18036031 is a leisure=sports_centre area).
+# The bounding box also holds the Club Course and Short Course cut-offs, the Motorcycle Turn 12,
+# two pit lanes and two closed karting loops, so the lap is listed by hand, in driving order.
+# All three are drawn against the race direction (oneway = -1): 4095 m together.
+ways = [
+  1360423185,   # "The Esses": Turn 1 to Turn 5
+  1360423184,   # "Road Atlanta Racetrack": Turn 5 to Turn 7 and the back straight
+  9292566,      # "Road Atlanta Racetrack": Turn 10a to Turn 12 and the front straight
+]
+
+[layout]
+# Manual ways do not take the direction from the oneway tags.
+direction = "clockwise"
+# OSM has no start / finish node. The line is on the front straight opposite the race control
+# tower, under the pedestrian bridge that links the tower to the infield; the Esri World Imagery
+# aerial (z19) shows the tower with the bridge crossing the straight there, but the painted line
+# itself is not resolvable at that resolution, so the position is read off the bridge to about
+# +/- 15 m (the earlier estimate, 150 m further back beside the pit building, is dropped).
+finish = [34.15040, -83.81420]
+
+[elevation]
+# The Terrain Tiles / SRTM surface model reads the pine tops: the descent to Turn 12 came out
+# at -17 % (s = 3596) where the real run is a steady fast downhill (about 7.5 % on average,
+# 31.7 m to 9.1 m between the bridge and the exit). Smoothed over a longer window.
+# Published elevation change of the circuit: about 30 m (built range 36.8 m, pine tops).
+[[elevation.smooth]]
+s = [3480.0, 3780.0]
+sigma_m = 90.0
+blend = 60.0
+
+# Official numbering of Michelin Raceway Road Atlanta (12 turns; T8 and T9 are the long lazy
+# bends of the back straight, T10a / T10b the 90-degree flip-flop at its end; the Esses sit
+# between T4 and T5 and carry no number). Sources: Allenberg Racing Schools, "Road Atlanta
+# Corner by Corner"; Just Track It, "Road Atlanta Guide"; FerrariChat / NASA Speed guides.
+# Positions are the curvature peaks of the OSM centreline. T8 and T9 are flat-out kinks whose
+# exact place is an ESTIMATE (the two largest curvature peaks of the back straight).
+# The build used to number 14 detected corners and call the Esses "Road Atlanta Racetrack".
+# The pipeline wants ids T1..Tn in lap order, so the id is the lap index and the OFFICIAL
+# number is in `name` (Esses = 3 corners, T10a / T10b = 2: 16 entries for 12 official turns).
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "right"
+s = 208.0
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 537.0
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "right"
+s = 593.0
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 725.0
+
+[[turn]]
+id = "T5"
+name = "The Esses"
+direction = "right"
+s = 933.0
+
+[[turn]]
+id = "T6"
+name = "The Esses"
+direction = "left"
+s = 995.0
+
+[[turn]]
+id = "T7"
+name = "The Esses"
+direction = "right"
+s = 1091.0
+
+[[turn]]
+id = "T8"
+name = "Turn 5"
+direction = "left"
+s = 1173.0
+
+[[turn]]
+id = "T9"
+name = "Turn 6"
+direction = "right"
+s = 1780.0
+
+[[turn]]
+id = "T10"
+name = "Turn 7"
+direction = "right"
+s = 1922.0
+
+[[turn]]
+id = "T11"
+name = "Back straight bend"
+direction = "left"
+s = 2186.0
+
+[[turn]]
+id = "T12"
+name = "Back straight bend"
+direction = "right"
+s = 2869.0
+
+[[turn]]
+id = "T13"
+name = "Turn 10a"
+direction = "left"
+s = 3283.0
+
+[[turn]]
+id = "T14"
+name = "Turn 10b"
+direction = "right"
+s = 3339.0
+
+[[turn]]
+id = "T15"
+name = "Turn 11 (the bridge)"
+direction = "right"
+s = 3503.0
+
+[[turn]]
+id = "T16"
+name = "Turn 12"
+direction = "right"
+s = 3774.0

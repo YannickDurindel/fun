@@ -1,0 +1,105 @@
+{
+ "id": "las_vegas_oval",
+ "recipe": "tools/track/tracks/las_vegas_oval.toml",
+ "osm": {
+  "relation": 21201768,
+  "loop_ways": [
+   27545411,
+   1548033196,
+   1548033195
+  ],
+  "raw_length_m": 2479.7,
+  "length_m": 2479.8,
+  "official_length_m": 2414.0,
+  "length_error": 0.02724,
+  "candidates": [
+   {
+    "length_m": 2479.7,
+    "ways": [
+     27545411,
+     1548033196,
+     1548033195
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 7.56,
+  "max_grade": 0.0099,
+  "min_grade": -0.0097,
+  "origin_m": 602.72
+ },
+ "turns": {
+  "official": 4,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Las Vegas Motor Speedway",
+    "direction": "left",
+    "s_apex": 44.8,
+    "min_radius": 395.3
+   },
+   {
+    "id": "T2",
+    "name": "Las Vegas Motor Speedway",
+    "direction": "left",
+    "s_apex": 132.4,
+    "min_radius": 235.4
+   },
+   {
+    "id": "T3",
+    "name": "Las Vegas Motor Speedway",
+    "direction": "left",
+    "s_apex": 955.9,
+    "min_radius": 222.4
+   },
+   {
+    "id": "T4",
+    "name": "Las Vegas Motor Speedway",
+    "direction": "left",
+    "s_apex": 1590.5,
+    "min_radius": 224.7
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 44.8,
+    "direction": "left",
+    "angle_deg": 33.5,
+    "kind": "corner",
+    "min_radius": 395.3,
+    "used": true
+   },
+   {
+    "s_apex": 132.4,
+    "direction": "left",
+    "angle_deg": 18.7,
+    "kind": "corner",
+    "min_radius": 235.4,
+    "used": true
+   },
+   {
+    "s_apex": 955.9,
+    "direction": "left",
+    "angle_deg": 149.8,
+    "kind": "corner",
+    "min_radius": 222.4,
+    "used": true
+   },
+   {
+    "s_apex": 1590.5,
+    "direction": "left",
+    "angle_deg": 151.0,
+    "kind": "corner",
+    "min_radius": 224.7,
+    "used": true
+   }
+  ]
+ },
+ "warnings": [
+  "the OSM loop is +2.7 % off the official length (2480 m vs 2414 m): check that it is the right layout"
+ ]
+}

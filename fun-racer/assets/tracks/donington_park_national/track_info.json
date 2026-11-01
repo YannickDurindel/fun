@@ -1,0 +1,15 @@
+{
+  "id": "donington_park_national",
+  "name": "Donington Park National",
+  "grand_prix": "Donington Park National",
+  "country": "United Kingdom",
+  "country_code": "GB",
+  "city": "Castle Donington",
+  "length_m": 3185,
+  "turns": 9,
+  "scene": "res://scenes/tracks/donington_park_national.tscn",
+  "track_json": "res://assets/tracks/donington_park_national/track.json",
+  "osm_relation": 20460772,
+  "available": true,
+  "series": "circuit"
+}

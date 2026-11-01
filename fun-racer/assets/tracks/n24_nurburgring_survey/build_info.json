@@ -1,0 +1,2356 @@
+{
+ "id": "n24_nurburgring_survey",
+ "recipe": "tools/track/tracks/n24_nurburgring_survey.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   1113009624,
+   820330153,
+   820330152,
+   1079809245,
+   1443047845,
+   1443047844,
+   27852990,
+   1149161211,
+   1149161210,
+   26543901,
+   41395670,
+   41395673,
+   1009142894,
+   1009142895,
+   799394496,
+   799394497,
+   41395681,
+   41395684,
+   799394498,
+   799394499,
+   799394500,
+   799394501,
+   799394502,
+   799394503,
+   799394504,
+   799394505,
+   799394506,
+   799394507,
+   683061813,
+   683061814,
+   41395647,
+   683006908,
+   245166664,
+   799394508,
+   799394509,
+   683061804,
+   799394510,
+   799394511,
+   799394512,
+   799394513,
+   414785755,
+   414785756,
+   799394515,
+   799394514,
+   799394516,
+   799394517,
+   799394518,
+   799394519,
+   799394520,
+   799394521,
+   799394522,
+   799394523,
+   799394524,
+   41395652,
+   683303211,
+   683303210,
+   683303209,
+   683303208,
+   41792406,
+   799394494,
+   799394495,
+   41395668,
+   41395670,
+   27852583,
+   1149161210,
+   1149161208,
+   31010602,
+   1149161208,
+   1443047846,
+   1443047847,
+   1079809244,
+   820679447,
+   820679448,
+   820679446,
+   1113009623,
+   820679445,
+   820330155,
+   820330154
+  ],
+  "raw_length_m": 25356.4,
+  "length_m": 25344.0,
+  "official_length_m": 25378.0,
+  "length_error": -0.00134,
+  "candidates": [
+   {
+    "length_m": 25350.9,
+    "ways": [
+     1113009624,
+     820330153,
+     820330152,
+     1079809245,
+     1443047845,
+     1443047844,
+     27852990,
+     1149161211,
+     1149161210,
+     26543901,
+     41395670,
+     41395673,
+     1009142894,
+     1009142895,
+     799394496,
+     799394497,
+     41395681,
+     41395684,
+     799394498,
+     799394499,
+     799394500,
+     799394501,
+     799394502,
+     799394503,
+     799394504,
+     799394505,
+     799394506,
+     799394507,
+     683061813,
+     683061814,
+     41395647,
+     683006908,
+     245166664,
+     799394508,
+     799394509,
+     683061804,
+     799394510,
+     799394511,
+     799394512,
+     799394513,
+     414785755,
+     414785756,
+     799394515,
+     799394514,
+     799394516,
+     799394517,
+     799394518,
+     799394519,
+     799394520,
+     799394521,
+     799394522,
+     799394523,
+     799394524,
+     41395652,
+     683303211,
+     683303210,
+     683303209,
+     683303208,
+     41792406,
+     799394494,
+     799394495,
+     41395668,
+     41395670,
+     27852583,
+     1149161210,
+     1149161208,
+     31010602,
+     1149161208,
+     1443047846,
+     1443047847,
+     1079809244,
+     820679447,
+     820679448,
+     820679446,
+     1113009623,
+     820679445,
+     820330155,
+     820330154
+    ]
+   },
+   {
+    "length_m": 25867.6,
+    "ways": [
+     1113009624,
+     820330153,
+     820330152,
+     1079809245,
+     1443047845,
+     1443047844,
+     27852990,
+     1149161211,
+     1149161210,
+     26543901,
+     41395670,
+     41395673,
+     1009142894,
+     1009142895,
+     799394496,
+     799394497,
+     41395681,
+     41395684,
+     799394498,
+     799394499,
+     799394500,
+     799394501,
+     799394502,
+     799394503,
+     799394504,
+     799394505,
+     799394506,
+     799394507,
+     683061813,
+     683061814,
+     41395647,
+     683006908,
+     245166664,
+     799394508,
+     799394509,
+     683061804,
+     799394510,
+     799394511,
+     799394512,
+     799394513,
+     414785755,
+     414785756,
+     799394515,
+     799394514,
+     799394516,
+     799394517,
+     799394518,
+     799394519,
+     799394520,
+     799394521,
+     799394522,
+     799394523,
+     799394524,
+     41395652,
+     683303211,
+     683303210,
+     683303209,
+     683303208,
+     41792406,
+     799394494,
+     799394495,
+     41395668,
+     41395670,
+     27852583,
+     1149161210,
+     1149161208,
+     1443047846,
+     1443047847,
+     1079809244,
+     820679447,
+     820679448,
+     820679446,
+     1113009623,
+     820679445,
+     820330155,
+     820330154
+    ]
+   },
+   {
+    "length_m": 24350.9,
+    "ways": [
+     41395681,
+     41395684,
+     799394498,
+     799394499,
+     799394500,
+     799394501,
+     799394502,
+     799394503,
+     799394504,
+     799394505,
+     799394506,
+     799394507,
+     683061813,
+     683061814,
+     41395647,
+     683006908,
+     245166664,
+     799394508,
+     799394509,
+     683061804,
+     799394510,
+     799394511,
+     799394512,
+     799394513,
+     414785755,
+     414785756,
+     799394515,
+     799394514,
+     799394516,
+     799394517,
+     799394518,
+     799394519,
+     799394520,
+     799394521,
+     799394522,
+     799394523,
+     799394524,
+     41395652,
+     683303211,
+     683303210,
+     683303209,
+     683303208,
+     41792406,
+     799394494,
+     799394495,
+     41395668,
+     41395670,
+     27852583,
+     1149161210,
+     1149161208,
+     1443047846,
+     1443047847,
+     1149161209,
+     1443047845,
+     1443047844,
+     27852990,
+     1149161211,
+     1149161210,
+     26543901,
+     41395670,
+     41395673,
+     1009142894,
+     1009142895,
+     799394496,
+     799394497
+    ]
+   },
+   {
+    "length_m": 23834.2,
+    "ways": [
+     41395681,
+     41395684,
+     799394498,
+     799394499,
+     799394500,
+     799394501,
+     799394502,
+     799394503,
+     799394504,
+     799394505,
+     799394506,
+     799394507,
+     683061813,
+     683061814,
+     41395647,
+     683006908,
+     245166664,
+     799394508,
+     799394509,
+     683061804,
+     799394510,
+     799394511,
+     799394512,
+     799394513,
+     414785755,
+     414785756,
+     799394515,
+     799394514,
+     799394516,
+     799394517,
+     799394518,
+     799394519,
+     799394520,
+     799394521,
+     799394522,
+     799394523,
+     799394524,
+     41395652,
+     683303211,
+     683303210,
+     683303209,
+     683303208,
+     41792406,
+     799394494,
+     799394495,
+     41395668,
+     41395670,
+     27852583,
+     1149161210,
+     1149161208,
+     31010602,
+     1149161208,
+     1443047846,
+     1443047847,
+     1149161209,
+     1443047845,
+     1443047844,
+     27852990,
+     1149161211,
+     1149161210,
+     26543901,
+     41395670,
+     41395673,
+     1009142894,
+     1009142895,
+     799394496,
+     799394497
+    ]
+   },
+   {
+    "length_m": 20771.4,
+    "ways": [
+     41395681,
+     41395684,
+     799394498,
+     799394499,
+     799394500,
+     799394501,
+     799394502,
+     799394503,
+     799394504,
+     799394505,
+     799394506,
+     799394507,
+     683061813,
+     683061814,
+     41395647,
+     683006908,
+     245166664,
+     799394508,
+     799394509,
+     683061804,
+     799394510,
+     799394511,
+     799394512,
+     799394513,
+     414785755,
+     414785756,
+     799394515,
+     799394514,
+     799394516,
+     799394517,
+     799394518,
+     799394519,
+     799394520,
+     799394521,
+     799394522,
+     799394523,
+     799394524,
+     41395652,
+     683303211,
+     683303210,
+     683303209,
+     683303208,
+     41792406,
+     799394494,
+     799394495,
+     41395668,
+     41395670,
+     41395673,
+     1009142894,
+     1009142895,
+     799394496,
+     799394497
+    ]
+   },
+   {
+    "length_m": 5131.9,
+    "ways": [
+     1113009624,
+     820330153,
+     820330152,
+     1079809245,
+     1443047845,
+     1443047844,
+     27852990,
+     1149161211,
+     1149161210,
+     1149161208,
+     1443047846,
+     1443047847,
+     1079809244,
+     820679447,
+     820679448,
+     820679446,
+     1113009623,
+     820679445,
+     820330155,
+     820330154
+    ]
+   }
+  ],
+  "width_tags": [
+   {
+    "s": [
+     6182.3,
+     12240.4
+    ],
+    "width": 5.0,
+    "ways": [
+     41395684,
+     799394498,
+     799394499,
+     799394500,
+     799394501,
+     799394502,
+     799394503,
+     799394504,
+     799394505,
+     799394506,
+     799394507,
+     683061813,
+     683061814
+    ]
+   },
+   {
+    "s": [
+     12262.4,
+     16239.8
+    ],
+    "width": 5.0,
+    "ways": [
+     683006908,
+     245166664,
+     799394508,
+     799394509,
+     683061804,
+     799394510,
+     799394511,
+     799394512,
+     799394513
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "dgm1",
+ "elevation": {
+  "range_m": 292.64,
+  "max_grade": 0.1506,
+  "min_grade": -0.1361,
+  "origin_m": 618.6
+ },
+ "turns": {
+  "official": 99,
+  "mode": "auto",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Nürburgring Sprintstrecke",
+    "direction": "right",
+    "s_apex": 570.8,
+    "min_radius": 14.4
+   },
+   {
+    "id": "T2",
+    "name": "Variante 24h-Rennen",
+    "direction": "left",
+    "s_apex": 632.8,
+    "min_radius": 10.9
+   },
+   {
+    "id": "T3",
+    "name": "Turn 3",
+    "direction": "left",
+    "s_apex": 1089.5,
+    "min_radius": 61.1
+   },
+   {
+    "id": "T4",
+    "name": "Ford-Kurve",
+    "direction": "right",
+    "s_apex": 1259.7,
+    "min_radius": 31.2
+   },
+   {
+    "id": "T5",
+    "name": "Goodyear-Kehre",
+    "direction": "right",
+    "s_apex": 1840.5,
+    "min_radius": 34.5
+   },
+   {
+    "id": "T6",
+    "name": "Michael-Schumacher-S",
+    "direction": "left",
+    "s_apex": 2243.0,
+    "min_radius": 62.9
+   },
+   {
+    "id": "T7",
+    "name": "Michael-Schumacher-S",
+    "direction": "right",
+    "s_apex": 2391.2,
+    "min_radius": 98.3
+   },
+   {
+    "id": "T8",
+    "name": "Nürburgring Sprintstrecke",
+    "direction": "left",
+    "s_apex": 2825.8,
+    "min_radius": 35.3
+   },
+   {
+    "id": "T9",
+    "name": "Nürburgring Sprintstrecke",
+    "direction": "right",
+    "s_apex": 3080.1,
+    "min_radius": 46.6
+   },
+   {
+    "id": "T10",
+    "name": "Nürburgring Sprintstrecke",
+    "direction": "right",
+    "s_apex": 3474.7,
+    "min_radius": 97.9
+   },
+   {
+    "id": "T11",
+    "name": "Nürburgring Sprintstrecke",
+    "direction": "left",
+    "s_apex": 3933.3,
+    "min_radius": 12.4
+   },
+   {
+    "id": "T12",
+    "name": "Nürburgring Sprintstrecke",
+    "direction": "right",
+    "s_apex": 3967.3,
+    "min_radius": 21.3
+   },
+   {
+    "id": "T13",
+    "name": "Anbindung zur Nordschleife",
+    "direction": "left",
+    "s_apex": 4305.8,
+    "min_radius": 40.9
+   },
+   {
+    "id": "T14",
+    "name": "Sabine-Schmitz-Kurve",
+    "direction": "left",
+    "s_apex": 4450.0,
+    "min_radius": 23.5
+   },
+   {
+    "id": "T15",
+    "name": "Hatzenbogen",
+    "direction": "right",
+    "s_apex": 4624.2,
+    "min_radius": 121.7
+   },
+   {
+    "id": "T16",
+    "name": "Hatzenbogen",
+    "direction": "right",
+    "s_apex": 4788.4,
+    "min_radius": 92.0
+   },
+   {
+    "id": "T17",
+    "name": "Hatzenbogen",
+    "direction": "left",
+    "s_apex": 4982.7,
+    "min_radius": 172.8
+   },
+   {
+    "id": "T18",
+    "name": "Hatzenbach",
+    "direction": "left",
+    "s_apex": 5170.9,
+    "min_radius": 54.9
+   },
+   {
+    "id": "T19",
+    "name": "Hatzenbach",
+    "direction": "right",
+    "s_apex": 5231.0,
+    "min_radius": 49.4
+   },
+   {
+    "id": "T20",
+    "name": "Hatzenbach",
+    "direction": "right",
+    "s_apex": 5317.1,
+    "min_radius": 103.6
+   },
+   {
+    "id": "T21",
+    "name": "Hatzenbach",
+    "direction": "left",
+    "s_apex": 5395.2,
+    "min_radius": 60.5
+   },
+   {
+    "id": "T22",
+    "name": "Hatzenbach",
+    "direction": "right",
+    "s_apex": 5473.3,
+    "min_radius": 52.9
+   },
+   {
+    "id": "T23",
+    "name": "Hatzenbach",
+    "direction": "left",
+    "s_apex": 5541.4,
+    "min_radius": 40.4
+   },
+   {
+    "id": "T24",
+    "name": "Hocheichen",
+    "direction": "right",
+    "s_apex": 5753.7,
+    "min_radius": 46.8
+   },
+   {
+    "id": "T25",
+    "name": "Hocheichen",
+    "direction": "left",
+    "s_apex": 5831.8,
+    "min_radius": 61.6
+   },
+   {
+    "id": "T26",
+    "name": "Flugplatz",
+    "direction": "right",
+    "s_apex": 6554.8,
+    "min_radius": 81.8
+   },
+   {
+    "id": "T27",
+    "name": "Flugplatz",
+    "direction": "right",
+    "s_apex": 6674.9,
+    "min_radius": 89.8
+   },
+   {
+    "id": "T28",
+    "name": "Flugplatz",
+    "direction": "left",
+    "s_apex": 7001.4,
+    "min_radius": 192.8
+   },
+   {
+    "id": "T29",
+    "name": "Schwedenkreuz",
+    "direction": "left",
+    "s_apex": 7878.6,
+    "min_radius": 163.3
+   },
+   {
+    "id": "T30",
+    "name": "Aremberg",
+    "direction": "right",
+    "s_apex": 8096.8,
+    "min_radius": 55.0
+   },
+   {
+    "id": "T31",
+    "name": "Fuchsröhre",
+    "direction": "left",
+    "s_apex": 8467.3,
+    "min_radius": 103.4
+   },
+   {
+    "id": "T32",
+    "name": "Fuchsröhre",
+    "direction": "left",
+    "s_apex": 9018.1,
+    "min_radius": 173.7
+   },
+   {
+    "id": "T33",
+    "name": "Fuchsröhre",
+    "direction": "left",
+    "s_apex": 9188.3,
+    "min_radius": 71.6
+   },
+   {
+    "id": "T34",
+    "name": "Adenauer Forst",
+    "direction": "right",
+    "s_apex": 9344.5,
+    "min_radius": 67.5
+   },
+   {
+    "id": "T35",
+    "name": "Adenauer Forst",
+    "direction": "left",
+    "s_apex": 9462.7,
+    "min_radius": 31.1
+   },
+   {
+    "id": "T36",
+    "name": "Adenauer Forst",
+    "direction": "right",
+    "s_apex": 9546.8,
+    "min_radius": 38.9
+   },
+   {
+    "id": "T37",
+    "name": "Metzgesfeld",
+    "direction": "left",
+    "s_apex": 10255.7,
+    "min_radius": 114.1
+   },
+   {
+    "id": "T38",
+    "name": "Kallenhard",
+    "direction": "left",
+    "s_apex": 10430.0,
+    "min_radius": 46.3
+   },
+   {
+    "id": "T39",
+    "name": "Kallenhard",
+    "direction": "right",
+    "s_apex": 10530.1,
+    "min_radius": 61.7
+   },
+   {
+    "id": "T40",
+    "name": "Kallenhard",
+    "direction": "right",
+    "s_apex": 10752.4,
+    "min_radius": 38.1
+   },
+   {
+    "id": "T41",
+    "name": "Spiegelkurve",
+    "direction": "left",
+    "s_apex": 11034.8,
+    "min_radius": 71.4
+   },
+   {
+    "id": "T42",
+    "name": "Spiegelkurve",
+    "direction": "right",
+    "s_apex": 11084.9,
+    "min_radius": 66.6
+   },
+   {
+    "id": "T43",
+    "name": "Dreifach-Rechts",
+    "direction": "right",
+    "s_apex": 11299.1,
+    "min_radius": 72.9
+   },
+   {
+    "id": "T44",
+    "name": "Dreifach-Rechts",
+    "direction": "right",
+    "s_apex": 11365.2,
+    "min_radius": 107.1
+   },
+   {
+    "id": "T45",
+    "name": "Wehrseifen",
+    "direction": "right",
+    "s_apex": 11589.5,
+    "min_radius": 56.3
+   },
+   {
+    "id": "T46",
+    "name": "Wehrseifen",
+    "direction": "left",
+    "s_apex": 11683.7,
+    "min_radius": 21.7
+   },
+   {
+    "id": "T47",
+    "name": "Wehrseifen",
+    "direction": "right",
+    "s_apex": 11745.7,
+    "min_radius": 53.7
+   },
+   {
+    "id": "T48",
+    "name": "Breidscheid",
+    "direction": "right",
+    "s_apex": 12008.1,
+    "min_radius": 140.1
+   },
+   {
+    "id": "T49",
+    "name": "Breidscheid",
+    "direction": "left",
+    "s_apex": 12166.3,
+    "min_radius": 45.5
+   },
+   {
+    "id": "T50",
+    "name": "Turn 50",
+    "direction": "left",
+    "s_apex": 12258.4,
+    "min_radius": 94.7
+   },
+   {
+    "id": "T51",
+    "name": "Exmühle",
+    "direction": "right",
+    "s_apex": 12382.6,
+    "min_radius": 35.1
+   },
+   {
+    "id": "T52",
+    "name": "Lauda-Links",
+    "direction": "left",
+    "s_apex": 12919.3,
+    "min_radius": 95.1
+   },
+   {
+    "id": "T53",
+    "name": "Bergwerk",
+    "direction": "right",
+    "s_apex": 13189.7,
+    "min_radius": 48.0
+   },
+   {
+    "id": "T54",
+    "name": "Bergwerk",
+    "direction": "right",
+    "s_apex": 13311.8,
+    "min_radius": 138.0
+   },
+   {
+    "id": "T55",
+    "name": "Senkenlinks",
+    "direction": "left",
+    "s_apex": 13718.4,
+    "min_radius": 154.6
+   },
+   {
+    "id": "T56",
+    "name": "Senkenlinks",
+    "direction": "left",
+    "s_apex": 14116.9,
+    "min_radius": 133.8
+   },
+   {
+    "id": "T57",
+    "name": "Kesselchen",
+    "direction": "right",
+    "s_apex": 14767.8,
+    "min_radius": 245.9
+   },
+   {
+    "id": "T58",
+    "name": "Mutkurve",
+    "direction": "left",
+    "s_apex": 15088.2,
+    "min_radius": 84.2
+   },
+   {
+    "id": "T59",
+    "name": "Klostertal",
+    "direction": "right",
+    "s_apex": 15534.8,
+    "min_radius": 116.6
+   },
+   {
+    "id": "T60",
+    "name": "Steilstrecke",
+    "direction": "right",
+    "s_apex": 15823.2,
+    "min_radius": 38.3
+   },
+   {
+    "id": "T61",
+    "name": "Karussell",
+    "direction": "left",
+    "s_apex": 16307.8,
+    "min_radius": 32.0
+   },
+   {
+    "id": "T62",
+    "name": "Hohe Acht",
+    "direction": "right",
+    "s_apex": 16412.0,
+    "min_radius": 70.6
+   },
+   {
+    "id": "T63",
+    "name": "Hohe Acht",
+    "direction": "right",
+    "s_apex": 16500.1,
+    "min_radius": 90.2
+   },
+   {
+    "id": "T64",
+    "name": "Hohe Acht",
+    "direction": "left",
+    "s_apex": 16794.5,
+    "min_radius": 63.0
+   },
+   {
+    "id": "T65",
+    "name": "Hohe Acht",
+    "direction": "left",
+    "s_apex": 16944.7,
+    "min_radius": 190.0
+   },
+   {
+    "id": "T66",
+    "name": "Hohe Acht",
+    "direction": "left",
+    "s_apex": 17040.8,
+    "min_radius": 55.9
+   },
+   {
+    "id": "T67",
+    "name": "Hohe Acht",
+    "direction": "right",
+    "s_apex": 17137.0,
+    "min_radius": 51.4
+   },
+   {
+    "id": "T68",
+    "name": "Hohe Acht",
+    "direction": "right",
+    "s_apex": 17309.2,
+    "min_radius": 58.5
+   },
+   {
+    "id": "T69",
+    "name": "Hohe Acht",
+    "direction": "left",
+    "s_apex": 17411.3,
+    "min_radius": 112.5
+   },
+   {
+    "id": "T70",
+    "name": "Hedwigshöhe",
+    "direction": "right",
+    "s_apex": 17589.6,
+    "min_radius": 102.9
+   },
+   {
+    "id": "T71",
+    "name": "Wippermann",
+    "direction": "left",
+    "s_apex": 17775.8,
+    "min_radius": 71.4
+   },
+   {
+    "id": "T72",
+    "name": "Wippermann",
+    "direction": "right",
+    "s_apex": 17839.9,
+    "min_radius": 55.0
+   },
+   {
+    "id": "T73",
+    "name": "Eschbach",
+    "direction": "right",
+    "s_apex": 18038.2,
+    "min_radius": 73.5
+   },
+   {
+    "id": "T74",
+    "name": "Eschbach",
+    "direction": "left",
+    "s_apex": 18274.5,
+    "min_radius": 47.6
+   },
+   {
+    "id": "T75",
+    "name": "Eschbach",
+    "direction": "left",
+    "s_apex": 18368.6,
+    "min_radius": 91.6
+   },
+   {
+    "id": "T76",
+    "name": "Brünnchen",
+    "direction": "right",
+    "s_apex": 18482.8,
+    "min_radius": 48.7
+   },
+   {
+    "id": "T77",
+    "name": "Brünnchen",
+    "direction": "right",
+    "s_apex": 18671.0,
+    "min_radius": 54.3
+   },
+   {
+    "id": "T78",
+    "name": "Eiskurve",
+    "direction": "left",
+    "s_apex": 18977.4,
+    "min_radius": 49.0
+   },
+   {
+    "id": "T79",
+    "name": "Eiskurve",
+    "direction": "right",
+    "s_apex": 19049.5,
+    "min_radius": 83.4
+   },
+   {
+    "id": "T80",
+    "name": "Pflanzgarten",
+    "direction": "left",
+    "s_apex": 19291.8,
+    "min_radius": 89.8
+   },
+   {
+    "id": "T81",
+    "name": "Pflanzgarten",
+    "direction": "right",
+    "s_apex": 19562.2,
+    "min_radius": 53.6
+   },
+   {
+    "id": "T82",
+    "name": "Pflanzgarten",
+    "direction": "right",
+    "s_apex": 19660.3,
+    "min_radius": 87.4
+   },
+   {
+    "id": "T83",
+    "name": "Pflanzgarten",
+    "direction": "left",
+    "s_apex": 19772.5,
+    "min_radius": 93.8
+   },
+   {
+    "id": "T84",
+    "name": "Sprunghügel",
+    "direction": "left",
+    "s_apex": 19966.8,
+    "min_radius": 176.3
+   },
+   {
+    "id": "T85",
+    "name": "Stefan-Bellof-S",
+    "direction": "right",
+    "s_apex": 20221.1,
+    "min_radius": 108.9
+   },
+   {
+    "id": "T86",
+    "name": "Stefan-Bellof-S",
+    "direction": "left",
+    "s_apex": 20277.2,
+    "min_radius": 116.1
+   },
+   {
+    "id": "T87",
+    "name": "Stefan-Bellof-S",
+    "direction": "right",
+    "s_apex": 20357.3,
+    "min_radius": 129.0
+   },
+   {
+    "id": "T88",
+    "name": "Schwalbenschwanz",
+    "direction": "right",
+    "s_apex": 20789.9,
+    "min_radius": 80.6
+   },
+   {
+    "id": "T89",
+    "name": "Schwalbenschwanz",
+    "direction": "left",
+    "s_apex": 20964.1,
+    "min_radius": 58.0
+   },
+   {
+    "id": "T90",
+    "name": "Mini-Karussell",
+    "direction": "left",
+    "s_apex": 21208.4,
+    "min_radius": 35.3
+   },
+   {
+    "id": "T91",
+    "name": "Mini-Karussell",
+    "direction": "left",
+    "s_apex": 21310.6,
+    "min_radius": 133.5
+   },
+   {
+    "id": "T92",
+    "name": "Galgenkopf",
+    "direction": "right",
+    "s_apex": 21566.9,
+    "min_radius": 52.3
+   },
+   {
+    "id": "T93",
+    "name": "Galgenkopf",
+    "direction": "right",
+    "s_apex": 21651.0,
+    "min_radius": 125.1
+   },
+   {
+    "id": "T94",
+    "name": "Galgenkopf",
+    "direction": "right",
+    "s_apex": 21803.2,
+    "min_radius": 115.1
+   },
+   {
+    "id": "T95",
+    "name": "Antoniusbuche",
+    "direction": "left",
+    "s_apex": 24074.3,
+    "min_radius": 256.0
+   },
+   {
+    "id": "T96",
+    "name": "Hohenrain",
+    "direction": "right",
+    "s_apex": 24578.9,
+    "min_radius": 163.1
+   },
+   {
+    "id": "T97",
+    "name": "Hohenrain",
+    "direction": "left",
+    "s_apex": 24715.1,
+    "min_radius": 112.6
+   },
+   {
+    "id": "T98",
+    "name": "Hohenrain",
+    "direction": "right",
+    "s_apex": 24805.2,
+    "min_radius": 34.0
+   },
+   {
+    "id": "T99",
+    "name": "Hohenrain",
+    "direction": "left",
+    "s_apex": 24875.3,
+    "min_radius": 47.6
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 426.6,
+    "direction": "right",
+    "angle_deg": 6.5,
+    "kind": "kink",
+    "min_radius": 452.9,
+    "used": false
+   },
+   {
+    "s_apex": 570.8,
+    "direction": "right",
+    "angle_deg": 109.1,
+    "kind": "corner",
+    "min_radius": 14.4,
+    "used": true
+   },
+   {
+    "s_apex": 632.8,
+    "direction": "left",
+    "angle_deg": 156.2,
+    "kind": "corner",
+    "min_radius": 10.9,
+    "used": true
+   },
+   {
+    "s_apex": 865.2,
+    "direction": "right",
+    "angle_deg": 6.7,
+    "kind": "kink",
+    "min_radius": 231.6,
+    "used": false
+   },
+   {
+    "s_apex": 1089.5,
+    "direction": "left",
+    "angle_deg": 81.1,
+    "kind": "corner",
+    "min_radius": 61.1,
+    "used": true
+   },
+   {
+    "s_apex": 1259.7,
+    "direction": "right",
+    "angle_deg": 125.8,
+    "kind": "corner",
+    "min_radius": 31.2,
+    "used": true
+   },
+   {
+    "s_apex": 1534.1,
+    "direction": "left",
+    "angle_deg": 14.5,
+    "kind": "kink",
+    "min_radius": 270.1,
+    "used": false
+   },
+   {
+    "s_apex": 1716.3,
+    "direction": "left",
+    "angle_deg": 7.5,
+    "kind": "kink",
+    "min_radius": 317.9,
+    "used": false
+   },
+   {
+    "s_apex": 1840.5,
+    "direction": "right",
+    "angle_deg": 195.6,
+    "kind": "corner",
+    "min_radius": 34.5,
+    "used": true
+   },
+   {
+    "s_apex": 2243.0,
+    "direction": "left",
+    "angle_deg": 62.3,
+    "kind": "corner",
+    "min_radius": 62.9,
+    "used": true
+   },
+   {
+    "s_apex": 2391.2,
+    "direction": "right",
+    "angle_deg": 34.5,
+    "kind": "corner",
+    "min_radius": 98.3,
+    "used": true
+   },
+   {
+    "s_apex": 2825.8,
+    "direction": "left",
+    "angle_deg": 83.3,
+    "kind": "corner",
+    "min_radius": 35.3,
+    "used": true
+   },
+   {
+    "s_apex": 3080.1,
+    "direction": "right",
+    "angle_deg": 105.5,
+    "kind": "corner",
+    "min_radius": 46.6,
+    "used": true
+   },
+   {
+    "s_apex": 3474.7,
+    "direction": "right",
+    "angle_deg": 35.5,
+    "kind": "corner",
+    "min_radius": 97.9,
+    "used": true
+   },
+   {
+    "s_apex": 3933.3,
+    "direction": "left",
+    "angle_deg": 84.9,
+    "kind": "corner",
+    "min_radius": 12.4,
+    "used": true
+   },
+   {
+    "s_apex": 3967.3,
+    "direction": "right",
+    "angle_deg": 75.3,
+    "kind": "corner",
+    "min_radius": 21.3,
+    "used": true
+   },
+   {
+    "s_apex": 4053.4,
+    "direction": "right",
+    "angle_deg": 8.0,
+    "kind": "kink",
+    "min_radius": 258.1,
+    "used": false
+   },
+   {
+    "s_apex": 4305.8,
+    "direction": "left",
+    "angle_deg": 120.7,
+    "kind": "corner",
+    "min_radius": 40.9,
+    "used": true
+   },
+   {
+    "s_apex": 4357.8,
+    "direction": "right",
+    "angle_deg": 7.6,
+    "kind": "kink",
+    "min_radius": 270.1,
+    "used": false
+   },
+   {
+    "s_apex": 4450.0,
+    "direction": "left",
+    "angle_deg": 117.6,
+    "kind": "corner",
+    "min_radius": 23.5,
+    "used": true
+   },
+   {
+    "s_apex": 4624.2,
+    "direction": "right",
+    "angle_deg": 35.7,
+    "kind": "corner",
+    "min_radius": 121.7,
+    "used": true
+   },
+   {
+    "s_apex": 4788.4,
+    "direction": "right",
+    "angle_deg": 50.3,
+    "kind": "corner",
+    "min_radius": 92.0,
+    "used": true
+   },
+   {
+    "s_apex": 4982.7,
+    "direction": "left",
+    "angle_deg": 21.3,
+    "kind": "corner",
+    "min_radius": 172.8,
+    "used": true
+   },
+   {
+    "s_apex": 5170.9,
+    "direction": "left",
+    "angle_deg": 29.4,
+    "kind": "corner",
+    "min_radius": 54.9,
+    "used": true
+   },
+   {
+    "s_apex": 5231.0,
+    "direction": "right",
+    "angle_deg": 66.6,
+    "kind": "corner",
+    "min_radius": 49.4,
+    "used": true
+   },
+   {
+    "s_apex": 5317.1,
+    "direction": "right",
+    "angle_deg": 26.3,
+    "kind": "corner",
+    "min_radius": 103.6,
+    "used": true
+   },
+   {
+    "s_apex": 5395.2,
+    "direction": "left",
+    "angle_deg": 35.7,
+    "kind": "corner",
+    "min_radius": 60.5,
+    "used": true
+   },
+   {
+    "s_apex": 5473.3,
+    "direction": "right",
+    "angle_deg": 43.1,
+    "kind": "corner",
+    "min_radius": 52.9,
+    "used": true
+   },
+   {
+    "s_apex": 5541.4,
+    "direction": "left",
+    "angle_deg": 65.4,
+    "kind": "corner",
+    "min_radius": 40.4,
+    "used": true
+   },
+   {
+    "s_apex": 5753.7,
+    "direction": "right",
+    "angle_deg": 77.3,
+    "kind": "corner",
+    "min_radius": 46.8,
+    "used": true
+   },
+   {
+    "s_apex": 5831.8,
+    "direction": "left",
+    "angle_deg": 51.5,
+    "kind": "corner",
+    "min_radius": 61.6,
+    "used": true
+   },
+   {
+    "s_apex": 6178.3,
+    "direction": "right",
+    "angle_deg": 14.2,
+    "kind": "kink",
+    "min_radius": 279.1,
+    "used": false
+   },
+   {
+    "s_apex": 6554.8,
+    "direction": "right",
+    "angle_deg": 35.5,
+    "kind": "corner",
+    "min_radius": 81.8,
+    "used": true
+   },
+   {
+    "s_apex": 6674.9,
+    "direction": "right",
+    "angle_deg": 28.0,
+    "kind": "corner",
+    "min_radius": 89.8,
+    "used": true
+   },
+   {
+    "s_apex": 6839.2,
+    "direction": "left",
+    "angle_deg": 13.8,
+    "kind": "kink",
+    "min_radius": 188.0,
+    "used": false
+   },
+   {
+    "s_apex": 7001.4,
+    "direction": "left",
+    "angle_deg": 16.1,
+    "kind": "corner",
+    "min_radius": 192.8,
+    "used": true
+   },
+   {
+    "s_apex": 7235.7,
+    "direction": "left",
+    "angle_deg": 14.8,
+    "kind": "kink",
+    "min_radius": 180.3,
+    "used": false
+   },
+   {
+    "s_apex": 7878.6,
+    "direction": "left",
+    "angle_deg": 39.1,
+    "kind": "corner",
+    "min_radius": 163.3,
+    "used": true
+   },
+   {
+    "s_apex": 8096.8,
+    "direction": "right",
+    "angle_deg": 132.4,
+    "kind": "corner",
+    "min_radius": 55.0,
+    "used": true
+   },
+   {
+    "s_apex": 8467.3,
+    "direction": "left",
+    "angle_deg": 19.8,
+    "kind": "corner",
+    "min_radius": 103.4,
+    "used": true
+   },
+   {
+    "s_apex": 8527.4,
+    "direction": "right",
+    "angle_deg": 12.6,
+    "kind": "kink",
+    "min_radius": 177.2,
+    "used": false
+   },
+   {
+    "s_apex": 8613.5,
+    "direction": "left",
+    "angle_deg": 12.4,
+    "kind": "kink",
+    "min_radius": 159.8,
+    "used": false
+   },
+   {
+    "s_apex": 8807.8,
+    "direction": "right",
+    "angle_deg": 6.6,
+    "kind": "kink",
+    "min_radius": 427.0,
+    "used": false
+   },
+   {
+    "s_apex": 8909.9,
+    "direction": "left",
+    "angle_deg": 8.2,
+    "kind": "kink",
+    "min_radius": 303.0,
+    "used": false
+   },
+   {
+    "s_apex": 9018.1,
+    "direction": "left",
+    "angle_deg": 17.4,
+    "kind": "corner",
+    "min_radius": 173.7,
+    "used": true
+   },
+   {
+    "s_apex": 9188.3,
+    "direction": "left",
+    "angle_deg": 25.3,
+    "kind": "corner",
+    "min_radius": 71.6,
+    "used": true
+   },
+   {
+    "s_apex": 9344.5,
+    "direction": "right",
+    "angle_deg": 59.7,
+    "kind": "corner",
+    "min_radius": 67.5,
+    "used": true
+   },
+   {
+    "s_apex": 9462.7,
+    "direction": "left",
+    "angle_deg": 100.7,
+    "kind": "corner",
+    "min_radius": 31.1,
+    "used": true
+   },
+   {
+    "s_apex": 9546.8,
+    "direction": "right",
+    "angle_deg": 87.9,
+    "kind": "corner",
+    "min_radius": 38.9,
+    "used": true
+   },
+   {
+    "s_apex": 9622.9,
+    "direction": "right",
+    "angle_deg": 5.9,
+    "kind": "kink",
+    "min_radius": 371.8,
+    "used": false
+   },
+   {
+    "s_apex": 9773.1,
+    "direction": "left",
+    "angle_deg": 11.1,
+    "kind": "kink",
+    "min_radius": 198.4,
+    "used": false
+   },
+   {
+    "s_apex": 10069.5,
+    "direction": "left",
+    "angle_deg": 9.6,
+    "kind": "kink",
+    "min_radius": 202.0,
+    "used": false
+   },
+   {
+    "s_apex": 10255.7,
+    "direction": "left",
+    "angle_deg": 47.8,
+    "kind": "corner",
+    "min_radius": 114.1,
+    "used": true
+   },
+   {
+    "s_apex": 10430.0,
+    "direction": "left",
+    "angle_deg": 80.5,
+    "kind": "corner",
+    "min_radius": 46.3,
+    "used": true
+   },
+   {
+    "s_apex": 10530.1,
+    "direction": "right",
+    "angle_deg": 33.0,
+    "kind": "corner",
+    "min_radius": 61.7,
+    "used": true
+   },
+   {
+    "s_apex": 10612.2,
+    "direction": "right",
+    "angle_deg": 4.7,
+    "kind": "kink",
+    "min_radius": 270.8,
+    "used": false
+   },
+   {
+    "s_apex": 10752.4,
+    "direction": "right",
+    "angle_deg": 116.9,
+    "kind": "corner",
+    "min_radius": 38.1,
+    "used": true
+   },
+   {
+    "s_apex": 10878.6,
+    "direction": "left",
+    "angle_deg": 12.5,
+    "kind": "kink",
+    "min_radius": 222.8,
+    "used": false
+   },
+   {
+    "s_apex": 11034.8,
+    "direction": "left",
+    "angle_deg": 45.6,
+    "kind": "corner",
+    "min_radius": 71.4,
+    "used": true
+   },
+   {
+    "s_apex": 11084.9,
+    "direction": "right",
+    "angle_deg": 27.7,
+    "kind": "corner",
+    "min_radius": 66.6,
+    "used": true
+   },
+   {
+    "s_apex": 11299.1,
+    "direction": "right",
+    "angle_deg": 68.4,
+    "kind": "corner",
+    "min_radius": 72.9,
+    "used": true
+   },
+   {
+    "s_apex": 11365.2,
+    "direction": "right",
+    "angle_deg": 20.3,
+    "kind": "corner",
+    "min_radius": 107.1,
+    "used": true
+   },
+   {
+    "s_apex": 11589.5,
+    "direction": "right",
+    "angle_deg": 34.8,
+    "kind": "corner",
+    "min_radius": 56.3,
+    "used": true
+   },
+   {
+    "s_apex": 11683.7,
+    "direction": "left",
+    "angle_deg": 130.9,
+    "kind": "corner",
+    "min_radius": 21.7,
+    "used": true
+   },
+   {
+    "s_apex": 11745.7,
+    "direction": "right",
+    "angle_deg": 52.1,
+    "kind": "corner",
+    "min_radius": 53.7,
+    "used": true
+   },
+   {
+    "s_apex": 12008.1,
+    "direction": "right",
+    "angle_deg": 16.2,
+    "kind": "corner",
+    "min_radius": 140.1,
+    "used": true
+   },
+   {
+    "s_apex": 12166.3,
+    "direction": "left",
+    "angle_deg": 74.0,
+    "kind": "corner",
+    "min_radius": 45.5,
+    "used": true
+   },
+   {
+    "s_apex": 12258.4,
+    "direction": "left",
+    "angle_deg": 35.0,
+    "kind": "corner",
+    "min_radius": 94.7,
+    "used": true
+   },
+   {
+    "s_apex": 12382.6,
+    "direction": "right",
+    "angle_deg": 68.0,
+    "kind": "corner",
+    "min_radius": 35.1,
+    "used": true
+   },
+   {
+    "s_apex": 12919.3,
+    "direction": "left",
+    "angle_deg": 24.7,
+    "kind": "corner",
+    "min_radius": 95.1,
+    "used": true
+   },
+   {
+    "s_apex": 13189.7,
+    "direction": "right",
+    "angle_deg": 113.3,
+    "kind": "corner",
+    "min_radius": 48.0,
+    "used": true
+   },
+   {
+    "s_apex": 13311.8,
+    "direction": "right",
+    "angle_deg": 16.0,
+    "kind": "corner",
+    "min_radius": 138.0,
+    "used": true
+   },
+   {
+    "s_apex": 13418.0,
+    "direction": "left",
+    "angle_deg": 7.0,
+    "kind": "kink",
+    "min_radius": 416.2,
+    "used": false
+   },
+   {
+    "s_apex": 13612.2,
+    "direction": "left",
+    "angle_deg": 13.9,
+    "kind": "kink",
+    "min_radius": 181.4,
+    "used": false
+   },
+   {
+    "s_apex": 13718.4,
+    "direction": "left",
+    "angle_deg": 22.6,
+    "kind": "corner",
+    "min_radius": 154.6,
+    "used": true
+   },
+   {
+    "s_apex": 13820.5,
+    "direction": "left",
+    "angle_deg": 13.1,
+    "kind": "kink",
+    "min_radius": 151.6,
+    "used": false
+   },
+   {
+    "s_apex": 13910.6,
+    "direction": "left",
+    "angle_deg": 10.6,
+    "kind": "kink",
+    "min_radius": 140.9,
+    "used": false
+   },
+   {
+    "s_apex": 14116.9,
+    "direction": "left",
+    "angle_deg": 23.4,
+    "kind": "corner",
+    "min_radius": 133.8,
+    "used": true
+   },
+   {
+    "s_apex": 14311.2,
+    "direction": "right",
+    "angle_deg": 6.8,
+    "kind": "kink",
+    "min_radius": 260.9,
+    "used": false
+   },
+   {
+    "s_apex": 14567.5,
+    "direction": "right",
+    "angle_deg": 8.4,
+    "kind": "kink",
+    "min_radius": 267.1,
+    "used": false
+   },
+   {
+    "s_apex": 14767.8,
+    "direction": "right",
+    "angle_deg": 24.0,
+    "kind": "corner",
+    "min_radius": 245.9,
+    "used": true
+   },
+   {
+    "s_apex": 14918.0,
+    "direction": "left",
+    "angle_deg": 13.8,
+    "kind": "kink",
+    "min_radius": 281.7,
+    "used": false
+   },
+   {
+    "s_apex": 15088.2,
+    "direction": "left",
+    "angle_deg": 50.0,
+    "kind": "corner",
+    "min_radius": 84.2,
+    "used": true
+   },
+   {
+    "s_apex": 15314.5,
+    "direction": "left",
+    "angle_deg": 7.4,
+    "kind": "kink",
+    "min_radius": 298.3,
+    "used": false
+   },
+   {
+    "s_apex": 15534.8,
+    "direction": "right",
+    "angle_deg": 33.5,
+    "kind": "corner",
+    "min_radius": 116.6,
+    "used": true
+   },
+   {
+    "s_apex": 15743.1,
+    "direction": "left",
+    "angle_deg": 9.9,
+    "kind": "kink",
+    "min_radius": 192.8,
+    "used": false
+   },
+   {
+    "s_apex": 15823.2,
+    "direction": "right",
+    "angle_deg": 155.0,
+    "kind": "corner",
+    "min_radius": 38.3,
+    "used": true
+   },
+   {
+    "s_apex": 16009.4,
+    "direction": "right",
+    "angle_deg": 4.1,
+    "kind": "kink",
+    "min_radius": 486.8,
+    "used": false
+   },
+   {
+    "s_apex": 16069.5,
+    "direction": "left",
+    "angle_deg": 11.0,
+    "kind": "kink",
+    "min_radius": 156.2,
+    "used": false
+   },
+   {
+    "s_apex": 16123.6,
+    "direction": "right",
+    "angle_deg": 12.5,
+    "kind": "kink",
+    "min_radius": 145.1,
+    "used": false
+   },
+   {
+    "s_apex": 16149.6,
+    "direction": "left",
+    "angle_deg": 5.0,
+    "kind": "kink",
+    "min_radius": 203.2,
+    "used": false
+   },
+   {
+    "s_apex": 16189.7,
+    "direction": "right",
+    "angle_deg": 9.7,
+    "kind": "kink",
+    "min_radius": 150.4,
+    "used": false
+   },
+   {
+    "s_apex": 16307.8,
+    "direction": "left",
+    "angle_deg": 221.1,
+    "kind": "corner",
+    "min_radius": 32.0,
+    "used": true
+   },
+   {
+    "s_apex": 16412.0,
+    "direction": "right",
+    "angle_deg": 30.5,
+    "kind": "corner",
+    "min_radius": 70.6,
+    "used": true
+   },
+   {
+    "s_apex": 16500.1,
+    "direction": "right",
+    "angle_deg": 18.6,
+    "kind": "corner",
+    "min_radius": 90.2,
+    "used": true
+   },
+   {
+    "s_apex": 16696.4,
+    "direction": "right",
+    "angle_deg": 9.5,
+    "kind": "kink",
+    "min_radius": 202.0,
+    "used": false
+   },
+   {
+    "s_apex": 16794.5,
+    "direction": "left",
+    "angle_deg": 30.9,
+    "kind": "corner",
+    "min_radius": 63.0,
+    "used": true
+   },
+   {
+    "s_apex": 16944.7,
+    "direction": "left",
+    "angle_deg": 15.9,
+    "kind": "corner",
+    "min_radius": 190.0,
+    "used": true
+   },
+   {
+    "s_apex": 17040.8,
+    "direction": "left",
+    "angle_deg": 44.2,
+    "kind": "corner",
+    "min_radius": 55.9,
+    "used": true
+   },
+   {
+    "s_apex": 17137.0,
+    "direction": "right",
+    "angle_deg": 44.6,
+    "kind": "corner",
+    "min_radius": 51.4,
+    "used": true
+   },
+   {
+    "s_apex": 17309.2,
+    "direction": "right",
+    "angle_deg": 83.5,
+    "kind": "corner",
+    "min_radius": 58.5,
+    "used": true
+   },
+   {
+    "s_apex": 17411.3,
+    "direction": "left",
+    "angle_deg": 16.0,
+    "kind": "corner",
+    "min_radius": 112.5,
+    "used": true
+   },
+   {
+    "s_apex": 17483.4,
+    "direction": "right",
+    "angle_deg": 4.0,
+    "kind": "kink",
+    "min_radius": 311.7,
+    "used": false
+   },
+   {
+    "s_apex": 17589.6,
+    "direction": "right",
+    "angle_deg": 39.5,
+    "kind": "corner",
+    "min_radius": 102.9,
+    "used": true
+   },
+   {
+    "s_apex": 17775.8,
+    "direction": "left",
+    "angle_deg": 55.0,
+    "kind": "corner",
+    "min_radius": 71.4,
+    "used": true
+   },
+   {
+    "s_apex": 17839.9,
+    "direction": "right",
+    "angle_deg": 45.7,
+    "kind": "corner",
+    "min_radius": 55.0,
+    "used": true
+   },
+   {
+    "s_apex": 18038.2,
+    "direction": "right",
+    "angle_deg": 66.6,
+    "kind": "corner",
+    "min_radius": 73.5,
+    "used": true
+   },
+   {
+    "s_apex": 18160.3,
+    "direction": "left",
+    "angle_deg": 8.3,
+    "kind": "kink",
+    "min_radius": 258.7,
+    "used": false
+   },
+   {
+    "s_apex": 18274.5,
+    "direction": "left",
+    "angle_deg": 61.3,
+    "kind": "corner",
+    "min_radius": 47.6,
+    "used": true
+   },
+   {
+    "s_apex": 18368.6,
+    "direction": "left",
+    "angle_deg": 35.7,
+    "kind": "corner",
+    "min_radius": 91.6,
+    "used": true
+   },
+   {
+    "s_apex": 18482.8,
+    "direction": "right",
+    "angle_deg": 73.8,
+    "kind": "corner",
+    "min_radius": 48.7,
+    "used": true
+   },
+   {
+    "s_apex": 18671.0,
+    "direction": "right",
+    "angle_deg": 97.0,
+    "kind": "corner",
+    "min_radius": 54.3,
+    "used": true
+   },
+   {
+    "s_apex": 18977.4,
+    "direction": "left",
+    "angle_deg": 81.5,
+    "kind": "corner",
+    "min_radius": 49.0,
+    "used": true
+   },
+   {
+    "s_apex": 19049.5,
+    "direction": "right",
+    "angle_deg": 23.1,
+    "kind": "corner",
+    "min_radius": 83.4,
+    "used": true
+   },
+   {
+    "s_apex": 19181.7,
+    "direction": "left",
+    "angle_deg": 13.6,
+    "kind": "kink",
+    "min_radius": 111.3,
+    "used": false
+   },
+   {
+    "s_apex": 19291.8,
+    "direction": "left",
+    "angle_deg": 27.5,
+    "kind": "corner",
+    "min_radius": 89.8,
+    "used": true
+   },
+   {
+    "s_apex": 19384.0,
+    "direction": "right",
+    "angle_deg": 10.7,
+    "kind": "kink",
+    "min_radius": 160.1,
+    "used": false
+   },
+   {
+    "s_apex": 19450.1,
+    "direction": "left",
+    "angle_deg": 6.6,
+    "kind": "kink",
+    "min_radius": 241.5,
+    "used": false
+   },
+   {
+    "s_apex": 19562.2,
+    "direction": "right",
+    "angle_deg": 42.5,
+    "kind": "corner",
+    "min_radius": 53.6,
+    "used": true
+   },
+   {
+    "s_apex": 19660.3,
+    "direction": "right",
+    "angle_deg": 36.2,
+    "kind": "corner",
+    "min_radius": 87.4,
+    "used": true
+   },
+   {
+    "s_apex": 19772.5,
+    "direction": "left",
+    "angle_deg": 32.0,
+    "kind": "corner",
+    "min_radius": 93.8,
+    "used": true
+   },
+   {
+    "s_apex": 19966.8,
+    "direction": "left",
+    "angle_deg": 17.2,
+    "kind": "corner",
+    "min_radius": 176.3,
+    "used": true
+   },
+   {
+    "s_apex": 20221.1,
+    "direction": "right",
+    "angle_deg": 40.6,
+    "kind": "corner",
+    "min_radius": 108.9,
+    "used": true
+   },
+   {
+    "s_apex": 20277.2,
+    "direction": "left",
+    "angle_deg": 15.4,
+    "kind": "corner",
+    "min_radius": 116.1,
+    "used": true
+   },
+   {
+    "s_apex": 20357.3,
+    "direction": "right",
+    "angle_deg": 29.3,
+    "kind": "corner",
+    "min_radius": 129.0,
+    "used": true
+   },
+   {
+    "s_apex": 20487.4,
+    "direction": "left",
+    "angle_deg": 8.5,
+    "kind": "kink",
+    "min_radius": 312.4,
+    "used": false
+   },
+   {
+    "s_apex": 20789.9,
+    "direction": "right",
+    "angle_deg": 61.3,
+    "kind": "corner",
+    "min_radius": 80.6,
+    "used": true
+   },
+   {
+    "s_apex": 20964.1,
+    "direction": "left",
+    "angle_deg": 75.6,
+    "kind": "corner",
+    "min_radius": 58.0,
+    "used": true
+   },
+   {
+    "s_apex": 21208.4,
+    "direction": "left",
+    "angle_deg": 95.4,
+    "kind": "corner",
+    "min_radius": 35.3,
+    "used": true
+   },
+   {
+    "s_apex": 21310.6,
+    "direction": "left",
+    "angle_deg": 25.2,
+    "kind": "corner",
+    "min_radius": 133.5,
+    "used": true
+   },
+   {
+    "s_apex": 21566.9,
+    "direction": "right",
+    "angle_deg": 37.9,
+    "kind": "corner",
+    "min_radius": 52.3,
+    "used": true
+   },
+   {
+    "s_apex": 21651.0,
+    "direction": "right",
+    "angle_deg": 16.4,
+    "kind": "corner",
+    "min_radius": 125.1,
+    "used": true
+   },
+   {
+    "s_apex": 21803.2,
+    "direction": "right",
+    "angle_deg": 75.1,
+    "kind": "corner",
+    "min_radius": 115.1,
+    "used": true
+   },
+   {
+    "s_apex": 24074.3,
+    "direction": "left",
+    "angle_deg": 16.6,
+    "kind": "corner",
+    "min_radius": 256.0,
+    "used": true
+   },
+   {
+    "s_apex": 24478.8,
+    "direction": "left",
+    "angle_deg": 13.4,
+    "kind": "kink",
+    "min_radius": 213.0,
+    "used": false
+   },
+   {
+    "s_apex": 24578.9,
+    "direction": "right",
+    "angle_deg": 19.9,
+    "kind": "corner",
+    "min_radius": 163.1,
+    "used": true
+   },
+   {
+    "s_apex": 24715.1,
+    "direction": "left",
+    "angle_deg": 25.5,
+    "kind": "corner",
+    "min_radius": 112.6,
+    "used": true
+   },
+   {
+    "s_apex": 24805.2,
+    "direction": "right",
+    "angle_deg": 80.0,
+    "kind": "corner",
+    "min_radius": 34.0,
+    "used": true
+   },
+   {
+    "s_apex": 24875.3,
+    "direction": "left",
+    "angle_deg": 43.2,
+    "kind": "corner",
+    "min_radius": 47.6,
+    "used": true
+   },
+   {
+    "s_apex": 24967.4,
+    "direction": "left",
+    "angle_deg": 5.2,
+    "kind": "kink",
+    "min_radius": 249.0,
+    "used": false
+   }
+  ]
+ },
+ "warnings": [
+  "OSM tags the road as 5 m wide from s = 6182 to 12240 m, the recipe builds it 13.0 m: check the real width (the tag is a hint, it is not applied)",
+  "OSM tags the road as 5 m wide from s = 12262 to 16240 m, the recipe builds it 13.0 m: check the real width (the tag is a hint, it is not applied)"
+ ]
+}

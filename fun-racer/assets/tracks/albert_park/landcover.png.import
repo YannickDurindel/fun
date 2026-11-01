@@ -2,10 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
+uid="uid://csng878aupj5y"
+path="res://.godot/imported/landcover.png-174ed023a7003d522ba8368451b86f45.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/tracks/albert_park/landcover.png"
+dest_files=["res://.godot/imported/landcover.png-174ed023a7003d522ba8368451b86f45.ctex"]
 
 [params]
 

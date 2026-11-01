@@ -1,0 +1,12 @@
+{
+  "id": "locked_endurance",
+  "series": "endurance",
+  "name": "Locked Endurance Circuit",
+  "grand_prix": "Test 24 Hours",
+  "country": "Nowhere",
+  "country_code": "ZZ",
+  "city": "Testville",
+  "length_m": 6000,
+  "turns": 14,
+  "available": false
+}

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1318 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="31938931" visible="true" version="4" changeset="19925376" timestamp="2014-01-10T21:23:34Z" user="Andrés31" uid="811230" lat="47.9573105" lon="0.2272979"/>
+ <node id="1383355667" visible="true" version="2" changeset="19868168" timestamp="2014-01-07T18:40:52Z" user="Andrés31" uid="811230" lat="47.9566670" lon="0.2276793"/>
+ <node id="1789604655" visible="true" version="2" changeset="19925376" timestamp="2014-01-10T21:23:35Z" user="Andrés31" uid="811230" lat="47.9569696" lon="0.2275149"/>
+ <node id="1789604677" visible="true" version="3" changeset="110067205" timestamp="2021-08-22T15:34:57Z" user="Smockwette" uid="10505227" lat="47.9575726" lon="0.2271075"/>
+ <node id="1789604685" visible="true" version="3" changeset="110067205" timestamp="2021-08-22T15:34:57Z" user="Smockwette" uid="10505227" lat="47.9579330" lon="0.2268118"/>
+ <node id="1789604765" visible="true" version="2" changeset="19925376" timestamp="2014-01-10T21:23:35Z" user="Andrés31" uid="811230" lat="47.9571571" lon="0.2274013"/>
+ <node id="1789604816" visible="true" version="3" changeset="110067205" timestamp="2021-08-22T15:34:57Z" user="Smockwette" uid="10505227" lat="47.9574614" lon="0.2271909"/>
+ <node id="1789604898" visible="true" version="3" changeset="110067205" timestamp="2021-08-22T15:34:57Z" user="Smockwette" uid="10505227" lat="47.9577869" lon="0.2269347"/>
+ <node id="1927273557" visible="true" version="2" changeset="19925376" timestamp="2014-01-10T21:23:35Z" user="Andrés31" uid="811230" lat="47.9587716" lon="0.2260264"/>
+ <node id="2617884106" visible="true" version="2" changeset="110067205" timestamp="2021-08-22T15:34:57Z" user="Smockwette" uid="10505227" lat="47.9576767" lon="0.2270244"/>
+ <node id="2617884126" visible="true" version="2" changeset="110067205" timestamp="2021-08-22T15:34:57Z" user="Smockwette" uid="10505227" lat="47.9582366" lon="0.2265375"/>
+ <node id="2617884148" visible="true" version="3" changeset="86838883" timestamp="2020-06-18T18:48:59Z" user="GinaroZ" uid="3432400" lat="47.9601884" lon="0.2246919"/>
+ <node id="2617884157" visible="true" version="1" changeset="19925376" timestamp="2014-01-10T21:23:34Z" user="Andrés31" uid="811230" lat="47.9597370" lon="0.2251184"/>
+ <way id="158840041" visible="true" version="13" changeset="187314041" timestamp="2026-08-12T01:28:20Z" user="LordGarySugar" uid="13792107">
+  <nd ref="1383355667"/>
+  <nd ref="1789604655"/>
+  <nd ref="1789604765"/>
+  <nd ref="31938931"/>
+  <nd ref="1789604816"/>
+  <nd ref="1789604677"/>
+  <nd ref="2617884106"/>
+  <nd ref="1789604898"/>
+  <nd ref="1789604685"/>
+  <nd ref="2617884126"/>
+  <nd ref="1927273557"/>
+  <nd ref="2617884157"/>
+  <nd ref="2617884148"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="70"/>
+  <tag k="oneway" v="no"/>
+  <tag k="ref" v="D 338"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -14,6 +14,12 @@ extends Node3D
 ##   * A track with declared banking (cad/track/banking.py) has "verge_slope_left" / "_right"
 ##     in its profile: the verge leaves the road in the road's own plane and eases back to its
 ##     normal fall (verge_rise()). Optional keys: without them the verge is the plain one.
+##   * A track built with measured cross-sections ([road] sections = "lidar", see
+##     cad/track/road_sections.py) has "xsec" / "xsec_columns" in its profile: every
+##     cross-section is a row of columns across the road (at fixed fractions of the half width)
+##     with the measured height of the surface above the centreline point. surface_point() then
+##     interpolates the very triangles of the mesh (has_sections()); "bank" is the measured mean
+##     cross slope. Optional keys: without them the section is the plane described above.
 ##   * road_tarmac.tres / road_grass.tres: materials of the runtime ribbon (the GLB brings its
 ##     own); shared defaults live in assets/tracks/_shared.
 ##   * A lap that crosses itself (a figure of eight) has "bridges" in road_profile.json and a
@@ -56,6 +62,11 @@ var verge_slope_left: PackedFloat32Array = []
 var verge_slope_right: PackedFloat32Array = []
 var verge_shoulder: float = 3.0
 var verge_blend: float = 8.0
+## Measured cross-sections (cad/track/road_sections.py): xsec_columns heights per centreline
+## point, flattened (xsec[i * xsec_columns + k] = height above point i of column k, at lateral
+## (-1 + 2 k / (xsec_columns - 1)) * half width). Empty / 0 on a track with analytic sections.
+var xsec: PackedFloat32Array = []
+var xsec_columns: int = 0
 ## Steepest bank the runtime ribbon treats as plain camber (cad/track/banking.py MAX_BANK).
 const AUTO_BANK: float = 0.03
 var data: TrackData
@@ -114,6 +125,7 @@ func _load_profile() -> void:
 		verge_slope_right = _profile_array(d, "verge_slope_right", n, 0.0)
 		verge_shoulder = float(d.get("verge_shoulder", 3.0))
 		verge_blend = maxf(float(d.get("verge_blend", 8.0)), 0.01)
+	_load_sections(d, n)
 	chunk_ranges = d.get("chunks", [])
 	bridges = []
 	for b: Variant in d.get("bridges", []):
@@ -123,6 +135,30 @@ func _load_profile() -> void:
 	for p: Variant in d.get("pairs", []):
 		if p is Dictionary and (p as Dictionary).has_all(["a", "b", "side_a", "side_b"]):
 			pairs.append(p)
+
+## Measured sections of the profile (keys "xsec", "xsec_columns"); none when they are missing
+## or do not fit the track.
+func _load_sections(d: Dictionary, n: int) -> void:
+	xsec = PackedFloat32Array()
+	xsec_columns = 0
+	var cols := int(d.get("xsec_columns", 0))
+	var rows: Variant = d.get("xsec", null)
+	if cols < 3 or not (rows is Array) or (rows as Array).size() != n:
+		return
+	xsec.resize(n * cols)
+	for i in n:
+		var row: Variant = (rows as Array)[i]
+		if not (row is Array) or (row as Array).size() != cols:
+			push_error("RoadSurface: xsec row %d has the wrong size (re-run cad/track/road.py)" % i)
+			xsec = PackedFloat32Array()
+			return
+		for k in cols:
+			xsec[i * cols + k] = float(row[k])
+	xsec_columns = cols
+
+## True when the road surface is the measured cross-sections (not a plane per section).
+func has_sections() -> bool:
+	return xsec_columns > 0
 
 ## Profile array `key`, or `n` times `fallback` when it is missing or has the wrong size.
 static func _profile_array(d: Dictionary, key: String, n: int, fallback: float) -> PackedFloat32Array:
@@ -147,6 +183,8 @@ func _fallback_profile() -> void:
 	racing_line.fill(0.0)
 	verge_slope_left = PackedFloat32Array()
 	verge_slope_right = PackedFloat32Array()
+	xsec = PackedFloat32Array()
+	xsec_columns = 0
 	var steepest := 0.0
 	for b in banks:
 		steepest = maxf(steepest, absf(b))
@@ -217,12 +255,15 @@ func _build_ribbon() -> void:
 			var s1 := s0 + data.step if j != 0 else data.length
 			var lat_i := _ribbon_laterals(i)
 			var lat_j := _ribbon_laterals(j)
-			var road_strip := (lat_i.size() - 1) / 2
-			for c in lat_i.size() - 1:   # strips: left verge, road, right verge
-				if c != road_strip and maxf(absf(lat_i[c + 1] - lat_i[c]), absf(lat_j[c + 1] - lat_j[c])) < 0.05:
+			# Strips: left verge, the road (one strip, or one per measured column), right verge.
+			var road_strips := maxi(xsec_columns - 1, 1)
+			var road_first := (lat_i.size() - 1 - road_strips) / 2
+			for c in lat_i.size() - 1:
+				var on_road := c >= road_first and c < road_first + road_strips
+				if not on_road and maxf(absf(lat_i[c + 1] - lat_i[c]), absf(lat_j[c + 1] - lat_j[c])) < 0.05:
 					continue
-				verge_quads += 0 if c == road_strip else 1
-				_ribbon_quad(road if c == road_strip else verge, i, j, s0, s1,
+				verge_quads += 0 if on_road else 1
+				_ribbon_quad(road if on_road else verge, i, j, s0, s1,
 						lat_i[c], lat_i[c + 1], lat_j[c], lat_j[c + 1])
 		var mesh := ArrayMesh.new()
 		road.index()
@@ -250,6 +291,8 @@ func _ribbon_laterals(i: int) -> Array[float]:
 	for k in range(rows.size() - 1, -1, -1):
 		out.append(-hw - minf(rows[k], verge_left[i]))
 	out.append(-hw)
+	for k in range(1, xsec_columns - 1):   # measured section: every column across the road
+		out.append(hw * (-1.0 + 2.0 * k / (xsec_columns - 1)))
 	out.append(hw)
 	for k in rows.size():
 		out.append(hw + minf(rows[k], verge_right[i]))
@@ -390,9 +433,37 @@ func racing_line_at(s: float) -> float:
 ## plane, and horizontally from the road edge on the verge.
 func surface_point(s: float, lateral: float) -> Vector3:
 	var r := _idx(s)
+	if xsec_columns > 0:
+		var hw := lerpf(widths[r[0]], widths[r[1]], r[2]) * 0.5
+		if absf(lateral) <= hw:
+			return _mesh_point(r[0], r[1], r[2], lateral / maxf(hw, 1e-6))
 	var a := _section_point(r[0], lateral)
 	var b := _section_point(r[1], lateral)
 	return a.lerp(b, r[2])
+
+## Point of the measured road mesh between cross-sections i and j (fraction f along) at the
+## fraction `u` (-1 .. 1) of the half width: the exact triangle of cad/track/road.py's grid
+## (quad A B / C D split into A B C and B D C), so the surface queries, the visible road and
+## its collision agree to float precision.
+func _mesh_point(i: int, j: int, f: float, u: float) -> Vector3:
+	var c := (clampf(u, -1.0, 1.0) + 1.0) * 0.5 * (xsec_columns - 1)
+	var k := mini(int(floor(c)), xsec_columns - 2)
+	var v := c - k
+	var a := _column_point(i, k)
+	var b := _column_point(i, k + 1)
+	var cc := _column_point(j, k)
+	if f + v <= 1.0:
+		return a + (b - a) * v + (cc - a) * f
+	var dd := _column_point(j, k + 1)
+	return dd + (cc - dd) * (1.0 - v) + (b - dd) * (1.0 - f)
+
+## Vertex of column k of the measured cross-section at centreline point i.
+func _column_point(i: int, k: int) -> Vector3:
+	var n := data.points.size()
+	var t := (data.points[(i + 1) % n] - data.points[(i - 1 + n) % n]).normalized()
+	var rh := t.cross(Vector3.UP).normalized()
+	var lateral := 0.5 * widths[i] * (-1.0 + 2.0 * k / (xsec_columns - 1))
+	return data.points[i] + rh * lateral + Vector3.UP * xsec[i * xsec_columns + k]
 
 ## Cross-section frame at centreline point i, as built by cad/track/road.py.
 func _section_point(i: int, lateral: float) -> Vector3:
@@ -404,9 +475,18 @@ func _section_point(i: int, lateral: float) -> Vector3:
 	var bank := banks[i]
 	var rb := rh * cos(bank) - u0 * sin(bank)
 	var hw := 0.5 * widths[i]
+	var side := signf(lateral)
+	if xsec_columns > 0:
+		# Measured section: piecewise linear between the columns, the verge from its edge.
+		var c := (clampf(lateral / maxf(hw, 1e-6), -1.0, 1.0) + 1.0) * 0.5 * (xsec_columns - 1)
+		var k := mini(int(floor(c)), xsec_columns - 2)
+		var on := _column_point(i, k).lerp(_column_point(i, k + 1), c - k)
+		if absf(lateral) <= hw:
+			return on
+		var dv := absf(lateral) - hw
+		return on + rh * (side * dv) + Vector3.UP * (-verge_drop * dv / verge_width)
 	if absf(lateral) <= hw:
 		return p + rb * lateral
-	var side := signf(lateral)
 	var d := absf(lateral) - hw
 	var edge := p + rb * (side * hw)
 	return edge + rh * (side * d) + Vector3.UP * (verge_rise(i, side, d) - verge_drop * d / verge_width)

@@ -1,0 +1,15 @@
+{
+  "id": "phoenix_oval",
+  "name": "Phoenix Oval",
+  "grand_prix": "Short oval · Avondale",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Avondale",
+  "length_m": 1645,
+  "turns": 4,
+  "scene": "res://scenes/tracks/phoenix_oval.tscn",
+  "track_json": "res://assets/tracks/phoenix_oval/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "circuit"
+}

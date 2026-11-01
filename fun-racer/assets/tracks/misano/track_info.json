@@ -1,0 +1,15 @@
+{
+  "id": "misano",
+  "name": "Misano",
+  "grand_prix": "Misano",
+  "country": "Italy",
+  "country_code": "IT",
+  "city": "Misano Adriatico",
+  "length_m": 4226,
+  "turns": 16,
+  "scene": "res://scenes/tracks/misano.tscn",
+  "track_json": "res://assets/tracks/misano/track.json",
+  "osm_relation": 8671383,
+  "available": true,
+  "series": "circuit"
+}

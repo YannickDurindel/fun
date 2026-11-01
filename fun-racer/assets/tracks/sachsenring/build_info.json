@@ -1,0 +1,242 @@
+{
+ "id": "sachsenring",
+ "recipe": "tools/track/tracks/sachsenring.toml",
+ "osm": {
+  "relation": 2148312,
+  "loop_ways": [
+   31321783
+  ],
+  "raw_length_m": 3653.1,
+  "length_m": 3650.3,
+  "official_length_m": 3671.0,
+  "length_error": -0.00565,
+  "candidates": [
+   {
+    "length_m": 3653.1,
+    "ways": [
+     31321783
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "start: relation member role (finish line = start line)",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 31.99,
+  "max_grade": 0.0886,
+  "min_grade": -0.0936,
+  "origin_m": 329.96
+ },
+ "turns": {
+  "official": 13,
+  "mode": "auto",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Sachsenring",
+    "direction": "right",
+    "s_apex": 348.0,
+    "min_radius": 32.7
+   },
+   {
+    "id": "T2",
+    "name": "Sachsenring",
+    "direction": "left",
+    "s_apex": 593.4,
+    "min_radius": 57.4
+   },
+   {
+    "id": "T3",
+    "name": "Sachsenring",
+    "direction": "right",
+    "s_apex": 806.6,
+    "min_radius": 32.5
+   },
+   {
+    "id": "T4",
+    "name": "Sachsenring",
+    "direction": "left",
+    "s_apex": 899.1,
+    "min_radius": 72.9
+   },
+   {
+    "id": "T5",
+    "name": "Sachsenring",
+    "direction": "left",
+    "s_apex": 1009.8,
+    "min_radius": 45.6
+   },
+   {
+    "id": "T6",
+    "name": "Sachsenring",
+    "direction": "left",
+    "s_apex": 1094.3,
+    "min_radius": 42.1
+   },
+   {
+    "id": "T7",
+    "name": "Sachsenring",
+    "direction": "left",
+    "s_apex": 1438.2,
+    "min_radius": 101.2
+   },
+   {
+    "id": "T8",
+    "name": "Sachsenring",
+    "direction": "left",
+    "s_apex": 1721.8,
+    "min_radius": 43.8
+   },
+   {
+    "id": "T9",
+    "name": "Sachsenring",
+    "direction": "left",
+    "s_apex": 1981.3,
+    "min_radius": 54.7
+   },
+   {
+    "id": "T10",
+    "name": "Sachsenring",
+    "direction": "left",
+    "s_apex": 2118.1,
+    "min_radius": 53.2
+   },
+   {
+    "id": "T11",
+    "name": "Sachsenring",
+    "direction": "right",
+    "s_apex": 2317.3,
+    "min_radius": 74.5
+   },
+   {
+    "id": "T12",
+    "name": "Sachsenring",
+    "direction": "left",
+    "s_apex": 2908.6,
+    "min_radius": 50.8
+   },
+   {
+    "id": "T13",
+    "name": "Sachsenring",
+    "direction": "left",
+    "s_apex": 3264.7,
+    "min_radius": 35.7
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 348.0,
+    "direction": "right",
+    "angle_deg": 164.3,
+    "kind": "corner",
+    "min_radius": 32.7,
+    "used": true
+   },
+   {
+    "s_apex": 593.4,
+    "direction": "left",
+    "angle_deg": 116.0,
+    "kind": "corner",
+    "min_radius": 57.4,
+    "used": true
+   },
+   {
+    "s_apex": 806.6,
+    "direction": "right",
+    "angle_deg": 241.8,
+    "kind": "corner",
+    "min_radius": 32.5,
+    "used": true
+   },
+   {
+    "s_apex": 899.1,
+    "direction": "left",
+    "angle_deg": 46.0,
+    "kind": "corner",
+    "min_radius": 72.9,
+    "used": true
+   },
+   {
+    "s_apex": 1009.8,
+    "direction": "left",
+    "angle_deg": 67.7,
+    "kind": "corner",
+    "min_radius": 45.6,
+    "used": true
+   },
+   {
+    "s_apex": 1094.3,
+    "direction": "left",
+    "angle_deg": 77.6,
+    "kind": "corner",
+    "min_radius": 42.1,
+    "used": true
+   },
+   {
+    "s_apex": 1438.2,
+    "direction": "left",
+    "angle_deg": 105.9,
+    "kind": "corner",
+    "min_radius": 101.2,
+    "used": true
+   },
+   {
+    "s_apex": 1613.2,
+    "direction": "left",
+    "angle_deg": 6.6,
+    "kind": "kink",
+    "min_radius": 317.6,
+    "used": false
+   },
+   {
+    "s_apex": 1721.8,
+    "direction": "left",
+    "angle_deg": 75.1,
+    "kind": "corner",
+    "min_radius": 43.8,
+    "used": true
+   },
+   {
+    "s_apex": 1981.3,
+    "direction": "left",
+    "angle_deg": 32.7,
+    "kind": "corner",
+    "min_radius": 54.7,
+    "used": true
+   },
+   {
+    "s_apex": 2118.1,
+    "direction": "left",
+    "angle_deg": 51.4,
+    "kind": "corner",
+    "min_radius": 53.2,
+    "used": true
+   },
+   {
+    "s_apex": 2317.3,
+    "direction": "right",
+    "angle_deg": 33.8,
+    "kind": "corner",
+    "min_radius": 74.5,
+    "used": true
+   },
+   {
+    "s_apex": 2908.6,
+    "direction": "left",
+    "angle_deg": 110.7,
+    "kind": "corner",
+    "min_radius": 50.8,
+    "used": true
+   },
+   {
+    "s_apex": 3264.7,
+    "direction": "left",
+    "angle_deg": 114.2,
+    "kind": "corner",
+    "min_radius": 35.7,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

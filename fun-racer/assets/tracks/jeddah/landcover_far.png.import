@@ -2,10 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
+uid="uid://dye0y6a72hxyq"
+path="res://.godot/imported/landcover_far.png-73345719c984c8b712f5004363768308.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/tracks/jeddah/landcover_far.png"
+dest_files=["res://.godot/imported/landcover_far.png-73345719c984c8b712f5004363768308.ctex"]
 
 [params]
 

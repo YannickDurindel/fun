@@ -1,0 +1,179 @@
+# Sebring International Raceway (Florida, USA): the full 12 Hours of Sebring course,
+# 6019 m (3.74 mi), 17 turns, on the former Hendricks Army Airfield. Endurance series.
+#
+#   .venv/bin/python tools/track/build_track.py sebring --plot
+
+id = "sebring"
+series = "endurance"
+full_name = "Sebring International Raceway (full course)"
+
+[osm]
+# The venue relation 18038750 is a leisure=sports_centre area, not a circuit. The bounding box
+# also holds the Club Circuit cut-off (1315190275), pit lanes and airfield taxiways/aprons
+# (aeroway, not raceway), so the lap is listed by hand in driving order (all oneway, forward).
+# Chain closes on itself: 5870 m together (official 6019 m, 2.5 % short; the plan is scaled).
+ways = [
+  426154259,    # front straight, Turn 1, Turn 2 and on (1469 m)
+  1315957552,   # Gurney Bend
+  1315957553,   #
+  1315957550,   # Hairpin (Turn 7)
+  1315957551,   # Fangio
+  426154258,    #
+  1315957547,   # Cunningham Corner
+  1315957548,   #
+  1315957549,   # Collier Curve
+  1315957546,   #
+  1315957545,   # Tower Turn
+  1315957544,   #
+  1315957543,   # Bishop Bend
+  1315957541,   #
+  1315957540,   # Gendebien Bend
+  1315957539,   #
+  1315957538,   # Le Mans Curve
+  1315957537,   # Ullman Straight
+  426154257,    # Sunset Bend (Turn 17), back onto the front straight
+]
+
+[layout]
+direction = "clockwise"   # OSM oneway order (signed area of the way chain checked: clockwise)
+# No start / finish node in OSM. Placed from Esri World Imagery (z20, Oct 2026): on the front straight
+# (way 426154259) opposite the pit building's central control tower, where a "SEBRING" banner is
+# painted on the asphalt beside a thin transverse line and the chequered patch of the pit wall
+# (lon -81.35368) sits 7 m further east. Accuracy about +-5 m. The earlier estimate (half way
+# along the pit lane, lon -81.3527) was ~105 m east of it. Pit entry lon -81.3554, exit -81.3500.
+finish = [27.45023, -81.35374]
+
+[elevation]
+dataset = "terrarium"
+# Former airfield, flat to within a metre or two: the DEM is noise.
+smooth_sigma_m = 200.0
+
+[road]
+# Widths (estimates, no OSM width tags): Sebring's asphalt/concrete is 12-15 m on the infield and
+# noticeably wider on the old runway sections. 14 m base, 18 m on the Ullman Straight and the
+# airfield runway sections (front straight, Hairpin approach).
+base_width = 14.0
+grid_width = 16.0
+
+[[road.override]]             # Ullman Straight (runway)
+s = [4420.0, 5240.0]
+width = 18.0
+blend = 80.0
+
+[[road.override]]             # runway section before the Hairpin
+s = [1600.0, 1850.0]
+width = 17.0
+blend = 80.0
+
+[terrain]
+smooth_sigma_m = 150.0
+
+# Official numbering (17 turns). Sources: thetracksource.com Sebring turn-by-turn guide (directions:
+# T1 L, T3 L, T5 L, T7 hairpin R, T9 L, T10 R, T11 L, T13 Tower Turn R, T14 Bishop's Bend L, T15 R,
+# T16 R, T17 R), Le Mans Ultimate track guide (T2 slight R, T4 short R, T6 Big Bend long flat-out R,
+# T8 / T9 Fangio, T11 Collier long L, T12 slight R, T13 Tower, T14 Bishop flat-out L kink, T15 the
+# "S" right then left, T16 Le Mans, T17 Sunset Bend); names of the others from the OSM way names.
+# Matched to the curvature of the OSM line (heading scan): the left kink at s = 3868 (21 deg) and the
+# left leg of the T15 "S" at s = 4173 are not numbered corners, so they get no entry.
+# Hairpin = T7 (earlier build had it as T6: Turn 2 and its slight right were missed).
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 420.0
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "right"
+s = 700.0
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "left"
+s = 876.0
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "right"
+s = 950.0
+
+[[turn]]
+id = "T5"
+name = "Turn 5"
+direction = "left"
+s = 1070.0
+
+[[turn]]
+id = "T6"
+name = "Gurney Bend"
+direction = "right"
+s = 1415.0
+
+[[turn]]
+id = "T7"
+name = "Hairpin"
+direction = "right"
+s = 1950.0
+
+[[turn]]
+id = "T8"
+name = "Fangio"
+direction = "right"
+s = 2220.0
+
+[[turn]]
+id = "T9"
+name = "Fangio"
+direction = "left"
+s = 2433.0
+
+[[turn]]
+id = "T10"
+name = "Cunningham Corner"
+direction = "right"
+s = 2770.0
+
+[[turn]]
+id = "T11"
+name = "Collier Curve"
+direction = "left"
+s = 2960.0
+
+[[turn]]
+id = "T12"
+name = "Turn 12"
+direction = "right"
+s = 3110.0
+
+[[turn]]
+id = "T13"
+name = "Tower Turn"
+direction = "right"
+s = 3270.0
+
+[[turn]]
+id = "T14"
+name = "Bishop Bend"
+direction = "left"
+s = 3711.0
+
+[[turn]]
+id = "T15"
+name = "Gendebien Bend"
+direction = "right"
+s = 4066.0
+
+[[turn]]
+id = "T16"
+name = "Le Mans Curve"
+direction = "right"
+s = 4318.0
+
+[[turn]]
+id = "T17"
+name = "Sunset Bend"
+direction = "right"
+s = 5440.0

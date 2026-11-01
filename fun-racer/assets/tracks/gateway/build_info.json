@@ -1,0 +1,109 @@
+{
+ "id": "gateway",
+ "recipe": "tools/track/tracks/gateway.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   180008394,
+   1015873402,
+   1015873403
+  ],
+  "raw_length_m": 2045.1,
+  "length_m": 2046.0,
+  "official_length_m": 2012.0,
+  "length_error": 0.01692,
+  "candidates": []
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 2.52,
+  "max_grade": 0.0114,
+  "min_grade": -0.0157,
+  "origin_m": 124.05
+ },
+ "turns": {
+  "official": 4,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Gateway International Raceway",
+    "direction": "left",
+    "s_apex": 330.4,
+    "min_radius": 74.1
+   },
+   {
+    "id": "T2",
+    "name": "Gateway International Raceway",
+    "direction": "left",
+    "s_apex": 611.7,
+    "min_radius": 77.3
+   },
+   {
+    "id": "T3",
+    "name": "Gateway International Raceway",
+    "direction": "left",
+    "s_apex": 1347.2,
+    "min_radius": 59.6
+   },
+   {
+    "id": "T4",
+    "name": "Gateway International Raceway",
+    "direction": "left",
+    "s_apex": 1482.9,
+    "min_radius": 99.6
+   },
+   {
+    "id": "T5",
+    "name": "Gateway International Raceway",
+    "direction": "left",
+    "s_apex": 1557.7,
+    "min_radius": 105.2
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 330.4,
+    "direction": "left",
+    "angle_deg": 134.1,
+    "kind": "corner",
+    "min_radius": 74.1,
+    "used": true
+   },
+   {
+    "s_apex": 611.7,
+    "direction": "left",
+    "angle_deg": 32.8,
+    "kind": "corner",
+    "min_radius": 77.3,
+    "used": true
+   },
+   {
+    "s_apex": 1347.2,
+    "direction": "left",
+    "angle_deg": 51.2,
+    "kind": "corner",
+    "min_radius": 59.6,
+    "used": true
+   },
+   {
+    "s_apex": 1482.9,
+    "direction": "left",
+    "angle_deg": 52.1,
+    "kind": "corner",
+    "min_radius": 99.6,
+    "used": true
+   },
+   {
+    "s_apex": 1557.7,
+    "direction": "left",
+    "angle_deg": 77.1,
+    "kind": "corner",
+    "min_radius": 105.2,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

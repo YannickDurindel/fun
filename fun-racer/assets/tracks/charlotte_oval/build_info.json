@@ -1,0 +1,157 @@
+{
+ "id": "charlotte_oval",
+ "recipe": "tools/track/tracks/charlotte_oval.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   402168711,
+   396483278,
+   116034341,
+   402168709,
+   1052107104
+  ],
+  "raw_length_m": 2367.7,
+  "length_m": 2367.9,
+  "official_length_m": 2414.0,
+  "length_error": -0.01909,
+  "candidates": [],
+  "width_tags": [
+   {
+    "s": [
+     73.4,
+     1262.0
+    ],
+    "width": 13.0,
+    "ways": [
+     1052107104,
+     402168711
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 3.41,
+  "max_grade": 0.0042,
+  "min_grade": -0.0054,
+  "origin_m": 206.34
+ },
+ "turns": {
+  "official": 4,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Charlotte Motor Speedway",
+    "direction": "left",
+    "s_apex": 134.6,
+    "min_radius": 144.2
+   },
+   {
+    "id": "T2",
+    "name": "Charlotte Motor Speedway",
+    "direction": "left",
+    "s_apex": 444.5,
+    "min_radius": 123.5
+   },
+   {
+    "id": "T3",
+    "name": "Charlotte Motor Speedway",
+    "direction": "left",
+    "s_apex": 1616.8,
+    "min_radius": 123.0
+   },
+   {
+    "id": "T4",
+    "name": "Charlotte Motor Speedway",
+    "direction": "left",
+    "s_apex": 1941.0,
+    "min_radius": 122.8
+   },
+   {
+    "id": "T5",
+    "name": "Charlotte Motor Speedway",
+    "direction": "left",
+    "s_apex": 1977.7,
+    "min_radius": 139.3
+   },
+   {
+    "id": "T6",
+    "name": "Charlotte Motor Speedway",
+    "direction": "left",
+    "s_apex": 2285.6,
+    "min_radius": 136.8
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 134.6,
+    "direction": "left",
+    "angle_deg": 18.5,
+    "kind": "corner",
+    "min_radius": 144.2,
+    "used": true
+   },
+   {
+    "s_apex": 367.0,
+    "direction": "left",
+    "angle_deg": 14.7,
+    "kind": "kink",
+    "min_radius": 181.3,
+    "used": false
+   },
+   {
+    "s_apex": 444.5,
+    "direction": "left",
+    "angle_deg": 138.7,
+    "kind": "corner",
+    "min_radius": 123.5,
+    "used": true
+   },
+   {
+    "s_apex": 968.5,
+    "direction": "left",
+    "angle_deg": 4.6,
+    "kind": "kink",
+    "min_radius": 288.1,
+    "used": false
+   },
+   {
+    "s_apex": 1616.8,
+    "direction": "left",
+    "angle_deg": 40.5,
+    "kind": "corner",
+    "min_radius": 123.0,
+    "used": true
+   },
+   {
+    "s_apex": 1941.0,
+    "direction": "left",
+    "angle_deg": 93.3,
+    "kind": "corner",
+    "min_radius": 122.8,
+    "used": true
+   },
+   {
+    "s_apex": 1977.7,
+    "direction": "left",
+    "angle_deg": 22.3,
+    "kind": "corner",
+    "min_radius": 139.3,
+    "used": true
+   },
+   {
+    "s_apex": 2285.6,
+    "direction": "left",
+    "angle_deg": 19.8,
+    "kind": "corner",
+    "min_radius": 136.8,
+    "used": true
+   }
+  ]
+ },
+ "warnings": [
+  "OSM tags the road as 13 m wide from s = 73 to 1262 m, the recipe builds it 18.0 m: check the real width (the tag is a hint, it is not applied)"
+ ]
+}

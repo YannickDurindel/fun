@@ -1,0 +1,77 @@
+# Talladega Superspeedway, 4281 m, anticlockwise oval.
+# Built for the IndyCar / NASCAR calendars (events link it with "track"): series "circuit"
+# keeps it out of every series list on its own.
+#
+#   .venv/bin/python tools/track/build_track.py talladega --plot
+
+id = "talladega"
+series = "circuit"
+name = "Talladega"
+grand_prix = "Superspeedway · Talladega"
+country = "United States"
+country_code = "US"
+city = "Lincoln"
+length_m = 4281
+turns = 4
+full_name = "Talladega Superspeedway"
+
+[osm]
+ways = [426163860, 426163859, 532106116, 8835825]
+length_tolerance = 0.03
+
+[layout]
+direction = "anticlockwise"
+finish = [33.56629, -86.07028]
+
+[elevation]
+dataset = "terrarium"
+
+[road]
+# Real banking 33 deg in the turns, built at the pipeline's ceiling of 0.56 rad (32.1 deg);
+# 16.5 deg (0.288) on the tri-oval; the 2 deg back straight left to the automatic crossfall.
+# Blends of 120-140 m / 100 m (twist rule >= 70 m; these are 320 km/h corners). The tri-oval
+# banking starts right after turn 4 (s = 3720): with a flat stretch between them the car left
+# the road on the exit of turn 4 at 450 km/h (arcade). Width 18 m
+# throughout (48 ft racing surface plus the paved apron and run to the wall, as Daytona).
+max_bank = 0.56
+base_width = 18.0
+grid_width = 18.0
+
+[[road.override]]           # turns 1-2, 33 deg (ceiling 32.1)
+s = [740.0, 1620.0]
+bank = -0.56
+blend = 120.0
+
+[[road.override]]           # turns 3-4, 33 deg (ceiling 32.1)
+s = [2670.0, 3550.0]
+bank = -0.56
+blend = 140.0
+
+[[road.override]]           # tri-oval, 16.5 deg
+s = [3720.0, 250.0]
+bank = -0.288
+blend = 100.0
+
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 900.0
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 1400.0
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "left"
+s = 2860.0
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 3330.0

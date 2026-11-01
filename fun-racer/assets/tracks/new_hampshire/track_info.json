@@ -1,0 +1,15 @@
+{
+  "id": "new_hampshire",
+  "name": "Loudon",
+  "grand_prix": "Loudon",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Loudon",
+  "length_m": 1703,
+  "turns": 4,
+  "scene": "res://scenes/tracks/new_hampshire.tscn",
+  "track_json": "res://assets/tracks/new_hampshire/track.json",
+  "osm_relation": 10625001,
+  "available": true,
+  "series": "circuit"
+}
