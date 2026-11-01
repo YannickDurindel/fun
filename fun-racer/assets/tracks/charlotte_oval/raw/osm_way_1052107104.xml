@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (4105520 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1309498652" visible="true" version="1" changeset="8323946" timestamp="2011-06-02T20:10:53Z" user="Neverwhere" uid="221878" lat="35.3510372" lon="-80.6859433"/>
+ <node id="1309498869" visible="true" version="1" changeset="8323946" timestamp="2011-06-02T20:10:55Z" user="Neverwhere" uid="221878" lat="35.3511204" lon="-80.6859379"/>
+ <node id="1309498871" visible="true" version="1" changeset="8323946" timestamp="2011-06-02T20:10:55Z" user="Neverwhere" uid="221878" lat="35.3512254" lon="-80.6859218"/>
+ <node id="1309498886" visible="true" version="1" changeset="8323946" timestamp="2011-06-02T20:10:56Z" user="Neverwhere" uid="221878" lat="35.3513873" lon="-80.6858842"/>
+ <node id="1309498951" visible="true" version="1" changeset="8323946" timestamp="2011-06-02T20:10:57Z" user="Neverwhere" uid="221878" lat="35.3513129" lon="-80.6859003"/>
+ <node id="4015488019" visible="true" version="1" changeset="37320006" timestamp="2016-02-19T22:40:37Z" user="barefootlegos" uid="3641829" lat="35.3516382" lon="-80.6857999"/>
+ <node id="4040734683" visible="true" version="1" changeset="37616066" timestamp="2016-03-04T20:24:05Z" user="Yoshinion" uid="3151684" lat="35.3517875" lon="-80.6857497"/>
+ <node id="4066108104" visible="true" version="2" changeset="101857942" timestamp="2021-03-28T00:08:46Z" user="Bobby3" uid="12793995" lat="35.3507573" lon="-80.6859284"/>
+ <node id="9734204535" visible="true" version="1" changeset="120872924" timestamp="2022-05-12T07:37:59Z" user="BCNorwich" uid="322785" lat="35.3508923" lon="-80.6859387"/>
+ <way id="1052107104" visible="true" version="2" changeset="120872924" timestamp="2022-05-12T07:37:59Z" user="BCNorwich" uid="322785">
+  <nd ref="4040734683"/>
+  <nd ref="4015488019"/>
+  <nd ref="1309498886"/>
+  <nd ref="1309498951"/>
+  <nd ref="1309498871"/>
+  <nd ref="1309498869"/>
+  <nd ref="1309498652"/>
+  <nd ref="9734204535"/>
+  <nd ref="4066108104"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Charlotte Motor Speedway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="width" v="13"/>
+ </way>
+</osm>

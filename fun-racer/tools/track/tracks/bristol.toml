@@ -1,0 +1,76 @@
+# Bristol, Tennessee, USA: 0.533-mile short track, concrete (858 m), 4 turns, anticlockwise.
+# Built for the stock car / IndyCar calendars (their events link it with "track"): series
+# "circuit" keeps it out of every series list on its own.
+#
+#   .venv/bin/python tools/track/build_track.py bristol --plot
+
+id = "bristol"
+series = "circuit"
+name = "Bristol"
+grand_prix = "Bristol"
+country = "United States"
+country_code = "US"
+city = "Bristol"
+length_m = 858
+turns = 4
+full_name = "Bristol 0.533-mile oval"
+
+[osm]
+ways = [116606212]   # the oval, one closed way (847 m); pit road 378531040 and its links left out
+
+[layout]
+direction = "anticlockwise"
+# Finish line: middle of the south-west straight: the front stretch faces Volunteer Parkway (US 11E / 19), which runs along the west side of the venue in OSM; the line itself is an estimate.
+finish = [36.515293, -82.257793]
+
+[elevation]
+dataset = "terrarium"
+# An oval's racing surface is close to level all round; the DEM's few metres of tilt and noise
+# (stands, the infield, the banking itself) would become a slope across the oval, so the
+# profile is smoothed over most of a lap.
+smooth_sigma_m = 400.0
+
+[road]
+# Real banking (Tennessee): turns 24-28 degrees (progressive since 2007); one plane per section, so the middle value; 6-10 degrees on both straights. All left-handers, so
+# the right (outer) edge is higher: negative bank. A full table (bank_keys, smoothstep between
+# keys): the full turn angle from just inside the turn entry to just before its exit, the straight's
+# own angle at the middle of each straight, so the road rolls over half a straight
+# (steepest roll 0.0045 rad/m, limit 0.012). s values from the centreline (track.json).
+max_bank = 0.464
+# Width: about 40 ft of concrete plus the apron; 15 m keeps two-wide racing room.
+base_width = 15.0
+grid_width = 15.0
+bank_keys = [
+  [104.2, -0.4538, "turn 1 entry"],
+  [326.8, -0.4538, "turn 2 exit"],
+  [436.1, -0.1396, "backstretch"],
+  [543.9, -0.4538, "turn 3 entry"],
+  [751.2, -0.4538, "turn 4 exit"],
+  [856.0, -0.1396, "front stretch"],
+]
+
+# Pinned: an oval has 4 turns (the two halves of each end), whatever the tri-oval kink does.
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 162.5
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 268.5
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "left"
+s = 598.2
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 696.9
+

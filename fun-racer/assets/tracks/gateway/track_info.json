@@ -1,0 +1,15 @@
+{
+  "id": "gateway",
+  "name": "Gateway",
+  "grand_prix": "Oval · Madison",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Madison",
+  "length_m": 2012,
+  "turns": 4,
+  "scene": "res://scenes/tracks/gateway.tscn",
+  "track_json": "res://assets/tracks/gateway/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "circuit"
+}

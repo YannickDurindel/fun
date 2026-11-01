@@ -1,0 +1,15 @@
+{
+  "id": "las_vegas_oval",
+  "name": "Las Vegas",
+  "grand_prix": "Las Vegas",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Las Vegas",
+  "length_m": 2414,
+  "turns": 4,
+  "scene": "res://scenes/tracks/las_vegas_oval.tscn",
+  "track_json": "res://assets/tracks/las_vegas_oval/track.json",
+  "osm_relation": 21201768,
+  "available": true,
+  "series": "circuit"
+}

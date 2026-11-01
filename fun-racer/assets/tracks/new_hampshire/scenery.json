@@ -1,0 +1,154 @@
+{
+ "version": 1,
+ "frame": "Godot metres: x=east, y=up (relative to finish line), z=-north; origin at finish line",
+ "attribution": "Surroundings (c) OpenStreetMap contributors (ODbL 1.0), via the Overpass API.",
+ "osm_base": "2026-10-31T12:59:06Z",
+ "landcover": {
+  "classes": [
+   "grass",
+   "forest",
+   "water",
+   "sand",
+   "paved",
+   "farmland",
+   "rock",
+   "gravel",
+   "scrub",
+   "beach"
+  ],
+  "near": {
+   "file": "landcover.png",
+   "x0": -600.0,
+   "z0": -800.0,
+   "step": 2.5,
+   "nx": 560,
+   "nz": 720
+  },
+  "far": {
+   "file": "landcover_far.png",
+   "x0": -5800.0,
+   "z0": -5800.0,
+   "step": 50.0,
+   "nx": 240,
+   "nz": 240
+  },
+  "near_share": {
+   "grass": 0.6078,
+   "forest": 0.1237,
+   "water": 0.0042,
+   "sand": 0.0,
+   "paved": 0.2392,
+   "farmland": 0.0,
+   "rock": 0.0,
+   "gravel": 0.0252,
+   "scrub": 0.0,
+   "beach": 0.0
+  }
+ },
+ "mesh": {
+  "file": "scenery.glb",
+  "chunk_m": 400.0,
+  "chunk_x0": -6000.0,
+  "chunk_z0": -6000.0,
+  "node": "chunk_<i>_<j>, i = floor((x - chunk_x0) / chunk_m), j = floor((z - chunk_z0) / chunk_m)",
+  "materials": [
+   "building_wall",
+   "building_roof",
+   "building_glass",
+   "stand_seats",
+   "stand_structure",
+   "concrete",
+   "metal",
+   "emissive_window",
+   "emissive_light"
+  ],
+  "triangles": {
+   "building_wall": 294,
+   "building_roof": 83,
+   "building_glass": 0,
+   "stand_seats": 558,
+   "stand_structure": 596,
+   "concrete": 38,
+   "metal": 114,
+   "emissive_window": 0,
+   "emissive_light": 0
+  },
+  "vertices": 3293,
+  "chunks": 9
+ },
+ "trees": {
+  "file": "scenery_points.bin",
+  "dtype": "float32",
+  "record": [
+   "x",
+   "y",
+   "z",
+   "height",
+   "species"
+  ],
+  "record_bytes": 20,
+  "count": 1285,
+  "species": [
+   "broadleaved",
+   "needleleaved",
+   "palm",
+   "bush"
+  ],
+  "species_counts": {
+   "broadleaved": 822,
+   "needleleaved": 463,
+   "palm": 0,
+   "bush": 0
+  },
+  "chunk_m": 400.0,
+  "chunks": [[14,13,0,62],[15,13,62,348],[15,14,410,6],[15,16,416,78],[15,17,494,13],[16,13,507,126],[16,14,633,50],[16,15,683,114],[16,16,797,279],[16,17,1076,209]]
+ },
+ "water": [
+  {"level":4.49,"kind":"river","polygon":[[431.78,-150.0],[438.5,-156.72],[450.0,-164.09],[450.0,-150.0]],"triangles":[3,0,1,2,3,1]},
+  {"level":3.04,"kind":"river","polygon":[[424.63,-125.15],[424.63,-134.92],[428.84,-147.07],[431.78,-150.0],[450.0,-150.0],[450.0,-80.12],[449.65,-79.95],[442.72,-83.7],[433.47,-106.87]],"triangles":[8,0,1,7,8,1,6,7,1,5,6,1,4,5,1,3,4,1,2,3,1]},
+  {"level":4.44,"kind":"river","polygon":[[450.0,-164.09],[454.27,-166.83],[484.99,-180.23],[504.14,-171.37],[526.77,-175.01],[531.23,-167.06],[545.18,-175.01],[546.0,-170.92],[540.89,-166.94],[535.6,-158.77],[539.48,-152.52],[543.06,-150.0],[450.0,-150.0]],"triangles":[12,0,1,11,12,1,10,11,1,9,10,1,8,9,1,1,2,3,3,4,5,1,3,5,8,1,5,7,8,5,6,7,5]},
+  {"level":3.08,"kind":"river","polygon":[[543.06,-150.0],[552.69,-143.21],[570.03,-116.97],[556.33,-109.02],[553.11,-124.02],[534.28,-114.7],[522.23,-115.61],[519.17,-109.37],[488.13,-98.92],[450.0,-80.12],[450.0,-150.0]],"triangles":[10,0,1,9,10,1,8,9,1,1,2,3,1,3,4,1,4,5,1,5,6,8,1,6,7,8,6]}
+ ],
+ "roofs": [],
+ "counts": {
+  "buildings": 32,
+  "grandstands": 3,
+  "canopies": 0,
+  "bridges": 0,
+  "masts": 5,
+  "lamps": 0,
+  "skyline": 0,
+  "cut_by_road": 0
+ },
+ "default_heights": [
+  {"osm":"way/122389676","type":"yes","height":6.0,"from":"type default","dist":48,"name":"Victory Lane"},
+  {"osm":"way/122389680","type":"yes","height":6.0,"from":"type default","dist":51,"name":"Safety-Kleen Building"},
+  {"osm":"way/122389677","type":"yes","height":6.0,"from":"type default","dist":57,"name":"Infield Care Center"},
+  {"osm":"way/122389678","type":"yes","height":6.0,"from":"type default","dist":59,"name":"Tech Inspection & Sunoco Gas"},
+  {"osm":"way/122389674","type":"yes","height":6.0,"from":"type default","dist":62,"name":"Welding Building"},
+  {"osm":"way/239262859","type":"yes","height":6.0,"from":"type default","dist":64},
+  {"osm":"way/78251875","type":"yes","height":6.0,"from":"type default","dist":75,"name":"Jack Ratta Media Center"},
+  {"osm":"way/239262211","type":"yes","height":6.0,"from":"type default","dist":83},
+  {"osm":"way/239262860","type":"yes","height":6.0,"from":"type default","dist":83},
+  {"osm":"way/1181492254","type":"garages","height":3.0,"from":"type default","dist":83,"name":"North Garages"},
+  {"osm":"way/239262210","type":"yes","height":6.0,"from":"type default","dist":84},
+  {"osm":"way/78251880","type":"garages","height":3.0,"from":"type default","dist":89,"name":"North Garages"},
+  {"osm":"way/1181492253","type":"yes","height":6.0,"from":"type default","dist":91},
+  {"osm":"way/78251873","type":"garages","height":3.0,"from":"type default","dist":96,"name":"Center Garages"},
+  {"osm":"way/239262203","type":"yes","height":6.0,"from":"type default","dist":107},
+  {"osm":"way/78251879","type":"garages","height":3.0,"from":"type default","dist":112,"name":"North Garages"},
+  {"osm":"way/78251876","type":"yes","height":6.0,"from":"type default","dist":115,"name":"Checkered Flag Restaurant"},
+  {"osm":"way/239262204","type":"yes","height":6.0,"from":"type default","dist":117},
+  {"osm":"way/239262201","type":"yes","height":6.0,"from":"type default","dist":120},
+  {"osm":"way/239262202","type":"yes","height":6.0,"from":"type default","dist":140},
+  {"osm":"way/239262209","type":"yes","height":6.0,"from":"type default","dist":140},
+  {"osm":"way/1181492244","type":"yes","height":6.0,"from":"type default","dist":153},
+  {"osm":"way/122523077","type":"yes","height":6.0,"from":"type default","dist":160},
+  {"osm":"way/1181492245","type":"yes","height":6.0,"from":"type default","dist":163},
+  {"osm":"way/239262205","type":"yes","height":6.0,"from":"type default","dist":174,"name":"Credentials"},
+  {"osm":"way/995505909","type":"yes","height":6.0,"from":"type default","dist":268},
+  {"osm":"way/1181492267","type":"yes","height":6.0,"from":"type default","dist":281},
+  {"osm":"way/239262939","type":"yes","height":6.0,"from":"type default","dist":290},
+  {"osm":"way/239262942","type":"yes","height":6.0,"from":"type default","dist":294}
+ ]
+}

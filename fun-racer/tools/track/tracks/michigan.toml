@@ -1,0 +1,89 @@
+# Michigan International Speedway (Brooklyn, USA), 3219 m, anticlockwise oval.
+# Built for the IndyCar / NASCAR calendars (events link it with "track"): series "circuit"
+# keeps it out of every series list on its own.
+#
+#   .venv/bin/python tools/track/build_track.py michigan --plot
+
+id = "michigan"
+series = "circuit"
+name = "Brooklyn, Michigan"
+grand_prix = "Brooklyn, Michigan"
+country = "United States"
+country_code = "US"
+city = "Brooklyn"
+length_m = 3219
+turns = 4
+full_name = "Michigan International Speedway"
+
+[osm]
+# "Speedway": the D-oval, one closed way (3236 m) with a raceway=start-finish node.
+ways = [205025109]
+
+[layout]
+direction = "anticlockwise"
+# The OSM way has few, unevenly spaced nodes (pairs 15-30 m apart between gaps of 100 m and
+# more), and the spline through them wiggles: on 18-24 deg banking the surface then twists
+# under the car (a stock car got airborne). Smoothed over 35 m, the turns keep their radius.
+plan_sigma_m = 35.0
+# OSM node 2914926225 "Start/Finish Line" (tagged raceway=start-finish, which the pipeline
+# does not read).
+finish = [42.0676373, -84.2447582]
+
+[elevation]
+dataset = "terrarium"
+
+[road]
+# Real banking: 18 degrees (0.314 rad) in the turns, 12 (0.209) on the curved front stretch (the
+# D), 5 (0.087) on the back straight. All left-handers: the right edge is higher (negative bank).
+# Blends of 100 m on the turns (twist rule: >= 1.5 x 0.23 / 0.012 = 29 m; long because the turns are
+# flat out). Width: the racing surface is 73 ft (22 m) wide; built 20 m, the widest the drivers are
+# tested on. s values are read off track.json.
+max_bank = 0.33
+base_width = 20.0
+grid_width = 20.0
+
+[[road.override]]           # back straight, 5 deg
+s = [1150.0, 2050.0]
+bank = -0.087
+blend = 40.0
+
+[[road.override]]           # front stretch (the D), 12 deg
+s = [2700.0, 540.0]
+bank = -0.209
+blend = 60.0
+
+[[road.override]]           # turns 1-2, 18 deg
+s = [550.0, 1150.0]
+bank = -0.314
+blend = 100.0
+
+[[road.override]]           # turns 3-4, 18 deg
+s = [2060.0, 2700.0]
+bank = -0.314
+blend = 100.0
+
+# Pinned to the official 4 (the detector finds each end of the oval as one corner)
+
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 650.0
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 1000.0
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "left"
+s = 2200.0
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 2560.0

@@ -1,0 +1,80 @@
+# Phoenix Raceway (oval), 1645 m, anticlockwise oval.
+# Built for the IndyCar / NASCAR calendars (events link it with "track"): series "circuit"
+# keeps it out of every series list on its own.
+#
+#   .venv/bin/python tools/track/build_track.py phoenix_oval --plot
+
+id = "phoenix_oval"
+series = "circuit"
+name = "Phoenix Oval"
+grand_prix = "Short oval · Avondale"
+country = "United States"
+country_code = "US"
+city = "Avondale"
+length_m = 1645
+turns = 4
+full_name = "Phoenix Raceway (oval)"
+
+[osm]
+ways = [29333335]
+length_tolerance = 0.03
+
+[layout]
+direction = "anticlockwise"
+finish = [33.372942, -112.312218]
+
+[elevation]
+dataset = "terrarium"
+smooth_sigma_m = 90.0
+
+[road]
+# Since 2018 the line is just past the old turn 2 (now turn 4), before the dogleg, and the
+# turns are renumbered: turns 1-2 (the east end) 10-11 deg, turns 3-4 (west) 8-9 deg, the
+# dogleg 10-11 deg (NASCAR / Jayski figures). Width 16 m (estimate).
+max_bank = 0.2
+base_width = 16.0
+grid_width = 16.0
+
+[[road.override]]           # dogleg, 10.5 deg
+s = [30.0, 170.0]
+bank = -0.183
+blend = 40.0
+
+[[road.override]]           # dogleg: the wide front stretch with its apron (cars cut it)
+s = [1600.0, 200.0]
+width = 20.0
+blend = 50.0
+
+[[road.override]]           # turns 1-2, 10.5 deg
+s = [440.0, 860.0]
+bank = -0.183
+blend = 60.0
+
+[[road.override]]           # turns 3-4, 8.5 deg
+s = [1250.0, 1590.0]
+bank = -0.148
+blend = 50.0
+
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 470.0
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 750.0
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "left"
+s = 1290.0
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 1500.0

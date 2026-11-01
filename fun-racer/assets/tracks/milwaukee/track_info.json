@@ -1,0 +1,15 @@
+{
+  "id": "milwaukee",
+  "name": "Milwaukee Mile",
+  "grand_prix": "Oval · West Allis",
+  "country": "United States",
+  "country_code": "US",
+  "city": "West Allis",
+  "length_m": 1609,
+  "turns": 4,
+  "scene": "res://scenes/tracks/milwaukee.tscn",
+  "track_json": "res://assets/tracks/milwaukee/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "circuit"
+}

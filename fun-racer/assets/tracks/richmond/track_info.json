@@ -1,0 +1,15 @@
+{
+  "id": "richmond",
+  "name": "Richmond",
+  "grand_prix": "Richmond",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Richmond",
+  "length_m": 1207,
+  "turns": 4,
+  "scene": "res://scenes/tracks/richmond.tscn",
+  "track_json": "res://assets/tracks/richmond/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "circuit"
+}

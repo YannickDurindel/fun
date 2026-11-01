@@ -1,0 +1,90 @@
+# Daytona International Speedway (tri-oval), 4023 m, anticlockwise oval.
+# Built for the IndyCar / NASCAR calendars (events link it with "track"): series "circuit"
+# keeps it out of every series list on its own.
+#
+#   .venv/bin/python tools/track/build_track.py daytona_oval --plot
+
+id = "daytona_oval"
+series = "circuit"
+name = "Daytona Oval"
+grand_prix = "Tri-oval · Daytona Beach"
+country = "United States"
+country_code = "US"
+city = "Daytona Beach"
+length_m = 4023
+turns = 4
+full_name = "Daytona International Speedway (tri-oval)"
+
+[osm]
+ways = [11371365, 352067004, 352070311, 352070309, 352070316]
+length_tolerance = 0.03
+
+[layout]
+direction = "anticlockwise"
+finish = [29.187474, -81.072057]
+
+[elevation]
+dataset = "terrarium"
+
+[road]
+# Real banking (as daytona.toml): 31 deg (0.54 rad) in turns 1-2 and 3-4, 18 deg (0.31) on the
+# tri-oval, the back straight's 3 deg left to the automatic crossfall. Blends of 110 m / 90 m
+# (twist rule: >= 1.5 x 0.54 / 0.012 = 68 m; 300 km/h corners want more). Widths: 16 m on
+# the straights, 18 m on the banking and the tri-oval (estimates, as daytona.toml).
+max_bank = 0.56
+base_width = 16.0
+grid_width = 18.0
+
+[[road.override]]           # turns 1-2, 31 deg
+s = [720.0, 1460.0]
+bank = -0.54
+blend = 110.0
+
+[[road.override]]           # turns 3-4, 31 deg
+s = [2620.0, 3320.0]
+bank = -0.54
+blend = 110.0
+
+[[road.override]]           # tri-oval, 18 deg
+s = [3880.0, 150.0]
+bank = -0.31
+blend = 90.0
+
+[[road.override]]           # turns 1-2: 18 m
+s = [660.0, 1520.0]
+width = 18.0
+blend = 60.0
+
+[[road.override]]           # turns 3-4: 18 m
+s = [2560.0, 3380.0]
+width = 18.0
+blend = 60.0
+
+[[road.override]]           # tri-oval and start / finish: 18 m
+s = [3800.0, 250.0]
+width = 18.0
+blend = 60.0
+
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 900.0
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 1300.0
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "left"
+s = 2780.0
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 3150.0

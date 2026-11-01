@@ -1,0 +1,98 @@
+{
+ "id": "texas",
+ "recipe": "tools/track/tracks/texas.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   261968505,
+   261968502,
+   489172989,
+   261968504,
+   104503520,
+   261968503,
+   489172062
+  ],
+  "raw_length_m": 2382.0,
+  "length_m": 2367.8,
+  "official_length_m": 2414.0,
+  "length_error": -0.01915,
+  "candidates": []
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 10.88,
+  "max_grade": 0.0275,
+  "min_grade": -0.0211,
+  "origin_m": 199.29
+ },
+ "turns": {
+  "official": 4,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Turn 1 (kink)",
+    "direction": "left",
+    "s_apex": 152.9,
+    "min_radius": 615.0
+   },
+   {
+    "id": "T2",
+    "name": "Turn 1",
+    "direction": "left",
+    "s_apex": 471.0,
+    "min_radius": 215.0
+   },
+   {
+    "id": "T3",
+    "name": "Turn 3",
+    "direction": "left",
+    "s_apex": 1651.5,
+    "min_radius": 210.4
+   },
+   {
+    "id": "T4",
+    "name": "Turn 4 (kink)",
+    "direction": "left",
+    "s_apex": 2324.3,
+    "min_radius": 605.7
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 152.9,
+    "direction": "left",
+    "angle_deg": 12.1,
+    "kind": "kink",
+    "min_radius": 615.0,
+    "used": true
+   },
+   {
+    "s_apex": 471.0,
+    "direction": "left",
+    "angle_deg": 155.9,
+    "kind": "corner",
+    "min_radius": 215.0,
+    "used": true
+   },
+   {
+    "s_apex": 1651.5,
+    "direction": "left",
+    "angle_deg": 156.1,
+    "kind": "corner",
+    "min_radius": 210.4,
+    "used": true
+   },
+   {
+    "s_apex": 2324.3,
+    "direction": "left",
+    "angle_deg": 10.5,
+    "kind": "kink",
+    "min_radius": 605.7,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

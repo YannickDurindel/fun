@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (3862999 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="4045926977" visible="true" version="1" changeset="37668255" timestamp="2016-03-07T15:33:59Z" user="Yoshinion" uid="3151684" lat="36.6342314" lon="-79.8522374"/>
+ <node id="4045927092" visible="true" version="1" changeset="37668255" timestamp="2016-03-07T15:33:59Z" user="Yoshinion" uid="3151684" lat="36.6348410" lon="-79.8505823"/>
+ <node id="4045927093" visible="true" version="1" changeset="37668255" timestamp="2016-03-07T15:33:59Z" user="Yoshinion" uid="3151684" lat="36.6350025" lon="-79.8505370"/>
+ <node id="4045927094" visible="true" version="1" changeset="37668255" timestamp="2016-03-07T15:33:59Z" user="Yoshinion" uid="3151684" lat="36.6351236" lon="-79.8505269"/>
+ <node id="4045927095" visible="true" version="1" changeset="37668255" timestamp="2016-03-07T15:33:59Z" user="Yoshinion" uid="3151684" lat="36.6352487" lon="-79.8505722"/>
+ <node id="4045927096" visible="true" version="1" changeset="37668255" timestamp="2016-03-07T15:33:59Z" user="Yoshinion" uid="3151684" lat="36.6353577" lon="-79.8506376"/>
+ <node id="4045927097" visible="true" version="1" changeset="37668255" timestamp="2016-03-07T15:33:59Z" user="Yoshinion" uid="3151684" lat="36.6354627" lon="-79.8507433"/>
+ <node id="4045927098" visible="true" version="1" changeset="37668255" timestamp="2016-03-07T15:33:59Z" user="Yoshinion" uid="3151684" lat="36.6355354" lon="-79.8509042"/>
+ <node id="4045927099" visible="true" version="1" changeset="37668255" timestamp="2016-03-07T15:33:59Z" user="Yoshinion" uid="3151684" lat="36.6355676" lon="-79.8510401"/>
+ <node id="4045927100" visible="true" version="1" changeset="37668255" timestamp="2016-03-07T15:33:59Z" user="Yoshinion" uid="3151684" lat="36.6355717" lon="-79.8511960"/>
+ <node id="4045927101" visible="true" version="1" changeset="37668255" timestamp="2016-03-07T15:34:00Z" user="Yoshinion" uid="3151684" lat="36.6355192" lon="-79.8513922"/>
+ <node id="4045927102" visible="true" version="1" changeset="37668255" timestamp="2016-03-07T15:34:00Z" user="Yoshinion" uid="3151684" lat="36.6354465" lon="-79.8515331"/>
+ <node id="4045927103" visible="true" version="1" changeset="37668255" timestamp="2016-03-07T15:34:00Z" user="Yoshinion" uid="3151684" lat="36.6353375" lon="-79.8516739"/>
+ <node id="4045927104" visible="true" version="1" changeset="37668255" timestamp="2016-03-07T15:34:00Z" user="Yoshinion" uid="3151684" lat="36.6352084" lon="-79.8517745"/>
+ <node id="4045927105" visible="true" version="1" changeset="37668255" timestamp="2016-03-07T15:34:00Z" user="Yoshinion" uid="3151684" lat="36.6341221" lon="-79.8509591"/>
+ <node id="9823779061" visible="true" version="1" changeset="122483756" timestamp="2022-06-16T22:21:05Z" user="KB-01" uid="9509339" lat="36.6353766" lon="-79.8516234"/>
+ <way id="448515178" visible="true" version="2" changeset="122483756" timestamp="2022-06-16T22:21:05Z" user="KB-01" uid="9509339">
+  <nd ref="4045927105"/>
+  <nd ref="4045927092"/>
+  <nd ref="4045927093"/>
+  <nd ref="4045927094"/>
+  <nd ref="4045927095"/>
+  <nd ref="4045927096"/>
+  <nd ref="4045927097"/>
+  <nd ref="4045927098"/>
+  <nd ref="4045927099"/>
+  <nd ref="4045927100"/>
+  <nd ref="4045927101"/>
+  <nd ref="4045927102"/>
+  <nd ref="9823779061"/>
+  <nd ref="4045927103"/>
+  <nd ref="4045927104"/>
+  <nd ref="4045926977"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Martinsville Speedway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+ </way>
+</osm>

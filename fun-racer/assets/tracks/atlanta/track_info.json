@@ -1,0 +1,15 @@
+{
+  "id": "atlanta",
+  "name": "Atlanta, Hampton",
+  "grand_prix": "Atlanta, Hampton",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Hampton",
+  "length_m": 2478,
+  "turns": 4,
+  "scene": "res://scenes/tracks/atlanta.tscn",
+  "track_json": "res://assets/tracks/atlanta/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "circuit"
+}

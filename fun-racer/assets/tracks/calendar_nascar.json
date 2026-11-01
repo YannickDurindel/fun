@@ -9,7 +9,8 @@
    "country_code": "US",
    "city": "Daytona Beach",
    "length_m": 4023,
-   "turns": 4
+   "turns": 4,
+   "track": "daytona_oval"
   },
   {
    "id": "stk_atlanta",
@@ -19,7 +20,8 @@
    "country_code": "US",
    "city": "Hampton",
    "length_m": 2478,
-   "turns": 4
+   "turns": 4,
+   "track": "atlanta"
   },
   {
    "id": "stk_austin",
@@ -40,7 +42,8 @@
    "country_code": "US",
    "city": "Avondale",
    "length_m": 1645,
-   "turns": 4
+   "turns": 4,
+   "track": "phoenix_oval"
   },
   {
    "id": "stk_las_vegas",
@@ -50,7 +53,8 @@
    "country_code": "US",
    "city": "Las Vegas",
    "length_m": 2414,
-   "turns": 4
+   "turns": 4,
+   "track": "las_vegas_oval"
   },
   {
    "id": "stk_darlington",
@@ -60,7 +64,8 @@
    "country_code": "US",
    "city": "Darlington",
    "length_m": 2198,
-   "turns": 4
+   "turns": 4,
+   "track": "darlington"
   },
   {
    "id": "stk_martinsville",
@@ -70,7 +75,8 @@
    "country_code": "US",
    "city": "Ridgeway",
    "length_m": 847,
-   "turns": 4
+   "turns": 4,
+   "track": "martinsville"
   },
   {
    "id": "stk_bristol",
@@ -80,7 +86,8 @@
    "country_code": "US",
    "city": "Bristol",
    "length_m": 858,
-   "turns": 4
+   "turns": 4,
+   "track": "bristol"
   },
   {
    "id": "stk_kansas",
@@ -90,7 +97,8 @@
    "country_code": "US",
    "city": "Kansas City",
    "length_m": 2414,
-   "turns": 4
+   "turns": 4,
+   "track": "kansas"
   },
   {
    "id": "stk_talladega",
@@ -100,7 +108,8 @@
    "country_code": "US",
    "city": "Lincoln",
    "length_m": 4281,
-   "turns": 4
+   "turns": 4,
+   "track": "talladega"
   },
   {
    "id": "stk_texas",
@@ -110,7 +119,8 @@
    "country_code": "US",
    "city": "Fort Worth",
    "length_m": 2414,
-   "turns": 4
+   "turns": 4,
+   "track": "texas"
   },
   {
    "id": "stk_watkins_glen",
@@ -130,7 +140,8 @@
    "country_code": "US",
    "city": "Concord",
    "length_m": 2414,
-   "turns": 4
+   "turns": 4,
+   "track": "charlotte_oval"
   },
   {
    "id": "stk_nashville",
@@ -140,7 +151,8 @@
    "country_code": "US",
    "city": "Lebanon",
    "length_m": 2140,
-   "turns": 4
+   "turns": 4,
+   "track": "nashville_oval"
   },
   {
    "id": "stk_michigan",
@@ -150,7 +162,8 @@
    "country_code": "US",
    "city": "Brooklyn",
    "length_m": 3219,
-   "turns": 4
+   "turns": 4,
+   "track": "michigan"
   },
   {
    "id": "stk_pocono",
@@ -160,7 +173,8 @@
    "country_code": "US",
    "city": "Long Pond",
    "length_m": 4023,
-   "turns": 3
+   "turns": 3,
+   "track": "pocono"
   },
   {
    "id": "stk_san_diego",
@@ -190,7 +204,8 @@
    "country_code": "US",
    "city": "Joliet",
    "length_m": 2414,
-   "turns": 4
+   "turns": 4,
+   "track": "chicagoland"
   },
   {
    "id": "stk_indianapolis",
@@ -200,7 +215,8 @@
    "country_code": "US",
    "city": "Speedway",
    "length_m": 4023,
-   "turns": 4
+   "turns": 4,
+   "track": "indianapolis_oval"
   },
   {
    "id": "stk_iowa",
@@ -210,7 +226,8 @@
    "country_code": "US",
    "city": "Newton",
    "length_m": 1408,
-   "turns": 4
+   "turns": 4,
+   "track": "iowa"
   },
   {
    "id": "stk_richmond",
@@ -220,7 +237,8 @@
    "country_code": "US",
    "city": "Richmond",
    "length_m": 1207,
-   "turns": 4
+   "turns": 4,
+   "track": "richmond"
   },
   {
    "id": "stk_new_hampshire",
@@ -230,7 +248,8 @@
    "country_code": "US",
    "city": "Loudon",
    "length_m": 1703,
-   "turns": 4
+   "turns": 4,
+   "track": "new_hampshire"
   },
   {
    "id": "stk_daytona_400",
@@ -240,7 +259,8 @@
    "country_code": "US",
    "city": "Daytona Beach",
    "length_m": 4023,
-   "turns": 4
+   "turns": 4,
+   "track": "daytona_oval"
   },
   {
    "id": "stk_darlington_500",
@@ -250,7 +270,8 @@
    "country_code": "US",
    "city": "Darlington",
    "length_m": 2198,
-   "turns": 4
+   "turns": 4,
+   "track": "darlington"
   },
   {
    "id": "stk_gateway",
@@ -260,7 +281,8 @@
    "country_code": "US",
    "city": "Madison",
    "length_m": 2012,
-   "turns": 4
+   "turns": 4,
+   "track": "gateway"
   },
   {
    "id": "stk_bristol_night",
@@ -270,7 +292,8 @@
    "country_code": "US",
    "city": "Bristol",
    "length_m": 858,
-   "turns": 4
+   "turns": 4,
+   "track": "bristol"
   },
   {
    "id": "stk_kansas_fall",
@@ -280,7 +303,8 @@
    "country_code": "US",
    "city": "Kansas City",
    "length_m": 2414,
-   "turns": 4
+   "turns": 4,
+   "track": "kansas"
   },
   {
    "id": "stk_las_vegas_fall",
@@ -290,7 +314,8 @@
    "country_code": "US",
    "city": "Las Vegas",
    "length_m": 2414,
-   "turns": 4
+   "turns": 4,
+   "track": "las_vegas_oval"
   },
   {
    "id": "stk_charlotte_roval",
@@ -310,7 +335,8 @@
    "country_code": "US",
    "city": "Lincoln",
    "length_m": 4281,
-   "turns": 4
+   "turns": 4,
+   "track": "talladega"
   },
   {
    "id": "stk_martinsville_fall",
@@ -320,7 +346,8 @@
    "country_code": "US",
    "city": "Ridgeway",
    "length_m": 847,
-   "turns": 4
+   "turns": 4,
+   "track": "martinsville"
   },
   {
    "id": "stk_homestead",
@@ -330,7 +357,8 @@
    "country_code": "US",
    "city": "Homestead",
    "length_m": 2414,
-   "turns": 4
+   "turns": 4,
+   "track": "homestead"
   }
  ]
 }

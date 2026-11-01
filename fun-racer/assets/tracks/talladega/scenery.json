@@ -1,0 +1,158 @@
+{
+ "version": 1,
+ "frame": "Godot metres: x=east, y=up (relative to finish line), z=-north; origin at finish line",
+ "attribution": "Surroundings (c) OpenStreetMap contributors (ODbL 1.0), via the Overpass API.",
+ "osm_base": "2026-11-01T02:20:46Z",
+ "landcover": {
+  "classes": [
+   "grass",
+   "forest",
+   "water",
+   "sand",
+   "paved",
+   "farmland",
+   "rock",
+   "gravel",
+   "scrub",
+   "beach"
+  ],
+  "near": {
+   "file": "landcover.png",
+   "x0": -600.0,
+   "z0": -1600.0,
+   "step": 2.5,
+   "nx": 800,
+   "nz": 1120
+  },
+  "far": {
+   "file": "landcover_far.png",
+   "x0": -5600.0,
+   "z0": -6200.0,
+   "step": 50.0,
+   "nx": 240,
+   "nz": 240
+  },
+  "near_share": {
+   "grass": 0.8401,
+   "forest": 0.0534,
+   "water": 0.0017,
+   "sand": 0.0,
+   "paved": 0.1022,
+   "farmland": 0.0,
+   "rock": 0.0,
+   "gravel": 0.0003,
+   "scrub": 0.0023,
+   "beach": 0.0
+  }
+ },
+ "mesh": {
+  "file": "scenery.glb",
+  "chunk_m": 400.0,
+  "chunk_x0": -5600.0,
+  "chunk_z0": -6400.0,
+  "node": "chunk_<i>_<j>, i = floor((x - chunk_x0) / chunk_m), j = floor((z - chunk_z0) / chunk_m)",
+  "materials": [
+   "building_wall",
+   "building_roof",
+   "building_glass",
+   "stand_seats",
+   "stand_structure",
+   "concrete",
+   "metal",
+   "emissive_window",
+   "emissive_light"
+  ],
+  "triangles": {
+   "building_wall": 634,
+   "building_roof": 249,
+   "building_glass": 0,
+   "stand_seats": 247,
+   "stand_structure": 334,
+   "concrete": 80,
+   "metal": 204,
+   "emissive_window": 0,
+   "emissive_light": 0
+  },
+  "vertices": 3228,
+  "chunks": 21
+ },
+ "trees": {
+  "file": "scenery_points.bin",
+  "dtype": "float32",
+  "record": [
+   "x",
+   "y",
+   "z",
+   "height",
+   "species"
+  ],
+  "record_bytes": 20,
+  "count": 1314,
+  "species": [
+   "broadleaved",
+   "needleleaved",
+   "palm",
+   "bush"
+  ],
+  "species_counts": {
+   "broadleaved": 854,
+   "needleleaved": 436,
+   "palm": 0,
+   "bush": 24
+  },
+  "chunk_m": 400.0,
+  "chunks": [[12,17,0,28],[12,18,28,224],[13,17,252,3],[13,18,255,193],[14,17,448,8],[14,18,456,94],[15,18,550,47],[16,12,597,27],[16,16,624,96],[16,17,720,89],[16,18,809,245],[17,12,1054,81],[17,13,1135,13],[17,16,1148,2],[17,17,1150,161],[17,18,1311,3]]
+ },
+ "water": [
+  {"level":-5.86,"kind":"river","polygon":[[300.0,872.43],[286.87,847.18],[287.88,839.22],[290.37,832.82],[300.0,827.08]],"triangles":[4,0,1,3,4,1,2,3,1]},
+  {"level":-6.31,"kind":"river","polygon":[[418.67,849.16],[413.33,857.01],[404.86,864.41],[340.76,900.0],[316.54,900.0],[316.51,899.97],[306.11,884.18],[300.0,872.43],[300.0,827.08],[365.84,787.86],[375.23,784.44],[384.15,788.41],[416.27,838.78]],"triangles":[12,0,1,11,12,1,10,11,1,9,10,1,8,9,1,7,8,1,6,7,1,5,6,1,4,5,1,3,4,1,2,3,1]},
+  {"level":-6.29,"kind":"river","polygon":[[340.76,900.0],[338.23,901.41],[324.88,906.93],[316.54,900.0]],"triangles":[3,0,1,2,3,1]}
+ ],
+ "roofs": [],
+ "counts": {
+  "buildings": 34,
+  "grandstands": 1,
+  "canopies": 1,
+  "bridges": 2,
+  "masts": 3,
+  "lamps": 0,
+  "skyline": 0,
+  "cut_by_road": 0
+ },
+ "default_heights": [
+  {"osm":"way/532114276","type":"yes","height":6.0,"from":"type default","dist":74},
+  {"osm":"way/1504270805","type":"yes","height":6.0,"from":"type default","dist":88,"name":"YellaWood Pit Road Club"},
+  {"osm":"way/532114278","type":"yes","height":6.0,"from":"type default","dist":97,"name":"Park Office"},
+  {"osm":"way/116792861","type":"yes","height":6.0,"from":"type default","dist":101},
+  {"osm":"way/1504270816","type":"yes","height":6.0,"from":"type default","dist":108},
+  {"osm":"way/1504270817","type":"yes","height":6.0,"from":"type default","dist":111},
+  {"osm":"way/1504270815","type":"yes","height":6.0,"from":"type default","dist":117},
+  {"osm":"way/1504270807","type":"yes","height":6.0,"from":"type default","dist":124},
+  {"osm":"way/116792862","type":"yes","height":6.0,"from":"type default","dist":128},
+  {"osm":"way/1504270809","type":"yes","height":6.0,"from":"type default","dist":142},
+  {"osm":"way/116792871","type":"yes","height":6.0,"from":"type default","dist":144},
+  {"osm":"way/1504270806","type":"yes","height":6.0,"from":"type default","dist":147},
+  {"osm":"way/1504270810","type":"yes","height":6.0,"from":"type default","dist":167},
+  {"osm":"way/684234827","type":"yes","height":6.0,"from":"type default","dist":174},
+  {"osm":"way/116792856","type":"yes","height":6.0,"from":"type default","dist":181},
+  {"osm":"way/116792855","type":"yes","height":6.0,"from":"type default","dist":186},
+  {"osm":"way/384772501","type":"yes","height":6.0,"from":"type default","dist":195},
+  {"osm":"way/684234826","type":"yes","height":6.0,"from":"type default","dist":205},
+  {"osm":"way/116792870","type":"yes","height":6.0,"from":"type default","dist":218},
+  {"osm":"way/116792865","type":"yes","height":6.0,"from":"type default","dist":231},
+  {"osm":"way/116792864","type":"yes","height":6.0,"from":"type default","dist":240},
+  {"osm":"way/116757013","type":"yes","height":6.0,"from":"type default","dist":358},
+  {"osm":"way/384772500","type":"yes","height":6.0,"from":"type default","dist":385},
+  {"osm":"way/384772499","type":"yes","height":6.0,"from":"type default","dist":388},
+  {"osm":"way/684219617","type":"yes","height":6.0,"from":"type default","dist":392},
+  {"osm":"way/384872431","type":"yes","height":6.0,"from":"type default","dist":432,"name":"Alabama International Motorsports Hall of Fame"},
+  {"osm":"way/384772502","type":"yes","height":6.0,"from":"type default","dist":483},
+  {"osm":"way/684219616","type":"yes","height":6.0,"from":"type default","dist":484},
+  {"osm":"way/932975741","type":"yes","height":6.0,"from":"type default","dist":536,"name":"International Motorsports Hall of Fame"},
+  {"osm":"way/384772504","type":"yes","height":6.0,"from":"type default","dist":585},
+  {"osm":"way/384772503","type":"yes","height":6.0,"from":"type default","dist":648},
+  {"osm":"way/1503167417","type":"yes","height":6.0,"from":"type default","dist":828,"name":"Gupta Pit Stop"},
+  {"osm":"way/384872469","type":"house","height":6.0,"from":"type default","dist":840},
+  {"osm":"way/384872467","type":"house","height":6.0,"from":"type default","dist":898}
+ ]
+}

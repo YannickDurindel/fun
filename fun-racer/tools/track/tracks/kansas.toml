@@ -1,0 +1,76 @@
+# Kansas City, Kansas, USA: 1.5-mile tri-oval (2414 m), 4 turns, anticlockwise.
+# Built for the stock car / IndyCar calendars (their events link it with "track"): series
+# "circuit" keeps it out of every series list on its own.
+#
+#   .venv/bin/python tools/track/build_track.py kansas --plot
+
+id = "kansas"
+series = "circuit"
+name = "Kansas City"
+grand_prix = "Kansas City"
+country = "United States"
+country_code = "US"
+city = "Kansas City"
+length_m = 2414
+turns = 4
+full_name = "Kansas City 1.5-mile oval"
+
+[osm]
+ways = [37552701]   # the oval, one closed way (2480 m); pit lane 42240617 and the infield road course left out
+
+[layout]
+direction = "anticlockwise"
+# Finish line: apex of the tri-oval on the west (pit lane) side.
+finish = [39.115826, -94.834043]
+
+[elevation]
+dataset = "terrarium"
+# An oval's racing surface is close to level all round; the DEM's few metres of tilt and noise
+# (stands, the infield, the banking itself) would become a slope across the oval, so the
+# profile is smoothed over most of a lap.
+smooth_sigma_m = 400.0
+
+[road]
+# Real banking (Kansas): turns 17-20 degrees (variable); 18.5; tri-oval front stretch 10.4, backstretch 5 degrees. All left-handers, so
+# the right (outer) edge is higher: negative bank. A full table (bank_keys, smoothstep between
+# keys): the full turn angle from just inside the turn entry to just before its exit, the straight's
+# own angle at the middle of each straight, so the road rolls over half a straight
+# (steepest roll 0.0012 rad/m, limit 0.012). s values from the centreline (track.json).
+max_bank = 0.333
+# Width: 18 m.
+base_width = 18.0
+grid_width = 18.0
+bank_keys = [
+  [328.8, -0.3229, "turn 1 entry"],
+  [817.8, -0.3229, "turn 2 exit"],
+  [1111.6, -0.0873, "backstretch"],
+  [1407.0, -0.3229, "turn 3 entry"],
+  [1912.3, -0.3229, "turn 4 exit"],
+  [2328.3, -0.1815, "front stretch"],
+]
+
+# Pinned: an oval has 4 turns (the two halves of each end), whatever the tri-oval kink does.
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 456.9
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 689.7
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "left"
+s = 1539.3
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 1779.9
+

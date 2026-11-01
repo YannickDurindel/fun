@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (4105531 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="654509077" visible="true" version="3" changeset="8795146" timestamp="2011-07-22T07:28:54Z" user="Neverwhere" uid="221878" lat="39.7888784" lon="-86.2311539"/>
+ <node id="654509079" visible="true" version="3" changeset="8795146" timestamp="2011-07-22T07:28:54Z" user="Neverwhere" uid="221878" lat="39.7892526" lon="-86.2307707"/>
+ <node id="654509082" visible="true" version="3" changeset="8795146" timestamp="2011-07-22T07:28:54Z" user="Neverwhere" uid="221878" lat="39.7896086" lon="-86.2305358"/>
+ <node id="654509084" visible="true" version="3" changeset="8795146" timestamp="2011-07-22T07:28:54Z" user="Neverwhere" uid="221878" lat="39.7898540" lon="-86.2304250"/>
+ <node id="654509086" visible="true" version="3" changeset="8795146" timestamp="2011-07-22T07:28:54Z" user="Neverwhere" uid="221878" lat="39.7903426" lon="-86.2303276"/>
+ <node id="654509425" visible="true" version="3" changeset="8795146" timestamp="2011-07-22T07:28:54Z" user="Neverwhere" uid="221878" lat="39.7881386" lon="-86.2331666"/>
+ <node id="654509426" visible="true" version="2" changeset="8428858" timestamp="2011-06-13T18:12:00Z" user="mpinnau" uid="187130" lat="39.7882081" lon="-86.2325816"/>
+ <node id="654509427" visible="true" version="3" changeset="8795146" timestamp="2011-07-22T07:28:54Z" user="Neverwhere" uid="221878" lat="39.7883305" lon="-86.2321355"/>
+ <node id="654509429" visible="true" version="3" changeset="8795146" timestamp="2011-07-22T07:28:54Z" user="Neverwhere" uid="221878" lat="39.7885220" lon="-86.2316948"/>
+ <node id="1369704920" visible="true" version="2" changeset="59027962" timestamp="2018-05-16T19:00:55Z" user="SSR_317" uid="7960635" lat="39.7906151" lon="-86.2303324"/>
+ <node id="1369704922" visible="true" version="1" changeset="8795146" timestamp="2011-07-22T07:28:53Z" user="Neverwhere" uid="221878" lat="39.7900899" lon="-86.2303543"/>
+ <node id="1369704924" visible="true" version="1" changeset="8795146" timestamp="2011-07-22T07:28:53Z" user="Neverwhere" uid="221878" lat="39.7882613" lon="-86.2323526"/>
+ <node id="1369704925" visible="true" version="1" changeset="8795146" timestamp="2011-07-22T07:28:53Z" user="Neverwhere" uid="221878" lat="39.7884313" lon="-86.2318751"/>
+ <node id="1369704926" visible="true" version="1" changeset="8795146" timestamp="2011-07-22T07:28:53Z" user="Neverwhere" uid="221878" lat="39.7894073" lon="-86.2306474"/>
+ <node id="1369704929" visible="true" version="1" changeset="8795146" timestamp="2011-07-22T07:28:53Z" user="Neverwhere" uid="221878" lat="39.7890850" lon="-86.2309156"/>
+ <node id="1369704931" visible="true" version="1" changeset="8795146" timestamp="2011-07-22T07:28:53Z" user="Neverwhere" uid="221878" lat="39.7881658" lon="-86.2328519"/>
+ <node id="1369882337" visible="true" version="1" changeset="8796749" timestamp="2011-07-22T11:38:27Z" user="Neverwhere" uid="221878" lat="39.7902162" lon="-86.2303357"/>
+ <node id="1369882385" visible="true" version="1" changeset="8796749" timestamp="2011-07-22T11:38:29Z" user="Neverwhere" uid="221878" lat="39.7899811" lon="-86.2303816"/>
+ <node id="5622912446" visible="true" version="1" changeset="59027962" timestamp="2018-05-16T19:00:46Z" user="SSR_317" uid="7960635" lat="39.7886899" lon="-86.2314109"/>
+ <node id="5622912447" visible="true" version="1" changeset="59027962" timestamp="2018-05-16T19:00:46Z" user="SSR_317" uid="7960635" lat="39.7886008" lon="-86.2315535"/>
+ <node id="5622912448" visible="true" version="1" changeset="59027962" timestamp="2018-05-16T19:00:46Z" user="SSR_317" uid="7960635" lat="39.7887841" lon="-86.2312791"/>
+ <way id="588780334" visible="true" version="3" changeset="80277049" timestamp="2020-01-29T20:00:07Z" user="svance92" uid="401490">
+  <nd ref="654509425"/>
+  <nd ref="1369704931"/>
+  <nd ref="654509426"/>
+  <nd ref="1369704924"/>
+  <nd ref="654509427"/>
+  <nd ref="1369704925"/>
+  <nd ref="654509429"/>
+  <nd ref="5622912447"/>
+  <nd ref="5622912446"/>
+  <nd ref="5622912448"/>
+  <nd ref="654509077"/>
+  <nd ref="1369704929"/>
+  <nd ref="654509079"/>
+  <nd ref="1369704926"/>
+  <nd ref="654509082"/>
+  <nd ref="654509084"/>
+  <nd ref="1369882385"/>
+  <nd ref="1369704922"/>
+  <nd ref="1369882337"/>
+  <nd ref="654509086"/>
+  <nd ref="1369704920"/>
+  <tag k="banking" v="9° 12'"/>
+  <tag k="description" v="IMS Oval - Turn 2"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Indianapolis Motor Speedway - Turn 2"/>
+  <tag k="note" v="Surface is asphalt over brick"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="start_date" v="1909"/>
+  <tag k="wikipedia" v="en:Indianapolis 500"/>
+ </way>
+</osm>

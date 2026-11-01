@@ -1,0 +1,83 @@
+# Indianapolis Motor Speedway (oval), 4023 m, anticlockwise oval.
+# Built for the IndyCar / NASCAR calendars (events link it with "track"): series "circuit"
+# keeps it out of every series list on its own.
+#
+#   .venv/bin/python tools/track/build_track.py indianapolis_oval --plot
+
+id = "indianapolis_oval"
+series = "circuit"
+name = "Indianapolis Oval"
+grand_prix = "Oval · Speedway"
+country = "United States"
+country_code = "US"
+city = "Speedway"
+length_m = 4023
+turns = 4
+full_name = "Indianapolis Motor Speedway (oval)"
+
+[osm]
+ways = [51308226, 588780333, 588780334, 588780335, 588780332, 588780343, 588780345, 588780347, 588780351, 588780349]
+length_tolerance = 0.03
+
+[layout]
+direction = "anticlockwise"
+finish = [39.793157, -86.238956]
+
+[elevation]
+dataset = "terrarium"
+
+[road]
+# Real banking 9 deg 12 min (0.161 rad) in the four turns, flat straights and short chutes.
+# Widths: 50 ft (15.2 m) on the straights, 60 ft (18.3 m) in the turns. Blends of 50 m (twist
+# rule needs >= 1.5 x 0.161 / 0.012 = 20 m); the 200 m chutes stay flat in the middle.
+max_bank = 0.17
+base_width = 15.2
+grid_width = 15.2
+
+[[road.override]]           # Turn 1, 9.2 deg, 18 m
+s = [300.0, 690.0]
+bank = -0.161
+width = 18.0
+blend = 50.0
+
+[[road.override]]           # Turn 2, 9.2 deg, 18 m
+s = [920.0, 1320.0]
+bank = -0.161
+width = 18.0
+blend = 50.0
+
+[[road.override]]           # Turn 3, 9.2 deg, 18 m
+s = [2320.0, 2710.0]
+bank = -0.161
+width = 18.0
+blend = 50.0
+
+[[road.override]]           # Turn 4, 9.2 deg, 18 m
+s = [2930.0, 3320.0]
+bank = -0.161
+width = 18.0
+blend = 50.0
+
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 490.0
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 1110.0
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "left"
+s = 2510.0
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 3120.0

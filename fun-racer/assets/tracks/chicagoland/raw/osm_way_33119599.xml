@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (4022668 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="373885194" visible="true" version="7" changeset="485405" timestamp="2009-04-13T12:32:54Z" user="nickvet419" uid="18480" lat="41.4722524" lon="-88.0588680"/>
+ <node id="373885196" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:52Z" user="nickvet419" uid="18480" lat="41.4718150" lon="-88.0579325"/>
+ <node id="373885198" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:52Z" user="nickvet419" uid="18480" lat="41.4711398" lon="-88.0560184"/>
+ <node id="373885199" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:52Z" user="nickvet419" uid="18480" lat="41.4710047" lon="-88.0551344"/>
+ <node id="373885201" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:52Z" user="nickvet419" uid="18480" lat="41.4710690" lon="-88.0542761"/>
+ <node id="373885203" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:52Z" user="nickvet419" uid="18480" lat="41.4713005" lon="-88.0535208"/>
+ <node id="373885204" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:52Z" user="nickvet419" uid="18480" lat="41.4717314" lon="-88.0528599"/>
+ <node id="373885207" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:52Z" user="nickvet419" uid="18480" lat="41.4722717" lon="-88.0524393"/>
+ <node id="373885208" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:53Z" user="nickvet419" uid="18480" lat="41.4729148" lon="-88.0522161"/>
+ <node id="373885209" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:53Z" user="nickvet419" uid="18480" lat="41.4735707" lon="-88.0522676"/>
+ <node id="373885212" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:53Z" user="nickvet419" uid="18480" lat="41.4744325" lon="-88.0526882"/>
+ <node id="373885213" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:53Z" user="nickvet419" uid="18480" lat="41.4754292" lon="-88.0535036"/>
+ <node id="373885216" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:53Z" user="nickvet419" uid="18480" lat="41.4765546" lon="-88.0545421"/>
+ <node id="373885217" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:53Z" user="nickvet419" uid="18480" lat="41.4772813" lon="-88.0553404"/>
+ <node id="373885218" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:53Z" user="nickvet419" uid="18480" lat="41.4779308" lon="-88.0561128"/>
+ <node id="373885219" visible="true" version="5" changeset="13585028" timestamp="2012-10-21T19:50:23Z" user="robgeb" uid="336460" lat="41.4783754" lon="-88.0569130"/>
+ <node id="373885221" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:53Z" user="nickvet419" uid="18480" lat="41.4786317" lon="-88.0578380"/>
+ <node id="373885223" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:53Z" user="nickvet419" uid="18480" lat="41.4786703" lon="-88.0586792"/>
+ <node id="373885225" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:53Z" user="nickvet419" uid="18480" lat="41.4785224" lon="-88.0594002"/>
+ <node id="373885228" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:53Z" user="nickvet419" uid="18480" lat="41.4782587" lon="-88.0600353"/>
+ <node id="373885230" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:53Z" user="nickvet419" uid="18480" lat="41.4778407" lon="-88.0606275"/>
+ <node id="373885232" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:54Z" user="nickvet419" uid="18480" lat="41.4772041" lon="-88.0610481"/>
+ <node id="373885233" visible="true" version="5" changeset="485405" timestamp="2009-04-13T12:32:54Z" user="nickvet419" uid="18480" lat="41.4766125" lon="-88.0611683"/>
+ <node id="373885235" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:54Z" user="nickvet419" uid="18480" lat="41.4749919" lon="-88.0609451"/>
+ <node id="373885238" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:54Z" user="nickvet419" uid="18480" lat="41.4742588" lon="-88.0606962"/>
+ <node id="373885240" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:54Z" user="nickvet419" uid="18480" lat="41.4735643" lon="-88.0603100"/>
+ <node id="373885242" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:54Z" user="nickvet419" uid="18480" lat="41.4728633" lon="-88.0596577"/>
+ <node id="373885403" visible="true" version="4" changeset="485405" timestamp="2009-04-13T12:32:52Z" user="nickvet419" uid="18480" lat="41.4710844" lon="-88.0556557"/>
+ <node id="373885886" visible="true" version="3" changeset="485405" timestamp="2009-04-13T12:32:53Z" user="nickvet419" uid="18480" lat="41.4786423" lon="-88.0580689"/>
+ <node id="373885947" visible="true" version="2" changeset="485405" timestamp="2009-04-13T12:32:53Z" user="nickvet419" uid="18480" lat="41.4745406" lon="-88.0527766"/>
+ <node id="1977034020" visible="true" version="1" changeset="13585028" timestamp="2012-10-21T19:50:23Z" user="robgeb" uid="336460" lat="41.4746813" lon="-88.0528917"/>
+ <way id="33119599" visible="true" version="8" changeset="113575892" timestamp="2021-11-09T17:39:24Z" user="Zol87" uid="1237170">
+  <nd ref="373885194"/>
+  <nd ref="373885196"/>
+  <nd ref="373885198"/>
+  <nd ref="373885403"/>
+  <nd ref="373885199"/>
+  <nd ref="373885201"/>
+  <nd ref="373885203"/>
+  <nd ref="373885204"/>
+  <nd ref="373885207"/>
+  <nd ref="373885208"/>
+  <nd ref="373885209"/>
+  <nd ref="373885212"/>
+  <nd ref="373885947"/>
+  <nd ref="1977034020"/>
+  <nd ref="373885213"/>
+  <nd ref="373885216"/>
+  <nd ref="373885217"/>
+  <nd ref="373885218"/>
+  <nd ref="373885219"/>
+  <nd ref="373885221"/>
+  <nd ref="373885886"/>
+  <nd ref="373885223"/>
+  <nd ref="373885225"/>
+  <nd ref="373885228"/>
+  <nd ref="373885230"/>
+  <nd ref="373885232"/>
+  <nd ref="373885233"/>
+  <nd ref="373885235"/>
+  <nd ref="373885238"/>
+  <nd ref="373885240"/>
+  <nd ref="373885242"/>
+  <nd ref="373885194"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+ </way>
+</osm>

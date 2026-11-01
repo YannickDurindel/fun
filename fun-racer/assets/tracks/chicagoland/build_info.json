@@ -1,0 +1,94 @@
+{
+ "id": "chicagoland",
+ "recipe": "tools/track/tracks/chicagoland.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   33119599
+  ],
+  "raw_length_m": 2471.0,
+  "length_m": 2462.1,
+  "official_length_m": 2414.0,
+  "length_error": 0.01991,
+  "candidates": []
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 4.1,
+  "max_grade": 0.0114,
+  "min_grade": -0.0107,
+  "origin_m": 201.54
+ },
+ "turns": {
+  "official": 4,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Turn 1",
+    "direction": "left",
+    "s_apex": 127.5,
+    "min_radius": 354.8
+   },
+   {
+    "id": "T2",
+    "name": "Turn 2",
+    "direction": "left",
+    "s_apex": 592.2,
+    "min_radius": 209.4
+   },
+   {
+    "id": "T3",
+    "name": "Turn 3",
+    "direction": "left",
+    "s_apex": 1694.3,
+    "min_radius": 200.9
+   },
+   {
+    "id": "T4",
+    "name": "Turn 4",
+    "direction": "left",
+    "s_apex": 2339.5,
+    "min_radius": 370.3
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 127.5,
+    "direction": "left",
+    "angle_deg": 22.6,
+    "kind": "corner",
+    "min_radius": 354.8,
+    "used": true
+   },
+   {
+    "s_apex": 592.2,
+    "direction": "left",
+    "angle_deg": 142.7,
+    "kind": "corner",
+    "min_radius": 209.4,
+    "used": true
+   },
+   {
+    "s_apex": 1694.3,
+    "direction": "left",
+    "angle_deg": 140.9,
+    "kind": "corner",
+    "min_radius": 200.9,
+    "used": true
+   },
+   {
+    "s_apex": 2339.5,
+    "direction": "left",
+    "angle_deg": 22.3,
+    "kind": "corner",
+    "min_radius": 370.3,
+    "used": true
+   }
+  ]
+ },
+ "warnings": [
+  "the finish line point is 115 m away from the loop; check [layout] finish"
+ ]
+}

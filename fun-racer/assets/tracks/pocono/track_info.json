@@ -1,0 +1,15 @@
+{
+  "id": "pocono",
+  "name": "Pocono, Long Pond",
+  "grand_prix": "Pocono, Long Pond",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Long Pond",
+  "length_m": 4023,
+  "turns": 3,
+  "scene": "res://scenes/tracks/pocono.tscn",
+  "track_json": "res://assets/tracks/pocono/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "circuit"
+}

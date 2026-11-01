@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (3971088 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1235568478" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:45Z" user="KitC" uid="383843" lat="43.0236669" lon="-88.0120274"/>
+ <node id="1235568479" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:45Z" user="KitC" uid="383843" lat="43.0182154" lon="-88.0098816"/>
+ <node id="1235568480" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:45Z" user="KitC" uid="383843" lat="43.0194979" lon="-88.0129393"/>
+ <node id="1235568481" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:45Z" user="KitC" uid="383843" lat="43.0214118" lon="-88.0093183"/>
+ <node id="1235568482" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:45Z" user="KitC" uid="383843" lat="43.0186193" lon="-88.0095544"/>
+ <node id="1235568483" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:45Z" user="KitC" uid="383843" lat="43.0225374" lon="-88.0128428"/>
+ <node id="1235568490" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:46Z" user="KitC" uid="383843" lat="43.0230943" lon="-88.0095007"/>
+ <node id="1235568491" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:46Z" user="KitC" uid="383843" lat="43.0234041" lon="-88.0097368"/>
+ <node id="1235568492" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:46Z" user="KitC" uid="383843" lat="43.0188351" lon="-88.0094524"/>
+ <node id="1235568495" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:46Z" user="KitC" uid="383843" lat="43.0215805" lon="-88.0128910"/>
+ <node id="1235568496" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:46Z" user="KitC" uid="383843" lat="43.0224707" lon="-88.0093237"/>
+ <node id="1235568499" visible="true" version="2" changeset="26945468" timestamp="2014-11-22T06:12:24Z" user="MidwestMapGeek" uid="1743198" lat="43.0235416" lon="-88.0122487"/>
+ <node id="1235568500" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:46Z" user="KitC" uid="383843" lat="43.0180624" lon="-88.0101337"/>
+ <node id="1235568502" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:46Z" user="KitC" uid="383843" lat="43.0183958" lon="-88.0096938"/>
+ <node id="1235568507" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:46Z" user="KitC" uid="383843" lat="43.0233061" lon="-88.0125209"/>
+ <node id="1235568510" visible="true" version="2" changeset="26945468" timestamp="2014-11-22T06:12:24Z" user="MidwestMapGeek" uid="1743198" lat="43.0238885" lon="-88.0110308"/>
+ <node id="1235568512" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:46Z" user="KitC" uid="383843" lat="43.0186860" lon="-88.0127408"/>
+ <node id="1235568513" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:46Z" user="KitC" uid="383843" lat="43.0230512" lon="-88.0127033"/>
+ <node id="1235568514" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:46Z" user="KitC" uid="383843" lat="43.0227609" lon="-88.0093827"/>
+ <node id="1235568515" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:46Z" user="KitC" uid="383843" lat="43.0228276" lon="-88.0127891"/>
+ <node id="1235568516" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:46Z" user="KitC" uid="383843" lat="43.0184585" lon="-88.0125960"/>
+ <node id="1235568521" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:46Z" user="KitC" uid="383843" lat="43.0190547" lon="-88.0128749"/>
+ <node id="1235568524" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:46Z" user="KitC" uid="383843" lat="43.0182211" lon="-88.0123358"/>
+ <node id="1235568525" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:47Z" user="KitC" uid="383843" lat="43.0193135" lon="-88.0093612"/>
+ <node id="1235568527" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:47Z" user="KitC" uid="383843" lat="43.0178741" lon="-88.0107077"/>
+ <node id="1235568529" visible="true" version="2" changeset="26945468" timestamp="2014-11-22T06:12:24Z" user="MidwestMapGeek" uid="1743198" lat="43.0238654" lon="-88.0113788"/>
+ <node id="1235568530" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:47Z" user="KitC" uid="383843" lat="43.0190665" lon="-88.0093827"/>
+ <node id="1235568532" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:47Z" user="KitC" uid="383843" lat="43.0178545" lon="-88.0112388"/>
+ <node id="1235568533" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:47Z" user="KitC" uid="383843" lat="43.0178506" lon="-88.0109813"/>
+ <node id="1235568540" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:47Z" user="KitC" uid="383843" lat="43.0237294" lon="-88.0102678"/>
+ <node id="1235568541" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:47Z" user="KitC" uid="383843" lat="43.0179447" lon="-88.0117591"/>
+ <node id="1235568542" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:47Z" user="KitC" uid="383843" lat="43.0235924" lon="-88.0099728"/>
+ <node id="1235568543" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:47Z" user="KitC" uid="383843" lat="43.0179487" lon="-88.0104234"/>
+ <node id="1235568544" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:47Z" user="KitC" uid="383843" lat="43.0238157" lon="-88.0116787"/>
+ <node id="1235568545" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:47Z" user="KitC" uid="383843" lat="43.0180271" lon="-88.0120059"/>
+ <node id="1235568546" visible="true" version="1" changeset="7791482" timestamp="2011-04-07T06:24:47Z" user="KitC" uid="383843" lat="43.0178781" lon="-88.0114856"/>
+ <node id="3199568279" visible="true" version="1" changeset="26945468" timestamp="2014-11-22T06:12:24Z" user="MidwestMapGeek" uid="1743198" lat="43.0237440" lon="-88.0118691"/>
+ <node id="3199568280" visible="true" version="1" changeset="26945468" timestamp="2014-11-22T06:12:24Z" user="MidwestMapGeek" uid="1743198" lat="43.0238538" lon="-88.0115132"/>
+ <node id="3199568281" visible="true" version="1" changeset="26945468" timestamp="2014-11-22T06:12:24Z" user="MidwestMapGeek" uid="1743198" lat="43.0238885" lon="-88.0111811"/>
+ <node id="3199568282" visible="true" version="1" changeset="26945468" timestamp="2014-11-22T06:12:24Z" user="MidwestMapGeek" uid="1743198" lat="43.0238654" lon="-88.0108094"/>
+ <node id="3199568283" visible="true" version="1" changeset="26945468" timestamp="2014-11-22T06:12:24Z" user="MidwestMapGeek" uid="1743198" lat="43.0238196" lon="-88.0105682"/>
+ <node id="3199568284" visible="true" version="1" changeset="26945468" timestamp="2014-11-22T06:12:24Z" user="MidwestMapGeek" uid="1743198" lat="43.0236457" lon="-88.0100818"/>
+ <node id="3199568285" visible="true" version="1" changeset="26945468" timestamp="2014-11-22T06:12:24Z" user="MidwestMapGeek" uid="1743198" lat="43.0235011" lon="-88.0098524"/>
+ <node id="3199568286" visible="true" version="1" changeset="26945468" timestamp="2014-11-22T06:12:24Z" user="MidwestMapGeek" uid="1743198" lat="43.0232525" lon="-88.0095915"/>
+ <node id="3199568287" visible="true" version="1" changeset="26945468" timestamp="2014-11-22T06:12:24Z" user="MidwestMapGeek" uid="1743198" lat="43.0234202" lon="-88.0124227"/>
+ <node id="3199568288" visible="true" version="1" changeset="26945468" timestamp="2014-11-22T06:12:24Z" user="MidwestMapGeek" uid="1743198" lat="43.0231774" lon="-88.0126284"/>
+ <node id="3199568289" visible="true" version="1" changeset="26945468" timestamp="2014-11-22T06:12:24Z" user="MidwestMapGeek" uid="1743198" lat="43.0226570" lon="-88.0128340"/>
+ <node id="3903602041" visible="true" version="1" changeset="36095145" timestamp="2015-12-21T21:14:06Z" user="Skybunny" uid="1751737" lat="43.0237857" lon="-88.0117585"/>
+ <node id="3903609391" visible="true" version="1" changeset="36095145" timestamp="2015-12-21T21:14:07Z" user="Skybunny" uid="1751737" lat="43.0230740" lon="-88.0126898"/>
+ <node id="3903609419" visible="true" version="1" changeset="36095145" timestamp="2015-12-21T21:14:07Z" user="Skybunny" uid="1751737" lat="43.0219470" lon="-88.0128725"/>
+ <node id="3903609425" visible="true" version="1" changeset="36095145" timestamp="2015-12-21T21:14:08Z" user="Skybunny" uid="1751737" lat="43.0179901" lon="-88.0118950"/>
+ <node id="7952174975" visible="true" version="1" changeset="91659058" timestamp="2020-09-28T17:33:34Z" user="aitcheitch" uid="9938666" lat="43.0192217" lon="-88.0129119"/>
+ <node id="7952174978" visible="true" version="1" changeset="91659058" timestamp="2020-09-28T17:33:34Z" user="aitcheitch" uid="9938666" lat="43.0178510" lon="-88.0110078"/>
+ <node id="11271772054" visible="true" version="1" changeset="142764320" timestamp="2023-10-18T13:27:19Z" user="trackmap" uid="13790961" lat="43.0204397" lon="-88.0129175"/>
+ <way id="107508989" visible="true" version="9" changeset="172092332" timestamp="2025-09-18T04:00:15Z" user="BPTT" uid="12145453">
+  <nd ref="1235568545"/>
+  <nd ref="3903609425"/>
+  <nd ref="1235568541"/>
+  <nd ref="1235568546"/>
+  <nd ref="1235568532"/>
+  <nd ref="7952174978"/>
+  <nd ref="1235568533"/>
+  <nd ref="1235568527"/>
+  <nd ref="1235568543"/>
+  <nd ref="1235568500"/>
+  <nd ref="1235568479"/>
+  <nd ref="1235568502"/>
+  <nd ref="1235568482"/>
+  <nd ref="1235568492"/>
+  <nd ref="1235568530"/>
+  <nd ref="1235568525"/>
+  <nd ref="1235568481"/>
+  <nd ref="1235568496"/>
+  <nd ref="1235568514"/>
+  <nd ref="1235568490"/>
+  <nd ref="3199568286"/>
+  <nd ref="1235568491"/>
+  <nd ref="3199568285"/>
+  <nd ref="1235568542"/>
+  <nd ref="3199568284"/>
+  <nd ref="1235568540"/>
+  <nd ref="3199568283"/>
+  <nd ref="3199568282"/>
+  <nd ref="1235568510"/>
+  <nd ref="3199568281"/>
+  <nd ref="1235568529"/>
+  <nd ref="3199568280"/>
+  <nd ref="1235568544"/>
+  <nd ref="3903602041"/>
+  <nd ref="3199568279"/>
+  <nd ref="1235568478"/>
+  <nd ref="1235568499"/>
+  <nd ref="3199568287"/>
+  <nd ref="1235568507"/>
+  <nd ref="3199568288"/>
+  <nd ref="3903609391"/>
+  <nd ref="1235568513"/>
+  <nd ref="1235568515"/>
+  <nd ref="3199568289"/>
+  <nd ref="1235568483"/>
+  <nd ref="3903609419"/>
+  <nd ref="1235568495"/>
+  <nd ref="11271772054"/>
+  <nd ref="1235568480"/>
+  <nd ref="7952174975"/>
+  <nd ref="1235568521"/>
+  <nd ref="1235568512"/>
+  <nd ref="1235568516"/>
+  <nd ref="1235568524"/>
+  <nd ref="1235568545"/>
+  <tag k="bicycle" v="no"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Milwaukee Mile"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q1284224"/>
+ </way>
+</osm>

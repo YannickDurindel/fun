@@ -1,5 +1,5 @@
 {
- "note": "American open-wheel events: street, road and oval, current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "note": "American open-wheel events: street, road and oval, current season in calendar order. \"track\": the built circuit the event is raced on with this series' car (CarKit \"indycar\"); TrackCatalog makes the event playable when that track is. Events without one are coming soon.",
  "tracks": [
   {
    "id": "aow_st_petersburg",
@@ -19,7 +19,8 @@
    "country_code": "US",
    "city": "Avondale",
    "length_m": 1645,
-   "turns": 4
+   "turns": 4,
+   "track": "phoenix_oval"
   },
   {
    "id": "aow_arlington",
@@ -69,7 +70,8 @@
    "country_code": "US",
    "city": "Speedway",
    "length_m": 4023,
-   "turns": 4
+   "turns": 4,
+   "track": "indianapolis_oval"
   },
   {
    "id": "aow_detroit",
@@ -89,7 +91,8 @@
    "country_code": "US",
    "city": "Madison",
    "length_m": 2012,
-   "turns": 4
+   "turns": 4,
+   "track": "gateway"
   },
   {
    "id": "aow_road_america",
@@ -119,7 +122,8 @@
    "country_code": "US",
    "city": "Lebanon",
    "length_m": 2140,
-   "turns": 4
+   "turns": 4,
+   "track": "nashville_oval"
   },
   {
    "id": "aow_portland",
@@ -159,7 +163,8 @@
    "country_code": "US",
    "city": "West Allis",
    "length_m": 1609,
-   "turns": 4
+   "turns": 4,
+   "track": "milwaukee"
   },
   {
    "id": "aow_laguna_seca",

@@ -1,0 +1,139 @@
+{
+ "id": "pocono",
+ "recipe": "tools/track/tracks/pocono.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   109767460
+  ],
+  "raw_length_m": 4062.7,
+  "length_m": 4063.6,
+  "official_length_m": 4023.0,
+  "length_error": 0.01009,
+  "candidates": []
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 5.88,
+  "max_grade": 0.0094,
+  "min_grade": -0.0097,
+  "origin_m": 568.41
+ },
+ "turns": {
+  "official": 3,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Pocono Raceway",
+    "direction": "left",
+    "s_apex": 797.9,
+    "min_radius": 121.5
+   },
+   {
+    "id": "T2",
+    "name": "Pocono Raceway",
+    "direction": "left",
+    "s_apex": 896.9,
+    "min_radius": 141.3
+   },
+   {
+    "id": "T3",
+    "name": "Pocono Raceway",
+    "direction": "left",
+    "s_apex": 1126.5,
+    "min_radius": 141.1
+   },
+   {
+    "id": "T4",
+    "name": "Pocono Raceway",
+    "direction": "left",
+    "s_apex": 2298.6,
+    "min_radius": 164.6
+   },
+   {
+    "id": "T5",
+    "name": "Pocono Raceway",
+    "direction": "left",
+    "s_apex": 3185.5,
+    "min_radius": 158.6
+   },
+   {
+    "id": "T6",
+    "name": "Pocono Raceway",
+    "direction": "left",
+    "s_apex": 3439.0,
+    "min_radius": 138.4
+   },
+   {
+    "id": "T7",
+    "name": "Pocono Raceway",
+    "direction": "left",
+    "s_apex": 3506.3,
+    "min_radius": 133.2
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 797.9,
+    "direction": "left",
+    "angle_deg": 44.6,
+    "kind": "corner",
+    "min_radius": 121.5,
+    "used": true
+   },
+   {
+    "s_apex": 896.9,
+    "direction": "left",
+    "angle_deg": 25.2,
+    "kind": "corner",
+    "min_radius": 141.3,
+    "used": true
+   },
+   {
+    "s_apex": 1126.5,
+    "direction": "left",
+    "angle_deg": 74.2,
+    "kind": "corner",
+    "min_radius": 141.1,
+    "used": true
+   },
+   {
+    "s_apex": 2298.6,
+    "direction": "left",
+    "angle_deg": 79.9,
+    "kind": "corner",
+    "min_radius": 164.6,
+    "used": true
+   },
+   {
+    "s_apex": 3185.5,
+    "direction": "left",
+    "angle_deg": 48.7,
+    "kind": "corner",
+    "min_radius": 158.6,
+    "used": true
+   },
+   {
+    "s_apex": 3439.0,
+    "direction": "left",
+    "angle_deg": 58.7,
+    "kind": "corner",
+    "min_radius": 138.4,
+    "used": true
+   },
+   {
+    "s_apex": 3506.3,
+    "direction": "left",
+    "angle_deg": 16.3,
+    "kind": "corner",
+    "min_radius": 133.2,
+    "used": true
+   }
+  ]
+ },
+ "warnings": [
+  "the finish line point is 32 m away from the loop; check [layout] finish"
+ ]
+}

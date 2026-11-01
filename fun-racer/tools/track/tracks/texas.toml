@@ -1,0 +1,99 @@
+# Texas Motor Speedway (Fort Worth, USA), 2414 m, anticlockwise oval.
+# Built for the IndyCar / NASCAR calendars (events link it with "track"): series "circuit"
+# keeps it out of every series list on its own.
+#
+#   .venv/bin/python tools/track/build_track.py texas --plot
+
+id = "texas"
+series = "circuit"
+name = "Fort Worth"
+grand_prix = "Fort Worth"
+country = "United States"
+country_code = "US"
+city = "Fort Worth"
+length_m = 2414
+turns = 4
+full_name = "Texas Motor Speedway"
+
+[osm]
+# No relation; the quad-oval is seven ways, in driving order (2383 m in OSM):
+ways = [261968505, 261968502, 489172989, 261968504, 104503520, 261968503, 489172062]
+# The two doglegs of the quad-oval front stretch are drawn as 20-degree bends of about 180 m
+# radius over 75 m: too sharp for a stretch taken flat out (a stock car slid off at 260 km/h).
+# Rounded over +/- 90 m (about 500 m radius).
+[[osm.round]]
+node = 1205719407             # dogleg out of turn 4
+reach_m = 90.0
+[[osm.round]]
+node = 1205719363             # dogleg into turn 1
+reach_m = 90.0
+
+[layout]
+direction = "anticlockwise"
+# The OSM way has few, unevenly spaced nodes (pairs 15-30 m apart between gaps of 100 m and
+# more), and the spline through them wiggles: on 18-24 deg banking the surface then twists
+# under the car (a stock car got airborne). Smoothed over 35 m, the turns keep their radius.
+plan_sigma_m = 35.0
+# OSM has no start / finish data: beside the middle of the pit area (way 1448242327), at the
+# dogleg of the front stretch (estimate).
+finish = [33.037453, -97.284126]
+
+[elevation]
+dataset = "terrarium"
+
+[road]
+# Real banking (since the 2017 reprofile): 20 degrees (0.349 rad) in turns 1-2, 24 (0.419) in
+# turns 3-4, 5 (0.087) on the straights and the quad-oval front stretch. All left-handers: the right
+# edge is higher (negative bank). The full bank holds to the end of each turn's curve and comes out
+# over 170 m (twist rule: >= 1.5 x 0.33 / 0.012 = 42 m; long because the turns are flat out; with the
+# bank going earlier the stock car slid wide out of turn 4). Width: the racing surface is 80 ft
+# (24 m) wide; built 20 m, the widest the drivers are tested on. s values are read off track.json.
+max_bank = 0.43
+base_width = 20.0
+grid_width = 20.0
+
+[[road.override]]           # back straight, 5 deg
+s = [990.0, 1470.0]
+bank = -0.087
+blend = 40.0
+
+[[road.override]]           # front stretch (quad-oval), 5 deg
+s = [2110.0, 370.0]
+bank = -0.087
+blend = 40.0
+
+[[road.override]]           # turns 1-2, 20 deg
+s = [370.0, 990.0]
+bank = -0.349
+blend = 170.0
+
+[[road.override]]           # turns 3-4, 24 deg
+s = [1470.0, 2110.0]
+bank = -0.419
+blend = 170.0
+
+# Pinned to the official 4 (the detector finds each end of the oval as one corner)
+
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 480.0
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 860.0
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "left"
+s = 1600.0
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 1960.0

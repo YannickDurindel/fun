@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (3907562 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1309498685" visible="true" version="1" changeset="8323946" timestamp="2011-06-02T20:10:53Z" user="Neverwhere" uid="221878" lat="35.3538658" lon="-80.6848303"/>
+ <node id="1309498741" visible="true" version="1" changeset="8323946" timestamp="2011-06-02T20:10:54Z" user="Neverwhere" uid="221878" lat="35.3534944" lon="-80.6851322"/>
+ <node id="1309498744" visible="true" version="1" changeset="8323946" timestamp="2011-06-02T20:10:54Z" user="Neverwhere" uid="221878" lat="35.3537258" lon="-80.6849537"/>
+ <node id="1309498765" visible="true" version="1" changeset="8323946" timestamp="2011-06-02T20:10:54Z" user="Neverwhere" uid="221878" lat="35.3534233" lon="-80.6851767"/>
+ <node id="1309498770" visible="true" version="1" changeset="8323946" timestamp="2011-06-02T20:10:54Z" user="Neverwhere" uid="221878" lat="35.3532555" lon="-80.6852566"/>
+ <node id="1309498801" visible="true" version="4" changeset="119760761" timestamp="2022-04-15T18:01:23Z" user="SRASC" uid="453655" lat="35.3546146" lon="-80.6842098"/>
+ <node id="1309498893" visible="true" version="1" changeset="8323946" timestamp="2011-06-02T20:10:56Z" user="Neverwhere" uid="221878" lat="35.3535902" lon="-80.6850635"/>
+ <node id="1309498913" visible="true" version="2" changeset="33966572" timestamp="2015-09-11T18:56:24Z" user="Luis36995" uid="1829683" lat="35.3548062" lon="-80.6840497"/>
+ <node id="1309498938" visible="true" version="1" changeset="8323946" timestamp="2011-06-02T20:10:57Z" user="Neverwhere" uid="221878" lat="35.3533392" lon="-80.6852215"/>
+ <node id="1309498954" visible="true" version="1" changeset="8323946" timestamp="2011-06-02T20:10:57Z" user="Neverwhere" uid="221878" lat="35.3541524" lon="-80.6845889"/>
+ <node id="1309498955" visible="true" version="1" changeset="8323946" timestamp="2011-06-02T20:10:57Z" user="Neverwhere" uid="221878" lat="35.3535424" lon="-80.6850970"/>
+ <node id="4040735196" visible="true" version="1" changeset="37616066" timestamp="2016-03-04T20:24:06Z" user="Yoshinion" uid="3151684" lat="35.3528733" lon="-80.6853850"/>
+ <node id="6331852926" visible="true" version="1" changeset="68039211" timestamp="2019-03-11T21:31:21Z" user="Yoshinion" uid="3151684" lat="35.3542407" lon="-80.6845112"/>
+ <node id="6331852936" visible="true" version="2" changeset="172304279" timestamp="2025-09-22T16:22:36Z" user="jhaluska80" uid="20446106" lat="35.3531722" lon="-80.6852843"/>
+ <way id="116034341" visible="true" version="10" changeset="71719984" timestamp="2019-06-28T19:45:57Z" user="Yoshinion" uid="3151684">
+  <nd ref="1309498913"/>
+  <nd ref="1309498801"/>
+  <nd ref="6331852926"/>
+  <nd ref="1309498954"/>
+  <nd ref="1309498685"/>
+  <nd ref="1309498744"/>
+  <nd ref="1309498893"/>
+  <nd ref="1309498955"/>
+  <nd ref="1309498741"/>
+  <nd ref="1309498765"/>
+  <nd ref="1309498938"/>
+  <nd ref="1309498770"/>
+  <nd ref="6331852936"/>
+  <nd ref="4040735196"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Charlotte Motor Speedway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+ </way>
+</osm>

@@ -1,0 +1,64 @@
+{
+ "id": "darlington",
+ "recipe": "tools/track/tracks/darlington.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   104277971
+  ],
+  "raw_length_m": 2105.2,
+  "length_m": 2105.3,
+  "official_length_m": 2198.0,
+  "length_error": -0.04219,
+  "candidates": []
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 2.23,
+  "max_grade": 0.016,
+  "min_grade": -0.0175,
+  "origin_m": 49.81
+ },
+ "turns": {
+  "official": 4,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Darlington Raceway",
+    "direction": "left",
+    "s_apex": 313.1,
+    "min_radius": 104.1
+   },
+   {
+    "id": "T2",
+    "name": "Darlington Raceway",
+    "direction": "left",
+    "s_apex": 1578.1,
+    "min_radius": 126.3
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 313.1,
+    "direction": "left",
+    "angle_deg": 186.0,
+    "kind": "corner",
+    "min_radius": 104.1,
+    "used": true
+   },
+   {
+    "s_apex": 1578.1,
+    "direction": "left",
+    "angle_deg": 171.6,
+    "kind": "corner",
+    "min_radius": 126.3,
+    "used": true
+   }
+  ]
+ },
+ "warnings": [
+  "the OSM loop is -4.2 % off the official length (2105 m vs 2198 m): check that it is the right layout"
+ ]
+}

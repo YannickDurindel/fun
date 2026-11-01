@@ -1,0 +1,197 @@
+{
+ "id": "talladega",
+ "recipe": "tools/track/tracks/talladega.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   426163860,
+   426163859,
+   532106116,
+   8835825
+  ],
+  "raw_length_m": 4313.6,
+  "length_m": 4314.6,
+  "official_length_m": 4281.0,
+  "length_error": 0.00786,
+  "candidates": []
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 5.15,
+  "max_grade": 0.0179,
+  "min_grade": -0.0217,
+  "origin_m": 161.28
+ },
+ "turns": {
+  "official": 4,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Turn 1",
+    "direction": "left",
+    "s_apex": 885.2,
+    "min_radius": 259.1
+   },
+   {
+    "id": "T2",
+    "name": "Turn 2",
+    "direction": "left",
+    "s_apex": 1077.7,
+    "min_radius": 178.3
+   },
+   {
+    "id": "T3",
+    "name": "Turn 3",
+    "direction": "left",
+    "s_apex": 1224.6,
+    "min_radius": 177.1
+   },
+   {
+    "id": "T4",
+    "name": "Turn 4",
+    "direction": "left",
+    "s_apex": 1349.6,
+    "min_radius": 146.0
+   },
+   {
+    "id": "T5",
+    "name": "Turn 5",
+    "direction": "left",
+    "s_apex": 2798.4,
+    "min_radius": 296.7
+   },
+   {
+    "id": "T6",
+    "name": "Turn 6",
+    "direction": "left",
+    "s_apex": 2858.0,
+    "min_radius": 228.0
+   },
+   {
+    "id": "T7",
+    "name": "Turn 7",
+    "direction": "left",
+    "s_apex": 2998.9,
+    "min_radius": 185.3
+   },
+   {
+    "id": "T8",
+    "name": "Turn 8",
+    "direction": "left",
+    "s_apex": 3147.7,
+    "min_radius": 168.2
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 89.3,
+    "direction": "left",
+    "angle_deg": 9.9,
+    "kind": "kink",
+    "min_radius": 348.7,
+    "used": false
+   },
+   {
+    "s_apex": 722.4,
+    "direction": "left",
+    "angle_deg": 9.3,
+    "kind": "kink",
+    "min_radius": 208.0,
+    "used": false
+   },
+   {
+    "s_apex": 885.2,
+    "direction": "left",
+    "angle_deg": 29.4,
+    "kind": "corner",
+    "min_radius": 259.1,
+    "used": true
+   },
+   {
+    "s_apex": 1077.7,
+    "direction": "left",
+    "angle_deg": 29.7,
+    "kind": "corner",
+    "min_radius": 178.3,
+    "used": true
+   },
+   {
+    "s_apex": 1224.6,
+    "direction": "left",
+    "angle_deg": 32.5,
+    "kind": "corner",
+    "min_radius": 177.1,
+    "used": true
+   },
+   {
+    "s_apex": 1349.6,
+    "direction": "left",
+    "angle_deg": 31.2,
+    "kind": "corner",
+    "min_radius": 146.0,
+    "used": true
+   },
+   {
+    "s_apex": 1548.1,
+    "direction": "left",
+    "angle_deg": 13.7,
+    "kind": "kink",
+    "min_radius": 293.5,
+    "used": false
+   },
+   {
+    "s_apex": 2798.4,
+    "direction": "left",
+    "angle_deg": 21.8,
+    "kind": "corner",
+    "min_radius": 296.7,
+    "used": true
+   },
+   {
+    "s_apex": 2858.0,
+    "direction": "left",
+    "angle_deg": 24.9,
+    "kind": "corner",
+    "min_radius": 228.0,
+    "used": true
+   },
+   {
+    "s_apex": 2998.9,
+    "direction": "left",
+    "angle_deg": 21.6,
+    "kind": "corner",
+    "min_radius": 185.3,
+    "used": true
+   },
+   {
+    "s_apex": 3147.7,
+    "direction": "left",
+    "angle_deg": 80.8,
+    "kind": "corner",
+    "min_radius": 168.2,
+    "used": true
+   },
+   {
+    "s_apex": 4104.4,
+    "direction": "left",
+    "angle_deg": 11.1,
+    "kind": "kink",
+    "min_radius": 459.5,
+    "used": false
+   },
+   {
+    "s_apex": 4271.1,
+    "direction": "left",
+    "angle_deg": 6.2,
+    "kind": "kink",
+    "min_radius": 175.3,
+    "used": false
+   }
+  ]
+ },
+ "warnings": [
+  "the finish line point is 81 m away from the loop; check [layout] finish"
+ ]
+}

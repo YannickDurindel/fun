@@ -1,0 +1,76 @@
+# Las Vegas, Nevada, USA: 1.5-mile tri-oval (2414 m), 4 turns, anticlockwise.
+# Built for the stock car / IndyCar calendars (their events link it with "track"): series
+# "circuit" keeps it out of every series list on its own.
+#
+#   .venv/bin/python tools/track/build_track.py las_vegas_oval --plot
+
+id = "las_vegas_oval"
+series = "circuit"
+name = "Las Vegas"
+grand_prix = "Las Vegas"
+country = "United States"
+country_code = "US"
+city = "Las Vegas"
+length_m = 2414
+turns = 4
+full_name = "Las Vegas 1.5-mile oval"
+
+[osm]
+relation = 21201768   # type=circuit, with the start-finish node and the pit lane
+
+[layout]
+direction = "anticlockwise"
+# Finish line: the relation's start-finish node 14079583332 (it lies beside the racing line, so it is given here and projected onto the lap).
+finish = [36.2744962, -115.0126275]
+
+[elevation]
+dataset = "terrarium"
+# An oval's racing surface is close to level all round; the DEM's few metres of tilt and noise
+# (stands, the infield, the banking itself) would become a slope across the oval, so the
+# profile is smoothed over most of a lap.
+smooth_sigma_m = 400.0
+
+[road]
+# Real banking (Nevada): turns 20 degrees; tri-oval front stretch 9, backstretch 3 degrees. All left-handers, so
+# the right (outer) edge is higher: negative bank. A full table (bank_keys, smoothstep between
+# keys): the full turn angle from just inside the turn entry to just before its exit, the straight's
+# own angle at the middle of each straight, so the road rolls over half a straight
+# (steepest roll 0.0017 rad/m, limit 0.012). s values from the centreline (track.json).
+max_bank = 0.359
+# Width: 18 m.
+base_width = 18.0
+grid_width = 18.0
+bank_keys = [
+  [1.9, -0.1571, "front stretch"],
+  [416.5, -0.3491, "turn 1 entry"],
+  [926.7, -0.3491, "turn 2 exit"],
+  [1193.4, -0.0524, "backstretch"],
+  [1462.5, -0.3491, "turn 3 entry"],
+  [1998.9, -0.3491, "turn 4 exit"],
+]
+
+# Pinned: an oval has 4 turns (the two halves of each end), whatever the tri-oval kink does.
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 550.2
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 793.1
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "left"
+s = 1603.0
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 1858.4
+
