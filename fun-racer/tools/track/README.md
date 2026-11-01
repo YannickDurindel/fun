@@ -75,6 +75,9 @@ relation = 9291096
 # start_offset_m = 0            # start line this far after the finish line
 # sectors = [1650.0, 3300.0]    # where sectors 2 and 3 begin, metres from the finish line
 # spline = "centripetal"        # "uniform" only for the Red Bull Ring (its original build)
+# plan_sigma_m = 35.0           # plan-view smoothing, m (default 4). Raise it on an oval whose OSM
+                               # nodes are sparse and uneven: the --report warning "the centreline
+                               # wiggles on banked road" says where the banked surface twists
 # [[layout.shift]]              # move a stretch of the centreline sideways (see Size)
 # s = [1200.0, 1500.0]          #   from, to (may wrap around the finish line)
 # lateral_m = 2.5               #   metres, + = to the right in race direction

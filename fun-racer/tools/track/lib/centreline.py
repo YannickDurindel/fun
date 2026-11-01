@@ -428,7 +428,7 @@ def build(recipe, fetcher, log=print):
 
     # ---- plan view -----------------------------------------------------------------------
     samples, sample_names, step, raw_length = geom.catmull_resample(pts, names, STEP, recipe.spline)
-    samples = geom.smooth_loop_xy(samples, sigma=PLAN_SIGMA / step)
+    samples = geom.smooth_loop_xy(samples, sigma=(recipe.plan_sigma_m or PLAN_SIGMA) / step)
     samples, step, osm_length = geom.respace(samples, STEP)
     official = float(recipe.length_m)
     shifted = 0.0

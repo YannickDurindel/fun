@@ -56,7 +56,7 @@ SECTION_KEYS = {
                      "tree_species", "building", "exclude", "add", "roof"},
     "osm": {"relation", "ways", "bbox", "exclude_ways", "extra_ways", "avoid_nodes", "avoid_names",
             "ignore_oneway", "length_tolerance", "round"},
-    "layout": {"direction", "finish", "start", "start_offset_m", "sectors", "spline", "shift"},
+    "layout": {"direction", "finish", "start", "start_offset_m", "sectors", "spline", "plan_sigma_m", "shift"},
     "elevation": {"dataset", "smooth_sigma_m", "override", "key", "key_join_m", "smooth"},
     "road": {"base_width", "grid_width", "crossfall", "camber_gain", "bank_keys", "width_keys",
              "override", "track_json_widths", "retaining_walls", "pair", "max_bank", "shoulder",
@@ -108,6 +108,7 @@ class Recipe:
     start_offset_m: float | None = None
     sectors: list | None = None
     spline: str = "centripetal"
+    plan_sigma_m: float | None = None   # [layout] plan_sigma_m: plan-view smoothing (default centreline.PLAN_SIGMA)
     # [elevation]
     dem_dataset: str | None = None
     elev_sigma_m: float = 45.0
@@ -234,6 +235,7 @@ def from_dict(track_id, data, overrides=None, calendar_path=CALENDAR, source="")
         start=_latlon("layout.start", lay.get("start")),
         start_offset_m=lay.get("start_offset_m"), sectors=lay.get("sectors"),
         spline=lay.get("spline", "centripetal"),
+        plan_sigma_m=lay.get("plan_sigma_m"),
         dem_dataset=elev.get("dataset"), elev_sigma_m=float(elev.get("smooth_sigma_m", 45.0)),
         elev_overrides=[dict(o) for o in elev.get("override", [])],
         elev_keys=_tables("elevation.key", elev.get("key", [])),
@@ -402,6 +404,9 @@ def validate(r):
         raise BuildError("recipe: layout.direction must be 'clockwise' or 'anticlockwise'")
     if r.spline not in ("centripetal", "uniform"):
         raise BuildError("recipe: layout.spline must be 'centripetal' or 'uniform'")
+    if r.plan_sigma_m is not None and (not isinstance(r.plan_sigma_m, (int, float))
+                                       or isinstance(r.plan_sigma_m, bool) or not 0.0 < r.plan_sigma_m <= 60.0):
+        raise BuildError("recipe: layout.plan_sigma_m must be a distance in metres (above 0, at most 60)")
     if not isinstance(r.osm_round, list) or not all(isinstance(o, dict) for o in r.osm_round):
         raise BuildError("recipe: osm.round must be written as [[osm.round]] tables")
     for o in r.osm_round:

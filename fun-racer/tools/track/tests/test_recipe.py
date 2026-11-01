@@ -17,6 +17,9 @@ class RecipeTest(unittest.TestCase):
         self.assertEqual(r.turns, 10)
         self.assertEqual(r.direction, "clockwise")
         self.assertEqual(r.spline, "uniform")
+        self.assertIsNone(r.plan_sigma_m)          # the default plan-view smoothing
+        self.assertEqual(recipe.from_dict("imola", {"osm": {"relation": 1},
+                                                    "layout": {"plan_sigma_m": 35.0}}).plan_sigma_m, 35.0)
         self.assertEqual(r.sectors, [2352.2, 3219.5])
         self.assertTrue(r.turns_pinned)
         self.assertEqual([t["id"] for t in r.turn_table], [f"T{i}" for i in range(1, 11)])
@@ -93,6 +96,8 @@ class RecipeTest(unittest.TestCase):
                 ({"layout": {"finish": [200.0, 3.0]}}, "lat, lon"),
                 ({"layout": {"sectors": [3000.0, 1000.0]}}, "sectors"),
                 ({"layout": {"spline": "bezier"}}, "spline"),
+                ({"layout": {"plan_sigma_m": 0.0}}, "plan_sigma_m"),
+                ({"layout": {"plan_sigma_m": "wide"}}, "plan_sigma_m"),
                 ({"osm": {"bbox": [2.0, 1.0, 1.0, 2.0]}}, "bbox"),
                 ({"turn": [{"name": "x"}]}, "needs an id"),
                 ({"turn": [{"id": "T1", "s": 10.0, "direction": "left"}, {"id": "T2"}]}, "either every"),

@@ -164,7 +164,11 @@ def verge_extent(P: np.ndarray, edge: np.ndarray, out_dir: np.ndarray, hw: np.nd
         q = edge[sl, None, :][..., [0, 2]] + out_dir[sl, None, :][..., [0, 2]] * ds[None, :, None]
         d2 = ((q[:, :, None, :] - cxz[None, None, :, :]) ** 2).sum(-1)   # (b, nd, n)
         nearest = np.sqrt(d2.min(-1))
-        own = hw[sl, None] + ds[None, :]
+        # The edge's plan distance from its own centreline point: on a steeply banked road
+        # (cos(bank) * hw) it is well short of hw, and measuring with hw rejected the whole
+        # verge of an oval's banked turns. Unbanked roads keep hw (bit for bit as before).
+        plan = np.linalg.norm(edge[sl][:, [0, 2]] - cxz[sl], axis=1)
+        own = np.where(plan < hw[sl] - 0.01, plan, hw[sl])[:, None] + ds[None, :]
         ok = nearest >= own - (0.6 + 0.03 * own)
         bad = ~ok
         first_bad = np.where(bad.any(1), bad.argmax(1), len(ds))

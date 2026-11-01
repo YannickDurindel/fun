@@ -158,6 +158,11 @@ def run(argv=None, log=print):
                 log("plot: the surroundings picture needs matplotlib, skipped")
     for w in binfo.get("warnings", []):
         log(f"WARNING: {w}")
+    if "centreline" in steps or "road" in steps:
+        from lib import report as report_mod
+        wiggle = report_mod.wiggle_warning(report_mod.build(out_dir)["banked_wiggles"])
+        if wiggle:
+            log(f"WARNING: {wiggle}")
     log(f"done in {time.time() - t0:.1f} s ({fetcher.requests} network requests): "
         + ", ".join(f"{k} {v} s" for k, v in timings.items()))
     if args.compare:

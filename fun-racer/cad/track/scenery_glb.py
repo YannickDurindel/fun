@@ -435,10 +435,11 @@ def stand_axis(ring, toward):
     return max(cands, key=lambda c: float(c @ away))
 
 
-def grandstand(mesh, ring, toward, y_ground, y_base, height, colour, covered=False):
+def grandstand(mesh, ring, toward, y_ground, y_base, height, colour, covered=False, keep_off=None):
     """Stepped seating over a footprint, rising away from ``toward`` (unit vector from the
     stand to the track). ``height`` is the top row above ``y_ground`` (None: from the depth).
-    Returns (rows, top height)."""
+    ``keep_off(points (n, 2))`` -> bool (n,): where nothing may stand (the road), see
+    _row_pieces. Returns (rows, top height)."""
     ring = oriented(clean_ring(ring), True)
     back = stand_axis(ring, toward)
     along = np.array([-back[1], back[0]])
@@ -455,37 +456,91 @@ def grandstand(mesh, ring, toward, y_ground, y_base, height, colour, covered=Fal
     u0 = float((ring @ along).min())
     for k in range(rows):
         lo, hi = t0 + k * step, t0 + (k + 1) * step
-        piece = clip_halfplane(ring, back[0], back[1], -lo)
-        piece = clip_halfplane(piece, -back[0], -back[1], hi)
-        if len(piece) < 3 or abs(signed_area(piece)) < 0.02:
-            continue
-        piece = oriented(piece, True)
-        pts, tri = triangulate(piece)
-        pos = np.stack([pts[:, 0], np.full(len(pts), ys[k]), pts[:, 1]], axis=1)
-        uv = np.stack([pts @ along - u0, pts @ back - t0], axis=1)
-        mesh.tris("stand_seats", pos, np.tile(UP, (len(pts), 1)), uv, colour, tri[:, ::-1])
-        pt = piece @ back
-        for i in range(len(piece)):
-            j = (i + 1) % len(piece)
-            a, b = piece[i], piece[j]
-            on_front = abs(pt[i] - lo) < eps and abs(pt[j] - lo) < eps
-            on_back = abs(pt[i] - hi) < eps and abs(pt[j] - hi) < eps
-            if on_back and k < rows - 1:
-                continue    # the next row's riser stands here
-            if on_front and k > 0:
-                y0, y1, mat, col = ys[k - 1], ys[k], "stand_seats", colour
-            else:
-                y0, y1, mat, col = y_base, ys[k], "stand_structure", structure
-                if covered and k == rows - 1:
-                    y1 = y_ground + top + 4.0   # back and end walls carry the roof
-            quad = [[b[0], y0, b[1]], [a[0], y0, a[1]], [a[0], y1, a[1]], [b[0], y1, b[1]]]
-            d = (b - a) / max(float(np.hypot(*(b - a))), 1e-9)
-            mesh.face(mat, quad, np.array([d[1], 0.0, -d[0]]), col, y_ground)
+        for piece in _row_pieces(ring, back, lo, hi, eps, keep_off):
+            _stand_row(mesh, piece, k, rows, lo, hi, ys, back, along, u0, t0, eps, colour, structure,
+                       y_base, y_ground, top, covered)
     if covered:
         y_roof = y_ground + top + 4.0
         prism(mesh, ring, [], y_roof, y_roof + 0.35, "metal", "metal", structure, structure, y_ground,
               floor=True)
     return rows, top
+
+
+def _inside(pt, ring):
+    """Even-odd test of one point against a ring."""
+    a, b = ring, np.roll(ring, -1, axis=0)
+    cross = (a[:, 1] > pt[1]) != (b[:, 1] > pt[1])
+    with np.errstate(divide="ignore", invalid="ignore"):
+        x = a[:, 0] + (pt[1] - a[:, 1]) * (b[:, 0] - a[:, 0]) / (b[:, 1] - a[:, 1])
+    return bool(np.count_nonzero(cross & (x > pt[0])) % 2)
+
+
+def _row_pieces(ring, back, lo, hi, eps, keep_off=None):
+    """The part of ``ring`` between the lines back . p = lo and = hi. Clipping a curved
+    footprint (a stand along an oval's turn) can cut it in two; Sutherland-Hodgman then joins
+    the parts with an edge along the cut line that runs outside the footprint, and its riser
+    is a wall standing there. Where such an edge crosses ``keep_off`` (the road: a wall across
+    the track), the row is cut from the footprint's triangles instead, one convex piece each.
+    Every other row is built exactly as before."""
+    piece = clip_halfplane(ring, back[0], back[1], -lo)
+    piece = clip_halfplane(piece, -back[0], -back[1], hi)
+    if len(piece) < 3 or abs(signed_area(piece)) < 0.02:
+        return []
+    if keep_off is None:
+        return [oriented(piece, True)]
+    pt = piece @ back
+    joined = False
+    for i in range(len(piece)):
+        j = (i + 1) % len(piece)
+        on_lo = abs(pt[i] - lo) < eps and abs(pt[j] - lo) < eps
+        on_hi = abs(pt[i] - hi) < eps and abs(pt[j] - hi) < eps
+        if not (on_lo or on_hi) or float(np.hypot(*(piece[j] - piece[i]))) <= 0.05:
+            continue
+        # A point just inside the row from the middle of the edge (not on it: a footprint
+        # edge lying on the cut line would make the test ambiguous).
+        probe = 0.5 * (piece[i] + piece[j]) + back * (0.25 * (hi - lo) * (1.0 if on_lo else -1.0))
+        if not _inside(probe, ring):
+            n = max(2, int(np.ceil(float(np.hypot(*(piece[j] - piece[i]))) / 2.0)))
+            along_edge = piece[i] + (piece[j] - piece[i]) * (np.arange(n + 1) / n)[:, None]
+            if np.asarray(keep_off(along_edge)).any():
+                joined = True
+                break
+    if not joined:
+        return [oriented(piece, True)]
+    pts, tri = triangulate(ring)
+    out = []
+    for a, b, c in tri:
+        p = clip_halfplane(pts[[a, b, c]], back[0], back[1], -lo)
+        p = clip_halfplane(p, -back[0], -back[1], hi)
+        if len(p) >= 3 and abs(signed_area(p)) >= 0.02:
+            out.append(oriented(p, True))
+    return out
+
+
+def _stand_row(mesh, piece, k, rows, lo, hi, ys, back, along, u0, t0, eps, colour, structure,
+               y_base, y_ground, top, covered):
+    """Seats, riser and structure walls of one piece of grandstand row ``k``."""
+    pts, tri = triangulate(piece)
+    pos = np.stack([pts[:, 0], np.full(len(pts), ys[k]), pts[:, 1]], axis=1)
+    uv = np.stack([pts @ along - u0, pts @ back - t0], axis=1)
+    mesh.tris("stand_seats", pos, np.tile(UP, (len(pts), 1)), uv, colour, tri[:, ::-1])
+    pt = piece @ back
+    for i in range(len(piece)):
+        j = (i + 1) % len(piece)
+        a, b = piece[i], piece[j]
+        on_front = abs(pt[i] - lo) < eps and abs(pt[j] - lo) < eps
+        on_back = abs(pt[i] - hi) < eps and abs(pt[j] - hi) < eps
+        if on_back and k < rows - 1:
+            continue    # the next row's riser stands here
+        if on_front and k > 0:
+            y0, y1, mat, col = ys[k - 1], ys[k], "stand_seats", colour
+        else:
+            y0, y1, mat, col = y_base, ys[k], "stand_structure", structure
+            if covered and k == rows - 1:
+                y1 = y_ground + top + 4.0   # back and end walls carry the roof
+        quad = [[b[0], y0, b[1]], [a[0], y0, a[1]], [a[0], y1, a[1]], [b[0], y1, b[1]]]
+        d = (b - a) / max(float(np.hypot(*(b - a))), 1e-9)
+        mesh.face(mat, quad, np.array([d[1], 0.0, -d[0]]), col, y_ground)
 
 
 # ----------------------------------------------------------------------------- tunnel shells

@@ -1,6 +1,7 @@
 """build_track.py --report / --report-json: the size report of a built track (lib/report.py),
 on the committed Red Bull Ring and Baku."""
 import json
+import math
 import os
 import unittest
 
@@ -86,6 +87,26 @@ class ReportTest(unittest.TestCase):
         self.assertEqual(build_track.run(["red_bull_ring", "--report-json"], log=out.append), 0)
         self.assertEqual(json.loads(out[0]), json.loads(json.dumps(report.build(helpers.RBR))))
         self.assertEqual(_listing(helpers.RBR), before)
+
+    def test_banked_wiggles(self):
+        step, n = 2.0, 400
+        ramp = [min(0.004, 0.004 * i / 100.0) for i in range(n)]       # a steady entry: no warning
+        banked = [0.3] * n
+        self.assertEqual(report.banked_wiggles(ramp, banked, step), [])
+        wiggle = list(ramp)
+        for i in range(150, 165):                                       # back and forth in 30 m
+            wiggle[i] -= 0.006 * math.sin(math.pi * (i - 150) / 15.0)
+        found = report.banked_wiggles(wiggle, banked, step)
+        self.assertEqual(len(found), 1)
+        self.assertLess(found[0]["s"][0], 300.0)
+        self.assertGreater(found[0]["s"][1], 330.0)
+        self.assertAlmostEqual(found[0]["swing"], 0.006, delta=0.0015)
+        self.assertEqual(report.banked_wiggles(wiggle, [0.05] * n, step), [])   # flat road: no matter
+        text = report.wiggle_warning(found)
+        self.assertIn("plan_sigma_m", text)
+        self.assertIsNone(report.wiggle_warning([]))
+        # The Red Bull Ring has no banking worth the name: no warning.
+        self.assertEqual(report.build(helpers.RBR)["banked_wiggles"], [])
 
     def test_a_missing_track_is_an_error(self):
         with self.assertRaises(BuildError):
