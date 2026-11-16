@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1307 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1256623425" visible="true" version="2" changeset="175961382" timestamp="2025-12-15T13:49:40Z" user="Matthew Grund" uid="1239330" lat="27.4558343" lon="-81.3542487"/>
+ <node id="1256623428" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:05Z" user="Neverwhere" uid="221878" lat="27.4565048" lon="-81.3534916"/>
+ <node id="1256623631" visible="true" version="2" changeset="175961382" timestamp="2025-12-15T13:49:40Z" user="Matthew Grund" uid="1239330" lat="27.4553381" lon="-81.3548285"/>
+ <node id="1256623667" visible="true" version="2" changeset="175961382" timestamp="2025-12-15T13:49:40Z" user="Matthew Grund" uid="1239330" lat="27.4554411" lon="-81.3546873"/>
+ <node id="1256623727" visible="true" version="2" changeset="175961382" timestamp="2025-12-15T13:49:40Z" user="Matthew Grund" uid="1239330" lat="27.4551165" lon="-81.3552775"/>
+ <node id="1256623730" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:12Z" user="Neverwhere" uid="221878" lat="27.4570927" lon="-81.3528291"/>
+ <node id="1256623742" visible="true" version="2" changeset="175961382" timestamp="2025-12-15T13:49:40Z" user="Matthew Grund" uid="1239330" lat="27.4552689" lon="-81.3549428"/>
+ <node id="13378221180" visible="true" version="1" changeset="175961382" timestamp="2025-12-15T13:49:40Z" user="Matthew Grund" uid="1239330" lat="27.4551609" lon="-81.3551654"/>
+ <node id="13378221181" visible="true" version="1" changeset="175961382" timestamp="2025-12-15T13:49:40Z" user="Matthew Grund" uid="1239330" lat="27.4552162" lon="-81.3550466"/>
+ <way id="426154258" visible="true" version="7" changeset="175961382" timestamp="2025-12-15T13:49:40Z" user="Matthew Grund" uid="1239330">
+  <nd ref="1256623727"/>
+  <nd ref="13378221180"/>
+  <nd ref="13378221181"/>
+  <nd ref="1256623742"/>
+  <nd ref="1256623631"/>
+  <nd ref="1256623667"/>
+  <nd ref="1256623425"/>
+  <nd ref="1256623428"/>
+  <nd ref="1256623730"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

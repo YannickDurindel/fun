@@ -1,0 +1,15 @@
+{
+  "id": "iowa",
+  "name": "Newton",
+  "grand_prix": "Newton",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Newton",
+  "length_m": 1408,
+  "turns": 4,
+  "scene": "res://scenes/tracks/iowa.tscn",
+  "track_json": "res://assets/tracks/iowa/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "circuit"
+}

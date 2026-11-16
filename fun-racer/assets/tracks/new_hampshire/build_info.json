@@ -1,0 +1,77 @@
+{
+ "id": "new_hampshire",
+ "recipe": "tools/track/tracks/new_hampshire.toml",
+ "osm": {
+  "relation": 10625001,
+  "loop_ways": [
+   766389943,
+   766389942,
+   60096117,
+   766389945,
+   766389944
+  ],
+  "raw_length_m": 1669.3,
+  "length_m": 1669.3,
+  "official_length_m": 1703.0,
+  "length_error": -0.01978,
+  "candidates": [
+   {
+    "length_m": 1669.3,
+    "ways": [
+     766389943,
+     766389942,
+     60096117,
+     766389945,
+     766389944
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 2.31,
+  "max_grade": 0.0042,
+  "min_grade": -0.0043,
+  "origin_m": 149.01
+ },
+ "turns": {
+  "official": 4,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "New Hampshire Motor Speedway",
+    "direction": "left",
+    "s_apex": 316.1,
+    "min_radius": 99.8
+   },
+   {
+    "id": "T2",
+    "name": "New Hampshire Motor Speedway",
+    "direction": "left",
+    "s_apex": 1080.9,
+    "min_radius": 103.7
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 316.1,
+    "direction": "left",
+    "angle_deg": 178.1,
+    "kind": "corner",
+    "min_radius": 99.8,
+    "used": true
+   },
+   {
+    "s_apex": 1080.9,
+    "direction": "left",
+    "angle_deg": 182.0,
+    "kind": "corner",
+    "min_radius": 103.7,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

@@ -1,0 +1,12 @@
+{
+  "id": "locked_moto",
+  "series": "moto",
+  "name": "Locked Motorcycle Circuit",
+  "grand_prix": "Test Motorcycle GP",
+  "country": "Nowhere",
+  "country_code": "ZZ",
+  "city": "Testville",
+  "length_m": 6000,
+  "turns": 14,
+  "available": false
+}

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1311 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="368497" visible="true" version="5" changeset="20063607" timestamp="2014-01-18T10:05:28Z" user="Andrés31" uid="811230" lat="47.9482685" lon="0.2074640"/>
+ <node id="10119904" visible="true" version="5" changeset="20063607" timestamp="2014-01-18T10:05:28Z" user="Andrés31" uid="811230" lat="47.9481699" lon="0.2076311"/>
+ <node id="1789587574" visible="true" version="2" changeset="20063607" timestamp="2014-01-18T10:05:28Z" user="Andrés31" uid="811230" lat="47.9481744" lon="0.2076084"/>
+ <node id="2626846599" visible="true" version="1" changeset="20063607" timestamp="2014-01-18T10:05:26Z" user="Andrés31" uid="811230" lat="47.9483033" lon="0.2074582"/>
+ <node id="2626846603" visible="true" version="1" changeset="20063607" timestamp="2014-01-18T10:05:26Z" user="Andrés31" uid="811230" lat="47.9482589" lon="0.2074689"/>
+ <node id="2626846607" visible="true" version="1" changeset="20063607" timestamp="2014-01-18T10:05:26Z" user="Andrés31" uid="811230" lat="47.9481886" lon="0.2075582"/>
+ <node id="2626846611" visible="true" version="1" changeset="20063607" timestamp="2014-01-18T10:05:27Z" user="Andrés31" uid="811230" lat="47.9482139" lon="0.2075115"/>
+ <node id="2626846612" visible="true" version="1" changeset="20063607" timestamp="2014-01-18T10:05:27Z" user="Andrés31" uid="811230" lat="47.9482404" lon="0.2074821"/>
+ <node id="2626846615" visible="true" version="1" changeset="20063607" timestamp="2014-01-18T10:05:27Z" user="Andrés31" uid="811230" lat="47.9481934" lon="0.2075467"/>
+ <node id="2626846616" visible="true" version="1" changeset="20063607" timestamp="2014-01-18T10:05:27Z" user="Andrés31" uid="811230" lat="47.9481810" lon="0.2075811"/>
+ <node id="2626846617" visible="true" version="1" changeset="20063607" timestamp="2014-01-18T10:05:27Z" user="Andrés31" uid="811230" lat="47.9482941" lon="0.2074586"/>
+ <node id="2626846620" visible="true" version="1" changeset="20063607" timestamp="2014-01-18T10:05:27Z" user="Andrés31" uid="811230" lat="47.9482863" lon="0.2074595"/>
+ <node id="2626846621" visible="true" version="1" changeset="20063607" timestamp="2014-01-18T10:05:27Z" user="Andrés31" uid="811230" lat="47.9482775" lon="0.2074612"/>
+ <node id="2626846622" visible="true" version="1" changeset="20063607" timestamp="2014-01-18T10:05:27Z" user="Andrés31" uid="811230" lat="47.9482064" lon="0.2075229"/>
+ <node id="2626846624" visible="true" version="1" changeset="20063607" timestamp="2014-01-18T10:05:27Z" user="Andrés31" uid="811230" lat="47.9481993" lon="0.2075355"/>
+ <node id="2626846625" visible="true" version="1" changeset="20063607" timestamp="2014-01-18T10:05:27Z" user="Andrés31" uid="811230" lat="47.9481776" lon="0.2075943"/>
+ <node id="2626846626" visible="true" version="1" changeset="20063607" timestamp="2014-01-18T10:05:27Z" user="Andrés31" uid="811230" lat="47.9482318" lon="0.2074896"/>
+ <node id="2626846629" visible="true" version="1" changeset="20063607" timestamp="2014-01-18T10:05:27Z" user="Andrés31" uid="811230" lat="47.9482489" lon="0.2074754"/>
+ <node id="2626846630" visible="true" version="1" changeset="20063607" timestamp="2014-01-18T10:05:27Z" user="Andrés31" uid="811230" lat="47.9481845" lon="0.2075699"/>
+ <node id="2626846632" visible="true" version="1" changeset="20063607" timestamp="2014-01-18T10:05:27Z" user="Andrés31" uid="811230" lat="47.9482228" lon="0.2074997"/>
+ <node id="2636347065" visible="true" version="1" changeset="20189490" timestamp="2014-01-25T08:02:25Z" user="Andrés31" uid="811230" lat="47.9481500" lon="0.2077462"/>
+ <way id="258242164" visible="true" version="6" changeset="127199205" timestamp="2022-10-08T12:47:29Z" user="Smockwette" uid="10505227">
+  <nd ref="2636347065"/>
+  <nd ref="10119904"/>
+  <nd ref="1789587574"/>
+  <nd ref="2626846625"/>
+  <nd ref="2626846616"/>
+  <nd ref="2626846630"/>
+  <nd ref="2626846607"/>
+  <nd ref="2626846615"/>
+  <nd ref="2626846624"/>
+  <nd ref="2626846622"/>
+  <nd ref="2626846611"/>
+  <nd ref="2626846632"/>
+  <nd ref="2626846626"/>
+  <nd ref="2626846612"/>
+  <nd ref="2626846629"/>
+  <nd ref="2626846603"/>
+  <nd ref="368497"/>
+  <nd ref="2626846621"/>
+  <nd ref="2626846620"/>
+  <nd ref="2626846617"/>
+  <nd ref="2626846599"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Virage du Raccordement"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+ </way>
+</osm>

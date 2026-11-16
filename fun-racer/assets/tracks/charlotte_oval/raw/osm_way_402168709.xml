@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (4115076 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="4040734683" visible="true" version="1" changeset="37616066" timestamp="2016-03-04T20:24:05Z" user="Yoshinion" uid="3151684" lat="35.3517875" lon="-80.6857497"/>
+ <node id="4040735196" visible="true" version="1" changeset="37616066" timestamp="2016-03-04T20:24:06Z" user="Yoshinion" uid="3151684" lat="35.3528733" lon="-80.6853850"/>
+ <node id="9668619996" visible="true" version="2" changeset="128832069" timestamp="2022-11-13T01:59:20Z" user="KB-01" uid="9509339" lat="35.3522551" lon="-80.6855926">
+  <tag k="name" v="Charlotte Motor Speedway Start/Finish Line"/>
+  <tag k="raceway" v="start-finish"/>
+ </node>
+ <way id="402168709" visible="true" version="3" changeset="119760761" timestamp="2022-04-15T18:01:23Z" user="SRASC" uid="453655">
+  <nd ref="4040735196"/>
+  <nd ref="9668619996"/>
+  <nd ref="4040734683"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Charlotte Motor Speedway;1/4 Mile track"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+ </way>
+</osm>

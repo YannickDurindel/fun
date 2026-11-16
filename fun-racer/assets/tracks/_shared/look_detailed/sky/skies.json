@@ -1,0 +1,35 @@
+{
+  "qwantani_late_afternoon_puresky": {
+    "file": "res://assets/tracks/_shared/look_detailed/sky/qwantani_late_afternoon_puresky.hdr",
+    "sun_azimuth_deg": 233.88,
+    "sun_elevation_deg": 19.07,
+    "sun_color": [
+      1.0,
+      0.815,
+      0.586
+    ],
+    "sun_peak": 137726.0
+  },
+  "kloofendal_48d_partly_cloudy_puresky": {
+    "file": "res://assets/tracks/_shared/look_detailed/sky/kloofendal_48d_partly_cloudy_puresky.hdr",
+    "sun_azimuth_deg": 235.75,
+    "sun_elevation_deg": 47.88,
+    "sun_color": [
+      0.972,
+      1.0,
+      0.931
+    ],
+    "sun_peak": 72558.8
+  },
+  "syferfontein_18d_clear_puresky": {
+    "file": "res://assets/tracks/_shared/look_detailed/sky/syferfontein_18d_clear_puresky.hdr",
+    "sun_azimuth_deg": 234.14,
+    "sun_elevation_deg": 18.37,
+    "sun_color": [
+      1.0,
+      0.884,
+      0.563
+    ],
+    "sun_peak": 232188.3
+  }
+}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1313 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="35122869" visible="true" version="15" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4581838" lon="149.5570270"/>
+ <node id="35122872" visible="true" version="8" changeset="5997339" timestamp="2010-10-09T21:16:53Z" user="MattGPS" uid="12973" lat="-33.4473650" lon="149.5597525"/>
+ <node id="440697137" visible="true" version="7" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4568831" lon="149.5579578"/>
+ <node id="662087886" visible="true" version="5" changeset="70603468" timestamp="2019-05-25T03:41:12Z" user="Osaka78" uid="9300097" lat="-33.4560669" lon="149.5581662"/>
+ <node id="1453543446" visible="true" version="2" changeset="70603468" timestamp="2019-05-25T03:41:12Z" user="Osaka78" uid="9300097" lat="-33.4477295" lon="149.5596866"/>
+ <node id="1453543460" visible="true" version="2" changeset="70603468" timestamp="2019-05-25T03:41:12Z" user="Osaka78" uid="9300097" lat="-33.4480704" lon="149.5596265"/>
+ <node id="1453543508" visible="true" version="2" changeset="70603468" timestamp="2019-05-25T03:41:12Z" user="Osaka78" uid="9300097" lat="-33.4497421" lon="149.5593261"/>
+ <node id="1453543521" visible="true" version="2" changeset="70603468" timestamp="2019-05-25T03:41:12Z" user="Osaka78" uid="9300097" lat="-33.4511786" lon="149.5590688"/>
+ <node id="1453543524" visible="true" version="3" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4539785" lon="149.5585640"/>
+ <node id="1453543529" visible="true" version="3" changeset="70603468" timestamp="2019-05-25T03:41:12Z" user="Osaka78" uid="9300097" lat="-33.4543275" lon="149.5585013"/>
+ <node id="1453543531" visible="true" version="4" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4546664" lon="149.5584381"/>
+ <node id="1453543534" visible="true" version="3" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4549210" lon="149.5583894"/>
+ <node id="1453543539" visible="true" version="3" changeset="70603468" timestamp="2019-05-25T03:41:12Z" user="Osaka78" uid="9300097" lat="-33.4553285" lon="149.5583079"/>
+ <node id="1453543542" visible="true" version="4" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4558748" lon="149.5582020"/>
+ <node id="1453543552" visible="true" version="4" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4565403" lon="149.5580701"/>
+ <node id="1453543575" visible="true" version="5" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4574085" lon="149.5576166"/>
+ <node id="1453543583" visible="true" version="6" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4579428" lon="149.5572207"/>
+ <node id="4056397149" visible="true" version="2" changeset="70603468" timestamp="2019-05-25T03:41:12Z" user="Osaka78" uid="9300097" lat="-33.4548696" lon="149.5583994"/>
+ <node id="10201537735" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4570885" lon="149.5578337"/>
+ <node id="10201537736" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4567115" lon="149.5580267"/>
+ <node id="10201537737" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4567857" lon="149.5580012"/>
+ <node id="10201537738" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4569690" lon="149.5579102"/>
+ <node id="10201537739" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4568348" lon="149.5579804"/>
+ <node id="10201537750" visible="true" version="1" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097" lat="-33.4524905" lon="149.5588335"/>
+ <way id="30111107" visible="true" version="28" changeset="129116993" timestamp="2022-11-19T10:05:44Z" user="Osaka78" uid="9300097">
+  <nd ref="35122869"/>
+  <nd ref="1453543583"/>
+  <nd ref="1453543575"/>
+  <nd ref="10201537735"/>
+  <nd ref="10201537738"/>
+  <nd ref="440697137"/>
+  <nd ref="10201537739"/>
+  <nd ref="10201537737"/>
+  <nd ref="10201537736"/>
+  <nd ref="1453543552"/>
+  <nd ref="662087886"/>
+  <nd ref="1453543542"/>
+  <nd ref="1453543539"/>
+  <nd ref="1453543534"/>
+  <nd ref="4056397149"/>
+  <nd ref="1453543531"/>
+  <nd ref="1453543529"/>
+  <nd ref="1453543524"/>
+  <nd ref="10201537750"/>
+  <nd ref="1453543521"/>
+  <nd ref="1453543508"/>
+  <nd ref="1453543460"/>
+  <nd ref="1453543446"/>
+  <nd ref="35122872"/>
+  <tag k="alt_name" v="Mount Panorama Scenic Road"/>
+  <tag k="highway" v="residential"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="maxweight" v="5"/>
+  <tag k="maxweight:bus" v="unrestricted"/>
+  <tag k="name" v="Conrod Straight"/>
+  <tag k="source" v="NSW LPI Imagery"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

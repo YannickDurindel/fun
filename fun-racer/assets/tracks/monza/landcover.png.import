@@ -2,10 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
+uid="uid://ckv1p6rp4h7qo"
+path="res://.godot/imported/landcover.png-fc2b81ea7064c90569cb77e69350ab99.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/tracks/monza/landcover.png"
+dest_files=["res://.godot/imported/landcover.png-fc2b81ea7064c90569cb77e69350ab99.ctex"]
 
 [params]
 

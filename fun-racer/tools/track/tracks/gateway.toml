@@ -1,0 +1,68 @@
+# Gateway oval (Madison, Illinois), 2012 m, anticlockwise oval.
+# Built for the IndyCar / NASCAR calendars (events link it with "track"): series "circuit"
+# keeps it out of every series list on its own.
+#
+#   .venv/bin/python tools/track/build_track.py gateway --plot
+
+id = "gateway"
+series = "circuit"
+name = "Gateway"
+grand_prix = "Oval · Madison"
+country = "United States"
+country_code = "US"
+city = "Madison"
+length_m = 2012
+turns = 4
+full_name = "Gateway oval (Madison, Illinois)"
+
+[osm]
+ways = [180008394, 1015873402, 1015873403]
+length_tolerance = 0.03
+
+[layout]
+direction = "anticlockwise"
+finish = [38.650523, -90.13675]
+
+[elevation]
+dataset = "terrarium"
+
+[road]
+# Egg-shaped oval: turns 1-2 (tight) 11 deg (0.192 rad), turns 3-4 9 deg (0.157). Width 16 m
+# (estimate). Blends of 60 m (twist rule >= 24 m).
+max_bank = 0.2
+base_width = 16.0
+grid_width = 16.0
+
+[[road.override]]           # turns 1-2, 11 deg
+s = [320.0, 640.0]
+bank = -0.192
+blend = 60.0
+
+[[road.override]]           # turns 3-4, 9 deg
+s = [1270.0, 1720.0]
+bank = -0.157
+blend = 60.0
+
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 334.0
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 610.0
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "left"
+s = 1280.0
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 1555.0

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1292 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="35122842" visible="true" version="12" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4485948" lon="149.5537217"/>
+ <node id="1453543482" visible="true" version="4" changeset="129113095" timestamp="2022-11-19T08:05:09Z" user="Osaka78" uid="9300097" lat="-33.4487265" lon="149.5518869"/>
+ <node id="4056397188" visible="true" version="4" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4490800" lon="149.5530967">
+  <tag k="name" v="Griffins Bend"/>
+ </node>
+ <node id="4056397201" visible="true" version="3" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4489250" lon="149.5534943"/>
+ <node id="10201152052" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4486271" lon="149.5537107"/>
+ <node id="10201152053" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4486722" lon="149.5536972"/>
+ <node id="10201152054" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4487139" lon="149.5536801"/>
+ <node id="10201152055" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4487457" lon="149.5536631"/>
+ <node id="10201152056" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4487864" lon="149.5536375"/>
+ <node id="10201152057" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4488206" lon="149.5536109"/>
+ <node id="10201152058" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4488585" lon="149.5535751"/>
+ <node id="10201152059" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4488918" lon="149.5535373"/>
+ <node id="10201152060" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4489391" lon="149.5534727"/>
+ <node id="10201152061" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4489548" lon="149.5534488"/>
+ <node id="10201152062" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4489896" lon="149.5533876"/>
+ <node id="10201152063" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4490226" lon="149.5533159"/>
+ <node id="10201152064" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4490434" lon="149.5532619"/>
+ <node id="10201152065" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4490621" lon="149.5531970"/>
+ <node id="10201152066" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4490839" lon="149.5530646"/>
+ <node id="10201152067" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4490717" lon="149.5531501"/>
+ <node id="10201152068" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4490879" lon="149.5529822"/>
+ <node id="10201152069" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4490833" lon="149.5528909"/>
+ <node id="10201152070" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4490749" lon="149.5528214"/>
+ <node id="10201152071" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4490542" lon="149.5527129"/>
+ <node id="10201152072" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4490312" lon="149.5526136"/>
+ <node id="10201152073" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4489979" lon="149.5524975"/>
+ <node id="10201152074" visible="true" version="1" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4489697" lon="149.5524183"/>
+ <way id="30111102" visible="true" version="32" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097">
+  <nd ref="35122842"/>
+  <nd ref="10201152052"/>
+  <nd ref="10201152053"/>
+  <nd ref="10201152054"/>
+  <nd ref="10201152055"/>
+  <nd ref="10201152056"/>
+  <nd ref="10201152057"/>
+  <nd ref="10201152058"/>
+  <nd ref="10201152059"/>
+  <nd ref="4056397201"/>
+  <nd ref="10201152060"/>
+  <nd ref="10201152061"/>
+  <nd ref="10201152062"/>
+  <nd ref="10201152063"/>
+  <nd ref="10201152064"/>
+  <nd ref="10201152065"/>
+  <nd ref="10201152067"/>
+  <nd ref="4056397188"/>
+  <nd ref="10201152066"/>
+  <nd ref="10201152068"/>
+  <nd ref="10201152069"/>
+  <nd ref="10201152070"/>
+  <nd ref="10201152071"/>
+  <nd ref="10201152072"/>
+  <nd ref="10201152073"/>
+  <nd ref="10201152074"/>
+  <nd ref="1453543482"/>
+  <tag k="alt_name" v="Mount Panorama Scenic Road"/>
+  <tag k="highway" v="residential"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="maxweight" v="5"/>
+  <tag k="maxweight:bus" v="unrestricted"/>
+  <tag k="name" v="Griffins Bend"/>
+  <tag k="source" v="NSW LPI Imagery"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

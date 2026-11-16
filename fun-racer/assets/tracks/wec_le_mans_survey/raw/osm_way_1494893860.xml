@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1320 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="400697195" visible="true" version="4" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9135308" lon="0.2425749"/>
+ <node id="13697057096" visible="true" version="1" changeset="180699004" timestamp="2026-04-01T02:43:38Z" user="Olyon" uid="1443767" lat="47.9136401" lon="0.2419784"/>
+ <way id="1494893860" visible="true" version="1" changeset="180699004" timestamp="2026-04-01T02:43:38Z" user="Olyon" uid="1443767">
+  <nd ref="13697057096"/>
+  <nd ref="400697195"/>
+  <tag k="cycleway:both" v="shoulder"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="no"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="maxspeed:type" v="FR:urban"/>
+  <tag k="name" v="Route du Golf"/>
+  <tag k="parking:both" v="no"/>
+  <tag k="ref" v="D 140"/>
+  <tag k="sidewalk" v="no"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

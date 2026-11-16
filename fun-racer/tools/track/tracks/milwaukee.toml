@@ -1,0 +1,68 @@
+# Milwaukee Mile (State Fair Park), 1609 m, anticlockwise oval.
+# Built for the IndyCar / NASCAR calendars (events link it with "track"): series "circuit"
+# keeps it out of every series list on its own.
+#
+#   .venv/bin/python tools/track/build_track.py milwaukee --plot
+
+id = "milwaukee"
+series = "circuit"
+name = "Milwaukee Mile"
+grand_prix = "Oval · West Allis"
+country = "United States"
+country_code = "US"
+city = "West Allis"
+length_m = 1609
+turns = 4
+full_name = "Milwaukee Mile (State Fair Park)"
+
+[osm]
+ways = [107508989]
+length_tolerance = 0.045
+
+[layout]
+direction = "anticlockwise"
+finish = [43.019915, -88.012642]
+
+[elevation]
+dataset = "terrarium"
+
+[road]
+# Flat-ish mile: 9 deg (0.157 rad) in the turns, the straights left to the automatic
+# crossfall. Width 15 m (estimate). Blends of 50 m.
+max_bank = 0.17
+base_width = 15.0
+grid_width = 15.0
+
+[[road.override]]           # turns 1-2, 9 deg
+s = [60.0, 520.0]
+bank = -0.157
+blend = 50.0
+
+[[road.override]]           # turns 3-4, 9 deg
+s = [870.0, 1320.0]
+bank = -0.157
+blend = 50.0
+
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 155.0
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 410.0
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "left"
+s = 1006.0
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 1220.0

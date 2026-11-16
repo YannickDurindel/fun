@@ -1,0 +1,88 @@
+# Chicagoland Speedway (Joliet, USA), 2414 m, anticlockwise oval.
+# Built for the IndyCar / NASCAR calendars (events link it with "track"): series "circuit"
+# keeps it out of every series list on its own.
+#
+#   .venv/bin/python tools/track/build_track.py chicagoland --plot
+
+id = "chicagoland"
+series = "circuit"
+name = "Joliet, Chicago"
+grand_prix = "Joliet, Chicago"
+country = "United States"
+country_code = "US"
+city = "Joliet"
+length_m = 2414
+turns = 4
+full_name = "Chicagoland Speedway"
+
+[osm]
+ways = [33119599]        # the tri-oval, one closed way (2468 m in OSM, 32 nodes)
+
+[layout]
+direction = "anticlockwise"
+# The OSM way has few, unevenly spaced nodes (pairs 15-30 m apart between gaps of 100 m and
+# more), and the spline through them wiggles: on 18-24 deg banking the surface then twists
+# under the car (a stock car got airborne). Smoothed over 35 m, the turns keep their radius.
+plan_sigma_m = 35.0
+# OSM has no start / finish data: the middle of pit road (way 33119615), at the dogleg of the tri-oval
+# (estimate).
+finish = [41.473675, -88.058725]
+
+[elevation]
+dataset = "terrarium"
+
+[road]
+# Real banking: 18 degrees (0.314 rad) in the turns, 11 (0.192) on the tri-oval front stretch,
+# 5 (0.087) on the backstretch (a long gentle curve). All left-handers: the right edge is higher
+# (negative bank). Blends of 100 m on the turns (twist rule: >= 1.5 x 0.23 / 0.012 = 29 m; long
+# because the turns are flat out). Width: about 17 m all round (estimate: the racing surface between
+# the apron line and the wall). s values are read off track.json.
+max_bank = 0.33
+base_width = 17.0
+grid_width = 17.0
+
+[[road.override]]           # tri-oval front stretch, 11 deg
+s = [2050.0, 340.0]
+bank = -0.192
+blend = 60.0
+
+[[road.override]]           # backstretch, 5 deg
+s = [930.0, 1430.0]
+bank = -0.087
+blend = 40.0
+
+[[road.override]]           # turns 1-2, 18 deg
+s = [370.0, 910.0]
+bank = -0.314
+blend = 100.0
+
+[[road.override]]           # turns 3-4, 18 deg
+s = [1440.0, 2020.0]
+bank = -0.314
+blend = 100.0
+
+# Pinned to the official 4 (the detector finds each end of the oval as one corner)
+
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 500.0
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 800.0
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "left"
+s = 1600.0
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 1900.0

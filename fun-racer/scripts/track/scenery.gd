@@ -55,6 +55,9 @@ extends Node3D
 ##     Surfaces of a landmark named like the scenery materials above get those materials
 ##     (they take their colour from the vertex colour, as in scenery.glb: white without one);
 ##     any other material is kept as the model has it.
+##   Spectators (MultiMesh) sit on the treads of every stand_seats surface, chunks and
+##   landmarks alike, as many as environment.json "stands"/"crowd" says, and flags fly over
+##   the stands: see SceneryCrowd.
 ##
 ## Budget (Intel HD 520): buildings stay merged per chunk as baked, trees are one MultiMesh
 ## per 400 m chunk, species and level of detail, lamps one MultiMesh; nothing here adds real
@@ -114,6 +117,9 @@ var tree_multimeshes: int = 0
 var water_bodies: int = 0
 var landmark_count: int = 0
 var lamp_count: int = 0
+var spectator_count: int = 0    ## spectators on the grandstands (SceneryCrowd)
+var crowd_multimeshes: int = 0
+var flag_count: int = 0
 var materials := {}            ## material name -> Material
 
 var _track: Track
@@ -134,6 +140,8 @@ var _tree_lod0: Array[MultiMeshInstance3D] = []
 var _tree_range_bonus: float = 0.0
 var _bodies: Array[StaticBody3D] = []   ## added once Trackside has ray-snapped its geometry
 var _reach: float = -1.0
+var _landmark_meshes: Array[MeshInstance3D] = []
+var _crowd_root: Node3D
 
 ## Parsed scenery.json of `path`, normalised: {near, far: grid dictionaries (or absent),
 ## water: [{level, polygon: PackedVector2Array}], points: {file, record: [names], count}}.
@@ -205,6 +213,7 @@ func _ready() -> void:
 		_load_trees()
 		_build_trees()
 		_build_landmarks()
+		_build_crowd()
 		_build_floodlights()
 		_apply_verge()
 		# Trackside ray-casts the ground under its kerbs and walls two physics frames after
@@ -371,6 +380,8 @@ func _apply_material_quality() -> void:
 
 func _apply_quality() -> void:
 	_apply_material_quality()
+	if is_instance_valid(_crowd_root):
+		_crowd_root.visible = quality > 0
 	hidden_chunks = 0
 	for c in _chunks:
 		var hide := quality == 0 and float(c["near"]) > SKYLINE_DISTANCE
@@ -678,6 +689,7 @@ func _build_landmarks() -> void:
 		node.global_transform = xf
 		for mi in mesh_instances(node):
 			_assign_materials(mi)
+			_landmark_meshes.append(mi)
 		landmark_count += 1
 
 ## World transform of a landmarks.json entry, null when its "at" cannot be resolved.
@@ -713,6 +725,133 @@ func _landmark_transform(e: Dictionary) -> Variant:
 		origin = Vector3(p.x, 0.0 if is_nan(y) else y, p.y)
 	origin.y += float(e.get("y_offset", 0.0))
 	return Transform3D(basis.scaled(Vector3.ONE * float(e.get("scale", 1.0))), origin)
+
+# ------------------------------------------------------------------------- crowd
+## Spectators on the seat rows of every grandstand (chunks and landmarks) and flags over the
+## stands (SceneryCrowd). Seats with spectators get a lighter speckle in the seat shader.
+## Hidden with the `scenery` setting on low.
+func _build_crowd() -> void:
+	var crowd := clampf(_env.number("stands", "crowd"), 0.0, 1.0)
+	if crowd <= 0.0:
+		return
+	var sources: Array[MeshInstance3D] = []
+	for c in _chunks:
+		sources.append(c["node"])
+	sources.append_array(_landmark_meshes)
+	var seats_lit := (materials["stand_seats"] as ShaderMaterial).duplicate() as ShaderMaterial
+	seats_lit.set_shader_parameter("crowd", crowd * 0.35)
+	materials["stand_seats_crowd"] = seats_lit
+	var person := ShaderMaterial.new()
+	person.shader = SceneryCrowd.CROWD_SHADER
+	materials["crowd"] = person
+	var cloth := ShaderMaterial.new()
+	cloth.shader = SceneryCrowd.FLAG_SHADER
+	materials["flag"] = cloth
+	var pole := _std(Color(0.78, 0.78, 0.80), 0.4, false)
+	pole.metallic = 0.6
+	var flood := _env.floodlit()
+	var flags: Array = []   # [position, facing, mesh instance]
+	for mi in sources:
+		if not is_instance_valid(mi) or mi.mesh == null:
+			continue
+		var xf := mi.global_transform
+		var spots := SceneryCrowd.seat_spots(mi, xf)
+		if spots.is_empty():
+			continue
+		for surf in mi.mesh.get_surface_count():
+			if surface_name(mi.mesh, surf) == "stand_seats":
+				mi.set_surface_override_material(surf, seats_lit)
+		for f: Array in SceneryCrowd.flag_spots(spots):
+			flags.append([f[0], f[2], mi])
+		if spectator_count >= SceneryCrowd.LIMIT:
+			continue
+		if not is_instance_valid(_crowd_root):
+			_crowd_root = Node3D.new()
+			_crowd_root.name = "Crowd"
+			add_child(_crowd_root)
+		var far_end := SceneryCrowd.FAR_RANGE
+		if mi.visibility_range_end > 0.0:
+			far_end = minf(far_end, mi.visibility_range_end + SceneryCrowd.CELL * 0.5)
+		var cells := SceneryCrowd.spectators(spots, crowd)
+		for key: Vector2i in cells:
+			var buf: PackedFloat32Array = cells[key]
+			spectator_count += buf.size() / 16
+			for lod in 2:
+				var mm := MultiMesh.new()
+				mm.transform_format = MultiMesh.TRANSFORM_3D
+				mm.use_custom_data = true
+				mm.mesh = SceneryCrowd.spectator_mesh(lod)
+				mm.instance_count = buf.size() / 16
+				mm.buffer = buf
+				var mmi := MultiMeshInstance3D.new()
+				mmi.name = "crowd_%d_%d_%d_lod%d" % [crowd_multimeshes / 2, key.x, key.y, lod]
+				mmi.multimesh = mm
+				mmi.material_override = person
+				mmi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+				if lod == 0:
+					mmi.visibility_range_end = SceneryCrowd.NEAR_RANGE
+				else:
+					mmi.visibility_range_begin = SceneryCrowd.NEAR_RANGE
+					mmi.visibility_range_end = far_end
+				if flood and track_distance(Vector2(buf[3], buf[11])) > FLOOD_NEAR:
+					mmi.layers = TrackEnvironment.LAYER_FAR
+				_crowd_root.add_child(mmi)
+				crowd_multimeshes += 1
+	_build_flags(flags, cloth, pole)
+	if is_instance_valid(_crowd_root):
+		_crowd_root.visible = quality > 0
+
+## A flag on the highest face over each stretch of stand, all flying the same way (one
+## wind): on the front edge of a roof when the stand has one, else behind the top row.
+func _build_flags(flags: Array, cloth: ShaderMaterial, pole: StandardMaterial3D) -> void:
+	if flags.is_empty():
+		return
+	# Nearest the lap first, when there are more than FLAG_LIMIT.
+	for f: Array in flags:
+		var p: Vector3 = f[1]
+		f.append(track_distance(Vector2(p.x, p.z)))
+	flags.sort_custom(func(a: Array, b: Array) -> bool: return float(a[3]) < float(b[3]))
+	flags.resize(mini(flags.size(), SceneryCrowd.FLAG_LIMIT))
+	var by_mesh := {}   # mesh instance -> indices into flags
+	for i in flags.size():
+		var list: Array = by_mesh.get(flags[i][2], [])
+		list.append(i)
+		by_mesh[flags[i][2]] = list
+	var root := Node3D.new()
+	root.name = "Flags"
+	add_child(root)
+	var mesh := SceneryCrowd.flag_mesh()
+	var wind_yaw := SceneryCrowd.rand3(float(_track.data.points.size()), 1.0, 2.0) * TAU
+	for mi: MeshInstance3D in by_mesh:
+		var ids: Array = by_mesh[mi]
+		var points: Array[Vector3] = []
+		for i: int in ids:
+			points.append(flags[i][0])
+			points.append(flags[i][1])
+		var tops := SceneryCrowd.highest_over(mi, mi.global_transform, points)
+		for n in ids.size():
+			var top := points[2 * n]
+			var front := points[2 * n + 1]
+			# A roof over the front row: the flag goes there, seen from the track.
+			var p := front if tops[2 * n + 1] > front.y + 2.5 else top
+			var y := tops[2 * n + 1] if p == front else tops[2 * n]
+			var design: Array = SceneryCrowd.FLAGS[int(SceneryCrowd.rand3(p.x, p.z, 7.0) * SceneryCrowd.FLAGS.size())]
+			var flag := MeshInstance3D.new()
+			flag.name = "flag_%d" % flag_count
+			flag.mesh = mesh
+			flag.set_surface_override_material(0, pole)
+			flag.set_surface_override_material(1, cloth)
+			flag.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+			flag.visibility_range_end = SceneryCrowd.FLAG_RANGE
+			flag.set_instance_shader_parameter(&"design", int(design[0]))
+			flag.set_instance_shader_parameter(&"c1", design[1])
+			flag.set_instance_shader_parameter(&"c2", design[2])
+			flag.set_instance_shader_parameter(&"c3", design[3])
+			flag.set_instance_shader_parameter(&"phase", SceneryCrowd.rand3(p.z, p.x, 3.0) * TAU)
+			root.add_child(flag)
+			var yaw := wind_yaw + (SceneryCrowd.rand3(p.x, 5.0, p.z) - 0.5) * 0.3
+			flag.global_transform = Transform3D(Basis(Vector3.UP, yaw), Vector3(p.x, y - 0.05, p.z))
+			flag_count += 1
 
 # ------------------------------------------------------------------------- floodlights
 ## Masts with a lamp head every `spacing_m` on alternating sides, just behind the barrier

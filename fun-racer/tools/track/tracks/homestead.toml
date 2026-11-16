@@ -1,0 +1,86 @@
+# Homestead-Miami Speedway (Homestead, USA), 2414 m, anticlockwise oval.
+# Built for the IndyCar / NASCAR calendars (events link it with "track"): series "circuit"
+# keeps it out of every series list on its own.
+#
+#   .venv/bin/python tools/track/build_track.py homestead --plot
+
+id = "homestead"
+series = "circuit"
+name = "Homestead, Miami"
+grand_prix = "Homestead, Miami"
+country = "United States"
+country_code = "US"
+city = "Homestead"
+length_m = 2414
+turns = 4
+full_name = "Homestead-Miami Speedway"
+
+[osm]
+# The oval is five ways, in driving order (2417 m in OSM; 108378855 and the access roads are
+# infield road-course pieces):
+ways = [108159182, 1146967012, 1146967009, 1146967010, 1146967011]
+
+[layout]
+direction = "anticlockwise"
+# OSM has no start / finish data: the middle of the pit lane (way 1328685646), on the front stretch
+# (estimate).
+finish = [25.453467, -80.409609]
+
+[elevation]
+dataset = "terrarium"
+
+[road]
+# Real banking: progressive, 18 degrees at the bottom of the turns to 20 at the top; one plane
+# of 19 degrees (0.332 rad) here, since the road is built with a single cross slope. 4 degrees
+# (0.070) on the straights. All left-handers: the right edge is higher (negative bank). Blends of
+# 100 m on the turns (twist rule: >= 1.5 x 0.26 / 0.012 = 33 m; long because the turns are flat out).
+# Width: OSM tags the oval 16.764 m (55 ft); built 17 m. s values are read off track.json.
+max_bank = 0.35
+base_width = 17.0
+grid_width = 17.0
+
+[[road.override]]           # front stretch, 4 deg
+s = [2140.0, 320.0]
+bank = -0.07
+blend = 40.0
+
+[[road.override]]           # back straight, 4 deg
+s = [900.0, 1470.0]
+bank = -0.07
+blend = 40.0
+
+[[road.override]]           # turns 1-2, 18-20 deg
+s = [320.0, 900.0]
+bank = -0.332
+blend = 100.0
+
+[[road.override]]           # turns 3-4, 18-20 deg
+s = [1470.0, 2140.0]
+bank = -0.332
+blend = 100.0
+
+# Pinned to the official 4 (the detector finds each end of the oval as one corner)
+
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 450.0
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 780.0
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "left"
+s = 1650.0
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 1980.0

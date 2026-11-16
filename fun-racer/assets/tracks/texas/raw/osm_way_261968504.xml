@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (3766558 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1205719383" visible="true" version="2" changeset="20607047" timestamp="2014-02-16T23:55:40Z" user="RoverLand" uid="1429602" lat="33.0396991" lon="-97.2786269"/>
+ <node id="1205719393" visible="true" version="2" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0388781" lon="-97.2783257"/>
+ <node id="1205719425" visible="true" version="3" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0383617" lon="-97.2783347"/>
+ <node id="1205719428" visible="true" version="3" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0402415" lon="-97.2791922"/>
+ <node id="1205719444" visible="true" version="2" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0392897" lon="-97.2784213"/>
+ <node id="1205719455" visible="true" version="2" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0405846" lon="-97.2799016"/>
+ <node id="1205719479" visible="true" version="3" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0399536" lon="-97.2788442"/>
+ <node id="1205720255" visible="true" version="3" changeset="189760031" timestamp="2026-09-30T07:37:19Z" user="sarya_Lyft" uid="18784339" lat="33.0406181" lon="-97.2800552"/>
+ <node id="4814461308" visible="true" version="1" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0385594" lon="-97.2783163"/>
+ <node id="4814461309" visible="true" version="1" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0387246" lon="-97.2783131"/>
+ <node id="4814461310" visible="true" version="1" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0390475" lon="-97.2783567"/>
+ <node id="4814461311" visible="true" version="1" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0391719" lon="-97.2783801"/>
+ <node id="4814461312" visible="true" version="1" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0394579" lon="-97.2784905"/>
+ <node id="4814461313" visible="true" version="1" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0395818" lon="-97.2785528"/>
+ <node id="4814461314" visible="true" version="1" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0398363" lon="-97.2787336"/>
+ <node id="4814461315" visible="true" version="1" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0400711" lon="-97.2789697"/>
+ <node id="4814461316" visible="true" version="1" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0401563" lon="-97.2790740"/>
+ <node id="4814461317" visible="true" version="1" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0403343" lon="-97.2793353"/>
+ <node id="4814461318" visible="true" version="1" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0404155" lon="-97.2794820"/>
+ <node id="4814461319" visible="true" version="1" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0404760" lon="-97.2796108"/>
+ <node id="4814461320" visible="true" version="1" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0405411" lon="-97.2797680"/>
+ <way id="261968504" visible="true" version="3" changeset="48192795" timestamp="2017-04-27T12:12:10Z" user="Trucker88" uid="4298442">
+  <nd ref="1205719425"/>
+  <nd ref="4814461308"/>
+  <nd ref="4814461309"/>
+  <nd ref="1205719393"/>
+  <nd ref="4814461310"/>
+  <nd ref="4814461311"/>
+  <nd ref="1205719444"/>
+  <nd ref="4814461312"/>
+  <nd ref="4814461313"/>
+  <nd ref="1205719383"/>
+  <nd ref="4814461314"/>
+  <nd ref="1205719479"/>
+  <nd ref="4814461315"/>
+  <nd ref="4814461316"/>
+  <nd ref="1205719428"/>
+  <nd ref="4814461317"/>
+  <nd ref="4814461318"/>
+  <nd ref="4814461319"/>
+  <nd ref="4814461320"/>
+  <nd ref="1205719455"/>
+  <nd ref="1205720255"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Turn 3"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+ </way>
+</osm>

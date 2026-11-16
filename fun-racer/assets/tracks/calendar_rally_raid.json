@@ -1,0 +1,55 @@
+{
+ "note": "Cross-country rally-raid events: days of desert and dune stages, current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "tracks": [
+  {
+   "id": "raid_saudi",
+   "name": "Arabian desert",
+   "grand_prix": "Two-week desert marathon · Saudi Arabia",
+   "country": "Saudi Arabia",
+   "country_code": "SA",
+   "city": "Yanbu",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "raid_abu_dhabi",
+   "name": "Liwa dunes",
+   "grand_prix": "Desert challenge · Abu Dhabi",
+   "country": "United Arab Emirates",
+   "country_code": "AE",
+   "city": "Abu Dhabi",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "raid_portugal",
+   "name": "Alentejo",
+   "grand_prix": "Rally-raid · Portugal",
+   "country": "Portugal",
+   "country_code": "PT",
+   "city": "Grândola",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "raid_argentina",
+   "name": "Andes foothills",
+   "grand_prix": "Route 40 raid · San Juan",
+   "country": "Argentina",
+   "country_code": "AR",
+   "city": "San Juan",
+   "length_m": 0,
+   "turns": 0
+  },
+  {
+   "id": "raid_morocco",
+   "name": "Moroccan desert",
+   "grand_prix": "Desert rally-raid · Morocco",
+   "country": "Morocco",
+   "country_code": "MA",
+   "city": "Erfoud",
+   "length_m": 0,
+   "turns": 0
+  }
+ ]
+}

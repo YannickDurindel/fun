@@ -266,7 +266,7 @@ func results() -> Dictionary:
 		sectors.append(run_sectors[i] if i < run_sectors.size() else -1.0)
 		record.append(best_sectors[i] if i < best_sectors.size() else -1.0)
 	return {
-		"track_id": track.track_id if track != null else "",
+		"track_id": track.race_id() if track != null else "",
 		"track_name": data.name if data != null else "",
 		"mode": RaceConfig.MODE_RACE if target_laps > 0 else RaceConfig.MODE_TIME_ATTACK,
 		"target_laps": target_laps,
@@ -529,7 +529,7 @@ func clear_best() -> void:
 	session_sectors.clear()
 
 func _save_path() -> String:
-	return "user://best_%s.json" % (track.track_id if track != null else "unknown")
+	return "user://best_%s.json" % (track.race_id() if track != null else "unknown")
 
 func _save_best() -> void:
 	if Bootstrap.autodrive:

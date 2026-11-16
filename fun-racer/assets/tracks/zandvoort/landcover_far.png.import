@@ -2,10 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
+uid="uid://b03v85i3ugrwe"
+path="res://.godot/imported/landcover_far.png-4150666f964d20c3f2535fa1feccb781.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://assets/tracks/zandvoort/landcover_far.png"
+dest_files=["res://.godot/imported/landcover_far.png-4150666f964d20c3f2535fa1feccb781.ctex"]
 
 [params]
 

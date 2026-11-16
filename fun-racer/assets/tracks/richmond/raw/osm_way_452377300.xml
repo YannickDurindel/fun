@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (3986996 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="4491837444" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:45Z" user="Omnific" uid="1408522" lat="37.5910623" lon="-77.4200356"/>
+ <node id="4491837447" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:45Z" user="Omnific" uid="1408522" lat="37.5910682" lon="-77.4203001"/>
+ <node id="4491837448" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:45Z" user="Omnific" uid="1408522" lat="37.5910726" lon="-77.4196539"/>
+ <node id="4491837455" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:46Z" user="Omnific" uid="1408522" lat="37.5911021" lon="-77.4194044"/>
+ <node id="4491837458" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:46Z" user="Omnific" uid="1408522" lat="37.5911183" lon="-77.4207936"/>
+ <node id="4491837466" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:46Z" user="Omnific" uid="1408522" lat="37.5911847" lon="-77.4211474"/>
+ <node id="4491837468" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:46Z" user="Omnific" uid="1408522" lat="37.5911921" lon="-77.4189090"/>
+ <node id="4491837480" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:46Z" user="Omnific" uid="1408522" lat="37.5912511" lon="-77.4213634"/>
+ <node id="4491837493" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:46Z" user="Omnific" uid="1408522" lat="37.5913072" lon="-77.4214900"/>
+ <node id="4491837510" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:46Z" user="Omnific" uid="1408522" lat="37.5913825" lon="-77.4215999"/>
+ <node id="4491837514" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:46Z" user="Omnific" uid="1408522" lat="37.5913928" lon="-77.4182796"/>
+ <node id="4491837524" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:46Z" user="Omnific" uid="1408522" lat="37.5914828" lon="-77.4217321"/>
+ <node id="4491837525" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:46Z" user="Omnific" uid="1408522" lat="37.5914902" lon="-77.4180189"/>
+ <node id="4491837536" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:47Z" user="Omnific" uid="1408522" lat="37.5915684" lon="-77.4218029"/>
+ <node id="4491837543" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:47Z" user="Omnific" uid="1408522" lat="37.5916687" lon="-77.4218718"/>
+ <node id="4491837549" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:47Z" user="Omnific" uid="1408522" lat="37.5917514" lon="-77.4175291"/>
+ <node id="4491837552" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:47Z" user="Omnific" uid="1408522" lat="37.5918119" lon="-77.4219370"/>
+ <node id="4491837568" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:47Z" user="Omnific" uid="1408522" lat="37.5919343" lon="-77.4219705"/>
+ <node id="4491837586" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:47Z" user="Omnific" uid="1408522" lat="37.5920317" lon="-77.4171399"/>
+ <node id="4491837594" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:47Z" user="Omnific" uid="1408522" lat="37.5920804" lon="-77.4219872"/>
+ <node id="4491837600" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:47Z" user="Omnific" uid="1408522" lat="37.5921498" lon="-77.4170114"/>
+ <node id="4491837608" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:47Z" user="Omnific" uid="1408522" lat="37.5922014" lon="-77.4219723"/>
+ <node id="4491837618" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:47Z" user="Omnific" uid="1408522" lat="37.5922752" lon="-77.4169220"/>
+ <node id="4491837628" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:48Z" user="Omnific" uid="1408522" lat="37.5923475" lon="-77.4219332"/>
+ <node id="4491837633" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:48Z" user="Omnific" uid="1408522" lat="37.5923873" lon="-77.4168718"/>
+ <node id="4491837643" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:48Z" user="Omnific" uid="1408522" lat="37.5924965" lon="-77.4218606"/>
+ <node id="4491837646" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:48Z" user="Omnific" uid="1408522" lat="37.5925068" lon="-77.4168364"/>
+ <node id="4491837656" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:48Z" user="Omnific" uid="1408522" lat="37.5926146" lon="-77.4168140"/>
+ <node id="4491837659" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:48Z" user="Omnific" uid="1408522" lat="37.5926529" lon="-77.4217358"/>
+ <node id="4491837667" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:48Z" user="Omnific" uid="1408522" lat="37.5927341" lon="-77.4168084"/>
+ <node id="4491837669" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:48Z" user="Omnific" uid="1408522" lat="37.5927415" lon="-77.4216204"/>
+ <node id="4491837679" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:48Z" user="Omnific" uid="1408522" lat="37.5928270" lon="-77.4214863"/>
+ <node id="4491837683" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:48Z" user="Omnific" uid="1408522" lat="37.5928624" lon="-77.4168271"/>
+ <node id="4491837689" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:48Z" user="Omnific" uid="1408522" lat="37.5929097" lon="-77.4213131"/>
+ <node id="4491837695" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:48Z" user="Omnific" uid="1408522" lat="37.5929466" lon="-77.4168513"/>
+ <node id="4491837697" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:48Z" user="Omnific" uid="1408522" lat="37.5929510" lon="-77.4211641"/>
+ <node id="4491837718" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:49Z" user="Omnific" uid="1408522" lat="37.5930808" lon="-77.4169165"/>
+ <node id="4491837744" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:49Z" user="Omnific" uid="1408522" lat="37.5932077" lon="-77.4170077"/>
+ <node id="4491837759" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:49Z" user="Omnific" uid="1408522" lat="37.5932859" lon="-77.4170859"/>
+ <node id="4491837776" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:49Z" user="Omnific" uid="1408522" lat="37.5933641" lon="-77.4171790"/>
+ <node id="4491837797" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:50Z" user="Omnific" uid="1408522" lat="37.5934571" lon="-77.4173243"/>
+ <node id="4491837807" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:50Z" user="Omnific" uid="1408522" lat="37.5935176" lon="-77.4174621"/>
+ <node id="4491837814" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:50Z" user="Omnific" uid="1408522" lat="37.5935707" lon="-77.4176520"/>
+ <node id="4491837816" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:50Z" user="Omnific" uid="1408522" lat="37.5935840" lon="-77.4181716"/>
+ <node id="4491837819" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:50Z" user="Omnific" uid="1408522" lat="37.5935899" lon="-77.4177451"/>
+ <node id="4491837824" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:50Z" user="Omnific" uid="1408522" lat="37.5936017" lon="-77.4180245"/>
+ <node id="4491837828" visible="true" version="1" changeset="43527185" timestamp="2016-11-10T07:56:50Z" user="Omnific" uid="1408522" lat="37.5936046" lon="-77.4178978"/>
+ <node id="8766655733" visible="true" version="1" changeset="105322094" timestamp="2021-05-26T03:09:25Z" user="Omnific" uid="1408522" lat="37.5934571" lon="-77.4187715"/>
+ <way id="452377300" visible="true" version="3" changeset="172992280" timestamp="2025-10-08T08:41:01Z" user="Dissident93" uid="23345738">
+  <nd ref="4491837718"/>
+  <nd ref="4491837744"/>
+  <nd ref="4491837759"/>
+  <nd ref="4491837776"/>
+  <nd ref="4491837797"/>
+  <nd ref="4491837807"/>
+  <nd ref="4491837814"/>
+  <nd ref="4491837819"/>
+  <nd ref="4491837828"/>
+  <nd ref="4491837824"/>
+  <nd ref="4491837816"/>
+  <nd ref="8766655733"/>
+  <nd ref="4491837697"/>
+  <nd ref="4491837689"/>
+  <nd ref="4491837679"/>
+  <nd ref="4491837669"/>
+  <nd ref="4491837659"/>
+  <nd ref="4491837643"/>
+  <nd ref="4491837628"/>
+  <nd ref="4491837608"/>
+  <nd ref="4491837594"/>
+  <nd ref="4491837568"/>
+  <nd ref="4491837552"/>
+  <nd ref="4491837543"/>
+  <nd ref="4491837536"/>
+  <nd ref="4491837524"/>
+  <nd ref="4491837510"/>
+  <nd ref="4491837493"/>
+  <nd ref="4491837480"/>
+  <nd ref="4491837466"/>
+  <nd ref="4491837458"/>
+  <nd ref="4491837447"/>
+  <nd ref="4491837444"/>
+  <nd ref="4491837448"/>
+  <nd ref="4491837455"/>
+  <nd ref="4491837468"/>
+  <nd ref="4491837514"/>
+  <nd ref="4491837525"/>
+  <nd ref="4491837549"/>
+  <nd ref="4491837586"/>
+  <nd ref="4491837600"/>
+  <nd ref="4491837618"/>
+  <nd ref="4491837633"/>
+  <nd ref="4491837646"/>
+  <nd ref="4491837656"/>
+  <nd ref="4491837667"/>
+  <nd ref="4491837683"/>
+  <nd ref="4491837695"/>
+  <nd ref="4491837718"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lanes" v="3"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

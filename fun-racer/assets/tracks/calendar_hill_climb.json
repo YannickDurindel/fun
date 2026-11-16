@@ -1,0 +1,95 @@
+{
+ "note": "Hill climbs: one car at a time against the clock, uphill, current season in calendar order. Every event is coming soon: entries carry no \"track\", since a built circuit would make them playable with the wrong car.",
+ "tracks": [
+  {
+   "id": "hc_rechberg",
+   "name": "Rechberg",
+   "grand_prix": "Hill climb · Rechberg",
+   "country": "Austria",
+   "country_code": "AT",
+   "city": "Frohnleiten",
+   "length_m": 5050,
+   "turns": 0
+  },
+  {
+   "id": "hc_falperra",
+   "name": "Falperra",
+   "grand_prix": "Hill climb · Braga",
+   "country": "Portugal",
+   "country_code": "PT",
+   "city": "Braga",
+   "length_m": 5200,
+   "turns": 0
+  },
+  {
+   "id": "hc_sternberk",
+   "name": "Ecce Homo, Šternberk",
+   "grand_prix": "Hill climb · Šternberk",
+   "country": "Czechia",
+   "country_code": "CZ",
+   "city": "Šternberk",
+   "length_m": 7830,
+   "turns": 0
+  },
+  {
+   "id": "hc_pikes_peak",
+   "name": "Pikes Peak",
+   "grand_prix": "Race to the summit · Pikes Peak",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Cascade",
+   "length_m": 19990,
+   "turns": 156
+  },
+  {
+   "id": "hc_shelsley_walsh",
+   "name": "Shelsley Walsh",
+   "grand_prix": "Historic hill climb · Shelsley Walsh",
+   "country": "United Kingdom",
+   "country_code": "GB",
+   "city": "Worcester",
+   "length_m": 914,
+   "turns": 0
+  },
+  {
+   "id": "hc_goodwood",
+   "name": "Goodwood",
+   "grand_prix": "Festival hill climb · Goodwood",
+   "country": "United Kingdom",
+   "country_code": "GB",
+   "city": "Chichester",
+   "length_m": 1860,
+   "turns": 0
+  },
+  {
+   "id": "hc_bondone",
+   "name": "Trento-Bondone",
+   "grand_prix": "Hill climb · Trento",
+   "country": "Italy",
+   "country_code": "IT",
+   "city": "Trento",
+   "length_m": 17300,
+   "turns": 0
+  },
+  {
+   "id": "hc_rangiers",
+   "name": "St-Ursanne – Les Rangiers",
+   "grand_prix": "Hill climb · Les Rangiers",
+   "country": "Switzerland",
+   "country_code": "CH",
+   "city": "Saint-Ursanne",
+   "length_m": 5180,
+   "turns": 0
+  },
+  {
+   "id": "hc_osnabruck",
+   "name": "Osnabrück",
+   "grand_prix": "Hill climb · Osnabrück",
+   "country": "Germany",
+   "country_code": "DE",
+   "city": "Osnabrück",
+   "length_m": 2030,
+   "turns": 0
+  }
+ ]
+}

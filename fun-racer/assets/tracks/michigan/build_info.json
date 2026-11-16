@@ -1,0 +1,62 @@
+{
+ "id": "michigan",
+ "recipe": "tools/track/tracks/michigan.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   205025109
+  ],
+  "raw_length_m": 3239.8,
+  "length_m": 3228.3,
+  "official_length_m": 3219.0,
+  "length_error": 0.00289,
+  "candidates": []
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 2.81,
+  "max_grade": 0.0131,
+  "min_grade": -0.0138,
+  "origin_m": 302.78
+ },
+ "turns": {
+  "official": 4,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Speedway",
+    "direction": "left",
+    "s_apex": 1015.2,
+    "min_radius": 239.7
+   },
+   {
+    "id": "T2",
+    "name": "Speedway",
+    "direction": "left",
+    "s_apex": 2435.2,
+    "min_radius": 232.2
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 1015.2,
+    "direction": "left",
+    "angle_deg": 149.6,
+    "kind": "corner",
+    "min_radius": 239.7,
+    "used": true
+   },
+   {
+    "s_apex": 2435.2,
+    "direction": "left",
+    "angle_deg": 151.6,
+    "kind": "corner",
+    "min_radius": 232.2,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

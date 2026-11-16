@@ -1,0 +1,15 @@
+{
+  "id": "talladega",
+  "name": "Talladega",
+  "grand_prix": "Superspeedway · Talladega",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Lincoln",
+  "length_m": 4281,
+  "turns": 4,
+  "scene": "res://scenes/tracks/talladega.tscn",
+  "track_json": "res://assets/tracks/talladega/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "circuit"
+}

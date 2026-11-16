@@ -1,0 +1,167 @@
+{
+ "version": 1,
+ "frame": "Godot metres: x=east, y=up (relative to finish line), z=-north; origin at finish line",
+ "attribution": "Surroundings (c) OpenStreetMap contributors (ODbL 1.0), via the Overpass API.",
+ "osm_base": "2026-10-31T13:02:06Z",
+ "landcover": {
+  "classes": [
+   "grass",
+   "forest",
+   "water",
+   "sand",
+   "paved",
+   "farmland",
+   "rock",
+   "gravel",
+   "scrub",
+   "beach"
+  ],
+  "near": {
+   "file": "landcover.png",
+   "x0": -1200.0,
+   "z0": -600.0,
+   "step": 2.5,
+   "nx": 880,
+   "nz": 720
+  },
+  "far": {
+   "file": "landcover_far.png",
+   "x0": -6000.0,
+   "z0": -5600.0,
+   "step": 50.0,
+   "nx": 240,
+   "nz": 240
+  },
+  "near_share": {
+   "grass": 0.8153,
+   "forest": 0.0,
+   "water": 0.0088,
+   "sand": 0.0,
+   "paved": 0.1735,
+   "farmland": 0.0,
+   "rock": 0.0,
+   "gravel": 0.0024,
+   "scrub": 0.0,
+   "beach": 0.0
+  }
+ },
+ "mesh": {
+  "file": "scenery.glb",
+  "chunk_m": 400.0,
+  "chunk_x0": -6000.0,
+  "chunk_z0": -5600.0,
+  "node": "chunk_<i>_<j>, i = floor((x - chunk_x0) / chunk_m), j = floor((z - chunk_z0) / chunk_m)",
+  "materials": [
+   "building_wall",
+   "building_roof",
+   "building_glass",
+   "stand_seats",
+   "stand_structure",
+   "concrete",
+   "metal",
+   "emissive_window",
+   "emissive_light"
+  ],
+  "triangles": {
+   "building_wall": 408,
+   "building_roof": 124,
+   "building_glass": 0,
+   "stand_seats": 234,
+   "stand_structure": 264,
+   "concrete": 0,
+   "metal": 0,
+   "emissive_window": 0,
+   "emissive_light": 0
+  },
+  "vertices": 2000,
+  "chunks": 10
+ },
+ "trees": {
+  "file": "scenery_points.bin",
+  "dtype": "float32",
+  "record": [
+   "x",
+   "y",
+   "z",
+   "height",
+   "species"
+  ],
+  "record_bytes": 20,
+  "count": 5,
+  "species": [
+   "broadleaved",
+   "needleleaved",
+   "palm",
+   "bush"
+  ],
+  "species_counts": {
+   "broadleaved": 5,
+   "needleleaved": 0,
+   "palm": 0,
+   "bush": 0
+  },
+  "chunk_m": 400.0,
+  "chunks": [[13,13,0,5]]
+ },
+ "water": [
+  {"level":-7.31,"kind":"river","polygon":[[-731.27,570.92],[-735.47,582.22],[-736.04,586.68],[-735.18,592.62],[-733.37,598.67],[-733.27,600.0],[-743.91,600.0],[-743.58,588.96],[-739.38,580.62]],"triangles":[8,0,1,7,8,1,6,7,1,6,1,2,6,2,3,5,6,3,4,5,3]},
+  {"level":-9.0,"kind":"river","polygon":[[-733.27,600.0],[-730.22,639.11],[-727.74,649.16],[-724.21,658.76],[-718.49,667.32],[-711.05,674.29],[-703.14,680.8],[-694.55,686.51],[-687.02,693.48],[-680.34,701.25],[-674.52,709.82],[-666.51,724.1],[-658.5,743.06],[-656.7,750.0],[-748.45,750.0],[-743.91,600.0]],"triangles":[15,0,1,14,15,1,14,1,2,14,2,3,14,3,4,13,14,4,12,13,4,11,12,4,10,11,4,10,4,5,9,10,5,9,5,6,8,9,6,7,8,6]},
+  {"level":-9.86,"kind":"river","polygon":[[-656.7,750.0],[-655.92,753.0],[-654.4,763.16],[-653.82,773.44],[-654.21,783.72],[-670.04,802.11],[-711.43,838.21],[-717.82,838.1],[-727.08,831.93],[-743.29,813.08],[-747.11,806.11],[-749.49,784.18],[-748.45,750.0]],"triangles":[12,0,1,11,12,1,10,11,1,9,10,1,8,9,1,7,8,1,6,7,1,5,6,1,4,5,1,3,4,1,2,3,1]},
+  {"level":-13.42,"kind":"lake","polygon":[[1000.0,365.2],[991.18,356.51],[986.32,348.51],[985.36,342.23],[988.89,323.95],[988.22,305.45],[989.46,302.02],[991.85,300.42],[997.38,298.71],[1000.0,298.4]],"triangles":[9,0,1,8,9,1,7,8,1,6,7,1,5,6,1,4,5,1,3,4,1,2,3,1]},
+  {"level":-13.95,"kind":"lake","polygon":[[1000.0,389.54],[997.38,390.66],[989.94,390.89],[985.65,389.18],[983.84,387.24],[980.12,378.9],[977.26,367.82],[978.3,357.31],[979.93,356.51],[980.69,355.02],[983.07,355.14],[988.42,360.28],[995.95,369.53],[1000.0,371.8]],"triangles":[13,0,1,12,13,1,11,12,1,10,11,1,9,10,1,8,9,1,7,8,1,6,7,1,5,6,1,4,5,1,3,4,1,2,3,1]},
+  {"level":-12.04,"kind":"lake","polygon":[[-817.11,852.49],[-816.26,857.74],[-816.06,866.77],[-817.69,878.08],[-822.26,891.33],[-825.22,895.9],[-833.9,901.38],[-838.1,902.29],[-842.39,900.24],[-846.68,886.41],[-847.06,882.99],[-847.06,880.7],[-845.06,877.85],[-842.2,875.56],[-833.42,864.03],[-831.33,858.77],[-831.33,855.46],[-829.8,852.72],[-825.51,849.98],[-821.69,850.09]],"triangles":[19,0,1,18,19,1,17,18,1,16,17,1,15,16,1,14,15,1,13,14,1,12,13,1,11,12,1,10,11,1,9,10,1,8,9,1,7,8,1,6,7,1,5,6,1,4,5,1,3,4,1,2,3,1]},
+  {"level":-9.61,"kind":"river","polygon":[[620.06,228.34],[629.5,207.9],[637.9,205.38],[651.06,216.35],[688.83,262.61],[736.06,300.0],[636.93,300.0],[621.97,240.79]],"triangles":[7,0,1,6,7,1,6,1,2,6,2,3,6,3,4,5,6,4]},
+  {"level":-11.5,"kind":"river","polygon":[[736.06,300.0],[745.1,307.16],[750.0,312.35],[750.0,343.47],[713.25,375.24],[698.56,381.52],[688.07,381.3],[671.09,367.47],[654.4,344.06],[640.19,312.87],[636.93,300.0]],"triangles":[10,0,1,9,10,1,8,9,1,7,8,1,6,7,1,5,6,1,4,5,1,3,4,1,2,3,1]},
+  {"level":-9.78,"kind":"river","polygon":[[750.0,312.35],[762.46,325.55],[762.27,332.86],[750.0,343.47]],"triangles":[3,0,1,2,3,1]},
+  {"level":-5.82,"kind":"lake","polygon":[[884.83,-238.74],[888.46,-230.74],[891.22,-222.06],[891.41,-211.55],[887.31,-205.15],[882.83,-202.41],[875.01,-200.36],[858.99,-200.24],[846.4,-193.62],[836.95,-192.25],[824.74,-186.42],[809.96,-177.28],[784.88,-168.26],[773.53,-162.43],[759.6,-159.69],[754.83,-159.69],[754.45,-161.29],[768.85,-167.23],[781.16,-170.66],[783.45,-175.46],[786.21,-185.39],[811.77,-200.13],[816.06,-204.13],[830.94,-213.72],[844.39,-219.66],[849.35,-225.37],[855.27,-226.86],[858.89,-229.03],[862.04,-240.57],[864.8,-244.22],[869.95,-245.59],[875.49,-245.48]],"triangles":[31,0,1,30,31,1,29,30,1,28,29,1,27,28,1,26,27,1,25,26,1,24,25,1,23,24,1,22,23,1,21,22,1,20,21,1,19,20,1,18,19,1,18,1,2,2,3,4,2,4,5,2,5,6,2,6,7,2,7,8,2,8,9,18,2,9,18,9,10,18,10,11,17,18,11,16,17,11,15,16,11,14,15,11,14,11,12,13,14,12]}
+ ],
+ "roofs": [],
+ "counts": {
+  "buildings": 41,
+  "grandstands": 1,
+  "canopies": 0,
+  "bridges": 0,
+  "masts": 0,
+  "lamps": 0,
+  "skyline": 0,
+  "cut_by_road": 0
+ },
+ "default_heights": [
+  {"osm":"way/288848518","type":"yes","height":6.0,"from":"type default","dist":51},
+  {"osm":"way/320752466","type":"commercial","height":9.0,"from":"type default","dist":71},
+  {"osm":"way/288852745","type":"yes","height":6.0,"from":"type default","dist":76},
+  {"osm":"way/320752465","type":"commercial","height":9.0,"from":"type default","dist":101},
+  {"osm":"way/288852746","type":"yes","height":6.0,"from":"type default","dist":103},
+  {"osm":"way/288848519","type":"yes","height":6.0,"from":"type default","dist":146,"name":"Infield Media Center"},
+  {"osm":"way/288848522","type":"yes","height":6.0,"from":"type default","dist":160},
+  {"osm":"way/288848520","type":"yes","height":6.0,"from":"type default","dist":181},
+  {"osm":"way/993503050","type":"hangar","height":12.0,"from":"type default","dist":308},
+  {"osm":"way/993503051","type":"hangar","height":12.0,"from":"type default","dist":336},
+  {"osm":"way/993503049","type":"hangar","height":12.0,"from":"type default","dist":367},
+  {"osm":"way/993503047","type":"hangar","height":12.0,"from":"type default","dist":383},
+  {"osm":"way/993503045","type":"hangar","height":12.0,"from":"type default","dist":392},
+  {"osm":"way/1547969237","type":"hangar","height":12.0,"from":"type default","dist":422},
+  {"osm":"way/993503048","type":"hangar","height":12.0,"from":"type default","dist":423},
+  {"osm":"way/993503046","type":"hangar","height":12.0,"from":"type default","dist":441},
+  {"osm":"way/993503044","type":"hangar","height":12.0,"from":"type default","dist":444},
+  {"osm":"way/993503043","type":"hangar","height":12.0,"from":"type default","dist":497},
+  {"osm":"way/1547969238","type":"hangar","height":12.0,"from":"type default","dist":507},
+  {"osm":"way/1283094636","type":"yes","height":6.0,"from":"type default","dist":534,"name":"Army Aviation Heritage Foundation, Legacy Chapter"},
+  {"osm":"way/993503042","type":"hangar","height":12.0,"from":"type default","dist":551},
+  {"osm":"way/1547969236","type":"hangar","height":12.0,"from":"type default","dist":560},
+  {"osm":"way/1547969239","type":"hangar","height":12.0,"from":"type default","dist":567},
+  {"osm":"way/993503052","type":"hangar","height":12.0,"from":"type default","dist":572},
+  {"osm":"way/993503041","type":"hangar","height":12.0,"from":"type default","dist":606},
+  {"osm":"way/1547969243","type":"hangar","height":12.0,"from":"type default","dist":624},
+  {"osm":"way/1547969241","type":"hangar","height":12.0,"from":"type default","dist":649},
+  {"osm":"way/1547969240","type":"hangar","height":12.0,"from":"type default","dist":659},
+  {"osm":"way/1547969242","type":"hangar","height":12.0,"from":"type default","dist":673},
+  {"osm":"way/1547969244","type":"hangar","height":12.0,"from":"type default","dist":680},
+  {"osm":"way/1547969245","type":"hangar","height":12.0,"from":"type default","dist":714},
+  {"osm":"way/1382106091","type":"yes","height":6.0,"from":"type default","dist":882},
+  {"osm":"way/1382106092","type":"yes","height":6.0,"from":"type default","dist":924},
+  {"osm":"way/1382106093","type":"yes","height":6.0,"from":"type default","dist":928},
+  {"osm":"way/1382106095","type":"yes","height":6.0,"from":"type default","dist":956},
+  {"osm":"way/1382106094","type":"yes","height":6.0,"from":"type default","dist":971}
+ ]
+}

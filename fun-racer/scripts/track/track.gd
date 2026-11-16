@@ -19,6 +19,10 @@ extends Node3D
 @export var track_id: String = ""
 ## Optional: track folder outside assets/tracks/ (test fixtures). Empty = assets/tracks/<track_id>.
 @export_dir var track_dir: String = ""
+## Catalog id of the event raced here when it is not the circuit's own entry (an endurance
+## event held on an F1 circuit, see TrackCatalog). Empty = track_id. Best laps, ghosts and
+## results are kept per event; the folder and the trackside tables stay the circuit's.
+var event_id: String = ""
 
 ## Path of the loaded centreline (derived from the folder; set it before entering the tree
 ## only to load a different file).
@@ -70,6 +74,10 @@ func find_sky() -> Node:
 				return sibling
 	return null
 
+## Catalog id the race is recorded under: the event, else the circuit.
+func race_id() -> String:
+	return event_id if not event_id.is_empty() else track_id
+
 ## The track's asset folder.
 func dir() -> String:
 	if not track_dir.is_empty():
@@ -95,5 +103,11 @@ func scenery_path(file: String) -> String:
 ## flat on the banking; elsewhere the crossfall (at most 0.03 rad) is left to the suspension.
 func spawn_transform(s: float, lateral: float = 0.0) -> Transform3D:
 	var xf := data.sample(s)
+	var road := get_node_or_null(^"Road")
+	if road != null and road.has_method(&"has_sections") and road.call(&"has_sections"):
+		# Measured cross-sections (crown, camber): start on the real surface under the slot.
+		xf.origin = road.call(&"surface_point", s, lateral)
+		xf.origin += xf.basis.y * (Car.REAR_WHEEL_RADIUS + 0.05)
+		return xf
 	xf.origin += xf.basis.x * lateral + xf.basis.y * (Car.REAR_WHEEL_RADIUS + 0.05)
 	return xf

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1301 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="395184497" visible="true" version="4" changeset="19839927" timestamp="2014-01-06T09:14:47Z" user="Andrés31" uid="811230" lat="47.9204840" lon="0.2210005"/>
+ <node id="395186514" visible="true" version="4" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9196170" lon="0.2225963"/>
+ <node id="400697388" visible="true" version="3" changeset="19839927" timestamp="2014-01-06T09:14:47Z" user="Andrés31" uid="811230" lat="47.9207559" lon="0.2205948"/>
+ <node id="966209349" visible="true" version="4" changeset="19839927" timestamp="2014-01-06T09:14:45Z" user="Andrés31" uid="811230" lat="47.9180459" lon="0.2257567"/>
+ <node id="1638851237" visible="true" version="3" changeset="19839927" timestamp="2014-01-06T09:14:47Z" user="Andrés31" uid="811230" lat="47.9206927" lon="0.2206726"/>
+ <node id="1789604550" visible="true" version="3" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9187978" lon="0.2242406"/>
+ <node id="1789604770" visible="true" version="2" changeset="19839927" timestamp="2014-01-06T09:14:46Z" user="Andrés31" uid="811230" lat="47.9199510" lon="0.2219715"/>
+ <node id="1789604825" visible="true" version="2" changeset="19839927" timestamp="2014-01-06T09:14:46Z" user="Andrés31" uid="811230" lat="47.9205666" lon="0.2208583"/>
+ <node id="1789604832" visible="true" version="2" changeset="19839927" timestamp="2014-01-06T09:14:47Z" user="Andrés31" uid="811230" lat="47.9206348" lon="0.2207564"/>
+ <node id="1789604896" visible="true" version="2" changeset="19839927" timestamp="2014-01-06T09:14:47Z" user="Andrés31" uid="811230" lat="47.9208285" lon="0.2205224"/>
+ <node id="2611959394" visible="true" version="1" changeset="19839927" timestamp="2014-01-06T09:14:43Z" user="Andrés31" uid="811230" lat="47.9209107" lon="0.2204596"/>
+ <node id="2611959426" visible="true" version="1" changeset="19839927" timestamp="2014-01-06T09:14:44Z" user="Andrés31" uid="811230" lat="47.9209799" lon="0.2204131"/>
+ <node id="2611959459" visible="true" version="1" changeset="19839927" timestamp="2014-01-06T09:14:44Z" user="Andrés31" uid="811230" lat="47.9210839" lon="0.2203613"/>
+ <node id="6178626559" visible="true" version="1" changeset="65960936" timestamp="2019-01-02T14:57:41Z" user="LudoTA" uid="5197297" lat="47.9213973" lon="0.2202198"/>
+ <node id="7399911689" visible="true" version="1" changeset="83498616" timestamp="2020-04-13T22:36:35Z" user="Lyon-St-Clair" uid="9060372" lat="47.9205204" lon="0.2209379"/>
+ <node id="9334531441" visible="true" version="1" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9194134" lon="0.2230009"/>
+ <node id="9334531442" visible="true" version="1" changeset="114884639" timestamp="2021-12-13T13:43:58Z" user="Smockwette" uid="10505227" lat="47.9191102" lon="0.2236104"/>
+ <way id="121230938" visible="true" version="24" changeset="181962891" timestamp="2026-04-28T22:45:24Z" user="14im" uid="10954515">
+  <nd ref="6178626559"/>
+  <nd ref="2611959459"/>
+  <nd ref="2611959426"/>
+  <nd ref="2611959394"/>
+  <nd ref="1789604896"/>
+  <nd ref="400697388"/>
+  <nd ref="1638851237"/>
+  <nd ref="1789604832"/>
+  <nd ref="1789604825"/>
+  <nd ref="7399911689"/>
+  <nd ref="395184497"/>
+  <nd ref="1789604770"/>
+  <nd ref="395186514"/>
+  <nd ref="9334531441"/>
+  <nd ref="9334531442"/>
+  <nd ref="1789604550"/>
+  <nd ref="966209349"/>
+  <tag k="cycleway:both" v="shoulder"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="no"/>
+  <tag k="maxspeed" v="80"/>
+  <tag k="name" v="Route du Golf"/>
+  <tag k="parking:both" v="no"/>
+  <tag k="ref" v="D 140"/>
+  <tag k="sidewalk" v="no"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

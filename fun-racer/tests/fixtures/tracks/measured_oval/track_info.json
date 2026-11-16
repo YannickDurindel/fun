@@ -1,0 +1,11 @@
+{
+  "id": "measured_oval",
+  "name": "Measured Oval",
+  "grand_prix": "Fixture Grand Prix",
+  "country": "Nowhere",
+  "country_code": "",
+  "city": "",
+  "length_m": 1303,
+  "turns": 2,
+  "available": true
+}

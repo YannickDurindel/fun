@@ -1,0 +1,243 @@
+{
+ "id": "norisring",
+ "recipe": "tools/track/tracks/norisring.toml",
+ "osm": {
+  "relation": 1889538,
+  "loop_ways": [
+   1424841000,
+   139933007,
+   139933006,
+   23104478,
+   23104479,
+   23104480,
+   1560539877,
+   105838900,
+   1560542302,
+   23104476,
+   23104475,
+   37437741,
+   1424840996,
+   59273473,
+   129581802,
+   139931045
+  ],
+  "raw_length_m": 2245.2,
+  "length_m": 2240.8,
+  "official_length_m": 2300.0,
+  "length_error": -0.02572,
+  "candidates": [
+   {
+    "length_m": 2250.2,
+    "ways": [
+     1424841000,
+     139933007,
+     139933006,
+     23104478,
+     23104479,
+     23104480,
+     1560539877,
+     105838900,
+     1560542302,
+     23104476,
+     23104475,
+     37437741,
+     1424840996,
+     59273473,
+     129581802,
+     139931045
+    ]
+   }
+  ],
+  "width_tags": [
+   {
+    "s": [
+     1651.1,
+     1688.0
+    ],
+    "width": 15.0,
+    "ways": [
+     23104480
+    ]
+   },
+   {
+    "s": [
+     1688.0,
+     2082.3
+    ],
+    "width": 6.5,
+    "ways": [
+     23104479,
+     23104478,
+     139933006
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 9.68,
+  "max_grade": 0.0393,
+  "min_grade": -0.035,
+  "origin_m": 319.58
+ },
+ "turns": {
+  "official": 4,
+  "mode": "auto",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Beuthener Straße",
+    "direction": "right",
+    "s_apex": 267.0,
+    "min_radius": 73.3
+   },
+   {
+    "id": "T2",
+    "name": "Beuthener Straße",
+    "direction": "right",
+    "s_apex": 505.2,
+    "min_radius": 11.7
+   },
+   {
+    "id": "T3",
+    "name": "Zeppelinstraße",
+    "direction": "left",
+    "s_apex": 679.7,
+    "min_radius": 129.0
+   },
+   {
+    "id": "T4",
+    "name": "Karl-Steigelmann-Straße",
+    "direction": "right",
+    "s_apex": 1164.4,
+    "min_radius": 22.7
+   },
+   {
+    "id": "T5",
+    "name": "Beuthener Straße",
+    "direction": "left",
+    "s_apex": 1244.5,
+    "min_radius": 17.4
+   },
+   {
+    "id": "T6",
+    "name": "Beuthener Straße",
+    "direction": "right",
+    "s_apex": 1683.9,
+    "min_radius": 14.0
+   },
+   {
+    "id": "T7",
+    "name": "Beuthener Straße",
+    "direction": "left",
+    "s_apex": 1798.9,
+    "min_radius": 202.6
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 267.0,
+    "direction": "right",
+    "angle_deg": 40.9,
+    "kind": "corner",
+    "min_radius": 73.3,
+    "used": true
+   },
+   {
+    "s_apex": 505.2,
+    "direction": "right",
+    "angle_deg": 158.6,
+    "kind": "corner",
+    "min_radius": 11.7,
+    "used": true
+   },
+   {
+    "s_apex": 679.7,
+    "direction": "left",
+    "angle_deg": 23.0,
+    "kind": "corner",
+    "min_radius": 129.0,
+    "used": true
+   },
+   {
+    "s_apex": 1164.4,
+    "direction": "right",
+    "angle_deg": 91.4,
+    "kind": "corner",
+    "min_radius": 22.7,
+    "used": true
+   },
+   {
+    "s_apex": 1244.5,
+    "direction": "left",
+    "angle_deg": 90.5,
+    "kind": "corner",
+    "min_radius": 17.4,
+    "used": true
+   },
+   {
+    "s_apex": 1404.6,
+    "direction": "left",
+    "angle_deg": 5.7,
+    "kind": "kink",
+    "min_radius": 255.2,
+    "used": false
+   },
+   {
+    "s_apex": 1472.4,
+    "direction": "right",
+    "angle_deg": 12.9,
+    "kind": "kink",
+    "min_radius": 173.8,
+    "used": false
+   },
+   {
+    "s_apex": 1577.1,
+    "direction": "right",
+    "angle_deg": 5.3,
+    "kind": "kink",
+    "min_radius": 351.2,
+    "used": false
+   },
+   {
+    "s_apex": 1683.9,
+    "direction": "right",
+    "angle_deg": 183.3,
+    "kind": "corner",
+    "min_radius": 14.0,
+    "used": true
+   },
+   {
+    "s_apex": 1798.9,
+    "direction": "left",
+    "angle_deg": 16.4,
+    "kind": "corner",
+    "min_radius": 202.6,
+    "used": true
+   },
+   {
+    "s_apex": 2067.9,
+    "direction": "right",
+    "angle_deg": 13.0,
+    "kind": "kink",
+    "min_radius": 61.7,
+    "used": false
+   },
+   {
+    "s_apex": 2084.4,
+    "direction": "left",
+    "angle_deg": 13.9,
+    "kind": "kink",
+    "min_radius": 51.5,
+    "used": false
+   }
+  ]
+ },
+ "warnings": [
+  "the OSM loop is -2.6 % off the official length (2241 m vs 2300 m): check that it is the right layout",
+  "turn detection found 7 turns (7 corners, 5 kinks) but the official count is 4: check the plot and, if needed, pin the turns with [[turn]] entries (id, name, direction, s) in the recipe",
+  "OSM tags the road as 15 m wide from s = 1651 to 1688 m, the recipe builds it 11.0 m: check the real width (the tag is a hint, it is not applied)",
+  "OSM tags the road as 6.5 m wide from s = 1688 to 2082 m, the recipe builds it 11.0 to 13.0 m: check the real width (the tag is a hint, it is not applied)"
+ ]
+}

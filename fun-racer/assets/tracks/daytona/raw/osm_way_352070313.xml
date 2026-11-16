@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1296 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="101134802" visible="true" version="5" changeset="14440039" timestamp="2012-12-28T15:37:27Z" user="Andrés31" uid="811230" lat="29.1822437" lon="-81.0720612"/>
+ <node id="2085914582" visible="true" version="1" changeset="14440039" timestamp="2012-12-28T15:37:20Z" user="Andrés31" uid="811230" lat="29.1812663" lon="-81.0719520"/>
+ <node id="2085914634" visible="true" version="4" changeset="190176172" timestamp="2026-10-08T03:21:30Z" user="Mateusz Konieczny" uid="1722488" lat="29.1811413" lon="-81.0719311"/>
+ <node id="2085914692" visible="true" version="1" changeset="14440039" timestamp="2012-12-28T15:37:23Z" user="Andrés31" uid="811230" lat="29.1819533" lon="-81.0720478"/>
+ <node id="2085914738" visible="true" version="1" changeset="14440039" timestamp="2012-12-28T15:37:25Z" user="Andrés31" uid="811230" lat="29.1817254" lon="-81.0720242"/>
+ <way id="352070313" visible="true" version="7" changeset="156697355" timestamp="2024-09-16T16:57:01Z" user="Spyder_Monkey" uid="21177877">
+  <nd ref="101134802"/>
+  <nd ref="2085914692"/>
+  <nd ref="2085914738"/>
+  <nd ref="2085914582"/>
+  <nd ref="2085914634"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="tiger:cfcc" v="A74"/>
+  <tag k="tiger:county" v="Volusia, FL"/>
+  <tag k="tiger:name_base" v="Daytona International"/>
+  <tag k="tiger:reviewed" v="no"/>
+ </way>
+</osm>

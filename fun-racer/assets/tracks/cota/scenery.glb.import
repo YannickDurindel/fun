@@ -3,10 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
+uid="uid://dlmlis8y4kbqm"
+path="res://.godot/imported/scenery.glb-f7fe26c4af1c58b29d270b7edf4d13a2.scn"
 
 [deps]
 
 source_file="res://assets/tracks/cota/scenery.glb"
+dest_files=["res://.godot/imported/scenery.glb-f7fe26c4af1c58b29d270b7edf4d13a2.scn"]
 
 [params]
 

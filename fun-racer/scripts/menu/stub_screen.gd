@@ -16,7 +16,7 @@ func on_enter() -> void:
 	box.add_child(t)
 	match kind:
 		"main":
-			_button(box, "PLAY", func() -> void: router.go("tracks"))
+			_button(box, "PLAY", func() -> void: router.go("series"))
 			_button(box, "RECORDS", func() -> void: router.go("records"))
 			_button(box, "OPTIONS", func() -> void: router.go("settings"))
 			_button(box, "QUIT", func() -> void: get_tree().quit())

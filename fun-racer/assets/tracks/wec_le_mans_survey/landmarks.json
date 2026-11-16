@@ -1,0 +1,146 @@
+[
+ {
+  "model": "pits",
+  "at": {
+   "s": 122.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "pits_far",
+  "at": {
+   "s": 122.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "stands_pit",
+  "at": {
+   "s": 76.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "stands_pit_far",
+  "at": {
+   "s": 76.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "stands_main",
+  "at": {
+   "s": 242.1,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "stands_main_far",
+  "at": {
+   "s": 242.1,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "stands_north",
+  "at": {
+   "s": 462.1,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "stands_north_far",
+  "at": {
+   "s": 462.1,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "stand_dunlop",
+  "at": {
+   "s": 910.3,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "stand_dunlop_far",
+  "at": {
+   "s": 910.3,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "dunlop_bridge",
+  "at": {
+   "s": 1046.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "dunlop_bridge_far",
+  "at": {
+   "s": 1046.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "footbridge_00185",
+  "at": {
+   "s": 187.8,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "footbridge_00185_far",
+  "at": {
+   "s": 187.8,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "footbridge_01780",
+  "at": {
+   "s": 1783.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ },
+ {
+  "model": "footbridge_01780_far",
+  "at": {
+   "s": 1783.0,
+   "side": 1,
+   "dist": 0.0
+  },
+  "yaw_deg": 0.0
+ }
+]

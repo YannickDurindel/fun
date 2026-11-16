@@ -1,0 +1,181 @@
+{
+ "id": "homestead",
+ "recipe": "tools/track/tracks/homestead.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   108159182,
+   1146967012,
+   1146967009,
+   1146967010,
+   1146967011
+  ],
+  "raw_length_m": 2419.9,
+  "length_m": 2420.7,
+  "official_length_m": 2414.0,
+  "length_error": 0.00277,
+  "candidates": [],
+  "width_tags": [
+   {
+    "s": [
+     0.0,
+     2414.0
+    ],
+    "width": 16.764,
+    "ways": [
+     108159182,
+     1146967009,
+     1146967010,
+     1146967012
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 6.75,
+  "max_grade": 0.0204,
+  "min_grade": -0.0204,
+  "origin_m": 2.09
+ },
+ "turns": {
+  "official": 4,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Homestead-Miami Speedway",
+    "direction": "left",
+    "s_apex": 512.7,
+    "min_radius": 104.6
+   },
+   {
+    "id": "T2",
+    "name": "Homestead-Miami Speedway",
+    "direction": "left",
+    "s_apex": 684.3,
+    "min_radius": 82.7
+   },
+   {
+    "id": "T3",
+    "name": "Homestead-Miami Speedway",
+    "direction": "left",
+    "s_apex": 728.2,
+    "min_radius": 132.0
+   },
+   {
+    "id": "T4",
+    "name": "Homestead-Miami Speedway",
+    "direction": "left",
+    "s_apex": 1522.2,
+    "min_radius": 214.7
+   },
+   {
+    "id": "T5",
+    "name": "Homestead-Miami Speedway",
+    "direction": "left",
+    "s_apex": 1635.9,
+    "min_radius": 116.9
+   },
+   {
+    "id": "T6",
+    "name": "Homestead-Miami Speedway",
+    "direction": "left",
+    "s_apex": 1955.1,
+    "min_radius": 77.8
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 512.7,
+    "direction": "left",
+    "angle_deg": 78.6,
+    "kind": "corner",
+    "min_radius": 104.6,
+    "used": true
+   },
+   {
+    "s_apex": 684.3,
+    "direction": "left",
+    "angle_deg": 34.7,
+    "kind": "corner",
+    "min_radius": 82.7,
+    "used": true
+   },
+   {
+    "s_apex": 728.2,
+    "direction": "left",
+    "angle_deg": 51.9,
+    "kind": "corner",
+    "min_radius": 132.0,
+    "used": true
+   },
+   {
+    "s_apex": 963.6,
+    "direction": "left",
+    "angle_deg": 6.9,
+    "kind": "kink",
+    "min_radius": 322.4,
+    "used": false
+   },
+   {
+    "s_apex": 1472.3,
+    "direction": "left",
+    "angle_deg": 9.2,
+    "kind": "kink",
+    "min_radius": 205.9,
+    "used": false
+   },
+   {
+    "s_apex": 1522.2,
+    "direction": "left",
+    "angle_deg": 20.2,
+    "kind": "corner",
+    "min_radius": 214.7,
+    "used": true
+   },
+   {
+    "s_apex": 1635.9,
+    "direction": "left",
+    "angle_deg": 54.9,
+    "kind": "corner",
+    "min_radius": 116.9,
+    "used": true
+   },
+   {
+    "s_apex": 1955.1,
+    "direction": "left",
+    "angle_deg": 53.8,
+    "kind": "corner",
+    "min_radius": 77.8,
+    "used": true
+   },
+   {
+    "s_apex": 2005.0,
+    "direction": "left",
+    "angle_deg": 13.1,
+    "kind": "kink",
+    "min_radius": 126.2,
+    "used": false
+   },
+   {
+    "s_apex": 2082.8,
+    "direction": "left",
+    "angle_deg": 13.9,
+    "kind": "kink",
+    "min_radius": 148.4,
+    "used": false
+   },
+   {
+    "s_apex": 2136.7,
+    "direction": "left",
+    "angle_deg": 10.2,
+    "kind": "kink",
+    "min_radius": 182.7,
+    "used": false
+   }
+  ]
+ },
+ "warnings": []
+}

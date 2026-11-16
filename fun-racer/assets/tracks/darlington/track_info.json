@@ -1,0 +1,15 @@
+{
+  "id": "darlington",
+  "name": "Darlington",
+  "grand_prix": "Darlington",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Darlington",
+  "length_m": 2198,
+  "turns": 4,
+  "scene": "res://scenes/tracks/darlington.tscn",
+  "track_json": "res://assets/tracks/darlington/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "circuit"
+}

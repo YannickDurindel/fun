@@ -1,0 +1,139 @@
+{
+ "id": "kansas",
+ "recipe": "tools/track/tracks/kansas.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   37552701
+  ],
+  "raw_length_m": 2479.9,
+  "length_m": 2480.4,
+  "official_length_m": 2414.0,
+  "length_error": 0.0275,
+  "candidates": []
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 0.79,
+  "max_grade": 0.001,
+  "min_grade": -0.0012,
+  "origin_m": 300.01
+ },
+ "turns": {
+  "official": 4,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Kansas Speedway",
+    "direction": "left",
+    "s_apex": 112.9,
+    "min_radius": 308.7
+   },
+   {
+    "id": "T2",
+    "name": "Kansas Speedway",
+    "direction": "left",
+    "s_apex": 747.6,
+    "min_radius": 170.2
+   },
+   {
+    "id": "T3",
+    "name": "Kansas Speedway",
+    "direction": "left",
+    "s_apex": 800.1,
+    "min_radius": 148.7
+   },
+   {
+    "id": "T4",
+    "name": "Kansas Speedway",
+    "direction": "left",
+    "s_apex": 1676.2,
+    "min_radius": 140.6
+   },
+   {
+    "id": "T5",
+    "name": "Kansas Speedway",
+    "direction": "left",
+    "s_apex": 1722.9,
+    "min_radius": 123.8
+   },
+   {
+    "id": "T6",
+    "name": "Kansas Speedway",
+    "direction": "left",
+    "s_apex": 2182.3,
+    "min_radius": 341.5
+   },
+   {
+    "id": "T7",
+    "name": "Kansas Speedway",
+    "direction": "left",
+    "s_apex": 2320.6,
+    "min_radius": 295.1
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 112.9,
+    "direction": "left",
+    "angle_deg": 17.8,
+    "kind": "corner",
+    "min_radius": 308.7,
+    "used": true
+   },
+   {
+    "s_apex": 747.6,
+    "direction": "left",
+    "angle_deg": 121.9,
+    "kind": "corner",
+    "min_radius": 170.2,
+    "used": true
+   },
+   {
+    "s_apex": 800.1,
+    "direction": "left",
+    "angle_deg": 22.7,
+    "kind": "corner",
+    "min_radius": 148.7,
+    "used": true
+   },
+   {
+    "s_apex": 1676.2,
+    "direction": "left",
+    "angle_deg": 80.7,
+    "kind": "corner",
+    "min_radius": 140.6,
+    "used": true
+   },
+   {
+    "s_apex": 1722.9,
+    "direction": "left",
+    "angle_deg": 65.8,
+    "kind": "corner",
+    "min_radius": 123.8,
+    "used": true
+   },
+   {
+    "s_apex": 2182.3,
+    "direction": "left",
+    "angle_deg": 15.2,
+    "kind": "corner",
+    "min_radius": 341.5,
+    "used": true
+   },
+   {
+    "s_apex": 2320.6,
+    "direction": "left",
+    "angle_deg": 16.9,
+    "kind": "corner",
+    "min_radius": 295.1,
+    "used": true
+   }
+  ]
+ },
+ "warnings": [
+  "the OSM loop is +2.7 % off the official length (2480 m vs 2414 m): check that it is the right layout"
+ ]
+}

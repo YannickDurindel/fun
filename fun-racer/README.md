@@ -355,7 +355,8 @@ python3 -m venv .venv && .venv/bin/pip install -r cad/requirements.txt
 wrong. Once the folder exists, the track appears in the menu as playable; kerbs, run-off and
 walls are laid out automatically unless the track has a hand-made table in
 `scripts/track/trackside_layouts/`. The circuits listed as coming soon are in
-`assets/tracks/calendar.json`.
+`assets/tracks/calendar.json` (F1) and `assets/tracks/calendar_<series>.json` (every other
+series; `TrackCatalog.CALENDARS` maps the series to its file).
 
 ## Layout
 

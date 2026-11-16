@@ -1,0 +1,115 @@
+{
+ "id": "iowa",
+ "recipe": "tools/track/tracks/iowa.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   119238784
+  ],
+  "raw_length_m": 1432.3,
+  "length_m": 1432.9,
+  "official_length_m": 1408.0,
+  "length_error": 0.01767,
+  "candidates": []
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 0.25,
+  "max_grade": 0.0006,
+  "min_grade": -0.0006,
+  "origin_m": 276.68
+ },
+ "turns": {
+  "official": 4,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Iowa Speedway",
+    "direction": "left",
+    "s_apex": 241.9,
+    "min_radius": 87.7
+   },
+   {
+    "id": "T2",
+    "name": "Iowa Speedway",
+    "direction": "left",
+    "s_apex": 499.5,
+    "min_radius": 77.7
+   },
+   {
+    "id": "T3",
+    "name": "Iowa Speedway",
+    "direction": "left",
+    "s_apex": 920.3,
+    "min_radius": 78.6
+   },
+   {
+    "id": "T4",
+    "name": "Iowa Speedway",
+    "direction": "left",
+    "s_apex": 1148.4,
+    "min_radius": 79.6
+   },
+   {
+    "id": "T5",
+    "name": "Iowa Speedway",
+    "direction": "left",
+    "s_apex": 1349.0,
+    "min_radius": 172.4
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 100.3,
+    "direction": "left",
+    "angle_deg": 13.0,
+    "kind": "kink",
+    "min_radius": 226.1,
+    "used": false
+   },
+   {
+    "s_apex": 241.9,
+    "direction": "left",
+    "angle_deg": 123.0,
+    "kind": "corner",
+    "min_radius": 87.7,
+    "used": true
+   },
+   {
+    "s_apex": 499.5,
+    "direction": "left",
+    "angle_deg": 38.1,
+    "kind": "corner",
+    "min_radius": 77.7,
+    "used": true
+   },
+   {
+    "s_apex": 920.3,
+    "direction": "left",
+    "angle_deg": 41.8,
+    "kind": "corner",
+    "min_radius": 78.6,
+    "used": true
+   },
+   {
+    "s_apex": 1148.4,
+    "direction": "left",
+    "angle_deg": 122.0,
+    "kind": "corner",
+    "min_radius": 79.6,
+    "used": true
+   },
+   {
+    "s_apex": 1349.0,
+    "direction": "left",
+    "angle_deg": 17.2,
+    "kind": "corner",
+    "min_radius": 172.4,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

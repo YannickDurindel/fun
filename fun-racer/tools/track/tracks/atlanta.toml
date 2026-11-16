@@ -1,0 +1,90 @@
+# Atlanta Motor Speedway (Hampton, USA), 2478 m, anticlockwise oval.
+# Built for the IndyCar / NASCAR calendars (events link it with "track"): series "circuit"
+# keeps it out of every series list on its own.
+#
+#   .venv/bin/python tools/track/build_track.py atlanta --plot
+
+id = "atlanta"
+series = "circuit"
+name = "Atlanta, Hampton"
+grand_prix = "Atlanta, Hampton"
+country = "United States"
+country_code = "US"
+city = "Hampton"
+length_m = 2478
+turns = 4
+full_name = "Atlanta Motor Speedway"
+
+[osm]
+ways = [288853230]       # the quad-oval, one closed way (2412 m in OSM)
+
+[layout]
+direction = "anticlockwise"
+# OSM has no start / finish data: on the front stretch beside the middle of pit road (way
+# 288853232). Estimate.
+finish = [33.385761, -84.316850]
+
+[elevation]
+dataset = "terrarium"
+
+[road]
+# Real banking (2022 reprofile): 28 degrees (0.489 rad) in all four turns, 5 (0.087) on the
+# straights and the quad-oval front stretch. All left-handers: the right edge is higher (negative bank).
+# Blends of 110 m on the turns (twist rule: >= 1.5 x 0.40 / 0.012 = 50 m; long because the turns are
+# flat out). Widths: the racing surface is 52 ft (15.8 m) on the front stretch, 42 ft on the back
+# stretch and 40 ft in the turns; built 16 m on the front stretch and 15 m elsewhere, which includes the
+# strip of apron the cars use. s values are read off track.json.
+max_bank = 0.5
+base_width = 15.0
+grid_width = 16.0
+
+[[road.override]]           # back straight, 5 deg
+s = [950.0, 1560.0]
+bank = -0.087
+blend = 40.0
+
+[[road.override]]           # front stretch (quad-oval), 5 deg
+s = [2130.0, 380.0]
+bank = -0.087
+blend = 40.0
+
+[[road.override]]           # front stretch: 52 ft
+s = [2200.0, 300.0]
+width = 16.0
+blend = 60.0
+
+[[road.override]]           # turns 1-2, 28 deg
+s = [380.0, 960.0]
+bank = -0.489
+blend = 110.0
+
+[[road.override]]           # turns 3-4, 28 deg
+s = [1555.0, 2135.0]
+bank = -0.489
+blend = 110.0
+
+# Pinned to the official 4 (the detector finds the two ends of the oval as single corners)
+
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 500.0
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 840.0
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "left"
+s = 1680.0
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 2010.0

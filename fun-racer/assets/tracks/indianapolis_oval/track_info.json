@@ -1,0 +1,15 @@
+{
+  "id": "indianapolis_oval",
+  "name": "Indianapolis Oval",
+  "grand_prix": "Oval · Speedway",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Speedway",
+  "length_m": 4023,
+  "turns": 4,
+  "scene": "res://scenes/tracks/indianapolis_oval.tscn",
+  "track_json": "res://assets/tracks/indianapolis_oval/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "circuit"
+}

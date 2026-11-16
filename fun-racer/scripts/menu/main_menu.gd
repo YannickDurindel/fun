@@ -74,7 +74,7 @@ func _on_continue() -> void:
 	Game.start_race(_continue_config)
 
 func _on_play() -> void:
-	_go(play_button, "tracks")
+	_go(play_button, "series")
 
 func _on_records() -> void:
 	_go(records_button, "records")

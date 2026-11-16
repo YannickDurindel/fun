@@ -1,0 +1,66 @@
+{
+ "id": "martinsville",
+ "recipe": "tools/track/tracks/martinsville.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   448515177,
+   402168721,
+   448515178
+  ],
+  "raw_length_m": 826.9,
+  "length_m": 827.0,
+  "official_length_m": 847.0,
+  "length_error": -0.02367,
+  "candidates": []
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 0.02,
+  "max_grade": 0.0001,
+  "min_grade": -0.0001,
+  "origin_m": 223.21
+ },
+ "turns": {
+  "official": 4,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Martinsville Speedway",
+    "direction": "left",
+    "s_apex": 176.4,
+    "min_radius": 42.1
+   },
+   {
+    "id": "T2",
+    "name": "Martinsville Speedway",
+    "direction": "left",
+    "s_apex": 613.2,
+    "min_radius": 43.3
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 176.4,
+    "direction": "left",
+    "angle_deg": 179.3,
+    "kind": "corner",
+    "min_radius": 42.1,
+    "used": true
+   },
+   {
+    "s_apex": 613.2,
+    "direction": "left",
+    "angle_deg": 180.7,
+    "kind": "corner",
+    "min_radius": 43.3,
+    "used": true
+   }
+  ]
+ },
+ "warnings": [
+  "the OSM loop is -2.4 % off the official length (827 m vs 847 m): check that it is the right layout"
+ ]
+}

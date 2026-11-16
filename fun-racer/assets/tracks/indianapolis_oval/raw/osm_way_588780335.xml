@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (3955526 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="654509087" visible="true" version="3" changeset="8795146" timestamp="2011-07-22T07:28:54Z" user="Neverwhere" uid="221878" lat="39.7912849" lon="-86.2303293"/>
+ <node id="1369704920" visible="true" version="2" changeset="59027962" timestamp="2018-05-16T19:00:55Z" user="SSR_317" uid="7960635" lat="39.7906151" lon="-86.2303324"/>
+ <node id="3241395335" visible="true" version="1" changeset="27555557" timestamp="2014-12-18T18:08:59Z" user="Andrés31" uid="811230" lat="39.7927418" lon="-86.2303579"/>
+ <node id="3241395433" visible="true" version="1" changeset="27555557" timestamp="2014-12-18T18:09:01Z" user="Andrés31" uid="811230" lat="39.7981062" lon="-86.2304581"/>
+ <way id="588780335" visible="true" version="4" changeset="110060460" timestamp="2021-08-22T12:52:33Z" user="emacberry" uid="7637191">
+  <nd ref="1369704920"/>
+  <nd ref="654509087"/>
+  <nd ref="3241395335"/>
+  <nd ref="3241395433"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Indianapolis Motor Speedway - Backstretch"/>
+  <tag k="note" v="Surface is asphalt over brick"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="oval" v="anti-clockwise"/>
+  <tag k="sport" v="motor"/>
+  <tag k="start_date" v="1909"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikipedia" v="en:Indianapolis 500"/>
+ </way>
+</osm>

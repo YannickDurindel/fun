@@ -1,0 +1,23 @@
+# Sachsenring (Hohenstein-Ernstthal, Germany), 3671 m.
+# Built for other series' calendars (event(s) dtc_sachsenring link it with "track"): series "circuit"
+# keeps it out of every series list on its own, F1 included.
+#
+#   .venv/bin/python tools/track/build_track.py sachsenring --plot
+
+id = "sachsenring"
+series = "circuit"
+name = "Sachsenring"
+grand_prix = "Sachsenring"
+country = "Germany"
+country_code = "DE"
+city = "Hohenstein-Ernstthal"
+length_m = 3671
+turns = 13
+full_name = "Sachsenring"
+
+[osm]
+# type=circuit relation "Sachsenring".
+relation = 2148312
+
+[elevation]
+dataset = "terrarium"

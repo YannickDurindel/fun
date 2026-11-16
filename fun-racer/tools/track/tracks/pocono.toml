@@ -1,0 +1,73 @@
+# Pocono Raceway (Long Pond, USA), 4023 m, anticlockwise oval.
+# Built for the IndyCar / NASCAR calendars (events link it with "track"): series "circuit"
+# keeps it out of every series list on its own.
+#
+#   .venv/bin/python tools/track/build_track.py pocono --plot
+
+id = "pocono"
+series = "circuit"
+name = "Pocono, Long Pond"
+grand_prix = "Pocono, Long Pond"
+country = "United States"
+country_code = "US"
+city = "Long Pond"
+length_m = 4023
+turns = 3
+full_name = "Pocono Raceway"
+
+[osm]
+ways = [109767460]       # the triangle, one closed way (4058 m in OSM)
+
+[layout]
+direction = "anticlockwise"
+# OSM has no start / finish data: the middle of the pit lane (way 563465040), on the front stretch
+# (estimate).
+finish = [41.052656, -75.510785]
+
+[elevation]
+dataset = "terrarium"
+
+[road]
+# Real banking: Turn 1 14 degrees (0.244 rad), Turn 2 (the Tunnel Turn) 8 (0.140), Turn 3 6
+# (0.105); the three straights keep the automatic 1.5 % crossfall. All left-handers: the right edge is
+# higher (negative bank). Blends of 90 / 80 m (twist rule: >= 1.5 x 0.24 / 0.012 = 30 m; long because
+# the turns are taken at 250+ km/h). Width: about 18 m all round (estimate: the racing surface
+# between the apron line and the wall). s values are read off track.json.
+max_bank = 0.26
+base_width = 18.0
+grid_width = 18.0
+
+[[road.override]]           # Turn 1, 14 deg
+s = [700.0, 1180.0]
+bank = -0.244
+blend = 90.0
+
+[[road.override]]           # Turn 2 (Tunnel Turn), 8 deg
+s = [2150.0, 2420.0]
+bank = -0.14
+blend = 80.0
+
+[[road.override]]           # Turn 3, 6 deg
+s = [3040.0, 3510.0]
+bank = -0.105
+blend = 80.0
+
+# Pinned to the official 3 (the detector finds each end of the oval as one corner)
+
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 900.0
+
+[[turn]]
+id = "T2"
+name = "Tunnel Turn"
+direction = "left"
+s = 2300.0
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "left"
+s = 3300.0

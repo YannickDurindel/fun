@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1293 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="27016240" visible="true" version="6" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4291657" lon="11.1300402"/>
+ <node id="27323219" visible="true" version="7" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4309396" lon="11.1278787">
+  <tag k="TMC:cid_58:tabcd_1:Class" v="Point"/>
+  <tag k="TMC:cid_58:tabcd_1:Direction" v="both"/>
+  <tag k="TMC:cid_58:tabcd_1:LCLversion" v="9.00"/>
+  <tag k="TMC:cid_58:tabcd_1:LocationCode" v="42325"/>
+  <tag k="TMC:cid_58:tabcd_1:NextLocationCode" v="28146"/>
+  <tag k="TMC:cid_58:tabcd_1:PrevLocationCode" v="42324"/>
+ </node>
+ <node id="249440482" visible="true" version="9" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4296511" lon="11.1287955"/>
+ <node id="249440483" visible="true" version="6" changeset="130778847" timestamp="2023-01-02T09:34:15Z" user="hofoen" uid="52797" lat="49.4298163" lon="11.1284027"/>
+ <node id="249440486" visible="true" version="7" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4300070" lon="11.1273149"/>
+ <node id="249440487" visible="true" version="8" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4296391" lon="11.1282296"/>
+ <node id="249440488" visible="true" version="9" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4294778" lon="11.1286269"/>
+ <node id="249440489" visible="true" version="6" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4288654" lon="11.1299832"/>
+ <node id="249440490" visible="true" version="5" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4284427" lon="11.1306563"/>
+ <node id="249440491" visible="true" version="4" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4279779" lon="11.1312389"/>
+ <node id="249440499" visible="true" version="2" changeset="10040393" timestamp="2011-12-05T09:44:14Z" user="pyram" uid="497849" lat="49.4279902" lon="11.1314276"/>
+ <node id="249440500" visible="true" version="3" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4280931" lon="11.1315628"/>
+ <node id="249440501" visible="true" version="4" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4281487" lon="11.1315905"/>
+ <node id="309340748" visible="true" version="2" changeset="10046096" timestamp="2011-12-05T22:12:54Z" user="pyram" uid="497849" lat="49.4334976" lon="11.1222688"/>
+ <node id="309340750" visible="true" version="2" changeset="59713378" timestamp="2018-06-10T14:43:56Z" user="pyram" uid="497849" lat="49.4338033" lon="11.1219515">
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="bus_stop"/>
+  <tag k="name" v="Zeppelinstraße"/>
+  <tag k="public_transport" v="stop_position"/>
+ </node>
+ <node id="333000863" visible="true" version="19" changeset="170987906" timestamp="2025-08-25T16:59:45Z" user="pyram" uid="497849" lat="49.4338398" lon="11.1210264"/>
+ <node id="559137090" visible="true" version="3" changeset="120341426" timestamp="2022-04-29T11:01:54Z" user="CaptainCrunch" uid="13363" lat="49.4295604" lon="11.1290202"/>
+ <node id="783428737" visible="true" version="9" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4292546" lon="11.1298655">
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="bus_stop"/>
+  <tag k="name" v="Frankenstadion"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref" v="3"/>
+  <tag k="ref:IFOPT" v="de:09564:410:3:O"/>
+ </node>
+ <node id="783428883" visible="true" version="14" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4292379" lon="11.1292082">
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="bus_stop"/>
+  <tag k="mapillary" v="2867645846823559"/>
+  <tag k="name" v="Frankenstadion"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref" v="4"/>
+  <tag k="ref:IFOPT" v="de:09564:410:3:W"/>
+  <tag k="shelter" v="no"/>
+  <tag k="survey:date" v="2016-08-06"/>
+ </node>
+ <node id="959576445" visible="true" version="4" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4301140" lon="11.1271574"/>
+ <node id="959576486" visible="true" version="3" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4311090" lon="11.1277079"/>
+ <node id="1421406326" visible="true" version="6" changeset="153659541" timestamp="2024-07-07T12:15:57Z" user="EST19" uid="11858459" lat="49.4302220" lon="11.1268929">
+  <tag k="barrier" v="bollard"/>
+  <tag k="bicycle" v="yes"/>
+  <tag k="bollard" v="removable"/>
+  <tag k="foot" v="yes"/>
+ </node>
+ <node id="1421406329" visible="true" version="5" changeset="170987906" timestamp="2025-08-25T16:59:45Z" user="pyram" uid="497849" lat="49.4320829" lon="11.1223557">
+  <tag k="removed:barrier" v="bollard"/>
+ </node>
+ <node id="1421830577" visible="true" version="2" changeset="10046096" timestamp="2011-12-05T22:12:54Z" user="pyram" uid="497849" lat="49.4300616" lon="11.1270068"/>
+ <node id="1421830580" visible="true" version="2" changeset="153659541" timestamp="2024-07-07T12:15:57Z" user="EST19" uid="11858459" lat="49.4303300" lon="11.1263404"/>
+ <node id="1421830581" visible="true" version="2" changeset="136246765" timestamp="2023-05-18T10:02:25Z" user="Lisawie" uid="15526236" lat="49.4301448" lon="11.1267967">
+  <tag k="barrier" v="bollard"/>
+  <tag k="bollard" v="removable"/>
+ </node>
+ <node id="1421830586" visible="true" version="3" changeset="153659541" timestamp="2024-07-07T12:15:57Z" user="EST19" uid="11858459" lat="49.4312567" lon="11.1240756"/>
+ <node id="1421830588" visible="true" version="2" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4317619" lon="11.1228329"/>
+ <node id="1421830590" visible="true" version="4" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4320021" lon="11.1222728">
+  <tag k="barrier" v="bollard"/>
+  <tag k="bollard" v="removable"/>
+ </node>
+ <node id="1532554443" visible="true" version="1" changeset="10040393" timestamp="2011-12-05T09:44:00Z" user="pyram" uid="497849" lat="49.4279731" lon="11.1313268"/>
+ <node id="1532554446" visible="true" version="3" changeset="114056262" timestamp="2021-11-21T12:38:47Z" user="pyram" uid="497849" lat="49.4280448" lon="11.1315229"/>
+ <node id="1532689203" visible="true" version="1" changeset="10041540" timestamp="2011-12-05T12:39:08Z" user="pyram" uid="497849" lat="49.4308871" lon="11.1277848"/>
+ <node id="1532689234" visible="true" version="3" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4344490" lon="11.1211358"/>
+ <node id="1533304360" visible="true" version="2" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4286560" lon="11.1309125"/>
+ <node id="1533304361" visible="true" version="4" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4300471" lon="11.1272287"/>
+ <node id="1533304362" visible="true" version="6" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4301593" lon="11.1275547"/>
+ <node id="1533304364" visible="true" version="3" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4303385" lon="11.1273160"/>
+ <node id="1533304372" visible="true" version="1" changeset="10046096" timestamp="2011-12-05T22:12:24Z" user="pyram" uid="497849" lat="49.4321624" lon="11.1221771"/>
+ <node id="1533304376" visible="true" version="2" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4322931" lon="11.1219153"/>
+ <node id="1533304381" visible="true" version="2" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4323981" lon="11.1217469"/>
+ <node id="1533304384" visible="true" version="2" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4325311" lon="11.1216086"/>
+ <node id="1533304388" visible="true" version="2" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4326729" lon="11.1215189"/>
+ <node id="1533304393" visible="true" version="2" changeset="67284692" timestamp="2019-02-17T16:25:34Z" user="pyram" uid="497849" lat="49.4329528" lon="11.1231247"/>
+ <node id="1533304395" visible="true" version="1" changeset="10046096" timestamp="2011-12-05T22:12:26Z" user="pyram" uid="497849" lat="49.4331468" lon="11.1227555"/>
+ <node id="1533304397" visible="true" version="1" changeset="10046096" timestamp="2011-12-05T22:12:26Z" user="pyram" uid="497849" lat="49.4333264" lon="11.1224646"/>
+ <node id="1533304399" visible="true" version="2" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4333639" lon="11.1212223"/>
+ <node id="1533304412" visible="true" version="2" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4339790" lon="11.1209766"/>
+ <node id="1533304415" visible="true" version="1" changeset="10046096" timestamp="2011-12-05T22:12:27Z" user="pyram" uid="497849" lat="49.4341578" lon="11.1215670"/>
+ <node id="1533304417" visible="true" version="2" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4342122" lon="11.1209121"/>
+ <node id="1533304418" visible="true" version="1" changeset="10046096" timestamp="2011-12-05T22:12:28Z" user="pyram" uid="497849" lat="49.4343481" lon="11.1213062"/>
+ <node id="1533304419" visible="true" version="2" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4343193" lon="11.1208968"/>
+ <node id="1533304420" visible="true" version="1" changeset="10046096" timestamp="2011-12-05T22:12:28Z" user="pyram" uid="497849" lat="49.4344235" lon="11.1209289"/>
+ <node id="1533304422" visible="true" version="2" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4344578" lon="11.1209782"/>
+ <node id="2562083816" visible="true" version="5" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4292025" lon="11.1292922">
+  <tag k="crossing" v="unmarked"/>
+  <tag k="crossing:markings" v="no"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="2562083823" visible="true" version="5" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4293667" lon="11.1295961">
+  <tag k="crossing" v="unmarked"/>
+  <tag k="crossing:markings" v="no"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="3164270510" visible="true" version="3" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4302502" lon="11.1274128"/>
+ <node id="4454976996" visible="true" version="5" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4292299" lon="11.1292272"/>
+ <node id="7182282818" visible="true" version="3" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4287145" lon="11.1302345"/>
+ <node id="8835633576" visible="true" version="2" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4289437" lon="11.1304423"/>
+ <node id="9318741452" visible="true" version="1" changeset="114668791" timestamp="2021-12-07T16:59:45Z" user="myonecar" uid="14585586" lat="49.4340596" lon="11.1216735"/>
+ <node id="9947868266" visible="true" version="1" changeset="124786239" timestamp="2022-08-11T17:36:33Z" user="pyram" uid="497849" lat="49.4329227" lon="11.1231994"/>
+ <node id="9947868287" visible="true" version="2" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4311429" lon="11.1276261"/>
+ <node id="11237238128" visible="true" version="1" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4323476" lon="11.1218243"/>
+ <node id="11237238129" visible="true" version="1" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4324528" lon="11.1216800"/>
+ <node id="11237238133" visible="true" version="1" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4324934" lon="11.1216405"/>
+ <node id="11237238134" visible="true" version="1" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4326158" lon="11.1215504"/>
+ <node id="11237259742" visible="true" version="1" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4327243" lon="11.1214941"/>
+ <node id="11237259743" visible="true" version="1" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4340944" lon="11.1209398"/>
+ <node id="11237259752" visible="true" version="1" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4342855" lon="11.1208984"/>
+ <node id="11237259755" visible="true" version="1" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4343514" lon="11.1208977"/>
+ <node id="11237259756" visible="true" version="1" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4343815" lon="11.1209057"/>
+ <node id="11237259757" visible="true" version="1" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4344055" lon="11.1209143"/>
+ <node id="11237259758" visible="true" version="1" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4344411" lon="11.1209513"/>
+ <node id="11237259770" visible="true" version="1" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4319502" lon="11.1223772"/>
+ <node id="11237259771" visible="true" version="2" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4300722" lon="11.1271910"/>
+ <node id="11237259772" visible="true" version="1" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929" lat="49.4300907" lon="11.1271721"/>
+ <node id="11237259778" visible="true" version="2" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4291185" lon="11.1294828"/>
+ <node id="11237259779" visible="true" version="2" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4290469" lon="11.1296341"/>
+ <node id="11237259780" visible="true" version="2" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4287844" lon="11.1301184"/>
+ <node id="12037503466" visible="true" version="2" changeset="153659541" timestamp="2024-07-07T12:15:57Z" user="EST19" uid="11858459" lat="49.4305275" lon="11.1261598">
+  <tag k="name" v="Norisring Start - Finish"/>
+  <tag k="raceway" v="start-finish"/>
+ </node>
+ <node id="12039858096" visible="true" version="1" changeset="153659541" timestamp="2024-07-07T12:15:57Z" user="EST19" uid="11858459" lat="49.4320292" lon="11.1222252"/>
+ <node id="13096787673" visible="true" version="2" changeset="183646673" timestamp="2026-06-04T13:41:36Z" user="pyram" uid="497849" lat="49.4332159" lon="11.1212869"/>
+ <node id="13096787674" visible="true" version="3" changeset="183646673" timestamp="2026-06-04T13:41:36Z" user="pyram" uid="497849" lat="49.4331818" lon="11.1213020">
+  <tag k="barrier" v="bollard"/>
+  <tag k="bollard" v="removable"/>
+ </node>
+ <node id="13811420972" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4309132" lon="11.1278213"/>
+ <node id="13811420973" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4309260" lon="11.1278459"/>
+ <node id="13811420974" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4305115" lon="11.1274171"/>
+ <node id="13811420975" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4304164" lon="11.1273512"/>
+ <node id="13811420978" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4301985" lon="11.1274782"/>
+ <node id="13811420979" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4289969" lon="11.1297364"/>
+ <node id="13811420980" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4283052" lon="11.1308502"/>
+ <node id="13811420981" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4280156" lon="11.1314812"/>
+ <node id="13811420982" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4283746" lon="11.1307562"/>
+ <node id="13811420983" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4281443" lon="11.1310572"/>
+ <node id="13811420984" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4282242" lon="11.1309538"/>
+ <node id="13811420987" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4279808" lon="11.1313797"/>
+ <node id="13811420988" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4289300" lon="11.1298645"/>
+ <node id="13811420989" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4285803" lon="11.1304487"/>
+ <node id="13811420990" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4285120" lon="11.1305531"/>
+ <node id="13811425026" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4284041" lon="11.1312654"/>
+ <node id="13811425027" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4282769" lon="11.1314293"/>
+ <node id="13811425028" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4285306" lon="11.1310928"/>
+ <node id="13811425029" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4288039" lon="11.1306826"/>
+ <node id="13811425030" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4290587" lon="11.1302414"/>
+ <node id="13811425031" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4293156" lon="11.1297298"/>
+ <node id="13811425032" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4295184" lon="11.1291352"/>
+ <node id="13811425033" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4294189" lon="11.1294423"/>
+ <node id="13811425034" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4294718" lon="11.1292792"/>
+ <node id="13811425035" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4296054" lon="11.1289061"/>
+ <node id="13811425036" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4288737" lon="11.1305662"/>
+ <node id="13811425037" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4287316" lon="11.1307999"/>
+ <node id="13811425039" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4282128" lon="11.1315105"/>
+ <node id="13811425040" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4280611" lon="11.1311504"/>
+ <node id="13811425041" visible="true" version="1" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535" lat="49.4293578" lon="11.1289148"/>
+ <node id="13944502152" visible="true" version="1" changeset="184165439" timestamp="2026-06-16T06:15:29Z" user="Laptobi" uid="21974390" lat="49.4303301" lon="11.1266334"/>
+ <node id="13944502153" visible="true" version="1" changeset="184165439" timestamp="2026-06-16T06:15:29Z" user="Laptobi" uid="21974390" lat="49.4311681" lon="11.1242922"/>
+ <node id="14197077000" visible="true" version="1" changeset="189259842" timestamp="2026-09-19T15:39:47Z" user="HaraldBk" uid="23498479" lat="49.4284904" lon="11.1311476"/>
+ <node id="14197093822" visible="true" version="1" changeset="189260448" timestamp="2026-09-19T15:53:35Z" user="HaraldBk" uid="23498479" lat="49.4293813" lon="11.1295530"/>
+ <way id="23104475" visible="true" version="14" changeset="189421158" timestamp="2026-09-22T21:27:40Z" user="HaraldBk" uid="23498479">
+  <nd ref="249440483"/>
+  <nd ref="1533304362"/>
+  <nd ref="13811420978"/>
+  <nd ref="3164270510"/>
+  <nd ref="1533304364"/>
+  <tag k="cycleway:left" v="no"/>
+  <tag k="cycleway:right" v="lane"/>
+  <tag k="cycleway:right:lane" v="exclusive"/>
+  <tag k="cycleway:right:traffic_sign" v="DE:241"/>
+  <tag k="cycleway:right:width" v="1.9"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Beuthener Straße"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:right" v="yes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source:cycleway:right:width" v="aerial imagery"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="23104476" visible="true" version="9" changeset="189421158" timestamp="2026-09-22T21:27:40Z" user="HaraldBk" uid="23498479">
+  <nd ref="249440482"/>
+  <nd ref="249440483"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="cycleway:left" v="no"/>
+  <tag k="cycleway:right" v="lane"/>
+  <tag k="cycleway:right:lane" v="exclusive"/>
+  <tag k="cycleway:right:traffic_sign" v="DE:241"/>
+  <tag k="cycleway:right:width" v="1.8"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="maxweight:signed" v="no"/>
+  <tag k="name" v="Beuthener Straße"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:right" v="yes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source:cycleway:right:width" v="aerial imagery"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="23104478" visible="true" version="8" changeset="189421158" timestamp="2026-09-22T21:27:40Z" user="HaraldBk" uid="23498479">
+  <nd ref="249440487"/>
+  <nd ref="249440488"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="cycleway:left" v="no"/>
+  <tag k="cycleway:right" v="lane"/>
+  <tag k="cycleway:right:lane" v="exclusive"/>
+  <tag k="cycleway:right:width" v="1.8"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="layer" v="1"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="maxweight:signed" v="no"/>
+  <tag k="name" v="Beuthener Straße"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:right" v="yes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source:cycleway:right:width" v="aerial imagery"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="width" v="6.5"/>
+ </way>
+ <way id="23104479" visible="true" version="23" changeset="189421158" timestamp="2026-09-22T21:27:40Z" user="HaraldBk" uid="23498479">
+  <nd ref="249440488"/>
+  <nd ref="13811425041"/>
+  <nd ref="783428883"/>
+  <nd ref="4454976996"/>
+  <nd ref="2562083816"/>
+  <nd ref="11237259778"/>
+  <nd ref="11237259779"/>
+  <nd ref="13811420979"/>
+  <nd ref="13811420988"/>
+  <nd ref="249440489"/>
+  <nd ref="11237259780"/>
+  <nd ref="7182282818"/>
+  <nd ref="13811420989"/>
+  <nd ref="13811420990"/>
+  <nd ref="249440490"/>
+  <nd ref="13811420982"/>
+  <nd ref="13811420980"/>
+  <nd ref="13811420984"/>
+  <nd ref="13811420983"/>
+  <nd ref="13811425040"/>
+  <nd ref="249440491"/>
+  <tag k="cycleway:left" v="no"/>
+  <tag k="cycleway:right" v="lane"/>
+  <tag k="cycleway:right:lane" v="exclusive"/>
+  <tag k="cycleway:right:width" v="1.8"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lane_markings" v="no"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Beuthener Straße"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:right" v="yes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source:cycleway:right:width" v="aerial imagery"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="width" v="6.5"/>
+ </way>
+ <way id="23104480" visible="true" version="10" changeset="182429755" timestamp="2026-05-09T15:14:29Z" user="WilliamHarrison" uid="16806535">
+  <nd ref="249440491"/>
+  <nd ref="1532554443"/>
+  <nd ref="13811420987"/>
+  <nd ref="249440499"/>
+  <nd ref="13811420981"/>
+  <nd ref="1532554446"/>
+  <nd ref="249440500"/>
+  <nd ref="249440501"/>
+  <tag k="highway" v="secondary_link"/>
+  <tag k="maxspeed:type" v="DE:urban"/>
+  <tag k="name" v="Beuthener Straße"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="no"/>
+  <tag k="source" v="HiRes aerial imagery"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="width" v="15"/>
+ </way>
+ <way id="37437741" visible="true" version="18" changeset="189261317" timestamp="2026-09-19T16:12:43Z" user="HaraldBk" uid="23498479">
+  <nd ref="1533304364"/>
+  <nd ref="13811420975"/>
+  <nd ref="13811420974"/>
+  <nd ref="1532689203"/>
+  <nd ref="13811420972"/>
+  <nd ref="13811420973"/>
+  <nd ref="27323219"/>
+  <tag k="change:lanes:backward" v="no"/>
+  <tag k="change:lanes:forward" v="not_left|yes"/>
+  <tag k="cycleway:left" v="lane"/>
+  <tag k="cycleway:left:lane" v="exclusive"/>
+  <tag k="cycleway:left:width" v="2"/>
+  <tag k="cycleway:right" v="lane"/>
+  <tag k="cycleway:right:lane" v="exclusive"/>
+  <tag k="cycleway:right:width" v="2"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lanes:backward" v="1"/>
+  <tag k="lanes:forward" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Karl-Steigelmann-Straße"/>
+  <tag k="sidewalk" v="both"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source:cycleway:left:width" v="aerial imagery"/>
+  <tag k="source:cycleway:right:width" v="aerial imagery"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes:forward" v="left|right"/>
+ </way>
+ <way id="59273473" visible="true" version="18" changeset="170987906" timestamp="2025-08-25T16:59:45Z" user="pyram" uid="497849">
+  <nd ref="9947868266"/>
+  <nd ref="1533304393"/>
+  <nd ref="1533304395"/>
+  <nd ref="1533304397"/>
+  <nd ref="309340748"/>
+  <nd ref="309340750"/>
+  <nd ref="9318741452"/>
+  <nd ref="1533304415"/>
+  <nd ref="1533304418"/>
+  <nd ref="1532689234"/>
+  <tag k="highway" v="unclassified"/>
+  <tag k="lane_markings" v="no"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Zeppelinstraße"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="105838900" visible="true" version="12" changeset="189260448" timestamp="2026-09-19T15:53:35Z" user="HaraldBk" uid="23498479">
+  <nd ref="14197077000"/>
+  <nd ref="13811425028"/>
+  <nd ref="1533304360"/>
+  <nd ref="13811425037"/>
+  <nd ref="13811425029"/>
+  <nd ref="13811425036"/>
+  <nd ref="8835633576"/>
+  <nd ref="13811425030"/>
+  <nd ref="27016240"/>
+  <nd ref="783428737"/>
+  <nd ref="13811425031"/>
+  <nd ref="2562083823"/>
+  <nd ref="14197093822"/>
+  <tag k="cycleway:left" v="no"/>
+  <tag k="cycleway:right" v="lane"/>
+  <tag k="cycleway:right:lane" v="exclusive"/>
+  <tag k="cycleway:right:traffic_sign" v="DE:237"/>
+  <tag k="cycleway:right:width" v="1.8"/>
+  <tag k="foot" v="use_sidepath"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lane_markings" v="no"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Beuthener Straße"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source:cycleway:right:width" v="aerial imagery"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="128738913" visible="true" version="10" changeset="184165439" timestamp="2026-06-16T06:15:29Z" user="Laptobi" uid="21974390">
+  <nd ref="1533304372"/>
+  <nd ref="12039858096"/>
+  <nd ref="1421830590"/>
+  <nd ref="11237259770"/>
+  <nd ref="1421830588"/>
+  <nd ref="1421830586"/>
+  <nd ref="13944502153"/>
+  <nd ref="1421830580"/>
+  <nd ref="1421830581"/>
+  <nd ref="1421830577"/>
+  <tag k="description" v="Norisring Pit Lane"/>
+  <tag k="highway" v="service"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="traffic_sign" v="DE:250"/>
+  <tag k="vehicle" v="no"/>
+ </way>
+ <way id="129581802" visible="true" version="6" changeset="142120971" timestamp="2023-10-03T23:37:49Z" user="Supt_of_Printing" uid="206929">
+  <nd ref="1532689234"/>
+  <nd ref="1533304422"/>
+  <tag k="highway" v="unclassified"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Zeppelinstraße"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="139931045" visible="true" version="12" changeset="170987906" timestamp="2025-08-25T16:59:45Z" user="pyram" uid="497849">
+  <nd ref="1533304422"/>
+  <nd ref="11237259758"/>
+  <nd ref="1533304420"/>
+  <nd ref="11237259757"/>
+  <nd ref="11237259756"/>
+  <nd ref="11237259755"/>
+  <nd ref="1533304419"/>
+  <nd ref="11237259752"/>
+  <nd ref="1533304417"/>
+  <nd ref="11237259743"/>
+  <nd ref="1533304412"/>
+  <nd ref="333000863"/>
+  <nd ref="1533304399"/>
+  <nd ref="13096787673"/>
+  <tag k="cycleway:right" v="no"/>
+  <tag k="highway" v="unclassified"/>
+  <tag k="lanes" v="1"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="20"/>
+  <tag k="name" v="Beuthener Straße"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="right"/>
+  <tag k="source" v="HiRes aerial imagery"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="traffic_sign" v="DE:274.1[20]"/>
+  <tag k="zone:maxspeed" v="DE:20"/>
+ </way>
+ <way id="139933006" visible="true" version="9" changeset="189421158" timestamp="2026-09-22T21:27:40Z" user="HaraldBk" uid="23498479">
+  <nd ref="959576445"/>
+  <nd ref="11237259772"/>
+  <nd ref="11237259771"/>
+  <nd ref="1533304361"/>
+  <nd ref="249440486"/>
+  <nd ref="249440487"/>
+  <tag k="cycleway:left" v="no"/>
+  <tag k="cycleway:right" v="lane"/>
+  <tag k="cycleway:right:lane" v="exclusive"/>
+  <tag k="cycleway:right:traffic_sign" v="DE:241"/>
+  <tag k="cycleway:right:width" v="1.9"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lane_markings" v="no"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Beuthener Straße"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:right" v="yes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source:cycleway:right:width" v="aerial imagery"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="width" v="6.5"/>
+ </way>
+ <way id="139933007" visible="true" version="9" changeset="184165439" timestamp="2026-06-16T06:15:29Z" user="Laptobi" uid="21974390">
+  <nd ref="1533304372"/>
+  <nd ref="1421406329"/>
+  <nd ref="12037503466"/>
+  <nd ref="13944502152"/>
+  <nd ref="1421406326"/>
+  <nd ref="959576445"/>
+  <tag k="bicycle" v="yes"/>
+  <tag k="description" v="Norisring Start - Finish"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="motor_vehicle" v="private"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1424840996" visible="true" version="1" changeset="170987906" timestamp="2025-08-25T16:59:45Z" user="pyram" uid="497849">
+  <nd ref="27323219"/>
+  <nd ref="959576486"/>
+  <nd ref="9947868287"/>
+  <nd ref="9947868266"/>
+  <tag k="cycleway:right" v="lane"/>
+  <tag k="highway" v="unclassified"/>
+  <tag k="lane_markings" v="no"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Zeppelinstraße"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1424841000" visible="true" version="1" changeset="170987906" timestamp="2025-08-25T16:59:45Z" user="pyram" uid="497849">
+  <nd ref="13096787673"/>
+  <nd ref="13096787674"/>
+  <nd ref="11237259742"/>
+  <nd ref="1533304388"/>
+  <nd ref="11237238134"/>
+  <nd ref="1533304384"/>
+  <nd ref="11237238133"/>
+  <nd ref="11237238129"/>
+  <nd ref="1533304381"/>
+  <nd ref="11237238128"/>
+  <nd ref="1533304376"/>
+  <nd ref="1533304372"/>
+  <tag k="highway" v="service"/>
+  <tag k="lanes" v="1"/>
+  <tag k="lit" v="yes"/>
+  <tag k="motor_vehicle" v="private"/>
+  <tag k="name" v="Beuthener Straße"/>
+  <tag k="sidewalk" v="right"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1560539877" visible="true" version="2" changeset="189261564" timestamp="2026-09-19T16:18:00Z" user="HaraldBk" uid="23498479">
+  <nd ref="249440501"/>
+  <nd ref="13811425039"/>
+  <nd ref="13811425027"/>
+  <nd ref="13811425026"/>
+  <nd ref="14197077000"/>
+  <tag k="bicycle" v="use_sidepath"/>
+  <tag k="cycleway:left" v="no"/>
+  <tag k="cycleway:right" v="separate"/>
+  <tag k="foot" v="use_sidepath"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lane_markings" v="no"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Beuthener Straße"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <way id="1560542302" visible="true" version="2" changeset="189421158" timestamp="2026-09-22T21:27:40Z" user="HaraldBk" uid="23498479">
+  <nd ref="14197093822"/>
+  <nd ref="13811425033"/>
+  <nd ref="13811425034"/>
+  <nd ref="13811425032"/>
+  <nd ref="559137090"/>
+  <nd ref="13811425035"/>
+  <nd ref="249440482"/>
+  <tag k="cycleway:left" v="no"/>
+  <tag k="cycleway:right" v="lane"/>
+  <tag k="cycleway:right:lane" v="exclusive"/>
+  <tag k="cycleway:right:traffic_sign" v="DE:241"/>
+  <tag k="cycleway:right:width" v="1.8"/>
+  <tag k="foot" v="use_sidepath"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lane_markings" v="no"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Beuthener Straße"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:right" v="yes"/>
+  <tag k="smoothness" v="excellent"/>
+  <tag k="source:cycleway:right:width" v="aerial imagery"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+ <relation id="1889538" visible="true" version="12" changeset="189260448" timestamp="2026-09-19T15:53:35Z" user="HaraldBk" uid="23498479">
+  <member type="node" ref="12037503466" role="start-finish"/>
+  <member type="way" ref="23104480" role=""/>
+  <member type="way" ref="1560539877" role=""/>
+  <member type="way" ref="105838900" role=""/>
+  <member type="way" ref="1560542302" role=""/>
+  <member type="way" ref="23104476" role=""/>
+  <member type="way" ref="23104475" role=""/>
+  <member type="way" ref="37437741" role=""/>
+  <member type="way" ref="1424840996" role=""/>
+  <member type="way" ref="59273473" role=""/>
+  <member type="way" ref="129581802" role=""/>
+  <member type="way" ref="139931045" role=""/>
+  <member type="way" ref="1424841000" role=""/>
+  <member type="way" ref="139933007" role=""/>
+  <member type="way" ref="139933006" role=""/>
+  <member type="way" ref="23104478" role=""/>
+  <member type="way" ref="23104479" role=""/>
+  <member type="way" ref="128738913" role="pit_lane"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Norisring"/>
+  <tag k="type" v="circuit"/>
+  <tag k="website" v="https://norisring.de/"/>
+  <tag k="wikidata" v="Q702903"/>
+  <tag k="wikipedia" v="de:Norisring"/>
+ </relation>
+</osm>

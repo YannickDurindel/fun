@@ -1,0 +1,152 @@
+{
+ "note": "Endurance events. \"track\": the built circuit the event is raced on (an F1 track folder); TrackCatalog makes the event playable when that track is.",
+ "tracks": [
+  {
+   "id": "wec_le_mans",
+   "name": "Circuit de la Sarthe",
+   "grand_prix": "24 Hours of Le Mans",
+   "country": "France",
+   "country_code": "FR",
+   "city": "Le Mans",
+   "length_m": 13626,
+   "turns": 38
+  },
+  {
+   "id": "n24_nurburgring",
+   "name": "Nürburgring Nordschleife",
+   "grand_prix": "Nürburgring 24 Hours",
+   "country": "Germany",
+   "country_code": "DE",
+   "city": "Nürburg",
+   "length_m": 25378,
+   "turns": 0
+  },
+  {
+   "id": "wec_imola",
+   "name": "Autodromo Enzo e Dino Ferrari",
+   "grand_prix": "6 Hours of Imola",
+   "country": "Italy",
+   "country_code": "IT",
+   "city": "Imola",
+   "length_m": 4909,
+   "turns": 19,
+   "track": "imola"
+  },
+  {
+   "id": "wec_spa",
+   "name": "Circuit de Spa-Francorchamps",
+   "grand_prix": "6 Hours of Spa-Francorchamps",
+   "country": "Belgium",
+   "country_code": "BE",
+   "city": "Stavelot",
+   "length_m": 7004,
+   "turns": 19,
+   "track": "spa"
+  },
+  {
+   "id": "daytona",
+   "name": "Daytona International Speedway",
+   "grand_prix": "24 Hours of Daytona",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Daytona Beach",
+   "length_m": 5729,
+   "turns": 12
+  },
+  {
+   "id": "sebring",
+   "name": "Sebring International Raceway",
+   "grand_prix": "12 Hours of Sebring",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Sebring",
+   "length_m": 6019,
+   "turns": 17
+  },
+  {
+   "id": "wec_qatar",
+   "name": "Lusail International Circuit",
+   "grand_prix": "Qatar 1812 KM",
+   "country": "Qatar",
+   "country_code": "QA",
+   "city": "Lusail",
+   "length_m": 5419,
+   "turns": 16,
+   "track": "lusail"
+  },
+  {
+   "id": "wec_interlagos",
+   "name": "Autódromo José Carlos Pace",
+   "grand_prix": "6 Hours of São Paulo",
+   "country": "Brazil",
+   "country_code": "BR",
+   "city": "São Paulo",
+   "length_m": 4309,
+   "turns": 15,
+   "track": "interlagos"
+  },
+  {
+   "id": "wec_cota",
+   "name": "Circuit of the Americas",
+   "grand_prix": "Lone Star Le Mans",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Austin",
+   "length_m": 5513,
+   "turns": 20,
+   "track": "cota"
+  },
+  {
+   "id": "fuji",
+   "name": "Fuji Speedway",
+   "grand_prix": "6 Hours of Fuji",
+   "country": "Japan",
+   "country_code": "JP",
+   "city": "Oyama",
+   "length_m": 4563,
+   "turns": 16
+  },
+  {
+   "id": "wec_bahrain",
+   "name": "Bahrain International Circuit",
+   "grand_prix": "8 Hours of Bahrain",
+   "country": "Bahrain",
+   "country_code": "BH",
+   "city": "Sakhir",
+   "length_m": 5412,
+   "turns": 15,
+   "track": "bahrain"
+  },
+  {
+   "id": "road_atlanta",
+   "name": "Michelin Raceway Road Atlanta",
+   "grand_prix": "Petit Le Mans",
+   "country": "United States",
+   "country_code": "US",
+   "city": "Braselton",
+   "length_m": 4088,
+   "turns": 12
+  },
+  {
+   "id": "bathurst",
+   "name": "Mount Panorama Circuit",
+   "grand_prix": "Bathurst 12 Hour",
+   "country": "Australia",
+   "country_code": "AU",
+   "city": "Bathurst",
+   "length_m": 6213,
+   "turns": 23
+  },
+  {
+   "id": "gt_spa24",
+   "name": "Circuit de Spa-Francorchamps",
+   "grand_prix": "24 Hours of Spa",
+   "country": "Belgium",
+   "country_code": "BE",
+   "city": "Stavelot",
+   "length_m": 7004,
+   "turns": 19,
+   "track": "spa"
+  }
+ ]
+}

@@ -3,10 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
+uid="uid://dtl7515nhv8ts"
+path="res://.godot/imported/scenery.glb-2beca8cfba13f948b62baf5df0e96ff3.scn"
 
 [deps]
 
 source_file="res://assets/tracks/albert_park/scenery.glb"
+dest_files=["res://.godot/imported/scenery.glb-2beca8cfba13f948b62baf5df0e96ff3.scn"]
 
 [params]
 

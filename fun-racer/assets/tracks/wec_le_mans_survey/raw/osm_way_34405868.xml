@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1299 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="395172534" visible="true" version="7" changeset="19930162" timestamp="2014-01-11T07:41:54Z" user="Andrés31" uid="811230" lat="47.9592419" lon="0.2150415"/>
+ <node id="1789587329" visible="true" version="3" changeset="20069029" timestamp="2014-01-18T17:03:15Z" user="Andrés31" uid="811230" lat="47.9591714" lon="0.2147547"/>
+ <node id="1789587372" visible="true" version="3" changeset="20069029" timestamp="2014-01-18T17:03:15Z" user="Andrés31" uid="811230" lat="47.9591487" lon="0.2146740"/>
+ <node id="1789587397" visible="true" version="2" changeset="19929992" timestamp="2014-01-11T07:14:48Z" user="Andrés31" uid="811230" lat="47.9593026" lon="0.2160412"/>
+ <node id="1789587481" visible="true" version="2" changeset="19930162" timestamp="2014-01-11T07:41:55Z" user="Andrés31" uid="811230" lat="47.9590498" lon="0.2143649"/>
+ <node id="1789587511" visible="true" version="2" changeset="19930162" timestamp="2014-01-11T07:41:55Z" user="Andrés31" uid="811230" lat="47.9591013" lon="0.2145186"/>
+ <node id="1789587578" visible="true" version="3" changeset="20069029" timestamp="2014-01-18T17:03:15Z" user="Andrés31" uid="811230" lat="47.9592209" lon="0.2149422"/>
+ <node id="2618246354" visible="true" version="1" changeset="19930162" timestamp="2014-01-11T07:41:54Z" user="Andrés31" uid="811230" lat="47.9592744" lon="0.2152830"/>
+ <node id="2618246355" visible="true" version="1" changeset="19930162" timestamp="2014-01-11T07:41:54Z" user="Andrés31" uid="811230" lat="47.9592527" lon="0.2151033"/>
+ <node id="2618246356" visible="true" version="1" changeset="19930162" timestamp="2014-01-11T07:41:54Z" user="Andrés31" uid="811230" lat="47.9592918" lon="0.2156372"/>
+ <node id="2618246357" visible="true" version="1" changeset="19930162" timestamp="2014-01-11T07:41:54Z" user="Andrés31" uid="811230" lat="47.9592624" lon="0.2151685"/>
+ <node id="2618246359" visible="true" version="1" changeset="19930162" timestamp="2014-01-11T07:41:54Z" user="Andrés31" uid="811230" lat="47.9592697" lon="0.2152264"/>
+ <node id="2618246360" visible="true" version="2" changeset="20069029" timestamp="2014-01-18T17:03:15Z" user="Andrés31" uid="811230" lat="47.9592046" lon="0.2148771"/>
+ <node id="2618246361" visible="true" version="1" changeset="19930162" timestamp="2014-01-11T07:41:54Z" user="Andrés31" uid="811230" lat="47.9592837" lon="0.2154316"/>
+ <node id="2627304548" visible="true" version="1" changeset="20069029" timestamp="2014-01-18T17:03:15Z" user="Andrés31" uid="811230" lat="47.9591918" lon="0.2148272"/>
+ <node id="2627304555" visible="true" version="1" changeset="20069029" timestamp="2014-01-18T17:03:15Z" user="Andrés31" uid="811230" lat="47.9592321" lon="0.2149931"/>
+ <way id="34405868" visible="true" version="19" changeset="167390875" timestamp="2025-06-09T11:02:02Z" user="Jizou35" uid="7047355">
+  <nd ref="1789587481"/>
+  <nd ref="1789587511"/>
+  <nd ref="1789587372"/>
+  <nd ref="1789587329"/>
+  <nd ref="2627304548"/>
+  <nd ref="2618246360"/>
+  <nd ref="1789587578"/>
+  <nd ref="2627304555"/>
+  <nd ref="395172534"/>
+  <nd ref="2618246355"/>
+  <nd ref="2618246357"/>
+  <nd ref="2618246359"/>
+  <nd ref="2618246354"/>
+  <nd ref="2618246361"/>
+  <nd ref="2618246356"/>
+  <nd ref="1789587397"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="La Chapelle"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+ </way>
+</osm>

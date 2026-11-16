@@ -1,0 +1,28 @@
+# Donington Park (National circuit) (Castle Donington, United Kingdom), 3185 m.
+# Built for other series' calendars (event(s) tc_donington_national link it with "track"): series "circuit"
+# keeps it out of every series list on its own, F1 included.
+#
+#   .venv/bin/python tools/track/build_track.py donington_park_national --plot
+
+id = "donington_park_national"
+series = "circuit"
+name = "Donington Park National"
+grand_prix = "Donington Park National"
+country = "United Kingdom"
+country_code = "GB"
+city = "Castle Donington"
+length_m = 3185
+turns = 9
+full_name = "Donington Park (National circuit)"
+
+[osm]
+# type=circuit relation "Donington Park National Layout".
+relation = 20460772
+
+[elevation]
+dataset = "terrarium"
+
+[layout]
+# OSM has no start / finish node: the line is on the pit straight between Roberts and
+# Redgate, shared with the GP circuit (donington_park.toml), +/- 50 m.
+finish = [52.82993, -1.38038]

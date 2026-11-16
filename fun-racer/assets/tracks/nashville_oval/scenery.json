@@ -1,0 +1,124 @@
+{
+ "version": 1,
+ "frame": "Godot metres: x=east, y=up (relative to finish line), z=-north; origin at finish line",
+ "attribution": "Surroundings (c) OpenStreetMap contributors (ODbL 1.0), via the Overpass API.",
+ "osm_base": "2026-11-01T02:38:52Z",
+ "landcover": {
+  "classes": [
+   "grass",
+   "forest",
+   "water",
+   "sand",
+   "paved",
+   "farmland",
+   "rock",
+   "gravel",
+   "scrub",
+   "beach"
+  ],
+  "near": {
+   "file": "landcover.png",
+   "x0": -600.0,
+   "z0": -1000.0,
+   "step": 2.5,
+   "nx": 640,
+   "nz": 800
+  },
+  "far": {
+   "file": "landcover_far.png",
+   "x0": -5800.0,
+   "z0": -6000.0,
+   "step": 50.0,
+   "nx": 240,
+   "nz": 240
+  },
+  "near_share": {
+   "grass": 0.8266,
+   "forest": 0.0,
+   "water": 0.0,
+   "sand": 0.0,
+   "paved": 0.1734,
+   "farmland": 0.0,
+   "rock": 0.0,
+   "gravel": 0.0,
+   "scrub": 0.0,
+   "beach": 0.0
+  }
+ },
+ "mesh": {
+  "file": "scenery.glb",
+  "chunk_m": 400.0,
+  "chunk_x0": -6000.0,
+  "chunk_z0": -6000.0,
+  "node": "chunk_<i>_<j>, i = floor((x - chunk_x0) / chunk_m), j = floor((z - chunk_z0) / chunk_m)",
+  "materials": [
+   "building_wall",
+   "building_roof",
+   "building_glass",
+   "stand_seats",
+   "stand_structure",
+   "concrete",
+   "metal",
+   "emissive_window",
+   "emissive_light"
+  ],
+  "triangles": {
+   "building_wall": 98,
+   "building_roof": 41,
+   "building_glass": 0,
+   "stand_seats": 178,
+   "stand_structure": 196,
+   "concrete": 28,
+   "metal": 0,
+   "emissive_window": 0,
+   "emissive_light": 0
+  },
+  "vertices": 1031,
+  "chunks": 6
+ },
+ "trees": {
+  "file": "scenery_points.bin",
+  "dtype": "float32",
+  "record": [
+   "x",
+   "y",
+   "z",
+   "height",
+   "species"
+  ],
+  "record_bytes": 20,
+  "count": 0,
+  "species": [
+   "broadleaved",
+   "needleleaved",
+   "palm",
+   "bush"
+  ],
+  "species_counts": {
+   "broadleaved": 0,
+   "needleleaved": 0,
+   "palm": 0,
+   "bush": 0
+  },
+  "chunk_m": 400.0,
+  "chunks": []
+ },
+ "water": [],
+ "roofs": [],
+ "counts": {
+  "buildings": 4,
+  "grandstands": 1,
+  "canopies": 0,
+  "bridges": 0,
+  "masts": 1,
+  "lamps": 0,
+  "skyline": 0,
+  "cut_by_road": 0
+ },
+ "default_heights": [
+  {"osm":"way/968351493","type":"yes","height":6.0,"from":"type default","dist":151},
+  {"osm":"way/1277542814","type":"yes","height":6.0,"from":"type default","dist":266},
+  {"osm":"way/1377679914","type":"warehouse","height":9.0,"from":"type default","dist":329},
+  {"osm":"way/1377679913","type":"warehouse","height":9.0,"from":"type default","dist":386}
+ ]
+}

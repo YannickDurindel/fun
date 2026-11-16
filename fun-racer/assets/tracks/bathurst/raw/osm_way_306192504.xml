@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1306 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="35122857" visible="true" version="10" changeset="129113095" timestamp="2022-11-19T08:05:09Z" user="Osaka78" uid="9300097" lat="-33.4539586" lon="149.5470606"/>
+ <node id="35122858" visible="true" version="9" changeset="129113095" timestamp="2022-11-19T08:05:09Z" user="Osaka78" uid="9300097" lat="-33.4551684" lon="149.5479695"/>
+ <node id="440697159" visible="true" version="5" changeset="129113095" timestamp="2022-11-19T08:05:09Z" user="Osaka78" uid="9300097" lat="-33.4554055" lon="149.5482348"/>
+ <node id="942921098" visible="true" version="5" changeset="129113095" timestamp="2022-11-19T08:05:09Z" user="Osaka78" uid="9300097" lat="-33.4556775" lon="149.5491597"/>
+ <node id="1453422001" visible="true" version="4" changeset="129113095" timestamp="2022-11-19T08:05:09Z" user="Osaka78" uid="9300097" lat="-33.4545501" lon="149.5475027"/>
+ <node id="1453422017" visible="true" version="5" changeset="129113095" timestamp="2022-11-19T08:05:09Z" user="Osaka78" uid="9300097" lat="-33.4553242" lon="149.5481264">
+  <tag k="name" v="McPhillamy Park"/>
+ </node>
+ <node id="10201193125" visible="true" version="1" changeset="129113095" timestamp="2022-11-19T08:05:09Z" user="Osaka78" uid="9300097" lat="-33.4552442" lon="149.5480409"/>
+ <node id="10201193126" visible="true" version="1" changeset="129113095" timestamp="2022-11-19T08:05:09Z" user="Osaka78" uid="9300097" lat="-33.4552965" lon="149.5480957"/>
+ <node id="10201193127" visible="true" version="1" changeset="129113095" timestamp="2022-11-19T08:05:09Z" user="Osaka78" uid="9300097" lat="-33.4553693" lon="149.5481788"/>
+ <node id="10201193128" visible="true" version="1" changeset="129113095" timestamp="2022-11-19T08:05:09Z" user="Osaka78" uid="9300097" lat="-33.4554761" lon="149.5483573"/>
+ <node id="10201193129" visible="true" version="1" changeset="129113095" timestamp="2022-11-19T08:05:09Z" user="Osaka78" uid="9300097" lat="-33.4555414" lon="149.5484890"/>
+ <node id="10201193130" visible="true" version="1" changeset="129113095" timestamp="2022-11-19T08:05:09Z" user="Osaka78" uid="9300097" lat="-33.4555799" lon="149.5485749"/>
+ <node id="10201193131" visible="true" version="1" changeset="129113095" timestamp="2022-11-19T08:05:09Z" user="Osaka78" uid="9300097" lat="-33.4556000" lon="149.5486254"/>
+ <node id="10201193132" visible="true" version="1" changeset="129113095" timestamp="2022-11-19T08:05:09Z" user="Osaka78" uid="9300097" lat="-33.4556198" lon="149.5486806"/>
+ <node id="10201193133" visible="true" version="1" changeset="129113095" timestamp="2022-11-19T08:05:09Z" user="Osaka78" uid="9300097" lat="-33.4556368" lon="149.5487400"/>
+ <node id="10201193134" visible="true" version="1" changeset="129113095" timestamp="2022-11-19T08:05:09Z" user="Osaka78" uid="9300097" lat="-33.4556521" lon="149.5488158"/>
+ <node id="10201193135" visible="true" version="1" changeset="129113095" timestamp="2022-11-19T08:05:09Z" user="Osaka78" uid="9300097" lat="-33.4556621" lon="149.5488994"/>
+ <node id="10201193136" visible="true" version="1" changeset="129113095" timestamp="2022-11-19T08:05:09Z" user="Osaka78" uid="9300097" lat="-33.4556692" lon="149.5489887"/>
+ <way id="306192504" visible="true" version="6" changeset="129113095" timestamp="2022-11-19T08:05:09Z" user="Osaka78" uid="9300097">
+  <nd ref="35122857"/>
+  <nd ref="1453422001"/>
+  <nd ref="35122858"/>
+  <nd ref="10201193125"/>
+  <nd ref="10201193126"/>
+  <nd ref="1453422017"/>
+  <nd ref="10201193127"/>
+  <nd ref="440697159"/>
+  <nd ref="10201193128"/>
+  <nd ref="10201193129"/>
+  <nd ref="10201193130"/>
+  <nd ref="10201193131"/>
+  <nd ref="10201193132"/>
+  <nd ref="10201193133"/>
+  <nd ref="10201193134"/>
+  <nd ref="10201193135"/>
+  <nd ref="10201193136"/>
+  <nd ref="942921098"/>
+  <tag k="alt_name" v="Mount Panorama Scenic Road"/>
+  <tag k="highway" v="residential"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="maxweight" v="5"/>
+  <tag k="maxweight:bus" v="unrestricted"/>
+  <tag k="name" v="McPhillamy Park"/>
+  <tag k="source" v="NSW LPI Imagery"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

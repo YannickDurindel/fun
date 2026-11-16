@@ -350,7 +350,7 @@ static func _worst_slip(car: Car, direction: float, room: float) -> float:
 static func for_car(car: Car, lateral_efficiency: float = 0.9) -> CarEnvelope:
 	if car.sim == null:
 		return arcade(car, lateral_efficiency)
-	return for_spec(Car.SIM_SPEC_PATH, car.get_tree().root if car.is_inside_tree() else null)
+	return for_spec(car.sim_spec_path, car.get_tree().root if car.is_inside_tree() else null)
 
 ## `host`: a node of the tree, under which the measurement rig may be built (null = never
 ## measure, hand out the provisional envelope).
@@ -454,7 +454,7 @@ static func _provisional(spec_path: String, k: String) -> CarEnvelope:
 	for i in e.speeds.size():
 		var v := e.speeds[i]
 		var tyre := 0.85 * G * (1.15 + 1.6e-4 * v * v)
-		var kin := v * v * tan(lock * 0.7) / Car.WHEELBASE
+		var kin := v * v * tan(lock * 0.7) / (spec.wheelbase if spec != null else Car.WHEELBASE)
 		e.lat[i] = minf(tyre, kin)
 		e.brake[i] = 11.0
 		e.accel[i] = maxf(0.3, 5.0 - 4.6 * maxf(0.0, v - 35.0) / 55.0)
@@ -509,7 +509,7 @@ func _read_spec(spec: CarSpec) -> void:
 		return
 	peak_slip_ratio = spec.tyre_peak_slip_ratio
 	peak_slip_angle = spec.tyre_peak_slip_angle
-	cg_to_rear = Car.WHEELBASE * spec.weight_front
+	cg_to_rear = spec.wheelbase * spec.weight_front
 
 # ================================================================ files
 func save(path: String) -> bool:
@@ -631,6 +631,7 @@ static func measure(host: Node, spec_path: String = Car.SIM_SPEC_PATH) -> CarEnv
 	for k in runs.size():
 		var car := scene.instantiate() as Car
 		car.handling = Car.HANDLING_SIMULATION
+		CarKit.apply_physics(car, CarKit.for_spec(spec_path))   # the kit's contacts and spec
 		car.position = Vector3(k * 30.0, 0.40, 0.0)
 		car.collision_layer = 0   # the cars pass through each other
 		vp.add_child(car)

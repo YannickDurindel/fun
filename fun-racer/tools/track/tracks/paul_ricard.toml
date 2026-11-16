@@ -1,0 +1,28 @@
+# Circuit Paul Ricard (GP layout) (Le Castellet, France), 5770 m.
+# Built for other series' calendars (event(s) gt_paul_ricard link it with "track"): series "circuit"
+# keeps it out of every series list on its own, F1 included.
+#
+#   .venv/bin/python tools/track/build_track.py paul_ricard --plot
+
+id = "paul_ricard"
+series = "circuit"
+name = "Le Castellet"
+grand_prix = "Le Castellet"
+country = "France"
+country_code = "FR"
+city = "Le Castellet"
+length_m = 5770
+turns = 15
+full_name = "Circuit Paul Ricard (GP layout)"
+
+[osm]
+# type=circuit relation "Circuit Paul Ricard Piste GP".
+relation = 10316343
+
+[elevation]
+dataset = "ign"
+
+[layout]
+# OSM has no start / finish node: the line is on the pit straight between Virage du Pont
+# and the S de la Verrerie, about 400 m after the Pont (read off the centreline, +/- 50 m).
+finish = [43.251655, 5.792206]

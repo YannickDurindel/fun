@@ -1,0 +1,15 @@
+{
+  "id": "bristol",
+  "name": "Bristol",
+  "grand_prix": "Bristol",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Bristol",
+  "length_m": 858,
+  "turns": 4,
+  "scene": "res://scenes/tracks/bristol.tscn",
+  "track_json": "res://assets/tracks/bristol/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "circuit"
+}

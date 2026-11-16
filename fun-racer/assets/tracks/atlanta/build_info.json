@@ -1,0 +1,118 @@
+{
+ "id": "atlanta",
+ "recipe": "tools/track/tracks/atlanta.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   288853230
+  ],
+  "raw_length_m": 2414.8,
+  "length_m": 2414.9,
+  "official_length_m": 2478.0,
+  "length_error": -0.02546,
+  "candidates": []
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 10.45,
+  "max_grade": 0.0626,
+  "min_grade": -0.0738,
+  "origin_m": 261.09
+ },
+ "turns": {
+  "official": 4,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "EchoPark Speedway",
+    "direction": "left",
+    "s_apex": 143.7,
+    "min_radius": 153.3
+   },
+   {
+    "id": "T2",
+    "name": "EchoPark Speedway",
+    "direction": "left",
+    "s_apex": 876.6,
+    "min_radius": 151.3
+   },
+   {
+    "id": "T3",
+    "name": "EchoPark Speedway",
+    "direction": "left",
+    "s_apex": 1993.5,
+    "min_radius": 138.1
+   },
+   {
+    "id": "T4",
+    "name": "EchoPark Speedway",
+    "direction": "left",
+    "s_apex": 2344.6,
+    "min_radius": 132.2
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 143.7,
+    "direction": "left",
+    "angle_deg": 19.2,
+    "kind": "corner",
+    "min_radius": 153.3,
+    "used": true
+   },
+   {
+    "s_apex": 876.6,
+    "direction": "left",
+    "angle_deg": 144.0,
+    "kind": "corner",
+    "min_radius": 151.3,
+    "used": true
+   },
+   {
+    "s_apex": 964.9,
+    "direction": "left",
+    "angle_deg": 7.6,
+    "kind": "kink",
+    "min_radius": 210.8,
+    "used": false
+   },
+   {
+    "s_apex": 1463.8,
+    "direction": "left",
+    "angle_deg": 4.6,
+    "kind": "kink",
+    "min_radius": 474.2,
+    "used": false
+   },
+   {
+    "s_apex": 1993.5,
+    "direction": "left",
+    "angle_deg": 140.0,
+    "kind": "corner",
+    "min_radius": 138.1,
+    "used": true
+   },
+   {
+    "s_apex": 2143.4,
+    "direction": "left",
+    "angle_deg": 10.2,
+    "kind": "kink",
+    "min_radius": 196.4,
+    "used": false
+   },
+   {
+    "s_apex": 2344.6,
+    "direction": "left",
+    "angle_deg": 19.0,
+    "kind": "corner",
+    "min_radius": 132.2,
+    "used": true
+   }
+  ]
+ },
+ "warnings": [
+  "the OSM loop is -2.5 % off the official length (2415 m vs 2478 m): check that it is the right layout"
+ ]
+}

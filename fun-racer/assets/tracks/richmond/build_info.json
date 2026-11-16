@@ -1,0 +1,94 @@
+{
+ "id": "richmond",
+ "recipe": "tools/track/tracks/richmond.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   452377300
+  ],
+  "raw_length_m": 1179.8,
+  "length_m": 1180.0,
+  "official_length_m": 1207.0,
+  "length_error": -0.0224,
+  "candidates": []
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 0.12,
+  "max_grade": 0.0003,
+  "min_grade": -0.0003,
+  "origin_m": 58.92
+ },
+ "turns": {
+  "official": 4,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Turn 1 (kink)",
+    "direction": "left",
+    "s_apex": 47.1,
+    "min_radius": 209.5
+   },
+   {
+    "id": "T2",
+    "name": "Turn 2",
+    "direction": "left",
+    "s_apex": 425.5,
+    "min_radius": 84.1
+   },
+   {
+    "id": "T3",
+    "name": "Turn 3",
+    "direction": "left",
+    "s_apex": 984.0,
+    "min_radius": 69.9
+   },
+   {
+    "id": "T4",
+    "name": "Turn 4 (kink)",
+    "direction": "left",
+    "s_apex": 1184.5,
+    "min_radius": 203.9
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 47.1,
+    "direction": "left",
+    "angle_deg": 10.7,
+    "kind": "kink",
+    "min_radius": 209.5,
+    "used": true
+   },
+   {
+    "s_apex": 425.5,
+    "direction": "left",
+    "angle_deg": 171.0,
+    "kind": "corner",
+    "min_radius": 84.1,
+    "used": true
+   },
+   {
+    "s_apex": 984.0,
+    "direction": "left",
+    "angle_deg": 164.3,
+    "kind": "corner",
+    "min_radius": 69.9,
+    "used": true
+   },
+   {
+    "s_apex": 1184.5,
+    "direction": "left",
+    "angle_deg": 10.8,
+    "kind": "kink",
+    "min_radius": 203.9,
+    "used": true
+   }
+  ]
+ },
+ "warnings": [
+  "the OSM loop is -2.2 % off the official length (1180 m vs 1207 m): check that it is the right layout"
+ ]
+}

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1313 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="35122842" visible="true" version="12" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4485948" lon="149.5537217"/>
+ <node id="440697134" visible="true" version="5" changeset="70463717" timestamp="2019-05-21T05:35:07Z" user="Osaka78" uid="9300097" lat="-33.4402882" lon="149.5554515"/>
+ <node id="662087297" visible="true" version="3" changeset="70463867" timestamp="2019-05-21T05:41:30Z" user="Osaka78" uid="9300097" lat="-33.4482020" lon="149.5538023"/>
+ <node id="1377585046" visible="true" version="3" changeset="70463717" timestamp="2019-05-21T05:35:07Z" user="Osaka78" uid="9300097" lat="-33.4414121" lon="149.5552157"/>
+ <node id="1453543345" visible="true" version="2" changeset="70463717" timestamp="2019-05-21T05:35:07Z" user="Osaka78" uid="9300097" lat="-33.4405485" lon="149.5553953"/>
+ <node id="1453543368" visible="true" version="2" changeset="70463717" timestamp="2019-05-21T05:35:07Z" user="Osaka78" uid="9300097" lat="-33.4415634" lon="149.5551850"/>
+ <node id="1453543374" visible="true" version="2" changeset="70463717" timestamp="2019-05-21T05:35:07Z" user="Osaka78" uid="9300097" lat="-33.4419222" lon="149.5551096"/>
+ <node id="1453543382" visible="true" version="2" changeset="70463717" timestamp="2019-05-21T05:35:07Z" user="Osaka78" uid="9300097" lat="-33.4426578" lon="149.5549568"/>
+ <node id="1453543387" visible="true" version="2" changeset="70463717" timestamp="2019-05-21T05:35:07Z" user="Osaka78" uid="9300097" lat="-33.4433278" lon="149.5548154"/>
+ <node id="1453543389" visible="true" version="3" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4440517" lon="149.5546657"/>
+ <node id="1453543392" visible="true" version="2" changeset="70463717" timestamp="2019-05-21T05:35:08Z" user="Osaka78" uid="9300097" lat="-33.4444757" lon="149.5545756"/>
+ <node id="1453543408" visible="true" version="2" changeset="70463717" timestamp="2019-05-21T05:35:08Z" user="Osaka78" uid="9300097" lat="-33.4447993" lon="149.5545085"/>
+ <node id="1453543410" visible="true" version="3" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4450267" lon="149.5544617"/>
+ <node id="1453543424" visible="true" version="3" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4455978" lon="149.5543449"/>
+ <node id="1453543432" visible="true" version="3" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4461592" lon="149.5542294"/>
+ <node id="1453543433" visible="true" version="2" changeset="70463867" timestamp="2019-05-21T05:41:30Z" user="Osaka78" uid="9300097" lat="-33.4466495" lon="149.5541231"/>
+ <node id="1453543451" visible="true" version="2" changeset="70463867" timestamp="2019-05-21T05:41:30Z" user="Osaka78" uid="9300097" lat="-33.4478673" lon="149.5538708"/>
+ <node id="1453543474" visible="true" version="2" changeset="70463867" timestamp="2019-05-21T05:41:31Z" user="Osaka78" uid="9300097" lat="-33.4483868" lon="149.5537665"/>
+ <node id="3076312293" visible="true" version="3" changeset="129112257" timestamp="2022-11-19T07:16:30Z" user="Osaka78" uid="9300097" lat="-33.4441559" lon="149.5546438"/>
+ <node id="3890232199" visible="true" version="5" changeset="129111020" timestamp="2022-11-19T05:56:12Z" user="Osaka78" uid="9300097" lat="-33.4392561" lon="149.5556564">
+  <tag k="direction" v="backward"/>
+  <tag k="highway" v="give_way"/>
+ </node>
+ <way id="30111085" visible="true" version="22" changeset="132698962" timestamp="2023-02-18T00:01:47Z" user="AntBurnett" uid="32394">
+  <nd ref="3890232199"/>
+  <nd ref="440697134"/>
+  <nd ref="1453543345"/>
+  <nd ref="1377585046"/>
+  <nd ref="1453543368"/>
+  <nd ref="1453543374"/>
+  <nd ref="1453543382"/>
+  <nd ref="1453543387"/>
+  <nd ref="1453543389"/>
+  <nd ref="3076312293"/>
+  <nd ref="1453543392"/>
+  <nd ref="1453543408"/>
+  <nd ref="1453543410"/>
+  <nd ref="1453543424"/>
+  <nd ref="1453543432"/>
+  <nd ref="1453543433"/>
+  <nd ref="1453543451"/>
+  <nd ref="662087297"/>
+  <nd ref="1453543474"/>
+  <nd ref="35122842"/>
+  <tag k="alt_name" v="Mount Panorama Scenic Road"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lane_markings" v="no"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="maxweight" v="5"/>
+  <tag k="maxweight:bus" v="unrestricted"/>
+  <tag k="name" v="Mountain Straight"/>
+  <tag k="source" v="bing"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

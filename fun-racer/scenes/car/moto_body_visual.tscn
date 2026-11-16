@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/car/bike_visual.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://assets/car/moto/body.glb" id="2_body"]
+[ext_resource type="PackedScene" path="res://assets/car/moto/fork.glb" id="3_fork"]
+[ext_resource type="PackedScene" path="res://assets/car/moto/wheel_front.glb" id="4_wf"]
+[ext_resource type="PackedScene" path="res://assets/car/moto/wheel_rear.glb" id="5_wr"]
+[ext_resource type="PackedScene" path="res://assets/car/moto/rider_lower.glb" id="6_rl"]
+[ext_resource type="PackedScene" path="res://assets/car/moto/rider_upper.glb" id="7_ru"]
+
+[node name="MotoBodyVisual" type="Node3D"]
+script = ExtResource("1_script")
+
+[node name="Lean" type="Node3D" parent="."]
+
+[node name="Pitch" type="Node3D" parent="Lean"]
+
+[node name="Body" parent="Lean/Pitch" instance=ExtResource("2_body")]
+
+[node name="Fork" type="Node3D" parent="Lean/Pitch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06, -0.725)
+
+[node name="ForkMesh" parent="Lean/Pitch/Fork" instance=ExtResource("3_fork")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0.725)
+
+[node name="FrontSpin" type="Node3D" parent="Lean/Pitch/Fork"]
+
+[node name="FrontWheel" parent="Lean/Pitch/Fork/FrontSpin" instance=ExtResource("4_wf")]
+
+[node name="RearSpin" type="Node3D" parent="Lean/Pitch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.03, 0.725)
+
+[node name="RearWheel" parent="Lean/Pitch/RearSpin" instance=ExtResource("5_wr")]
+
+[node name="Rider" type="Node3D" parent="Lean/Pitch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47, 0.22)
+
+[node name="RiderLower" parent="Lean/Pitch/Rider" instance=ExtResource("6_rl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.47, -0.22)
+
+[node name="Torso" type="Node3D" parent="Lean/Pitch/Rider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
+
+[node name="RiderUpper" parent="Lean/Pitch/Rider/Torso" instance=ExtResource("7_ru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.55, -0.22)

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (4092982 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1904483280" visible="true" version="2" changeset="58616994" timestamp="2018-05-02T14:27:51Z" user="dustinturp" uid="2456557" lat="38.6476664" lon="-90.1335607"/>
+ <node id="1904483286" visible="true" version="2" changeset="58616994" timestamp="2018-05-02T14:27:51Z" user="dustinturp" uid="2456557" lat="38.6473092" lon="-90.1354210"/>
+ <node id="1904483289" visible="true" version="2" changeset="58616994" timestamp="2018-05-02T14:27:51Z" user="dustinturp" uid="2456557" lat="38.6471881" lon="-90.1342851"/>
+ <node id="1904483291" visible="true" version="1" changeset="13025298" timestamp="2012-09-07T16:57:34Z" user="xp10" uid="770228" lat="38.6481735" lon="-90.1361277"/>
+ <node id="1904483296" visible="true" version="1" changeset="13025298" timestamp="2012-09-07T16:57:34Z" user="xp10" uid="770228" lat="38.6473447" lon="-90.1338827"/>
+ <node id="1904483302" visible="true" version="1" changeset="13025298" timestamp="2012-09-07T16:57:34Z" user="xp10" uid="770228" lat="38.6520361" lon="-90.1375010"/>
+ <node id="1904483303" visible="true" version="3" changeset="58617303" timestamp="2018-05-02T14:41:03Z" user="dustinturp" uid="2456557" lat="38.6477243" lon="-90.1359169"/>
+ <node id="1904483310" visible="true" version="1" changeset="13025298" timestamp="2012-09-07T16:57:35Z" user="xp10" uid="770228" lat="38.6481316" lon="-90.1333597"/>
+ <node id="1904483316" visible="true" version="2" changeset="58616994" timestamp="2018-05-02T14:27:51Z" user="dustinturp" uid="2456557" lat="38.6471447" lon="-90.1349042"/>
+ <node id="1904483323" visible="true" version="2" changeset="58616994" timestamp="2018-05-02T14:27:51Z" user="dustinturp" uid="2456557" lat="38.6487302" lon="-90.1334303"/>
+ <node id="1904485906" visible="true" version="3" changeset="128816857" timestamp="2022-11-12T15:14:59Z" user="Bruh1" uid="15991552" lat="38.6520702" lon="-90.1341055"/>
+ <node id="5592450939" visible="true" version="3" changeset="147439625" timestamp="2024-02-14T08:23:24Z" user="kmarkish_lyft" uid="11824233" lat="38.6502235" lon="-90.1337412"/>
+ <node id="5592475833" visible="true" version="2" changeset="128816857" timestamp="2022-11-12T15:14:59Z" user="Bruh1" uid="15991552" lat="38.6492454" lon="-90.1335353"/>
+ <node id="5592513153" visible="true" version="2" changeset="58617303" timestamp="2018-05-02T14:41:03Z" user="dustinturp" uid="2456557" lat="38.6476028" lon="-90.1358363"/>
+ <node id="5592513154" visible="true" version="1" changeset="58616994" timestamp="2018-05-02T14:27:51Z" user="dustinturp" uid="2456557" lat="38.6474889" lon="-90.1357148"/>
+ <node id="5592513155" visible="true" version="1" changeset="58616994" timestamp="2018-05-02T14:27:51Z" user="dustinturp" uid="2456557" lat="38.6474048" lon="-90.1355931"/>
+ <node id="5592513156" visible="true" version="1" changeset="58616994" timestamp="2018-05-02T14:27:51Z" user="dustinturp" uid="2456557" lat="38.6472240" lon="-90.1352321"/>
+ <node id="5592513157" visible="true" version="1" changeset="58616994" timestamp="2018-05-02T14:27:51Z" user="dustinturp" uid="2456557" lat="38.6471792" lon="-90.1350835"/>
+ <node id="5592513158" visible="true" version="1" changeset="58616994" timestamp="2018-05-02T14:27:51Z" user="dustinturp" uid="2456557" lat="38.6471428" lon="-90.1346281"/>
+ <node id="5592513159" visible="true" version="1" changeset="58616994" timestamp="2018-05-02T14:27:51Z" user="dustinturp" uid="2456557" lat="38.6471613" lon="-90.1344583"/>
+ <node id="5592513160" visible="true" version="1" changeset="58616994" timestamp="2018-05-02T14:27:51Z" user="dustinturp" uid="2456557" lat="38.6472397" lon="-90.1341100"/>
+ <node id="5592513161" visible="true" version="1" changeset="58616994" timestamp="2018-05-02T14:27:51Z" user="dustinturp" uid="2456557" lat="38.6475870" lon="-90.1336129"/>
+ <node id="5592513162" visible="true" version="1" changeset="58616994" timestamp="2018-05-02T14:27:51Z" user="dustinturp" uid="2456557" lat="38.6474712" lon="-90.1337139"/>
+ <node id="5592513163" visible="true" version="1" changeset="58616994" timestamp="2018-05-02T14:27:51Z" user="dustinturp" uid="2456557" lat="38.6478062" lon="-90.1334741"/>
+ <node id="5592513164" visible="true" version="1" changeset="58616994" timestamp="2018-05-02T14:27:51Z" user="dustinturp" uid="2456557" lat="38.6479631" lon="-90.1334003"/>
+ <node id="9370324243" visible="true" version="1" changeset="115429703" timestamp="2021-12-27T14:32:07Z" user="dustinturp" uid="2456557" lat="38.6527263" lon="-90.1377373"/>
+ <node id="10178338630" visible="true" version="1" changeset="128816857" timestamp="2022-11-12T15:14:59Z" user="Bruh1" uid="15991552" lat="38.6471744" lon="-90.1350584"/>
+ <way id="180008394" visible="true" version="11" changeset="181338328" timestamp="2026-04-14T19:14:42Z" user="trackmap" uid="13790961">
+  <nd ref="9370324243"/>
+  <nd ref="1904483302"/>
+  <nd ref="1904483291"/>
+  <nd ref="1904483303"/>
+  <nd ref="5592513153"/>
+  <nd ref="5592513154"/>
+  <nd ref="5592513155"/>
+  <nd ref="1904483286"/>
+  <nd ref="5592513156"/>
+  <nd ref="5592513157"/>
+  <nd ref="10178338630"/>
+  <nd ref="1904483316"/>
+  <nd ref="5592513158"/>
+  <nd ref="5592513159"/>
+  <nd ref="1904483289"/>
+  <nd ref="5592513160"/>
+  <nd ref="1904483296"/>
+  <nd ref="5592513162"/>
+  <nd ref="5592513161"/>
+  <nd ref="1904483280"/>
+  <nd ref="5592513163"/>
+  <nd ref="5592513164"/>
+  <nd ref="1904483310"/>
+  <nd ref="1904483323"/>
+  <nd ref="5592475833"/>
+  <nd ref="5592450939"/>
+  <nd ref="1904485906"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Gateway International Raceway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="paved"/>
+ </way>
+</osm>

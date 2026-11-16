@@ -1,0 +1,15 @@
+{
+  "id": "texas",
+  "name": "Fort Worth",
+  "grand_prix": "Fort Worth",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Fort Worth",
+  "length_m": 2414,
+  "turns": 4,
+  "scene": "res://scenes/tracks/texas.tscn",
+  "track_json": "res://assets/tracks/texas/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "circuit"
+}

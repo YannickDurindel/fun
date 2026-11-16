@@ -1,0 +1,84 @@
+# Nashville Superspeedway, 2140 m, anticlockwise oval.
+# Built for the IndyCar / NASCAR calendars (events link it with "track"): series "circuit"
+# keeps it out of every series list on its own.
+#
+#   .venv/bin/python tools/track/build_track.py nashville_oval --plot
+
+id = "nashville_oval"
+series = "circuit"
+name = "Nashville Oval"
+grand_prix = "Superspeedway · Lebanon"
+country = "United States"
+country_code = "US"
+city = "Lebanon"
+length_m = 2140
+turns = 4
+full_name = "Nashville Superspeedway"
+
+[osm]
+ways = [185563917]
+length_tolerance = 0.03
+
+[layout]
+direction = "anticlockwise"
+finish = [36.046131, -86.408504]
+
+[elevation]
+dataset = "terrarium"
+# The DEM puts a 15 m hump under turns 1-2 (s 400-900): the road is levelled there.
+[[elevation.override]]
+s = [300.0, 950.0]
+straighten = true
+blend = 120.0
+
+[road]
+# Concrete D-oval banked all the way round (track facts): 14 deg (0.244 rad) in the turns,
+# 9 deg (0.157) on the front stretch, 6 deg (0.105) on the back stretch. Width 17 m (the
+# front stretch is about 55 ft). Blends of 60 m.
+max_bank = 0.25
+base_width = 17.0
+grid_width = 17.0
+
+[[road.override]]           # front stretch (D), 9 deg
+s = [1900.0, 250.0]
+bank = -0.157
+blend = 60.0
+
+[[road.override]]           # turns 1-2, 14 deg
+s = [400.0, 830.0]
+bank = -0.244
+blend = 60.0
+
+[[road.override]]           # back stretch, 6 deg
+s = [930.0, 1250.0]
+bank = -0.105
+blend = 60.0
+
+[[road.override]]           # turns 3-4, 14 deg
+s = [1320.0, 1830.0]
+bank = -0.244
+blend = 60.0
+
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 418.0
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 673.0
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "left"
+s = 1420.0
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 1730.0

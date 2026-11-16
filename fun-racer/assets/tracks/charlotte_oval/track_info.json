@@ -1,0 +1,15 @@
+{
+  "id": "charlotte_oval",
+  "name": "Concord",
+  "grand_prix": "Concord",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Concord",
+  "length_m": 2414,
+  "turns": 4,
+  "scene": "res://scenes/tracks/charlotte_oval.tscn",
+  "track_json": "res://assets/tracks/charlotte_oval/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "circuit"
+}

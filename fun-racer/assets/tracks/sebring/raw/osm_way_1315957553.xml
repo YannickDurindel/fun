@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1323 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1256623538" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:08Z" user="Neverwhere" uid="221878" lat="27.4526323" lon="-81.3555757"/>
+ <node id="1256623553" visible="true" version="2" changeset="156545031" timestamp="2024-09-12T20:13:25Z" user="Spyder_Monkey" uid="21177877" lat="27.4526213" lon="-81.3577487"/>
+ <node id="1256623761" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:12Z" user="Neverwhere" uid="221878" lat="27.4526252" lon="-81.3567773"/>
+ <node id="1256623771" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:12Z" user="Neverwhere" uid="221878" lat="27.4526323" lon="-81.3542346"/>
+ <node id="1256623779" visible="true" version="1" changeset="7942886" timestamp="2011-04-23T11:47:13Z" user="Neverwhere" uid="221878" lat="27.4526299" lon="-81.3547281"/>
+ <node id="6426379761" visible="true" version="1" changeset="69535582" timestamp="2019-04-24T17:31:55Z" user="xtwiand" uid="9358741" lat="27.4526284" lon="-81.3562298"/>
+ <way id="1315957553" visible="true" version="1" changeset="156694610" timestamp="2024-09-16T15:47:59Z" user="Spyder_Monkey" uid="21177877">
+  <nd ref="1256623771"/>
+  <nd ref="1256623779"/>
+  <nd ref="1256623538"/>
+  <nd ref="6426379761"/>
+  <nd ref="1256623761"/>
+  <nd ref="1256623553"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

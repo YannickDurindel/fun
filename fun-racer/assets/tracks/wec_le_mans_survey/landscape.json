@@ -1,0 +1,122 @@
+{
+ "version": 1,
+ "attribution": "Orthophotos and building heights: BD ORTHO, BD TOPO (IGN, Licence Ouverte 2.0)",
+ "ortho": {
+  "encoding": "per channel: log2(linear BD ORTHO colour / mean linear colour of the pixel's land-cover class in the same picture), from [log_min, log_max] to 0..255",
+  "log_min": -2.0,
+  "log_max": 2.0,
+  "source": "BD ORTHO 20 cm blocks (lib.ign_data cache) averaged down, WMS ORTHOIMAGERY.ORTHOPHOTOS.BDORTHO at 2 / 4 m per pixel where they do not reach",
+  "near": {
+   "file": "terrain_ortho.jpg",
+   "x0": -600.0,
+   "z0": -1800.0,
+   "step": 2.5,
+   "nx": 1520,
+   "nz": 2560,
+   "covered": 1.0,
+   "class_mean_linear": {
+    "0": [
+     0.1589,
+     0.1595,
+     0.1321
+    ],
+    "1": [
+     0.0503,
+     0.0525,
+     0.0477
+    ],
+    "2": [
+     0.0441,
+     0.0497,
+     0.0471
+    ],
+    "3": [
+     0.5104,
+     0.5137,
+     0.4192
+    ],
+    "4": [
+     0.1805,
+     0.1982,
+     0.1916
+    ],
+    "5": [
+     0.1261,
+     0.1203,
+     0.098
+    ],
+    "7": [
+     0.2235,
+     0.2475,
+     0.224
+    ],
+    "8": [
+     0.0788,
+     0.0863,
+     0.0729
+    ],
+    "9": [
+     0.1294,
+     0.1341,
+     0.1177
+    ]
+   }
+  },
+  "far": {
+   "file": "terrain_ortho_far.jpg",
+   "x0": -5800.0,
+   "z0": -5800.0,
+   "step": 7.03125,
+   "nx": 2048,
+   "nz": 2048,
+   "covered": 1.0,
+   "class_mean_linear": {
+    "0": [
+     0.1405,
+     0.1391,
+     0.1141
+    ],
+    "1": [
+     0.0507,
+     0.0537,
+     0.0489
+    ],
+    "2": [
+     0.0584,
+     0.0663,
+     0.0573
+    ],
+    "3": [
+     0.3784,
+     0.3938,
+     0.3356
+    ],
+    "4": [
+     0.158,
+     0.1688,
+     0.1603
+    ],
+    "5": [
+     0.1606,
+     0.1567,
+     0.1228
+    ],
+    "6": [
+     0.28,
+     0.2888,
+     0.2406
+    ],
+    "7": [
+     0.1564,
+     0.1674,
+     0.1516
+    ],
+    "8": [
+     0.0919,
+     0.0955,
+     0.082
+    ]
+   }
+  }
+ }
+}

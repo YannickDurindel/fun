@@ -1,0 +1,15 @@
+{
+  "id": "kansas",
+  "name": "Kansas City",
+  "grand_prix": "Kansas City",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Kansas City",
+  "length_m": 2414,
+  "turns": 4,
+  "scene": "res://scenes/tracks/kansas.tscn",
+  "track_json": "res://assets/tracks/kansas/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "circuit"
+}

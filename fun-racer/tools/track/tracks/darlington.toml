@@ -1,0 +1,85 @@
+# Darlington Raceway (Darlington, USA), 2198 m, anticlockwise oval.
+# Built for the IndyCar / NASCAR calendars (events link it with "track"): series "circuit"
+# keeps it out of every series list on its own.
+#
+#   .venv/bin/python tools/track/build_track.py darlington --plot
+
+id = "darlington"
+series = "circuit"
+name = "Darlington"
+grand_prix = "Darlington"
+country = "United States"
+country_code = "US"
+city = "Darlington"
+length_m = 2198
+turns = 4
+full_name = "Darlington Raceway"
+
+[osm]
+ways = [104277971]       # the oval, one closed way (2103 m in OSM: drawn on the inside line)
+length_tolerance = 0.06
+
+[layout]
+direction = "anticlockwise"
+# OSM has no start / finish data: the middle of the front stretch (the south side; pit road,
+# way 918351834, runs beside it). Estimate.
+finish = [34.293658, -79.906128]
+
+[elevation]
+dataset = "terrarium"
+
+[road]
+# Real banking (Darlington Raceway): 25 degrees (0.436 rad) in turns 1-2 (the wide east end),
+# 23 (0.401) in turns 3-4 (the tight west end), 6 (0.105) on both straights. All left-handers: the right
+# edge is higher (negative bank). Blends of 100 m on the turns (twist rule: >= 1.5 x 0.33 / 0.012 = 41
+# m; long because the turns are taken at 250+ km/h). Width: about 16 m all round (estimate; the
+# racing surface between the apron line and the wall). s values are read off track.json.
+max_bank = 0.45
+base_width = 16.0
+grid_width = 16.0
+
+[[road.override]]           # back straight, 6 deg
+s = [870.0, 1450.0]
+bank = -0.105
+blend = 40.0
+
+[[road.override]]           # front straight, 6 deg
+s = [1900.0, 300.0]
+bank = -0.105
+blend = 40.0
+
+[[road.override]]           # turns 1-2, 25 deg
+s = [300.0, 870.0]
+bank = -0.436
+blend = 100.0
+
+[[road.override]]           # turns 3-4, 23 deg
+s = [1450.0, 1900.0]
+bank = -0.401
+blend = 100.0
+
+# Pinned to the official 4 (the detector finds the two ends of the oval as single corners)
+
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 420.0
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 760.0
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "left"
+s = 1540.0
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 1820.0

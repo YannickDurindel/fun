@@ -1,0 +1,67 @@
+{
+ "note": "Japanese top single-seater events, current season in calendar order. \"track\": the built circuit the event is raced on with this series' car (CarKit \"super_formula\"); TrackCatalog makes the event playable when that track is. Events without one are coming soon.",
+ "tracks": [
+  {
+   "id": "jsf_motegi",
+   "name": "Motegi",
+   "grand_prix": "Season opener · Motegi",
+   "country": "Japan",
+   "country_code": "JP",
+   "city": "Motegi",
+   "length_m": 4801,
+   "turns": 14
+  },
+  {
+   "id": "jsf_autopolis",
+   "name": "Autopolis",
+   "grand_prix": "Round · Autopolis",
+   "country": "Japan",
+   "country_code": "JP",
+   "city": "Hita",
+   "length_m": 4674,
+   "turns": 18
+  },
+  {
+   "id": "jsf_sugo",
+   "name": "Sugo",
+   "grand_prix": "Round · Sugo",
+   "country": "Japan",
+   "country_code": "JP",
+   "city": "Murata",
+   "length_m": 3586,
+   "turns": 0
+  },
+  {
+   "id": "jsf_fuji",
+   "name": "Mount Fuji",
+   "grand_prix": "Double-header · Mount Fuji",
+   "country": "Japan",
+   "country_code": "JP",
+   "city": "Oyama",
+   "length_m": 4563,
+   "turns": 16,
+   "track": "fuji"
+  },
+  {
+   "id": "jsf_okayama",
+   "name": "Okayama",
+   "grand_prix": "Round · Mimasaka",
+   "country": "Japan",
+   "country_code": "JP",
+   "city": "Mimasaka",
+   "length_m": 3703,
+   "turns": 13
+  },
+  {
+   "id": "jsf_suzuka",
+   "name": "Suzuka",
+   "grand_prix": "Season finale · Suzuka",
+   "country": "Japan",
+   "country_code": "JP",
+   "city": "Suzuka",
+   "length_m": 5807,
+   "turns": 18,
+   "track": "suzuka"
+  }
+ ]
+}

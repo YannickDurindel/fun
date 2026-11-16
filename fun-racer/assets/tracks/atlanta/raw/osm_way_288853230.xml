@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (4011544 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="2924021587" visible="true" version="3" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3861627" lon="-84.3182609"/>
+ <node id="2924034995" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3822085" lon="-84.3210630"/>
+ <node id="2924034996" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3815620" lon="-84.3190082"/>
+ <node id="2924034997" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3810087" lon="-84.3171523"/>
+ <node id="2924034998" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3807853" lon="-84.3162315"/>
+ <node id="2924034999" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3806944" lon="-84.3154872"/>
+ <node id="2924035000" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3807313" lon="-84.3149101"/>
+ <node id="2924036401" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3808237" lon="-84.3144754"/>
+ <node id="2924036402" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3810207" lon="-84.3139961"/>
+ <node id="2924036403" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3812669" lon="-84.3136138"/>
+ <node id="2924036404" visible="true" version="1" changeset="23034786" timestamp="2014-06-19T22:52:22Z" user="DeVietor" uid="506866" lat="33.3815827" lon="-84.3133080"/>
+ <node id="2924036405" visible="true" version="1" changeset="23034786" timestamp="2014-06-19T22:52:22Z" user="DeVietor" uid="506866" lat="33.3819321" lon="-84.3130934"/>
+ <node id="2924036406" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3822949" lon="-84.3129781"/>
+ <node id="2924036407" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3827137" lon="-84.3129406"/>
+ <node id="2924036408" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3831851" lon="-84.3130258"/>
+ <node id="2924036409" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3836643" lon="-84.3132861"/>
+ <node id="2924036410" visible="true" version="1" changeset="23034786" timestamp="2014-06-19T22:52:22Z" user="DeVietor" uid="506866" lat="33.3840105" lon="-84.3135870"/>
+ <node id="2924036411" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3845500" lon="-84.3142452"/>
+ <node id="2924036413" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3851346" lon="-84.3151127"/>
+ <node id="2924036414" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3853734" lon="-84.3155555"/>
+ <node id="2924036415" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3855836" lon="-84.3162464"/>
+ <node id="2924036416" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3860949" lon="-84.3179962"/>
+ <node id="2924036417" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3861995" lon="-84.3188777"/>
+ <node id="2924036419" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3861605" lon="-84.3202849"/>
+ <node id="2924036420" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3860650" lon="-84.3210724"/>
+ <node id="2924036421" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3858652" lon="-84.3216387"/>
+ <node id="2924036422" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3855124" lon="-84.3221751"/>
+ <node id="2924036423" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3851113" lon="-84.3225192"/>
+ <node id="2924036424" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3847692" lon="-84.3226909"/>
+ <node id="2924036425" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3843778" lon="-84.3227909"/>
+ <node id="2924036426" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3839836" lon="-84.3227891"/>
+ <node id="2924036427" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3835879" lon="-84.3226888"/>
+ <node id="2924036428" visible="true" version="1" changeset="23034786" timestamp="2014-06-19T22:52:22Z" user="DeVietor" uid="506866" lat="33.3832132" lon="-84.3224812"/>
+ <node id="2924036429" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3828131" lon="-84.3221285"/>
+ <node id="2924036430" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3824742" lon="-84.3216316"/>
+ <node id="2924036431" visible="true" version="2" changeset="62532260" timestamp="2018-09-12T20:13:07Z" user="Jack the Ripper" uid="1946151" lat="33.3842787" lon="-84.3138654"/>
+ <node id="5902561080" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:05Z" user="Jack the Ripper" uid="1946151" lat="33.3856966" lon="-84.3219279"/>
+ <node id="5902561081" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:05Z" user="Jack the Ripper" uid="1946151" lat="33.3859729" lon="-84.3213695"/>
+ <node id="5902561082" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:05Z" user="Jack the Ripper" uid="1946151" lat="33.3861371" lon="-84.3207300"/>
+ <node id="5902561083" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:05Z" user="Jack the Ripper" uid="1946151" lat="33.3861566" lon="-84.3205051"/>
+ <node id="5902561084" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:05Z" user="Jack the Ripper" uid="1946151" lat="33.3861030" lon="-84.3209082"/>
+ <node id="5902561085" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:05Z" user="Jack the Ripper" uid="1946151" lat="33.3861986" lon="-84.3186370"/>
+ <node id="5902561086" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:05Z" user="Jack the Ripper" uid="1946151" lat="33.3861885" lon="-84.3184443"/>
+ <node id="5902561087" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:05Z" user="Jack the Ripper" uid="1946151" lat="33.3861308" lon="-84.3181239"/>
+ <node id="5902561088" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:05Z" user="Jack the Ripper" uid="1946151" lat="33.3852969" lon="-84.3153785"/>
+ <node id="5902561089" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:05Z" user="Jack the Ripper" uid="1946151" lat="33.3852157" lon="-84.3152293"/>
+ <node id="5902561090" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:05Z" user="Jack the Ripper" uid="1946151" lat="33.3834305" lon="-84.3131396"/>
+ <node id="5902561091" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:05Z" user="Jack the Ripper" uid="1946151" lat="33.3835493" lon="-84.3132059"/>
+ <node id="5902561092" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:05Z" user="Jack the Ripper" uid="1946151" lat="33.3833078" lon="-84.3130780"/>
+ <node id="5902561093" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:05Z" user="Jack the Ripper" uid="1946151" lat="33.3837964" lon="-84.3133899"/>
+ <node id="5902561094" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3839054" lon="-84.3134814"/>
+ <node id="5902561098" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3814181" lon="-84.3134475"/>
+ <node id="5902561099" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3817529" lon="-84.3131927"/>
+ <node id="5902561100" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3821090" lon="-84.3130237"/>
+ <node id="5902561101" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3825054" lon="-84.3129473"/>
+ <node id="5902561102" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3830368" lon="-84.3129859"/>
+ <node id="5902561103" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3828753" lon="-84.3129552"/>
+ <node id="5902561104" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3807280" lon="-84.3158638"/>
+ <node id="5902561105" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3807544" lon="-84.3160441"/>
+ <node id="5902561106" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3807082" lon="-84.3156808"/>
+ <node id="5902561107" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3808819" lon="-84.3166866"/>
+ <node id="5902561108" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3808277" lon="-84.3164529"/>
+ <node id="5902561109" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3818734" lon="-84.3200639"/>
+ <node id="5902561110" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3820335" lon="-84.3205794"/>
+ <node id="5902561111" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3821210" lon="-84.3208300"/>
+ <node id="5902561112" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3819520" lon="-84.3203252"/>
+ <node id="5902561113" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3823332" lon="-84.3213658"/>
+ <node id="5902561114" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3823992" lon="-84.3214978"/>
+ <node id="5902561115" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3822708" lon="-84.3212171"/>
+ <node id="5902561116" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3826377" lon="-84.3219004"/>
+ <node id="5902561117" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3827269" lon="-84.3220207"/>
+ <node id="5902561118" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3825559" lon="-84.3217731"/>
+ <node id="5902561119" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3811401" lon="-84.3137908"/>
+ <node id="5902561120" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3810752" lon="-84.3138917"/>
+ <node id="5902561121" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3809140" lon="-84.3142278"/>
+ <node id="5902561122" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3809681" lon="-84.3141031"/>
+ <node id="5902561123" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3808659" lon="-84.3143489"/>
+ <node id="5902561124" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3807583" lon="-84.3147565"/>
+ <node id="5902561125" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3807895" lon="-84.3146044"/>
+ <node id="5902561126" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3807010" lon="-84.3151871"/>
+ <node id="5902561127" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3807132" lon="-84.3150478"/>
+ <node id="5902561128" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3806940" lon="-84.3153363"/>
+ <node id="5902561129" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3856060" lon="-84.3220585"/>
+ <node id="5902561130" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3853163" lon="-84.3223648"/>
+ <node id="5902561131" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3854158" lon="-84.3222735"/>
+ <node id="5902561132" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3852152" lon="-84.3224456"/>
+ <node id="5902561133" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3848915" lon="-84.3226387"/>
+ <node id="5902561134" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3850058" lon="-84.3225825"/>
+ <node id="5902561135" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3845809" lon="-84.3227515"/>
+ <node id="5902561136" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3844793" lon="-84.3227747"/>
+ <node id="5902561137" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3846736" lon="-84.3227265"/>
+ <node id="5902561138" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3830087" lon="-84.3223217"/>
+ <node id="5902561139" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3831095" lon="-84.3224041"/>
+ <node id="5902561140" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3829109" lon="-84.3222269"/>
+ <node id="5902561141" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3834020" lon="-84.3225974"/>
+ <node id="5902561142" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3833076" lon="-84.3225428"/>
+ <node id="5902561143" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3834950" lon="-84.3226484"/>
+ <node id="5902561144" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3837872" lon="-84.3227513"/>
+ <node id="5902561145" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3836898" lon="-84.3227254"/>
+ <node id="5902561146" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3838824" lon="-84.3227738"/>
+ <node id="5902561147" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3841822" lon="-84.3228041"/>
+ <node id="5902561148" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3842778" lon="-84.3228011"/>
+ <node id="5902561149" visible="true" version="1" changeset="62532260" timestamp="2018-09-12T20:13:06Z" user="Jack the Ripper" uid="1946151" lat="33.3840836" lon="-84.3227984"/>
+ <node id="8529182306" visible="true" version="1" changeset="101202777" timestamp="2021-03-17T16:37:57Z" user="Bobby3" uid="12793995" lat="33.3861755" lon="-84.3197433"/>
+ <node id="8529196115" visible="true" version="1" changeset="101202918" timestamp="2021-03-17T16:40:08Z" user="Bobby3" uid="12793995" lat="33.3859116" lon="-84.3173690"/>
+ <node id="10773124592" visible="true" version="1" changeset="134300029" timestamp="2023-03-30T11:19:48Z" user="Sup3rb1rd" uid="18814007" lat="33.3853909" lon="-84.3156131"/>
+ <node id="10773145123" visible="true" version="1" changeset="134300092" timestamp="2023-03-30T11:21:26Z" user="Sup3rb1rd" uid="18814007" lat="33.3807001" lon="-84.3152057"/>
+ <node id="10773145129" visible="true" version="1" changeset="134300092" timestamp="2023-03-30T11:21:26Z" user="Sup3rb1rd" uid="18814007" lat="33.3813959" lon="-84.3134720"/>
+ <way id="288853230" visible="true" version="11" changeset="170316209" timestamp="2025-08-11T23:14:09Z" user="9jjjj" uid="21909442">
+  <nd ref="2924034995"/>
+  <nd ref="5902561111"/>
+  <nd ref="5902561110"/>
+  <nd ref="5902561112"/>
+  <nd ref="5902561109"/>
+  <nd ref="2924034996"/>
+  <nd ref="2924034997"/>
+  <nd ref="5902561107"/>
+  <nd ref="5902561108"/>
+  <nd ref="2924034998"/>
+  <nd ref="5902561105"/>
+  <nd ref="5902561104"/>
+  <nd ref="5902561106"/>
+  <nd ref="2924034999"/>
+  <nd ref="5902561128"/>
+  <nd ref="10773145123"/>
+  <nd ref="5902561126"/>
+  <nd ref="5902561127"/>
+  <nd ref="2924035000"/>
+  <nd ref="5902561124"/>
+  <nd ref="5902561125"/>
+  <nd ref="2924036401"/>
+  <nd ref="5902561123"/>
+  <nd ref="5902561121"/>
+  <nd ref="5902561122"/>
+  <nd ref="2924036402"/>
+  <nd ref="5902561120"/>
+  <nd ref="5902561119"/>
+  <nd ref="2924036403"/>
+  <nd ref="10773145129"/>
+  <nd ref="5902561098"/>
+  <nd ref="2924036404"/>
+  <nd ref="5902561099"/>
+  <nd ref="2924036405"/>
+  <nd ref="5902561100"/>
+  <nd ref="2924036406"/>
+  <nd ref="5902561101"/>
+  <nd ref="2924036407"/>
+  <nd ref="5902561103"/>
+  <nd ref="5902561102"/>
+  <nd ref="2924036408"/>
+  <nd ref="5902561092"/>
+  <nd ref="5902561090"/>
+  <nd ref="5902561091"/>
+  <nd ref="2924036409"/>
+  <nd ref="5902561093"/>
+  <nd ref="5902561094"/>
+  <nd ref="2924036410"/>
+  <nd ref="2924036431"/>
+  <nd ref="2924036411"/>
+  <nd ref="2924036413"/>
+  <nd ref="5902561089"/>
+  <nd ref="5902561088"/>
+  <nd ref="2924036414"/>
+  <nd ref="10773124592"/>
+  <nd ref="2924036415"/>
+  <nd ref="8529196115"/>
+  <nd ref="2924036416"/>
+  <nd ref="5902561087"/>
+  <nd ref="2924021587"/>
+  <nd ref="5902561086"/>
+  <nd ref="5902561085"/>
+  <nd ref="2924036417"/>
+  <nd ref="8529182306"/>
+  <nd ref="2924036419"/>
+  <nd ref="5902561083"/>
+  <nd ref="5902561082"/>
+  <nd ref="5902561084"/>
+  <nd ref="2924036420"/>
+  <nd ref="5902561081"/>
+  <nd ref="2924036421"/>
+  <nd ref="5902561080"/>
+  <nd ref="5902561129"/>
+  <nd ref="2924036422"/>
+  <nd ref="5902561131"/>
+  <nd ref="5902561130"/>
+  <nd ref="5902561132"/>
+  <nd ref="2924036423"/>
+  <nd ref="5902561134"/>
+  <nd ref="5902561133"/>
+  <nd ref="2924036424"/>
+  <nd ref="5902561137"/>
+  <nd ref="5902561135"/>
+  <nd ref="5902561136"/>
+  <nd ref="2924036425"/>
+  <nd ref="5902561148"/>
+  <nd ref="5902561147"/>
+  <nd ref="5902561149"/>
+  <nd ref="2924036426"/>
+  <nd ref="5902561146"/>
+  <nd ref="5902561144"/>
+  <nd ref="5902561145"/>
+  <nd ref="2924036427"/>
+  <nd ref="5902561143"/>
+  <nd ref="5902561141"/>
+  <nd ref="5902561142"/>
+  <nd ref="2924036428"/>
+  <nd ref="5902561139"/>
+  <nd ref="5902561138"/>
+  <nd ref="5902561140"/>
+  <nd ref="2924036429"/>
+  <nd ref="5902561117"/>
+  <nd ref="5902561116"/>
+  <nd ref="5902561118"/>
+  <nd ref="2924036430"/>
+  <nd ref="5902561114"/>
+  <nd ref="5902561113"/>
+  <nd ref="5902561115"/>
+  <nd ref="2924034995"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="EchoPark Speedway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

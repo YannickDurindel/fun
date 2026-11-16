@@ -1,0 +1,15 @@
+{
+  "id": "sebring",
+  "name": "Sebring International Raceway",
+  "grand_prix": "12 Hours of Sebring",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Sebring",
+  "length_m": 6019,
+  "turns": 17,
+  "scene": "res://scenes/tracks/sebring.tscn",
+  "track_json": "res://assets/tracks/sebring/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "endurance"
+}

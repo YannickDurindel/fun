@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1310 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="2617884145" visible="true" version="2" changeset="62398023" timestamp="2018-09-08T10:03:38Z" user="JÉT" uid="492015" lat="47.9610149" lon="0.2235588"/>
+ <node id="5892589152" visible="true" version="1" changeset="62398023" timestamp="2018-09-08T10:03:37Z" user="JÉT" uid="492015" lat="47.9611101" lon="0.2233842"/>
+ <node id="5892589159" visible="true" version="1" changeset="62398023" timestamp="2018-09-08T10:03:37Z" user="JÉT" uid="492015" lat="47.9610632" lon="0.2234730"/>
+ <way id="624045670" visible="true" version="7" changeset="127280900" timestamp="2022-10-10T06:01:12Z" user="Max-Kritic" uid="414659">
+  <nd ref="5892589152"/>
+  <nd ref="5892589159"/>
+  <nd ref="2617884145"/>
+  <tag k="bridge" v="yes"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="layer" v="1"/>
+  <tag k="name" v="Ligne Droite des Hunaudières"/>
+  <tag k="name:en" v="Mulsanne Straight"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+ </way>
+</osm>

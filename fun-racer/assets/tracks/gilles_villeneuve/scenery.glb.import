@@ -3,10 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
+uid="uid://cf2301igogbjm"
+path="res://.godot/imported/scenery.glb-f0c4cce1ae7e521de7fad4bb1d8a7170.scn"
 
 [deps]
 
 source_file="res://assets/tracks/gilles_villeneuve/scenery.glb"
+dest_files=["res://.godot/imported/scenery.glb-f0c4cce1ae7e521de7fad4bb1d8a7170.scn"]
 
 [params]
 

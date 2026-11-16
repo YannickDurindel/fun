@@ -14,6 +14,7 @@ warnings. Heights are metres above the finish line; gradients and bank are in pe
 has run, else those of track.json.
 """
 import json
+import math
 import os
 
 from .net import BuildError
@@ -22,6 +23,16 @@ TURN_SHARE = 0.2          # a turn lasts while the curvature stays above this sh
 TURN_K_MIN = 1.0 / 800.0  # 1/m: straighter than this is not part of a turn
 TURN_REACH = 150.0        # m: a turn never reaches further than this from its apex
 STRAIGHT_MIN = 40.0       # m: shorter gaps between two turns get no row of their own
+# Centreline wiggles on banked road. The banked surface is swept along the centreline, so where
+# the centreline's heading wiggles the surface twists under a car that drives a smoother line:
+# the tyre load swings by about v^2 sin(bank) times the curvature's back-and-forth (at 250 km/h
+# on 18 deg, 0.005 1/m is 1 g). A low-downforce car leaves the road (a stock car on Chicagoland
+# and Michigan before [layout] plan_sigma_m). A warning only: steady ramps into a turn are not
+# counted, but a short slow track can carry a wiggle that does no harm.
+WIGGLE_WINDOW = 30.0      # m: stretch over which the curvature's back-and-forth is measured
+WIGGLE_SWING = 0.002      # 1/m: back-and-forth (half the total variation beyond the net change) to warn about
+WIGGLE_BANK = 0.1         # rad: banked stretches only
+WIGGLE_SPEED = 250.0 / 3.6   # m/s: speed at which the warning quotes the tyre-load swing
 
 
 def _load(folder, name, required=False):
@@ -54,6 +65,55 @@ def _turn_extents(turns, curv, step, length):
             fwd += 1
         out.append((ia - back, ia + fwd, ia))
     return out
+
+
+def banked_wiggles(curv, bank, step, window=WIGGLE_WINDOW, swing=WIGGLE_SWING, bank_min=WIGGLE_BANK):
+    """Stretches of banked road whose centreline curvature goes back and forth: for every
+    ``window`` of road banked at least ``bank_min`` rad all along, half the total variation of
+    the curvature beyond its net change (0 on a steady ramp; the amplitude of a wiggle). Windows
+    above ``swing`` are merged into stretches: [{"s": [from, to], "swing", "bank"}] (s may wrap
+    past the lap length; bank in rad, the largest on the stretch)."""
+    n = len(curv)
+    w = max(2, int(round(window / step)))
+    if n <= w:
+        return []
+    hits = []
+    for i in range(n):
+        idx = [(i + j) % n for j in range(w + 1)]
+        if min(abs(bank[j]) for j in idx) < bank_min:
+            continue
+        tv = sum(abs(curv[idx[j + 1]] - curv[idx[j]]) for j in range(w))
+        amp = 0.5 * (tv - abs(curv[idx[-1]] - curv[idx[0]]))
+        if amp > swing:
+            hits.append((i, amp))
+    runs = []
+    for i, amp in hits:
+        if runs and i - runs[-1][1] <= 1:
+            runs[-1][1], runs[-1][2] = i, max(runs[-1][2], amp)
+        else:
+            runs.append([i, i, amp])
+    if len(runs) > 1 and runs[0][0] == 0 and runs[-1][1] == n - 1:   # one stretch across the line
+        last = runs.pop()
+        runs[0] = [last[0], runs[0][1] + n, max(last[2], runs[0][2])]
+    return [{"s": [round(a * step, 1), round((b + w) * step, 1)], "swing": round(amp, 5),
+             "bank": round(max(abs(bank[(a + j) % n]) for j in range(b - a + w + 1)), 4)}
+            for a, b, amp in runs]
+
+
+def wiggle_warning(wiggles, speed=WIGGLE_SPEED):
+    """One warning line for banked_wiggles(), or None."""
+    if not wiggles:
+        return None
+    def load_g(x):
+        return speed * speed * math.sin(x["bank"]) * x["swing"] / 9.81
+    worst = sorted(wiggles, key=load_g, reverse=True)[:3]
+    return (f"the centreline wiggles on banked road ({len(wiggles)} stretch(es) where the curvature goes "
+            f"back and forth by more than {WIGGLE_SWING:g} 1/m within {WIGGLE_WINDOW:g} m); worst: "
+            + ", ".join(f"s = {x['s'][0]:.0f}..{x['s'][1]:.0f} {x['swing']:.4f} 1/m on "
+                        f"{math.degrees(x['bank']):.0f} deg (tyre load swings ~{load_g(x):.1f} g at "
+                        f"{speed * 3.6:.0f} km/h)" for x in worst)
+            + ". The banked surface twists under the car; if a fast car gets light there, smooth "
+            "the plan view ([layout] plan_sigma_m)")
 
 
 def build(folder):
@@ -122,6 +182,9 @@ def build(folder):
                              round(max(p.get("width", 13.0) for p in pts), 2)],
     }
     warnings = list(binfo.get("warnings", []))
+    wiggles = banked_wiggles(curv, bank, step)
+    if wiggle_warning(wiggles):
+        warnings.append(wiggle_warning(wiggles))
     tj = totals["track_json_width"]
     if built and (abs(tj[0] - totals["width"][0]) > 0.05 or abs(tj[1] - totals["width"][1]) > 0.05):
         warnings.append(f"track.json says the road is {tj[0]:g} to {tj[1]:g} m wide, the road that is "
@@ -135,6 +198,7 @@ def build(folder):
         "osm_width_tags": binfo.get("osm", {}).get("width_tags", []),
         "pairs": profile.get("pairs", []),
         "crossings": track.get("crossings", []),
+        "banked_wiggles": wiggles,
         "warnings": warnings,
     }
 

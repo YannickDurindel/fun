@@ -1,2 +1,5 @@
 build123d==0.13.0
 pillow
+laspy[lazrs]==2.7.0
+pyproj==3.8.0
+numpy==2.5.3

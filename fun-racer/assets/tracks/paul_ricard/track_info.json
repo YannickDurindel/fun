@@ -1,0 +1,15 @@
+{
+  "id": "paul_ricard",
+  "name": "Le Castellet",
+  "grand_prix": "Le Castellet",
+  "country": "France",
+  "country_code": "FR",
+  "city": "Le Castellet",
+  "length_m": 5770,
+  "turns": 15,
+  "scene": "res://scenes/tracks/paul_ricard.tscn",
+  "track_json": "res://assets/tracks/paul_ricard/track.json",
+  "osm_relation": 10316343,
+  "available": true,
+  "series": "circuit"
+}

@@ -1,0 +1,109 @@
+{
+ "id": "milwaukee",
+ "recipe": "tools/track/tracks/milwaukee.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   107508989
+  ],
+  "raw_length_m": 1664.5,
+  "length_m": 1665.0,
+  "official_length_m": 1609.0,
+  "length_error": 0.03478,
+  "candidates": []
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 1.39,
+  "max_grade": 0.0044,
+  "min_grade": -0.0048,
+  "origin_m": 216.86
+ },
+ "turns": {
+  "official": 4,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Milwaukee Mile",
+    "direction": "left",
+    "s_apex": 226.3,
+    "min_radius": 82.1
+   },
+   {
+    "id": "T2",
+    "name": "Milwaukee Mile",
+    "direction": "left",
+    "s_apex": 334.6,
+    "min_radius": 90.6
+   },
+   {
+    "id": "T3",
+    "name": "Milwaukee Mile",
+    "direction": "left",
+    "s_apex": 1009.5,
+    "min_radius": 74.1
+   },
+   {
+    "id": "T4",
+    "name": "Milwaukee Mile",
+    "direction": "left",
+    "s_apex": 1224.2,
+    "min_radius": 69.2
+   },
+   {
+    "id": "T5",
+    "name": "Milwaukee Mile",
+    "direction": "left",
+    "s_apex": 1257.0,
+    "min_radius": 113.4
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 226.3,
+    "direction": "left",
+    "angle_deg": 66.9,
+    "kind": "corner",
+    "min_radius": 82.1,
+    "used": true
+   },
+   {
+    "s_apex": 334.6,
+    "direction": "left",
+    "angle_deg": 111.7,
+    "kind": "corner",
+    "min_radius": 90.6,
+    "used": true
+   },
+   {
+    "s_apex": 1009.5,
+    "direction": "left",
+    "angle_deg": 97.0,
+    "kind": "corner",
+    "min_radius": 74.1,
+    "used": true
+   },
+   {
+    "s_apex": 1224.2,
+    "direction": "left",
+    "angle_deg": 49.9,
+    "kind": "corner",
+    "min_radius": 69.2,
+    "used": true
+   },
+   {
+    "s_apex": 1257.0,
+    "direction": "left",
+    "angle_deg": 29.0,
+    "kind": "corner",
+    "min_radius": 113.4,
+    "used": true
+   }
+  ]
+ },
+ "warnings": [
+  "the OSM loop is +3.5 % off the official length (1665 m vs 1609 m): check that it is the right layout"
+ ]
+}

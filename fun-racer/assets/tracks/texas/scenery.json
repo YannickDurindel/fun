@@ -1,0 +1,170 @@
+{
+ "version": 1,
+ "frame": "Godot metres: x=east, y=up (relative to finish line), z=-north; origin at finish line",
+ "attribution": "Surroundings (c) OpenStreetMap contributors (ODbL 1.0), via the Overpass API.",
+ "osm_base": "2026-11-01T18:11:04Z",
+ "landcover": {
+  "classes": [
+   "grass",
+   "forest",
+   "water",
+   "sand",
+   "paved",
+   "farmland",
+   "rock",
+   "gravel",
+   "scrub",
+   "beach"
+  ],
+  "near": {
+   "file": "landcover.png",
+   "x0": -600.0,
+   "z0": -1000.0,
+   "step": 2.5,
+   "nx": 720,
+   "nz": 880
+  },
+  "far": {
+   "file": "landcover_far.png",
+   "x0": -5600.0,
+   "z0": -5800.0,
+   "step": 50.0,
+   "nx": 240,
+   "nz": 240
+  },
+  "near_share": {
+   "grass": 0.7033,
+   "forest": 0.0,
+   "water": 0.0122,
+   "sand": 0.0,
+   "paved": 0.2846,
+   "farmland": 0.0,
+   "rock": 0.0,
+   "gravel": 0.0,
+   "scrub": 0.0,
+   "beach": 0.0
+  }
+ },
+ "mesh": {
+  "file": "scenery.glb",
+  "chunk_m": 400.0,
+  "chunk_x0": -5600.0,
+  "chunk_z0": -6000.0,
+  "node": "chunk_<i>_<j>, i = floor((x - chunk_x0) / chunk_m), j = floor((z - chunk_z0) / chunk_m)",
+  "materials": [
+   "building_wall",
+   "building_roof",
+   "building_glass",
+   "stand_seats",
+   "stand_structure",
+   "concrete",
+   "metal",
+   "emissive_window",
+   "emissive_light"
+  ],
+  "triangles": {
+   "building_wall": 608,
+   "building_roof": 216,
+   "building_glass": 0,
+   "stand_seats": 3867,
+   "stand_structure": 4428,
+   "concrete": 378,
+   "metal": 10,
+   "emissive_window": 0,
+   "emissive_light": 0
+  },
+  "vertices": 18901,
+  "chunks": 20
+ },
+ "trees": {
+  "file": "scenery_points.bin",
+  "dtype": "float32",
+  "record": [
+   "x",
+   "y",
+   "z",
+   "height",
+   "species"
+  ],
+  "record_bytes": 20,
+  "count": 0,
+  "species": [
+   "broadleaved",
+   "needleleaved",
+   "palm",
+   "bush"
+  ],
+  "species_counts": {
+   "broadleaved": 0,
+   "needleleaved": 0,
+   "palm": 0,
+   "bush": 0
+  },
+  "chunk_m": 400.0,
+  "chunks": []
+ },
+ "water": [
+  {"level":-7.65,"kind":"river","polygon":[[577.23,982.27],[577.61,975.35],[579.32,967.18],[584.46,929.05],[592.26,922.58],[593.59,911.91],[595.02,909.41],[599.01,907.26],[600.0,906.96],[600.0,1023.64],[587.69,1007.01],[579.7,991.13]],"triangles":[11,0,1,10,11,1,9,10,1,8,9,1,7,8,1,7,1,2,2,3,4,7,2,4,6,7,4,5,6,4]},
+  {"level":-8.7,"kind":"river","polygon":[[600.0,906.96],[603.2,906.01],[606.05,907.48],[608.05,909.75],[610.81,909.98],[614.05,908.5],[615.95,905.78],[618.9,904.87],[623.18,905.44],[642.3,913.95],[678.27,932.45],[688.35,942.21],[691.21,944.03],[710.04,949.13],[726.12,952.2],[739.25,952.2],[747.06,951.06],[750.0,951.47],[750.0,1050.0],[624.94,1050.0],[602.82,1027.44],[600.0,1023.64]],"triangles":[21,0,1,20,21,1,19,20,1,18,19,1,1,2,3,18,1,3,18,3,4,18,4,5,18,5,6,18,6,7,18,7,8,18,8,9,18,9,10,18,10,11,18,11,12,18,12,13,18,13,14,18,14,15,17,18,15,16,17,15]},
+  {"level":-9.64,"kind":"river","polygon":[[750.0,1050.0],[750.0,1104.76],[723.56,1097.24],[666.56,1075.45],[647.44,1067.28],[633.65,1058.88],[624.94,1050.0]],"triangles":[6,0,1,5,6,1,4,5,1,3,4,1,2,3,1]},
+  {"level":-9.3,"kind":"river","polygon":[[750.0,951.47],[778.45,955.38],[798.05,955.6],[834.3,957.19],[865.51,961.73],[874.93,958.67],[878.35,959.8],[881.59,963.77],[887.01,966.61],[892.05,966.27],[895.48,964.46],[897.09,956.28],[900.0,954.33],[900.0,1050.0],[750.0,1050.0]],"triangles":[14,0,1,13,14,1,13,1,2,13,2,3,13,3,4,13,4,5,13,5,6,13,6,7,13,7,8,13,8,9,13,9,10,12,13,10,11,12,10]},
+  {"level":-10.17,"kind":"river","polygon":[[900.0,1050.0],[900.0,1055.03],[872.45,1087.71],[860.84,1099.28],[849.52,1105.41],[822.6,1108.7],[785.59,1108.7],[752.29,1105.41],[750.0,1104.76],[750.0,1050.0]],"triangles":[9,0,1,8,9,1,7,8,1,6,7,1,5,6,1,4,5,1,3,4,1,2,3,1]},
+  {"level":-9.74,"kind":"river","polygon":[[900.0,954.33],[902.33,952.77],[917.93,948.79],[932.87,949.25],[945.81,952.2],[949.8,956.74],[951.42,967.29],[949.99,983.75],[923.45,1027.22],[904.24,1050.0],[900.0,1050.0]],"triangles":[10,0,1,9,10,1,8,9,1,7,8,1,6,7,1,5,6,1,4,5,1,3,4,1,2,3,1]},
+  {"level":-9.89,"kind":"river","polygon":[[904.24,1050.0],[900.0,1055.03],[900.0,1050.0]],"triangles":[2,0,1]}
+ ],
+ "roofs": [],
+ "counts": {
+  "buildings": 44,
+  "grandstands": 3,
+  "canopies": 0,
+  "bridges": 4,
+  "masts": 2,
+  "lamps": 0,
+  "skyline": 0,
+  "cut_by_road": 0
+ },
+ "default_heights": [
+  {"osm":"way/508233625","type":"yes","height":6.0,"from":"type default","dist":24},
+  {"osm":"way/508233626","type":"yes","height":6.0,"from":"type default","dist":24},
+  {"osm":"way/508233628","type":"yes","height":6.0,"from":"type default","dist":38},
+  {"osm":"way/508233629","type":"yes","height":6.0,"from":"type default","dist":67},
+  {"osm":"way/508233636","type":"yes","height":6.0,"from":"type default","dist":71},
+  {"osm":"way/508233658","type":"yes","height":6.0,"from":"type default","dist":72},
+  {"osm":"way/508233656","type":"yes","height":6.0,"from":"type default","dist":73},
+  {"osm":"way/508233648","type":"yes","height":6.0,"from":"type default","dist":74},
+  {"osm":"way/508233652","type":"yes","height":6.0,"from":"type default","dist":74},
+  {"osm":"way/508233654","type":"yes","height":6.0,"from":"type default","dist":74},
+  {"osm":"way/508233634","type":"yes","height":6.0,"from":"type default","dist":83},
+  {"osm":"way/508233637","type":"yes","height":6.0,"from":"type default","dist":95},
+  {"osm":"way/508233635","type":"yes","height":6.0,"from":"type default","dist":96},
+  {"osm":"way/508233645","type":"yes","height":6.0,"from":"type default","dist":102},
+  {"osm":"way/508233643","type":"yes","height":6.0,"from":"type default","dist":146},
+  {"osm":"way/508233631","type":"yes","height":6.0,"from":"type default","dist":169},
+  {"osm":"way/508233621","type":"yes","height":6.0,"from":"type default","dist":173},
+  {"osm":"way/261968499","type":"garage","height":3.0,"from":"type default","dist":175,"name":"Pits"},
+  {"osm":"way/508233623","type":"yes","height":6.0,"from":"type default","dist":175},
+  {"osm":"way/508233651","type":"yes","height":6.0,"from":"type default","dist":176},
+  {"osm":"way/508233653","type":"yes","height":6.0,"from":"type default","dist":178},
+  {"osm":"way/508233605","type":"yes","height":6.0,"from":"type default","dist":179},
+  {"osm":"way/508233619","type":"yes","height":6.0,"from":"type default","dist":186},
+  {"osm":"way/508233622","type":"yes","height":6.0,"from":"type default","dist":187},
+  {"osm":"way/508233660","type":"yes","height":6.0,"from":"type default","dist":206},
+  {"osm":"way/508233646","type":"yes","height":6.0,"from":"type default","dist":219,"name":"Torchy's Tacos"},
+  {"osm":"way/508233627","type":"yes","height":6.0,"from":"type default","dist":231},
+  {"osm":"way/508233613","type":"yes","height":6.0,"from":"type default","dist":319},
+  {"osm":"way/508233624","type":"yes","height":6.0,"from":"type default","dist":329},
+  {"osm":"way/508233612","type":"yes","height":6.0,"from":"type default","dist":392},
+  {"osm":"way/508233630","type":"yes","height":6.0,"from":"type default","dist":430},
+  {"osm":"way/508233655","type":"yes","height":6.0,"from":"type default","dist":440},
+  {"osm":"relation/13931724","type":"yes","height":2.8,"from":"type default","dist":441},
+  {"osm":"way/508233633","type":"yes","height":6.0,"from":"type default","dist":442},
+  {"osm":"relation/13931724","type":"yes","height":6.0,"from":"type default","dist":449},
+  {"osm":"way/508233603","type":"yes","height":6.0,"from":"type default","dist":452},
+  {"osm":"way/508233604","type":"yes","height":6.0,"from":"type default","dist":457},
+  {"osm":"way/508233607","type":"yes","height":6.0,"from":"type default","dist":490},
+  {"osm":"way/508233610","type":"yes","height":6.0,"from":"type default","dist":581},
+  {"osm":"way/508233615","type":"yes","height":6.0,"from":"type default","dist":666},
+  {"osm":"way/508233620","type":"yes","height":6.0,"from":"type default","dist":712},
+  {"osm":"way/1340844167","type":"yes","height":6.0,"from":"type default","dist":779}
+ ]
+}

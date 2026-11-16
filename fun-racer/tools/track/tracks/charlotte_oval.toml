@@ -1,0 +1,82 @@
+# Concord, North Carolina, USA: 1.5-mile quad-oval (2414 m), 4 turns, anticlockwise.
+# Built for the stock car / IndyCar calendars (their events link it with "track"): series
+# "circuit" keeps it out of every series list on its own.
+#
+#   .venv/bin/python tools/track/build_track.py charlotte_oval --plot
+
+id = "charlotte_oval"
+series = "circuit"
+name = "Concord"
+grand_prix = "Concord"
+country = "United States"
+country_code = "US"
+city = "Concord"
+length_m = 2414
+turns = 4
+full_name = "Concord 1.5-mile oval"
+
+[osm]
+ways = [402168711, 396483278, 116034341, 402168709, 1052107104]   # the oval (2368 m); the Roval backstretch chicane 918050113, pit lane, 1/4 mile track and the infield road course left out
+
+[layout]
+direction = "anticlockwise"
+# Finish line: the node "Charlotte Motor Speedway Start/Finish Line" (9668619996, raceway=start-finish).
+finish = [35.3522551, -80.6855926]
+
+[elevation]
+dataset = "terrarium"
+# An oval's racing surface is close to level all round; the DEM's few metres of tilt and noise
+# (stands, the infield, the banking itself) would become a slope across the oval, so the
+# profile is smoothed over most of a lap.
+smooth_sigma_m = 400.0
+
+[road]
+# Real banking (North Carolina): turns 24 degrees; 5 degrees on both straights. All left-handers, so
+# the right (outer) edge is higher: negative bank. A full table (bank_keys, smoothstep between
+# keys): the full turn angle from just inside the turn entry to just before its exit, the straight's
+# own angle along the straights, rolling over the last / first 120 m before / after each turn
+# (steepest roll 0.0041 rad/m, limit 0.012). s values from the centreline (track.json).
+# With the roll spread over half a straight (as on the other ovals), the 24 degree turns left
+# the long straight before turn 1 banked at up to 20 degrees, and the autopilot climbed off its
+# high side there (lap_check impact at s = 311): the straights keep their 5 degrees until the
+# turn is near, as on the real track.
+max_bank = 0.429
+# Width: about 60 ft plus the apron; 18 m.
+base_width = 18.0
+grid_width = 18.0
+bank_keys = [
+  [290.0, -0.0873, "front stretch, end"],
+  [411.6, -0.4189, "turn 1 entry"],
+  [858.6, -0.4189, "turn 2 exit"],
+  [980.0, -0.0873, "backstretch"],
+  [1390.0, -0.0873, "backstretch, end"],
+  [1509.9, -0.4189, "turn 3 entry"],
+  [1992.9, -0.4189, "turn 4 exit"],
+  [2110.0, -0.0873, "front stretch"],
+]
+
+# Pinned: an oval has 4 turns (the two halves of each end), whatever the tri-oval kink does.
+[[turn]]
+id = "T1"
+name = "Turn 1"
+direction = "left"
+s = 528.7
+
+[[turn]]
+id = "T2"
+name = "Turn 2"
+direction = "left"
+s = 741.5
+
+[[turn]]
+id = "T3"
+name = "Turn 3"
+direction = "left"
+s = 1636.4
+
+[[turn]]
+id = "T4"
+name = "Turn 4"
+direction = "left"
+s = 1866.4
+

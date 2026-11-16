@@ -9,6 +9,12 @@ extends RefCounted
 ##   * a half-order sub oscillator that is louder when coasting (burble);
 ##   * pulse-gated noise synchronised to the firing phase (grit);
 ##   * on the overrun, per-firing-cycle random gain and occasional crackle pops;
+##   * per-cylinder imbalance and per-cycle timing jitter (real engines never fire evenly: this
+##     is what puts the half orders and the roughness between the orders);
+##   * two fixed-frequency resonances (exhaust and intake/airbox formants, state-variable
+##     band-passes) fed by the firing pulses and a load-dependent intake roar. The resonances do
+##     not move with the revs, so the order harmonics sweep through them: the "vowel" of the
+##     engine changes over the rev range like a real exhaust and not like a pitched synth;
 ##   * one-pole tone filter + cubic soft clip.
 ## Call update(dt, rpm, throttle) once per frame (parameter slew), then render(frames). render()
 ## ramps every parameter linearly across the block and keeps oscillator phase between blocks, so
@@ -49,6 +55,7 @@ const LIFT_TAU: float = 0.45          ## s, how long the lift-off crackle lasts
 const LIMITER_BAND_RPM: float = 150.0 ## the limiter cuts within this of the limit
 const LIMITER_PERIOD: int = 20        ## firing cycles per stutter (about 30 Hz at 13000 rpm)
 const LIMITER_CUT_CYCLES: int = 9     ## ...of which this many are cut
+const DOWNSHIFT_POP_AMP: float = 0.60 ## overrun bang of a downshift blip
 
 var mix_rate: float
 var cylinders: int = 12
@@ -63,10 +70,10 @@ var amp_throttle: float = 0.20
 var amp_rpm: float = 0.06
 var blend_base: float = 0.12          ## dark-to-bright morph: at rest...
 var blend_throttle: float = 0.88      ## ...and what full throttle adds
-var detune_mix: float = 0.6           ## level of the detuned partner (the whine)
+var detune_mix: float = 0.25          ## level of the detuned partner (the whine)
 var sub_base: float = 0.05            ## half-order rumble...
 var sub_coast: float = 0.13           ## ...and what coasting adds
-var grit_base: float = 0.035
+var grit_base: float = 0.06
 var grit_throttle: float = 0.05
 var filter_base: float = 0.35         ## one-pole tone filter coefficient at rest...
 var filter_throttle: float = 0.6      ## ...and what full throttle adds
@@ -76,6 +83,18 @@ var pop_amp: float = 0.22
 var lift_pop_boost: float = 0.0       ## extra pops right after lifting off (x pop_rate)
 var whistle_amp: float = 0.0          ## turbo whistle level at full boost; 0 = no turbo
 var blowoff_amp: float = 0.0          ## hiss as the boost is dumped
+var imbalance: float = 0.10           ## per-cylinder level spread (half orders, uneven firing)
+var jitter_on: float = 0.012          ## per-cycle period jitter on load...
+var jitter_coast: float = 0.03        ## ...and on the overrun (lumpier)
+var formant1_hz: float = 820.0        ## exhaust resonance
+var formant2_hz: float = 2300.0       ## intake / airbox resonance
+var formant_damp: float = 0.5         ## 1/Q of both resonances
+var formant_base: float = 0.22        ## resonance level at rest...
+var formant_throttle: float = 0.40    ## ...and what full throttle adds (load opens them up)
+var formant2_mix: float = 0.7         ## level of the second resonance against the first
+var direct_mix: float = 0.75          ## dry oscillators in the mix
+var roar_base: float = 0.04           ## intake roar (noise into the resonances) at rest...
+var roar_throttle: float = 0.34       ## ...and what full throttle at high revs adds
 
 ## Smoothed state (read-only for callers).
 var smoothed_rpm: float = IDLE_RPM
@@ -93,6 +112,7 @@ static var _pulse := PackedFloat32Array()
 static var _sub := PackedFloat32Array()
 static var _noise := PackedFloat32Array()
 static var _sine := PackedFloat32Array()
+static var _cyl_gain := PackedFloat32Array()  ## per-cylinder level pattern (+-1), up to 16 cylinders
 
 # Per-sample coefficients derived from mix_rate.
 var _pop_decay: float
@@ -125,6 +145,14 @@ var _smoothed_pedal: float = 0.0
 var _crack_pending: bool = false
 var _lift: float = 0.0
 var _cycle: int = 0
+var _cyl: int = 0          ## index of the cylinder firing now
+var _jit: float = 1.0      ## this cycle's period factor
+var _b1: float = 0.0       ## state-variable filter states (band, low) of the two resonances
+var _l1: float = 0.0
+var _b2: float = 0.0
+var _l2: float = 0.0
+var _fm: float = 0.0       ## ramped resonance level
+var _roar: float = 0.0     ## ramped intake roar
 
 func _init(rate: float = 24000.0, cyl: int = 12) -> void:
 	mix_rate = rate
@@ -141,8 +169,11 @@ static func _build_tables() -> void:
 	var phases: Array[float] = []
 	for k in BRIGHT_HARMONICS + 1:
 		phases.append(rng.randf() * TAU)
-	_bright = _additive(BRIGHT_HARMONICS, 0.8, phases, true)
-	_dark = _additive(DARK_HARMONICS, 2.1, phases, false)
+	_bright = _additive(BRIGHT_HARMONICS, 0.4, phases, true)
+	_dark = _additive(DARK_HARMONICS, 1.5, phases, false)
+	_cyl_gain.resize(16)
+	for i in 16:
+		_cyl_gain[i] = rng.randf_range(-1.0, 1.0)
 	_pulse.resize(TABLE_SIZE)
 	_sub.resize(TABLE_SIZE)
 	_sine.resize(TABLE_SIZE)
@@ -165,8 +196,8 @@ static func _additive(count: int, rolloff: float, phases: Array[float], formant:
 	var amps: Array[float] = []
 	for k in range(1, count + 1):
 		var a := pow(float(k), -rolloff)
-		if formant and k >= 3 and k <= 6:
-			a *= 1.6
+		if formant and k >= 2 and k <= 4:
+			a *= 1.25
 		amps.append(a)
 	var peak := 0.0
 	for i in TABLE_SIZE:
@@ -192,10 +223,10 @@ func use_v12() -> void:
 	amp_rpm = 0.06
 	blend_base = 0.12
 	blend_throttle = 0.88
-	detune_mix = 0.6
+	detune_mix = 0.25
 	sub_base = 0.05
 	sub_coast = 0.13
-	grit_base = 0.035
+	grit_base = 0.06
 	grit_throttle = 0.05
 	filter_base = 0.35
 	filter_throttle = 0.6
@@ -205,6 +236,18 @@ func use_v12() -> void:
 	lift_pop_boost = 0.0
 	whistle_amp = 0.0
 	blowoff_amp = 0.0
+	imbalance = 0.10
+	jitter_on = 0.012
+	jitter_coast = 0.03
+	formant1_hz = 820.0
+	formant2_hz = 2300.0
+	formant_damp = 0.5
+	formant_base = 0.22
+	formant_throttle = 0.40
+	formant2_mix = 0.7
+	direct_mix = 0.75
+	roar_base = 0.04
+	roar_throttle = 0.34
 	_boost = 0.0
 	_blow = 0.0
 	_lift = 0.0
@@ -219,21 +262,33 @@ func use_v6_turbo(idle_rpm: float, limit_rpm: float) -> void:
 	amp_base = 0.27
 	amp_throttle = 0.20
 	amp_rpm = 0.05
-	blend_base = 0.08
-	blend_throttle = 0.58
-	detune_mix = 0.3
+	blend_base = 0.10
+	blend_throttle = 0.80
+	detune_mix = 0.12
 	sub_base = 0.12
 	sub_coast = 0.10
-	grit_base = 0.06
+	grit_base = 0.08
 	grit_throttle = 0.09
-	filter_base = 0.22
-	filter_throttle = 0.42
+	filter_base = 0.25
+	filter_throttle = 0.60
 	burble_depth = 0.6
 	pop_rate = 0.03
 	pop_amp = 0.26
 	lift_pop_boost = 7.0
 	whistle_amp = 0.045
 	blowoff_amp = 0.11
+	imbalance = 0.16       # a V6 is lumpier: stronger half orders
+	jitter_on = 0.014
+	jitter_coast = 0.035
+	formant1_hz = 560.0    # the turbine and the long pipes muffle and lower the exhaust
+	formant2_hz = 1700.0
+	formant_damp = 0.55
+	formant_base = 0.26
+	formant_throttle = 0.45
+	formant2_mix = 0.55
+	direct_mix = 0.7
+	roar_base = 0.08
+	roar_throttle = 0.50
 	_inc = -1.0
 
 ## Rev range of the current engine: level and brightness follow it, and the limiter stutters
@@ -248,6 +303,10 @@ func set_rev_range(idle_rpm: float, limit_rpm: float) -> void:
 ## whatever the frame rate), then a crack as it fires again.
 func shift_cut() -> void:
 	_cut_frames = int(SHIFT_CUT_TIME * mix_rate)
+
+## A downshift: the throttle blip and the overrun bang as the revs jump.
+func downshift_blip() -> void:
+	_pop_env = maxf(_pop_env, DOWNSHIFT_POP_AMP)
 
 ## Turbo boost 0..1 (read-only; 0 for the V12).
 func boost() -> float:
@@ -317,13 +376,27 @@ func render(frames: int) -> PackedVector2Array:
 	var amp_t := amp_base + amp_throttle * thr + amp_rpm * rn
 	var blend_t := blend_base + blend_throttle * thr * (0.6 + 0.4 * rn)
 	var sub_t := sub_base + sub_coast * coast
-	var grit_t := grit_base + grit_throttle * thr
+	var grit_t := grit_base * (1.0 + 0.6 * coast) + grit_throttle * thr  # rougher on the overrun
 	var master_t := clampf(master, 0.0, 1.0)
 	var lpc := filter_base + filter_throttle * thr  # filter coefficient: stepping it per block does not click
 	var burble := burble_depth * coast * (0.3 + 0.7 * rn)
 	var pop_prob := pop_rate * coast * coast * rn * (1.0 + lift_pop_boost * _lift)
 	var pop_level := pop_amp
 	var mix2 := detune_mix
+	# Resonances: fixed in frequency, louder (and fed more intake roar) under load.
+	var fm_t := formant_base + formant_throttle * thr * (0.5 + 0.5 * rn)
+	var roar_t := roar_base + roar_throttle * thr * (0.25 + 0.75 * rn)
+	var fc1 := 2.0 * sin(PI * minf(formant1_hz, mix_rate * 0.16) / mix_rate)
+	var fc2 := 2.0 * sin(PI * minf(formant2_hz, mix_rate * 0.16) / mix_rate)
+	var damp := formant_damp
+	var f2m := formant2_mix
+	var dry := direct_mix
+	var jit_amt := lerpf(jitter_coast, jitter_on, thr) * 2.0
+	var imb := imbalance * (1.0 + 0.8 * coast)  # the overrun is lumpier
+	var cyl_gain := _cyl_gain
+	var ncyl := cylinders
+	var cyl := _cyl
+	var jit := _jit
 	# Upshift: the ignition cut drops the engine for a few blocks, then it cracks back in.
 	if _crack_pending:
 		_crack_pending = false
@@ -357,6 +430,14 @@ func render(frames: int) -> PackedVector2Array:
 	var d_sub := (sub_t - _sub_amp) * inv
 	var d_grit := (grit_t - _grit) * inv
 	var d_master := (master_t - _master_ramp) * inv
+	var d_fm := (fm_t - _fm) * inv
+	var d_roar := (roar_t - _roar) * inv
+	var fm := _fm
+	var roar := _roar
+	var b1 := _b1
+	var l1 := _l1
+	var b2 := _b2
+	var l2 := _l2
 	var pop_decay := _pop_decay
 	var cyc_coef := _cyc_coef
 
@@ -387,12 +468,17 @@ func render(frames: int) -> PackedVector2Array:
 		sa += d_sub
 		gr += d_grit
 		mg += d_master
-		p1 += inc
+		fm += d_fm
+		roar += d_roar
+		p1 += inc * jit
 		if p1 >= ts:
 			p1 -= ts
-			# New firing cycle: pick this cycle's gain and maybe an overrun pop.
+			# New firing cycle: the next cylinder (its own level), this cycle's timing jitter,
+			# gain and maybe an overrun pop.
+			cyl = (cyl + 1) % ncyl
+			jit = 1.0 + jit_amt * noise[(ni + 7717) & NOISE_MASK]
 			var r := noise[(ni + 5003) & NOISE_MASK]
-			ct = 1.0 - burble * (r if r > 0.0 else -r)
+			ct = (1.0 + imb * cyl_gain[cyl]) * (1.0 - burble * (r if r > 0.0 else -r))
 			if (noise[(ni + 911) & NOISE_MASK] + 1.0) * 0.5 < pop_prob:
 				pe = pop_level
 			if limiting:
@@ -412,7 +498,14 @@ func render(frames: int) -> PackedVector2Array:
 		# Main osc morphs dark->bright; detuned partner stays dark (beating in the low partials).
 		var tone := d1 + bl * (bright[i1] - d1) + mix2 * dark[int(p2)]
 		cg += (ct - cg) * cyc_coef
-		lp += lpc * ((tone * amp + sub[int(ps)] * sa + nz * pulse[i1] * gr) * cg + nz * pe - lp)
+		var exc := (tone * amp + sub[int(ps)] * sa + nz * pulse[i1] * gr) * cg
+		# Exhaust and intake resonances (Chamberlin state-variable band-passes).
+		var fin := exc + nz * roar * (0.4 + pulse[i1])
+		l1 += fc1 * b1
+		b1 += fc1 * (fin - l1 - damp * b1)
+		l2 += fc2 * b2
+		b2 += fc2 * (fin - l2 - damp * b2)
+		lp += lpc * (exc * dry + (b1 + f2m * b2) * fm + nz * pe - lp)
 		pe *= pop_decay
 		var y := lp * mg
 		if turbo:
@@ -443,6 +536,14 @@ func render(frames: int) -> PackedVector2Array:
 	_cyc_target = ct
 	_pop_env = pe
 	_lp = lp
+	_fm = fm_t
+	_roar = roar_t
+	_b1 = b1
+	_l1 = l1
+	_b2 = b2
+	_l2 = l2
+	_cyl = cyl
+	_jit = jit
 	_pw = pw
 	_winc = winc_t
 	_wamp = wamp_t

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (4048819 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1205719401" visible="true" version="2" changeset="20607047" timestamp="2014-02-16T23:55:40Z" user="RoverLand" uid="1429602" lat="33.0340940" lon="-97.2797255"/>
+ <node id="1205719425" visible="true" version="3" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0383617" lon="-97.2783347"/>
+ <node id="1732296117" visible="true" version="2" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0353675" lon="-97.2792904"/>
+ <node id="4814461303" visible="true" version="1" changeset="48105592" timestamp="2017-04-25T00:13:16Z" user="Trucker88" uid="4298442" lat="33.0343700" lon="-97.2796285"/>
+ <node id="4814461304" visible="true" version="1" changeset="48105592" timestamp="2017-04-25T00:13:16Z" user="Trucker88" uid="4298442" lat="33.0376708" lon="-97.2785097"/>
+ <node id="4814461305" visible="true" version="1" changeset="48105592" timestamp="2017-04-25T00:13:16Z" user="Trucker88" uid="4298442" lat="33.0378813" lon="-97.2784365"/>
+ <node id="4814461306" visible="true" version="1" changeset="48105592" timestamp="2017-04-25T00:13:16Z" user="Trucker88" uid="4298442" lat="33.0380222" lon="-97.2783990"/>
+ <node id="4814461307" visible="true" version="1" changeset="48105592" timestamp="2017-04-25T00:13:17Z" user="Trucker88" uid="4298442" lat="33.0381929" lon="-97.2783614"/>
+ <node id="4820110979" visible="true" version="1" changeset="48192795" timestamp="2017-04-27T12:12:07Z" user="Trucker88" uid="4298442" lat="33.0365594" lon="-97.2788864"/>
+ <way id="489172989" visible="true" version="2" changeset="48192795" timestamp="2017-04-27T12:12:10Z" user="Trucker88" uid="4298442">
+  <nd ref="1205719401"/>
+  <nd ref="4814461303"/>
+  <nd ref="1732296117"/>
+  <nd ref="4820110979"/>
+  <nd ref="4814461304"/>
+  <nd ref="4814461305"/>
+  <nd ref="4814461306"/>
+  <nd ref="4814461307"/>
+  <nd ref="1205719425"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+ </way>
+</osm>

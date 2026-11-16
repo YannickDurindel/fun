@@ -3,10 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
+uid="uid://b7d4ndtmh43wh"
+path="res://.godot/imported/scenery.glb-a60a19912de85874bba6bd3980c5b4f7.scn"
 
 [deps]
 
 source_file="res://assets/tracks/miami/scenery.glb"
+dest_files=["res://.godot/imported/scenery.glb-a60a19912de85874bba6bd3980c5b4f7.scn"]
 
 [params]
 

@@ -1,0 +1,332 @@
+{
+ "id": "hockenheim",
+ "recipe": "tools/track/tracks/hockenheim.toml",
+ "osm": {
+  "relation": 284588,
+  "loop_ways": [
+   117570507,
+   15444543,
+   117570511,
+   117570513,
+   117570496,
+   117570499,
+   117568832,
+   117568833,
+   117568830,
+   1386056979,
+   117568831,
+   117570493,
+   446193573,
+   117570506,
+   117570503,
+   117570502
+  ],
+  "raw_length_m": 4570.0,
+  "length_m": 4565.5,
+  "official_length_m": 4574.0,
+  "length_error": -0.00185,
+  "candidates": [
+   {
+    "length_m": 4569.9,
+    "ways": [
+     117570507,
+     15444543,
+     117570511,
+     117570513,
+     117570496,
+     117570499,
+     117568832,
+     117568833,
+     117568830,
+     1386056979,
+     117568831,
+     117570493,
+     446193573,
+     117570506,
+     117570503,
+     117570502
+    ]
+   }
+  ]
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 17.67,
+  "max_grade": 0.0431,
+  "min_grade": -0.047,
+  "origin_m": 103.72
+ },
+ "turns": {
+  "official": 17,
+  "mode": "auto",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Ravenol-Kurve",
+    "direction": "right",
+    "s_apex": 256.4,
+    "min_radius": 25.7
+   },
+   {
+    "id": "T2",
+    "name": "Ravenol-Kurve",
+    "direction": "right",
+    "s_apex": 396.7,
+    "min_radius": 181.1
+   },
+   {
+    "id": "T3",
+    "name": "Bernie-Ecclestone-Kurve",
+    "direction": "right",
+    "s_apex": 829.5,
+    "min_radius": 19.2
+   },
+   {
+    "id": "T4",
+    "name": "Einfahrt Parabolika",
+    "direction": "left",
+    "s_apex": 955.7,
+    "min_radius": 49.5
+   },
+   {
+    "id": "T5",
+    "name": "Hochgeschwindigkeits-(Parabolika-)Kurve",
+    "direction": "left",
+    "s_apex": 1350.4,
+    "min_radius": 383.7
+   },
+   {
+    "id": "T6",
+    "name": "Hochgeschwindigkeits-(Parabolika-)Kurve",
+    "direction": "left",
+    "s_apex": 1578.8,
+    "min_radius": 390.6
+   },
+   {
+    "id": "T7",
+    "name": "Spitzkehre",
+    "direction": "right",
+    "s_apex": 2093.7,
+    "min_radius": 12.6
+   },
+   {
+    "id": "T8",
+    "name": "Turn 8",
+    "direction": "right",
+    "s_apex": 2528.4,
+    "min_radius": 48.9
+   },
+   {
+    "id": "T9",
+    "name": "Turn 9",
+    "direction": "left",
+    "s_apex": 2818.9,
+    "min_radius": 16.9
+   },
+   {
+    "id": "T10",
+    "name": "Turn 10",
+    "direction": "left",
+    "s_apex": 2927.1,
+    "min_radius": 73.8
+   },
+   {
+    "id": "T11",
+    "name": "Turn 11",
+    "direction": "right",
+    "s_apex": 2981.2,
+    "min_radius": 45.0
+   },
+   {
+    "id": "T12",
+    "name": "Mobil 1 Kurve",
+    "direction": "right",
+    "s_apex": 3422.0,
+    "min_radius": 65.1
+   },
+   {
+    "id": "T13",
+    "name": "Sachs-Kurve",
+    "direction": "left",
+    "s_apex": 3796.6,
+    "min_radius": 35.0
+   },
+   {
+    "id": "T14",
+    "name": "Turn 14",
+    "direction": "left",
+    "s_apex": 3946.9,
+    "min_radius": 48.3
+   },
+   {
+    "id": "T15",
+    "name": "Turn 15",
+    "direction": "right",
+    "s_apex": 4017.0,
+    "min_radius": 62.4
+   },
+   {
+    "id": "T16",
+    "name": "Turn 16",
+    "direction": "right",
+    "s_apex": 4125.2,
+    "min_radius": 35.2
+   },
+   {
+    "id": "T17",
+    "name": "Südkurve",
+    "direction": "right",
+    "s_apex": 4271.5,
+    "min_radius": 46.4
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 256.4,
+    "direction": "right",
+    "angle_deg": 54.0,
+    "kind": "corner",
+    "min_radius": 25.7,
+    "used": true
+   },
+   {
+    "s_apex": 396.7,
+    "direction": "right",
+    "angle_deg": 12.7,
+    "kind": "kink",
+    "min_radius": 181.1,
+    "used": true
+   },
+   {
+    "s_apex": 829.5,
+    "direction": "right",
+    "angle_deg": 132.8,
+    "kind": "corner",
+    "min_radius": 19.2,
+    "used": true
+   },
+   {
+    "s_apex": 955.7,
+    "direction": "left",
+    "angle_deg": 57.4,
+    "kind": "corner",
+    "min_radius": 49.5,
+    "used": true
+   },
+   {
+    "s_apex": 1190.1,
+    "direction": "left",
+    "angle_deg": 5.0,
+    "kind": "kink",
+    "min_radius": 422.9,
+    "used": false
+   },
+   {
+    "s_apex": 1350.4,
+    "direction": "left",
+    "angle_deg": 6.3,
+    "kind": "kink",
+    "min_radius": 383.7,
+    "used": true
+   },
+   {
+    "s_apex": 1578.8,
+    "direction": "left",
+    "angle_deg": 14.5,
+    "kind": "kink",
+    "min_radius": 390.6,
+    "used": true
+   },
+   {
+    "s_apex": 2093.7,
+    "direction": "right",
+    "angle_deg": 166.8,
+    "kind": "corner",
+    "min_radius": 12.6,
+    "used": true
+   },
+   {
+    "s_apex": 2528.4,
+    "direction": "right",
+    "angle_deg": 42.0,
+    "kind": "corner",
+    "min_radius": 48.9,
+    "used": true
+   },
+   {
+    "s_apex": 2818.9,
+    "direction": "left",
+    "angle_deg": 104.1,
+    "kind": "corner",
+    "min_radius": 16.9,
+    "used": true
+   },
+   {
+    "s_apex": 2927.1,
+    "direction": "left",
+    "angle_deg": 31.1,
+    "kind": "corner",
+    "min_radius": 73.8,
+    "used": true
+   },
+   {
+    "s_apex": 2981.2,
+    "direction": "right",
+    "angle_deg": 94.4,
+    "kind": "corner",
+    "min_radius": 45.0,
+    "used": true
+   },
+   {
+    "s_apex": 3422.0,
+    "direction": "right",
+    "angle_deg": 81.9,
+    "kind": "corner",
+    "min_radius": 65.1,
+    "used": true
+   },
+   {
+    "s_apex": 3796.6,
+    "direction": "left",
+    "angle_deg": 155.5,
+    "kind": "corner",
+    "min_radius": 35.0,
+    "used": true
+   },
+   {
+    "s_apex": 3946.9,
+    "direction": "left",
+    "angle_deg": 48.1,
+    "kind": "corner",
+    "min_radius": 48.3,
+    "used": true
+   },
+   {
+    "s_apex": 4017.0,
+    "direction": "right",
+    "angle_deg": 30.7,
+    "kind": "corner",
+    "min_radius": 62.4,
+    "used": true
+   },
+   {
+    "s_apex": 4125.2,
+    "direction": "right",
+    "angle_deg": 88.1,
+    "kind": "corner",
+    "min_radius": 35.2,
+    "used": true
+   },
+   {
+    "s_apex": 4271.5,
+    "direction": "right",
+    "angle_deg": 99.6,
+    "kind": "corner",
+    "min_radius": 46.4,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

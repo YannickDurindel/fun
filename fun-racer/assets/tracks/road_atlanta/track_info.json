@@ -1,0 +1,15 @@
+{
+  "id": "road_atlanta",
+  "name": "Michelin Raceway Road Atlanta",
+  "grand_prix": "Petit Le Mans",
+  "country": "United States",
+  "country_code": "US",
+  "city": "Braselton",
+  "length_m": 4088,
+  "turns": 12,
+  "scene": "res://scenes/tracks/road_atlanta.tscn",
+  "track_json": "res://assets/tracks/road_atlanta/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "endurance"
+}

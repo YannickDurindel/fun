@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (4111268 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="746712538" visible="true" version="5" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3608635" lon="-71.4629464"/>
+ <node id="746712539" visible="true" version="4" changeset="33221374" timestamp="2015-08-09T15:29:47Z" user="Zeke76" uid="1370902" lat="43.3606543" lon="-71.4629201"/>
+ <node id="746712540" visible="true" version="4" changeset="33221374" timestamp="2015-08-09T15:29:47Z" user="Zeke76" uid="1370902" lat="43.3602931" lon="-71.4627280"/>
+ <node id="746712541" visible="true" version="5" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3601045" lon="-71.4625388"/>
+ <node id="746712542" visible="true" version="5" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3598212" lon="-71.4619999"/>
+ <node id="746712543" visible="true" version="5" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3597637" lon="-71.4617927"/>
+ <node id="746712544" visible="true" version="5" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3597277" lon="-71.4611767"/>
+ <node id="746712552" visible="true" version="5" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3644943" lon="-71.4580551"/>
+ <node id="746712554" visible="true" version="5" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3646987" lon="-71.4580697"/>
+ <node id="746712555" visible="true" version="5" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3650861" lon="-71.4582448"/>
+ <node id="746712556" visible="true" version="5" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3654052" lon="-71.4585940"/>
+ <node id="746712557" visible="true" version="5" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3654694" lon="-71.4587038"/>
+ <node id="746712558" visible="true" version="5" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3656489" lon="-71.4592075"/>
+ <node id="746712559" visible="true" version="5" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3656927" lon="-71.4597046"/>
+ <node id="746712560" visible="true" version="5" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3656715" lon="-71.4599541"/>
+ <node id="746712561" visible="true" version="5" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3655854" lon="-71.4603167"/>
+ <node id="746712563" visible="true" version="4" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3653713" lon="-71.4607470"/>
+ <node id="919168767" visible="true" version="4" changeset="80057459" timestamp="2020-01-25T02:37:03Z" user="nfgusedautoparts" uid="113450" lat="43.3619287" lon="-71.4592034"/>
+ <node id="919168778" visible="true" version="3" changeset="35671704" timestamp="2015-11-30T18:38:49Z" user="Zeke76" uid="1370902" lat="43.3628936" lon="-71.4587388"/>
+ <node id="919168882" visible="true" version="4" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3642912" lon="-71.4580902"/>
+ <node id="1314005591" visible="true" version="4" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3598931" lon="-71.4621910"/>
+ <node id="1314005592" visible="true" version="4" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3599797" lon="-71.4623586"/>
+ <node id="1314005593" visible="true" version="4" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3643922" lon="-71.4580665"/>
+ <node id="1314005596" visible="true" version="3" changeset="33221374" timestamp="2015-08-09T15:29:39Z" user="Zeke76" uid="1370902" lat="43.3604450" lon="-71.4628377"/>
+ <node id="1314005598" visible="true" version="4" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3652334" lon="-71.4609155"/>
+ <node id="1314005600" visible="true" version="4" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3598422" lon="-71.4606586"/>
+ <node id="1314005601" visible="true" version="4" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3597560" lon="-71.4609690"/>
+ <node id="1314005602" visible="true" version="4" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3656851" lon="-71.4594536"/>
+ <node id="1314005603" visible="true" version="4" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3654913" lon="-71.4605440"/>
+ <node id="1314005604" visible="true" version="4" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3597328" lon="-71.4616067"/>
+ <node id="1314005605" visible="true" version="4" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3598910" lon="-71.4605262"/>
+ <node id="1314005607" visible="true" version="4" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3652569" lon="-71.4583999"/>
+ <node id="1314005609" visible="true" version="4" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3647994" lon="-71.4580955"/>
+ <node id="1314005610" visible="true" version="4" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3649938" lon="-71.4581835"/>
+ <node id="1314005613" visible="true" version="4" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3597172" lon="-71.4614097"/>
+ <node id="1314005615" visible="true" version="4" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3641921" lon="-71.4581262"/>
+ <node id="1314005617" visible="true" version="4" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3655754" lon="-71.4589447"/>
+ <node id="1367781198" visible="true" version="3" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3656220" lon="-71.4601959"/>
+ <node id="1367781203" visible="true" version="3" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3650025" lon="-71.4611017"/>
+ <node id="1367781215" visible="true" version="2" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3602095" lon="-71.4626469"/>
+ <node id="1367781254" visible="true" version="3" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3649194" lon="-71.4611468"/>
+ <node id="1367781261" visible="true" version="2" changeset="80057459" timestamp="2020-01-25T02:37:03Z" user="nfgusedautoparts" uid="113450" lat="43.3645125" lon="-71.4613382"/>
+ <node id="1367781319" visible="true" version="3" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3651600" lon="-71.4609857"/>
+ <node id="3688202154" visible="true" version="2" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3600739" lon="-71.4602072"/>
+ <node id="3688202155" visible="true" version="2" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3601791" lon="-71.4600841"/>
+ <node id="3688202156" visible="true" version="1" changeset="33221374" timestamp="2015-08-09T15:29:23Z" user="Zeke76" uid="1370902" lat="43.3602392" lon="-71.4626775"/>
+ <node id="3688202157" visible="true" version="2" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3602933" lon="-71.4599830"/>
+ <node id="3688202158" visible="true" version="2" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3604250" lon="-71.4598962"/>
+ <node id="3688202159" visible="true" version="2" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3605508" lon="-71.4598322"/>
+ <node id="3688202161" visible="true" version="2" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3610300" lon="-71.4629264"/>
+ <node id="3688202162" visible="true" version="1" changeset="33221374" timestamp="2015-08-09T15:29:23Z" user="Zeke76" uid="1370902" lat="43.3612231" lon="-71.4628788"/>
+ <node id="3688202163" visible="true" version="1" changeset="33221374" timestamp="2015-08-09T15:29:23Z" user="Zeke76" uid="1370902" lat="43.3613528" lon="-71.4628258"/>
+ <node id="3688202164" visible="true" version="1" changeset="33221374" timestamp="2015-08-09T15:29:23Z" user="Zeke76" uid="1370902" lat="43.3620005" lon="-71.4591663"/>
+ <node id="3688202165" visible="true" version="1" changeset="33221374" timestamp="2015-08-09T15:29:23Z" user="Zeke76" uid="1370902" lat="43.3620295" lon="-71.4625254"/>
+ <node id="3688202167" visible="true" version="1" changeset="33221374" timestamp="2015-08-09T15:29:23Z" user="Zeke76" uid="1370902" lat="43.3631079" lon="-71.4620158"/>
+ <node id="3688202168" visible="true" version="2" changeset="35671704" timestamp="2015-11-30T18:38:48Z" user="Zeke76" uid="1370902" lat="43.3631743" lon="-71.4586108"/>
+ <node id="3688202171" visible="true" version="1" changeset="33221374" timestamp="2015-08-09T15:29:23Z" user="Zeke76" uid="1370902" lat="43.3637870" lon="-71.4617079"/>
+ <node id="10000902541" visible="true" version="2" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3653026" lon="-71.4608377"/>
+ <node id="10000902542" visible="true" version="2" changeset="142890329" timestamp="2023-10-20T19:51:24Z" user="VLD302" uid="16226557" lat="43.3640824" lon="-71.4581881"/>
+ <node id="10056909291" visible="true" version="1" changeset="126711218" timestamp="2022-09-27T19:24:52Z" user="pokey" uid="163396" lat="43.3616912" lon="-71.4626756"/>
+ <node id="10972363761" visible="true" version="1" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3650829" lon="-71.4610479"/>
+ <node id="10972363762" visible="true" version="1" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3654343" lon="-71.4606489"/>
+ <node id="10972363763" visible="true" version="1" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3655418" lon="-71.4604331"/>
+ <node id="10972363764" visible="true" version="1" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3656502" lon="-71.4600763"/>
+ <node id="10972363765" visible="true" version="1" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3656857" lon="-71.4598299"/>
+ <node id="10972363766" visible="true" version="1" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3656925" lon="-71.4595789"/>
+ <node id="10972363767" visible="true" version="1" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3656705" lon="-71.4593296"/>
+ <node id="10972363768" visible="true" version="1" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3656164" lon="-71.4590738"/>
+ <node id="10972363769" visible="true" version="1" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3655263" lon="-71.4588210"/>
+ <node id="10972363770" visible="true" version="1" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3653342" lon="-71.4584925"/>
+ <node id="10972363771" visible="true" version="1" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3651740" lon="-71.4583172"/>
+ <node id="10972363772" visible="true" version="1" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3648980" lon="-71.4581336"/>
+ <node id="10972363773" visible="true" version="1" changeset="137263276" timestamp="2023-06-13T01:59:39Z" user="AntiCompositeNumber" uid="4813762" lat="43.3645967" lon="-71.4580561"/>
+ <node id="12312670700" visible="true" version="1" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3597925" lon="-71.4608087"/>
+ <node id="12312670701" visible="true" version="1" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3599795" lon="-71.4603545"/>
+ <node id="12312670702" visible="true" version="1" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286" lat="43.3607567" lon="-71.4629363"/>
+ <way id="60096117" visible="true" version="21" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286">
+  <nd ref="3688202168"/>
+  <nd ref="10000902542"/>
+  <nd ref="1314005615"/>
+  <nd ref="919168882"/>
+  <nd ref="1314005593"/>
+  <nd ref="746712552"/>
+  <nd ref="10972363773"/>
+  <nd ref="746712554"/>
+  <nd ref="1314005609"/>
+  <nd ref="10972363772"/>
+  <nd ref="1314005610"/>
+  <nd ref="746712555"/>
+  <nd ref="10972363771"/>
+  <nd ref="1314005607"/>
+  <nd ref="10972363770"/>
+  <nd ref="746712556"/>
+  <nd ref="746712557"/>
+  <nd ref="10972363769"/>
+  <nd ref="1314005617"/>
+  <nd ref="10972363768"/>
+  <nd ref="746712558"/>
+  <nd ref="10972363767"/>
+  <nd ref="1314005602"/>
+  <nd ref="10972363766"/>
+  <nd ref="746712559"/>
+  <nd ref="10972363765"/>
+  <nd ref="746712560"/>
+  <nd ref="10972363764"/>
+  <nd ref="1367781198"/>
+  <nd ref="746712561"/>
+  <nd ref="10972363763"/>
+  <nd ref="1314005603"/>
+  <nd ref="10972363762"/>
+  <nd ref="746712563"/>
+  <nd ref="10000902541"/>
+  <nd ref="1314005598"/>
+  <nd ref="1367781319"/>
+  <nd ref="10972363761"/>
+  <nd ref="1367781203"/>
+  <nd ref="1367781254"/>
+  <nd ref="1367781261"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="New Hampshire Motor Speedway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q1815356"/>
+ </way>
+ <way id="766389942" visible="true" version="3" changeset="125677589" timestamp="2022-09-02T03:29:27Z" user="SavageRainbow" uid="16411985">
+  <nd ref="919168767"/>
+  <nd ref="3688202164"/>
+  <nd ref="919168778"/>
+  <nd ref="3688202168"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="New Hampshire Motor Speedway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q1815356"/>
+ </way>
+ <way id="766389943" visible="true" version="4" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286">
+  <nd ref="1314005605"/>
+  <nd ref="12312670701"/>
+  <nd ref="3688202154"/>
+  <nd ref="3688202155"/>
+  <nd ref="3688202157"/>
+  <nd ref="3688202158"/>
+  <nd ref="3688202159"/>
+  <nd ref="919168767"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="New Hampshire Motor Speedway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q1815356"/>
+ </way>
+ <way id="766389944" visible="true" version="4" changeset="158754042" timestamp="2024-11-04T19:20:57Z" user="Ken Gallager" uid="11929286">
+  <nd ref="746712538"/>
+  <nd ref="12312670702"/>
+  <nd ref="746712539"/>
+  <nd ref="1314005596"/>
+  <nd ref="746712540"/>
+  <nd ref="3688202156"/>
+  <nd ref="1367781215"/>
+  <nd ref="746712541"/>
+  <nd ref="1314005592"/>
+  <nd ref="1314005591"/>
+  <nd ref="746712542"/>
+  <nd ref="746712543"/>
+  <nd ref="1314005604"/>
+  <nd ref="1314005613"/>
+  <nd ref="746712544"/>
+  <nd ref="1314005601"/>
+  <nd ref="12312670700"/>
+  <nd ref="1314005600"/>
+  <nd ref="1314005605"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="New Hampshire Motor Speedway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q1815356"/>
+ </way>
+ <way id="766389945" visible="true" version="4" changeset="126711218" timestamp="2022-09-27T19:24:52Z" user="pokey" uid="163396">
+  <nd ref="1367781261"/>
+  <nd ref="3688202171"/>
+  <nd ref="3688202167"/>
+  <nd ref="3688202165"/>
+  <nd ref="10056909291"/>
+  <nd ref="3688202163"/>
+  <nd ref="3688202162"/>
+  <nd ref="3688202161"/>
+  <nd ref="746712538"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lanes" v="5"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="New Hampshire Motor Speedway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q1815356"/>
+ </way>
+ <relation id="10625001" visible="true" version="1" changeset="80057459" timestamp="2020-01-25T02:37:03Z" user="nfgusedautoparts" uid="113450">
+  <member type="way" ref="766389943" role=""/>
+  <member type="way" ref="766389942" role=""/>
+  <member type="way" ref="60096117" role=""/>
+  <member type="way" ref="766389945" role=""/>
+  <member type="way" ref="766389944" role=""/>
+  <tag k="name" v="New Hampshire Motor Speedway Oval"/>
+  <tag k="start_date" v="1990"/>
+  <tag k="type" v="circuit"/>
+ </relation>
+</osm>

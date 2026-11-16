@@ -126,7 +126,7 @@ func integrate(body: PhysicsDirectBodyState3D) -> void:
 	var top := spec.travel_bump + 0.06
 	s.on_ground = 0
 	for i in 4:
-		var hub := xf * Car.WHEEL_OFFSETS[i]
+		var hub := xf * car.wheel_offsets[i]
 		_ray.from = hub + up * top
 		_ray.to = hub - up * (DESIGN_DROP + spec.travel_droop)
 		var hit := space.intersect_ray(_ray)
@@ -161,8 +161,8 @@ func integrate(body: PhysicsDirectBodyState3D) -> void:
 	# ---- 5-6. forces on the body
 	var force := gravity * s.mass
 	var torque := Vector3.ZERO
-	var front_axle := xf * Vector3(0.0, 0.0, Car.WHEEL_OFFSETS[0].z)
-	var rear_axle := xf * Vector3(0.0, 0.0, Car.WHEEL_OFFSETS[2].z)
+	var front_axle := xf * Vector3(0.0, 0.0, car.wheel_offsets[0].z)
+	var rear_axle := xf * Vector3(0.0, 0.0, car.wheel_offsets[2].z)
 	var f_df := -up * s.downforce_front
 	var r_df := -up * s.downforce_rear
 	force += f_df + r_df

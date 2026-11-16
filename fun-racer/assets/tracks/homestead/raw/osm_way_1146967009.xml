@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (4111272 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1241322087" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:48Z" user="alpha2424" uid="358273" lat="25.4489643" lon="-80.4112025"/>
+ <node id="1241322088" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:48Z" user="alpha2424" uid="358273" lat="25.4521966" lon="-80.4126824"/>
+ <node id="1241322093" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:48Z" user="alpha2424" uid="358273" lat="25.4506437" lon="-80.4133490"/>
+ <node id="1241322094" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:48Z" user="alpha2424" uid="358273" lat="25.4491329" lon="-80.4121558"/>
+ <node id="1241322095" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:48Z" user="alpha2424" uid="358273" lat="25.4520702" lon="-80.4128157"/>
+ <node id="1241322100" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:49Z" user="alpha2424" uid="358273" lat="25.4504631" lon="-80.4133223"/>
+ <node id="1241322101" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:49Z" user="alpha2424" uid="358273" lat="25.4490546" lon="-80.4119158"/>
+ <node id="1241322102" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:49Z" user="alpha2424" uid="358273" lat="25.4525517" lon="-80.4121791"/>
+ <node id="1241322107" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:49Z" user="alpha2424" uid="358273" lat="25.4510590" lon="-80.4133290"/>
+ <node id="1241322109" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:49Z" user="alpha2424" uid="358273" lat="25.4493225" lon="-80.4125257"/>
+ <node id="1241322110" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:49Z" user="alpha2424" uid="358273" lat="25.4523982" lon="-80.4124124"/>
+ <node id="1241322113" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:49Z" user="alpha2424" uid="358273" lat="25.4508273" lon="-80.4133623"/>
+ <node id="1241322114" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:49Z" user="alpha2424" uid="358273" lat="25.4492141" lon="-80.4123457"/>
+ <node id="1241322115" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:49Z" user="alpha2424" uid="358273" lat="25.4528165" lon="-80.4116925"/>
+ <node id="1241322120" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:50Z" user="alpha2424" uid="358273" lat="25.4495843" lon="-80.4128524"/>
+ <node id="1241322121" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:50Z" user="alpha2424" uid="358273" lat="25.4527052" lon="-80.4119091"/>
+ <node id="1241322126" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:50Z" user="alpha2424" uid="358273" lat="25.4494338" lon="-80.4127024"/>
+ <node id="1241322127" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:50Z" user="alpha2424" uid="358273" lat="25.4515315" lon="-80.4131890"/>
+ <node id="1241322129" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:50Z" user="alpha2424" uid="358273" lat="25.4492292" lon="-80.4100527"/>
+ <node id="1241322131" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:50Z" user="alpha2424" uid="358273" lat="25.4498883" lon="-80.4130957"/>
+ <node id="1241322132" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:50Z" user="alpha2424" uid="358273" lat="25.4513419" lon="-80.4132590"/>
+ <node id="1241322136" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:50Z" user="alpha2424" uid="358273" lat="25.4497258" lon="-80.4129790"/>
+ <node id="1241322137" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:50Z" user="alpha2424" uid="358273" lat="25.4519017" lon="-80.4129590"/>
+ <node id="1241322140" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:50Z" user="alpha2424" uid="358273" lat="25.4490005" lon="-80.4108226"/>
+ <node id="1241322142" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:51Z" user="alpha2424" uid="358273" lat="25.4502585" lon="-80.4132556"/>
+ <node id="1241322143" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:51Z" user="alpha2424" uid="358273" lat="25.4489944" lon="-80.4116292"/>
+ <node id="1241322144" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:51Z" user="alpha2424" uid="358273" lat="25.4517181" lon="-80.4130857"/>
+ <node id="1241322148" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:51Z" user="alpha2424" uid="358273" lat="25.4491239" lon="-80.4103660"/>
+ <node id="1241322150" visible="true" version="1" changeset="7837763" timestamp="2011-04-11T21:24:51Z" user="alpha2424" uid="358273" lat="25.4500869" lon="-80.4131857"/>
+ <node id="1243727037" visible="true" version="1" changeset="7855566" timestamp="2011-04-13T20:23:56Z" user="alpha2424" uid="358273" lat="25.4494301" lon="-80.4095967"/>
+ <way id="1146967009" visible="true" version="2" changeset="158435996" timestamp="2024-10-28T00:49:15Z" user="SRASC" uid="453655">
+  <nd ref="1241322115"/>
+  <nd ref="1241322121"/>
+  <nd ref="1241322102"/>
+  <nd ref="1241322110"/>
+  <nd ref="1241322088"/>
+  <nd ref="1241322095"/>
+  <nd ref="1241322137"/>
+  <nd ref="1241322144"/>
+  <nd ref="1241322127"/>
+  <nd ref="1241322132"/>
+  <nd ref="1241322107"/>
+  <nd ref="1241322113"/>
+  <nd ref="1241322093"/>
+  <nd ref="1241322100"/>
+  <nd ref="1241322142"/>
+  <nd ref="1241322150"/>
+  <nd ref="1241322131"/>
+  <nd ref="1241322136"/>
+  <nd ref="1241322120"/>
+  <nd ref="1241322126"/>
+  <nd ref="1241322109"/>
+  <nd ref="1241322114"/>
+  <nd ref="1241322094"/>
+  <nd ref="1241322101"/>
+  <nd ref="1241322143"/>
+  <nd ref="1241322087"/>
+  <nd ref="1241322140"/>
+  <nd ref="1241322148"/>
+  <nd ref="1241322129"/>
+  <nd ref="1243727037"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Homestead-Miami Speedway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="paved"/>
+  <tag k="width" v="16.764"/>
+ </way>
+</osm>

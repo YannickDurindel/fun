@@ -1,0 +1,161 @@
+{
+ "id": "daytona_oval",
+ "recipe": "tools/track/tracks/daytona_oval.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   11371365,
+   352067004,
+   352070311,
+   352070309,
+   352070316
+  ],
+  "raw_length_m": 4022.4,
+  "length_m": 4022.6,
+  "official_length_m": 4023.0,
+  "length_error": -0.0001,
+  "candidates": []
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 4.78,
+  "max_grade": 0.0209,
+  "min_grade": -0.0192,
+  "origin_m": 11.05
+ },
+ "turns": {
+  "official": 4,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Turn 1",
+    "direction": "left",
+    "s_apex": 898.2,
+    "min_radius": 181.5
+   },
+   {
+    "id": "T2",
+    "name": "Speedway",
+    "direction": "left",
+    "s_apex": 2714.7,
+    "min_radius": 208.0
+   },
+   {
+    "id": "T3",
+    "name": "Speedway",
+    "direction": "left",
+    "s_apex": 2848.7,
+    "min_radius": 174.4
+   },
+   {
+    "id": "T4",
+    "name": "Speedway",
+    "direction": "left",
+    "s_apex": 3106.8,
+    "min_radius": 202.2
+   },
+   {
+    "id": "T5",
+    "name": "Speedway",
+    "direction": "left",
+    "s_apex": 3941.0,
+    "min_radius": 143.2
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 38.0,
+    "direction": "left",
+    "angle_deg": 12.0,
+    "kind": "kink",
+    "min_radius": 129.4,
+    "used": false
+   },
+   {
+    "s_apex": 146.0,
+    "direction": "left",
+    "angle_deg": 9.9,
+    "kind": "kink",
+    "min_radius": 230.3,
+    "used": false
+   },
+   {
+    "s_apex": 662.2,
+    "direction": "left",
+    "angle_deg": 6.9,
+    "kind": "kink",
+    "min_radius": 288.8,
+    "used": false
+   },
+   {
+    "s_apex": 898.2,
+    "direction": "left",
+    "angle_deg": 138.7,
+    "kind": "corner",
+    "min_radius": 181.5,
+    "used": true
+   },
+   {
+    "s_apex": 1508.4,
+    "direction": "left",
+    "angle_deg": 8.1,
+    "kind": "kink",
+    "min_radius": 364.4,
+    "used": false
+   },
+   {
+    "s_apex": 2570.6,
+    "direction": "left",
+    "angle_deg": 13.9,
+    "kind": "kink",
+    "min_radius": 169.0,
+    "used": false
+   },
+   {
+    "s_apex": 2714.7,
+    "direction": "left",
+    "angle_deg": 33.5,
+    "kind": "corner",
+    "min_radius": 208.0,
+    "used": true
+   },
+   {
+    "s_apex": 2848.7,
+    "direction": "left",
+    "angle_deg": 49.9,
+    "kind": "corner",
+    "min_radius": 174.4,
+    "used": true
+   },
+   {
+    "s_apex": 3106.8,
+    "direction": "left",
+    "angle_deg": 43.8,
+    "kind": "corner",
+    "min_radius": 202.2,
+    "used": true
+   },
+   {
+    "s_apex": 3374.8,
+    "direction": "left",
+    "angle_deg": 7.8,
+    "kind": "kink",
+    "min_radius": 306.9,
+    "used": false
+   },
+   {
+    "s_apex": 3941.0,
+    "direction": "left",
+    "angle_deg": 16.4,
+    "kind": "corner",
+    "min_radius": 143.2,
+    "used": true
+   }
+  ]
+ },
+ "warnings": [
+  "the finish line point is 72 m away from the loop; check [layout] finish"
+ ]
+}

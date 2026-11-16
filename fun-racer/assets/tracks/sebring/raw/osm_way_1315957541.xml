@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1319 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1256623435" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4516955" lon="-81.3472745"/>
+ <node id="1256623466" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4508036" lon="-81.3462632"/>
+ <node id="1256623492" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4527951" lon="-81.3478505"/>
+ <node id="1256623641" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4517935" lon="-81.3473633"/>
+ <node id="13376286738" visible="true" version="1" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4518582" lon="-81.3474010"/>
+ <node id="13376286739" visible="true" version="1" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4517452" lon="-81.3473236"/>
+ <way id="1315957541" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330">
+  <nd ref="1256623492"/>
+  <nd ref="13376286738"/>
+  <nd ref="1256623641"/>
+  <nd ref="13376286739"/>
+  <nd ref="1256623435"/>
+  <nd ref="1256623466"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (1315 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1256623586" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4484156" lon="-81.3468090"/>
+ <node id="1256623589" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4486750" lon="-81.3466512"/>
+ <node id="1256623599" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4484721" lon="-81.3467466"/>
+ <node id="1256623617" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4483147" lon="-81.3470237"/>
+ <node id="1256623643" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4483050" lon="-81.3471371"/>
+ <node id="1256623775" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4485373" lon="-81.3467007"/>
+ <node id="13376286748" visible="true" version="1" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4486108" lon="-81.3466661"/>
+ <node id="13376286749" visible="true" version="1" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4483711" lon="-81.3468758"/>
+ <node id="13376286750" visible="true" version="1" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330" lat="27.4483403" lon="-81.3469378"/>
+ <way id="1315957538" visible="true" version="2" changeset="175927969" timestamp="2025-12-14T17:29:48Z" user="Matthew Grund" uid="1239330">
+  <nd ref="1256623589"/>
+  <nd ref="13376286748"/>
+  <nd ref="1256623775"/>
+  <nd ref="1256623599"/>
+  <nd ref="1256623586"/>
+  <nd ref="13376286749"/>
+  <nd ref="13376286750"/>
+  <nd ref="1256623617"/>
+  <nd ref="1256623643"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Le Mans Curve"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

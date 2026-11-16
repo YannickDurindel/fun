@@ -1,0 +1,176 @@
+{
+ "id": "indianapolis_oval",
+ "recipe": "tools/track/tracks/indianapolis_oval.toml",
+ "osm": {
+  "relation": null,
+  "loop_ways": [
+   51308226,
+   588780333,
+   588780334,
+   588780335,
+   588780332,
+   588780343,
+   588780345,
+   588780347,
+   588780351,
+   588780349
+  ],
+  "raw_length_m": 4075.7,
+  "length_m": 4075.9,
+  "official_length_m": 4023.0,
+  "length_error": 0.01315,
+  "candidates": []
+ },
+ "start_finish_source": "recipe",
+ "dem_dataset": "terrarium",
+ "elevation": {
+  "range_m": 4.2,
+  "max_grade": 0.0113,
+  "min_grade": -0.0085,
+  "origin_m": 222.5
+ },
+ "turns": {
+  "official": 4,
+  "mode": "recipe",
+  "auto": [
+   {
+    "id": "T1",
+    "name": "Indianapolis Motor Speedway - Turn 1",
+    "direction": "left",
+    "s_apex": 410.6,
+    "min_radius": 128.0
+   },
+   {
+    "id": "T2",
+    "name": "Indianapolis Motor Speedway - Turn 1",
+    "direction": "left",
+    "s_apex": 568.5,
+    "min_radius": 192.4
+   },
+   {
+    "id": "T3",
+    "name": "Indianapolis Motor Speedway - Turn 1",
+    "direction": "left",
+    "s_apex": 617.9,
+    "min_radius": 177.7
+   },
+   {
+    "id": "T4",
+    "name": "Indianapolis Motor Speedway - Turn 2",
+    "direction": "left",
+    "s_apex": 1144.9,
+    "min_radius": 154.2
+   },
+   {
+    "id": "T5",
+    "name": "Indianapolis Motor Speedway - Turn 2",
+    "direction": "left",
+    "s_apex": 1186.4,
+    "min_radius": 132.8
+   },
+   {
+    "id": "T6",
+    "name": "Indianapolis Motor Speedway - Turn 3",
+    "direction": "left",
+    "s_apex": 2370.8,
+    "min_radius": 175.4
+   },
+   {
+    "id": "T7",
+    "name": "Indianapolis Motor Speedway - Turn 3",
+    "direction": "left",
+    "s_apex": 2615.5,
+    "min_radius": 170.8
+   },
+   {
+    "id": "T8",
+    "name": "Indianapolis Motor Speedway - Turn 4",
+    "direction": "left",
+    "s_apex": 3128.8,
+    "min_radius": 163.7
+   },
+   {
+    "id": "T9",
+    "name": "Indianapolis Motor Speedway - Turn 4",
+    "direction": "left",
+    "s_apex": 3298.5,
+    "min_radius": 191.7
+   }
+  ],
+  "auto_candidates": [
+   {
+    "s_apex": 410.6,
+    "direction": "left",
+    "angle_deg": 28.2,
+    "kind": "corner",
+    "min_radius": 128.0,
+    "used": true
+   },
+   {
+    "s_apex": 568.5,
+    "direction": "left",
+    "angle_deg": 33.5,
+    "kind": "corner",
+    "min_radius": 192.4,
+    "used": true
+   },
+   {
+    "s_apex": 617.9,
+    "direction": "left",
+    "angle_deg": 24.7,
+    "kind": "corner",
+    "min_radius": 177.7,
+    "used": true
+   },
+   {
+    "s_apex": 1144.9,
+    "direction": "left",
+    "angle_deg": 55.5,
+    "kind": "corner",
+    "min_radius": 154.2,
+    "used": true
+   },
+   {
+    "s_apex": 1186.4,
+    "direction": "left",
+    "angle_deg": 33.0,
+    "kind": "corner",
+    "min_radius": 132.8,
+    "used": true
+   },
+   {
+    "s_apex": 2370.8,
+    "direction": "left",
+    "angle_deg": 46.6,
+    "kind": "corner",
+    "min_radius": 175.4,
+    "used": true
+   },
+   {
+    "s_apex": 2615.5,
+    "direction": "left",
+    "angle_deg": 40.2,
+    "kind": "corner",
+    "min_radius": 170.8,
+    "used": true
+   },
+   {
+    "s_apex": 3128.8,
+    "direction": "left",
+    "angle_deg": 55.4,
+    "kind": "corner",
+    "min_radius": 163.7,
+    "used": true
+   },
+   {
+    "s_apex": 3298.5,
+    "direction": "left",
+    "angle_deg": 32.9,
+    "kind": "corner",
+    "min_radius": 191.7,
+    "used": true
+   }
+  ]
+ },
+ "warnings": []
+}

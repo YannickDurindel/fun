@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (4022668 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1904483284" visible="true" version="1" changeset="13025298" timestamp="2012-09-07T16:57:34Z" user="xp10" uid="770228" lat="38.6530583" lon="-90.1343146"/>
+ <node id="1904483290" visible="true" version="1" changeset="13025298" timestamp="2012-09-07T16:57:34Z" user="xp10" uid="770228" lat="38.6546754" lon="-90.1368895"/>
+ <node id="1904483301" visible="true" version="1" changeset="13025298" timestamp="2012-09-07T16:57:34Z" user="xp10" uid="770228" lat="38.6535108" lon="-90.1378873"/>
+ <node id="1904483308" visible="true" version="1" changeset="13025298" timestamp="2012-09-07T16:57:35Z" user="xp10" uid="770228" lat="38.6529997" lon="-90.1378229"/>
+ <node id="1904483311" visible="true" version="1" changeset="13025298" timestamp="2012-09-07T16:57:35Z" user="xp10" uid="770228" lat="38.6541308" lon="-90.1346472"/>
+ <node id="1904483315" visible="true" version="1" changeset="13025298" timestamp="2012-09-07T16:57:35Z" user="xp10" uid="770228" lat="38.6548346" lon="-90.1362779"/>
+ <node id="1904483317" visible="true" version="1" changeset="13025298" timestamp="2012-09-07T16:57:35Z" user="xp10" uid="770228" lat="38.6543905" lon="-90.1374259"/>
+ <node id="1904483324" visible="true" version="2" changeset="58616143" timestamp="2018-05-02T13:53:04Z" user="dustinturp" uid="2456557" lat="38.6545748" lon="-90.1351055"/>
+ <node id="1904483327" visible="true" version="1" changeset="13025298" timestamp="2012-09-07T16:57:35Z" user="xp10" uid="770228" lat="38.6547935" lon="-90.1356959"/>
+ <node id="1904483329" visible="true" version="1" changeset="13025298" timestamp="2012-09-07T16:57:35Z" user="xp10" uid="770228" lat="38.6540303" lon="-90.1377263"/>
+ <node id="1904485906" visible="true" version="3" changeset="128816857" timestamp="2022-11-12T15:14:59Z" user="Bruh1" uid="15991552" lat="38.6520702" lon="-90.1341055"/>
+ <node id="5592426088" visible="true" version="1" changeset="58616143" timestamp="2018-05-02T13:53:02Z" user="dustinturp" uid="2456557" lat="38.6540308" lon="-90.1345878"/>
+ <node id="5592426089" visible="true" version="1" changeset="58616143" timestamp="2018-05-02T13:53:02Z" user="dustinturp" uid="2456557" lat="38.6543341" lon="-90.1348298"/>
+ <node id="5592426090" visible="true" version="1" changeset="58616143" timestamp="2018-05-02T13:53:02Z" user="dustinturp" uid="2456557" lat="38.6544511" lon="-90.1349527"/>
+ <node id="5592426091" visible="true" version="1" changeset="58616143" timestamp="2018-05-02T13:53:02Z" user="dustinturp" uid="2456557" lat="38.6546645" lon="-90.1353160"/>
+ <node id="5592426092" visible="true" version="1" changeset="58616143" timestamp="2018-05-02T13:53:02Z" user="dustinturp" uid="2456557" lat="38.6548380" lon="-90.1359991"/>
+ <node id="5592426093" visible="true" version="1" changeset="58616143" timestamp="2018-05-02T13:53:02Z" user="dustinturp" uid="2456557" lat="38.6547789" lon="-90.1366112"/>
+ <node id="5592426094" visible="true" version="1" changeset="58616143" timestamp="2018-05-02T13:53:02Z" user="dustinturp" uid="2456557" lat="38.6545798" lon="-90.1371241"/>
+ <node id="5592426095" visible="true" version="1" changeset="58616143" timestamp="2018-05-02T13:53:02Z" user="dustinturp" uid="2456557" lat="38.6532280" lon="-90.1343623"/>
+ <node id="9370324244" visible="true" version="1" changeset="115429703" timestamp="2021-12-27T14:32:07Z" user="dustinturp" uid="2456557" lat="38.6528962" lon="-90.1377883"/>
+ <node id="10178338650" visible="true" version="1" changeset="128816857" timestamp="2022-11-12T15:14:59Z" user="Bruh1" uid="15991552" lat="38.6532496" lon="-90.1378850"/>
+ <way id="1015873402" visible="true" version="3" changeset="181338328" timestamp="2026-04-14T19:14:42Z" user="trackmap" uid="13790961">
+  <nd ref="1904485906"/>
+  <nd ref="1904483284"/>
+  <nd ref="5592426095"/>
+  <nd ref="5592426088"/>
+  <nd ref="1904483311"/>
+  <nd ref="5592426089"/>
+  <nd ref="5592426090"/>
+  <nd ref="1904483324"/>
+  <nd ref="5592426091"/>
+  <nd ref="1904483327"/>
+  <nd ref="5592426092"/>
+  <nd ref="1904483315"/>
+  <nd ref="5592426093"/>
+  <nd ref="1904483290"/>
+  <nd ref="5592426094"/>
+  <nd ref="1904483317"/>
+  <nd ref="1904483329"/>
+  <nd ref="1904483301"/>
+  <nd ref="10178338650"/>
+  <nd ref="1904483308"/>
+  <nd ref="9370324244"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="name" v="Gateway International Raceway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="paved"/>
+ </way>
+</osm>

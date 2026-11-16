@@ -1,0 +1,15 @@
+{
+  "id": "wec_le_mans",
+  "name": "Circuit de la Sarthe",
+  "grand_prix": "24 Hours of Le Mans",
+  "country": "France",
+  "country_code": "FR",
+  "city": "Le Mans",
+  "length_m": 13626,
+  "turns": 38,
+  "scene": "res://scenes/tracks/wec_le_mans.tscn",
+  "track_json": "res://assets/tracks/wec_le_mans/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "endurance"
+}

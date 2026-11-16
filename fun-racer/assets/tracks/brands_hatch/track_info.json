@@ -1,0 +1,15 @@
+{
+  "id": "brands_hatch",
+  "name": "Brands Hatch",
+  "grand_prix": "Brands Hatch",
+  "country": "United Kingdom",
+  "country_code": "GB",
+  "city": "West Kingsdown",
+  "length_m": 3908,
+  "turns": 9,
+  "scene": "res://scenes/tracks/brands_hatch.tscn",
+  "track_json": "res://assets/tracks/brands_hatch/track.json",
+  "osm_relation": 7218462,
+  "available": true,
+  "series": "circuit"
+}

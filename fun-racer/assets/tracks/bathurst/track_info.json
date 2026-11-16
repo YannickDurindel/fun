@@ -1,0 +1,15 @@
+{
+  "id": "bathurst",
+  "name": "Mount Panorama Circuit",
+  "grand_prix": "Bathurst 12 Hour",
+  "country": "Australia",
+  "country_code": "AU",
+  "city": "Bathurst",
+  "length_m": 6213,
+  "turns": 23,
+  "scene": "res://scenes/tracks/bathurst.tscn",
+  "track_json": "res://assets/tracks/bathurst/track.json",
+  "osm_relation": null,
+  "available": true,
+  "series": "endurance"
+}

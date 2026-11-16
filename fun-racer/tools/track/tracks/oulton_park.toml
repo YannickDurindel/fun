@@ -1,0 +1,28 @@
+# Oulton Park (Island circuit) (Tarporley, United Kingdom), 3582 m.
+# Built for other series' calendars (event(s) tc_oulton_park link it with "track"): series "circuit"
+# keeps it out of every series list on its own, F1 included.
+#
+#   .venv/bin/python tools/track/build_track.py oulton_park --plot
+
+id = "oulton_park"
+series = "circuit"
+name = "Oulton Park"
+grand_prix = "Oulton Park"
+country = "United Kingdom"
+country_code = "GB"
+city = "Tarporley"
+length_m = 3582
+# turns: not standardised, the detector's count is used
+full_name = "Oulton Park (Island circuit)"
+
+[osm]
+# type=circuit relation "Oulton Park Island" (the 3582 m Island circuit raced by the touring cars).
+relation = 11249454
+
+[elevation]
+dataset = "terrarium"
+
+[layout]
+# OSM has no start / finish node: the line is on the start / finish straight between Deer Leap
+# and Old Hall Corner (read off the centreline, +/- 60 m).
+finish = [53.179104, -2.612449]

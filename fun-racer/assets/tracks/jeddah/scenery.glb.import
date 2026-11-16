@@ -3,10 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
+uid="uid://dye7rsat1o0xl"
+path="res://.godot/imported/scenery.glb-7358d38bbb2b0483b3f45565a2130fe2.scn"
 
 [deps]
 
 source_file="res://assets/tracks/jeddah/scenery.glb"
+dest_files=["res://.godot/imported/scenery.glb-7358d38bbb2b0483b3f45565a2130fe2.scn"]
 
 [params]
 

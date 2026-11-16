@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (3971088 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="63890945" visible="true" version="3" changeset="2611868" timestamp="2009-09-25T05:34:45Z" user="woodpeck_fixbot" uid="147510" lat="33.5684551" lon="-86.0711939"/>
+ <node id="63906147" visible="true" version="3" changeset="3184547" timestamp="2009-11-22T11:26:32Z" user="woodpeck_fixbot" uid="147510" lat="33.5641783" lon="-86.0700352"/>
+ <node id="63906148" visible="true" version="3" changeset="2611868" timestamp="2009-09-25T05:36:46Z" user="woodpeck_fixbot" uid="147510" lat="33.5648005" lon="-86.0704987"/>
+ <node id="63906150" visible="true" version="3" changeset="3184547" timestamp="2009-11-22T11:26:32Z" user="woodpeck_fixbot" uid="147510" lat="33.5656230" lon="-86.0709450"/>
+ <node id="63906153" visible="true" version="4" changeset="8369438" timestamp="2011-06-07T12:04:24Z" user="Neverwhere" uid="221878" lat="33.5661496" lon="-86.0711383"/>
+ <node id="63906155" visible="true" version="3" changeset="2611868" timestamp="2009-09-25T05:36:46Z" user="woodpeck_fixbot" uid="147510" lat="33.5665241" lon="-86.0712197"/>
+ <node id="63906157" visible="true" version="3" changeset="3184547" timestamp="2009-11-22T11:26:32Z" user="woodpeck_fixbot" uid="147510" lat="33.5670248" lon="-86.0712883"/>
+ <node id="63906159" visible="true" version="3" changeset="2611868" timestamp="2009-09-25T05:36:46Z" user="woodpeck_fixbot" uid="147510" lat="33.5674896" lon="-86.0713141"/>
+ <node id="63906160" visible="true" version="3" changeset="3184547" timestamp="2009-11-22T11:26:32Z" user="woodpeck_fixbot" uid="147510" lat="33.5679116" lon="-86.0712883"/>
+ <node id="304306605" visible="true" version="1" changeset="332607" timestamp="2008-10-13T17:51:43Z" user="California Bear" uid="28923" lat="33.5651796" lon="-86.0707390"/>
+ <node id="1315881583" visible="true" version="1" changeset="8376398" timestamp="2011-06-08T06:44:39Z" user="Neverwhere" uid="221878" lat="33.5630330" lon="-86.0690341"/>
+ <node id="1315881639" visible="true" version="1" changeset="8376398" timestamp="2011-06-08T06:44:41Z" user="Neverwhere" uid="221878" lat="33.5696732" lon="-86.0709309"/>
+ <node id="13757090309" visible="true" version="1" changeset="181739833" timestamp="2026-04-23T22:17:20Z" user="MooPoo7" uid="7596709" lat="33.5632585" lon="-86.0692312"/>
+ <way id="8835825" visible="true" version="12" changeset="181739833" timestamp="2026-04-23T22:17:20Z" user="MooPoo7" uid="7596709">
+  <nd ref="1315881639"/>
+  <nd ref="63890945"/>
+  <nd ref="63906160"/>
+  <nd ref="63906159"/>
+  <nd ref="63906157"/>
+  <nd ref="63906155"/>
+  <nd ref="63906153"/>
+  <nd ref="63906150"/>
+  <nd ref="304306605"/>
+  <nd ref="63906148"/>
+  <nd ref="63906147"/>
+  <nd ref="13757090309"/>
+  <nd ref="1315881583"/>
+  <tag k="highway" v="raceway"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sport" v="motor"/>
+  <tag k="surface" v="paved"/>
+  <tag k="tiger:cfcc" v="A41"/>
+  <tag k="tiger:county" v="Talladega, AL"/>
+  <tag k="tiger:reviewed" v="no"/>
+ </way>
+</osm>
